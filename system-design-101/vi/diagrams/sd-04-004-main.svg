@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="940" viewBox="0 0 320 940" role="img" aria-labelledby="title desc">
+<title id="title">Ba cách một hệ thống tin nhắn giao tin</title>
+<desc id="desc">Hai khung. Khung một là ba thẻ, mỗi thẻ một cách giao tin, kèm kết quả thử trên Redis 7. Hàng đợi công việc: mỗi tin tới đúng một worker rồi biến mất; worker 1 nhận m1 và m2, worker 2 nhận m3. Phát và nhận (Pub/Sub): chỉ ai đang nghe mới nhận, tin không được lưu; B vào sau khi m1 được gửi nên chỉ nhận m2. Nhật ký: tin được giữ lại, mỗi nhóm đọc có vị trí riêng; nhóm tạo sau vẫn đọc lại đủ m1 đến m3. Khung hai là bốn câu hỏi trước khi chọn: một tin cho một worker hay cho mọi bên; bên nhận đang tắt thì tin chờ hay mất; có cần đọc lại tin cũ không; báo nhận trước hay sau khi xử lý xong.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="940" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách một hệ thống</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tin nhắn giao tin</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Thử cả ba trên Redis 7 với ba tin m1,</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">m2, m3.</text>
+<rect x="8" y="123" width="304" height="464" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách giao tin</text>
+<rect x="20" y="168" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="231" r="18" fill="#1d4ed8"/><g transform="translate(39.2 220.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi công việc</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi tin tới đúng một</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">worker rồi mất. Worker 1</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận m1, m2; worker 2</text>
+<text x="78" y="276.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận m3.</text>
+<rect x="20" y="308" width="280" height="127" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="371.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 360.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></g>
+<text x="78" y="334.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phát và nhận</text>
+<text x="78" y="354.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">(Pub/Sub)</text>
+<text x="78" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ai đang nghe mới nhận, tin</text>
+<text x="78" y="397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không được lưu. B vào sau</text>
+<text x="78" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">m1 nên chỉ nhận m2.</text>
+<rect x="20" y="449" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="512" r="18" fill="#1d4ed8"/><g transform="translate(39.2 501.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></g>
+<text x="78" y="475.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhật ký</text>
+<text x="78" y="499.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tin được giữ lại, mỗi nhóm</text>
+<text x="78" y="518.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có vị trí riêng. Nhóm tạo</text>
+<text x="78" y="538.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau vẫn đọc đủ m1 đến</text>
+<text x="78" y="557.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">m3.</text>
+<rect x="8" y="599" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="627.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn câu hỏi trước khi chọn</text>
+<rect x="20" y="644" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="667" r="11" fill="#16a34a"/>
+<polyline points="37.9,667.4 41.7,671.4 48.5,663" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="670.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi tin cho một worker làm,</text>
+<text x="64" y="689.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hay cho mọi bên cần biết?</text>
+<rect x="20" y="715" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="738" r="11" fill="#16a34a"/>
+<polyline points="37.9,738.4 41.7,742.4 48.5,734" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="741.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bên nhận đang tắt thì tin</text>
+<text x="64" y="760.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nằm chờ, hay mất luôn?</text>
+<rect x="20" y="786" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="809" r="11" fill="#16a34a"/>
+<polyline points="37.9,809.4 41.7,813.4 48.5,805" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="812.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có cần đọc lại tin cũ khi sửa</text>
+<text x="64" y="831.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lỗi hoặc thêm bên nhận mới?</text>
+<rect x="20" y="857" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="880" r="11" fill="#16a34a"/>
+<polyline points="37.9,880.4 41.7,884.4 48.5,876" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="883.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo đã nhận sau khi xử lý</text>
+<text x="64" y="902.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xong, hay ngay khi nhận?</text>
+</g>
+</svg>

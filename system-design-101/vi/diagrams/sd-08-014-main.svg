@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1045" viewBox="0 0 320 1045" role="img" aria-labelledby="title desc">
+<title id="title">Thiết kế cho lỗi: thử ba lớp bảo vệ</title>
+<desc id="desc">Ba khung. Khung một, chín việc của nguồn: thiết kế cho lỗi, dịch vụ nhỏ, giao thức nhẹ, khám phá dịch vụ, dữ liệu riêng, mẫu chịu lỗi, bảo mật mọi tầng, nhật ký tập trung và đóng gói container; bài này chỉ đo thiết kế cho lỗi và mẫu chịu lỗi. Khung hai, dịch vụ phụ thuộc trả lời sau 200 mili giây: 20 lần gọi không đặt hạn mất 4,04 giây, đặt hạn 50 mili giây mất 1,01 giây nhưng thất bại hết, thêm bộ ngắt mạch chỉ còn 0,25 đến 0,33 giây và 5 lần gọi tới dịch vụ. Khung ba, dịch vụ lỗi 30 phần trăm: thử lại tối đa ba lần nâng thành công từ 1.416 lên 1.936 trên 2.000 lần nhưng tăng tải lên 2.792 lần gọi; khi dịch vụ chết hẳn, ba lần thử gây 1.500 lần gọi còn bộ ngắt mạch chỉ 5.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1045" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Thiết kế cho lỗi: thử ba</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lớp bảo vệ</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chín việc của nguồn, hai việc đo</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">được bằng một dịch vụ giả.</text>
+<rect x="8" y="123" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chín việc, hai việc đo</text>
+<rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thiết kế cho lỗi và mẫu chịu</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lỗi: đo trong bài.</text>
+<rect x="20" y="239" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="262" r="11" fill="#16a34a"/>
+<polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ nhỏ, giao thức nhẹ,</text>
+<text x="64" y="284.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khám phá, dữ liệu riêng:</text>
+<text x="64" y="304.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo.</text>
+<rect x="20" y="330" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="353" r="11" fill="#16a34a"/>
+<polyline points="37.9,353.4 41.7,357.4 48.5,349" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="356.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảo mật, nhật ký tập trung,</text>
+<text x="64" y="375.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">container: không đo.</text>
+<rect x="8" y="417" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="445.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ chậm 200 ms, 20</text>
+<text x="20" y="467.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">lần gọi</text>
+<rect x="20" y="484" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="507" r="11" fill="#16a34a"/>
+<polyline points="37.9,507.4 41.7,511.4 48.5,503" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="510.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không đặt hạn: 4,04 giây,</text>
+<text x="64" y="529.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thành công hết.</text>
+<rect x="20" y="555" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="578" r="11" fill="#16a34a"/>
+<polyline points="37.9,578.4 41.7,582.4 48.5,574" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đặt hạn 50 ms: 1,01 giây,</text>
+<text x="64" y="600.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thất bại hết.</text>
+<rect x="20" y="626" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="649" r="11" fill="#16a34a"/>
+<polyline points="37.9,649.4 41.7,653.4 48.5,645" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="652.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm bộ ngắt mạch: 0,25</text>
+<text x="64" y="671.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 0,33 giây, chỉ 5 lần gọi.</text>
+<rect x="8" y="713" width="304" height="324" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="741.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lỗi 30 phần trăm và dịch vụ</text>
+<text x="20" y="763.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">chết</text>
+<rect x="20" y="780" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="803" r="11" fill="#16a34a"/>
+<polyline points="37.9,803.4 41.7,807.4 48.5,799" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="806.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thử lại tối đa ba lần: 1.416</text>
+<text x="64" y="825.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lên 1.936 thành công trên</text>
+<text x="64" y="845.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2.000.</text>
+<rect x="20" y="871" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="894" r="11" fill="#16a34a"/>
+<polyline points="37.9,894.4 41.7,898.4 48.5,890" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="897.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cái giá: tải 2.000 lên 2.792</text>
+<text x="64" y="916.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần gọi.</text>
+<rect x="20" y="942" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="965" r="11" fill="#16a34a"/>
+<polyline points="37.9,965.4 41.7,969.4 48.5,961" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="968.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ chết: ba lần thử gây</text>
+<text x="64" y="987.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1.500 lần gọi, bộ ngắt mạch</text>
+<text x="64" y="1007.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gây 5.</text>
+</g>
+</svg>

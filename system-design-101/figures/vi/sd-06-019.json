@@ -1,0 +1,62 @@
+{
+  "id": "sd-06-019",
+  "lang": "vi",
+  "title": "Redis giữ dữ liệu qua lần sập thế nào",
+  "subtitle": "Thử: ghi 1500 khóa, kill -9, khởi động lại.",
+  "desc": "Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp, thường trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và tệp gốc của AOF mặc định ở dạng RDB.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một lệnh ghi khi bật AOF",
+      "items": [
+        {
+          "title": "Sửa dữ liệu trong RAM",
+          "text": "Chạy lệnh trên dữ liệu trong bộ nhớ trước."
+        },
+        {
+          "title": "Nối vào bộ đệm AOF",
+          "text": "Lệnh vừa chạy được thêm vào bộ đệm."
+        },
+        {
+          "title": "write() vào tệp",
+          "text": "Thường xong trước khi trả lời."
+        },
+        {
+          "title": "fsync theo chính sách",
+          "text": "everysec: mỗi giây, ở nền. always: trước khi trả lời."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Thử: 1500 khóa rồi kill -9",
+      "items": [
+        {
+          "name": "Không lưu",
+          "role": "Khởi động lại còn 0 khóa.",
+          "icon": "circle-x"
+        },
+        {
+          "name": "Chỉ RDB",
+          "role": "Ảnh chụp lúc có 1000 khóa. Khởi động lại còn 1000, mất 500.",
+          "icon": "history"
+        },
+        {
+          "name": "AOF everysec",
+          "role": "Khởi động lại còn đủ 1500 khóa.",
+          "icon": "circle-check"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "RDB: tệp gọn, nạp nhanh, mất phần ghi sau ảnh chụp cuối.",
+        "AOF: mất ít hơn, tệp lớn hơn, được viết lại cho gọn ở nền.",
+        "kill -9 khác mất điện: fsync mới quyết định phần nào chắc chắn nằm trên đĩa.",
+        "Mặc định, tệp gốc của AOF ở dạng RDB, kể cả khi tắt ảnh chụp RDB."
+      ]
+    }
+  ]
+}

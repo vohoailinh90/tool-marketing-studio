@@ -1,0 +1,31 @@
+{
+  "id": "sd-12-006",
+  "title": "Chat bằng Redis",
+  "subtitle": "Một kênh phát tin, một tập có thứ tự.",
+  "desc": "Hai khung. Khung một, đường đi của một tin nhắn: Bob gửi tin tới máy chủ chat qua WebSocket; máy chủ lưu tin vào Redis bằng zadd; máy chủ phát tin lên kênh bằng publish; Redis chuyển tin cho các kết nối đang lắng nghe kênh. Khung hai, hai việc khác nhau: zadd giữ tin để đọc sau, publish chỉ giao cho người đang nghe tại lúc phát.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Một tin nhắn",
+      "actors": [
+        {"name": "Bob", "icon": "smartphone"},
+        {"name": "Máy chủ chat", "icon": "server"},
+        {"name": "Redis", "icon": "database"}
+      ],
+      "messages": [
+        {"from": 0, "to": 1, "text": "Gửi tin (WebSocket)"},
+        {"from": 1, "to": 2, "text": "zadd: lưu lịch sử"},
+        {"from": 1, "to": 2, "text": "publish: phát lên kênh"},
+        {"from": 2, "to": 1, "text": "Giao cho người đang nghe", "reply": true}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai việc khác nhau",
+      "items": [
+        "zadd giữ tin để đọc sau.",
+        "publish chỉ giao cho người đang nghe lúc đó."
+      ]
+    }
+  ]
+}

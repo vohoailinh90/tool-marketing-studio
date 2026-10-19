@@ -1,0 +1,26 @@
+{
+  "id": "sd-12-012",
+  "title": "Bản đồ trực tuyến, đơn giản hóa",
+  "subtitle": "Ba thành phần: vị trí, hiển thị bản đồ, dẫn đường.",
+  "desc": "Hai khung. Khung một, ba thành phần: dịch vụ vị trí ghi lại vị trí người dùng gửi lên, hiển thị bản đồ chia thế giới thành các ô ảnh tĩnh phát từ CDN theo mức thu phóng, dẫn đường tìm vài tuyến ngắn nhất rồi xếp theo thời gian dự đoán. Khung hai, ba điều rút ra từ thử nghiệm: số ô tăng gấp bốn mỗi mức thu phóng, tuyến ngắn nhất chưa chắc nhanh nhất khi có kẹt xe, và việc xếp hạng phải làm sau khi có dự đoán thời gian.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba thành phần",
+      "items": [
+        {"title": "Dịch vụ vị trí", "text": "Nhận vị trí người dùng gửi lên mỗi vài giây."},
+        {"title": "Hiển thị bản đồ", "text": "Ô ảnh tĩnh, phát từ CDN theo mức thu phóng."},
+        {"title": "Dẫn đường", "text": "Đổi địa chỉ thành tọa độ, tìm tuyến, xếp hạng."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều rút ra từ thử nghiệm",
+      "items": [
+        "Mỗi mức thu phóng có số ô gấp bốn mức trước.",
+        "Tuyến ngắn nhất chưa chắc nhanh nhất khi có kẹt xe.",
+        "Xếp hạng tuyến phải sau bước dự đoán thời gian."
+      ]
+    }
+  ]
+}

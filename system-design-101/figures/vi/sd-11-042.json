@@ -1,0 +1,13 @@
+{
+  "id": "sd-11-042",
+  "title": "Mười lăm khái niệm, bốn câu hỏi",
+  "subtitle": "Và thứ tài liệu ôn thi hay bỏ quên.",
+  "desc": "Năm khung. Khung một, làm cái gì: thu thập yêu cầu, thiết kế miền, thiết kế trải nghiệm người dùng. Khung hai, dựng thế nào: kiến trúc hệ thống, thiết kế dữ liệu, khả năng mở rộng, hiệu năng. Khung ba, giữ cho sống: độ tin cậy, tính sẵn sàng, bảo mật, khả năng bảo trì, kiểm thử. Khung bốn, đưa vào đời: ước tính chi phí, tài liệu, kế hoạch di chuyển. Khung năm, đếm trong một tài liệu ôn phỏng vấn: khả năng mở rộng 104 lần, kiến trúc 70 lần; sáu khái niệm chỉ được nhắc không quá một lần.",
+  "sections": [
+    {"kind": "notes", "heading": "Làm cái gì", "items": ["Thu thập yêu cầu.", "Thiết kế miền.", "Thiết kế trải nghiệm người dùng."]},
+    {"kind": "notes", "heading": "Dựng thế nào", "items": ["Kiến trúc hệ thống.", "Thiết kế dữ liệu.", "Khả năng mở rộng.", "Hiệu năng."]},
+    {"kind": "notes", "heading": "Giữ cho sống", "items": ["Độ tin cậy.", "Tính sẵn sàng.", "Bảo mật.", "Khả năng bảo trì.", "Kiểm thử."]},
+    {"kind": "notes", "heading": "Đưa vào đời", "items": ["Ước tính chi phí.", "Tài liệu.", "Kế hoạch di chuyển."]},
+    {"kind": "notes", "heading": "Đếm trong tài liệu ôn thi", "items": ["Mở rộng: 104 lần. Kiến trúc: 70.", "Bảo trì, tài liệu, di chuyển: 0 lần.", "Yêu cầu, kiểm thử, trải nghiệm: 1 lần."]}
+  ]
+}

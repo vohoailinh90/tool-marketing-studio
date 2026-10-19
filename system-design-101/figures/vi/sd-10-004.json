@@ -1,0 +1,55 @@
+{
+  "id": "sd-10-004",
+  "title": "Cách đo năng lượng của ngôn ngữ",
+  "subtitle": "Đọc cách đo trước khi đọc bảng xếp hạng.",
+  "desc": "Ba nhóm thẻ. Bộ bài đo: mười bài toán chuẩn và 28 thư mục ngôn ngữ. Bốn thao tác của mỗi bài: biên dịch, chạy thử, đo năng lượng, đo bộ nhớ đỉnh. Đọc thận trọng gồm ba ý.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bộ bài đo",
+      "items": [
+        {
+          "name": "Mười bài toán",
+          "role": "Mã lấy từ Computer Language Benchmarks Game.",
+          "icon": "list-checks"
+        },
+        {
+          "name": "28 ngôn ngữ",
+          "role": "Mỗi ngôn ngữ một thư mục, mỗi bài một thư mục con.",
+          "icon": "folder"
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Bốn thao tác của mỗi bài",
+      "items": [
+        {
+          "title": "Biên dịch",
+          "text": "Ngôn ngữ thông dịch có thể để trống."
+        },
+        {
+          "title": "Chạy thử",
+          "text": "Kiểm bài chạy không lỗi, ra kết quả mong đợi."
+        },
+        {
+          "title": "Đo năng lượng",
+          "text": "Dùng khung RAPL, ghi bằng joule."
+        },
+        {
+          "title": "Đo bộ nhớ đỉnh",
+          "text": "Chạy lại và theo dõi đỉnh bộ nhớ."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đọc thận trọng",
+      "items": [
+        "Số đo phụ thuộc máy và trình biên dịch.",
+        "Mười bài toán không phải ứng dụng của bạn.",
+        "Bài này không nêu ngôn ngữ nào xanh nhất."
+      ]
+    }
+  ]
+}

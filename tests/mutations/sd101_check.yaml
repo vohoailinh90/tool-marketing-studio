@@ -2098,7 +2098,7 @@ mutations:
   replace: "*UNIT_SYMBOLS)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a name with its own full form is held to the initials rule
-  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"AAAA\": \"Quad A\", \"EDNS\": \"Extension Mechanisms for DNS\",\n                   \"ISO\": \"International Organization for Standardization\", \"MX\": \"Mail eXchange\", \"CoAP\": \"Constrained Application Protocol\",\n                   \"RRset\": \"Resource Record set\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"AAAA\": \"Quad A\", \"EDNS\": \"Extension Mechanisms for DNS\",\n                   \"ISO\": \"International Organization for Standardization\", \"MX\": \"Mail eXchange\", \"CoAP\": \"Constrained Application Protocol\",\n                   \"RRset\": \"Resource Record set\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\",\n                   # The official name has a word the initials skip, or a hyphen, or lists several principles:\n                   \"DASH\": \"Dynamic Adaptive Streaming over HTTP\", \"CRDT\": \"Conflict-free Replicated Data Type\",\n                   \"BASE\": \"Basically Available, Soft state, Eventual consistency\", \"UX\": \"User Experience\",\n                   \"SOLID\": \"Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion\"}"
   replace: "IRREGULAR_FORMS = {}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: AAAA is not explained by the name it stands for
@@ -2154,16 +2154,16 @@ mutations:
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
 - label: ETag is not explained by the name it stands for
-  find: "\"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
-  replace: "\"NetBIOS\": \"Network Basic Input/Output System\"}"
+  find: ", \"ETag\": \"Entity Tag\","
+  replace: ","
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: UTC is not explained by the name it stands for
   find: "\"UTC\": \"Coordinated Universal Time\", "
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: EdDSA and NetBIOS are not explained by the names they stand for
-  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
-  replace: "}"
+  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\","
+  replace: ","
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: EdDSA and NetBIOS are not recognised as abbreviations
   find: "\"EdDSA\", \"NetBIOS\",\n                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n                    *UNIT_SYMBOLS)"
@@ -2245,3 +2245,27 @@ mutations:
   find: label_only = {name for name in labels - used - mixed if set(name) & VOWELS}
   replace: label_only = {name for name in labels - used - mixed}
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: DASH is not explained by the name it stands for
+  find: "\"DASH\": \"Dynamic Adaptive Streaming over HTTP\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: CRDT is not explained by the name it stands for
+  find: "\"CRDT\": \"Conflict-free Replicated Data Type\",\n"
+  replace: "\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: BASE is not explained by the name it stands for
+  find: "\"BASE\": \"Basically Available, Soft state, Eventual consistency\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: UX is not explained by the name it stands for
+  find: "\"UX\": \"User Experience\",\n"
+  replace: "\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: SOLID is not explained by the names of its principles
+  find: ",\n                   \"SOLID\": \"Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion\"}"
+  replace: "}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the Redis command INCR is read as an abbreviation
+  find: "    \"INCR\",  # a Redis command, set in capitals in a figure label where a code span is not possible\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry

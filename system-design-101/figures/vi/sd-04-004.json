@@ -1,0 +1,41 @@
+{
+  "id": "sd-04-004",
+  "lang": "vi",
+  "title": "Ba cách một hệ thống tin nhắn giao tin",
+  "subtitle": "Thử cả ba trên Redis 7 với ba tin m1, m2, m3.",
+  "desc": "Hai khung. Khung một là ba thẻ, mỗi thẻ một cách giao tin, kèm kết quả thử trên Redis 7. Hàng đợi công việc: mỗi tin tới đúng một worker rồi biến mất; worker 1 nhận m1 và m2, worker 2 nhận m3. Phát và nhận (Pub/Sub): chỉ ai đang nghe mới nhận, tin không được lưu; B vào sau khi m1 được gửi nên chỉ nhận m2. Nhật ký: tin được giữ lại, mỗi nhóm đọc có vị trí riêng; nhóm tạo sau vẫn đọc lại đủ m1 đến m3. Khung hai là bốn câu hỏi trước khi chọn: một tin cho một worker hay cho mọi bên; bên nhận đang tắt thì tin chờ hay mất; có cần đọc lại tin cũ không; báo nhận trước hay sau khi xử lý xong.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba cách giao tin",
+      "items": [
+        {
+          "name": "Hàng đợi công việc",
+          "role": "Mỗi tin tới đúng một worker rồi mất. Worker 1 nhận m1, m2; worker 2 nhận m3.",
+          "icon": "inbox"
+        },
+        {
+          "name": "Phát và nhận (Pub/Sub)",
+          "role": "Ai đang nghe mới nhận, tin không được lưu. B vào sau m1 nên chỉ nhận m2.",
+          "icon": "radio"
+        },
+        {
+          "name": "Nhật ký",
+          "role": "Tin được giữ lại, mỗi nhóm có vị trí riêng. Nhóm tạo sau vẫn đọc đủ m1 đến m3.",
+          "icon": "history"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Bốn câu hỏi trước khi chọn",
+      "items": [
+        "Mỗi tin cho một worker làm, hay cho mọi bên cần biết?",
+        "Bên nhận đang tắt thì tin nằm chờ, hay mất luôn?",
+        "Có cần đọc lại tin cũ khi sửa lỗi hoặc thêm bên nhận mới?",
+        "Báo đã nhận sau khi xử lý xong, hay ngay khi nhận?"
+      ]
+    }
+  ]
+}

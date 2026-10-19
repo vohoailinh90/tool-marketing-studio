@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1367" viewBox="0 0 320 1367" role="img" aria-labelledby="title desc">
+<title id="title">Khởi động Linux: tám bước và điều tài liệu thêm vào</title>
+<desc id="desc">Ba khung. Khung một, tám bước khởi động Linux của nguồn: bật nguồn và chạy POST, phát hiện thiết bị, chọn thiết bị khởi động, bộ nạp khởi động GRUB, nhân và systemd là tiến trình đầu tiên, đạt mục tiêu mặc định, chạy tập lệnh khởi động, màn hình đăng nhập. Khung hai, điều tài liệu độc lập thêm hoặc sửa: phần sụn chỉ khởi tạo tối thiểu rồi giao cho bộ nạp, hoặc nạp nhân trực tiếp; giữa bộ nạp và systemd có thể có initramfs; mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target. Khung ba, đọc tĩnh các tệp đơn vị systemd của máy đo: mục tiêu mặc định kéo 78 đơn vị, theo khai báo tường minh, chuỗi dài nhất 15 đơn vị và 41 đơn vị không khai báo chờ ai.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1367" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khởi động Linux: tám</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bước và điều tài liệu</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">thêm vào</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đối chiếu với boot(7), bootup(7) và</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">các tệp đơn vị systemd của một máy</text>
+<text x="16" y="147.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thật.</text>
+<rect x="8" y="167" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="195.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tám bước của nguồn</text>
+<rect x="20" y="212" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="235" r="11" fill="#16a34a"/>
+<polyline points="37.9,235.4 41.7,239.4 48.5,231" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bật nguồn, nạp phần sụn,</text>
+<text x="64" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">POST; phát hiện thiết bị.</text>
+<rect x="20" y="283" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="306" r="11" fill="#16a34a"/>
+<polyline points="37.9,306.4 41.7,310.4 48.5,302" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="309.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn thiết bị khởi động;</text>
+<text x="64" y="328.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy bộ nạp khởi động</text>
+<text x="64" y="348.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GRUB.</text>
+<rect x="20" y="374" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="397" r="11" fill="#16a34a"/>
+<polyline points="37.9,397.4 41.7,401.4 48.5,393" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="400.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhân sẵn sàng, systemd là</text>
+<text x="64" y="419.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiến trình đầu tiên; đạt mục</text>
+<text x="64" y="439.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiêu mặc định.</text>
+<rect x="20" y="465" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="488" r="11" fill="#16a34a"/>
+<polyline points="37.9,488.4 41.7,492.4 48.5,484" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="491.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy tập lệnh khởi động;</text>
+<text x="64" y="510.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hiện màn hình đăng nhập.</text>
+<rect x="8" y="552" width="304" height="435" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="580.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tài liệu độc lập thêm hoặc</text>
+<text x="20" y="602.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">sửa</text>
+<rect x="20" y="619" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="642" r="11" fill="#16a34a"/>
+<polyline points="37.9,642.4 41.7,646.4 48.5,638" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="645.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần sụn chỉ khởi tạo tối</text>
+<text x="64" y="664.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thiểu, giao cho bộ nạp; có</text>
+<text x="64" y="684.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần sụn nạp nhân trực tiếp.</text>
+<rect x="20" y="710" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="733" r="11" fill="#16a34a"/>
+<polyline points="37.9,733.4 41.7,737.4 48.5,729" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="736.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữa bộ nạp và systemd có</text>
+<text x="64" y="755.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thể có initramfs để tìm hệ</text>
+<text x="64" y="775.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thống tệp gốc.</text>
+<rect x="20" y="801" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="824" r="11" fill="#16a34a"/>
+<polyline points="37.9,824.4 41.7,828.4 48.5,820" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="827.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu mặc định thường là</text>
+<text x="64" y="846.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bí danh của graphical target</text>
+<text x="64" y="866.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoặc multi-user target.</text>
+<rect x="20" y="892" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="915" r="11" fill="#16a34a"/>
+<polyline points="37.9,915.4 41.7,919.4 48.5,911" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="918.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhân tạo tiến trình số 1 chạy</text>
+<text x="64" y="937.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chương trình init; không nhất</text>
+<text x="64" y="957.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thiết là systemd.</text>
+<rect x="8" y="999" width="304" height="360" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1027.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc tĩnh một máy thật</text>
+<rect x="20" y="1044" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1067" r="11" fill="#16a34a"/>
+<polyline points="37.9,1067.4 41.7,1071.4 48.5,1063" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1070.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu mặc định kéo 78</text>
+<text x="64" y="1089.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đơn vị; 35 là dịch vụ, 18 là</text>
+<text x="64" y="1109.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu.</text>
+<rect x="20" y="1135" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1158" r="11" fill="#16a34a"/>
+<polyline points="37.9,1158.4 41.7,1162.4 48.5,1154" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1161.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo khai báo tường minh:</text>
+<text x="64" y="1180.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuỗi dài nhất 15 đơn vị; 41</text>
+<text x="64" y="1200.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đơn vị không khai báo chờ</text>
+<text x="64" y="1219.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ai.</text>
+<rect x="20" y="1245" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1268" r="11" fill="#16a34a"/>
+<polyline points="37.9,1268.4 41.7,1272.4 48.5,1264" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1271.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy đo không khởi động</text>
+<text x="64" y="1290.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng systemd: chỉ đọc tệp,</text>
+<text x="64" y="1310.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo thời gian khởi</text>
+<text x="64" y="1329.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">động.</text>
+</g>
+</svg>

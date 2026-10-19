@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1349" viewBox="0 0 320 1349" role="img" aria-labelledby="title desc">
+<title id="title">Sáu mẫu kiến trúc: một lợi, một hại, một phép đo</title>
+<desc id="desc">Ba khung. Khung một, sáu mẫu kiến trúc của nguồn, mỗi mẫu một lợi một hại: phân tầng nhanh dựng nhưng mã dễ lộn xộn; dịch vụ nhỏ chịu lỗi nhưng phức tạp; hướng sự kiện lỏng ghép nhưng khó thử; máy khách và máy chủ hợp thời gian thực nhưng máy chủ là điểm hỏng; phần mở rộng dễ mở rộng nhưng sửa lõi khó; lục giác bảo vệ lõi nhưng tốn thời gian dựng. Khung hai, sáu phép đo trên một máy: gọi qua HTTP tốn 220 đến 292 micro giây, trong tiến trình 0,08 đến 0,11; với 16 máy khách, máy chủ một luồng trả lời sau 33,5 mili giây, nhiều luồng 8,6; đổi chữ ký lõi làm hỏng 100 trên 100 phần mở rộng. Khung ba, số đo chỉ cho thấy hình dạng của chi phí.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1349" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu mẫu kiến trúc: một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lợi, một hại, một phép</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đo</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi mẫu đổi một thứ lấy một thứ;</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">sáu cái giá đo thử trên một máy.</text>
+<rect x="8" y="147" width="304" height="444" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="175.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu mẫu, một lợi một hại</text>
+<rect x="20" y="192" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="215" r="11" fill="#16a34a"/>
+<polyline points="37.9,215.4 41.7,219.4 48.5,211" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phân tầng: nhanh dựng; mã</text>
+<text x="64" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dễ lộn xộn nếu thiếu luật.</text>
+<rect x="20" y="263" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="286" r="11" fill="#16a34a"/>
+<polyline points="37.9,286.4 41.7,290.4 48.5,282" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ nhỏ: chịu lỗi, co giãn</text>
+<text x="64" y="308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng; phức tạp hơn.</text>
+<rect x="20" y="334" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="357" r="11" fill="#16a34a"/>
+<polyline points="37.9,357.4 41.7,361.4 48.5,353" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="360.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hướng sự kiện: lỏng ghép;</text>
+<text x="64" y="379.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khó thử từng phần.</text>
+<rect x="20" y="405" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="428" r="11" fill="#16a34a"/>
+<polyline points="37.9,428.4 41.7,432.4 48.5,424" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="431.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy khách và máy chủ: hợp</text>
+<text x="64" y="450.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thời gian thực; máy chủ là</text>
+<text x="64" y="470.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điểm hỏng.</text>
+<rect x="20" y="496" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="519" r="11" fill="#16a34a"/>
+<polyline points="37.9,519.4 41.7,523.4 48.5,515" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="522.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần mở rộng: mở rộng dần;</text>
+<text x="64" y="541.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sửa lõi khó. Lục giác: bảo vệ</text>
+<text x="64" y="561.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lõi; tốn thời gian dựng.</text>
+<rect x="8" y="603" width="304" height="495" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="631.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu phép đo</text>
+<rect x="20" y="648" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="671" r="11" fill="#16a34a"/>
+<polyline points="37.9,671.4 41.7,675.4 48.5,667" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="674.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phân tầng: mỗi tầng chuyển</text>
+<text x="64" y="693.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiếp thêm 0,02 đến 0,05 µs.</text>
+<rect x="20" y="719" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="742" r="11" fill="#16a34a"/>
+<polyline points="37.9,742.4 41.7,746.4 48.5,738" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="745.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ nhỏ: gọi qua HTTP</text>
+<text x="64" y="764.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">220 đến 292 µs.</text>
+<rect x="20" y="790" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="813" r="11" fill="#16a34a"/>
+<polyline points="37.9,813.4 41.7,817.4 48.5,809" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="816.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sự kiện: mỗi người nhận</text>
+<text x="64" y="835.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thêm cỡ 0,02 µs.</text>
+<rect x="20" y="861" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="884" r="11" fill="#16a34a"/>
+<polyline points="37.9,884.4 41.7,888.4 48.5,880" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="887.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">16 máy khách: máy chủ một</text>
+<text x="64" y="906.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luồng 33,5 ms, nhiều luồng</text>
+<text x="64" y="926.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">8,6.</text>
+<rect x="20" y="952" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="975" r="11" fill="#16a34a"/>
+<polyline points="37.9,975.4 41.7,979.4 48.5,971" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="978.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần mở rộng: đổi chữ ký lõi</text>
+<text x="64" y="997.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏng 100 trên 100.</text>
+<rect x="20" y="1023" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1046" r="11" fill="#16a34a"/>
+<polyline points="37.9,1046.4 41.7,1050.4 48.5,1042" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1049.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lục giác: lõi chạy với sqlite</text>
+<text x="64" y="1068.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">890 đến 960 µs.</text>
+<rect x="8" y="1110" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1138.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn</text>
+<rect x="20" y="1155" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1178" r="11" fill="#16a34a"/>
+<polyline points="37.9,1178.4 41.7,1182.4 48.5,1174" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1181.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số đo là hình dạng của chi</text>
+<text x="64" y="1200.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phí trên một máy, không</text>
+<text x="64" y="1220.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải số của hệ thống thật.</text>
+<rect x="20" y="1246" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1269" r="11" fill="#16a34a"/>
+<polyline points="37.9,1269.4 41.7,1273.4 48.5,1265" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1272.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy khách và máy chủ, kiến</text>
+<text x="64" y="1291.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trúc lục giác: chưa đọc được</text>
+<text x="64" y="1311.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tài liệu độc lập để đối chiếu.</text>
+</g>
+</svg>

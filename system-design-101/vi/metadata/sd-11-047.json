@@ -1,0 +1,70 @@
+{
+  "id": "sd-11-047",
+  "title_vi": "So sánh ba đám mây qua một điểm chung: đếm hai bài so sánh của Microsoft",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-11-047",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cloud-comparison-cheat-sheet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-comparison-cheat-sheet.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "54d5f449c8996d339f77d4150b5a6a61a7be436f",
+    "retrieved_body_sha256": "954c12fedc47f71946c32ce18544022a2a0ba5ab6dc67940a8cfb68e3949382c",
+    "retrieved_body_bytes": 637
+  },
+  "diagram": "../diagrams/sd-11-047-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Hai trang so sánh đọc từ kho MicrosoftDocs/architecture-center tại commit 8e2c239344ee753a88856800b4210a3e27ac1036 (clone ngày 2026-10-19): docs/aws-professional (12 tệp) và docs/gcp-professional/services.md. Chương trình của người biên soạn đọc các bảng Markdown có cả cột dịch vụ của nhà cung cấp kia và cột 'Azure service': 194 dòng và 203 tên Azure (theo liên kết, không phân biệt hoa thường) ở trang AWS; 140 dòng và 146 tên ở trang Google Cloud; 58 tên Azure có ở cả hai. Các cặp Kinesis Data Streams - Event Hubs, Amazon MQ - Service Bus, Cloud Pub/Sub - Service Bus và Event Hubs đọc trực tiếp từ các bảng. Bài nguồn chỉ có ảnh và một dòng chữ; ảnh không được đọc."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Phần chữ của bài nguồn chỉ giới thiệu một cheat sheet so sánh dịch vụ đám mây bản 2023 và ghi một bài đăng khách mời; nội dung so sánh nằm trong ảnh.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-comparison-cheat-sheet.md",
+      "section": "Thân bài",
+      "verified_by": "Thân bài nguồn đã đọc tại commit ghim; ảnh không được đọc."
+    },
+    {
+      "claim_vi": "Trang cho người dùng AWS có 194 dòng ghép dịch vụ và 203 tên dịch vụ Azure khác nhau; trang cho người dùng Google Cloud có 140 dòng và 146 tên; 58 tên Azure có ở cả hai.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/tree/8e2c239344ee753a88856800b4210a3e27ac1036/docs/aws-professional",
+      "section": "Các bảng ghép dịch vụ",
+      "verified_by": "Phép đếm của người biên soạn chạy ngày 2026-10-19 trên hai trang tại commit ghim; bảng thiếu cột Azure hoặc cột nhà cung cấp kia bị bỏ."
+    },
+    {
+      "claim_vi": "Trang Google Cloud ghép Cloud Pub/Sub với cả Azure Service Bus và Azure Event Hubs; trang AWS ghép Amazon Kinesis Data Streams với Azure Event Hubs và Amazon MQ với Azure Service Bus.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/gcp-professional/services.md",
+      "section": "Messaging and eventing",
+      "verified_by": "Các hàng bảng đọc trực tiếp ngày 2026-10-19."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bài nguồn chỉ là ảnh, kết quả đếm hai trang Microsoft, và vai trò điểm chung của Azure kèm ví dụ nhắn tin.",
+  "source_deviations": [
+    "Bài nguồn là ảnh so sánh; bài này không đọc ảnh mà đối chiếu qua hai trang so sánh công khai của Microsoft.",
+    "Phép đếm điểm chung của Azure là của người biên soạn; nguồn không có."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W18), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

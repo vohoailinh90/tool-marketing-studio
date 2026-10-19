@@ -193,7 +193,11 @@ IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "AAAA": "Quad A", "
                    "OpenID": "Open IDentity", "DevOps": "Development and Operations",
                    "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations",
                    "UTC": "Coordinated Universal Time", "EdDSA": "Edwards-curve Digital Signature Algorithm",
-                   "NetBIOS": "Network Basic Input/Output System", "ETag": "Entity Tag"}
+                   "NetBIOS": "Network Basic Input/Output System", "ETag": "Entity Tag",
+                   # The official name has a word the initials skip, or a hyphen, or lists several principles:
+                   "DASH": "Dynamic Adaptive Streaming over HTTP", "CRDT": "Conflict-free Replicated Data Type",
+                   "BASE": "Basically Available, Soft state, Eventual consistency", "UX": "User Experience",
+                   "SOLID": "Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion"}
 # Names whose full form starts with the name itself ("gRPC Remote Procedure Calls"): the repeated word gives its first letter.
 # Any other abbreviation written again in its own full form ("API Programming Interface") does not spell itself.
 RECURSIVE_NAMES = frozenset({"gRPC"})
@@ -262,6 +266,7 @@ NOT_ACRONYMS = frozenset({
     "NGINX",  # a product name set in capitals (said "engine x"), not the initials of anything
     "VS",  # versus: an ordinary word set in capitals
     "KEY", "NAME",  # ordinary words set in capitals inside a full form: DNS KEY, Canonical NAME
+    "INCR",  # a Redis command, set in capitals in a figure label where a code span is not possible
 })
 
 

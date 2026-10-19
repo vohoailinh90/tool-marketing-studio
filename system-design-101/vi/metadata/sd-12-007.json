@@ -1,0 +1,81 @@
+{
+  "id": "sd-12-007",
+  "title_vi": "Phát trực tiếp: video được cắt thành đoạn vài giây rồi đẩy ra ngay",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-12-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/live-streaming-explained.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from raw.githubusercontent.com at the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "711925f665b4818f6cd74a06bacfadfa1510090a",
+    "retrieved_body_sha256": "b3abc960a8326a326a5cca0e78de9af922936dac38103725a4cf8d0ca19acd39",
+    "retrieved_body_bytes": 2739
+  },
+  "diagram": "../diagrams/sd-12-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes steps 1 to 8: capture, compress and encode (H.264), segment, send to a streaming server that produces multiple bitrates (adaptive bitrate streaming), push to CDN edge servers, viewers decode and play, optional storage for replay.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+      "section": "Live Streaming Steps",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "The source names RTMP, HLS and DASH as standard live-streaming protocols and says HLS and DASH both support adaptive bitrate streaming.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+      "section": "Standard Protocols",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "The source says Apple devices accept only HLS and that DASH does not support Apple devices; the lesson does not rely on this and calls it a simplification.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+      "section": "Standard Protocols",
+      "verified_by": "Not checked; flagged as a simplification by the author."
+    },
+    {
+      "claim_vi": "Own experiment, 2026-10-19, ffmpeg 6.1.1 with libx264: 36 s synthetic video 640x360 30 fps about 800 kbit/s; HLS with 2 s segments gave 18 segments (average 230,874 bytes), with 6 s segments 6 segments (average 689,302 bytes); 12 s renditions at 300, 800, 2000 kbit/s gave 523,204; 1,344,952; 3,288,308 bytes; DASH output produced chunk-stream0-00001.m4s files and dash.mpd with a SegmentTemplate.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+      "section": "Thử nghiệm với ffmpeg",
+      "verified_by": "Commands run in the session; results copied from output."
+    },
+    {
+      "claim_vi": "RFC 8216 section 6.3.3 advises a client not to pick a segment that starts less than three target durations from the end of a live playlist, so 2 s segments give a floor of about 6 s and 6 s segments about 18 s.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+      "section": "Latency floor",
+      "verified_by": "Author's general knowledge, not checked against the primary document in this session (the egress proxy allows GitHub only). Not matched against the RFC text."
+    }
+  ],
+  "design_notes_vi": "Hai khung steps (4 và 3 bước) và một khung ghi chú về ba giao thức.",
+  "source_deviations": [
+    "The source's eight steps are grouped into two legs, from camera to server and from server to viewer.",
+    "The lesson adds an ffmpeg experiment and a latency estimate from memory of RFC 8216, and does not repeat the source's statement about Apple devices."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W19), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

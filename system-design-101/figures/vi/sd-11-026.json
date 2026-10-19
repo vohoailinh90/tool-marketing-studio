@@ -1,0 +1,63 @@
+{
+  "title": "Event sourcing",
+  "subtitle": "Lưu sự kiện, dựng lại trạng thái.",
+  "desc": "Hai khung. Khung một, sơ đồ trình tự giữa dịch vụ giỏ hàng, kho sự kiện và dịch vụ thanh toán: giỏ hàng ghi sự kiện thêm món và bỏ món vào kho, kho phát sự kiện mới cho dịch vụ thanh toán, dịch vụ thanh toán đọc lại từ đầu và nhận các sự kiện. Khung hai, thử nghiệm: dựng lại giỏ hàng từ 100500 sự kiện cần áp dụng 100500 sự kiện, từ ảnh chụp mỗi 1000 sự kiện chỉ cần 500; hai bên cùng ghi vào phiên bản 0 thì bên thứ hai bị từ chối.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Giỏ hàng và những ai nghe",
+      "actors": [
+        {
+          "name": "Giỏ hàng",
+          "icon": "server"
+        },
+        {
+          "name": "Kho sự kiện",
+          "icon": "database"
+        },
+        {
+          "name": "Thanh toán",
+          "icon": "credit-card"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Ghi: thêm món A"
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Ghi: bỏ món A"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Phát sự kiện mới"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Đọc lại từ đầu"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Các sự kiện theo thứ tự",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử nghiệm nhỏ",
+      "items": [
+        "100500 sự kiện: dựng lại cần áp dụng cả 100500.",
+        "Ảnh chụp mỗi 1000 sự kiện: chỉ áp dụng 500.",
+        "Hai bên cùng ghi vào phiên bản 0: bên sau bị từ chối."
+      ]
+    }
+  ],
+  "id": "sd-11-026"
+}

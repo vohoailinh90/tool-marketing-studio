@@ -1,0 +1,129 @@
+{
+  "id": "sd-10-024",
+  "title_vi": "Chín thuật toán dùng khắp đời sống số",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-9-algorithms-that-dominate-our-world.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-9-algorithms-that-dominate-our-world.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "40e6385a1a353dac41c804d9e120a0610652d53a",
+    "retrieved_body_sha256": "4c438ed328049dab8d9ed13f5cd76372c5231b67c00077bccf490f309c89f27c",
+    "retrieved_body_bytes": 843
+  },
+  "diagram": "../diagrams/sd-10-024-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-021",
+      "relation": "see-also",
+      "reason_vi": "Bài kia nói cách đọc thang sao của thuật toán nên biết cho phỏng vấn thiết kế hệ thống."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "library documentation read in raw copies at the pinned commits; the seven small experiments were run by the author on 2026-10-19 (Python 3.13.16, NetworkX and SymPy from PyPI); the PyTorch pages were read, not run"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured arithmetically by scripts.figures check; no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Python's sort is guaranteed stable and its Timsort takes advantage of any ordering already present in the data.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/sorting.rst",
+      "section": "Sort Stability and Complex Sorts",
+      "verified_by": "Read from the pinned commit; the small stable-sort example was run."
+    },
+    {
+      "claim_vi": "The Java primitive-array sorting methods (sort(int[]) and similar) note that the sorting algorithm is a Dual-Pivot Quicksort.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Arrays.java",
+      "section": "Arrays",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "RSAKeyGenParameterSpec carries the modulus size in bits and the public exponent for generating an RSA key pair.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/security/spec/RSAKeyGenParameterSpec.java",
+      "section": "RSAKeyGenParameterSpec",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "NetworkX describes PageRank as ranking nodes by the structure of incoming links, originally designed for web pages.",
+      "source": "https://github.com/networkx/networkx/blob/abf2feda2252ee4e0d5a66964addf179225dfe76/networkx/algorithms/link_analysis/pagerank_alg.py",
+      "section": "pagerank",
+      "verified_by": "Read from the pinned commit. The PageRank scores in the lesson come from the author's own power iteration (damping 0.85), not from NetworkX."
+    },
+    {
+      "claim_vi": "NetworkX computes weighted shortest paths with Dijkstra's method; on the four-node example dijkstra_path returns A, C, B, D (length 4).",
+      "source": "https://github.com/networkx/networkx/blob/abf2feda2252ee4e0d5a66964addf179225dfe76/networkx/algorithms/shortest_paths/weighted.py",
+      "section": "dijkstra_path",
+      "verified_by": "Read from the pinned commit; dijkstra_path run with NetworkX from PyPI."
+    },
+    {
+      "claim_vi": "SymPy's factorint returns the prime factors of a positive integer with their multiplicities; factorint(360) is {2: 3, 3: 2, 5: 1} and factorint(3233) is {53: 1, 61: 1}.",
+      "source": "https://github.com/sympy/sympy/blob/50e68debd256f0ff52b1856bba54868e5499448e/sympy/ntheory/factor_.py",
+      "section": "factorint",
+      "verified_by": "Read from the pinned commit and run."
+    },
+    {
+      "claim_vi": "Python's hashlib offers SHA-224, SHA-256, SHA-384, SHA-512 and the SHA-3 series; the SHA-256 of b'abc' starts with ba7816bf and is 64 hexadecimal characters.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/hashlib.rst",
+      "section": "Introduction",
+      "verified_by": "Read from the pinned commit; digest run."
+    },
+    {
+      "claim_vi": "zlib's deflate compresses literals and match lengths with one Huffman tree and match distances with another.",
+      "source": "https://github.com/madler/zlib/blob/767c4c947852e143f582c85f14cf573411df1b35/doc/algorithm.txt",
+      "section": "Compression algorithm (deflate)",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "A Huffman code built by the author for abracadabra takes 23 bits against 88 bits at 8 bits per letter.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Huffman example",
+      "verified_by": "Computed by the author with a short Python program; it is the lesson's own experiment, not a statement of the zlib document."
+    },
+    {
+      "claim_vi": "Toy RSA: n = 61 x 53 = 3233, public exponent 17, private exponent 2753; 65 encrypts to 2790 and decrypts back to 65.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "RSA example",
+      "verified_by": "Computed by the author with Python's three-argument pow; the numbers are far too small to be secure."
+    },
+    {
+      "claim_vi": "PyTorch's Transformer layer implements the original architecture of Attention Is All You Need as a reference implementation (defaults 8 heads, 6 encoder and 6 decoder layers).",
+      "source": "https://github.com/pytorch/pytorch/blob/a0f92a5ebaafec79f18454ffab8d8a08c6255f76/torch/nn/modules/transformer.py",
+      "section": "Transformer",
+      "verified_by": "Read from the pinned commit; not run."
+    },
+    {
+      "claim_vi": "PyTorch's Conv2d applies a 2D convolution over an input signal composed of several input planes.",
+      "source": "https://github.com/pytorch/pytorch/blob/a0f92a5ebaafec79f18454ffab8d8a08c6255f76/torch/nn/modules/conv.py",
+      "section": "Conv2d",
+      "verified_by": "Read from the pinned commit; not run."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ, mỗi thẻ một kết quả của phép thử nhỏ, và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source gives the nine algorithm names and one opening sentence, with the descriptions inside an image; the lesson keeps only the nine names and replaces the opening sentence and the image with its own experiments and library documentation.",
+    "The source's statement about where the algorithms are used is not repeated; the lesson does not assign any algorithm to a product."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phép thử chỉ minh họa; các câu giải nghĩa RSA, SHA, CNN là kiến thức chung của người biên soạn. Chưa user testing hoặc phê duyệt phát hành."
+}

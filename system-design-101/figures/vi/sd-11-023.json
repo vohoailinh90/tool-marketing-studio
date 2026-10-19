@@ -1,0 +1,39 @@
+{
+  "title": "Bộ phiên bản: dựng lại cho ra đúng kết quả cũ",
+  "subtitle": "Đóng băng phụ thuộc.",
+  "desc": "Hai khung. Khung một, bốn bước dựng một gói phần mềm: khai báo phụ thuộc, chọn một bộ phiên bản, dựng cục bộ hoặc từ xa, ra sản phẩm có phiên bản. Khung hai, thử nghiệm nhỏ: dựng theo phiên bản mới nhất thì sau khi thư viện B ra bản 2.0 kết quả dựng đổi và hỏng; dựng theo bộ phiên bản đã chụp thì kết quả giữ nguyên.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Từ khai báo tới sản phẩm",
+      "items": [
+        {
+          "title": "Khai báo phụ thuộc",
+          "text": "Gói cần những gói nào, ràng buộc phiên bản ra sao."
+        },
+        {
+          "title": "Chọn bộ phiên bản",
+          "text": "Một danh sách phiên bản đã chốt, dùng riêng cho dịch vụ."
+        },
+        {
+          "title": "Dựng",
+          "text": "Cục bộ hoặc ở dịch vụ dựng từ xa, từ cùng một bộ."
+        },
+        {
+          "title": "Sản phẩm có phiên bản",
+          "text": "Mỗi lần dựng được chụp lại và đánh phiên bản."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử nghiệm nhỏ",
+      "items": [
+        "Dựng theo bản mới nhất: hôm sau thư viện B ra 2.0, kết quả đổi và hỏng.",
+        "Dựng theo bộ phiên bản đã chụp: kết quả hôm sau vẫn như hôm trước.",
+        "Cái giá: phải chủ động cập nhật bộ phiên bản."
+      ]
+    }
+  ],
+  "id": "sd-11-023"
+}

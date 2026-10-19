@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="714" viewBox="0 0 320 714" role="img" aria-labelledby="title desc">
+<title id="title">Cloud native là gì</title>
+<desc id="desc">Hai khung. Khung một, bốn mặt theo bài nguồn: quy trình phát triển đi từ thác nước sang agile rồi DevOps; kiến trúc đi từ khối đơn sang vi dịch vụ; đóng gói và triển khai đi từ máy chủ vật lý sang máy ảo rồi container; hạ tầng đi từ tự chủ máy sang chạy trên hạ tầng đám mây. Khung hai, định nghĩa của CNCF: bản 1.0 duyệt năm 2018 nêu năm công nghệ ví dụ và ba đặc tính; bản 1.1 duyệt năm 2024 nêu bảy công nghệ ví dụ, năm đặc tính và nói rõ danh sách chưa đầy đủ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="714" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Cloud native là gì</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn mặt của nguồn, và định nghĩa</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">CNCF đổi ra sao.</text>
+<rect x="8" y="99" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mặt theo nguồn</text>
+<rect x="20" y="144" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="167" r="11" fill="#16a34a"/>
+<polyline points="37.9,167.4 41.7,171.4 48.5,163" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="170.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quy trình: thác nước, agile,</text>
+<text x="64" y="189.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DevOps.</text>
+<rect x="20" y="215" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="238" r="11" fill="#16a34a"/>
+<polyline points="37.9,238.4 41.7,242.4 48.5,234" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="241.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiến trúc: khối đơn sang vi</text>
+<text x="64" y="260.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch vụ.</text>
+<rect x="20" y="286" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="309" r="11" fill="#16a34a"/>
+<polyline points="37.9,309.4 41.7,313.4 48.5,305" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="312.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đóng gói: máy vật lý, máy</text>
+<text x="64" y="331.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ảo, container.</text>
+<rect x="20" y="357" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="380" r="11" fill="#16a34a"/>
+<polyline points="37.9,380.4 41.7,384.4 48.5,376" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="383.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hạ tầng: tự quản sang trên</text>
+<text x="64" y="402.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đám mây.</text>
+<rect x="8" y="444" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="472.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Định nghĩa CNCF</text>
+<rect x="20" y="489" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="512" r="11" fill="#16a34a"/>
+<polyline points="37.9,512.4 41.7,516.4 48.5,508" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="515.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1.0 (2018): 5 công nghệ ví</text>
+<text x="64" y="534.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụ, 3 đặc tính.</text>
+<rect x="20" y="560" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="583" r="11" fill="#16a34a"/>
+<polyline points="37.9,583.4 41.7,587.4 48.5,579" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="586.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1.1 (2024): 7 công nghệ ví</text>
+<text x="64" y="605.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụ, 5 đặc tính.</text>
+<rect x="20" y="631" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="654" r="11" fill="#16a34a"/>
+<polyline points="37.9,654.4 41.7,658.4 48.5,650" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="657.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1.1 nói rõ: danh sách chưa</text>
+<text x="64" y="676.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầy đủ.</text>
+</g>
+</svg>

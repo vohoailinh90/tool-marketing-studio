@@ -1,0 +1,93 @@
+{
+  "id": "sd-10-026",
+  "title_vi": "Linux khởi động chậm ở đâu? Đo và đọc bằng systemd-analyze và journalctl",
+  "language": "vi",
+  "kind": "how-to",
+  "content_status": "draft",
+  "source_ref": "sd-10-026",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/linux-boot-process-explained.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-boot-process-explained.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "afd3a88fd8f9a085cbf052c550ea662b95af4b5f",
+    "retrieved_body_sha256": "3913b2b719360e5d37c84a5c0b650bdb02368eb5d21d8d7b0cfeba4241da47a4",
+    "retrieved_body_bytes": 1648
+  },
+  "diagram": "../diagrams/sd-10-026-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-08-020",
+      "relation": "see-also",
+      "reason_vi": "Bài kia kể tám bước khởi động Linux và đọc tĩnh các tệp đơn vị systemd; bài này dạy đo và đọc thời gian khởi động, không lặp lại các bước."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "systemd-analyze and journalctl manual pages read at the pinned systemd commit; the arithmetic on the manual's example was run by the author; no real boot was measured because the authoring machine is a container"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured arithmetically by scripts.figures check; no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "systemd-analyze time prints the time spent in the kernel before userspace, in the initrd, and in normal userspace; the manual's example on a real machine is 2.584s (kernel) + 19.176s (initrd) + 47.847s (userspace) = 1min 9.608s; the numbers are measured up to the point where all services have been spawned, not until they finished initialization.",
+      "source": "https://github.com/systemd/systemd/blob/8be8cffd7579208ad6d4191d08bdb731132dcc4f/man/systemd-analyze.xml",
+      "section": "systemd-analyze time",
+      "verified_by": "Read from the pinned commit; the file hash was compared."
+    },
+    {
+      "claim_vi": "systemd-analyze blame lists units by initialization time, with caveats (a slow unit may be waiting for another; Type=simple services are not shown; only the activating state is timed; it reflects program code more than hardware latency). The manual's example starts with pmlogger.service 32.875s, systemd-networkd-wait-online.service 20.905s, dev-vda1.device 13.299s.",
+      "source": "https://github.com/systemd/systemd/blob/8be8cffd7579208ad6d4191d08bdb731132dcc4f/man/systemd-analyze.xml",
+      "section": "systemd-analyze blame",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "systemd-analyze critical-chain prints the time-critical chain of units for the default target; '@' is the time the unit became active, '+' the time it took to start; the output can mislead because of socket activation and parallel execution. In the manual's example the chain ends at multi-user.target @47.820s and pmlogger.service is not on it.",
+      "source": "https://github.com/systemd/systemd/blob/8be8cffd7579208ad6d4191d08bdb731132dcc4f/man/systemd-analyze.xml",
+      "section": "systemd-analyze critical-chain",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "On the manual's critical-chain example the '+' values sum to 29.247s (61.2% of 47.820s) and systemd-networkd-wait-online.service +20.905s is 71.5% of that sum and 43.7% of 47.820s.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Step 3 arithmetic",
+      "verified_by": "Computed by the author with a short Python script on 2026-10-19."
+    },
+    {
+      "claim_vi": "journalctl: -b shows the current boot, -b -1 the one before, --list-boots lists boots, -p filters by syslog priority (lower numbers are more important), -k shows kernel messages.",
+      "source": "https://github.com/systemd/systemd/blob/8be8cffd7579208ad6d4191d08bdb731132dcc4f/man/journalctl.xml",
+      "section": "Options -b, --list-boots, --priority, -k",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "In the authoring container systemd-analyze blame fails with 'System has not been booted with systemd as init system (PID 1). Can't operate.', journalctl -b reports no journal files, systemd-analyze timespan '1min 9.608s' prints 69608000 microseconds, and systemd-analyze verify accepts a trivial unit file (systemd 255.4).",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Limits",
+      "verified_by": "Run by the author on 2026-10-19."
+    }
+  ],
+  "design_notes_vi": "Bốn bước đánh số cho bốn lệnh, mỗi bước nêu số của ví dụ trong tài liệu, và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source lists eight boot steps from power-on to login; the lesson uses none of them and covers instead how to measure and read boot time with systemd-analyze and journalctl, from the systemd manual pages.",
+    "The eight steps themselves are covered by the other lesson of the same source (sd-08-020); this lesson links to it only through the related field."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Số liệu là ví dụ của tài liệu systemd, không phải số đo; chưa đo một lần khởi động thật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,123 @@
+{
+  "id": "sd-06-022",
+  "title_vi": "Học Elasticsearch thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-022",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-learn-elasticsearch.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-learn-elasticsearch.md",
+    "blob_sha": "ca26c8f7d00132bf5a7ee28aa0371032803eea6e",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "b4e3e9652db619b8bce9d20c2f5b3b4b495dfbff674289e86876a5b9bbf675fb",
+    "retrieved_body_bytes": 1129
+  },
+  "diagram": "../diagrams/sd-06-022-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-016",
+      "relation": "compare-with",
+      "reason_vi": "Sáu cách dùng Elasticsearch và tính năng gánh từng cách."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Statements were checked against elastic/docs-content at commit 55f05da44f1e68caf6b83d60715f6a41bcdaa2d3, the elastic/elasticsearch reference docs at tag v9.5.5 (commit 48acba663b09e70b115dd879329141506c377890) and the Lucene 10.5.1 source (commit 64ce863a2bea79c69c19c4d56268c26710ff0ff9, tag releases/lucene/10.5.1), read from partial clones, and against an experiment run on 2026-10-18 with the official elasticsearch:9.5.5 Docker image (Lucene 10.5.1)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "An analyzer is made of character filters, a tokenizer and token filters, applied in order.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/text-analysis/anatomy-of-an-analyzer.md",
+      "section": "Anatomy of an analyzer",
+      "verified_by": "Read; the experiment's term vectors of 'Bộ nhớ đệm giữ dữ liệu hay dùng' gave eight terms with positions 0 to 7."
+    },
+    {
+      "claim_vi": "Lucene indexes are made of segments, each a fully independent index; indexes evolve by creating new segments and merging existing ones; deleted documents are dropped when segments are merged.",
+      "source": "https://github.com/apache/lucene/blob/64ce863a2bea79c69c19c4d56268c26710ff0ff9/lucene/core/src/java/org/apache/lucene/codecs/lucene104/package-info.java",
+      "section": "Segments; Document numbers",
+      "verified_by": "Read the 10.5.1 source; the experiment showed three segments after three refreshes, an update marking the old copy deleted in _0 and adding _3, and a force merge producing one segment _4."
+    },
+    {
+      "claim_vi": "The .tim file is the term dictionary with per-term statistics and pointers into .doc and .pos; the .tip file is an index into the term dictionary for random access.",
+      "sources": [
+        "https://github.com/apache/lucene/blob/64ce863a2bea79c69c19c4d56268c26710ff0ff9/lucene/core/src/java/org/apache/lucene/codecs/lucene104/Lucene104PostingsFormat.java",
+        "https://github.com/apache/lucene/blob/64ce863a2bea79c69c19c4d56268c26710ff0ff9/lucene/core/src/java/org/apache/lucene/codecs/lucene104/package-info.java"
+      ],
+      "section": "Term Dictionary; Term Index; file extensions table",
+      "verified_by": "Read; the merged shard directory held _4_Lucene104_0.tim, .tip, .doc and .pos with index.compound_format false."
+    },
+    {
+      "claim_vi": "A refresh writes and opens a new segment so documents become searchable without a full commit; indices refresh every second by default when searched in the last 30 seconds.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/near-real-time-search.md",
+      "section": "Near real-time search",
+      "verified_by": "Read from a partial clone."
+    },
+    {
+      "claim_vi": "An index is one or more primary shards, each a self-contained Lucene index; replicas copy primaries for fault tolerance and read capacity; primary count is fixed at creation, replica count can change.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/deploy-manage/distributed-architecture/clusters-nodes-shards.md",
+      "section": "Clusters, nodes, and shards",
+      "verified_by": "Read from a partial clone."
+    },
+    {
+      "claim_vi": "Elasticsearch never assigns a replica to the same node as its primary; a single-node cluster with replicas is always yellow.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/troubleshoot/elasticsearch/red-yellow-cluster-status.md",
+      "section": "Single node cluster",
+      "verified_by": "Read; the experiment's index with one replica reported yellow with 1 unassigned shard."
+    },
+    {
+      "claim_vi": "Updates are an atomic delete of the old document plus indexing of the new one; soft deletes keep recent deletions for replay, held by shard history retention leases that expire after 12h by default.",
+      "source": "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/elasticsearch/index-settings/history-retention.md",
+      "section": "History retention",
+      "verified_by": "Read; right after the force merge the experiment still counted 1 deleted document. Why it was kept at that moment was not traced."
+    },
+    {
+      "claim_vi": "In most cases the same analyzer should be used at index and search time; the term query should not be used on text fields because their values are analyzed.",
+      "sources": [
+        "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/text-analysis/index-search-analysis.md",
+        "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/query-languages/query-dsl/query-dsl-term-query.md"
+      ],
+      "section": "Index and search analysis; Avoid using the term query for text fields",
+      "verified_by": "Read from partial clones."
+    }
+  ],
+  "design_notes_vi": "Bốn bước đánh số theo đường đi của tài liệu, bốn ghi chú kết quả thử. Không đặt tên tệp .tim, .tip vào chữ của hình. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source says Elasticsearch builds the term dictionary using an LSM tree; per the Lucene source the LSM-like part is writing immutable segments and merging them, while the term dictionary inside a segment is a sorted file (.tim) with an index (.tip).",
+    "Source lists features and use cases; the lesson follows one document through analyzer, inverted index, segments and shards, each checked in an experiment.",
+    "Source says schema-free JSON documents; the lesson leaves that out and points to mappings (text versus keyword) as a learning step, since the type of a field decides how it is searched."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-022.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

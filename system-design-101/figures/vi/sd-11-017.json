@@ -1,0 +1,16 @@
+{
+  "id": "sd-11-017",
+  "title": "Sáu nhóm khối nền",
+  "subtitle": "Mỗi nhóm trả lời một câu hỏi.",
+  "desc": "Hai khung. Khung một, ba nhóm về tính toán và quy mô: tính toán phân tán, mở rộng và hiệu năng, quản lý dịch vụ. Khung hai, ba nhóm còn lại: mạng và giao tiếp, lưu trữ và quản lý dữ liệu, quan sát và chống chịu lỗi.",
+  "sections": [
+    {"kind": "notes", "heading": "Tính toán và quy mô", "items": [
+      "Tính toán phân tán: hàng đợi, đệm, lập lịch.",
+      "Mở rộng và hiệu năng: co giãn, CDN, băm.",
+      "Quản lý dịch vụ: khám phá dịch vụ."]},
+    {"kind": "notes", "heading": "Mạng, dữ liệu, quan sát", "items": [
+      "Mạng: DNS, chia tải, cổng API.",
+      "Dữ liệu: cơ sở dữ liệu, đối tượng, chia, sao chép.",
+      "Quan sát: số đo, nhật ký, truy vết."]}
+  ]
+}

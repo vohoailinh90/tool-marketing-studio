@@ -1,0 +1,21 @@
+id: sd-08-002
+status: done
+owner: claude/sd101-lessons-w8-1
+claimed_at: '2026-10-19T04:05:06Z'
+done_at: '2026-10-19T04:16:45Z'
+moda_canvas: cvs_39RR50HHW29388YTGN211DRG5F
+moda_url: https://moda.app/canvas/69c60a08-c782-48d0-8f6a-151042dc40af
+slide_count: 8
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - flow
+  - two-column-comparison
+  - sequence-diagram
+  - lookup-table
+  - numbered-rows
+  - card-grid
+  - lookup-table
+  first_concept: 3

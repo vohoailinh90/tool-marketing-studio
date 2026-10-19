@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1178" viewBox="0 0 320 1178" role="img" aria-labelledby="title desc">
+<title id="title">Phát hành ứng dụng di động: bảy bước và một mô hình</title>
+<desc id="desc">Ba khung. Khung một, bảy bước phát hành ứng dụng di động của nguồn: đăng ký và phát triển, build và thử, QA, duyệt nội bộ, tối ưu trang cửa hàng, nộp lên cửa hàng, phát hành. Khung hai, điều tài liệu độc lập xác nhận: TestFlight cho tối đa 100 người thử nội bộ và 10.000 người thử ngoài, mỗi build thử được 90 ngày; Android khuyên thử bản phát hành trên ít nhất một điện thoại và một máy tính bảng; Apple cho phát hành theo pha trong 7 ngày, từ 1% đến 100%. Khung ba, mô hình phát hành theo pha với số báo cáo kỳ vọng: lỗi chạm 10% người dùng dừng được ở ngày 1 với 1% đã nhận; chạm 1% dừng ngày 2 với 2%; chạm 0,1% dừng ngày 5 với 20%; chạm 0,01% không dừng kịp, cả 100% nhận bản lỗi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1178" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Phát hành ứng dụng di</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">động: bảy bước và một</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mô hình</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Phát hành theo pha giới hạn thiệt hại</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">của lỗi phổ biến, không bắt được lỗi</text>
+<text x="16" y="147.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">hiếm.</text>
+<rect x="8" y="167" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="195.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy bước của nguồn</text>
+<rect x="20" y="212" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="235" r="11" fill="#16a34a"/>
+<polyline points="37.9,235.4 41.7,239.4 48.5,231" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đăng ký và phát triển. Build</text>
+<text x="64" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và thử. QA.</text>
+<rect x="20" y="283" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="306" r="11" fill="#16a34a"/>
+<polyline points="37.9,306.4 41.7,310.4 48.5,302" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="309.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Duyệt nội bộ. Tối ưu trang</text>
+<text x="64" y="328.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cửa hàng.</text>
+<rect x="20" y="354" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="377" r="11" fill="#16a34a"/>
+<polyline points="37.9,377.4 41.7,381.4 48.5,373" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="380.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nộp lên cửa hàng. Phát</text>
+<text x="64" y="399.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hành.</text>
+<rect x="8" y="441" width="304" height="322" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="469.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tài liệu độc lập xác nhận</text>
+<rect x="20" y="486" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="509" r="11" fill="#16a34a"/>
+<polyline points="37.9,509.4 41.7,513.4 48.5,505" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="512.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TestFlight: tối đa 100 người</text>
+<text x="64" y="531.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử nội bộ, 10.000 ngoài;</text>
+<text x="64" y="551.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">build thử 90 ngày.</text>
+<rect x="20" y="577" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="600" r="11" fill="#16a34a"/>
+<polyline points="37.9,600.4 41.7,604.4 48.5,596" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="603.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Android: thử bản phát hành</text>
+<text x="64" y="622.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trên một điện thoại và một</text>
+<text x="64" y="642.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy tính bảng.</text>
+<rect x="20" y="668" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="691" r="11" fill="#16a34a"/>
+<polyline points="37.9,691.4 41.7,695.4 48.5,687" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="694.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Apple: phát hành theo pha 7</text>
+<text x="64" y="713.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngày, 1% 2% 5% 10% 20%</text>
+<text x="64" y="733.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">50% 100%.</text>
+<rect x="8" y="775" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="803.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mô hình theo số báo cáo kỳ</text>
+<text x="20" y="825.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">vọng</text>
+<rect x="20" y="842" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="865" r="11" fill="#16a34a"/>
+<polyline points="37.9,865.4 41.7,869.4 48.5,861" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="868.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lỗi chạm 10% người dùng:</text>
+<text x="64" y="887.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dừng ngày 1, 1% đã nhận</text>
+<text x="64" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản lỗi.</text>
+<rect x="20" y="933" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="956" r="11" fill="#16a34a"/>
+<polyline points="37.9,956.4 41.7,960.4 48.5,952" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="959.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lỗi chạm 1%: dừng ngày 2,</text>
+<text x="64" y="978.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2% đã nhận.</text>
+<rect x="20" y="1004" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1027" r="11" fill="#16a34a"/>
+<polyline points="37.9,1027.4 41.7,1031.4 48.5,1023" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1030.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lỗi chạm 0,1%: dừng ngày</text>
+<text x="64" y="1049.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">5, 20% đã nhận.</text>
+<rect x="20" y="1075" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1098" r="11" fill="#16a34a"/>
+<polyline points="37.9,1098.4 41.7,1102.4 48.5,1094" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1101.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lỗi chạm 0,01%: không đủ</text>
+<text x="64" y="1120.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">báo cáo trong 7 ngày, 100%</text>
+<text x="64" y="1140.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đã nhận.</text>
+</g>
+</svg>

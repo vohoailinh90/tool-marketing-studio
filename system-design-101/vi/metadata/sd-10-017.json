@@ -1,0 +1,156 @@
+{
+  "id": "sd-10-017",
+  "title_vi": "Lịch sử ngắn của các ngôn ngữ lập trình",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-brief-history-og-programming-languages.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "eb62dcd71e0eff391c7a137a1bcc8e589ae00daf",
+    "retrieved_body_sha256": "96b26f0e759a93193bb0b880fef958445b40f48b74ba2b93e380050e10eb4410",
+    "retrieved_body_bytes": 2090
+  },
+  "diagram": "../diagrams/sd-10-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-020",
+      "relation": "see-also",
+      "reason_vi": "Mỗi giai đoạn lịch sử gắn với những mô hình lập trình; bài kia kể tám mô hình."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the language descriptions were read in raw copies of the pinned CPython, MDN, PHP, Ruby, C#, Rust, Go, Kotlin, Carbon, TypeScript, Swift, Dart and D project documentation and are recorded in the claims below; the timeline dates other than Python, JavaScript and Carbon 2022, and other than Go 2009 (the author's general knowledge, not checked), and the order of the languages are the source's word, not independently verified, and the glosses are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists the milestones the lesson keeps: perforated cards, assembly and human-oriented languages (1957, Fortran and LISP), Smalltalk and C in 1972, object-oriented languages in the 1980s (Object-C and C++), Python in the 1990s, Java, JavaScript, PHP and Ruby in 1995, C# in 2000, and the languages of the 2010s; none of these dates is checked except those below.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The source says early languages proposed garbage collection, recursion and exceptions; the lesson reports this as the source's statement.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Early languages",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "CPython documentation: Python was created in the early 1990s by Guido van Rossum at Stichting Mathematisch Centrum in the Netherlands as a successor of a language called ABC.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/license.rst",
+      "section": "History of the software",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: JavaScript, conceived as a server-side language by Brendan Eich at Netscape, came to Netscape Navigator 2.0 in September 1995; Internet Explorer 3.0 added it as JScript in August 1996.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/javascript/index.md",
+      "section": "Origins and History",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "PHP README: a popular general-purpose scripting language especially suited to web development.",
+      "source": "https://github.com/php/php-src/blob/c5093f7caaebeafb6d00e67d4e7d899a90931b44/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Ruby README: an interpreted object-oriented programming language often used for web development, with scripting features for text and system tasks.",
+      "source": "https://github.com/ruby/ruby/blob/8d205a7e2f3f08cc1b5a593173f92cc2df9abd1a/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "C# language design repository: where new C# features are developed, adopted and specified, by a language design team in coordination with Roslyn; it holds a language version history.",
+      "source": "https://github.com/dotnet/csharplang/blob/80f71ebeb01cb9d973611929834599fdaaf171ba/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Rust README: the language aims to empower everyone to build reliable and efficient software.",
+      "source": "https://github.com/rust-lang/rust/blob/b26b4e75de6aac63fc6beeecebad5b3a5f84d2a4/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Go README: an open source programming language that makes it easy to build simple, reliable and efficient software.",
+      "source": "https://github.com/golang/go/blob/d934b909f6a50247e2a2e9b89de02cdcef93a163/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Kotlin README: a concise multiplatform language developed by JetBrains and contributors.",
+      "source": "https://github.com/JetBrains/kotlin/blob/a0beb5ef62ba5d9b8ece142ae0fecf8d5d32b807/ReadMe.md",
+      "section": "ReadMe",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Carbon README: an experimental successor to C++; incrementally improving C++ is very difficult; developers who can use an existing modern language (Go, Swift, Kotlin, Rust and more) should.",
+      "source": "https://github.com/carbon-language/carbon-lang/blob/3056e7e318a7e94310a50407496ed04ab949fbd1/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "TypeScript README: adds optional types to JavaScript and compiles to readable, standards-based JavaScript.",
+      "source": "https://github.com/microsoft/TypeScript/blob/5237fd46890956e4bb8177a1a05dcd69e4166560/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Swift README: a high-performance system programming language with a clean modern syntax, seamless access to existing C and Objective-C code, memory-safe by default; inspired by Objective-C but not itself C-derived.",
+      "source": "https://github.com/swiftlang/swift/blob/1228b79371a42aef3361f3ddf21e11922967141e/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Dart README: a strongly typed language that compiles to machine code or to JavaScript or WebAssembly.",
+      "source": "https://github.com/dart-lang/sdk/blob/505660f5454e6df0638524cf0766aef9fe048e8f/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "D README: introduces the reference compiler of the D language. The Zig repository moved off GitHub and was not checked.",
+      "source": "https://github.com/dlang/dmd/blob/a2de5d1009d3a35eadd313ab163f04b175f8dc79/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The source spells \"Object-C\" and groups languages into a \"C++ family\" and a \"Java family\"; the lesson uses Objective-C (general knowledge) and does not use the families. The glosses of LISP, GUI, PC, PHP and MDN in the abbreviations section (including that PHP is nowadays read as the recursive \"PHP: Hypertext Preprocessor\", not checked against the PHP manual here) are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba chuỗi bước theo thời gian (các thế hệ đầu; 1972 đến thập niên 1990; từ năm 2000) và một khung ghi nhớ. Mốc theo bài nguồn; các ngôn ngữ đã đọc được tài liệu thì được tả bằng tài liệu của chính nó, còn lại theo lời nguồn hoặc chưa đối chiếu. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is seven bullets by decade; the lesson keeps the milestones and language names, redraws them as three timelines and does not use the source image.",
+    "Source spells Object-C and places Go in the Java family and D, Rust, Zig and Carbon in the C++ family; the lesson uses Objective-C (general knowledge) and describes the languages whose project documentation was read with their own README instead of the source's families; the others (for example Fortran, LISP, Java, Zig) are only the source's words or unchecked.",
+    "Only the Python and JavaScript origins and Carbon's 2022 announcement (from its README) are checked against documentation; Go 2009 is the author's general knowledge and not checked; the other dates are the source's word.",
+    "The lesson keeps one source-only statement, that Dart is popular thanks to Flutter, attributed to the source and not checked against any documentation; it does not reproduce the source's sentences about popularity, simplicity and security or about .NET.",
+    "The source files Go and Carbon under the 2010s; the lesson labels the decade as the source's grouping and notes that Carbon's README lists its announcement talks in 2022 (read at the pinned commit) and that Go launched in 2009 (author's general knowledge, not checked)."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Mô tả các ngôn ngữ đã đọc được tài liệu đã được đối chiếu ở commit đã ghim; Fortran, LISP, Java, Zig và các mốc thời gian khác theo lời nguồn hoặc chưa đối chiếu, và các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn. Chưa user testing hoặc phê duyệt phát hành."
+}

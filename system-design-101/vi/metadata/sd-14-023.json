@@ -1,0 +1,212 @@
+{
+  "id": "sd-14-023",
+  "title_vi": "Cookie, session, JWT và PASETO: chọn cách xác thực nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-023",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cookies-vs-sessions-vs-jwt-vs-paseto.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cookies-vs-sessions-vs-jwt-vs-paseto.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "ba8d970626ef5ab6d570faf35ace512de959c6f8",
+    "retrieved_body_sha256": "29826e6a883fea6f9612ef7f2b95a53cdb76ab17becb33fac993979e9d4b88b9",
+    "retrieved_body_bytes": 1563
+  },
+  "diagram": "../diagrams/sd-14-023-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-008",
+      "relation": "builds-on",
+      "reason_vi": "Cookie và session phía máy chủ: dữ liệu nằm ở đâu."
+    },
+    {
+      "lesson_id": "sd-14-009",
+      "relation": "builds-on",
+      "reason_vi": "Thuộc tính cookie như HttpOnly, liên quan đến chỗ cất token."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "builds-on",
+      "reason_vi": "Token ngẫu nhiên và JWT: cái giá của việc thu hồi."
+    },
+    {
+      "lesson_id": "sd-14-011",
+      "relation": "compare-with",
+      "reason_vi": "Ủy quyền và đăng nhập một lần là câu hỏi khác với định dạng token."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. PASETO specification files (README, protocol versions, Version 4, payload processing, algorithm lucidity) fetched from raw.githubusercontent.com at paseto-spec commit af79f25908227555404e7462ccdd8ce106049469; OWASP JSON Web Token, Session Management and HTML5 Security cheat sheets at CheatSheetSeries commit f9a631ec47a5fd134bb83b57ce690d7946360cea; PyJWT usage docs at commit 16231abfd1d8eab4953e8779b3017b859c88565e; pyseto README at commit a948711de5fe46375a9e004d5c0b7b93c47415cf (tag v1.10.0). Experiments: pyseto 1.10.0 (pip, virtual environment in the scratchpad) with cryptography 50.0.2, and PyJWT 2.14.0 on Python 3.13, throw-away keys, one run each on the authoring machine. IETF/RFC pages were not reachable and were not read. Cookie/session scaling cost and revocation options are the author's general knowledge. Library behaviour (exp checking, algorithms argument) is specific to these two library versions."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes cookies and sessions as keeping session data on the server and referencing it from a client cookie (good for strict server-side control, scaling can be hard in distributed systems); JWT as stateless and self-contained, scalable but needing care against token theft and expiry; and PASETO as improving on JWT by enforcing stronger cryptographic defaults, eliminating algorithmic vulnerabilities and avoiding misconfiguration risks.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cookies-vs-sessions-vs-jwt-vs-paseto.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read; each claim compared with the independent sources below."
+    },
+    {
+      "claim_vi": "OWASP: a session ID must be meaningless, and its meaning and the application logic tied to it must be stored on the server side, in session objects or a session management database or repository.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Session ID Content (or Value)",
+      "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read)."
+    },
+    {
+      "claim_vi": "OWASP: using JWTs as stateless user sessions needs a way to invalidate sessions, such as a deny list; with a deny list sessions are no longer completely stateless, which may defeat the benefit, and a plain session system may be worth considering.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Considerations about using JWTs / Not using JWTs",
+      "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read)."
+    },
+    {
+      "claim_vi": "With several servers the session store is usually shared between them, or each server keeps its own store and the load balancer routes the user back to the server holding that session (session affinity); either way the server keeps and looks up the store (the scaling cost of server-side sessions).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Server-Side Session Token Storage",
+      "verified_by": "Author's general knowledge; not checked against the cited page, which only says the session meaning is kept server side and the store must be protected. Not measured."
+    },
+    {
+      "claim_vi": "A signed JWT's header and payload are only base64url encoded, so anyone holding the token can read the claims; the header carries an alg field naming the signature algorithm; PyJWT printed {\"alg\":\"HS256\",\"typ\":\"JWT\"} and the payload from a token with no key used. The lesson says this holds for the signed token tried here; an encrypted JWT (whose payload cannot be read without the key) was not tried.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Signed JWTs are not confidential; JWT structure",
+      "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read). Ran exp_jwt.py (scratchpad) with system Python 3.13 and PyJWT 2.14.0 and throw-away keys on the authoring machine; one run, output kept as exp_jwt.out."
+    },
+    {
+      "claim_vi": "With PyJWT 2.14.0: decode() without the algorithms argument raises DecodeError; an alg none token was rejected in all four settings tried (algorithms pinned to HS256; algorithms omitted; ['HS256','none'] with a secret; ['none'] with key None); an HS256 token keyed with the RS256 public key was refused both when PyJWT created it and when a hand-made token was verified, with the key as PEM text and as DER bytes; tampered and expired tokens were rejected; a valid token was accepted twice.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/16231abfd1d8eab4953e8779b3017b859c88565e/docs/usage.rst",
+      "section": "Usage examples (algorithms, exp)",
+      "verified_by": "Ran exp_jwt.py (scratchpad) with system Python 3.13 and PyJWT 2.14.0 and throw-away keys on the authoring machine; one run, output kept as exp_jwt.out. The usage page shows algorithms passed in every decode example and says exp is verified automatically; it does not state that algorithms is mandatory, which was observed."
+    },
+    {
+      "claim_vi": "OWASP: some JWT libraries used to accept unsecured alg none tokens by default and this should now be fixed; key type confusion (public key used as a MAC secret) is mitigated in recent PyJWT versions, and the page lists CVEs for PyJWT and fast-jwt; mitigations are to hard-code accepted algorithms and use typed keys.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Unsecured JWTs; Key type confusion",
+      "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read)."
+    },
+    {
+      "claim_vi": "A PASETO token is version.purpose.payload with an optional footer; the purpose is local (shared-key authenticated encryption) or public (public-key signatures); there is no algorithm field, only version and purpose; the footer is cleartext base64url but covered by the authentication tag or signature.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/README.md",
+      "section": "Motivation; Key Differences between Paseto and JWT",
+      "verified_by": "Read from a copy of the paseto-standard/paseto-spec file fetched at commit af79f25908227555404e7462ccdd8ce106049469 (the head of the default branch when read)."
+    },
+    {
+      "claim_vi": "Each version/purpose pair is a fixed algorithm suite: v4.public is Ed25519, v4.local is XChaCha20 with a keyed-hash MAC; v1 and v3 are the NIST family, v2 and v4 the Sodium family; v1 is recommended only for legacy systems; libraries should by default allow only the two most recent versions of a family.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/docs/01-Protocol-Versions/README.md",
+      "section": "Versions; Rules for Current and Future Protocol Versions",
+      "verified_by": "Read from a copy of the paseto-standard/paseto-spec file fetched at commit af79f25908227555404e7462ccdd8ce106049469 (the head of the default branch when read)."
+    },
+    {
+      "claim_vi": "A v4.local token's binary payload is 32-byte nonce, ciphertext and 32-byte tag; a v4.public payload is the message followed by a 64-byte Ed25519 signature. Observed: a v4.local blob of 132 bytes (32 + 68 + 32) that does not contain the bytes alice or role; a v4.public message readable as JSON with no key, followed by 64 signature bytes.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/docs/01-Protocol-Versions/Version4.md",
+      "section": "Encrypt; Sign; Verify",
+      "verified_by": "Read from a copy of the paseto-standard/paseto-spec file fetched at commit af79f25908227555404e7462ccdd8ce106049469 (the head of the default branch when read). Ran exp_paseto.py (scratchpad) in a virtual environment with pyseto 1.10.0 and throw-away random keys on the authoring machine; one run, output kept as exp_paseto.out."
+    },
+    {
+      "claim_vi": "Changing one character of the payload (v4.local and v4.public), changing role to admin while keeping the old signature, and swapping the footer of a v4.local token were each rejected (DecryptError or VerifyError); the footer of a v4.local token was readable without the key.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/docs/01-Protocol-Versions/Version4.md",
+      "section": "Decrypt; Verify",
+      "verified_by": "Ran exp_paseto.py (scratchpad) in a virtual environment with pyseto 1.10.0 and throw-away random keys on the authoring machine; one run, output kept as exp_paseto.out."
+    },
+    {
+      "claim_vi": "Rewriting the prefix to v2.public, handing a v4.local token to a verifier holding only the v4 public key, and a v4.local token an attacker built from the raw bytes of the public key were all refused by the verifier holding the v4.public key (ValueError: key is not found for verifying the token).",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/docs/02-Implementation-Guide/03-Algorithm-Lucidity.md",
+      "section": "PASETO Cryptography Key Requirements; Why This Matters",
+      "verified_by": "Ran exp_paseto.py (scratchpad) in a virtual environment with pyseto 1.10.0 and throw-away random keys on the authoring machine; one run, output kept as exp_paseto.out. The spec text was read separately."
+    },
+    {
+      "claim_vi": "The spec requires libraries to separate key types so that a known public key cannot be used to generate a local token that any implementation accepts; it calls this Algorithm Lucidity, says implementations that allow the wrong key for an algorithm may open themselves to attack, and says its absence is not itself a vulnerability when other mitigating factors exist.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/docs/02-Implementation-Guide/03-Algorithm-Lucidity.md",
+      "section": "Why This Matters",
+      "verified_by": "Read from a copy of the paseto-standard/paseto-spec file fetched at commit af79f25908227555404e7462ccdd8ce106049469 (the head of the default branch when read)."
+    },
+    {
+      "claim_vi": "The PASETO README cautions that neither JWT nor Paseto was designed for stateless session management, that Paseto is suitable for tamper-proof cookies, and that it cannot prevent replay attacks by itself.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/README.md",
+      "section": "Key Differences between Paseto and JWT (caution)",
+      "verified_by": "Read from a copy of the paseto-standard/paseto-spec file fetched at commit af79f25908227555404e7462ccdd8ce106049469 (the head of the default branch when read)."
+    },
+    {
+      "claim_vi": "The same v4.public token was decoded successfully twice in a row, and still decoded after the application had put it in its own revoked set, because the library only holds the token and the key.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/README.md",
+      "section": "Caution (replay)",
+      "verified_by": "Ran exp_paseto.py (scratchpad) in a virtual environment with pyseto 1.10.0 and throw-away random keys on the authoring machine; one run, output kept as exp_paseto.out. The second part is by construction: the library never sees the application's set."
+    },
+    {
+      "claim_vi": "pyseto 1.10.0 checks the registered claims exp and nbf only when decode() is given a deserializer: a token whose exp was one hour in the past was accepted without one and rejected ('Token expired.') with deserializer=json; PyJWT 2.14.0 rejected an expired token by default (ExpiredSignatureError).",
+      "source": "https://github.com/dajiaji/pyseto/blob/a948711de5fe46375a9e004d5c0b7b93c47415cf/README.md",
+      "section": "Using serializer/deserializer for payload and footer",
+      "verified_by": "Ran exp_paseto.py (scratchpad) in a virtual environment with pyseto 1.10.0 and throw-away random keys on the authoring machine; one run, output kept as exp_paseto.out. Also read the installed pyseto/paseto.py (decode and _verify_registered_claims); the README does not describe this behaviour. Ran exp_jwt.py (scratchpad) with system Python 3.13 and PyJWT 2.14.0 and throw-away keys on the authoring machine; one run, output kept as exp_jwt.out."
+    },
+    {
+      "claim_vi": "Someone holding a copy of the v4.local key can mint a token the verifier accepts (and can read tokens); the footer carries the key identifier kid, which may be read before verification but any other footer field must be distrusted until the payload is verified; a public key must not be taken from the footer for verification.",
+      "source": "https://github.com/paseto-standard/paseto-spec/blob/af79f25908227555404e7462ccdd8ce106049469/docs/02-Implementation-Guide/01-Payload-Processing.md",
+      "section": "Key-ID Support",
+      "verified_by": "Read from a copy of the paseto-standard/paseto-spec file fetched at commit af79f25908227555404e7462ccdd8ce106049469 (the head of the default branch when read). The forged-token acceptance was observed in exp_paseto.py; that a symmetric key holder can also read tokens is the author's general knowledge."
+    },
+    {
+      "claim_vi": "OWASP: do not store session identifiers in local storage because JavaScript can always read them; cookies can mitigate this with the httpOnly flag. A token used in place of a session identifier shares the risk.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/HTML5_Security_Cheat_Sheet.md",
+      "section": "Local Storage",
+      "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read). The last sentence is the author's inference, not stated by OWASP."
+    },
+    {
+      "claim_vi": "The pyseto README states the project has not been formally audited.",
+      "source": "https://github.com/dajiaji/pyseto/blob/a948711de5fe46375a9e004d5c0b7b93c47415cf/README.md",
+      "section": "Security",
+      "verified_by": "Read from a copy of the README fetched at commit a948711de5fe46375a9e004d5c0b7b93c47415cf (the commit of tag v1.10.0)."
+    },
+    {
+      "claim_vi": "The three OWASP pages read (JSON Web Token, Session Management, HTML5 Security cheat sheets) do not mention PASETO; the PASETO comparison with JWT in the lesson therefore rests on the PASETO authors' own documents.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Whole page",
+      "verified_by": "Ran a case-insensitive search for paseto over the three fetched OWASP files at the pinned commit: no match."
+    },
+    {
+      "claim_vi": "Ways to block a token at once after it was issued: a revocation list checked on every request (less stateless), changing the verification key (invalidates every token signed with it), or a server-side session; short expiry with renewal only narrows the window.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "JWT revocation; JWT denylist",
+      "verified_by": "Author's general knowledge; not checked against the cited page beyond its text on deny lists and token status lists. Not tested."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm xếp dọc: ba cách xác thực, hai loại PASETO v4 và danh sách việc người dùng vẫn phải tự lo, để thấy PASETO chỉ bỏ việc chọn thuật toán. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source says PASETO eliminates algorithmic vulnerabilities; the lesson says it removes the token's choice of algorithm, but safety still depends on the library keeping key types separate (the spec's Algorithm Lucidity), and a correctly configured JWT library rejected the alg none and key confusion cases tried.",
+    "Source says PASETO enforces stronger cryptographic defaults and avoids misconfiguration risks; the lesson says the suites are fixed per version, does not measure 'stronger', notes the comparison comes from PASETO's own documents, and shows misconfiguration still possible (expiry not checked, key leaks, footer trusted).",
+    "Source does not say that revocation, replay protection, expiry checking, key management and token storage remain the application's job with PASETO; the lesson states this, citing the PASETO README and experiments.",
+    "Source does not distinguish v4.local (hides the payload) from v4.public (signature, payload readable) nor mention that PASETO has several versions; the lesson adds both.",
+    "Source treats JWT as stateless and highly scalable without noting that revocation needs state (OWASP deny list); the lesson adds this and links the earlier lessons for cookie, session and token basics instead of repeating them."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

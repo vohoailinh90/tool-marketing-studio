@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="763" viewBox="0 0 320 763" role="img" aria-labelledby="title desc">
+<title id="title">Khung thảo luận thiết kế hệ thống</title>
+<desc id="desc">Ba khung. Khung một, sáu thành phần: cân bằng tải, cổng API, mạng phân phối nội dung, cơ sở dữ liệu, bộ nhớ đệm, hàng đợi thông điệp; mỗi thành phần có dịch vụ tương ứng ở cả hai trang so sánh của Microsoft. Khung hai, hai bài toán phải tự quyết: giao thức liên lạc và sinh mã định danh duy nhất; hai trang so sánh không có dòng nào nhắc mã định danh duy nhất. Khung ba, năm tính chất: khả năng mở rộng, tính sẵn sàng, hiệu năng, bảo mật, chịu lỗi và phục hồi; so với năm lăng kính của công cụ đánh giá Microsoft thì thiếu chi phí và vận hành.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="763" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khung thảo luận thiết kế</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">hệ thống</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mười ba mục, ba loại.</text>
+<rect x="8" y="104" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu thành phần</text>
+<rect x="20" y="149" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="172" r="11" fill="#16a34a"/>
+<polyline points="37.9,172.4 41.7,176.4 48.5,168" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cân bằng tải, cổng API,</text>
+<text x="64" y="194.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạng phân phối.</text>
+<rect x="20" y="220" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="243" r="11" fill="#16a34a"/>
+<polyline points="37.9,243.4 41.7,247.4 48.5,239" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="246.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu, bộ nhớ đệm,</text>
+<text x="64" y="265.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng đợi.</text>
+<rect x="20" y="291" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="314" r="11" fill="#16a34a"/>
+<polyline points="37.9,314.4 41.7,318.4 48.5,310" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="317.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đủ 12 trên 12 ô có dịch vụ</text>
+<text x="64" y="336.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tương ứng.</text>
+<rect x="8" y="378" width="304" height="174" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="406.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai bài toán tự quyết</text>
+<rect x="20" y="423" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="446" r="11" fill="#16a34a"/>
+<polyline points="37.9,446.4 41.7,450.4 48.5,442" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="449.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giao thức liên lạc.</text>
+<rect x="20" y="477" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="500" r="11" fill="#16a34a"/>
+<polyline points="37.9,500.4 41.7,504.4 48.5,496" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="503.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sinh mã định danh duy nhất:</text>
+<text x="64" y="522.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">0 dòng trong hai trang.</text>
+<rect x="8" y="564" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="592.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm tính chất</text>
+<rect x="20" y="609" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="632" r="11" fill="#16a34a"/>
+<polyline points="37.9,632.4 41.7,636.4 48.5,628" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="635.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mở rộng, sẵn sàng, hiệu</text>
+<text x="64" y="654.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năng, bảo mật, chịu lỗi.</text>
+<rect x="20" y="680" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="703" r="11" fill="#16a34a"/>
+<polyline points="37.9,703.4 41.7,707.4 48.5,699" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="706.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lăng kính Microsoft có thêm:</text>
+<text x="64" y="725.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chi phí và vận hành.</text>
+</g>
+</svg>

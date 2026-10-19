@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1071" viewBox="0 0 320 1071" role="img" aria-labelledby="title desc">
+<title id="title">Đồng thời và song song</title>
+<desc id="desc">Hai nhóm thẻ số đo và một khung ghi nhớ. Bốn việc chờ, mỗi việc 0,5 giây: lần lượt hết 2,00 giây; đồng thời bằng asyncio hết 0,50 giây; đồng thời bằng bốn luồng hết 0,50 giây. Bốn việc tính toán: lần lượt hết khoảng 0,6 giây; bốn luồng khoảng 0,7 giây; bốn tiến trình khoảng 0,2 đến 0,3 giây. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1071" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Đồng thời và song song</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một thí nghiệm nhỏ trên máy bốn lõi.</text>
+<rect x="8" y="80" width="304" height="330" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn việc chờ, mỗi việc 0,5</text>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">giây</text>
+<rect x="20" y="147" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="181" r="18" fill="#1d4ed8"/><g transform="translate(39.2 170.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="173.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lần lượt</text>
+<text x="78" y="197.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hết 2,00 giây.</text>
+<rect x="20" y="229" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="272.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 261.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="255.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đồng thời, asyncio</text>
+<text x="78" y="279.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hết 0,50 giây, trong một</text>
+<text x="78" y="298.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luồng.</text>
+<rect x="20" y="330" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="364" r="18" fill="#1d4ed8"/><g transform="translate(39.2 353.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="356.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đồng thời, bốn luồng</text>
+<text x="78" y="380.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hết 0,50 giây.</text>
+<rect x="8" y="422" width="304" height="367" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="450.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn việc tính toán</text>
+<rect x="20" y="467" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="501" r="18" fill="#0f766e"/><g transform="translate(39.2 490.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="493.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lần lượt</text>
+<text x="78" y="517.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khoảng 0,6 giây.</text>
+<rect x="20" y="549" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="602.5" r="18" fill="#0f766e"/><g transform="translate(39.2 591.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="575.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn luồng</text>
+<text x="78" y="599.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khoảng 0,7 giây: mã</text>
+<text x="78" y="618.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Python thuần, GIL chỉ cho</text>
+<text x="78" y="638.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một luồng chạy.</text>
+<rect x="20" y="670" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="723.5" r="18" fill="#0f766e"/><g transform="translate(39.2 712.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect height="16" rx="2" width="16" x="4" y="4"/><rect height="8" rx="1" width="8" x="8" y="8"/></g>
+<text x="78" y="696.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn tiến trình</text>
+<text x="78" y="720.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khoảng 0,2 đến 0,3 giây:</text>
+<text x="78" y="739.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều tiến trình trên nhiều</text>
+<text x="78" y="759.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lõi.</text>
+<rect x="8" y="801" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="829.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="846" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="869" r="11" fill="#16a34a"/>
+<polyline points="37.9,869.4 41.7,873.4 48.5,865" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="872.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ thì đồng thời đủ, một lõi</text>
+<text x="64" y="891.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng được.</text>
+<rect x="20" y="917" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="940" r="11" fill="#16a34a"/>
+<polyline points="37.9,940.4 41.7,944.4 48.5,936" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="943.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính toán nặng cần nhiều lõi:</text>
+<text x="64" y="962.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">song song.</text>
+<rect x="20" y="988" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1011" r="11" fill="#16a34a"/>
+<polyline points="37.9,1011.4 41.7,1015.4 48.5,1007" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1014.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số đo là của một máy, đọc tỉ</text>
+<text x="64" y="1033.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lệ.</text>
+</g>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1448" viewBox="0 0 320 1448" role="img" aria-labelledby="title desc">
+<title id="title">Mệnh lệnh, hàm, hướng đối tượng</title>
+<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Mệnh lệnh: một biến total bắt đầu bằng 0; vòng lặp đi qua từng số; câu lệnh điều kiện chọn số chẵn rồi cộng bình phương vào total. Hàm: hàm is_even trả đúng hoặc sai; hàm square trả bình phương; sum, map và filter nối các hàm đó, không đổi biến nào. Hướng đối tượng: một đối tượng giữ total bên trong; phương thức add nhận từng số và tự cập nhật; mã gọi add lặp lại rồi đọc total. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1448" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mệnh lệnh, hàm, hướng</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đối tượng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cùng bài toán, ba cách viết; kết quả</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">đều là 56.</text>
+<rect x="8" y="123" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mệnh lệnh</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biến total</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bắt đầu bằng 0, đổi sau</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi vòng.</text>
+<rect x="20" y="269" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="312.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 301.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Vòng lặp</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đi qua từng số trong danh</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sách.</text>
+<rect x="20" y="370" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="413.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 402.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>
+<text x="78" y="396.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điều kiện</text>
+<text x="78" y="420.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn số chẵn, cộng bình</text>
+<text x="78" y="439.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phương vào total.</text>
+<rect x="8" y="481" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="509.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hàm</text>
+<rect x="20" y="526" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="569.5" r="18" fill="#0f766e"/><g transform="translate(39.2 558.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></g>
+<text x="78" y="552.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">is_even</text>
+<text x="78" y="576.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận một số, trả đúng</text>
+<text x="78" y="595.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoặc sai.</text>
+<rect x="20" y="627" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="670.5" r="18" fill="#0f766e"/><g transform="translate(39.2 659.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></g>
+<text x="78" y="653.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">square</text>
+<text x="78" y="677.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận một số, trả bình</text>
+<text x="78" y="696.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phương.</text>
+<rect x="20" y="728" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="771.5" r="18" fill="#0f766e"/><g transform="translate(39.2 760.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="754.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">sum, map, filter</text>
+<text x="78" y="778.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nối các hàm trên, không</text>
+<text x="78" y="797.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đổi biến nào.</text>
+<rect x="8" y="839" width="304" height="327" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="867.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hướng đối tượng</text>
+<rect x="20" y="884" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="918" r="18" fill="#b45309"/><g transform="translate(39.2 907.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></g>
+<text x="78" y="910.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đối tượng</text>
+<text x="78" y="934.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ total ở bên trong.</text>
+<rect x="20" y="966" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1009.5" r="18" fill="#b45309"/><g transform="translate(39.2 998.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="992.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phương thức add</text>
+<text x="78" y="1016.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận từng số và tự cập</text>
+<text x="78" y="1035.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhật total.</text>
+<rect x="20" y="1067" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1110.5" r="18" fill="#b45309"/><g transform="translate(39.2 1099.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></g>
+<text x="78" y="1093.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mã bên ngoài</text>
+<text x="78" y="1117.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi add lặp lại rồi đọc</text>
+<text x="78" y="1136.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">total.</text>
+<rect x="8" y="1178" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1206.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1223" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1246" r="11" fill="#16a34a"/>
+<polyline points="37.9,1246.4 41.7,1250.4 48.5,1242" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1249.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng một kết quả, ba cách</text>
+<text x="64" y="1268.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viết.</text>
+<rect x="20" y="1294" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1317" r="11" fill="#16a34a"/>
+<polyline points="37.9,1317.4 41.7,1321.4 48.5,1313" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1320.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khác nhau ở chỗ trạng thái</text>
+<text x="64" y="1339.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sống.</text>
+<rect x="20" y="1365" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1388" r="11" fill="#16a34a"/>
+<polyline points="37.9,1388.4 41.7,1392.4 48.5,1384" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1391.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một ngôn ngữ làm được</text>
+<text x="64" y="1410.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều mô hình.</text>
+</g>
+</svg>

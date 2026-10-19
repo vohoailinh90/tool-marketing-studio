@@ -1,0 +1,16 @@
+{
+  "id": "sd-11-007",
+  "title": "Sáu chỗ cần idempotent",
+  "subtitle": "Gửi lại không được làm hai lần.",
+  "desc": "Hai khung. Khung một, ba chỗ người dùng hoặc client gửi lại: yêu cầu REST, thanh toán, đặt đơn hàng. Khung hai, ba chỗ lặp lại bên trong hệ thống: thao tác cơ sở dữ liệu, tạo tài khoản, thông điệp giữa các dịch vụ. Mỗi ghi chú nói cách chặn việc làm hai lần.",
+  "sections": [
+    {"kind": "notes", "heading": "Client gửi lại", "items": [
+      "REST: kèm khóa duy nhất cho mỗi ý định.",
+      "Thanh toán: lần sau trả lại kết quả cũ.",
+      "Đơn hàng: mã đơn do phía gửi sinh ra."]},
+    {"kind": "notes", "heading": "Lặp lại bên trong", "items": [
+      "Cơ sở dữ liệu: đặt giá trị, không cộng dồn.",
+      "Tài khoản: ràng buộc duy nhất trên email.",
+      "Thông điệp: nhớ mã, bỏ bản trùng; mã và việc cùng giao dịch."]}
+  ]
+}

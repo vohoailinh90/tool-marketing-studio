@@ -1,0 +1,21 @@
+{
+  "id": "sd-06-021",
+  "lang": "vi",
+  "title": "Vì sao Redis nhanh, và khi nào nó chậm",
+  "subtitle": "Ba lý do, và ba con số đo trên một máy 4 nhân.",
+  "desc": "Hai phần. Phần một, ba lý do Redis nhanh: dữ liệu nằm trong RAM nên lệnh tìm và sửa dữ liệu ngay trong bộ nhớ, đĩa để lưu bản sao; một vòng lặp sự kiện theo dõi mọi kết nối và chạy lần lượt từng lệnh; giá trị nhỏ được lưu ở dạng gọn liền một khối như listpack và intset. Phần hai, ba kết quả đo trên Redis 7.0.15: gửi 16 lệnh mỗi lượt thì số lệnh mỗi giây tăng khoảng 9 lần; lệnh quét 2 triệu khóa chạy 1,6 giây và một lệnh khác phải chờ gần hết thời gian đó; bảng băm 512 trường chiếm 6192 byte, 513 trường chiếm 28816 byte.",
+  "sections": [
+    {"kind": "parts", "heading": "Ba lý do",
+     "items": [
+       {"name": "Dữ liệu trong RAM", "role": "Lệnh tìm và sửa dữ liệu ngay trong RAM; đĩa để lưu bản sao.", "icon": "zap"},
+       {"name": "Một luồng chạy lệnh", "role": "Một vòng lặp sự kiện nghe mọi kết nối, chạy lần lượt từng lệnh.", "icon": "repeat"},
+       {"name": "Dạng lưu gọn", "role": "Giá trị nhỏ nằm liền một khối: listpack, intset.", "icon": "package"}
+     ]},
+    {"kind": "notes", "heading": "Đo trên máy thử",
+     "items": [
+       "Gửi 16 lệnh mỗi lượt: số lệnh mỗi giây tăng khoảng 9 lần.",
+       "Lệnh quét 2 triệu khóa chạy 1,6 giây; lệnh khác phải xếp hàng chờ.",
+       "Bảng băm 512 trường: 6192 byte. Thêm 1 trường: 28816 byte."
+     ]}
+  ]
+}

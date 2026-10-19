@@ -1,0 +1,92 @@
+{
+  "id": "sd-08-023",
+  "title_vi": "Kiến trúc dịch vụ nhỏ điển hình: bảy bộ phận, và mỗi bộ phận thêm một cái giá",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-023",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-does-a-typical-microservice-architecture-look-like.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-a-typical-microservice-architecture-look-like.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "a84ae6f9b88e0ce58dc3e8d16c96f2ee02372ae4",
+    "retrieved_body_sha256": "a22d0696e76dd24177804e74df6abcba1755d089b49ad0f517be51de508f121f",
+    "retrieved_body_bytes": 1433
+  },
+  "diagram": "../diagrams/sd-08-023-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Seven components from the source body at the pinned commit; gateway, data and style statements read from local clones of MicrosoftDocs/architecture-center at 8e2c239; five costs measured by Python 3.13.16 programs on a 4-vCPU virtual machine on 2026-10-19 (three runs): gateway hop, gateway aggregation with an injected 40 ms client round trip, local signature check versus an HTTP authorization server, registry lookup per request versus a cached address, metrics and log cost, and a 200-row report across two services with a database each. The load balancer and the CDN were not built or measured; the management measurement covers counting and logging only, not orchestration. The signed token is a plain keyed hash written for the lesson, not a standard token format."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: load balancer distributes incoming traffic across backend services; CDN is a group of geographically distributed servers holding static content, clients look in the CDN first then go to backend services; API gateway handles incoming requests and routes them to the relevant services, talking to the identity provider and service discovery; identity provider handles authentication and authorization; service registry and discovery is where microservices register and the gateway looks for services; management is responsible for monitoring the services; microservices are designed and deployed in different domains and each domain has its own database.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-a-typical-microservice-architecture-look-like.md",
+      "section": "Key Components",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Microsoft API gateways: a centralized entry point that acts as a reverse proxy and routes requests; without a gateway clients track multiple endpoints, are coupled to the service decomposition, and one operation may need several round trips; patterns are routing, aggregation (one client request fanned out and merged) and offloading (authentication, TLS termination, rate limiting, logging and monitoring, caching and others).",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/design/gateway-content.md",
+      "section": "What is an API gateway; Why use; How to use",
+      "verified_by": "Read from a local clone at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Microsoft microservices style: the management or orchestration component schedules and deploys services, detects failures and enables autoscaling; observability (centralized logging, monitoring, distributed tracing) is listed separately; each service owns its data and schema; challenges include service discovery, data consistency and added complexity.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/microservices.md",
+      "section": "Components; Challenges",
+      "verified_by": "Read from a local clone at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Microsoft data considerations: each microservice manages its own data; two services should not share a data store; the traditional rule of one fact in one place no longer applies; other services may hold their own copy of data that is eventually consistent with the source of truth; prefer eventual consistency where possible.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/design/data-considerations.md",
+      "section": "Introduction; Data modeling guidance",
+      "verified_by": "Read from a local clone at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Experiment (three runs, ranges are min to max): one call straight to a service 491-555 us, through a gateway 908-960 us; two calls versus one call to a gateway that fans out inside, with 40 ms injected round trip to the system: 82.3-82.4 ms versus 42.2-42.4 ms; local signature check 1.8-2.9 us versus an HTTP authorization server 223-243 us; call with a cached address 230-250 us versus registry lookup before every call 589-606 us (p99 421-535 versus 2003-2509 us); a locked counter 0.24-0.47 us, an INFO log line to a file 13-18 us, a dropped lower-level line 0.19-0.32 us; 200 latest orders with customer names (1000 customers, 20000 orders): single-database join 0.17-0.25 ms, one call per order to the customers service 49.6-60.0 ms, one call for all customers 1.92-2.04 ms; after renaming customer 5 (18 orders) a copy held by the orders service still returns the old name.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/design/data-considerations.md",
+      "section": "Experiment",
+      "verified_by": "Programs run by the author on 2026-10-19; every service is a thread in one process reached over local HTTP; the 40 ms is injected, not measured."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bảy bộ phận của nguồn, năm phép đo trên một máy, giới hạn.",
+  "source_deviations": [
+    "The source is a picture with a list of seven components; the lesson keeps the seven in order, adds a column of independent references and turns five of them into measurements.",
+    "The source's management means monitoring; Microsoft uses management for orchestration and lists observability separately; the lesson states the difference and measures only counting and logging. Load balancer and CDN are not measured."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

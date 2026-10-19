@@ -1,0 +1,98 @@
+{
+  "id": "sd-08-003",
+  "title_vi": "Đọc một sơ đồ lớp UML",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-cheatsheet-for-uml-class-diagrams.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-for-uml-class-diagrams.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "f7f3920ed4d0a927809e6ee046fd05a3af1fbf2e",
+    "retrieved_body_sha256": "21c76ea2ffd7f366ba39511237b591d9f73a7424773692023162c41f9793cb65",
+    "retrieved_body_bytes": 1343
+  },
+  "diagram": "../diagrams/sd-08-003-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Mermaid's class diagram syntax page read from a local clone (visibility marks, relation arrows, multiplicity, annotations); the aggregation versus composition lifetime reading is the author's general knowledge of UML and was not checked against the UML specification (omg.org returned 403); a small Python ast scan of asyncio, email and unittest of the local Python 3.13 standard library."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Member visibility marks: + public, - private, # protected, ~ package/internal.",
+      "source": "https://github.com/mermaid-js/mermaid/blob/e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6/packages/mermaid/src/docs/syntax/classDiagram.md",
+      "section": "Visibility",
+      "verified_by": "Read from a local clone of mermaid-js/mermaid at commit e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6."
+    },
+    {
+      "claim_vi": "Relation arrows supported: inheritance <|--, composition *--, aggregation o--, association -->, link --, dependency ..>, realization ..|>, dashed link ..",
+      "source": "https://github.com/mermaid-js/mermaid/blob/e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6/packages/mermaid/src/docs/syntax/classDiagram.md",
+      "section": "Defining Relationship",
+      "verified_by": "Read from a local clone of mermaid-js/mermaid at commit e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6."
+    },
+    {
+      "claim_vi": "Multiplicity notations 1, 0..1, 1..*, *, n, 0..n, 1..n placed near the end of an association; annotations <<interface>>, <<enumeration>> mark a class.",
+      "source": "https://github.com/mermaid-js/mermaid/blob/e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6/packages/mermaid/src/docs/syntax/classDiagram.md",
+      "section": "Cardinality / Multiplicity on relations; Annotations on classes",
+      "verified_by": "Read from a local clone of mermaid-js/mermaid at commit e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6."
+    },
+    {
+      "claim_vi": "Aggregation and composition are both whole-part relations; they differ in lifetime: composition parts do not outlive the whole, aggregation parts can. Dependency is a weaker, transient use.",
+      "source": "https://github.com/mermaid-js/mermaid/blob/e28fbd9ded0a07ba9569e51be4764c1ad4daa8f6/packages/mermaid/src/docs/syntax/classDiagram.md",
+      "section": "Defining Relationship",
+      "verified_by": "Author's general knowledge of UML; the Mermaid page names the arrows but does not define the lifetime rule, and the UML specification could not be fetched (403), so this is unchecked against it."
+    },
+    {
+      "claim_vi": "Scan of three packages of the Python 3.13 standard library with ast: asyncio 106 classes, 85 inheritance edges to another class of the package, 8 __init__ assignments self.x = OtherClass(...); email 128, 98, 3; unittest 54, 31, 1; total 288, 214, 12.",
+      "source": "https://docs.python.org/3.13/library/index.html",
+      "section": "Experiment",
+      "verified_by": "Run by the author on 2026-10-19 with a Python ast script over /usr/lib/python3.13/{asyncio,email,unittest}; direct base names and direct self assignments inside __init__ only; lower bound by construction."
+    },
+    {
+      "claim_vi": "UML class diagrams consist of classes, attributes, methods, interfaces, enumerations and relationships (association, aggregation, composition, inheritance, implementation).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-for-uml-class-diagrams.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung: hộp ba ngăn (các bước), năm kiểu đường nối (ghi chú) và kết quả quét mã. Hình không vẽ một sơ đồ lớp mẫu vì bộ vẽ chỉ có thẻ, bước và sơ đồ trình tự; bảng trong bài cho ký hiệu.",
+  "source_deviations": [
+    "Source lists five relationships without explanation; the lesson explains them, adds the dependency arrow, multiplicity and visibility marks from Mermaid's documentation, and states aggregation versus composition as a lifetime difference (author's general knowledge, unchecked against the UML specification).",
+    "The lesson adds an ast scan of the Python standard library that the source does not contain."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,53 @@
+{
+  "id": "sd-12-016",
+  "title": "Tải một tệp lên kho đối tượng",
+  "subtitle": "Dữ liệu và siêu dữ liệu nằm ở hai nơi.",
+  "desc": "Hai khung. Khung một, sau khi khách gọi PUT: dịch vụ API kiểm tra quyền, gửi dữ liệu cho kho dữ liệu và nhận lại mã UUID của đối tượng, rồi ghi một dòng siêu dữ liệu vào kho siêu dữ liệu và báo thành công cho khách. Khung hai, ba điều rút ra: dữ liệu được lưu trước, siêu dữ liệu ghi sau; sự cố giữa hai bước để lại dữ liệu mồ côi mà không ai trỏ tới; dữ liệu mồ côi được dọn bằng cách quét định kỳ.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Sau khi khách gọi PUT",
+      "actors": [
+        {
+          "name": "Dịch vụ API",
+          "icon": "server"
+        },
+        {
+          "name": "Kho dữ liệu",
+          "icon": "database"
+        },
+        {
+          "name": "Kho siêu dữ liệu",
+          "icon": "database"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Lưu dữ liệu"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Trả mã UUID",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Ghi siêu dữ liệu"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều rút ra",
+      "items": [
+        "Dữ liệu lưu trước, siêu dữ liệu ghi sau.",
+        "Sự cố giữa hai bước để lại dữ liệu mồ côi.",
+        "Dữ liệu mồ côi được dọn bằng cách quét định kỳ."
+      ]
+    }
+  ]
+}

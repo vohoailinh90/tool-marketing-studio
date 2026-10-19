@@ -1,0 +1,107 @@
+{
+  "id": "sd-10-009",
+  "title_vi": "Dữ liệu đi từ ứng dụng này sang ứng dụng khác",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-10-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-is-data-transmitted-between-applications.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6b4b44fd9338bebd38051ffc54871f640249e473",
+    "retrieved_body_sha256": "01b4893f5d82262052571caab59473c1b738bd3128e2c5528c707529d856ef8d",
+    "retrieved_body_bytes": 1416
+  },
+  "diagram": "../diagrams/sd-10-009-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-011",
+      "relation": "see-also",
+      "reason_vi": "Thứ tự byte quyết định cách đọc dữ liệu khi nó tới máy nhận."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "The step names were read from the pinned source body. The explanations were read in raw copies of the Linux kernel source and documentation at the pinned commit (net/core/dev.c, net/sched/sch_generic.c, kernel/softirq.c, Documentation/networking/napi.rst and scaling.rst). Header wrapping, the path between machines, the network layers, the copy to user space and the abbreviation glosses are the author's general knowledge and are not checked against primary documentation."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names the stages of a chat message between two servers: user space, send buffer in kernel space, network stack with TCP, IP and MAC headers, qdisc, ring buffer, NIC, the internet via routers and switches, then on the receiving side NIC, ring buffer, hard interrupt, soft interrupt, ksoftirqd, the data link, network and transport layers, and the copy to user space. Only the stage names are reused.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
+      "section": "Paragraphs 2 to 4",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Linux __dev_queue_xmit comment: it queues a buffer for transmission to a network device, and the caller must have built the buffer (device and priority set) before calling it.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/net/core/dev.c",
+      "section": "__dev_queue_xmit()",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux sch_generic.c: the file holds the generic packet scheduler routines (qdisc); it contains a 3-band FIFO queue called pfifo_fast; a comment says the running seqcount guarantees only one CPU can process a qdisc at a time.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/net/sched/sch_generic.c",
+      "section": "pfifo_fast and qdisc_run comments",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux scaling documentation: each receive queue has a separate interrupt that the NIC triggers to notify a CPU when new packets arrive on that queue; the documentation counts a card's receive queues as RX rings.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/Documentation/networking/scaling.rst",
+      "section": "RSS: Receive Side Scaling, RSS Configuration",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux NAPI documentation: the device notifies the host through an interrupt and the host schedules a NAPI instance; processing usually happens in the software interrupt context, with an option for separate kernel threads; a poll processes at most budget receive packets; drivers keep interrupts masked after scheduling until polling finishes.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/Documentation/networking/napi.rst",
+      "section": "NAPI, Datapath API, Scheduling and IRQ masking",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux softirq.c: ksoftirqd is a per-CPU kernel task; a software interrupt raised outside interrupt context wakes ksoftirqd, while inside an interrupt or softirq it runs once the interrupt or softirq returns.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/kernel/softirq.c",
+      "section": "ksoftirqd, raise_softirq_irqoff comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The source does not name the operating system, nor cover the TCP handshake, packet loss or splitting data.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
+      "section": "Limits",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "Header wrapping by the network stack, the path through routers and switches, the unwrapping through the data link, network and transport layers, the copy to user space and the glosses of TCP, IP, MAC, NIC, CPU and FIFO.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
+      "section": "Design",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Hai chuỗi bốn bước (máy gửi, máy nhận) và một khung ghi nhớ. Chỉ giữ tên các chặng của nguồn; lời giải thích lấy từ nhân Linux. Đoạn \"trên đường đi\" được đưa vào khung ghi nhớ vì không có bước riêng. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is three connected paragraphs; the lesson keeps only the stage names, splits them into two four-step sequences and writes its own explanation of each step from the Linux net/core/dev.c, sch_generic.c, softirq.c, napi.rst and scaling.rst sources instead of translating the source sentences.",
+    "Source says the CPU sends a soft interrupt so that ksoftirqd receives data; the lesson says what the Linux code shows: the soft interrupt normally runs on return from the interrupt, and ksoftirqd runs it when it is raised outside interrupt context.",
+    "Source does not say which operating system it describes; the lesson reads it as a picture of Linux."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào mã và tài liệu của nhân Linux ở commit cố định; phần bọc tiêu đề, các lớp mạng và giải nghĩa viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

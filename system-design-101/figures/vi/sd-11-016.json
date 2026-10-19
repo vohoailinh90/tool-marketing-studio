@@ -1,0 +1,17 @@
+{
+  "id": "sd-11-016",
+  "title": "Nút thắt và cách gỡ",
+  "subtitle": "Ba nút thắt, bốn kỹ thuật.",
+  "desc": "Hai khung. Khung một, ba nút thắt: thành phần tập trung, thành phần chậm, và các thành phần gắn chặt với nhau. Khung hai, bốn kỹ thuật gỡ chúng: chia tải, bộ nhớ đệm, xử lý theo sự kiện, chia nhỏ dữ liệu.",
+  "sections": [
+    {"kind": "notes", "heading": "Ba nút thắt", "items": [
+      "Tập trung: một chỗ là trần và điểm hỏng.",
+      "Chậm: việc lâu giữ tài nguyên.",
+      "Gắn chặt: không mở rộng riêng từng phần."]},
+    {"kind": "notes", "heading": "Bốn kỹ thuật", "items": [
+      "Chia tải: trải yêu cầu ra nhiều máy.",
+      "Đệm: giữ thứ hay hỏi ở nơi nhanh.",
+      "Sự kiện: việc lâu vào hàng đợi.",
+      "Chia nhỏ dữ liệu: cắt thành nhiều mảnh."]}
+  ]
+}

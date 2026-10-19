@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-19",
-      "evidence": "Source's nine practices from the source body; Microsoft's Circuit Breaker and Retry pattern pages, the compute options page (service discovery) and the microservices page (private data store) read from local clones; timeout, retry and circuit-breaker behaviour measured with a Python 3.13.16 program against a standard-library HTTP server on 2026-10-19, three runs (the random part uses a fixed seed, so counts repeat). Six practices were neither cross-checked nor measured."
+      "evidence": "Source's nine practices from the source body; Microsoft's Circuit Breaker and Retry pattern pages, the compute options page (service discovery) and the microservices page (private data store) read from local clones; timeout, retry and circuit-breaker behaviour measured with a Python 3.13.16 program against a standard-library HTTP server on 2026-10-19, three runs (the random part uses a fixed seed, so counts repeat). Seven practices were neither cross-checked nor measured."
     },
     "technical_review": {
       "status": "pending",

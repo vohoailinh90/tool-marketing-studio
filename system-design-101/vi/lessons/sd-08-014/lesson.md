@@ -52,11 +52,11 @@ Ngày 2026-10-19, một máy ảo 4 lõi, Python 3.13.16: một máy chủ HTTP 
 | tối đa 3 lần thử | 0 | 1,20 đến 1,29 giây | 1.500 |
 | tối đa 3 lần thử và ngắt mạch | 0 | dưới 0,01 giây | 5 |
 
-Ba bài học. Một, hạn chờ chỉ có lợi khi dịch vụ thật sự hỏng: với dịch vụ chậm nhưng vẫn đúng, hạn 50 mili giây biến "chậm" thành "hỏng hoàn toàn" (0 trên 20); hạn phải dài hơn thời gian bình thường. Hai, thử lại cứu được lỗi ngẫu nhiên (từ 70,8% lên 96,8%) nhưng trả bằng tải: 2.792 lần gọi thay vì 2.000, tức thêm 40%; và khi dịch vụ chết, nó nhân ba tải đúng lúc dịch vụ yếu nhất. Ba, ngắt mạch là thứ chặn hiệu ứng đó: 5 lần gọi thay vì 1.500, và bên gọi trả lỗi ngay chứ không đợi.
+Ba bài học. Một, hạn chờ giữ cho bên gọi không phải đợi quá ngân sách thời gian của chính nó, nên nó có lợi cả khi dịch vụ vẫn trả lời đúng nhưng chậm; kết quả 0 trên 20 là hệ quả của việc chọn hạn 50 mili giây, ngắn hơn hẳn thời gian trả lời 200 mili giây của dịch vụ này. Hạn nên đặt theo ngân sách thời gian từ đầu đến cuối của bên gọi và theo phân bố thời gian trả lời đã quan sát, không theo một con số tùy ý. Hai, thử lại cứu được lỗi ngẫu nhiên (từ 70,8% lên 96,8%) nhưng trả bằng tải: 2.792 lần gọi thay vì 2.000, tức thêm 40%; và khi dịch vụ chết, nó nhân ba tải đúng lúc dịch vụ yếu nhất. Ba, ngắt mạch là thứ chặn hiệu ứng đó: 5 lần gọi thay vì 1.500, và bên gọi trả lỗi ngay chứ không đợi.
 
 ## Giới hạn cần nhớ
 
-Dịch vụ giả chạy trên cùng máy với bên gọi, nên không có độ trễ mạng, hàng đợi hay nhiều bên gọi cùng lúc; nó cũng không chịu tải thật nên không thể nói gì về "sập dây chuyền". Bộ ngắt mạch tự viết không có trạng thái nửa mở đầy đủ như mô tả của Microsoft. Mô hình lỗi chỉ gồm chậm, lỗi ngẫu nhiên 30% và chết hẳn; lỗi thật thường lẫn lộn. Thử lại ở đây không có độ trễ tăng dần (exponential backoff). Độ trễ tăng dần chỉ làm giảm tốc độ gọi tức thời và cho dịch vụ thời gian hồi phục; nếu mọi lần thử đều chạy xong thì tổng số lần gọi vẫn như vậy, nên con số 1.500 ở đây không bị nó thay đổi. Sáu việc còn lại của nguồn không được thử.
+Dịch vụ giả chạy trên cùng máy với bên gọi, nên không có độ trễ mạng, hàng đợi hay nhiều bên gọi cùng lúc; nó cũng không chịu tải thật nên không thể nói gì về "sập dây chuyền". Bộ ngắt mạch tự viết không có trạng thái nửa mở đầy đủ như mô tả của Microsoft. Mô hình lỗi chỉ gồm chậm, lỗi ngẫu nhiên 30% và chết hẳn; lỗi thật thường lẫn lộn. Thử lại ở đây không có độ trễ tăng dần (exponential backoff). Độ trễ tăng dần chỉ làm giảm tốc độ gọi tức thời và cho dịch vụ thời gian hồi phục; nếu mọi lần thử đều chạy xong thì tổng số lần gọi vẫn như vậy, nên con số 1.500 ở đây không bị nó thay đổi. Bảy trong chín việc của nguồn không được thử.
 
 ## Nhìn hình trả lời
 

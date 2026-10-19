@@ -3,7 +3,7 @@
 **Một hàm tính phí trả muộn viết cẩu thả, rồi viết lại; mười nguyên tắc hiện ra từng cái ở những chỗ cụ thể được sửa.**
 Bài tự viết cả hai bản bằng Python, chạy ba ca kiểm thử trên bản mới, rồi đối chiếu vài nguyên tắc với PEP 8, hướng dẫn Java của Google, tài liệu `unittest`, hướng dẫn lập trình hàm của Python và bảng kiểm tra kiểm soát đầu vào của OWASP.
 
-![Ba nhóm thẻ và một khung ghi nhớ, theo mười nguyên tắc đánh số. Đọc được và bền: một theo quy ước, tên gọi rõ và hằng số viết hoa; hai chú thích nói vì sao; ba báo lỗi thay vì nuốt lỗi; bốn mỗi hàm một việc, thêm loại thành viên bằng cách thêm dữ liệu. Dễ kiểm thử và dễ đổi: năm hàm thuần với ba ca kiểm thử; sáu một hàm che giấu bảng giảm giá; bảy hai loại thành viên chỉ cần một bảng, không cần lớp; tám bỏ biến toàn cục. Giữ lâu dài: chín viết kiểm thử rồi đổi từng bước nhỏ; mười kiểm đầu vào ở biên. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-028-main.svg)
+![Ba nhóm thẻ và một khung ghi nhớ, theo mười nguyên tắc đánh số. Đọc được và bền: một theo quy ước, tên gọi rõ và hằng số viết hoa; hai chú thích nói vì sao; ba báo lỗi thay vì nuốt lỗi; bốn mỗi hàm một việc, thêm loại thành viên bằng cách thêm dữ liệu. Dễ kiểm thử và dễ đổi: năm hàm gọn với ba ca kiểm thử; sáu một hàm che giấu bảng giảm giá; bảy hai loại thành viên chỉ cần một bảng, không cần lớp; tám bỏ biến toàn cục. Giữ lâu dài: chín viết kiểm thử rồi đổi từng bước nhỏ; mười kiểm đầu vào ở biên. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-028-main.svg)
 
 ## Từ viết tắt
 
@@ -51,7 +51,7 @@ def late_fee(days_late, member_type="standard"):
 4. Theo nguyên tắc SOLID. Hàm mới chỉ làm một việc (tính phí), gần ý trách nhiệm đơn; muốn thêm loại hội viên thì thêm một dòng vào `MEMBER_DISCOUNT` mà không sửa thân hàm, gần ý mở cho mở rộng, đóng cho sửa đổi. Cách đọc SOLID này là của người biên soạn, và bài không kiểm tra cả năm nguyên tắc.
 
 **Dễ kiểm thử và dễ đổi.**
-5. Dễ kiểm thử. Hàm mới chỉ nhận đầu vào và trả đầu ra, nên ba ca kiểm thử ngắn đủ: khách thường 2 ngày trả 10000, hội viên "vip" 2 ngày trả 5000, và `late_fee(-1)` phải ném `ValueError`. Tài liệu `unittest` nói một test case kiểm tra phản hồi cụ thể cho một bộ đầu vào, và `assertRaises` kiểm tra có ngoại lệ. Bản cũ khó kiểm thử hơn vì kết quả còn nằm lại ở biến toàn cục `fee`.
+5. Dễ kiểm thử. Hàm mới chỉ phụ thuộc đầu vào và bảng `MEMBER_DISCOUNT` mà ta coi là hằng (không sửa khi chạy; muốn chắc hơn thì truyền bảng vào làm tham số), nên ba ca kiểm thử ngắn đủ: khách thường 2 ngày trả 10000, hội viên "vip" 2 ngày trả 5000, và `late_fee(-1)` phải ném `ValueError`. Tài liệu `unittest` nói một test case kiểm tra phản hồi cụ thể cho một bộ đầu vào, và `assertRaises` kiểm tra có ngoại lệ. Bản cũ khó kiểm thử hơn vì kết quả còn nằm lại ở biến toàn cục `fee`.
 6. Trừu tượng. Bên gọi chỉ cần biết `late_fee(số_ngày, loại)`; bảng giảm giá nằm sau hàm và đổi được mà bên gọi không biết. Mức vừa phải ở đây là một hàm cộng một bảng, chưa cần gì lớn hơn.
 7. Dùng mẫu thiết kế nhưng đừng thiết kế quá tay. Hai loại hội viên chỉ cần một từ điển. Dựng một lớp chính sách phí cho mỗi loại cùng một lớp cha (mẫu chiến lược) sẽ thêm khoảng bốn lớp mà chưa mua được gì. Khi số quy tắc và chỗ khác nhau đủ lớn thì mẫu đó mới đáng; đây là nhận định của người biên soạn.
 8. Bớt phụ thuộc toàn cục. Bản cũ ghi kết quả vào `fee` toàn cục sau mỗi lần gọi; gọi hai nơi cùng lúc là dẫm lên nhau. Bản mới chỉ đọc hằng số và trả kết quả. Hướng dẫn lập trình hàm của Python nói phong cách hàm không khuyến khích hàm có tác dụng phụ, tức làm đổi trạng thái nội bộ hoặc có tác động không thấy qua giá trị trả về.
@@ -92,7 +92,7 @@ class LateFeeTest(unittest.TestCase):
             late_fee(-1)
 ```
 
-Chạy ngày 2026-10-19 với Python 3.13.16: ba ca đều qua. `calc(2, "vip")` ra 5000.0, còn `calc("2", "vip")` và `calc(None, "vip")` đều ra 0. Mười nguyên tắc không độc lập: tên rõ, hàm thuần và kiểm thử nâng đỡ nhau, nên hình chỉ nêu chỗ nổi bật nhất của từng nguyên tắc trong ví dụ này.
+Chạy ngày 2026-10-19 với Python 3.13.16: ba ca đều qua. `calc(2, "vip")` ra 5000.0, còn `calc("2", "vip")` và `calc(None, "vip")` đều ra 0. Mười nguyên tắc không độc lập: tên rõ, hàm gọn và kiểm thử nâng đỡ nhau, nên hình chỉ nêu chỗ nổi bật nhất của từng nguyên tắc trong ví dụ này.
 
 </details>
 

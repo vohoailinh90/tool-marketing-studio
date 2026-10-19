@@ -2,7 +2,7 @@
   "id": "sd-10-028",
   "title": "Mười nguyên tắc viết mã tốt",
   "subtitle": "Mười nguyên tắc, một hàm tính phí viết lại.",
-  "desc": "Ba nhóm thẻ và một khung ghi nhớ, theo mười nguyên tắc đánh số. Đọc được và bền: một theo quy ước, tên gọi rõ và hằng số viết hoa; hai chú thích nói vì sao; ba báo lỗi thay vì nuốt lỗi; bốn mỗi hàm một việc, thêm loại thành viên bằng cách thêm dữ liệu. Dễ kiểm thử và dễ đổi: năm hàm thuần với ba ca kiểm thử; sáu một hàm che giấu bảng giảm giá; bảy hai loại thành viên chỉ cần một bảng, không cần lớp; tám bỏ biến toàn cục. Giữ lâu dài: chín viết kiểm thử rồi đổi từng bước nhỏ; mười kiểm đầu vào ở biên. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ, theo mười nguyên tắc đánh số. Đọc được và bền: một theo quy ước, tên gọi rõ và hằng số viết hoa; hai chú thích nói vì sao; ba báo lỗi thay vì nuốt lỗi; bốn mỗi hàm một việc, thêm loại thành viên bằng cách thêm dữ liệu. Dễ kiểm thử và dễ đổi: năm hàm gọn với ba ca kiểm thử; sáu một hàm che giấu bảng giảm giá; bảy hai loại thành viên chỉ cần một bảng, không cần lớp; tám bỏ biến toàn cục. Giữ lâu dài: chín viết kiểm thử rồi đổi từng bước nhỏ; mười kiểm đầu vào ở biên. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {
       "kind": "parts",
@@ -36,7 +36,7 @@
       "items": [
         {
           "name": "5 · Dễ kiểm thử",
-          "role": "Hàm thuần, ba ca kiểm thử.",
+          "role": "Hàm gọn, ba ca kiểm thử.",
           "icon": "bug"
         },
         {

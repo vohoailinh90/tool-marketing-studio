@@ -40,7 +40,7 @@ Nên xem `systemd-networkd-wait-online.service` trước: `+20.905s` ngay trên 
 
 Bài chép chuỗi ví dụ của tài liệu vào một đoạn Python nhỏ, tách các số sau `@` và `+` (đổi `ms` sang giây), rồi tính: tổng các `+` là 0,548 + 2,247 + 20,905 + 1,690 + 1,904 + 1,776 + 0,177 = 29,247 giây; 29,247 chia 47,820 ra 61,2%; 20,905 chia 29,247 ra 71,5%; 20,905 chia 47,820 ra 43,7%. Công cụ `systemd-analyze timespan` cho cùng các số ở dạng micro giây (47.820.000 và 20.905.000) khi đổi tay.
 
-Một điều dễ nhầm: tổng thời gian khởi tạo trên chuỗi không bằng thời gian tới đích, vì giữa hai đơn vị còn có khoảng chờ. Trong ví dụ, `networkd` lên ở 11,109 giây và `wait-online` lên ở 12,804 giây: khoảng này là thời gian chờ chứ không phải thời gian khởi tạo.
+Một điều dễ nhầm: tổng thời gian khởi tạo trên chuỗi không bằng thời gian tới đích, vì giữa hai đơn vị còn có khoảng chờ. Trong ví dụ, `networkd` lên ở 11,109 giây và `wait-online` lên ở 12,804 giây: `networkd` mất 1,690 giây để khởi tạo nên xong khoảng 12,799 giây, và `wait-online` bắt đầu ngay sau đó (chỉ chừng 5 mili giây sau); phần dài 1,690 giây ấy đã nằm trong số `+` của `networkd`, không phải thời gian chờ thêm.
 
 </details>
 

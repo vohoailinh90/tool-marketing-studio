@@ -34,7 +34,7 @@ Các phép thử chỉ minh họa ý tưởng, không phải cách dùng thật:
 
 ## Nhìn hình trả lời
 
-Bạn cần chữ ký số nhận dạng một tệp mà dù tệp dài hay ngắn cũng cho chuỗi cùng độ dài. Thuật toán nào trong chín cái làm việc đó? Và trong ví dụ Dijkstra, vì sao đường A, B, D (tổng 5) không được chọn dù ít nút hơn?
+Bạn cần một dấu vân tay (chuỗi băm) để nhận dạng một tệp mà dù tệp dài hay ngắn cũng cho chuỗi cùng độ dài. Thuật toán nào trong chín cái làm việc đó? Và trong ví dụ Dijkstra, vì sao đường A, B, D (tổng 5) không được chọn dù ít nút hơn?
 
 <details>
 <summary>Xem đáp án</summary>

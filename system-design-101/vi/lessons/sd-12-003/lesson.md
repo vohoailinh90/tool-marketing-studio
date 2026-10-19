@@ -3,7 +3,7 @@
 **Một lá thư từ Outlook sang Gmail đi qua đúng bốn việc: ứng dụng đưa thư cho máy chủ của mình, máy chủ này tra DNS để tìm máy chủ của Gmail, rồi chuyển thư sang, và Bob lấy thư ra khi đọc thư của mình.**
 Theo từng bước với hai cái tên cụ thể, bạn thấy mỗi giao thức nằm ở chặng nào và ai chịu trách nhiệm với thư ở từng lúc.
 
-![Hai khung. Khung một, gửi thư: Alice dùng ứng dụng Outlook gửi thư tới máy chủ Outlook bằng SMTP; máy chủ Outlook chuyển thư tới máy chủ Gmail cũng bằng SMTP sau khi tra DNS; máy chủ Gmail trả lời đã nhận. Khung hai, nhận thư: Gmail lưu thư vào hộp thư của Bob, Bob đăng nhập, nếu Bob dùng một ứng dụng thư riêng thì ứng dụng đó lấy thư về bằng IMAP hoặc POP3.](../../diagrams/sd-12-003-main.svg)
+![Hai khung. Khung một, gửi thư: Alice dùng ứng dụng thư (giả định cấu hình gửi bằng SMTP) gửi thư tới máy chủ Outlook; máy chủ Outlook chuyển thư tới máy chủ Gmail cũng bằng SMTP sau khi tra DNS; máy chủ Gmail trả lời đã nhận. Khung hai, nhận thư: Gmail lưu thư vào hộp thư của Bob, Bob đăng nhập, nếu Bob dùng một ứng dụng thư riêng thì ứng dụng đó lấy thư về bằng IMAP hoặc POP3.](../../diagrams/sd-12-003-main.svg)
 
 ## Từ viết tắt
 
@@ -19,7 +19,7 @@ Theo từng bước với hai cái tên cụ thể, bạn thấy mỗi giao th�
 
 ## Đọc hình
 
-**Bước 1: Alice gửi.** Alice soạn thư trong ứng dụng Outlook, bấm gửi. Ứng dụng nói chuyện với máy chủ Outlook bằng SMTP. Từ lúc máy chủ nhận thư, việc đưa thư tới đích là việc của máy chủ, không còn là của ứng dụng; Alice có thể tắt máy.
+**Bước 1: Alice gửi.** Alice soạn thư trong ứng dụng Outlook, bấm gửi. Bài này giả định ứng dụng của Alice được cấu hình gửi thư bằng SMTP và nói chuyện với máy chủ Outlook bằng giao thức đó. Từ lúc máy chủ nhận thư, việc đưa thư tới đích là việc của máy chủ, không còn là của ứng dụng; Alice có thể tắt máy.
 
 **Bước 2: máy chủ Outlook tìm Gmail.** Địa chỉ của Bob kết thúc bằng gmail.com. Máy chủ Outlook hỏi DNS bản ghi MX của tên miền này, nhận về tên máy chủ nhận thư của Gmail, mở kết nối SMTP tới đó và đưa thư. Máy chủ Gmail trả lời đã nhận (mã 250 trong SMTP). Từ lúc đó trách nhiệm giữ thư chuyển sang Gmail.
 
@@ -31,7 +31,7 @@ Trên đường đi, mỗi máy chủ thư nhận thư theo chuẩn SMTP phải 
 
 ## Giới hạn cần nhớ
 
-Hình chỉ có hai máy chủ nên trông như thư luôn đi hai nhảy; thực tế có thể có thêm máy chủ trung gian, và mỗi máy thêm một dòng `Received:`. Hình cũng bỏ qua lọc thư rác, kiểm tra người gửi có đúng là người gửi và chuyện thư đính kèm lớn. Cách ứng dụng web của Gmail lấy thư không nhất thiết là IMAP hay POP3: đó là ứng dụng riêng của Google và bài này không mô tả nó. Phần nói về mã 250 và dòng `Received:` là kiến thức của người biên soạn về chuẩn SMTP; trang chuẩn chưa mở được trong phiên viết bài.
+Hình chỉ có hai máy chủ nên trông như thư luôn đi hai nhảy; thực tế có thể có thêm máy chủ trung gian, và mỗi máy thêm một dòng `Received:`. Hình cũng bỏ qua lọc thư rác, kiểm tra người gửi có đúng là người gửi và chuyện thư đính kèm lớn. Cách ứng dụng web của Gmail lấy thư không nhất thiết là IMAP hay POP3: đó là ứng dụng riêng của Google và bài này không mô tả nó. Tương tự, bản Outlook hiện đại dùng với hộp thư Exchange Online có thể gửi thư qua một giao thức riêng của Microsoft chứ không qua SMTP (điều người biên soạn nhớ từ tài liệu Microsoft, chưa đối chiếu được); bài chọn tình huống ứng dụng thư cấu hình dùng SMTP để minh họa đường đi. Phần nói về mã 250 và dòng `Received:` là kiến thức của người biên soạn về chuẩn SMTP; trang chuẩn chưa mở được trong phiên viết bài.
 
 ## Nhìn hình trả lời
 

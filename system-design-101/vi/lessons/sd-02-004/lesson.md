@@ -23,7 +23,7 @@ Kẻ tấn công vì vậy phải lấy được mọi mảnh tin và mọi mả
 
 ## Giới hạn cần nhớ
 
-Điểm khác cốt lõi là ai giữ chìa khóa. Ở chat thường, hệ thống của Telegram có cách giải mã tin (nó phải làm thế để đồng bộ lịch sử lên nhiều máy), nên mức an toàn dựa vào việc tin tưởng Telegram và cách họ cất chìa khóa. Ở secret chat, máy chủ không có chìa khóa. Câu giải thích này là suy luận của người biên soạn từ định nghĩa E2EE, không phải câu của bài nguồn.
+Điểm khác cốt lõi là ai giữ chìa khóa. Ở chat thường, hệ thống của Telegram có cách giải mã tin (Telegram chọn cách lưu tin trên đám mây mà máy chủ đọc được, một phần để việc đồng bộ lịch sử lên nhiều máy đơn giản hơn; đồng bộ nhiều máy vẫn làm được mà máy chủ không cần đọc tin, chỉ là khó hơn), nên mức an toàn dựa vào việc tin tưởng Telegram và cách họ cất chìa khóa. Ở secret chat, máy chủ không có chìa khóa. Câu giải thích này là suy luận của người biên soạn từ định nghĩa E2EE, không phải câu của bài nguồn.
 Các giới hạn của secret chat là theo bài nguồn viết đầu năm 2024; tính năng của ứng dụng có thể đã đổi, nên xem lại tài liệu hiện hành của Telegram trước khi dựa vào.
 
 ## Nhìn hình thử trả lời

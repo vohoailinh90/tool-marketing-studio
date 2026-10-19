@@ -22,7 +22,7 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
@@ -42,63 +42,39 @@
   },
   "claims": [
     {
-      "claim_vi": "TCP/IP is developed by the IETF and is the foundation of the Internet; HTTP is also developed by the IETF and is essential for web developers.",
+      "claim_vi": "The source names eight standards: TCP/IP, HTTP, SQL, OAuth, HTML/CSS, ECMAScript, ISO date format, OpenAPI; the lesson keeps these names.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "TCP/IP and HTTP",
+      "section": "Whole body",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "SQL is a domain-specific language used to manage data.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "SQL",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "OAuth is an open standard for access delegation, commonly used to grant websites or applications limited access to user information without exposing passwords.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "OAuth",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "HTML makes pages render uniformly across browsers, reducing compatibility effort; CSS is often used with HTML. The source sentence ends with a stray \"HTML tags.\"",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "HTML/CSS",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "ECMAScript is a standardized scripting language specification that is the foundation of several languages, JavaScript being the best known.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "ECMAScript",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "ISO 8601, developed by ISO, is a date and time format for exchanging date and time data across borders, cultures and industries.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "ISO Date",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "OpenAPI (OAS) is a standardized format for describing and documenting RESTful APIs.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
-      "section": "OpenAPI",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "The OpenAPI Specification defines a standard, programming-language-agnostic interface description for HTTP APIs.",
-      "source": "https://github.com/OAI/OpenAPI-Specification/blob/8273770d983c99bb07b389d1706a9f8312ced503/README.md",
-      "section": "README",
+      "claim_vi": "MDN: TCP lets two hosts connect and exchange data streams, guarantees delivery of data and packets in the order sent, and implements congestion control.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/tcp/index.md",
+      "section": "TCP",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The tc39/ecma262 repository holds the source for the current draft of ECMA-262, the ECMAScript Language Specification.",
-      "source": "https://github.com/tc39/ecma262/blob/4feb0272b799ea795c5eadee9b482aea0c10ce45/README.md",
-      "section": "README",
+      "claim_vi": "MDN: an IP address is a number used to address each device on an IP network uniquely.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/ip_address/index.md",
+      "section": "IP address",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "MDN: in November 1996 Netscape began working with Ecma International to make JavaScript an industry standard; the standardized JavaScript is called ECMAScript and specified under ECMA-262.",
-      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/javascript/index.md",
-      "section": "Origins and History",
+      "claim_vi": "MDN: HTTP is the protocol that transfers hypermedia documents on the Web, typically between a browser and a server; it is textual and stateless; the https scheme means HTTP over a secure TLS channel.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/http/index.md",
+      "section": "HTTP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: HTML is a descriptive language that specifies webpage structure, using elements surrounded by tags.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/html/index.md",
+      "section": "HTML",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: CSS is a declarative language that controls how webpages look in the browser; a rule has a selector and properties.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/css/index.md",
+      "section": "CSS",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
@@ -108,17 +84,53 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
+      "claim_vi": "MDN: SQL is a descriptive computer language designed for updating, retrieving and calculating data in table-based databases.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/sql/index.md",
+      "section": "SQL",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: ECMAScript is a scripting language specification on which JavaScript is based; Ecma International is in charge of standardizing it.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/ecmascript/index.md",
+      "section": "ECMAScript",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The tc39/ecma262 repository holds the source for the current draft of ECMA-262, the ECMAScript Language Specification.",
+      "source": "https://github.com/tc39/ecma262/blob/4feb0272b799ea795c5eadee9b482aea0c10ce45/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The OpenAPI Specification defines a standard, programming-language-agnostic interface description for HTTP APIs; documents can drive interactive documentation and code generation.",
+      "source": "https://github.com/OAI/OpenAPI-Specification/blob/8273770d983c99bb07b389d1706a9f8312ced503/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "OAuth 2.1 draft: OAuth adds an authorization layer; instead of the resource owner's credentials, the client obtains an access token (scope and lifetime) issued by an authorization server with the resource owner's approval; the older model made applications store credentials and servers support password authentication. This is an Internet-Draft, not a published standard.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "ISO 8601 is the ISO standard for writing dates and times, from the largest unit to the smallest.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
+      "section": "ISO Date",
+      "verified_by": "Author's general knowledge; not checked against the ISO text, which is not reachable from the authoring environment."
+    },
+    {
       "claim_vi": "Grouping the eight standards into three sets is the author's arrangement; the glosses in the abbreviations section are the author's general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
       "section": "Design and Từ viết tắt",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba nhóm thẻ theo việc chuẩn lo (mạng và web; dữ liệu và trao đổi; truy cập và ngôn ngữ) và một khung ghi nhớ. Cách chia nhóm là của bài. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba nhóm thẻ theo việc chuẩn lo (mạng và web; dữ liệu và trao đổi; truy cập và ngôn ngữ) và một khung ghi nhớ. Cách chia nhóm là của bài. Mỗi chuẩn được giải thích từ tài liệu gốc, không từ câu của nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source lists eight standards in a flat order; the lesson groups them into three sets by the job each does and says the grouping is the lesson's.",
-    "Source describes OpenAPI as for RESTful APIs; the OpenAPI README says HTTP APIs, which the lesson notes as broader.",
-    "Source adds nothing about who maintains ECMAScript or HTML; the lesson adds a short line from the pinned READMEs and MDN."
+    "Source describes OpenAPI as for RESTful APIs and names the IETF as developer of TCP/IP and HTTP; the lesson does not repeat those sentences and explains each standard from its own documentation instead (OpenAPI: HTTP APIs).",
+    "OAuth is described from the OAuth 2.1 Internet-Draft, which is not a published standard; the lesson says so."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

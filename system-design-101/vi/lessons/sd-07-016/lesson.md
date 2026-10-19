@@ -20,7 +20,7 @@
 
 ## Giới hạn cần nhớ
 
-Nguồn nêu hai kỹ thuật ở mức ý tưởng và một ví dụ; nó không nói máy chủ làm gì khi gặp một khóa đã thấy (trả lại kết quả cũ, hay bỏ qua yêu cầu mới), khóa được lưu bao lâu, hay chuyện gì xảy ra khi hai yêu cầu cùng khóa tới cùng lúc. Người biên soạn hiểu "cho cùng kết quả" là máy chủ nhớ kết quả của lần đầu và trả lại nó; đây là cách đọc, chưa đối chiếu với tài liệu của một nhà cung cấp.
+Nguồn nêu hai kỹ thuật ở mức ý tưởng và một ví dụ; nó không nói máy chủ làm gì khi gặp một khóa đã thấy (trả lại kết quả cũ, hay bỏ qua yêu cầu mới), khóa được lưu bao lâu, hay chuyện gì xảy ra khi hai yêu cầu cùng khóa tới cùng lúc. Lưu ý: thử lại cộng khóa chống trùng chỉ đạt "đúng một lần" khi máy chủ giữ chỗ khóa một cách nguyên tử (hai yêu cầu cùng khóa không cùng chạy) và lưu kết quả bền vững; và thử lại không thể bảo đảm thành công khi lỗi kéo dài mãi. Người biên soạn hiểu "cho cùng kết quả" là máy chủ nhớ kết quả của lần đầu và trả lại nó; đây là cách đọc, chưa đối chiếu với tài liệu của một nhà cung cấp.
 Bài cũng không bàn việc khóa phải được tạo trước lần thử đầu tiên và giữ nguyên qua mọi lần thử lại, dù người biên soạn thấy điều đó là cần để các lần thử cùng nhận ra nhau.
 
 ## Nhìn hình trả lời

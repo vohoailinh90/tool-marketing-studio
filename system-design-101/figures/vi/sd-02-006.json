@@ -2,7 +2,7 @@
   "id": "sd-02-006",
   "title": "Bảng tính làm phần backend",
   "subtitle": "Bắt đầu đơn giản, đổi khi giới hạn thật sự tới.",
-  "desc": "Ba khung. Khung một: cách Levels fyi chạy lúc đầu, người dùng gửi qua Google Forms, dữ liệu vào Google Sheets, hàm serverless đọc bảng tính và trả dữ liệu cho trang web. Khung hai: ba điều cách này cho, là ra mắt nhanh, không phải vận hành máy chủ, tập trung vào sản phẩm. Khung ba: ba dấu hiệu nên chuyển sang backend thật.",
+  "desc": "Ba khung. Khung một: cách Levels fyi chạy lúc đầu, người dùng gửi qua Google Forms, dữ liệu vào Google Sheets, có dùng hàm serverless, nguồn không nói nó làm gì cho trang web. Khung hai: ba điều cách này cho, là ra mắt nhanh, không phải vận hành máy chủ, tập trung vào sản phẩm. Khung ba: ba dấu hiệu nên chuyển sang backend thật.",
   "sections": [
     {
       "kind": "parts",
@@ -20,7 +20,7 @@
         },
         {
           "name": "Hàm serverless",
-          "role": "Đọc bảng tính, trả dữ liệu cho trang web.",
+          "role": "Có dùng; nguồn không nói nó làm gì.",
           "icon": "cloud"
         }
       ],

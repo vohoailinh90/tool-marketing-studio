@@ -3,11 +3,11 @@
 **Một trang web có hàng triệu người dùng mỗi tháng vẫn có thể chạy trên Google Forms và Google Sheets, nếu nhóm làm sản phẩm chọn bắt đầu đơn giản.** Theo bài nguồn, Levels.fyi (trang so sánh lương trong ngành công nghệ) đã làm đúng như vậy trước khi chuyển sang một backend thật.
 Bài này không cổ vũ dùng bảng tính làm cơ sở dữ liệu; nó hỏi cách đó cho gì, và dấu hiệu nào cho biết đã tới lúc đổi.
 
-![Ba khung xếp dọc. Lúc đầu không có backend riêng: người dùng gửi số liệu qua Google Forms, dữ liệu vào Google Sheets đóng vai cơ sở dữ liệu, hàm serverless đọc bảng tính và trả dữ liệu cho trang web. Cách này cho gì: ra mắt nhanh, không phải vận hành máy chủ cơ sở dữ liệu, thời gian dồn vào sản phẩm. Khi nào nên đổi: cần ràng buộc dữ liệu hay giao dịch, chạm hạn mức của bảng tính, truy vấn mới khó viết.](../../diagrams/sd-02-006-main.svg)
+![Ba khung xếp dọc. Lúc đầu không có backend riêng: người dùng gửi số liệu qua Google Forms, dữ liệu vào Google Sheets đóng vai cơ sở dữ liệu, có dùng hàm serverless, nhưng nguồn không nói hàm đó làm gì. Cách này cho gì: ra mắt nhanh, không phải vận hành máy chủ cơ sở dữ liệu, thời gian dồn vào sản phẩm. Khi nào nên đổi: cần ràng buộc dữ liệu hay giao dịch, chạm hạn mức của bảng tính, truy vấn mới khó viết.](../../diagrams/sd-02-006-main.svg)
 
 ## Đọc hình
 
-**Lúc đầu.** Theo nguồn, Levels.fyi bắt đầu với Google Forms để nhận dữ liệu và Google Sheets để lưu, và nhờ đó đạt tới hàng triệu người dùng hoạt động mỗi tháng trước khi đổi sang backend riêng. Họ có dùng điện toán serverless, tức là chạy các hàm nhỏ trên hạ tầng của nhà cung cấp mà không tự quản máy chủ, nhưng phần lưu dữ liệu là bảng tính.
+**Lúc đầu.** Theo nguồn, Levels.fyi bắt đầu với Google Forms để nhận dữ liệu và Google Sheets để lưu, và nhờ đó đạt tới hàng triệu người dùng hoạt động mỗi tháng trước khi đổi sang backend riêng. Họ có dùng điện toán serverless, tức là chạy các hàm nhỏ trên hạ tầng của nhà cung cấp mà không tự quản máy chủ, nhưng phần lưu dữ liệu là bảng tính. Bài nguồn không nói các hàm serverless đó làm gì, cũng không nói trang web đọc dữ liệu qua đường nào.
 
 **Lý do của họ.** Bài nguồn trích lời nhóm Levels.fyi: nghe thì ngược đời khi một trang có lượng truy cập như họ không có backend hay hạ tầng cầu kỳ, nhưng triết lý làm sản phẩm của họ luôn là bắt đầu đơn giản rồi cải tiến dần, để đi nhanh và tập trung vào điều quan trọng.
 

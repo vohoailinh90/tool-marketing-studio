@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1266" viewBox="0 0 320 1266" role="img" aria-labelledby="title desc">
 <title id="title">Kiến trúc hướng sự kiện của McDonald's</title>
-<desc id="desc">Ba khung. Khung một: bốn thành phần chuẩn hóa sự kiện, gồm sổ đăng ký sự kiện giữ schema chuẩn, SDK riêng để xử lý sự kiện và lỗi, cổng sự kiện xác thực và phân quyền, tiện ích sửa sự kiện và giữ cụm khỏe. Khung hai: luồng mở rộng, bên phát chia sự kiện theo miền, mỗi miền một cụm MSK, cụm tự co giãn theo chỉ số như CPU. Khung ba nêu ba điều cần nhớ.</desc>
+<desc id="desc">Ba khung. Khung một: bốn thành phần chuẩn hóa sự kiện, gồm sổ đăng ký sự kiện giữ schema chuẩn, SDK riêng để xử lý sự kiện và lỗi, cổng sự kiện xác thực và phân quyền, tiện ích sửa sự kiện và giữ cụm khỏe. Khung hai: luồng mở rộng, bên phát chia sự kiện theo miền, mỗi miền một cụm MSK, cụm tự mở rộng theo chỉ số như CPU. Khung ba nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1266" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -45,7 +45,7 @@
 <text x="78" y="835.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng xử lý.</text>
 <rect x="20" y="885" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <circle cx="50" cy="928.5" r="18" fill="#0f766e"/><g transform="translate(39.2 917.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
-<text x="78" y="911.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tự co giãn</text>
+<text x="78" y="911.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tự mở rộng</text>
 <text x="78" y="935.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo chỉ số của cụm, như</text>
 <text x="78" y="954.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mức dùng CPU.</text>
 <polyline points="160,716 160,744" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>

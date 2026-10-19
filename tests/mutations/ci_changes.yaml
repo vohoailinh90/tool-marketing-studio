@@ -108,3 +108,15 @@ mutations:
   find: "then set -- --all; else set -- $MANIFESTS; fi"
   replace: "then set -- --all; else set -- --all; fi"
   test: tests.test_ci_changes.WorkflowUsesItTests.test_the_step_runs_the_chosen_manifests_or_all_of_them
+- label: a change to shared test support runs only the manifests that name it
+  find: "    if any(path in RUN_ALL or shared_test_file(path) for path in changed):"
+  replace: "    if any(path in RUN_ALL for path in changed):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_test_file_no_manifest_names_runs_every_manifest
+- label: test modules count as shared test support, so any test change runs everything
+  find: "    return not (name.startswith(\"test_\") and name.endswith(\".py\"))"
+  replace: "    return True"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_test_file_no_manifest_names_runs_every_manifest
+- label: a deleted or renamed file runs only the manifests that still name a file
+  find: "    if any(not in_store(path) and not (root / path).exists() for path in changed):\n        return None\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_deleted_or_renamed_file_runs_every_manifest

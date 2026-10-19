@@ -75,7 +75,8 @@ Secrets and variables → Actions → Variables) or leave it, the result is the 
   number from 1; default 2), each mutating its own copy of the tree under `$RUNNER_TEMP`; raise it only after timing the
   step in a run's log before and after, and set it to 1 for the old single-tree run. On a pull request,
   `scripts/ci_changes.py` decides what runs: nothing when only the System Design store changed, every manifest when the
-  checker, the workflow, the dependencies or the shared test setup changed, and otherwise only the manifests that name a
+  checker, the workflow, the dependencies, shared test support (anything under `tests/` but a `test_*.py` module or a
+  manifest) changed or a changed file was deleted or renamed, and otherwise only the manifests that name a
   changed file (the manifest, its target, an entry's `file:` or a test's module; owner decision 2026-10-19). Every push
   to `main` still runs every manifest, so a manifest a pull request left out is checked once it lands.
 - A GitHub-hosted runner is a fresh machine for every job, so Chromium's system libraries are installed by the job

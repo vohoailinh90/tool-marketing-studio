@@ -7,8 +7,8 @@ request that touches nothing but the System Design store (lessons, figures, meta
 its source map) cannot, so it skips the step. Any other pull request runs only the manifests that name a
 file it changes: the manifest itself, its target, a `file:` of one of its entries, or the module of a test
 an entry names (owner decision 2026-10-19: the full run took about 90 minutes and every merge into main
-restarted it on every open pull request). A change to the checker, the workflow, the dependencies or the
-shared test setup (RUN_ALL) runs every manifest. Every push to main runs every manifest, so what a pull
+restarted it on every open pull request). A change to the checker, the workflow, the dependencies, the
+shared test setup (RUN_ALL) or any other shared test file, or a deleted or renamed file, runs every manifest. Every push to main runs every manifest, so what a pull
 request leaves out is still checked once it lands. A change this script cannot read is treated as one
 that needs the whole check.
 
@@ -76,10 +76,22 @@ def manifest_files(manifest: str, root: pathlib.Path) -> set[str]:
     return {name for name in named if name}
 
 
+def shared_test_file(path: str) -> bool:
+    """A file under tests/ that is neither a test module nor a manifest: support code, fixtures and the web checks the
+    tests run, which no manifest names but every test may lean on."""
+    name = posixpath.basename(path)
+    if not path.startswith("tests/") or path.startswith("tests/mutations/"):
+        return False
+    return not (name.startswith("test_") and name.endswith(".py"))
+
+
 def selected_manifests(changed: list[str], root: pathlib.Path) -> list[str] | None:
-    """The manifests that name a changed file, or None when every manifest has to run (a RUN_ALL file changed, or the
-    manifests could not be read)."""
-    if any(path in RUN_ALL for path in changed):
+    """The manifests that name a changed file, or None when every manifest has to run: a RUN_ALL file or shared test
+    file changed, a changed file is gone (deleted or renamed, so a manifest may still name what is no longer there), or
+    the manifests could not be read."""
+    if any(path in RUN_ALL or shared_test_file(path) for path in changed):
+        return None
+    if any(not in_store(path) and not (root / path).exists() for path in changed):
         return None
     folder = root / MANIFESTS
     try:

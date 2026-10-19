@@ -76,16 +76,29 @@ class SelectedManifestsTests(unittest.TestCase):
             folder = Path(tmp)
             write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py")
                   + "- label: y\n  file: docs/tool.md\n  find: 'a'\n  replace: 'b'\n  test: tests.test_tool.ToolTests.test_y\n")
+            write(folder, "docs/tool.md", "a\n")
+            write(folder, "docs/other.md", "a\n")
             self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests(["docs/tool.md"], folder))
             self.assertEqual([], ci_changes.selected_manifests(["docs/other.md"], folder))
 
     def test_an_unrelated_change_chooses_no_manifest(self):
-        self.assertEqual([], ci_changes.selected_manifests(["docs/no-such-note.md"], ROOT))
+        self.assertEqual([], ci_changes.selected_manifests(["docs/facebook-page.md"], ROOT))
 
     def test_a_shared_file_runs_every_manifest(self):
         for path in ("scripts/mutation_check.py", ".github/workflows/ci.yml", "requirements-dev.txt", "tests/conftest.py"):
             with self.subTest(path):
                 self.assertIsNone(ci_changes.selected_manifests(["docs/x.md", path], ROOT))
+
+    def test_a_shared_test_file_no_manifest_names_runs_every_manifest(self):
+        for path in ("tests/support.py", "tests/fixtures/sample.json", "tests/web/office_ui_check.mts"):
+            with self.subTest(path):
+                self.assertIsNone(ci_changes.selected_manifests([path], ROOT))
+        self.assertEqual(["tests/mutations/ci_changes.yaml"], ci_changes.selected_manifests(["tests/test_ci_changes.py"], ROOT))
+
+    def test_a_deleted_or_renamed_file_runs_every_manifest(self):
+        self.assertIsNone(ci_changes.selected_manifests(["tests/test_gone_since_this_change.py"], ROOT))
+        self.assertIsNone(ci_changes.selected_manifests(["scripts/gone_since_this_change.py"], ROOT))
+        self.assertEqual([], ci_changes.selected_manifests(["system-design-101/vi/gone.md"], ROOT))
 
     def test_manifests_that_cannot_be_read_run_every_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:

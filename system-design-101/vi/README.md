@@ -311,6 +311,11 @@ Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa vi
 18. [Mã hóa đối xứng và bất đối xứng](lessons/sd-14-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 19. [Session và JWT: hai cách nhớ người đã đăng nhập](lessons/sd-14-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 20. [JWT: ba phần và hai cách ký](lessons/sd-14-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+21. [HTTPS có an toàn không? Kẻ đứng giữa đọc được khi nào](lessons/sd-14-021/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+22. [An ninh mạng nhập môn: bộ ba CIA và phòng thủ cơ bản](lessons/sd-14-022/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+23. [Cookie, session, JWT và PASETO: chọn cách xác thực nào?](lessons/sd-14-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+24. [SSH hoạt động thế nào? Ba lớp của giao thức](lessons/sd-14-024/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+25. [VPN hoạt động thế nào? Đường hầm, mã hóa và điều nó không làm](lessons/sd-14-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 26. [Google Authenticator hoạt động thế nào? TOTP và mã sáu số](lessons/sd-14-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 27. [Các loại VPN: mỗi loại giải bài toán nào?](lessons/sd-14-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 28. [Cookie là gì? Tấm thẻ khách quen và điều nó không phải](lessons/sd-14-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

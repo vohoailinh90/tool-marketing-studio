@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1372" viewBox="0 0 320 1372" role="img" aria-labelledby="title desc">
+<title id="title">Kẻ đứng giữa đọc được khi nào</title>
+<desc id="desc">Bốn phần xếp dọc. Phần một, kết nối 1 giữa máy khách và relay: máy khách bắt tay TLS với relay, nhận chứng chỉ localhost do CA của relay ký, rồi gửi yêu cầu mã hóa bằng khóa 1. Phần hai, kết nối 2 giữa relay và máy chủ thật: relay bắt tay TLS lần hai, nhận chứng chỉ do CA thật ký, rồi gửi yêu cầu mã hóa bằng khóa 2; hai kết nối có hai khóa khác nhau. Phần ba: nếu kho tin cậy của máy khách chỉ có CA thật thì kiểm chứng chỉ thất bại và relay chưa đọc được gì; nếu có thêm CA của relay thì bắt tay xong và relay đọc được yêu cầu cùng trả lời. Phần bốn: chặn được đường chưa đủ, tin một CA là tin chứng chỉ nó ký, cả cho tên lạ, nếu chứng chỉ qua các kiểm tra còn lại; chỉ cài CA bạn biết và đồng ý.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1372" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Kẻ đứng giữa đọc được</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">khi nào</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mô hình trên máy mình: hai kết nối</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">TLS và kho CA tin cậy.</text>
+<rect x="8" y="123" width="304" height="318" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kết nối 1: máy khách và</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">relay</text>
+<rect x="20" y="190" width="96" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="68" cy="212" r="14" fill="#1d4ed8"/><g transform="translate(59.6 203.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="68" y="243.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Máy</text>
+<text x="68" y="262.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">khách</text>
+<rect x="204" y="190" width="96" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="252" cy="212" r="14" fill="#1d4ed8"/><g transform="translate(243.6 203.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="252" y="243.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Relay</text>
+<polyline points="68,276 68,429" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="252,276 252,429" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="304.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Bắt tay TLS lần 1</text>
+<polyline points="69,318 249,318" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="346.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">CA relay ký chứng chỉ</text>
+<polyline points="251,360 71,360" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="388.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Yêu cầu, mã hóa bằng</text>
+<text x="160" y="407.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">khóa 1</text>
+<polyline points="69,421 249,421" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="453" width="304" height="318" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="481.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kết nối 2: relay và máy chủ</text>
+<text x="20" y="503.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">thật</text>
+<rect x="20" y="520" width="96" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="68" cy="542" r="14" fill="#0f766e"/><g transform="translate(59.6 533.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="68" y="573.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Relay</text>
+<rect x="204" y="520" width="96" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="252" cy="542" r="14" fill="#0f766e"/><g transform="translate(243.6 533.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="252" y="573.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Máy chủ</text>
+<text x="252" y="592.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">thật</text>
+<polyline points="68,606 68,759" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="252,606 252,759" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="634.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Bắt tay TLS lần 2</text>
+<polyline points="69,648 249,648" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="676.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">CA thật ký chứng chỉ</text>
+<polyline points="251,690 71,690" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="718.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Yêu cầu, mã hóa bằng</text>
+<text x="160" y="737.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">khóa 2</text>
+<polyline points="69,751 249,751" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="783" width="304" height="287" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="811.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Máy khách có tin CA của</text>
+<text x="20" y="833.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">relay không?</text>
+<rect x="20" y="850" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="893.5" r="18" fill="#b45309"/><g transform="translate(39.2 882.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
+<text x="78" y="876.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho chỉ có CA thật</text>
+<text x="78" y="900.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm chứng chỉ thất bại.</text>
+<text x="78" y="919.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Relay chưa đọc được gì.</text>
+<rect x="20" y="951" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1004.5" r="18" fill="#b45309"/><g transform="translate(39.2 993.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="977.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho có thêm CA của</text>
+<text x="78" y="997.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">relay</text>
+<text x="78" y="1021.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bắt tay xong. Relay đọc</text>
+<text x="78" y="1040.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được yêu cầu và trả lời.</text>
+<rect x="8" y="1082" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1110.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ</text>
+<rect x="20" y="1127" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1150" r="11" fill="#16a34a"/>
+<polyline points="37.9,1150.4 41.7,1154.4 48.5,1146" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1153.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chặn được đường chưa đủ:</text>
+<text x="64" y="1172.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy khách phải tin CA.</text>
+<rect x="20" y="1198" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1221" r="11" fill="#16a34a"/>
+<polyline points="37.9,1221.4 41.7,1225.4 48.5,1217" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1224.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tin một CA là tin chứng chỉ</text>
+<text x="64" y="1243.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nó ký, cả cho tên lạ, nếu qua</text>
+<text x="64" y="1263.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các kiểm tra còn lại.</text>
+<rect x="20" y="1289" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1312" r="11" fill="#16a34a"/>
+<polyline points="37.9,1312.4 41.7,1316.4 48.5,1308" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1315.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ cài CA của công cụ hay</text>
+<text x="64" y="1334.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">proxy bạn biết và đồng ý.</text>
+</g>
+</svg>

@@ -12,7 +12,7 @@ Bài nguồn chỉ nêu tên bảy vùng; bài này giữ đúng bảy vùng đ�
 - **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
 - **DevOps** (Development and Operations) — phát triển và vận hành: cách làm gắn việc viết phần mềm với việc đưa nó lên chạy và giữ nó chạy.
-- **CI** (Continuous Integration) — tích hợp liên tục: tự động gộp và kiểm tra mã mỗi khi có thay đổi.
+- **CI** (Continuous Integration) — tích hợp liên tục: thói quen đưa thay đổi của mọi người vào chung một nhánh mã thật thường xuyên, mỗi lần đều tự động dựng và kiểm tra.
 - **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; CI/CD là đường ống gồm cả hai.
 
 ## Đọc hình

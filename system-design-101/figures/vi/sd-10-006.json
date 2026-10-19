@@ -1,18 +1,65 @@
 {
   "id": "sd-10-006",
   "title": "Mã C, C++, Rust chạy trong trình duyệt",
-  "subtitle": "WASM đứng giữa mã gốc và trang web.",
-  "desc": "Ba nhóm thẻ. Đường đi của mã gồm bốn bước: viết hoặc dùng sẵn mã C, C++ hay Rust; biên dịch ra mô-đun WASM; trình duyệt tải mô-đun cùng JavaScript; JavaScript gọi hàm trong mô-đun. Trước và sau: trước đây chỉ JavaScript, nay dùng lại được thư viện mã gốc. Khung cuối nêu ba giới hạn.",
+  "subtitle": "WASM chạy cạnh JavaScript, không thay nó.",
+  "desc": "Ba nhóm thẻ. Từ mã nguồn đến trang web, bốn bước: viết bằng ngôn ngữ cấp cao như C, C++ hoặc Rust; trình biên dịch xuất tệp nhị phân WASM; trình duyệt biên dịch tệp đó thành một Module; JavaScript tạo Instance rồi gọi hàm xuất. Bốn khái niệm trong trình duyệt: Module, Memory, Table và Instance. Khung cuối nêu ba điều cần nhớ: WASM bổ sung cho JavaScript, không chạm DOM trực tiếp, và thường không viết tay.",
   "sections": [
-    {"kind": "steps", "heading": "Đường đi của mã",
-     "items": [{"title": "Có sẵn mã gốc", "text": "Viết hoặc dùng lại mã C, C++ hay Rust."},
-               {"title": "Biên dịch ra WASM", "text": "Thường do trình biên dịch tạo mô-đun WASM."},
-               {"title": "Trình duyệt tải về", "text": "Mô-đun được tải cùng JavaScript."},
-               {"title": "JavaScript gọi hàm", "text": "Mô-đun chạy gần tốc độ mã gốc."}]},
-    {"kind": "parts", "heading": "Trước và sau",
-     "items": [{"name": "Chỉ có JavaScript", "role": "Việc nặng gặp vấn đề hiệu năng.", "icon": "code"},
-               {"name": "Có WASM", "role": "Dùng lại thư viện C, C++, Rust có sẵn, ví dụ mã hóa video.", "icon": "package"}]},
-    {"kind": "notes", "heading": "Giới hạn cần nhớ",
-     "items": ["WASM không tự gọi DOM: phải qua JavaScript.", "Ý về đám mây và biên là nhận định của nguồn.", "WASM bổ sung cho JavaScript, không thay thế."]}
+    {
+      "kind": "steps",
+      "heading": "Từ mã nguồn đến trang web",
+      "items": [
+        {
+          "title": "Viết ngôn ngữ cấp cao",
+          "text": "C, C++ hoặc Rust; không viết WASM bằng tay."
+        },
+        {
+          "title": "Biên dịch ra WASM",
+          "text": "Trình biên dịch xuất tệp nhị phân WASM."
+        },
+        {
+          "title": "Trình duyệt biên dịch",
+          "text": "Tệp nhị phân thành mã máy: một Module."
+        },
+        {
+          "title": "JavaScript gọi hàm",
+          "text": "Tạo Instance rồi gọi các hàm nó mở ra."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Bốn khái niệm trong trình duyệt",
+      "items": [
+        {
+          "name": "Module",
+          "role": "Bản nhị phân đã biên dịch; không giữ trạng thái.",
+          "icon": "package"
+        },
+        {
+          "name": "Memory",
+          "role": "Vùng byte liền kề, có thể lớn dần.",
+          "icon": "database"
+        },
+        {
+          "name": "Table",
+          "role": "Mảng tham chiếu, ví dụ tới hàm.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Instance",
+          "role": "Một Module cùng trạng thái lúc chạy.",
+          "icon": "boxes"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn cần nhớ",
+      "items": [
+        "WASM bổ sung cho JavaScript, không thay thế.",
+        "WASM không chạm DOM trực tiếp: gọi qua JavaScript.",
+        "Tốc độ thật tùy việc; bài này không đo."
+      ]
+    }
   ]
 }

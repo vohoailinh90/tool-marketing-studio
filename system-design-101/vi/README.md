@@ -222,6 +222,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Đám mây và hệ thống phân tán
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+11. [Bốn thước đo của một hệ thống: mở rộng, sẵn sàng, tin cậy và hiệu năng](lessons/sd-11-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Vì sao AWS Lambda phản hồi nhanh: bốn trụ cột](lessons/sd-11-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+13. [Từ một máy chủ tới hàng triệu người dùng: sáu bước mở rộng một trang web](lessons/sd-11-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+14. [Tám mẫu thiết kế giữ cho một lỗi nhỏ không thành sự cố lớn](lessons/sd-11-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Hai mươi lăm bài báo kinh điển về hệ thống phân tán, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

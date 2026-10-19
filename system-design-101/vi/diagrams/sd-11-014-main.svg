@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="732" viewBox="0 0 320 732" role="img" aria-labelledby="title desc">
+<title id="title">Tám mẫu chống lỗi lan</title>
+<desc id="desc">Hai khung. Khung một, bốn mẫu bảo vệ bên gọi: giới hạn thời gian chờ, thử lại, ngắt mạch, giới hạn tốc độ. Khung hai, bốn mẫu bảo vệ bên nhận và cả hệ thống: bỏ bớt việc khi quá tải, ngăn khoang, áp lực ngược, để nó sập rồi dựng lại.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="732" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám mẫu chống lỗi lan</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Giới hạn thiệt hại, không ngăn lỗi.</text>
+<rect x="8" y="80" width="304" height="299" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bên gọi tự bảo vệ</text>
+<rect x="20" y="125" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="148" r="11" fill="#16a34a"/>
+<polyline points="37.9,148.4 41.7,152.4 48.5,144" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Timeout: chờ tối đa rồi bỏ.</text>
+<rect x="20" y="179" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="202" r="11" fill="#16a34a"/>
+<polyline points="37.9,202.4 41.7,206.4 48.5,198" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="205.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Retry: thử lại lỗi thoáng qua.</text>
+<rect x="20" y="233" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="256" r="11" fill="#16a34a"/>
+<polyline points="37.9,256.4 41.7,260.4 48.5,252" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="259.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngắt mạch: ngừng gọi bên</text>
+<text x="64" y="278.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đang lỗi.</text>
+<rect x="20" y="304" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="327" r="11" fill="#16a34a"/>
+<polyline points="37.9,327.4 41.7,331.4 48.5,323" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="330.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giới hạn tốc độ: tối đa số</text>
+<text x="64" y="349.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lượt mỗi khoảng.</text>
+<rect x="8" y="391" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="419.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bên nhận và cả hệ thống</text>
+<rect x="20" y="436" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="459" r="11" fill="#16a34a"/>
+<polyline points="37.9,459.4 41.7,463.4 48.5,455" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="462.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ bớt việc: từ chối khi quá</text>
+<text x="64" y="481.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tải.</text>
+<rect x="20" y="507" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="530" r="11" fill="#16a34a"/>
+<polyline points="37.9,530.4 41.7,534.4 48.5,526" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="533.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngăn khoang: tài nguyên</text>
+<text x="64" y="552.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chia khoang riêng.</text>
+<rect x="20" y="578" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="601" r="11" fill="#16a34a"/>
+<polyline points="37.9,601.4 41.7,605.4 48.5,597" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="604.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Áp lực ngược: báo bên gửi</text>
+<text x="64" y="623.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chậm lại.</text>
+<rect x="20" y="649" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="672" r="11" fill="#16a34a"/>
+<polyline points="37.9,672.4 41.7,676.4 48.5,668" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="675.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Để nó sập: dựng lại từ trạng</text>
+<text x="64" y="694.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thái sạch.</text>
+</g>
+</svg>

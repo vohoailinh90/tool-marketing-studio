@@ -21,7 +21,7 @@ Bài này đọc ba chặng đó theo con số của nguồn, rồi xem vì sao 
 3. **ScyllaDB.** ScyllaDB là cơ sở dữ liệu tương thích Cassandra, viết bằng C++. Discord thiết kế lại: một API khối nguyên, một dịch vụ dữ liệu viết bằng Rust, và phần lưu trữ trên ScyllaDB.
 
 **Vì sao Cassandra chậm.** Nguồn nêu ba lý do:
-- Cassandra dùng cây LSM, nên đọc tốn hơn ghi. Một máy phục vụ kênh có hàng trăm người có thể nhận nhiều lượt đọc cùng lúc, thành điểm nóng.
+- Cassandra dùng cây LSM, nên đọc tốn hơn ghi. Một máy chủ Discord (tức một cộng đồng) có hàng trăm người có thể tạo nhiều lượt đọc cùng lúc vào cùng một phần dữ liệu, thành điểm nóng.
 - Bảo trì cụm, như gộp (compaction) các tệp SSTable, làm giảm hiệu năng.
 - Những lần dừng để dọn bộ nhớ (garbage collection) gây độ trễ tăng vọt.
 
@@ -33,12 +33,12 @@ Các con số là của bài nguồn, không kèm cách đo hay tải lúc đo. 
 
 ## Nhìn hình thử trả lời
 
-Một máy chủ Discord có kênh hàng trăm người cùng mở. Theo nguồn, vì sao trên Cassandra kênh đó dễ làm một máy bị quá tải, dù lượt ghi không nhiều?
+Một máy chủ Discord có kênh hàng trăm người cùng mở. Theo nguồn, vì sao trên Cassandra kênh đó dễ thành điểm nóng, dù lượt ghi không nhiều?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Cassandra dùng cây LSM, nên đọc tốn hơn ghi. Hàng trăm người cùng mở kênh tạo nhiều lượt đọc dồn vào cùng máy giữ kênh đó, thành điểm nóng. Thêm vào đó là việc gộp tệp SSTable và những lần dừng để dọn bộ nhớ làm độ trễ tăng vọt.
+Cassandra dùng cây LSM, nên đọc tốn hơn ghi. Hàng trăm người cùng mở kênh tạo nhiều lượt đọc dồn vào cùng phần dữ liệu của kênh đó. Cassandra giữ mỗi phần dữ liệu trên vài máy bản sao, nên chính nhóm máy giữ phần ấy bị dồn tải, thành điểm nóng; ý về bản sao là của người biên soạn, nguồn chỉ nói có điểm nóng. Thêm vào đó là việc gộp tệp SSTable và những lần dừng để dọn bộ nhớ làm độ trễ tăng vọt.
 
 </details>
 

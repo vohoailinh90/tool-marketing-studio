@@ -1,0 +1,60 @@
+{
+  "id": "sd-02-024",
+  "title": "Shopify: mười nguyên tắc thanh toán bền",
+  "subtitle": "Xếp theo lúc chúng có tác dụng.",
+  "desc": "Ba khung. Khi gọi dịch vụ khác: thời gian chờ thấp, đọc 5 giây và ghi 1 giây thay vì 60; cầu dao Semian; khóa chống trùng dùng mã sắp theo thời gian. Để nhìn thấy và chuẩn bị: tính sức chứa, theo dõi bốn tín hiệu vàng, nhật ký có cấu trúc, thử tải. Sau sự cố: lưu chênh lệch đối soát, kênh sự cố có ba vai trò, nhìn lại bằng ba câu hỏi.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Khi gọi dịch vụ khác",
+      "items": [
+        {
+          "name": "Thời gian chờ thấp",
+          "role": "Đọc 5 giây, ghi 1 giây, thay vì 60.",
+          "icon": "timer"
+        },
+        {
+          "name": "Cầu dao Semian",
+          "role": "Chặn lời gọi tới dịch vụ đang hỏng.",
+          "icon": "zap"
+        },
+        {
+          "name": "Khóa chống trùng",
+          "role": "Đầu là thời gian, sau là phần ngẫu nhiên.",
+          "icon": "key-round"
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Nhìn thấy và chuẩn bị",
+      "items": [
+        {
+          "title": "Sức chứa",
+          "text": "Tính thông lượng trước."
+        },
+        {
+          "title": "Theo dõi",
+          "text": "Độ trễ, lưu lượng, lỗi, bão hòa."
+        },
+        {
+          "title": "Nhật ký",
+          "text": "Có cấu trúc, lưu tập trung."
+        },
+        {
+          "title": "Thử tải",
+          "text": "Mô phỏng đợt bán chớp nhoáng."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Sau sự cố",
+      "items": [
+        "Lưu chênh lệch đối soát vào cơ sở dữ liệu.",
+        "Kênh sự cố có ba vai trò.",
+        "Nhìn lại bằng ba câu hỏi."
+      ]
+    }
+  ]
+}

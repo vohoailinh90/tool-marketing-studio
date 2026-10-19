@@ -99,6 +99,26 @@ class SelectedManifestsTests(unittest.TestCase):
             write(folder, "pkg/deep.py", "def broken(:\n")
             self.assertIsNone(ci_changes.selected_manifests(["pkg/unused.py"], folder))
 
+    def test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it(self):
+        self.assertIn("tests/mutations/sd101_slides.yaml", ci_changes.selected_manifests(["scripts/sd101_claims.py"], ROOT))
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_tool.py", "from scripts import loader\n")
+            write(folder, "scripts/__init__.py", "")
+            write(folder, "scripts/loader.py", "import importlib.util, pathlib\n"
+                  "a = importlib.util.spec_from_file_location('near', pathlib.Path(__file__).with_name('near.py'))\n"
+                  "b = importlib.util.spec_from_file_location('far', ROOT / 'scripts' / 'hooks' / 'far.py')\n")
+            write(folder, "scripts/near.py", "x = 1\n")
+            write(folder, "scripts/hooks/far.py", "x = 1\n")
+            write(folder, "scripts/unused.py", "x = 1\n")
+            for changed in ("scripts/near.py", "scripts/hooks/far.py"):
+                with self.subTest(changed):
+                    self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests([changed], folder))
+            self.assertEqual([], ci_changes.selected_manifests(["scripts/unused.py"], folder))
+            write(folder, "scripts/loader.py", "import importlib.util\nm = importlib.util.spec_from_file_location('x', PATH)\n")
+            self.assertIsNone(ci_changes.selected_manifests(["scripts/unused.py"], folder))
+
     def test_an_unrelated_change_chooses_no_manifest(self):
         self.assertEqual([], ci_changes.selected_manifests(["docs/facebook-page.md"], ROOT))
 

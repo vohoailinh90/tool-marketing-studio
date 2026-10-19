@@ -145,7 +145,7 @@ mutations:
   replace: "        pass"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
 - label: only the modules a test imports directly count, not the ones they import in turn
-  find: "                pending.append(dependency)"
+  find: "            pending.append(dependency)"
   replace: "                    pass"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
 - label: a bare import of a module in scripts/ is not followed
@@ -160,3 +160,15 @@ mutations:
   find: "                above = parts[:len(parts) - node.level + 1] if node.level <= len(parts) + 1 else []"
   replace: "                above = [\"__nowhere__\"]"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a module loaded by spec_from_file_location is not followed
+  find: "        if any(call in text for call in DYNAMIC_IMPORTS):"
+  replace: "        if False:"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it
+- label: a module loaded by a path under another folder is not found by its file name
+  find: "        found |= {path for path in python_files if posixpath.basename(path) == base}"
+  replace: "        pass"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it
+- label: a module loaded by a path no literal names is ignored instead of running every manifest
+  find: "    if not found:\n        raise ValueError(f\"{file} loads a module by a path this script cannot read\")\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it

@@ -6,7 +6,8 @@ safety-rail tests notice their own removal, which only a change to code, tests o
 request that touches nothing but the System Design store (lessons, figures, metadata, progress files and
 its source map) cannot, so it skips the step. Any other pull request runs only the manifests that name a
 file it changes: the manifest itself, its target, a `file:` of one of its entries, the module of a test
-an entry names, or a repository module that test module imports, directly or through other repository modules (owner decision 2026-10-19: the full run took about 90 minutes and every merge into main
+an entry names, or a repository module that test module imports, directly or through other repository modules, by an
+import statement or by a `spec_from_file_location`/`import_module` call that names its file (owner decision 2026-10-19: the full run took about 90 minutes and every merge into main
 restarted it on every open pull request). A change to the checker, the workflow, the dependencies, the
 shared test setup (RUN_ALL) or any other shared test file, or a deleted or renamed file, runs every manifest. Every push to main runs every manifest, so what a pull
 request leaves out is still checked once it lands. A change this script cannot read is treated as one
@@ -117,19 +118,55 @@ def module_files(module: str, root: pathlib.Path) -> set[str]:
     return found
 
 
+DYNAMIC_IMPORTS = ("spec_from_file_location", "import_module")
+SKIPPED_FOLDERS = frozenset({".git", "node_modules", ".venv", "venv", "__pycache__", "dist", "build"})
+
+
+def repository_python_files(root: pathlib.Path) -> list[str]:
+    """Every Python file of the repository, outside version control, dependency and build folders."""
+    found = []
+    for folder, folders, files in os.walk(root):
+        folders[:] = [name for name in folders if name not in SKIPPED_FOLDERS]
+        found += [(pathlib.Path(folder) / name).relative_to(root).as_posix() for name in files if name.endswith(".py")]
+    return found
+
+
+def dynamic_files(source: str, file: str, root: pathlib.Path, python_files: list[str]) -> set[str]:
+    """The repository files a module loads by path (`spec_from_file_location(..., here.with_name("x.py"))`,
+    `ROOT / "scripts" / "hooks" / "x.py"`): every file a `.py` string literal of it can name, next to it, from the root,
+    in scripts/, or anywhere under that file name. One that names none raises, so the caller runs every manifest."""
+    names = {node.value for node in ast.walk(ast.parse(source, filename=file))
+             if isinstance(node, ast.Constant) and isinstance(node.value, str) and node.value.endswith(".py")}
+    found = set()
+    for name in names:
+        base = posixpath.basename(name)
+        found |= {candidate for candidate in (posixpath.join(posixpath.dirname(file), name), name, "scripts/" + name)
+                  if (root / candidate).is_file()}
+        found |= {path for path in python_files if posixpath.basename(path) == base}
+    if not found:
+        raise ValueError(f"{file} loads a module by a path this script cannot read")
+    return found
+
+
 def local_dependencies(file: str, root: pathlib.Path, cache: dict[str, set[str]] | None = None) -> set[str]:
-    """The repository Python files `file` imports, directly or through other repository files. A file that cannot be
-    read or parsed raises, so the caller runs every manifest. `cache` keeps the answers of one selection."""
+    """The repository Python files `file` imports, directly or through other repository files, by an import statement
+    or by path. A file that cannot be read or parsed raises, so the caller runs every manifest. `cache` keeps the
+    answers of one selection."""
     if cache is not None and file in cache:
         return cache[file]
+    python_files: list[str] | None = None
     seen: set[str] = set()
     pending = [file]
     while pending:
         current = pending.pop()
-        for module in imported_names((root / current).read_text(encoding="utf-8"), current):
-            for dependency in module_files(module, root) - seen - {file}:
-                seen.add(dependency)
-                pending.append(dependency)
+        text = (root / current).read_text(encoding="utf-8")
+        found = set().union(*(module_files(module, root) for module in imported_names(text, current)))
+        if any(call in text for call in DYNAMIC_IMPORTS):
+            python_files = repository_python_files(root) if python_files is None else python_files
+            found |= dynamic_files(text, current, root, python_files)
+        for dependency in found - seen - {file}:
+            seen.add(dependency)
+            pending.append(dependency)
     if cache is not None:
         cache[file] = seen
     return seen

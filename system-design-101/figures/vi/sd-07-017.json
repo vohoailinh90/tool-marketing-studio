@@ -1,0 +1,131 @@
+{
+  "id": "sd-07-017",
+  "title": "Apple Pay và Google Pay theo sơ đồ nguồn (giản lược)",
+  "subtitle": "Cùng an toàn, nhưng thông tin thẻ nằm ở nơi khác nhau.",
+  "desc": "Năm khung. Khung một, đăng ký thẻ với Apple Pay: iPhone gửi thông tin thẻ cho ngân hàng, Apple không lưu số thẻ đầy đủ; ngân hàng trả lại một mã DAN, iPhone lưu mã vào một chip phần cứng riêng. Khung hai, đăng ký thẻ với Google Pay: điện thoại gửi thông tin thẻ cho máy chủ Google, nơi lưu thông tin thẻ; Google trả lại một mã thanh toán. Khung ba, thanh toán với Apple Pay: khách bấm Trả, máy chủ bán hàng chuyển mã DAN cho ngân hàng. Khung bốn, thanh toán với Google Pay: máy chủ bán hàng chuyển mã thanh toán cho máy chủ Google, nơi tra thông tin thẻ rồi chuyển cho ngân hàng. Khung năm, điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Đăng ký thẻ: Apple Pay",
+      "actors": [
+        {
+          "name": "iPhone",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Ngân hàng",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Thông tin thẻ (không lưu số gốc)"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Mã DAN, lưu vào chip riêng",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2. Đăng ký thẻ: Google Pay",
+      "actors": [
+        {
+          "name": "Điện thoại",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Máy chủ Google",
+          "icon": "cloud"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Thông tin thẻ, Google lưu lại"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Mã thanh toán",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "3. Thanh toán: Apple Pay",
+      "actors": [
+        {
+          "name": "Điện thoại",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Máy chủ bán hàng",
+          "icon": "server"
+        },
+        {
+          "name": "Ngân hàng",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Bấm Trả"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Chuyển mã DAN"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "4. Thanh toán: Google Pay",
+      "actors": [
+        {
+          "name": "Máy chủ bán hàng",
+          "icon": "server"
+        },
+        {
+          "name": "Máy chủ Google",
+          "icon": "cloud"
+        },
+        {
+          "name": "Ngân hàng",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Chuyển mã thanh toán"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Tra thẻ, chuyển thông tin thẻ"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "Apple không lưu số thẻ gốc; ngân hàng giữ thẻ.",
+        "Google lưu thông tin thẻ trên máy chủ của mình.",
+        "Mũi tên đỏ trên hình gốc: thông tin thẻ đi qua mạng công cộng, đã mã hóa."
+      ]
+    }
+  ]
+}

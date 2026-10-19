@@ -1,0 +1,52 @@
+{
+  "id": "sd-07-006",
+  "title": "Bốn cách quét mã QR để trả tiền",
+  "subtitle": "Hai câu hỏi, mỗi câu hai đáp án, nhân lại thành bốn.",
+  "desc": "Ba khung. Khung một, ai trình mã QR: người mua trình mã thì người bán quét và ghi nợ trực tiếp tài khoản người mua; người bán trình mã thì người mua quét và cho phép ghi có trực tiếp từ tài khoản của mình. Khung hai, mã động hay tĩnh: mã động được tạo lúc trình hoặc tự đổi sau vài giây nên chứa được số tiền, loại giao dịch; mã tĩnh tạo một lần dùng mọi nơi, thường chỉ chứa thông tin tài khoản. Khung ba, hai nhân hai ra bốn cách: người mua trình mã tĩnh, người mua trình mã động, người bán trình mã tĩnh, người bán trình mã động.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ai trình mã?",
+      "items": [
+        {
+          "name": "Người mua trình mã",
+          "role": "Người bán quét và ghi nợ trực tiếp tài khoản bạn.",
+          "icon": "user"
+        },
+        {
+          "name": "Người bán trình mã",
+          "role": "Bạn quét và cho phép ghi có từ tài khoản.",
+          "icon": "store"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Mã động hay tĩnh?",
+      "items": [
+        {
+          "name": "Mã động",
+          "role": "Tạo lúc trình, hoặc tự đổi sau vài giây. Chứa được số tiền.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Mã tĩnh",
+          "role": "Tạo một lần, dùng mọi nơi. Thường chỉ có tài khoản.",
+          "icon": "lock"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "2 × 2 = 4 cách",
+      "items": [
+        "Người mua trình mã, mã tĩnh.",
+        "Người mua trình mã, mã động.",
+        "Người bán trình mã, mã tĩnh.",
+        "Người bán trình mã, mã động."
+      ]
+    }
+  ]
+}

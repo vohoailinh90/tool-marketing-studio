@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-008",
+  "title_vi": "Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/design-patterns-cheat-sheet-part-1-and-part-2.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-patterns-cheat-sheet-part-1-and-part-2.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4c78a4fa2acf23756ad6f5e7d404204ebf9cae0c",
+    "retrieved_body_sha256": "8c10a9c87f8b07e71d26069fdebb9166e347997bd2602cd910a49bc54b1f9522",
+    "retrieved_body_bytes": 612
+  },
+  "diagram": "../diagrams/sd-08-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Python 3.13.16 standard library behaviour of logging, copy and xml.etree.ElementTree checked by small programs run on 2026-10-19; a scan of class and function names in the standard library (test directories excluded) counted names containing each pattern name. The pattern definitions are general knowledge not checked against the original design patterns book."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Hành vi của logging (setLogRecordFactory, bộ ghi gốc, callHandlers, propagate), copy (copy, __copy__) và ElementTree.TreeBuilder trong Python 3.13: ba bộ ghi lồng nhau cho ba, hai, hai bộ xử lý theo mức; propagate=False dừng ở giữa chuỗi; TreeBuilder dựng <a><b>hi</b></a>.",
+      "source": "https://docs.python.org/3.13/library/logging.html",
+      "section": "Logger objects; Logging flow",
+      "verified_by": "Chương trình thử chạy bởi người biên soạn ngày 2026-10-19 trên Python 3.13.16."
+    },
+    {
+      "claim_vi": "Phép đếm tên trong thư viện chuẩn: Factory 16, Builder 11, Chain 11 (không tên nào thuộc mẫu), Singleton 1 (visit_MatchSingleton, không liên quan), Prototype 0.",
+      "source": "https://docs.python.org/3.13/library/ast.html",
+      "section": "Experiment",
+      "verified_by": "Chương trình quét cú pháp (ast) chạy bởi người biên soạn ngày 2026-10-19, bỏ thư mục kiểm thử."
+    },
+    {
+      "claim_vi": "Bảng tóm tắt nguồn nêu năm mẫu đầu: Factory, Builder, Prototype, Singleton, Chain of Responsibility.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-patterns-cheat-sheet-part-1-and-part-2.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Định nghĩa một dòng của từng mẫu (Factory, Builder, Prototype, Singleton, Chain of Responsibility) là kiến thức chung, chưa đối chiếu với cuốn sách gốc về mẫu thiết kế (không truy cập được).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-patterns-cheat-sheet-part-1-and-part-2.md",
+      "section": "Whole guide",
+      "verified_by": "Unchecked: general knowledge of the author; stated as such in the lesson."
+    }
+  ],
+  "design_notes_vi": "Ba khung: năm mẫu và chỗ gặp, thử với ba bộ ghi lồng nhau, đếm tên trong thư viện chuẩn.",
+  "source_deviations": [
+    "The source is a summary picture with pattern names; the lesson keeps five names, defines each in one line and replaces the picture with verifiable places in Python's standard library plus a name count.",
+    "The lesson adds experiments the source does not contain."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

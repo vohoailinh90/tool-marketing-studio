@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1115" viewBox="0 0 320 1115" role="img" aria-labelledby="title desc">
+<title id="title">TikTok làm Git nhanh lại</title>
+<desc id="desc">Ba khung. Monorepo được gì: chia sẻ mã, quản lý phụ thuộc, cái nhìn chung. Cái giá: kho càng lớn Git càng chậm; kho TypeScript 200 nghìn tệp của TikTok; công cụ Sparo. Kết quả: clone 40 phút còn 2 phút, checkout 1,5 phút còn 30 giây, status 7 giây còn 1 giây, commit 15 giây còn 11 giây.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1115" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">TikTok làm Git nhanh lại</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Kho frontend 200 nghìn tệp và công</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">cụ Sparo.</text>
+<rect x="8" y="99" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Monorepo được gì</text>
+<rect x="20" y="144" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="167" r="11" fill="#16a34a"/>
+<polyline points="37.9,167.4 41.7,171.4 48.5,163" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="170.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia sẻ mã dễ hơn.</text>
+<rect x="20" y="198" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="221" r="11" fill="#16a34a"/>
+<polyline points="37.9,221.4 41.7,225.4 48.5,217" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="224.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quản lý phụ thuộc đơn giản</text>
+<text x="64" y="243.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hơn.</text>
+<rect x="20" y="269" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="292" r="11" fill="#16a34a"/>
+<polyline points="37.9,292.4 41.7,296.4 48.5,288" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="295.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một cái nhìn chung về toàn</text>
+<text x="64" y="314.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ mã.</text>
+<rect x="8" y="356" width="304" height="344" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="384.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cái giá và cách TikTok xử lý</text>
+<rect x="20" y="401" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="435" r="18" fill="#0f766e"/><g transform="translate(39.2 424.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
+<text x="78" y="427.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho càng lớn</text>
+<text x="78" y="451.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thao tác Git càng chậm.</text>
+<rect x="20" y="501" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="535" r="18" fill="#0f766e"/><g transform="translate(39.2 524.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></g>
+<text x="78" y="527.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho frontend TikTok</text>
+<text x="78" y="551.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TypeScript, 200 nghìn tệp.</text>
+<rect x="20" y="601" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="644.5" r="18" fill="#0f766e"/><g transform="translate(39.2 633.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="627.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sparo</text>
+<text x="78" y="651.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Công cụ tối ưu Git cho kho</text>
+<text x="78" y="670.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn.</text>
+<polyline points="160,471 160,499" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,571 160,599" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="712" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="740.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kết quả theo nguồn</text>
+<rect x="20" y="757" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="783" r="14" fill="#b45309"/>
+<text x="46" y="788.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="783.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">clone</text>
+<text x="70" y="807.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">40 phút → 2 phút.</text>
+<rect x="20" y="847" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="873" r="14" fill="#b45309"/>
+<text x="46" y="878.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="873.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">checkout</text>
+<text x="70" y="897.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1,5 phút → 30 giây.</text>
+<polyline points="46,827 46,845" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="937" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="963" r="14" fill="#b45309"/>
+<text x="46" y="968.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="963.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">status</text>
+<text x="70" y="987.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">7 giây → 1 giây.</text>
+<polyline points="46,917 46,935" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1027" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1053" r="14" fill="#b45309"/>
+<text x="46" y="1058.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="1053.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">commit</text>
+<text x="70" y="1077.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">15 giây → 11 giây.</text>
+<polyline points="46,1007 46,1025" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

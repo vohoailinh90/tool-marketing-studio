@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1551" viewBox="0 0 320 1551" role="img" aria-labelledby="title desc">
+<title id="title">Sáu giao thức API, ba kiểu hội thoại</title>
+<desc id="desc">Ba nhóm thẻ. Nhóm hỏi rồi đáp, máy khách mở lời: REST, SOAP, GraphQL và gRPC. Nhóm máy chủ gọi lại khi có sự kiện: Webhook. Nhóm kênh giữ mở cho cả hai chiều: WebSocket. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1551" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu giao thức API, ba</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">kiểu hội thoại</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hỏi trước: ai mở lời, và kênh có giữ</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">mở không?</text>
+<rect x="8" y="123" width="304" height="469" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hỏi rồi đáp: máy khách mở</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">lời</text>
+<rect x="20" y="190" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="233.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 222.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">REST</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi tài nguyên một địa chỉ,</text>
+<text x="78" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng phương thức HTTP.</text>
+<rect x="20" y="291" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="334.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 323.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="317.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">SOAP</text>
+<text x="78" y="341.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông điệp có thẻ, theo</text>
+<text x="78" y="360.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khuôn chặt và hợp đồng.</text>
+<rect x="20" y="392" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="435.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 424.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="418.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">GraphQL</text>
+<text x="78" y="442.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy khách tự chọn trường</text>
+<text x="78" y="461.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu cần lấy.</text>
+<rect x="20" y="493" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="536.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 525.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M9 8V2"/></g>
+<text x="78" y="519.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">gRPC</text>
+<text x="78" y="543.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi hàm từ xa, thông điệp</text>
+<text x="78" y="562.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhị phân trên HTTP/2.</text>
+<rect x="8" y="604" width="304" height="315" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="632.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi lại: Webhook</text>
+<rect x="20" y="649" width="96" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="68" cy="671" r="14" fill="#0f766e"/><g transform="translate(59.6 662.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="68" y="702.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Ứng dụng</text>
+<text x="68" y="721.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">của bạn</text>
+<rect x="204" y="649" width="96" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="252" cy="671" r="14" fill="#0f766e"/><g transform="translate(243.6 662.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="252" y="702.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Dịch vụ</text>
+<text x="252" y="721.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">khác</text>
+<polyline points="68,735 68,907" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="252,735 252,907" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="763.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đăng ký: báo cho tôi</text>
+<text x="160" y="782.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">khi có sự kiện</text>
+<polyline points="69,796 249,796" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="824.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Có sự kiện: gửi tới địa</text>
+<text x="160" y="843.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">chỉ đã đăng ký</text>
+<polyline points="251,857 71,857" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="885.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đã nhận</text>
+<polyline points="69,899 249,899" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="931" width="304" height="338" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="959.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kênh mở: WebSocket</text>
+<rect x="20" y="976" width="96" height="86" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="68" cy="998" r="14" fill="#b45309"/><g transform="translate(59.6 989.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="68" y="1029.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Trình</text>
+<text x="68" y="1048.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">duyệt</text>
+<rect x="204" y="976" width="96" height="86" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="252" cy="998" r="14" fill="#b45309"/><g transform="translate(243.6 989.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="252" y="1029.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Máy chủ</text>
+<polyline points="68,1062 68,1257" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="252,1062 252,1257" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="1090.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Bắt tay để nâng cấp</text>
+<text x="160" y="1109.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">kết nối</text>
+<polyline points="69,1123 249,1123" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đồng ý</text>
+<polyline points="251,1165 71,1165" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1193.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đẩy tin bất cứ lúc nào</text>
+<polyline points="251,1207 71,1207" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1235.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Gửi tin bất cứ lúc nào</text>
+<polyline points="69,1249 249,1249" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1281" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1309.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1326" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1349" r="11" fill="#16a34a"/>
+<polyline points="37.9,1349.4 41.7,1353.4 48.5,1345" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1352.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ai mở lời quyết định kiểu tích</text>
+<text x="64" y="1371.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hợp.</text>
+<rect x="20" y="1397" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1420" r="11" fill="#16a34a"/>
+<polyline points="37.9,1420.4 41.7,1424.4 48.5,1416" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1423.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một hệ thống thường dùng</text>
+<text x="64" y="1442.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vài giao thức cùng lúc.</text>
+<rect x="20" y="1468" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1491" r="11" fill="#16a34a"/>
+<polyline points="37.9,1491.4 41.7,1495.4 48.5,1487" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1494.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn theo người gọi, không</text>
+<text x="64" y="1513.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo trào lưu.</text>
+</g>
+</svg>

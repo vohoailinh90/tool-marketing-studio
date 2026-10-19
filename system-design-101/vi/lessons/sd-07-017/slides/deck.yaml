@@ -1,0 +1,23 @@
+id: sd-07-017
+status: done
+owner: claude/sd101-lessons-w7-4
+claimed_at: '2026-10-19T03:54:47Z'
+done_at: '2026-10-19T03:58:54Z'
+moda_canvas: cvs_7GRF251T7J9ZJA5HJH193KMAKF
+moda_url: https://moda.app/canvas/f0c3c450-e8f2-4fe4-a2c6-510a473a2a6f
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - two-column-comparison
+  - one-highlighted-sentence
+  - card-grid
+  - flow
+  - sequence-diagram
+  - numbered-rows
+  - lookup-table
+  - 2x2-matrix
+  - lookup-table
+  - card-grid
+  first_concept: 3

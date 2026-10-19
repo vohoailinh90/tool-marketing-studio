@@ -1,0 +1,93 @@
+{
+  "id": "sd-02-013",
+  "title_vi": "Hệ thống thông báo: một cổng vào, nhiều kênh ra",
+  "language": "vi",
+  "kind": "pipeline",
+  "content_status": "draft",
+  "source_ref": "sd-02-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-a-typical-push-notification-system-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "69ece5f8f5151de8c61b983eda5023e558b031ac",
+    "retrieved_body_sha256": "f2ac64d1149ea9aa0fe496878586b2e990e22ffab3c8d4cf1852e73ac2c4f911",
+    "retrieved_body_bytes": 1755
+  },
+  "diagram": "../diagrams/sd-02-013-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-017",
+      "relation": "see_also",
+      "reason_vi": "Netflix gửi thông báo đẩy tới hàng triệu thiết bị."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The notification system covers in-app, email, SMS and OTP notifications and social media pushes.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+      "section": "Body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Business services send notifications to the notification gateway, which receives one notification at a time or in batches.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+      "section": "Steps 1.1 and 1.2",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The distribution service validates, formats and schedules notifications; a template repository pre-defines message formats and a channel preference repository pre-defines preferred channels.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+      "section": "Steps 2, 2.1 and 2.2",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Notifications go to routers, normally message queues; channel services talk to internal and external delivery channels.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+      "section": "Steps 3 and 4",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Delivery metrics are captured by a tracking and analytics service for the operations team.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+      "section": "Steps 5 and 6",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Reasons to place queues between processing and channels.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-typical-push-notification-system-work.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Sáu bước nguồn được gom thành hai khung: vào và xử lý, ra và đo; khung cuối ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The six numbered steps are grouped into in, process, out and measure; the grouping is the author's.",
+    "Retries, deduplication and OTP handling are not covered by the source and are named as limits."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

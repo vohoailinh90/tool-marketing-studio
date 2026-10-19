@@ -1,0 +1,89 @@
+{
+  "id": "sd-07-012",
+  "title": "Từ nút Mua tới sổ cái",
+  "subtitle": "Mỗi bước đều được lưu lại trước khi sang bước sau.",
+  "desc": "Ba khung. Khung một, từ nút Mua tới PSP: khi khách bấm Mua, dịch vụ thanh toán nhận sự kiện thanh toán, gọi bộ thực thi thanh toán cho từng lệnh, và bộ thực thi gọi PSP bên ngoài để hoàn tất thanh toán bằng thẻ. Khung hai, ghi sổ: dịch vụ thanh toán cập nhật ví để ghi số tiền của người bán, rồi gọi sổ cái ghi thêm một dòng. Khung ba, điều cần nhớ: mỗi bước đều lưu vào cơ sở dữ liệu, một lần mua nhiều người bán thành nhiều lệnh, và mỗi đêm PSP hoặc ngân hàng gửi tệp quyết toán.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Từ nút Mua tới PSP",
+      "actors": [
+        {
+          "name": "Dịch vụ thanh toán",
+          "icon": "server"
+        },
+        {
+          "name": "Bộ thực thi",
+          "icon": "cpu"
+        },
+        {
+          "name": "PSP",
+          "icon": "credit-card"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Một lệnh cho mỗi người bán"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Thanh toán bằng thẻ"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Thanh toán hoàn tất",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2. Ghi sổ",
+      "actors": [
+        {
+          "name": "Dịch vụ thanh toán",
+          "icon": "server"
+        },
+        {
+          "name": "Ví",
+          "icon": "package"
+        },
+        {
+          "name": "Sổ cái",
+          "icon": "history"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Ghi tiền của người bán"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Đã cập nhật số dư",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Ghi thêm một dòng"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "Mỗi bước đều lưu vào cơ sở dữ liệu.",
+        "Một lần mua nhiều người bán thành nhiều lệnh.",
+        "Mỗi đêm PSP hoặc ngân hàng gửi tệp quyết toán."
+      ]
+    }
+  ]
+}

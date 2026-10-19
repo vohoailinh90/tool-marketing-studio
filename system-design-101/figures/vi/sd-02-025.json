@@ -1,0 +1,53 @@
+{
+  "id": "sd-02-025",
+  "title": "Một tin nhắn Slack đi qua năm máy chủ",
+  "subtitle": "Mỗi chặng biết thêm một điều.",
+  "desc": "Hai dải bước. Từ người gửi tới Channel Server: WebApp định nghĩa API; Admin Server dùng mã kênh tìm Channel Server; Channel Server giữ lịch sử kênh, kênh được chia bằng băm nhất quán. Từ Channel Server tới người nhận: Gateway Server ở từng vùng giữ đăng ký kênh; Envoy làm proxy; người nhận dùng WebSocket nên nhận ngay. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Từ người gửi tới Channel Server",
+      "items": [
+        {
+          "title": "WebApp",
+          "text": "Định nghĩa API cho ứng dụng."
+        },
+        {
+          "title": "Admin Server",
+          "text": "Dùng mã kênh tìm đúng máy kênh."
+        },
+        {
+          "title": "Channel Server",
+          "text": "Giữ lịch sử kênh."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Từ Channel Server tới người nhận",
+      "items": [
+        {
+          "title": "Gateway Server",
+          "text": "Ở từng vùng, giữ đăng ký kênh."
+        },
+        {
+          "title": "Envoy",
+          "text": "Proxy dịch vụ."
+        },
+        {
+          "title": "Người nhận",
+          "text": "WebSocket hai chiều, nhận ngay."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Băm nhất quán chia hàng triệu kênh.",
+        "Máy chủ đẩy tin, không chờ hỏi.",
+        "Nguồn không nói khi một máy kênh hỏng."
+      ]
+    }
+  ]
+}

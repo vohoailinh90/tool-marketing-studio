@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1103" viewBox="0 0 320 1103" role="img" aria-labelledby="title desc">
+<title id="title">Airbnb qua ba giai đoạn</title>
+<desc id="desc">Ba bước. Khối nguyên 2008 đến 2017, Ruby on Rails: sở hữu mã rối, triển khai chậm. Microservice 2017 đến 2020: dịch vụ lấy dữ liệu, logic nghiệp vụ, quy trình ghi, gộp cho giao diện, mỗi dịch vụ một đội; vấn đề là hàng trăm dịch vụ khó quản lý. Micro kết hợp macroservice từ 2020: thống nhất API. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1103" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Airbnb qua ba giai đoạn</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hai bước đầu giải một vấn đề và sinh</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">vấn đề mới.</text>
+<rect x="8" y="99" width="304" height="364" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba giai đoạn</text>
+<rect x="20" y="144" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="170" r="14" fill="#1d4ed8"/>
+<text x="46" y="175.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khối nguyên,</text>
+<text x="70" y="190.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2008–2017</text>
+<text x="70" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một ứng dụng Ruby on</text>
+<text x="70" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Rails.</text>
+<rect x="20" y="273" width="280" height="88" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="299" r="14" fill="#1d4ed8"/>
+<text x="46" y="304.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="299.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Microservice,</text>
+<text x="70" y="319.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2017–2020</text>
+<text x="70" y="343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi dịch vụ một đội sở hữu.</text>
+<polyline points="46,253 46,271" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="383" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="409" r="14" fill="#1d4ed8"/>
+<text x="46" y="414.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="409.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Micro + macro, từ 2020</text>
+<text x="70" y="433.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tập trung thống nhất API.</text>
+<polyline points="46,363 46,381" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="475" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="503.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vấn đề mỗi giai đoạn để lại</text>
+<rect x="20" y="520" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="563.5" r="18" fill="#0f766e"/><g transform="translate(39.2 552.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></g>
+<text x="78" y="546.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khối nguyên</text>
+<text x="78" y="570.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sở hữu mã rối, triển khai</text>
+<text x="78" y="589.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chậm.</text>
+<rect x="20" y="621" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="664.5" r="18" fill="#0f766e"/><g transform="translate(39.2 653.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="647.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Microservice</text>
+<text x="78" y="671.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàng trăm dịch vụ khó</text>
+<text x="78" y="690.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quản lý.</text>
+<rect x="20" y="722" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="765.5" r="18" fill="#0f766e"/><g transform="translate(39.2 754.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="748.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Micro + macro</text>
+<text x="78" y="772.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn chưa nói vấn đề</text>
+<text x="78" y="791.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới.</text>
+<rect x="8" y="833" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="861.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="878" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="901" r="11" fill="#16a34a"/>
+<polyline points="37.9,901.4 41.7,905.4 48.5,897" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="904.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai bước đầu: giải pháp sinh</text>
+<text x="64" y="923.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vấn đề mới.</text>
+<rect x="20" y="949" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="972" r="11" fill="#16a34a"/>
+<polyline points="37.9,972.4 41.7,976.4 48.5,968" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="975.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Microservice có bốn loại dịch</text>
+<text x="64" y="994.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vụ chính.</text>
+<rect x="20" y="1020" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1043" r="11" fill="#16a34a"/>
+<polyline points="37.9,1043.4 41.7,1047.4 48.5,1039" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1046.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn không định nghĩa</text>
+<text x="64" y="1065.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">macroservice.</text>
+</g>
+</svg>

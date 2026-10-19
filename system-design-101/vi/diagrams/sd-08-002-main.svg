@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1273" viewBox="0 0 320 1273" role="img" aria-labelledby="title desc">
 <title id="title">Điều phối hay tự phối hợp?</title>
-<desc id="desc">Ba khung. Khung một, điều phối: bộ điều phối ra lệnh trả tiền cho dịch vụ thanh toán và nhận kết quả, ra lệnh giữ hàng cho kho; kho báo thất bại thì bộ điều phối ra lệnh hoàn tiền cho thanh toán. Khung hai, tự phối hợp: dịch vụ thanh toán đăng sự kiện đã trả tiền lên kênh sự kiện, kho nhận sự kiện đó; kho đăng sự kiện giữ hàng thất bại, thanh toán nhận sự kiện này và tự hoàn tiền. Khung ba, thử mô phỏng chuỗi bốn bước: hỏng ở bước ba thì tự phối hợp tốn 5 thông điệp và điều phối tốn 10; thêm một bước kiểm tra gian lận thì tự phối hợp phải sửa 2 dịch vụ cũ, điều phối sửa 0 dịch vụ cũ.</desc>
+<desc id="desc">Ba khung. Khung một, điều phối: bộ điều phối ra lệnh trả tiền cho dịch vụ thanh toán và nhận kết quả, ra lệnh giữ hàng cho kho; kho báo thất bại thì bộ điều phối ra lệnh hoàn tiền cho thanh toán. Khung hai, tự phối hợp: dịch vụ thanh toán đăng sự kiện đã trả tiền lên kênh sự kiện, kho nhận sự kiện đó; kho đăng sự kiện giữ hàng thất bại, thanh toán nhận sự kiện này và tự hoàn tiền. Khung ba, thử mô phỏng chuỗi bốn bước: hỏng ở bước ba thì tự phối hợp tốn 6 thông điệp và điều phối tốn 10; thêm một bước kiểm tra gian lận thì tự phối hợp phải sửa 2 dịch vụ cũ, điều phối sửa 0 dịch vụ cũ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1273" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -71,7 +71,7 @@
 <circle cx="43" cy="1031" r="11" fill="#16a34a"/>
 <polyline points="37.9,1031.4 41.7,1035.4 48.5,1027" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1034.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏng ở bước ba: tự phối hợp</text>
-<text x="64" y="1053.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">5 thông điệp, điều phối 10.</text>
+<text x="64" y="1053.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">6 thông điệp, điều phối 10.</text>
 <rect x="20" y="1079" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1102" r="11" fill="#16a34a"/>
 <polyline points="37.9,1102.4 41.7,1106.4 48.5,1098" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

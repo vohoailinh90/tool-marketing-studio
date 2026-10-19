@@ -77,7 +77,7 @@
       "verified_by": "Read from a local clone of Netflix/conductor at commit 548f386c2c6c1e4d467b8551edbb6182881004ae."
     },
     {
-      "claim_vi": "Counting model of a four-step saga (pay, reserve, ship, mail): with failure at step 1/2/3/4 choreography sends 2/3/5/7 messages and orchestration 2/6/10/14 (orchestration counts a command and a reply per step and per undo; choreography one event per step plus a start event, no acknowledgements); no failure 5 and 8; both leave 0 steps done after a failure. Adding a fraud step after pay changes the subscriptions of 2 existing choreographed services (pay and reserve) and 0 existing services under orchestration.",
+      "claim_vi": "Counting model of a four-step saga (pay, reserve, ship, mail): with failure at step 1/2/3/4 choreography sends 2/4/6/8 messages and orchestration 2/6/10/14 (orchestration counts a command and a reply per step and per undo; choreography one event per step plus a start event and one event announcing each undo, the last one included, no acknowledgements); no failure 5 and 8; both leave 0 steps done after a failure. Adding a fraud step after pay changes the subscriptions of 2 existing choreographed services (pay and reserve) and 0 existing services under orchestration.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/saga-content.md",
       "section": "Experiment",
       "verified_by": "Run by the author on 2026-10-19 with a small Python program that models the steps; a counting model, not a measurement of a real broker."

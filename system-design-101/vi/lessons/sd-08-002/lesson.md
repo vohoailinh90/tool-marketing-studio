@@ -3,7 +3,7 @@
 **Một đơn hàng đi qua nhiều dịch vụ (trả tiền, giữ hàng, giao hàng, gửi thư), và có hai cách để chúng làm việc theo đúng thứ tự: một bộ điều phối cầm lái và ra lệnh từng bước, hoặc không ai cầm lái mà mỗi dịch vụ tự làm phần mình khi nghe một sự kiện.**
 Bài này vẽ cùng một đơn hàng theo cả hai cách, rồi dùng một mô phỏng nhỏ để đếm: hỏng giữa chừng thì tốn bao nhiêu thông điệp, và thêm một bước thì phải sửa những gì.
 
-![Ba khung. Khung một, điều phối: bộ điều phối ra lệnh trả tiền cho dịch vụ thanh toán và nhận kết quả, ra lệnh giữ hàng cho kho; kho báo thất bại thì bộ điều phối ra lệnh hoàn tiền cho thanh toán. Khung hai, tự phối hợp: dịch vụ thanh toán đăng sự kiện đã trả tiền lên kênh sự kiện, kho nhận sự kiện đó; kho đăng sự kiện giữ hàng thất bại, thanh toán nhận sự kiện này và tự hoàn tiền. Khung ba, thử mô phỏng chuỗi bốn bước: hỏng ở bước ba thì tự phối hợp tốn 5 thông điệp và điều phối tốn 10; thêm một bước kiểm tra gian lận thì tự phối hợp phải sửa 2 dịch vụ cũ, điều phối sửa 0 dịch vụ cũ.](../../diagrams/sd-08-002-main.svg)
+![Ba khung. Khung một, điều phối: bộ điều phối ra lệnh trả tiền cho dịch vụ thanh toán và nhận kết quả, ra lệnh giữ hàng cho kho; kho báo thất bại thì bộ điều phối ra lệnh hoàn tiền cho thanh toán. Khung hai, tự phối hợp: dịch vụ thanh toán đăng sự kiện đã trả tiền lên kênh sự kiện, kho nhận sự kiện đó; kho đăng sự kiện giữ hàng thất bại, thanh toán nhận sự kiện này và tự hoàn tiền. Khung ba, thử mô phỏng chuỗi bốn bước: hỏng ở bước ba thì tự phối hợp tốn 6 thông điệp và điều phối tốn 10; thêm một bước kiểm tra gian lận thì tự phối hợp phải sửa 2 dịch vụ cũ, điều phối sửa 0 dịch vụ cũ.](../../diagrams/sd-08-002-main.svg)
 
 ## Đọc hình
 
@@ -13,15 +13,15 @@ Bài này vẽ cùng một đơn hàng theo cả hai cách, rồi dùng một m�
 
 ## Thử: đếm trên một chuỗi bốn bước
 
-Ngày 2026-10-19, một chương trình mô phỏng nhỏ (không có mạng, không có hệ thống chuyển thông điệp thật) dựng một chuỗi bốn bước, trả tiền, giữ hàng, giao hàng, gửi thư, mỗi bước có một việc hoàn tác. Cách đếm: điều phối tính một lệnh và một phản hồi cho mỗi bước (kể cả mỗi lần hoàn tác); tự phối hợp tính một sự kiện cho mỗi bước và một sự kiện khởi đầu, không tính phản hồi nhận.
+Ngày 2026-10-19, một chương trình mô phỏng nhỏ (không có mạng, không có hệ thống chuyển thông điệp thật) dựng một chuỗi bốn bước, trả tiền, giữ hàng, giao hàng, gửi thư, mỗi bước có một việc hoàn tác. Cách đếm: điều phối tính một lệnh và một phản hồi cho mỗi bước (kể cả mỗi lần hoàn tác); tự phối hợp tính một sự kiện cho mỗi bước, một sự kiện khởi đầu và một sự kiện báo cho mỗi lần hoàn tác (kể cả lần cuối, dù không ai nghe nó), không tính phản hồi nhận.
 
 | Hỏng ở bước | Tự phối hợp (thông điệp) | Điều phối (thông điệp) |
 |---|---|---|
 | Không hỏng | 5 | 8 |
 | Bước 1, trả tiền | 2 | 2 |
-| Bước 2, giữ hàng | 3 | 6 |
-| Bước 3, giao hàng | 5 | 10 |
-| Bước 4, gửi thư | 7 | 14 |
+| Bước 2, giữ hàng | 4 | 6 |
+| Bước 3, giao hàng | 6 | 10 |
+| Bước 4, gửi thư | 8 | 14 |
 
 Cả hai cách đều hoàn tác đủ các bước đã làm và để lại 0 bước dở dang, tức kết quả đúng như nhau; chỉ khác cách đi. Sự chênh lệch trong bảng phần lớn do quy tắc đếm (điều phối đếm cả phản hồi), nên đừng đọc nó là chênh lệch độ trễ: hệ thống chuyển thông điệp thật còn thêm bước trung gian của riêng nó.
 

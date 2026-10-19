@@ -1871,54 +1871,54 @@
         },
         {
           "id": "sd-07-011",
-          "title_vi": null,
+          "title_vi": "Dòng tiền sau một đơn hàng: bù trừ và quyết toán",
           "title_source": "Money Movement",
           "source_url": "https://bytebytego.com/guides/money-movement",
           "source_path": "data/guides/money-movement.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "32dd5b5c894bccce3fcfcab5f8b14b8ef3fa4bbd",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/money-movement.md"
         },
         {
           "id": "sd-07-012",
-          "title_vi": null,
+          "title_vi": "Hệ thống thanh toán: từ nút Mua tới sổ cái",
           "title_source": "Payment System",
           "source_url": "https://bytebytego.com/guides/payment-system",
           "source_path": "data/guides/payment-system.md",
           "same_source_as": [
             "sd-12-010"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "d6c825db2def7f67751c8ca10cdc78acdc301da7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/payment-system.md"
         },
         {
           "id": "sd-07-013",
-          "title_vi": null,
+          "title_vi": "Học về thanh toán: bản đồ bảy phần của ngành",
           "title_source": "How to Learn Payments",
           "source_url": "https://bytebytego.com/guides/how-to-learn-payments",
           "source_path": "data/guides/how-to-learn-payments.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "78cfdc29065f2e615c8c62ec9cc995e141663db7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-learn-payments.md"
         },
         {
           "id": "sd-07-014",
-          "title_vi": null,
+          "title_vi": "Hệ sinh thái thanh toán qua một giao dịch thẻ",
           "title_source": "The Payments Ecosystem",
           "source_url": "https://bytebytego.com/guides/the-payments-ecosystem",
           "source_path": "data/guides/the-payments-ecosystem.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f8488a7e9de1fcb9e5cee998f15a65e1016488dc",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-payments-ecosystem.md"
         },
         {
           "id": "sd-07-015",
-          "title_vi": null,
+          "title_vi": "Thanh toán ngoại tệ: 100 đô la thành 88 euro",
           "title_source": "Foreign Exchange Payments",
           "source_url": "https://bytebytego.com/guides/foreign-exchange-payments",
           "source_path": "data/guides/foreign-exchange-payments.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6aac661fa839781b6e18d7e18a009b10832f33d4",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/foreign-exchange-payments.md"
         },

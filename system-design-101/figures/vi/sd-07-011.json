@@ -1,0 +1,90 @@
+{
+  "id": "sd-07-011",
+  "title": "Tiền đi đâu sau một đơn hàng",
+  "subtitle": "Thông tin chạy trước, tiền thật đi sau ở ngân hàng quyết toán.",
+  "desc": "Bốn khung. Khung một, Bob trả Amazon: Bob mua sách trên Amazon và chọn trả bằng PayPal, Amazon gửi PayPal yêu cầu chuyển tiền, PayPal chuyển tiền thay Bob vào tài khoản của Amazon ở ngân hàng A. Khung hai, bù trừ rồi quyết toán: ngân hàng A và B gửi sao kê cho tổ chức bù trừ, chỉ tính chênh lệch ròng, rồi tiền thật đi giữa hai quỹ dự trữ ở ngân hàng quyết toán. Khung ba, Amazon trả người bán: Amazon báo người bán, hai ngân hàng ghi sổ, rồi cũng bù trừ và quyết toán. Khung bốn, ba lớp: giao dịch, thanh toán và bù trừ, quyết toán; hai lớp đầu là dòng thông tin, lớp cuối là dòng tiền.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Bob trả Amazon",
+      "actors": [
+        {
+          "name": "Bob",
+          "icon": "user"
+        },
+        {
+          "name": "Amazon",
+          "icon": "store"
+        },
+        {
+          "name": "PayPal",
+          "icon": "credit-card"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Mua sách, chọn trả bằng PayPal"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Yêu cầu chuyển tiền"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Chuyển tiền vào ngân hàng A của Amazon",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "2. Bù trừ rồi quyết toán",
+      "items": [
+        {
+          "title": "Gửi sao kê",
+          "text": "Ngân hàng A và B gửi sao kê cho tổ chức bù trừ."
+        },
+        {
+          "title": "Bù trừ",
+          "text": "A nợ B 100, B nợ A 500: chỉ B trả A 400."
+        },
+        {
+          "title": "Quyết toán",
+          "text": "Tiền thật đi giữa hai quỹ dự trữ ở ngân hàng quyết toán."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "3. Amazon trả người bán",
+      "items": [
+        {
+          "title": "Báo người bán",
+          "text": "Amazon báo Claire sắp được trả."
+        },
+        {
+          "title": "Chuyển giữa hai ngân hàng",
+          "text": "Hai bên ghi sổ, chưa có tiền thật đi."
+        },
+        {
+          "title": "Bù trừ, quyết toán",
+          "text": "Tiền đi từ quỹ ngân hàng A sang quỹ ngân hàng C."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba lớp, hai dòng",
+      "items": [
+        "Lớp giao dịch: nơi việc mua hàng diễn ra.",
+        "Lớp thanh toán và bù trừ: lệnh và việc tính chênh lệch.",
+        "Lớp quyết toán: tiền thật mới di chuyển.",
+        "Hai lớp đầu là dòng thông tin, lớp cuối là dòng tiền."
+      ]
+    }
+  ]
+}

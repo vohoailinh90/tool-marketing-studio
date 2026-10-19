@@ -132,6 +132,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Thanh toán và công nghệ tài chính
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+11. [Dòng tiền sau một đơn hàng: bù trừ và quyết toán](lessons/sd-07-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Hệ thống thanh toán: từ nút Mua tới sổ cái](lessons/sd-07-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+13. [Học về thanh toán: bản đồ bảy phần của ngành](lessons/sd-07-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+14. [Hệ sinh thái thanh toán qua một giao dịch thẻ](lessons/sd-07-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Thanh toán ngoại tệ: 100 đô la thành 88 euro](lessons/sd-07-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.
@@ -255,7 +265,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
-Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính (đã viết một phần) →
 Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 

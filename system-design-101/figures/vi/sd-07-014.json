@@ -1,0 +1,65 @@
+{
+  "id": "sd-07-014",
+  "title": "Một giao dịch thẻ đi qua những ai",
+  "subtitle": "Chuẩn bị, bên thu, bên phát hành.",
+  "desc": "Ba khung. Khung một, chuẩn bị (bước 0 và 1): chủ thẻ mở tài khoản ở ngân hàng phát hành và nhận thẻ; người bán đăng ký với ISO hoặc MSP, đơn vị này hợp tác với bộ xử lý thanh toán để mở tài khoản người bán. Khung hai, bên thu (bước 2 đến 5): cổng thanh toán nhận giao dịch và thông tin thanh toán, chuyển cho bộ xử lý bên thu, bộ xử lý này gửi giao dịch cho mạng thẻ và giữ tài khoản người bán lúc quyết toán. Khung ba, bên phát hành (bước 6 đến 8): bộ xử lý bên phát hành nói chuyện với mạng thẻ thay ngân hàng phát hành, xác nhận và vận hành tài khoản của khách.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Chuẩn bị (bước 0 và 1)",
+      "items": [
+        {
+          "title": "Chủ thẻ",
+          "text": "Mở tài khoản ở ngân hàng phát hành, nhận thẻ."
+        },
+        {
+          "title": "Người bán",
+          "text": "Đăng ký với ISO hoặc MSP để bán tại cửa hàng."
+        },
+        {
+          "title": "ISO hoặc MSP",
+          "text": "Hợp tác với bộ xử lý để mở tài khoản người bán."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Bên thu (bước 2 đến 5)",
+      "actors": [
+        {
+          "name": "Cổng thanh toán",
+          "icon": "plug"
+        },
+        {
+          "name": "Bộ xử lý bên thu",
+          "icon": "server"
+        },
+        {
+          "name": "Mạng thẻ",
+          "icon": "network"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Giao dịch và thông tin thanh toán"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Chuyển giao dịch đi"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bên phát hành (bước 6 đến 8)",
+      "items": [
+        "Bộ xử lý bên phát hành nói chuyện với mạng thẻ.",
+        "Nó làm việc đó thay mặt ngân hàng phát hành.",
+        "Nó xác nhận và vận hành tài khoản của khách."
+      ]
+    }
+  ]
+}

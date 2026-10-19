@@ -79,7 +79,7 @@
       "verified_by": "Chưa tự đọc được trang giá (tên miền bị chặn trong môi trường biên soạn); thông tin do người rà soát nêu và dẫn trang giá này, chưa đối chiếu."
     }
   ],
-  "design_notes_vi": "Khung một: bốn thẻ theo cái được đếm (giờ, dung lượng, lời gọi, phần dở dang và dữ liệu đi ra); khung hai: ba việc dọn dẹp lấy từ tài liệu AWS. Không có đơn giá.",
+  "design_notes_vi": "Khung một: bốn thẻ theo cái được đếm (giờ, dung lượng gồm cả phần tải dở, lời gọi, dữ liệu đi ra); khung hai: ba việc dọn dẹp lấy từ tài liệu AWS. Không có đơn giá.",
   "source_deviations": [
     "Bài nguồn liệt kê tám khoản theo thứ tự hình; bài này giữ tên tám khoản nhưng xếp theo cái được đếm và bỏ hình của nguồn.",
     "Bài nêu chỗ không khớp giữa con số năm Elastic IP của nguồn và bản tài liệu đọc được; nguồn không nhắc.",

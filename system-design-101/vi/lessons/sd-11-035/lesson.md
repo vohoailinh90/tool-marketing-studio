@@ -1,9 +1,9 @@
 # Chi phí ẩn của đám mây: nhóm theo cách hóa đơn đếm
 
 **Hóa đơn đám mây phình lên thường không vì thứ bạn dùng nhiều, mà vì thứ bạn quên: mỗi dịch vụ có một "đồng hồ" riêng, và có đồng hồ cứ chạy khi bạn không còn dùng gì.**
-Bài sắp tám khoản chi ẩn trong bài nguồn theo đồng hồ đếm chúng (theo giờ, theo dung lượng, theo lời gọi, theo phần dở dang, theo dữ liệu đi ra), để biết nên đi tìm ở đâu.
+Bài sắp tám khoản chi ẩn trong bài nguồn theo đồng hồ đếm chúng (theo giờ, theo dung lượng, theo lời gọi, theo dữ liệu đi ra), để biết nên đi tìm ở đâu.
 
-![Hai khung. Khung một, bốn cách hóa đơn đếm: theo giờ khi tài nguyên còn tồn tại, như bộ cân bằng tải và địa chỉ IP công cộng, cả khi đang gắn; theo dung lượng mỗi tháng, như ổ đĩa và bản chụp; theo số lời gọi, như lấy và liệt kê trên kho đối tượng; theo phần dở dang và dữ liệu đi ra. Khung hai, ba việc dọn dẹp: trả địa chỉ IP không dùng, xóa ổ đĩa không gắn máy, đặt quy tắc hủy các phần tải lên dở.](../../diagrams/sd-11-035-main.svg)
+![Hai khung. Khung một, bốn cách hóa đơn đếm: theo giờ khi tài nguyên còn tồn tại, như bộ cân bằng tải và địa chỉ IP công cộng, cả khi đang gắn; theo dung lượng mỗi tháng, như ổ đĩa, bản chụp và các phần tải dở; theo số lời gọi, như lấy và liệt kê trên kho đối tượng; theo dữ liệu đi ra. Khung hai, ba việc dọn dẹp: trả địa chỉ IP không dùng, xóa ổ đĩa không gắn máy, đặt quy tắc hủy các phần tải lên dở.](../../diagrams/sd-11-035-main.svg)
 
 ## Từ viết tắt
 
@@ -19,9 +19,8 @@ Bài nguồn liệt kê tám khoản và lấy AWS làm ví dụ, nói rằng c�
 | Cái được đếm | Khoản ẩn (tên ở nguồn) | Vì sao tiền vẫn chạy |
 |---|---|---|
 | Giờ tồn tại | Elastic IP Addresses; Load Balancers | Tài nguyên còn đó thì đồng hồ còn quay, dù không có ai dùng |
-| GB mỗi tháng | Elastic Block Storage (EBS) Charges; EBS Snapshots | Ổ đĩa không gắn máy vẫn chiếm chỗ; bản chụp là một thứ riêng, xóa ổ không xóa bản chụp |
+| GB mỗi tháng | Elastic Block Storage (EBS) Charges; EBS Snapshots; `S3` Partial Uploads | Ổ đĩa không gắn máy vẫn chiếm chỗ; bản chụp là một thứ riêng, xóa ổ không xóa bản chụp; các phần đã tải lên của một lần tải dở vẫn bị tính tiền lưu trữ cho tới khi hoàn tất hoặc hủy (lời gọi và dữ liệu đi ra vẫn tính riêng) |
 | Số lời gọi | `S3` Access Charges | Mỗi lần lấy hoặc liệt kê đối tượng là một dòng tính tiền, có thể vượt tiền lưu trữ |
-| Phần dở dang | `S3` Partial Uploads | Các phần đã tải lên của một lần tải dở vẫn bị tính cho tới khi hoàn tất hoặc hủy |
 | Dữ liệu đi ra | Data Transfer Costs | Đưa dữ liệu vào thường rẻ hoặc miễn phí, kéo ra mới đắt |
 | Ngưỡng miễn phí | Free Tier Ambiguity | Có nhiều loại miễn phí, dịch vụ ngoài ngưỡng bị tính, vượt ngưỡng thì giá theo bảng thường |
 
@@ -67,6 +66,7 @@ Bài nguồn là một hình và danh sách tám khoản theo thứ tự của h
 - [AWS — tài liệu EC2 về bản chụp EBS (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/EBSSnapshots.md): cách tính bản chụp.
 - [AWS — tài liệu EC2 về xóa ổ đĩa EBS (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/ebs-deleting-volume.md): trạng thái ổ đĩa và việc chụp trước khi xóa.
 - [AWS — tài liệu EC2 về Elastic IP (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/elastic-ip-addresses-eip.md): quy tắc về địa chỉ IP của bản lưu trữ, nay đã cũ.
+- [AWS — trang giá `Amazon VPC` hiện hành](https://aws.amazon.com/vpc/pricing/): nơi AWS công bố việc tính phí địa chỉ IP công cộng; người biên soạn không đọc được trang này (tên miền bị chặn), nên chỉ dẫn tới đây để người đọc tự đối chiếu.
 
 Đã đọc nguồn ngày 2026-10-19. Hai kho tài liệu AWS đã ngừng cập nhật, nên chưa đối chiếu với bảng giá hiện hành.
 Bài viết và hình được thiết kế độc lập.

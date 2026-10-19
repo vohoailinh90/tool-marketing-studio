@@ -1,0 +1,87 @@
+{
+  "id": "sd-02-017",
+  "title_vi": "Netflix gửi thông báo đẩy: sự kiện, ưu tiên, rồi từng loại thiết bị",
+  "language": "vi",
+  "kind": "pipeline",
+  "content_status": "draft",
+  "source_ref": "sd-02-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "171929ed59b3053c563a11d6eeaf4219d4db30e5",
+    "retrieved_body_sha256": "ef5b9b76ad6c7e60fe3025f0136e4761fddc16359c84194461ef54eb8bfbd8a9",
+    "retrieved_body_bytes": 1550
+  },
+  "diagram": "../diagrams/sd-02-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-013",
+      "relation": "see_also",
+      "reason_vi": "Kiến trúc chung của một hệ thống thông báo."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Requirements: 220 million users, near real-time, notifications to iOS, Android, smart TVs, Roku, Amazon FireStick and web browsers.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+      "section": "Requirements & Scale",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Events are triggered by the clock, user actions or systems and sent to the event management engine, which forwards them to queues by priority-based rules.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+      "section": "The Life of a Push Notification",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The event priority-based processing cluster generates notification data, stored in Cassandra, and sends it to outbound messaging systems.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+      "section": "The Life of a Push Notification",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Android uses FCM, Apple devices use APNs, and web, TV and other streaming devices use Netflix's Zuul Push.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+      "section": "The Life of a Push Notification",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Reasons to split queues by priority.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-netflix-scale-push-messaging-for-millions-of-devices.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Bảy bước chia hai khung: quyết định gửi gì và gửi tới đâu; khung cuối ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The seven steps are split into deciding what to send and where to send it; the split is the author's.",
+    "The Netflix engineering blog post the source draws from was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

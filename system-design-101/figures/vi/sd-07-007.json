@@ -1,0 +1,48 @@
+{
+  "id": "sd-07-007",
+  "title": "Tài khoản nóng trong hệ thống thanh toán",
+  "subtitle": "Một số dư, rất nhiều lệnh cùng lúc, một khóa dòng.",
+  "desc": "Hai khung. Khung một, vấn đề: ngày khuyến mãi lớn, hàng loạt đơn cùng ghi vào số dư của một người bán; mỗi lần cập nhật phải khóa dòng, nên thông lượng thấp và thành điểm nghẽn. Khung hai, ba cách gỡ: giới hạn tốc độ, từ chối hoặc hẹn lại các yêu cầu thừa nhưng trải nghiệm kém; chia số dư thành nhiều tài khoản con để mỗi cập nhật chỉ khóa một tài khoản con; cập nhật số dư trên bộ nhớ đệm trước, ghi chi tiết xuống cơ sở dữ liệu sau một cách bất đồng bộ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Vì sao nghẽn",
+      "items": [
+        {
+          "title": "Nhiều đơn cùng lúc",
+          "text": "Ngày khuyến mãi lớn, đơn đổ về một người bán."
+        },
+        {
+          "title": "Cùng một số dư",
+          "text": "Mọi đơn đều cập nhật một dòng trong cơ sở dữ liệu."
+        },
+        {
+          "title": "Khóa dòng",
+          "text": "Mỗi lần cập nhật khóa dòng, các lệnh khác phải chờ. Thông lượng thấp."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba cách gỡ",
+      "items": [
+        {
+          "name": "Giới hạn tốc độ",
+          "role": "Yêu cầu thừa bị từ chối hoặc hẹn lại. Trải nghiệm có thể kém.",
+          "icon": "gauge"
+        },
+        {
+          "name": "Chia tài khoản con",
+          "role": "Mỗi cập nhật chỉ khóa một tài khoản con.",
+          "icon": "split"
+        },
+        {
+          "name": "Cập nhật bộ nhớ đệm trước",
+          "role": "Ghi cơ sở dữ liệu sau, bất đồng bộ.",
+          "icon": "zap"
+        }
+      ],
+      "flow": []
+    }
+  ]
+}

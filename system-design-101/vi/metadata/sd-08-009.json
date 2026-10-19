@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-009",
+  "title_vi": "Bảy thuật ngữ của thiết kế hướng miền, và cái giá của một khối dữ liệu quá lớn",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/key-terms-in-domain-driven-design.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-terms-in-domain-driven-design.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "8829af57ee689e3c56f7893836b3b5314fcfd456",
+    "retrieved_body_sha256": "ed1a3dd9f091f91cad78cf4bc57bb2320bdd98cb589e62c44980410b364dd512",
+    "retrieved_body_bytes": 1447
+  },
+  "diagram": "../diagrams/sd-08-009-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Microsoft's tactical DDD page read from a local clone; entity, value object and optimistic-version behaviour of small Python 3.13.16 programs run on 2026-10-19 (three runs per load). The Evans book was unreachable, so the definitions rest on the source and the Microsoft page."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Microsoft: entity has persistent identity and should hold behaviour; value object has no identity, is immutable and interchangeable by value; aggregate is a consistency boundary with one root, designed small, other aggregates referenced by identity only, eventual consistency between aggregates via domain events; domain service is stateless business logic spanning entities, application service orchestrates use cases with no business logic; a domain event is a domain-significant change (a delivery was cancelled, not a row inserted); factories, repositories and modules are named but not covered.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/model/tactical-domain-driven-design.md",
+      "section": "Overview of the tactical patterns",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Source lists seven terms in three groups: Entity, Value Object, Aggregate (composition); Repository, Factory (life cycle); Domain Service, Domain Event (behaviour); Aggregate described as the unit of storage.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-terms-in-domain-driven-design.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Python 3.13.16: frozen dataclass values equal by value, assignment raises FrozenInstanceError, replace gives a new instance; entities with the same id compare equal with different attributes; cancel refused after pick_up and an event recorded.",
+      "source": "https://docs.python.org/3.13/library/dataclasses.html",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Optimistic versioned store, 8 threads, 2,400 updates: one shared aggregate gave 44-67 conflicts with light work, 1,279-1,586 with 10x work, 8,618-8,778 with 100x work (4,057-4,407 ms); one aggregate per delivery gave 0 conflicts (895-981 ms at 100x); no update lost in any run.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/model/tactical-domain-driven-design.md",
+      "section": "Aggregates (design small aggregates)",
+      "verified_by": "Program run by the author on 2026-10-19, three runs per load; absolute numbers belong to the test machine."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bảy thuật ngữ chia nhóm, thử trong mã, đo xung đột theo cỡ khối.",
+  "source_deviations": [
+    "The source is a list of seven terms with a picture; the lesson adds the Microsoft reading of aggregate as consistency boundary, three code tests and a contention measurement.",
+    "Repository and Factory are explained from the source only; no test."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,99 @@
+{
+  "id": "sd-02-005",
+  "title_vi": "SapFix của Meta: máy đề xuất bản sửa, người quyết định",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-02-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/fixing-bugs-automatically-at-meta-scale.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "1c93c47f0a670e947a2fd42d0cdb1ee424a0b7a1",
+    "retrieved_body_sha256": "7e65f0f3a8b6475b84a2d16a1e5529bf06ae5af3d2740f9940316747e4b29da9",
+    "retrieved_body_bytes": 2213
+  },
+  "diagram": "../diagrams/sd-02-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-014",
+      "relation": "see_also",
+      "reason_vi": "Pipeline CI/CD, nơi kiểm thử tự động chạy."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "SapFix aims to simplify debugging by automatically generating fixes for specific issues; Meta published a paper on automated end-to-end repair at Facebook scale.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "Introduction",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "SapFix was used on six key apps of the Facebook family, each with tens of millions of lines of code.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "Results",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In a 90-day pilot SapFix generated 165 patches for 57 crashes; the median time from fault detection to fix sent for human approval was 69 minutes.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "Results",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Developers submit changes (Diffs) through Phabricator; SapFix selects test cases from Sapienz and runs them on the Diff.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "How it works",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "On a crash caused by the Diff SapFix generates fixes of four types: template, mutation, full revert and partial revert, and tests the patched builds.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "How it works",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "SapFix sends a candidate patch for review through Phabricator; the primary reviewer is the developer whose change caused the crash, who can accept or reject it.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "How it works",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "165 patches for 57 crashes is about 2.9 patches per crash.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Arithmetic on the source numbers."
+    }
+  ],
+  "design_notes_vi": "Hai khung bước cho phát hiện và quyết định, một khung bốn loại bản sửa, một khung số liệu; nhấn chỗ con người ở cuối dây chuyền. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The lesson notes that 165 is the number of patches generated, not accepted, and computes the average per crash; the reading of the reviewer's role is the author's.",
+    "The Meta paper was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

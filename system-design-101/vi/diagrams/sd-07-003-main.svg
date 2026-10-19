@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="848" viewBox="0 0 320 848" role="img" aria-labelledby="title desc">
+<title id="title">Lệnh cắt lỗ chạy thế nào</title>
+<desc id="desc">Một lược đồ ba bên: nhà đầu tư, hệ thống giao dịch, sàn giao dịch. Nhà đầu tư đặt lệnh cắt lỗ bán 100 cổ phiếu với giá kích hoạt 36. Hệ thống giao dịch theo dõi giá thị trường từ sàn. Khi giá rơi xuống 35, hệ thống gửi lệnh thị trường bán 100 cổ phiếu ở giá tốt nhất lúc đó. Sàn báo khớp lệnh ở 35,5 mỗi cổ phiếu và hệ thống báo lại cho nhà đầu tư.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="848" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Lệnh cắt lỗ chạy thế nào</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Giá kích hoạt 36, bán được 35,5.</text>
+<rect x="8" y="80" width="304" height="517" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ lệnh tới báo khớp</text>
+<rect x="20" y="125" width="84" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="62" cy="147" r="14" fill="#1d4ed8"/><g transform="translate(53.6 138.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="62" y="178.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Nhà đầu</text>
+<text x="62" y="197.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">tư</text>
+<rect x="118" y="125" width="84" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="160" cy="147" r="14" fill="#1d4ed8"/><g transform="translate(151.6 138.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="160" y="178.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Hệ</text>
+<text x="160" y="197.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">thống</text>
+<rect x="216" y="125" width="84" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="258" cy="147" r="14" fill="#1d4ed8"/><g transform="translate(249.6 138.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g>
+<text x="258" y="178.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Sàn</text>
+<polyline points="62,211 62,585" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,211 160,585" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,211 258,585" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="239.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Bán 100,</text>
+<text x="111" y="258.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">mức 36</text>
+<polyline points="63,272 157,272" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Theo dõi</text>
+<text x="209" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">giá</text>
+<polyline points="161,333 255,333" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="361.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Giá rơi</text>
+<text x="209" y="380.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">xuống 35</text>
+<polyline points="257,394 163,394" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="422.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Bán ngay</text>
+<text x="209" y="441.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">100</text>
+<polyline points="161,455 255,455" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="483.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Khớp ở</text>
+<text x="209" y="502.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">35,5</text>
+<polyline points="257,516 163,516" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="544.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đã bán ở</text>
+<text x="111" y="563.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">35,5</text>
+<polyline points="159,577 65,577" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="609" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="637.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điều cần nhớ</text>
+<rect x="20" y="654" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="677" r="11" fill="#16a34a"/>
+<polyline points="37.9,677.4 41.7,681.4 48.5,673" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="680.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giá kích hoạt chỉ đánh thức</text>
+<text x="64" y="699.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lệnh, không bảo đảm giá</text>
+<text x="64" y="719.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bán.</text>
+<rect x="20" y="745" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="768" r="11" fill="#16a34a"/>
+<polyline points="37.9,768.4 41.7,772.4 48.5,764" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="771.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh thị trường khớp ở giá</text>
+<text x="64" y="790.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tốt nhất lúc đó, nên có thể</text>
+<text x="64" y="810.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thấp hơn 36.</text>
+</g>
+</svg>

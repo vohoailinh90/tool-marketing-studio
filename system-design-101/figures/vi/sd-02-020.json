@@ -1,0 +1,70 @@
+{
+  "id": "sd-02-020",
+  "title": "TikTok làm Git nhanh lại",
+  "subtitle": "Kho frontend 200 nghìn tệp và công cụ Sparo.",
+  "desc": "Ba khung. Monorepo được gì: chia sẻ mã, quản lý phụ thuộc, cái nhìn chung. Cái giá: kho càng lớn Git càng chậm; kho TypeScript 200 nghìn tệp của TikTok; công cụ Sparo. Kết quả: clone 40 phút còn 2 phút, checkout 1,5 phút còn 30 giây, status 7 giây còn 1 giây, commit 15 giây còn 11 giây.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Monorepo được gì",
+      "items": [
+        "Chia sẻ mã dễ hơn.",
+        "Quản lý phụ thuộc đơn giản hơn.",
+        "Một cái nhìn chung về toàn bộ mã."
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Cái giá và cách TikTok xử lý",
+      "items": [
+        {
+          "name": "Kho càng lớn",
+          "role": "Thao tác Git càng chậm.",
+          "icon": "timer"
+        },
+        {
+          "name": "Kho frontend TikTok",
+          "role": "TypeScript, 200 nghìn tệp.",
+          "icon": "folder"
+        },
+        {
+          "name": "Sparo",
+          "role": "Công cụ tối ưu Git cho kho lớn.",
+          "icon": "zap"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Kết quả theo nguồn",
+      "items": [
+        {
+          "title": "clone",
+          "text": "40 phút → 2 phút."
+        },
+        {
+          "title": "checkout",
+          "text": "1,5 phút → 30 giây."
+        },
+        {
+          "title": "status",
+          "text": "7 giây → 1 giây."
+        },
+        {
+          "title": "commit",
+          "text": "15 giây → 11 giây."
+        }
+      ]
+    }
+  ]
+}

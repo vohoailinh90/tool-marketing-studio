@@ -1,0 +1,35 @@
+{
+  "id": "sd-08-009",
+  "title": "Bảy thuật ngữ của thiết kế hướng miền",
+  "subtitle": "Và cái giá của một khối dữ liệu đặt quá lớn.",
+  "desc": "Ba khung. Khung một, bảy thuật ngữ chia ba nhóm: cấu tạo gồm thực thể, đối tượng giá trị, khối nhất quán; vòng đời gồm kho lưu và nhà máy; hành vi gồm dịch vụ miền và sự kiện miền. Khung hai, thử trong mã: hai đối tượng giá trị cùng nội dung thì bằng nhau và không sửa được, hai thực thể cùng mã định danh thì là một dù thuộc tính khác, luật huỷ nằm trong thực thể. Khung ba, tám luồng cập nhật 2.400 lần: một khối nhất quán chung gây từ 44 đến 67 lần xung đột khi việc nhẹ và từ 8.618 đến 8.778 lần khi việc nặng, còn mỗi giao hàng một khối thì 0 lần.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Bảy thuật ngữ, ba nhóm",
+      "items": [
+        "Cấu tạo: thực thể, đối tượng giá trị, khối nhất quán.",
+        "Vòng đời: kho lưu, nhà máy.",
+        "Hành vi: dịch vụ miền, sự kiện miền."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử trong mã",
+      "items": [
+        "Đối tượng giá trị: cùng nội dung thì bằng nhau, không sửa được.",
+        "Thực thể: cùng mã định danh là một, dù thuộc tính khác.",
+        "Luật huỷ giao hàng nằm trong thực thể."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Khối quá lớn thì xung đột",
+      "items": [
+        "Một khối chung: 44 đến 67 xung đột khi việc nhẹ.",
+        "Cũng khối đó, việc nặng: 8.618 đến 8.778 xung đột.",
+        "Mỗi giao hàng một khối: 0 xung đột."
+      ]
+    }
+  ]
+}

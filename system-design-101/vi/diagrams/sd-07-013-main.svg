@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="943" viewBox="0 0 320 943" role="img" aria-labelledby="title desc">
+<title id="title">Bản đồ ngành thanh toán</title>
+<desc id="desc">Hai khung. Khung một, ngành thanh toán gồm bảy phần: cơ quan quản lý, ngân hàng trung ương, ngân hàng thương mại, các công ty thanh toán không phải ngân hàng, các hệ thống thanh toán, mạng bù trừ và hệ thống quyết toán. Khung hai, năm tài liệu để đọc tiếp: tài liệu về các hệ thống thanh toán ở Hoa Kỳ của GlenBrook, trang của Ngân hàng Thanh toán Quốc tế, tài liệu của PayPal, tài liệu của Stripe và tài liệu của SWIFT.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="943" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bản đồ ngành thanh</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">toán</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bảy phần, rồi các tài liệu để đọc tiếp.</text>
+<rect x="8" y="104" width="304" height="466" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy phần của ngành thanh</text>
+<text x="20" y="154.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">toán</text>
+<rect x="20" y="171" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="194" r="11" fill="#16a34a"/>
+<polyline points="37.9,194.4 41.7,198.4 48.5,190" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="197.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ quan quản lý.</text>
+<rect x="20" y="225" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="248" r="11" fill="#16a34a"/>
+<polyline points="37.9,248.4 41.7,252.4 48.5,244" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="251.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngân hàng trung ương.</text>
+<rect x="20" y="279" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="302" r="11" fill="#16a34a"/>
+<polyline points="37.9,302.4 41.7,306.4 48.5,298" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="305.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngân hàng thương mại.</text>
+<rect x="20" y="333" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="356" r="11" fill="#16a34a"/>
+<polyline points="37.9,356.4 41.7,360.4 48.5,352" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="359.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các công ty thanh toán</text>
+<text x="64" y="378.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không phải ngân hàng.</text>
+<rect x="20" y="404" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="427" r="11" fill="#16a34a"/>
+<polyline points="37.9,427.4 41.7,431.4 48.5,423" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="430.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các hệ thống thanh toán.</text>
+<rect x="20" y="458" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="481" r="11" fill="#16a34a"/>
+<polyline points="37.9,481.4 41.7,485.4 48.5,477" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="484.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng bù trừ.</text>
+<rect x="20" y="512" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="535" r="11" fill="#16a34a"/>
+<polyline points="37.9,535.4 41.7,539.4 48.5,531" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="538.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hệ thống quyết toán.</text>
+<rect x="8" y="582" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="610.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tài liệu để đọc tiếp</text>
+<rect x="20" y="627" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="650" r="11" fill="#16a34a"/>
+<polyline points="37.9,650.4 41.7,654.4 48.5,646" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="653.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các hệ thống thanh toán ở</text>
+<text x="64" y="672.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hoa Kỳ (GlenBrook).</text>
+<rect x="20" y="698" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="721" r="11" fill="#16a34a"/>
+<polyline points="37.9,721.4 41.7,725.4 48.5,717" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="724.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang của Ngân hàng Thanh</text>
+<text x="64" y="743.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">toán Quốc tế (BIS).</text>
+<rect x="20" y="769" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="792" r="11" fill="#16a34a"/>
+<polyline points="37.9,792.4 41.7,796.4 48.5,788" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="795.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài liệu của PayPal.</text>
+<rect x="20" y="823" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="846" r="11" fill="#16a34a"/>
+<polyline points="37.9,846.4 41.7,850.4 48.5,842" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="849.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài liệu của Stripe.</text>
+<rect x="20" y="877" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="900" r="11" fill="#16a34a"/>
+<polyline points="37.9,900.4 41.7,904.4 48.5,896" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="903.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài liệu của SWIFT.</text>
+</g>
+</svg>

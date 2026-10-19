@@ -1,0 +1,69 @@
+{
+  "id": "sd-07-003",
+  "title": "Lệnh cắt lỗ chạy thế nào",
+  "subtitle": "Giá kích hoạt 36, bán được 35,5.",
+  "desc": "Một lược đồ ba bên: nhà đầu tư, hệ thống giao dịch, sàn giao dịch. Nhà đầu tư đặt lệnh cắt lỗ bán 100 cổ phiếu với giá kích hoạt 36. Hệ thống giao dịch theo dõi giá thị trường từ sàn. Khi giá rơi xuống 35, hệ thống gửi lệnh thị trường bán 100 cổ phiếu ở giá tốt nhất lúc đó. Sàn báo khớp lệnh ở 35,5 mỗi cổ phiếu và hệ thống báo lại cho nhà đầu tư.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Từ lệnh tới báo khớp",
+      "actors": [
+        {
+          "name": "Nhà đầu tư",
+          "icon": "user"
+        },
+        {
+          "name": "Hệ thống",
+          "icon": "server"
+        },
+        {
+          "name": "Sàn",
+          "icon": "chart-column"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Bán 100, mức 36"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Theo dõi giá"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Giá rơi xuống 35",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Bán ngay 100"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Khớp ở 35,5",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Đã bán ở 35,5",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "Giá kích hoạt chỉ đánh thức lệnh, không bảo đảm giá bán.",
+        "Lệnh thị trường khớp ở giá tốt nhất lúc đó, nên có thể thấp hơn 36."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "sd-07-017",
+  "title_vi": "Apple Pay và Google Pay: ai giữ thông tin thẻ",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-07-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-applegoogle-pay-works.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6be0af3bcaf5adc2fe15eeb6b74e9151ea5713f3",
+    "retrieved_body_sha256": "3f79c52339eac582dd41595d8916c15b53a30191bb878d6580c51578b02c2737",
+    "retrieved_body_bytes": 1959
+  },
+  "diagram": "../diagrams/sd-07-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-07-018",
+      "relation": "see_also",
+      "reason_vi": "Các bên trong một lần quẹt thẻ: ngân hàng thu, mạng thẻ, ngân hàng phát hành."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Both approaches are very secure but their implementations differ; the source breaks the process into the card registration flow and the basic payment flow.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+      "section": "Opening",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Registration is steps 1 to 3 in both cases. Apple Pay: Apple does not store any card information; it passes the card info to the bank; the bank returns a token called DAN (Device Account Number) to the iPhone; the iPhone stores the DAN in a special hardware chip.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+      "section": "Registering your credit card flow",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Registration with Google Pay: the card information is stored on the Google server and Google returns a payment token to the phone.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+      "section": "Registering your credit card flow",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Payment flow, started when the user clicks Pay: with Apple Pay the e-commerce server passes the DAN to the bank; with Google Pay the e-commerce server passes the payment token to the Google server, which looks up the card info and passes it to the bank.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+      "section": "Basic payment flow",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "In the source diagram the red arrow means the credit card info is available on the public network, although encrypted.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+      "section": "Closing",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Which of the two flows the red arrow belongs to is the author's reading of the flows (the Google Pay payment flow passes card info after the lookup); the source body does not name it.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md",
+      "section": "Limits section",
+      "verified_by": "Author's general knowledge; not checked against payment-industry documentation."
+    }
+  ],
+  "design_notes_vi": "Bốn lược đồ hai hoặc ba bên, theo hai trục: đăng ký rồi thanh toán, mỗi trục một lược đồ cho Apple Pay và một cho Google Pay, để người đọc đặt hai cách cạnh nhau. Khung cuối nêu điều khác biệt chính.",
+  "source_deviations": [
+    "The source describes the two flows once, as paired bullets (Apple Pay versus Google Pay); the lesson draws each pair as two diagrams so that the same step can be compared.",
+    "The source says registration is steps 1 to 3 for both; the lesson draws only the messages the text describes and does not add a step the text does not name.",
+    "The source ends with three reference links; the lesson does not reproduce them and names the source only."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W7), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "sd-07-004",
+  "title": "Web 1.0, 2.0 và 3.0",
+  "subtitle": "Chỉ đọc, đọc và viết, đọc, viết và sở hữu.",
+  "desc": "Ba chặng nối nhau. Web 1.0, từ 1991 đến 2004, chỉ đọc: một danh mục trang tĩnh, nhảy từ liên kết này sang liên kết khác. Web 2.0, từ 2004 đến nay, đọc và viết: công cụ tìm kiếm, mạng xã hội, ứng dụng đề xuất; dữ liệu người dùng được các công ty lớn dùng cho quảng cáo. Web 3.0, đọc, viết và sở hữu: nội dung lưu ở IPFS và thuộc về người dùng; ứng dụng muốn dùng dữ liệu phải được cho phép và trả tiền.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba chặng",
+      "items": [
+        {
+          "title": "Web 1.0: đọc",
+          "text": "1991 tới 2004. Trang tĩnh, nhảy giữa các liên kết, không tương tác."
+        },
+        {
+          "title": "Web 2.0: đọc và viết",
+          "text": "2004 tới nay. Tìm kiếm, mạng xã hội, ứng dụng đề xuất. Dữ liệu người dùng nuôi quảng cáo."
+        },
+        {
+          "title": "Web 3.0: sở hữu",
+          "text": "Nội dung ở IPFS thuộc người dùng. Ứng dụng phải xin phép và trả tiền."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Vì sao ít quảng cáo?",
+      "items": [
+        "Quảng cáo của Web 2.0 sống nhờ dữ liệu người dùng mà ứng dụng giữ.",
+        "Nếu dữ liệu thuộc người dùng, ứng dụng phải trả để dùng nó.",
+        "Đây là ý tưởng đang được bàn, chưa phải kết quả đã có."
+      ]
+    }
+  ]
+}

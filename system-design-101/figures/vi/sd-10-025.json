@@ -36,7 +36,7 @@
         },
         {
           "name": "Bốn luồng",
-          "role": "Khoảng 0,7 giây: GIL chỉ cho một luồng chạy.",
+          "role": "Khoảng 0,7 giây: mã Python thuần, GIL chỉ cho một luồng chạy.",
           "icon": "lock"
         },
         {

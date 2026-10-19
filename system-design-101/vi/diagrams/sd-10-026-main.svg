@@ -51,7 +51,7 @@
 <rect x="20" y="772" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="795" r="11" fill="#16a34a"/>
 <polyline points="37.9,795.4 41.7,799.4 48.5,791" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="798.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Container không chạy được</text>
-<text x="64" y="817.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">blame.</text>
+<text x="64" y="798.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Container của bài chưa chạy</text>
+<text x="64" y="817.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được blame.</text>
 </g>
 </svg>

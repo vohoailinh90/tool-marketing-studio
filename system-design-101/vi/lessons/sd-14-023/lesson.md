@@ -44,7 +44,7 @@ Một nhóm đổi từ JWT sang `v4.public` vì nghe rằng PASETO "loại bỏ
 <details>
 <summary>Xem đáp án</summary>
 
-Không giúp gì cho việc này. Chữ ký vẫn hợp lệ cho tới khi token hết hạn, và thư viện không tra danh sách nào. Đổi định dạng chỉ bỏ trường `alg`. Muốn chặn ngay, ứng dụng phải tự thêm một thứ: danh sách thu hồi kiểm ở mỗi yêu cầu (mất một phần tính không trạng thái), hoặc đổi khóa (vô hiệu luôn mọi token ký bằng khóa đó), hoặc quay về session ở máy chủ, nơi xóa một bản ghi là xong. Hạn ngắn kèm cấp lại chỉ thu hẹp thời gian một token bị lộ còn dùng được về sau; nó không chặn token đang có.
+Không giúp gì cho việc này. Chữ ký vẫn hợp lệ, và token chỉ bị từ chối khi việc kiểm hạn `exp` thấy nó đã hết hạn; thư viện không tra danh sách nào. Đổi định dạng chỉ bỏ trường `alg`. Muốn chặn ngay, ứng dụng phải tự thêm một thứ: danh sách thu hồi kiểm ở mỗi yêu cầu (mất một phần tính không trạng thái), hoặc đổi khóa (vô hiệu luôn mọi token ký bằng khóa đó), hoặc quay về session ở máy chủ, nơi xóa một bản ghi là xong. Hạn ngắn kèm cấp lại chỉ thu hẹp thời gian một token bị lộ còn dùng được về sau; nó không chặn token đang có.
 
 </details>
 

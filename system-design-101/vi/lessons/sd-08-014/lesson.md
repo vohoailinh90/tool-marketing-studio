@@ -65,7 +65,7 @@ Dịch vụ thanh toán đôi khi chậm hơn một giây vì cơ sở dữ li�
 <details>
 <summary>Xem đáp án</summary>
 
-Hạn 200 mili giây ngắn hơn thời gian chậm bình thường nên các lần gọi chậm-nhưng-đúng bị coi là lỗi, rồi bị thử lại ba lần: tải lên dịch vụ đang bận tăng gấp ba (như 1.500 lần gọi so với 500 trong phép thử dịch vụ chết). Nên đặt hạn đủ dài cho trường hợp chậm bình thường, thử lại có độ trễ tăng dần và chỉ với việc an toàn khi lặp (một lệnh thu tiền thì không), và thêm ngắt mạch để ngừng gọi khi dịch vụ đang quá yếu.
+Hạn 200 mili giây ngắn hơn thời gian chậm bình thường nên các lần gọi chậm-nhưng-đúng bị coi là lỗi, rồi bị thử lại ba lần: tải lên dịch vụ đang bận tăng gấp ba (như 1.500 lần gọi so với 500 trong phép thử dịch vụ chết). Nên đặt hạn đủ dài cho trường hợp chậm bình thường, thử lại có độ trễ tăng dần và chỉ với việc an toàn khi lặp; một lệnh thu tiền không tự an toàn khi lặp, nên muốn thử lại nó thì gửi kèm một khoá chống lặp (mã giao dịch cố định) để dịch vụ nhận ra cùng một lần thu và không trừ tiền hai lần; và thêm ngắt mạch để ngừng gọi khi dịch vụ đang quá yếu.
 
 </details>
 

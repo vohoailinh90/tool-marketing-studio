@@ -1,0 +1,193 @@
+{
+  "id": "sd-14-019",
+  "title_vi": "Session và JWT: hai cách nhớ người đã đăng nhập",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-019",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what's-the-difference-between-session-based-authentication-and-jwts.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what's-the-difference-between-session-based-authentication-and-jwts.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "8341babbc0cdd4648de64920ce877e1bfa743a99",
+    "retrieved_body_sha256": "89435dad09096ce661398a18e021702de13be2889c5c1f0ad76155e6ef091b5f",
+    "retrieved_body_bytes": 2118
+  },
+  "diagram": "../diagrams/sd-14-019-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-008",
+      "relation": "builds-on",
+      "reason_vi": "Cookie và session phía máy chủ: dữ liệu nằm ở đâu."
+    },
+    {
+      "lesson_id": "sd-14-009",
+      "relation": "builds-on",
+      "reason_vi": "Thuộc tính của cookie, trong đó HttpOnly."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "builds-on",
+      "reason_vi": "Token ngẫu nhiên và JWT như hai cách nhận ra người dùng."
+    },
+    {
+      "lesson_id": "sd-14-011",
+      "relation": "compare-with",
+      "reason_vi": "Đăng nhập ủy quyền là câu hỏi khác với việc nhớ người đã đăng nhập."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "uses",
+      "reason_vi": "Ký bằng khóa riêng, kiểm bằng khóa công khai."
+    },
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "uses",
+      "reason_vi": "Mã hóa ký tự khác mã hóa bảo mật: base64url của JWT."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read (sha256 matches). OWASP JSON Web Token Cheat Sheet and Session Management Cheat Sheet read at CheatSheetSeries commit 3e2db6bf3f5f0c807aef8a8fc84e395acce0292c and PyJWT docs/usage.rst at the 2.14.0 tag commit c6fe464b356ff4b1ebc9ba62172d331a40aa27df, all from raw.githubusercontent.com. Session store, JWT size, revocation, expiry, tampering, readability and key-holding behaviour observed with a local Python 3.13.16 script and PyJWT 2.14.0 using throw-away keys. RFC and standards sites were not reachable and were not read; the Java-named OWASP JWT sheet from the task returned 404 at the pinned commit, so the renamed JSON_Web_Token_Cheat_Sheet.md was read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes session-based authentication (the server creates a session using a secret key and stores the data in session storage, and sends a cookie with the session ID, which the browser sends back on later requests) and JWT-based authentication (no session store; the whole information is in the token; the JWT is signed using a private key; it is passed as a cookie or in the response body, the source going with the cookie; the server verifies it using the secret private key and extracts the user info), using a flight-ticket analogy.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what's-the-difference-between-session-based-authentication-and-jwts.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read; sha256 and byte count match the pinned values."
+    },
+    {
+      "claim_vi": "OWASP: a signature in a signed JWT is either a public-key digital signature or a MAC with a shared secret, depending on the alg header. With a digital signature the issuer signs with its private key and the audience verifies with the public key; with a MAC the same shared secret is used by issuer and audience, and a different secret must be used for each (issuer, audience) pair, otherwise one audience can forge a token impersonating the issuer.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Public-key Signatures vs. MAC; Token Structure",
+      "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: a signed JWT provides integrity and authenticity but not confidentiality; the payload is only base64url encoded, so anyone who obtains the token can read every claim; JWE exists for confidentiality and is not covered here. PyJWT's usage notes say that reading a claimset without validating the signature gives data whose integrity or authenticity cannot be trusted.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Signed JWTs are not confidential; PyJWT usage: Reading the Claimset without Validation",
+      "verified_by": "OWASP file and PyJWT docs/usage.rst (tag 2.14.0 commit c6fe464b356ff4b1ebc9ba62172d331a40aa27df) read from raw.githubusercontent.com."
+    },
+    {
+      "claim_vi": "OWASP: a JWT is often suggested for stateless user sessions, but then a solution for session invalidation is needed, which can be a deny list of revoked sessions or tokens; with such a deny list sessions are no longer completely stateless, and a plain session system may be worth considering. A deny list can be keyed on the jti and iss claims. Short expiration is listed as a way to mitigate token reuse. The cheat sheet also lists other uses of JWT besides user sessions.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Considerations about using JWTs; JWT denylist; Introduction",
+      "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: where one key speaks for more than one issuer or more than one recipient, a verifier that checks only the signature and the expiration accepts any token that key has signed, whatever iss and aud it carries; an application that issues and consumes its own token under a key used for nothing else may omit these claims. Mitigations: validate iss against what the deployment trusts and require the verifier's own identifier in aud. In PyJWT the issuer and audience arguments perform that validation. The lesson's experiments use one server that issues and verifies, so they check only the signature and exp.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Issuer and audience confusion",
+      "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit (the same file as the other OWASP claims); not run in this lesson's own experiments, the audience error is run in the sd-14-020 lesson."
+    },
+    {
+      "claim_vi": "OWASP: on expiry or logout the application must invalidate the session on the server side, and deleting a cookie alone does not invalidate a stolen copy of the session ID; session identifiers need at least 64 bits of entropy and must come from a cryptographically secure random number generator.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Session Expiration; Cookies; Session ID Entropy",
+      "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: do not store authentication tokens, session IDs, JWTs, refresh tokens or any credential in localStorage or sessionStorage, because any JavaScript running in the origin can read them, so one XSS vulnerability discloses every token; use HttpOnly; Secure; SameSite=Strict cookies (preferred) or a Backend-for-Frontend pattern. The HttpOnly attribute only protects the confidentiality of the cookie: the attacker cannot use it offline, but if an XSS attack is combined with a CSRF attack the requests sent to the application still include the session cookie.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "HTML5 Web Storage API; HttpOnly Attribute",
+      "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit. The file named JSON_Web_Token_for_Java_Cheat_Sheet.md in the task returned 404 at that commit; JSON_Web_Token_Cheat_Sheet.md was read instead and says nothing about browser storage beyond one sentence on where claims stay exposed, so storage advice is taken from the session sheet only."
+    },
+    {
+      "claim_vi": "Observed with a dict-based session store: a session ID made from 16 random bytes (secrets.token_urlsafe(16)) was 22 characters; a request with it found the user; changing the role in the stored record showed in the very next lookup (including a demotion from admin to member); deleting the entry made the next request with the same ID fail, as did a random ID never issued.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Experiment A (session store)",
+      "verified_by": "Observed by running a local Python 3.13.16 script with PyJWT 2.14.0 on the authoring machine (python3 -I, throw-away keys, in-memory dict and set, no network); the script and its printed output were kept in the scratchpad, not in the repository; the run was repeated and gave the same results."
+    },
+    {
+      "claim_vi": "Observed size, one measurement: a session ID of 22 bytes against an HS256 JWT with three claims (sub, role, exp) of 145 bytes (36 + 64 + 43 characters for header, payload and signature), a ratio of about 6.6; the same token with a fourth claim jti was 179 bytes; an ES256 token with the same three claims was 188 bytes.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Experiment B and C (size)",
+      "verified_by": "Observed by running a local Python 3.13.16 script with PyJWT 2.14.0 on the authoring machine (python3 -I, throw-away keys, in-memory dict and set, no network); the script and its printed output were kept in the scratchpad, not in the repository; the run was repeated and gave the same results."
+    },
+    {
+      "claim_vi": "Observed: with no server-side record, a kept copy of a valid JWT still verified after the 'logout'; after the role was changed from admin to member in the user table, the session lookup returned member while the old JWT still returned admin.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Experiment D (ending a login early)",
+      "verified_by": "Observed by running a local Python 3.13.16 script with PyJWT 2.14.0 on the authoring machine (python3 -I, throw-away keys, in-memory dict and set, no network); the script and its printed output were kept in the scratchpad, not in the repository; the run was repeated and gave the same results."
+    },
+    {
+      "claim_vi": "Observed: after adding the token's jti to a deny set checked on each request, the same token was refused (before: accepted); verifying the token with a different secret raised InvalidSignatureError; a token with exp two seconds ahead was accepted at once and raised ExpiredSignatureError three seconds later, while a 900-second token from the same run still verified.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Experiments D and G (revocation, expiry); PyJWT usage: Expiration Time Claim",
+      "verified_by": "Observed by running a local Python 3.13.16 script with PyJWT 2.14.0 on the authoring machine (python3 -I, throw-away keys, in-memory dict and set, no network); the script and its printed output were kept in the scratchpad, not in the repository; the run was repeated and gave the same results. PyJWT documents that expiry is verified in jwt.decode and raises ExpiredSignatureError."
+    },
+    {
+      "claim_vi": "Observed: the payload decoded without any key (manual base64url decode and jwt.decode with verify_signature False) showed role and exp; a payload edited to role admin and put back with the original signature raised InvalidSignatureError.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Experiments E and F (tamper, read)",
+      "verified_by": "Observed by running a local Python 3.13.16 script with PyJWT 2.14.0 on the authoring machine (python3 -I, throw-away keys, in-memory dict and set, no network); the script and its printed output were kept in the scratchpad, not in the repository; the run was repeated and gave the same results."
+    },
+    {
+      "claim_vi": "Observed who holds which key: with HS256, a holder of the verifying secret signed a token with role admin and it was accepted; with ES256 (P-256), verification worked with the public key only, the public key object had no sign attribute and PyJWT's attempt to sign with it raised AttributeError, and a token signed by a different private key raised InvalidSignatureError.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Experiment H (keys); Public-key Signatures vs. MAC",
+      "verified_by": "Observed by running a local Python 3.13.16 script with PyJWT 2.14.0 on the authoring machine (python3 -I, throw-away keys, in-memory dict and set, no network); the script and its printed output were kept in the scratchpad, not in the repository; the run was repeated and gave the same results."
+    },
+    {
+      "claim_vi": "Author's inference, not run: instead of trusting the role claim, the server could look the role up in the user table on every request, which would restore a lookup per request.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Nhìn hình trả lời",
+      "verified_by": "Author's general knowledge; not checked against any source and not run."
+    },
+    {
+      "claim_vi": "Server-side sessions need a place to store sessions and a lookup on each request; changing a session's data on the server takes effect on the next request because every request goes through the store.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Đọc hình 1",
+      "verified_by": "Author's general knowledge, supported by the dict-based experiment (A); the session management sheet's section on server-side session token storage was read but does not state this as such."
+    },
+    {
+      "claim_vi": "Not examined: the RFC and other standards texts (not reachable from the authoring environment, only mentioned through OWASP), behaviour in a real browser, several servers sharing a session store, speed, refresh tokens and encrypted JWTs.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what's-the-difference-between-session-based-authentication-and-jwts.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Bốn khung xếp dọc: hai nơi giữ quyền quyết định (sổ hay thẻ), bốn bước khi đăng xuất, ba cách rút JWT sớm và ba điều cần nhớ về thẻ (đọc được, ai giữ khóa nào, nơi đặt thẻ). Không dùng ảnh nguồn và không dùng ví dụ vé máy bay của nguồn.",
+  "source_deviations": [
+    "The source says the JWT is 'signed using a private key' and 'verified using the secret private key', mixing two models; the lesson says that with a shared secret both sides hold the same secret (so the verifier can also sign) and with a key pair the private key only signs and the public key verifies, and that no scheme verifies with a private key.",
+    "The source says the token carries the information 'encoded' and does not say it is readable; the lesson says a signed JWT payload is only base64url, so anyone who holds the token can read it, and that tampering with it breaks the signature.",
+    "The source says no session storage is involved with JWT; the lesson says that holds for verification only, and that ending a login early (logout, changed permissions, stolen token) needs extra state such as a deny list, a short expiry or a key change.",
+    "The source says the backend creates a session 'using a secret key'; in the lesson's experiment the session ID is just random bytes with no key involved, and OWASP asks for at least 64 bits of entropy from a cryptographically secure generator.",
+    "The source says passing the JWT as a cookie or in the response body both have pros and cons without stating them; the lesson reports what OWASP says (no tokens in localStorage or sessionStorage, prefer HttpOnly cookies or a Backend-for-Frontend, and HttpOnly only protects the confidentiality of the cookie).",
+    "The source's flight-ticket analogy and its two five-step lists are not reused; the lesson frames the choice as one decision (who holds the right to say a login is still valid) and builds on the cookie, session and token lessons instead of repeating them."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

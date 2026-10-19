@@ -208,6 +208,11 @@ Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa vi
 13. [Tường lửa: sáu cách viết một luật](lessons/sd-14-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Quản lý dữ liệu nhạy cảm trong hệ thống](lessons/sd-14-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [HTTPS và bắt tay TLS: dựng kênh mã hóa thế nào?](lessons/sd-14-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Mã hóa đối xứng và bất đối xứng](lessons/sd-14-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [Session và JWT: hai cách nhớ người đã đăng nhập](lessons/sd-14-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [JWT: ba phần và hai cách ký](lessons/sd-14-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 21. [HTTPS có an toàn không? Kẻ đứng giữa đọc được khi nào](lessons/sd-14-021/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 22. [An ninh mạng nhập môn: bộ ba CIA và phòng thủ cơ bản](lessons/sd-14-022/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 23. [Cookie, session, JWT và PASETO: chọn cách xác thực nào?](lessons/sd-14-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

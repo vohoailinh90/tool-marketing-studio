@@ -1,0 +1,76 @@
+id: 02-deepseek-harness
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-14
+link: 02-deepseek-harness
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: 'DeepSeek Harness: Khám phá kiến trúc mọi thứ là plugin'
+  subtitle: DeepSeek Harness (dsh) là một khung mã nguồn mở dành cho AI agent do DeepSeek AI phát triển,
+    ứng dụng kiến trúc mọi thứ là plugin dựa trên Cordis.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '249.184'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Khi phát triển các ứng dụng AI agent phức tạp, việc mở rộng tính năng và quản lý các mô-đun thường
+    trở nên khó khăn và rối rắm. DeepSeek Harness giải quyết bài toán này bằng cách mô-đun hóa toàn bộ
+    hệ thống để dễ dàng tùy chỉnh.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Cài đặt và chạy: Sử dụng Node.js để chạy trực tiếp từ npm hoặc clone mã nguồn từ kho chứa để
+      bắt đầu khởi động giao diện Web.'
+  - text: 'Sử dụng kiến trúc Plugin: Hệ thống vận hành dựa trên triết lý mọi thứ là plugin, được hỗ trợ
+      bởi Cordis để tăng tính linh hoạt và khả năng kết hợp.'
+  - text: 'Phát triển và mở rộng: Nhà phát triển có thể tận dụng các công cụ dòng lệnh, tài liệu hướng
+      dẫn và gói nguồn mở để xây dựng các tiện ích mở rộng riêng.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: CLI và Web UI
+    text: Cung cấp cổng giao tiếp trực quan cho người dùng.
+  - emoji: ⚙️
+    title: Cordis Engine
+    text: Đảm bảo kiến trúc mọi thứ là plugin hoạt động trơn tru.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách thiết kế kiến trúc phần mềm dựa hoàn toàn trên plugin
+  - Ứng dụng framework Cordis vào quản lý tính năng
+  - Tổ chức mã nguồn cho một dự án AI agent quy mô lớn
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Dự án đang trong giai đoạn developer preview và có thể thay đổi tính tương thích liên tục
+  - emoji: ⚠️
+    text: Phát hành theo giấy phép MIT
+  - emoji: ⚠️
+    text: Cần lưu ý kiểm tra các thông báo bảo mật trước khi chạy
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Khám phá DeepSeek Harness - Khung AI agent mã nguồn mở với kiến trúc mọi thứ là plugin!
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - DeepSeek
+    - OpenSource
+    - AIAgents
+    - TypeScript
+    - Dev

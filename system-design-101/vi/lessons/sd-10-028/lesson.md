@@ -8,7 +8,7 @@ Bài tự viết cả hai bản bằng Python, chạy ba ca kiểm thử trên b
 ## Từ viết tắt
 
 - **PEP** (Python Enhancement Proposal) — đề xuất cải tiến Python: văn bản đề xuất một thay đổi hay quy ước cho Python; PEP 8 là văn bản quy ước viết mã Python.
-- **SOLID** (Single, Open, Liskov, Interface, Dependency) — năm nguyên tắc thiết kế mã hướng đối tượng, mỗi chữ cái là chữ đầu của một nguyên tắc: trách nhiệm đơn (Single responsibility), mở/đóng (Open/closed), thay thế Liskov (Liskov substitution), tách giao diện (Interface segregation), đảo ngược phụ thuộc (Dependency inversion).
+- **SOLID** (Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion) — năm nguyên tắc thiết kế mã hướng đối tượng, mỗi chữ cái là chữ đầu của một nguyên tắc: trách nhiệm đơn, mở/đóng, thay thế Liskov, tách giao diện, đảo ngược phụ thuộc.
 - **OWASP** (Open Worldwide Application Security Project) — dự án mở về an toàn ứng dụng: tổ chức phát hành các bảng kiểm tra bảo mật cho lập trình viên.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; bài chỉ nhắc nó khi nói về kiểm đầu vào.
 

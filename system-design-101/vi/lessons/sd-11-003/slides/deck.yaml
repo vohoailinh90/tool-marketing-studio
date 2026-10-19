@@ -1,5 +1,23 @@
 id: sd-11-003
-status: doing
+status: done
 owner: claude/sd101-lessons-w16-1
 claimed_at: '2026-10-19T14:28:31Z'
-heartbeat_at: '2026-10-19T14:31:32Z'
+done_at: '2026-10-19T14:37:07Z'
+moda_canvas: cvs_2B7Q2V4Y6R8QMSDEBFGTW5W372
+moda_url: https://moda.app/canvas/4b3dc5b2-78d8-45e9-96b9-6f86b85e0ce2
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - connection-diagram
+  - one-big-number
+  - 2x2-matrix
+  - sequence-diagram
+  - flow
+  - card-grid
+  - two-column-comparison
+  - one-highlighted-sentence
+  - numbered-rows
+  - lookup-table
+  first_concept: 3

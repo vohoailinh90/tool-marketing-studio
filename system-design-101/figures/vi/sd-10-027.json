@@ -1,8 +1,8 @@
 {
   "id": "sd-10-027",
-  "title": "Mười một bước lên lập trình viên cấp cao",
-  "subtitle": "Lộ trình theo ý tác giả nguồn, giữ nguyên số thứ tự.",
-  "desc": "Bốn chuỗi bước, mười một bước. Cách làm việc: 1 công cụ cộng tác, 2 ngôn ngữ lập trình, 3 phát triển API. Vận hành và dữ liệu: 4 máy chủ web và lưu trữ, 5 xác thực và kiểm thử, 6 cơ sở dữ liệu. Tự động hóa và nền tảng: 7 CI/CD, 8 cấu trúc dữ liệu và thuật toán. Tầm nhìn: 9 thiết kế hệ thống, 10 mẫu thiết kế, 11 công cụ AI. Khung cuối nêu ba điều cần nhớ.",
+  "title": "Mười một bước lên cấp cao",
+  "subtitle": "Dịch vụ mượn sách đi qua từng bước.",
+  "desc": "Bốn chuỗi bước, mười một bước, minh họa bằng dịch vụ mượn sách. Cách làm việc: một phiếu việc cho mỗi thay đổi; viết hàm tính phí trả muộn bằng một ngôn ngữ; đặt tên và giao diện cho thao tác mượn sách. Vận hành và dữ liệu: chạy dịch vụ trên máy chủ và đám mây; đăng nhập an toàn và kiểm thử; lưu phiếu mượn trong cơ sở dữ liệu. Tự động hóa và nền tảng: mỗi thay đổi tự chạy kiểm thử; tìm sách trong một triệu mã bằng 20 phép so sánh thay vì một triệu. Tầm nhìn: bộ nhớ đệm và cân bằng tải cho ngày đông người; truyền bảng giảm giá vào hàm thay vì cố định trong mã; xem gợi ý của công cụ AI như mã của người lạ. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {
       "kind": "steps",
@@ -10,15 +10,15 @@
       "items": [
         {
           "title": "1 · Công cụ cộng tác",
-          "text": "Phát triển phần mềm là hoạt động xã hội: Jira, Confluence, Slack, MS Teams, Zoom."
+          "text": "Mỗi thay đổi có một phiếu việc và một người nhận."
         },
         {
           "title": "2 · Ngôn ngữ lập trình",
-          "text": "Chọn và thành thạo một hai ngôn ngữ: Java, Python, JavaScript, C#, Go."
+          "text": "Viết hàm tính phí trả muộn bằng Python."
         },
         {
           "title": "3 · Phát triển API",
-          "text": "REST, GraphQL và gRPC."
+          "text": "Đặt tên và giao diện cho thao tác mượn sách."
         }
       ]
     },
@@ -28,15 +28,15 @@
       "items": [
         {
           "title": "4 · Máy chủ web và lưu trữ",
-          "text": "Máy chủ web và đám mây: AWS, Azure, GCP, Kubernetes."
+          "text": "Chạy dịch vụ trên máy chủ và đám mây."
         },
         {
           "title": "5 · Xác thực và kiểm thử",
-          "text": "JWT, OAuth2; TDD, kiểm thử đầu cuối, kiểm thử hiệu năng."
+          "text": "Đăng nhập an toàn; ba ca kiểm thử."
         },
         {
           "title": "6 · Cơ sở dữ liệu",
-          "text": "Quan hệ: Postgres, MySQL, SQLite. Phi quan hệ: MongoDB, Cassandra, Redis."
+          "text": "Lưu phiếu mượn lâu hơn chương trình."
         }
       ]
     },
@@ -46,11 +46,11 @@
       "items": [
         {
           "title": "7 · CI/CD",
-          "text": "GitHub Actions, Jenkins hoặc CircleCI."
+          "text": "Mỗi thay đổi tự chạy kiểm thử."
         },
         {
           "title": "8 · Cấu trúc dữ liệu và thuật toán",
-          "text": "Big O, sắp xếp, cây, đồ thị."
+          "text": "Tìm trong một triệu mã: 20 phép so sánh thay vì một triệu."
         }
       ]
     },
@@ -60,15 +60,15 @@
       "items": [
         {
           "title": "9 · Thiết kế hệ thống",
-          "text": "Mạng, bộ nhớ đệm, CDN, microservice, nhắn tin, cân bằng tải, nhân bản, hệ phân tán."
+          "text": "Bộ nhớ đệm và cân bằng tải cho ngày đông người."
         },
         {
           "title": "10 · Mẫu thiết kế",
-          "text": "Dependency injection, factory, proxy, observer, facade."
+          "text": "Truyền bảng giảm giá vào hàm."
         },
         {
           "title": "11 · Công cụ AI",
-          "text": "GitHub Copilot, ChatGPT, Langchain, prompt engineering."
+          "text": "Đọc gợi ý như mã của người lạ."
         }
       ]
     },
@@ -76,9 +76,9 @@
       "kind": "notes",
       "heading": "Nhớ gì",
       "items": [
-        "Đây là lộ trình theo ý tác giả, không phải chuẩn nghề.",
-        "Tên công cụ chỉ là ví dụ của nguồn.",
-        "Nguồn không nói thế nào là cấp cao."
+        "Mỗi bước là một việc cụ thể với dịch vụ.",
+        "Tên công cụ chỉ là ví dụ.",
+        "Không phải lộ trình bắt buộc."
       ]
     }
   ]

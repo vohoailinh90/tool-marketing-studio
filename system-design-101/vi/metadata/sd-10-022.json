@@ -33,11 +33,11 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the Python HOWTO statements were read in a raw copy of the CPython documentation at the pinned commit, but the per-paradigm language lists are the source's word"
+      "reason": "Python HOWTO statements read in a raw copy at the pinned commit; the three code samples were run by the author on 2026-10-19 and each prints 56"
     },
     "technical_review": {
       "status": "pending",
@@ -53,40 +53,40 @@
   },
   "claims": [
     {
-      "claim_vi": "Imperative programming changes program state through a sequence of commands, uses control structures like loops and conditionals, emphasizes mutable data and explicit steps; examples C, Python and most procedural languages.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/imperative-vs-functional-vs-object-oriented-programming.md",
-      "section": "Imperative Programming",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Functional programming relies on pure functions without side effects, promotes immutability, supports higher-order functions, recursion and declarative programming; examples Haskell, Lisp, Scala and functional features in JavaScript.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/imperative-vs-functional-vs-object-oriented-programming.md",
-      "section": "Functional Programming",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Object-oriented programming models real-world entities as objects with data and methods, encourages inheritance, encapsulation and polymorphism, uses classes, objects and interfaces; examples Java, C++, Python, Ruby.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/imperative-vs-functional-vs-object-oriented-programming.md",
-      "section": "Object-oriented Programming",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Python functional HOWTO: procedural, declarative, object-oriented and functional approaches; objects have internal state and methods; Smalltalk and Java are object-oriented while C++ and Python support but do not force it; in functional programming functions ideally only take inputs and produce outputs and functions without side effects are called purely functional; a higher-order function takes functions as input or returns a function; Lisp, C++ and Python are multi-paradigm.",
+      "claim_vi": "Python functional HOWTO: programming languages decompose problems as procedural (lists of instructions; C, Pascal and Unix shells), declarative (SQL), object-oriented (objects with internal state and methods; Smalltalk and Java are object-oriented, C++ and Python support but do not force it) or functional (functions that ideally only take inputs and produce outputs).",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
-      "section": "Introduction and functools",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit."
     },
     {
-      "claim_vi": "The source gives no comparison of merit, no code and no guidance on choosing a paradigm; the language lists are examples only.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/imperative-vs-functional-vs-object-oriented-programming.md",
+      "claim_vi": "Functional style discourages functions with side effects; functions with no side effects at all are called purely functional; map and filter are built-ins taking a function; testing is easier because each function is a potential unit test needing only synthesized input.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
+      "section": "Introduction; Ease of debugging and testing; map and filter",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "Lisp, C++ and Python are multi-paradigm; Python programs in functional style usually keep local assignments inside while offering a functional-appearing interface.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "The three Python samples (imperative loop, map/filter/sum, a class with an add method) each compute 56 for the sum of squares of the even numbers in 1 to 6.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Code in the lesson",
+      "verified_by": "Run by the author on 2026-10-19 with Python 3.13.16."
+    },
+    {
+      "claim_vi": "Treating the source's imperative paradigm and the Python documentation's procedural style as one family is the author's reading.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
       "section": "Limits",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "verified_by": "Author's general knowledge; the document uses the word procedural."
     }
   ],
-  "design_notes_vi": "Ba nhóm thẻ, mỗi nhóm bốn ý theo đúng bốn gạch đầu dòng của nguồn, và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba nhóm thẻ cho ba cách viết cùng một bài toán và một khung ghi nhớ. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is three lists of four bullets; the lesson keeps the same three paradigms and four points each and does not use the source image.",
-    "Python behavior is not in the source and comes from the pinned Python functional HOWTO, which explains why Python appears under two paradigms."
+    "The source lists four traits and example languages per paradigm; the lesson keeps only the three paradigm names and explains each through one worked example of its own and the Python HOWTO.",
+    "The source's per-paradigm language lists are not used; language examples come from the Python HOWTO."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải nghĩa viết tắt SQL là kiến thức chung của người biên soạn. Chưa user testing hoặc phê duyệt phát hành."
 }

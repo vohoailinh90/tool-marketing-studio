@@ -38,11 +38,11 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the Go and Python statements were read in raw copies at the pinned commits, but the quote attribution is the source's word and the glosses are the author's general knowledge"
+      "reason": "Go and Python statements read in raw copies at the pinned commits; the measurements were run by the author on 2026-10-19 (Python 3.13.16, 4 cores, two runs) and are illustrative"
     },
     "technical_review": {
       "status": "pending",
@@ -58,58 +58,34 @@
   },
   "claims": [
     {
-      "claim_vi": "The source quotes Rob Pike (written \"Rob Pyke\"), one of the creators of Go: concurrency is about dealing with lots of things at once, parallelism about doing lots of things at once; concurrency is about design and parallelism about execution.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md",
-      "section": "Quote",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Concurrency structures a program to handle multiple tasks that can start, run and complete in overlapping periods but not necessarily at the same instant; it is the composition of independently executing processes and lets a program make progress on tasks without finishing one before starting another.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md",
-      "section": "Concurrency paragraphs",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Parallelism is the simultaneous execution of multiple computations using multiple processors or cores; it requires hardware with multiple processing units and aims at throughput and computational speed.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md",
-      "section": "Parallelism paragraph",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Concurrency keeps a program responsive, runs background tasks and handles many operations even on a single core; useful for I/O-bound and high-latency work. Parallelism matters for CPU-bound tasks: heavy mathematics, data analysis, image processing, real-time processing.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md",
-      "section": "Practical paragraphs",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Effective Go: concurrency is structuring a program as independently executing components, parallelism is executing calculations in parallel for efficiency on multiple CPUs; Go is a concurrent language, not a parallel one, though its concurrency features can make some problems easy to structure as parallel computations.",
+      "claim_vi": "Effective Go: concurrency is structuring a program as independently executing components; parallelism is executing calculations in parallel for efficiency on multiple CPUs; Go is a concurrent language, not a parallel one.",
       "source": "https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/effective_go.html",
-      "section": "Concurrency vs parallelism",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "Parallelization",
+      "verified_by": "Read from the pinned commit; the sentence is in the document."
     },
     {
-      "claim_vi": "Python asyncio is a library to write concurrent code with async/await and is often a perfect fit for IO-bound and high-level structured network code.",
+      "claim_vi": "asyncio is a library to write concurrent code with async/await and is often a perfect fit for IO-bound, high-level structured network code.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/asyncio.rst",
-      "section": "asyncio",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "Introduction",
+      "verified_by": "Read from the pinned commit."
     },
     {
-      "claim_vi": "Python threading: in CPython, due to the GIL, only one thread can execute Python code at once; to make better use of multi-core machines use multiprocessing or ProcessPoolExecutor; threading remains appropriate for running multiple I/O-bound tasks simultaneously.",
+      "claim_vi": "In CPython, because of the GIL, only one thread executes Python code at once; use multiprocessing or ProcessPoolExecutor to use multi-core machines; threading remains appropriate for several I/O-bound tasks; free-threaded builds of Python 3.13 can disable the GIL.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/threading.rst",
-      "section": "threading note",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "Introduction and GIL notes",
+      "verified_by": "Read from the pinned commit."
     },
     {
-      "claim_vi": "The attribution of the quote to Rob Pike and the glosses of CPU and GIL are the author's general knowledge.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md",
-      "section": "Limits and Từ viết tắt",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "claim_vi": "Measured by the author on 2026-10-19 (Python 3.13.16, 4 cores): four 0.5 s waits take 2.00 s one by one and 0.50 s with asyncio or four threads; four CPU-bound loops take about 0.6 s one by one, about 0.7 s with four threads and 0.21 to 0.30 s with four processes (two runs).",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Experiment in the lesson",
+      "verified_by": "Run by the author; the code is described in the lesson's deep-dive section. Numbers depend on the machine."
     }
   ],
-  "design_notes_vi": "Hai nhóm thẻ (đồng thời, song song), mỗi nhóm ba thẻ, và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai nhóm thẻ số đo của một thí nghiệm tự chạy và một khung ghi nhớ. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is a quote and five paragraphs; the lesson redraws them as two groups of three cards and does not use the source image.",
-    "Go and Python behavior is not in the source and comes from the pinned Effective Go and Python documentation."
+    "The source defines the two ideas in prose and lists where each fits; the lesson uses none of its sentences and instead measures four waits and four CPU-bound tasks and reads the result against the Go and Python documentation.",
+    "The source's quotation and its attribution are not used."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Số đo là của một lần thử trên một máy, chỉ để minh họa. Chưa user testing hoặc phê duyệt phát hành."
 }

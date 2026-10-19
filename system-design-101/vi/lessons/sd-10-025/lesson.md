@@ -1,59 +1,55 @@
 # Đồng thời và song song: khác nhau ở đâu?
 
-**Đồng thời (concurrency) là cách thiết kế chương trình để xử lý nhiều việc; song song (parallelism) là cách thực thi nhiều phép tính cùng một lúc. Cái đầu nói về cấu trúc, cái sau nói về phần cứng.**
-Bài nguồn dựng quanh một câu nói và hai đoạn định nghĩa; bài này đọc từng ý rồi đối chiếu với tài liệu của Go và Python.
+**Cùng một máy bốn lõi, bốn việc chờ và bốn việc tính toán chạy theo ba cách. Số đo cho thấy khi nào chỉ cần đồng thời, khi nào phải có song song.**
+Bài tự chạy một thí nghiệm nhỏ bằng Python rồi đọc kết quả cùng tài liệu của Go và Python; số đo là của một lần thử trên một máy, không phải con số chung.
 
-![Hai nhóm thẻ và một khung ghi nhớ. Đồng thời, nghĩa là dealing with nhiều việc cùng lúc, ba thẻ: chuyện thiết kế chương trình; các việc chạy chồng thời gian nhau, không nhất thiết cùng một khoảnh khắc, một lõi vẫn làm được; hợp với việc chờ như tệp, mạng, người dùng. Song song, nghĩa là doing nhiều việc cùng lúc, ba thẻ: chuyện thực thi, chạy nhiều phép tính cùng một lúc; cần nhiều bộ xử lý hoặc nhiều lõi; hợp với việc nặng tính toán. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-025-main.svg)
+![Hai nhóm thẻ số đo và một khung ghi nhớ. Bốn việc chờ, mỗi việc 0,5 giây: lần lượt hết 2,00 giây; đồng thời bằng asyncio hết 0,50 giây; đồng thời bằng bốn luồng hết 0,50 giây. Bốn việc tính toán: lần lượt hết khoảng 0,6 giây; bốn luồng khoảng 0,7 giây; bốn tiến trình khoảng 0,2 đến 0,3 giây. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-025-main.svg)
 
 ## Từ viết tắt
 
-- **CPU** (Central Processing Unit) — bộ xử lý trung tâm: phần cứng chạy chương trình; việc "bị chặn bởi CPU" là việc mà tốc độ tính toán của nó quyết định thời gian chạy.
-- **GIL** (Global Interpreter Lock) — khóa phiên dịch toàn cục: cơ chế của CPython khiến một thời điểm chỉ một luồng chạy mã Python.
+- **CPU** (Central Processing Unit) — bộ xử lý trung tâm: phần cứng chạy chương trình; việc "nặng tính toán" là việc mà tốc độ của nó quyết định thời gian chạy.
+- **GIL** (Global Interpreter Lock) — khóa phiên dịch toàn cục: cơ chế của CPython (bản Python phổ biến nhất) khiến một thời điểm chỉ một luồng chạy mã Python.
 
 ## Đọc hình
 
-**Câu nói mở đầu.** Nguồn trích lời Rob Pike (nguồn viết là "Rob Pyke", một trong những người tạo ra Go): "Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once." Nói gọn: đồng thời là *xử lý* nhiều việc cùng lúc, song song là *làm* nhiều việc cùng lúc. Theo nguồn, đồng thời nghiêng về *thiết kế* chương trình, song song nghiêng về *thực thi*.
+**Bốn việc chờ.** Mỗi việc chỉ chờ nửa giây, như khi đợi một máy chủ khác trả lời. Làm lần lượt thì hết 2,00 giây vì phải chờ nối đuôi nhau. Cho cả bốn việc cùng đang chờ thì hết 0,50 giây, dù bằng asyncio (chạy trong một luồng, nên không cần nhiều lõi) hay bằng bốn luồng. Đây là đồng thời: nhiều việc cùng tiến triển trong những khoảng thời gian chồng nhau, và thời gian chờ của việc này được dùng cho việc kia.
 
-**Đồng thời.** Là cấu trúc một chương trình để xử lý nhiều việc: các việc có thể bắt đầu, chạy và kết thúc trong những khoảng thời gian chồng lên nhau, nhưng không nhất thiết ở cùng một khoảnh khắc. Nguồn mô tả nó là sự kết hợp của các tiến trình chạy độc lập, và là khả năng của chương trình xử lý nhiều việc bằng cách làm cho từng việc tiến triển, mà không cần xong việc này mới bắt đầu việc kia. Trên thực tế, đồng thời giúp chương trình vẫn phản hồi đầu vào, làm việc nền và xử lý nhiều thao tác như thể cùng lúc, kể cả trên bộ xử lý một lõi. Nó đặc biệt hữu ích với các việc bị chặn bởi vào ra (I/O, input/output) và có độ trễ cao: chờ tệp, mạng hoặc thao tác của người dùng.
+**Bốn việc tính toán.** Mỗi việc là một vòng lặp cộng ba triệu số, không có gì để chờ. Lần lượt hết khoảng 0,6 giây. Bốn luồng không nhanh hơn, còn chậm hơn một chút, khoảng 0,7 giây. Bốn tiến trình thì hết khoảng 0,2 đến 0,3 giây, vì mỗi tiến trình dùng một lõi riêng. Đây là song song: nhiều phép tính chạy đúng cùng một lúc trên nhiều lõi.
 
-**Song song.** Là việc thực thi nhiều phép tính cùng một lúc: chạy hai hay nhiều tác vụ cùng lúc, dùng nhiều bộ xử lý hoặc nhiều lõi trong một máy. Song song cần phần cứng có nhiều đơn vị xử lý, và mục tiêu chính là tăng thông lượng (throughput) và tốc độ tính toán của hệ thống. Nó quan trọng với các việc bị chặn bởi CPU, nơi tốc độ tính toán là nút thắt: tính toán toán học nặng, phân tích dữ liệu, xử lý ảnh, xử lý thời gian thực.
+**Vì sao luồng không giúp việc tính toán.** Tài liệu `threading` của Python nói: trong CPython, do GIL, một thời điểm chỉ một luồng chạy mã Python. Muốn dùng nhiều lõi thì nên dùng `multiprocessing` hoặc `ProcessPoolExecutor`; còn luồng vẫn phù hợp khi chạy nhiều việc bị chặn bởi chờ vào ra. Cũng tài liệu đó ghi từ Python 3.13 có bản "free-threaded" tắt được GIL; thí nghiệm ở đây chạy trên bản có GIL.
 
-**Gặp lại trong tài liệu gốc.**
-- Tài liệu Effective Go của Go định nghĩa hai khái niệm gần như vậy: đồng thời là cấu trúc một chương trình thành các thành phần chạy độc lập; song song là thực hiện các phép tính song song trên nhiều bộ xử lý để tăng hiệu quả. Tài liệu nói Go là ngôn ngữ đồng thời chứ không phải ngôn ngữ song song, và các tính năng đồng thời của Go có thể giúp một số bài toán dễ được cấu trúc thành tính toán song song.
-- Tài liệu `asyncio` của Python mô tả nó là thư viện viết mã đồng thời bằng cú pháp async/await, và "thường rất hợp" với mã mạng có cấu trúc, bị chặn bởi vào ra.
-- Tài liệu `threading` của Python nói: trong CPython, do GIL, một thời điểm chỉ một luồng chạy mã Python; muốn tận dụng tài nguyên tính toán của máy nhiều lõi thì nên dùng `multiprocessing` hoặc `ProcessPoolExecutor`; nhưng luồng vẫn là mô hình thích hợp để chạy nhiều việc bị chặn bởi vào ra cùng lúc.
+**Hai khái niệm theo tài liệu Go.** Effective Go dặn đừng nhầm hai ý: đồng thời là dựng chương trình thành các thành phần chạy độc lập; song song là tính toán song song để hiệu quả hơn trên nhiều CPU. Go là ngôn ngữ đồng thời, không phải ngôn ngữ song song, và không phải bài toán song song nào cũng khớp với mô hình của Go. Tài liệu `asyncio` thì nói thư viện này viết mã đồng thời bằng cú pháp async/await và "thường rất hợp" với mã mạng có cấu trúc, bị chặn bởi vào ra.
 
 ## Giới hạn cần nhớ
 
-Nguồn không có mã, số đo hay ví dụ chạy được; nó cũng không nói khi nào chọn bên nào ngoài hai nhóm việc (chờ đợi và tính toán nặng). Việc lời trích là của Rob Pike, một trong những người tạo ra Go, là lời của nguồn (nguồn viết tên là "Rob Pyke"); bài chỉ đối chiếu các định nghĩa với Effective Go, không kiểm tra lời trích.
-Nguồn dùng chữ "đồng thời" trong câu "xử lý nhiều việc cùng lúc" nhưng cũng nói rõ các việc không nhất thiết chạy tại cùng một khoảnh khắc; đọc kỹ chỗ đó để khỏi lẫn với song song. Ví dụ Go và Python chỉ là vài trường hợp đã đối chiếu, không phải danh sách đầy đủ.
+Số đo là của hai lần chạy trên một container bốn lõi với Python 3.13.16; máy khác, bản khác hay tải khác sẽ cho số khác, nên hãy đọc tỉ lệ (2,00 xuống 0,50; 0,6 xuống 0,2 đến 0,3) hơn là từng con số. Việc chờ được giả bằng `time.sleep`, không phải mạng thật. Mỗi tiến trình có chi phí khởi động, nên việc quá nhỏ không đáng chia thành tiến trình. Bài không đo Go, và không nói chọn công cụ nào cho chương trình thật: chỉ đo hai loại việc đơn giản.
 
 ## Nhìn hình trả lời
 
-Một chương trình dành phần lớn thời gian chờ phản hồi từ mạng và tệp. Một chương trình khác xử lý ảnh bằng những phép tính nặng. Theo nguồn, mỗi chương trình hợp với đồng thời hay song song? Và đồng thời có đòi hỏi máy nhiều lõi không?
+Một chương trình gọi hai mươi dịch vụ ngoài, mỗi lần gọi chủ yếu là chờ. Một chương trình khác nén ảnh, việc nào cũng đốt hết một lõi. Mỗi chương trình hợp với cách nào trong hình, và vì sao bốn luồng không giúp chương trình thứ hai?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Chương trình chờ mạng và tệp (bị chặn bởi vào ra, độ trễ cao) hợp với đồng thời.
-Chương trình xử lý ảnh nặng tính toán (bị chặn bởi CPU) hợp với song song, vì cần tốc độ và thông lượng tính toán.
-Đồng thời không đòi hỏi nhiều lõi: nguồn nói nó chạy được trên bộ xử lý một lõi. Song song thì cần phần cứng có nhiều đơn vị xử lý.
+Chương trình gọi dịch vụ hợp với đồng thời (asyncio hoặc luồng): thời gian chờ chồng nhau, như bốn việc chờ từ 2,00 giây xuống 0,50 giây.
+Chương trình nén ảnh hợp với song song (nhiều tiến trình, mỗi tiến trình một lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn việc tính toán vẫn chạy nối đuôi nhau.
 
 </details>
 
 <details>
-<summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
+<summary>Xem sâu hơn: cách đo</summary>
 
-Bài nguồn có một ảnh, một câu mở đầu, lời trích và năm đoạn: đồng thời (hai đoạn), song song, ứng dụng của đồng thời, ứng dụng của song song. Hình ở đây gộp thành hai nhóm thẻ, một nhóm cho mỗi khái niệm, và không dùng ảnh nguồn.
-Mục "Gặp lại trong tài liệu gốc" lấy từ Effective Go và tài liệu Python tại commit cố định ở mục nguồn, không phải từ bài nguồn.
+Mỗi phép đo dùng `time.perf_counter` quanh toàn bộ bốn việc. Việc chờ là `time.sleep(0,5)` (trong bản asyncio là `await asyncio.sleep(0,5)`); việc tính toán là vòng `for i in range(3_000_000): s += i * i`. Ba cách chạy là: gọi lần lượt trong một vòng lặp; `asyncio.gather` hoặc `ThreadPoolExecutor(4)` cho việc chờ; `ThreadPoolExecutor(4)` và `ProcessPoolExecutor(4)` cho việc tính toán. Chạy lại hai lần cho kết quả sát nhau (việc tính toán lần lượt 0,60 và 0,63 giây, bốn luồng 0,70 và 0,72, bốn tiến trình 0,21 và 0,30).
+
+Đồng thời và song song cũng đi cùng nhau được: một chương trình đồng thời cho việc chờ có thể đồng thời giao việc nặng cho nhiều tiến trình. Hình chỉ tách hai loại việc để thấy mỗi cách hợp chỗ nào.
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md): định nghĩa đồng thời và song song, nơi mỗi bên hợp.
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md): chỉ lấy chủ đề; ý, ví dụ và số đo trong bài là của bài này.
 - [Go — Effective Go](https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/effective_go.html): đồng thời khác song song; Go là ngôn ngữ đồng thời. Đọc từ kho mã.
-- [Python — asyncio](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/asyncio.rst) và [threading](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/threading.rst): mã đồng thời, việc bị chặn bởi vào ra, khóa phiên dịch toàn cục, `multiprocessing`. Đọc từ kho mã.
+- [Python — asyncio](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/asyncio.rst) và [threading](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/threading.rst): mã đồng thời bằng async/await, khóa phiên dịch toàn cục, `multiprocessing`, bản free-threaded. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-18. Các câu giải nghĩa CPU và GIL trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
+Đã đọc nguồn ngày 2026-10-19. Số đo do người biên soạn chạy ngày 2026-10-19; các câu giải nghĩa CPU và GIL trong mục từ viết tắt là kiến thức chung của người biên soạn (phần GIL khớp với tài liệu `threading`).
 Bài viết và hình được thiết kế độc lập.

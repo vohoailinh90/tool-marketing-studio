@@ -33,11 +33,11 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the PEP 8, Google style, unittest and functional HOWTO statements were read in raw copies at the pinned commits, but the SOLID, abstraction, design pattern, refactoring and security principles are only the source's word and the glosses are the author's general knowledge"
+      "reason": "PEP 8, the Google Java guide, unittest, the Python functional HOWTO and the OWASP cheat sheet were read in raw copies at the pinned commits; the two code samples and the three tests were run by the author on 2026-10-19; the readings of SOLID, design patterns and refactoring are the author's"
     },
     "technical_review": {
       "status": "pending",
@@ -53,76 +53,46 @@
   },
   "claims": [
     {
-      "claim_vi": "Principle 1: follow industry norms such as PEP 8 and Google Java Style so code quality is consistent and readable.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Principle 1",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Principle 2: document and comment complex logic and decisions; explain why rather than what; keep docs clear, concise and continuously updated.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Principle 2",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Principle 3: handle unexpected situations and inputs without crashing or unpredictable results, most commonly by catching and handling exceptions.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Principle 3",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Principle 4: SOLID is Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation and Dependency Inversion, the cornerstones of code that scales and is easy to maintain.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Principle 4",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Principles 5 to 8: easy testing by reducing component complexity and supporting automated testing; moderate abstraction; design patterns without over-design; reduce global dependencies, prefer local state and parameter passing, side-effect-free functions.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Principles 5-8",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Principles 9 and 10: continuous refactoring reduces technical debt; security is a top priority and good code avoids common vulnerabilities.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Principles 9-10",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "PEP 8: code is read much more often than it is written; the guidelines aim at readability and consistency; comments that contradict the code are worse than no comments, so keep them up to date.",
+      "claim_vi": "PEP 8: code is read much more often than it is written and the guidelines aim at readability and consistency; constants are usually module-level and in all capital letters with underscores; inline comments that state the obvious are unnecessary and distracting; comments that contradict the code are worse than none; a bare except catches SystemExit and KeyboardInterrupt and can disguise other problems.",
       "source": "https://github.com/python/peps/blob/6068058b896441388bbf22f2607ab681193f6a3d/peps/pep-0008.rst",
-      "section": "PEP 8",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "Introduction; Constants; Comments; Programming Recommendations",
+      "verified_by": "Read from a raw copy at the pinned commit."
     },
     {
-      "claim_vi": "The Google Java Style Guide serves as the complete definition of Google's coding standards for Java source code; a source file is in Google Style only if it adheres to its rules.",
+      "claim_vi": "The Google Java Style Guide describes itself as the complete definition of Google's coding standards for Java source; a file is in Google Style if and only if it follows the rules.",
       "source": "https://github.com/google/styleguide/blob/f43b95b083a5e52c85fcbb9e7e76cbd5e1c2b3f8/javaguide.html",
-      "section": "Introduction",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "1 Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit."
     },
     {
-      "claim_vi": "Python unittest supports test automation, sharing of setup and shutdown code, aggregation of tests into collections and independence of tests from the reporting framework.",
+      "claim_vi": "unittest: a test case checks a specific response to a particular set of inputs; assertRaises verifies that an exception is raised. Python functional HOWTO: functional style discourages functions with side effects.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/unittest.rst",
-      "section": "unittest introduction",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "unittest basic concepts; functional HOWTO introduction",
+      "verified_by": "Read from raw copies at the pinned commit."
     },
     {
-      "claim_vi": "Python functional HOWTO: functional style discourages functions with side effects that modify internal state or make changes not visible in the return value.",
-      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
-      "section": "Introduction",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "claim_vi": "OWASP Input Validation Cheat Sheet: validate both syntax and semantics; numbers get type, format, minimum and maximum; validation does not replace parameterized queries for SQL.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/d89285c7bfc3f24fa79881407c89a85bf6d17272/cheatsheets/Input_Validation_Cheat_Sheet.md",
+      "section": "Introduction; Input Validation Strategies",
+      "verified_by": "Read from a raw copy at the pinned commit."
     },
     {
-      "claim_vi": "The SOLID names, abstraction, design patterns, refactoring and security remarks are not checked against outside documents; the glosses of PEP and SOLID are the author's general knowledge.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
-      "section": "Limits and Từ viết tắt",
+      "claim_vi": "The example late_fee function and its three unittest cases pass on Python 3.13.16; calc(2, 'vip') returns 5000.0 while calc('2', 'vip') and calc(None, 'vip') return 0; late_fee('2') raises TypeError.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Code in the lesson",
+      "verified_by": "Run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Mapping the example to SOLID, to design patterns (a dictionary instead of a strategy hierarchy) and to refactoring in small steps is the author's judgement.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Principles 4, 7 and 9",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba nhóm thẻ (đọc được và bền; dễ kiểm thử và dễ đổi; giữ lâu dài) giữ đúng mười nguyên tắc và thứ tự của nguồn, và một khung ghi nhớ. Cách chia nhóm là của bài. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba nhóm thẻ theo mười nguyên tắc đánh số, mỗi thẻ nêu chỗ sửa trong ví dụ, và một khung ghi nhớ. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is ten numbered paragraphs; the lesson keeps the order and groups them into three sets, saying the grouping is the lesson's.",
-    "Four of the principles are checked against PEP 8, the Google Java Style Guide, Python unittest and the Python functional HOWTO, which the source does not cite."
+    "The source gives each principle one paragraph of general advice; the lesson keeps only the ten names and their order and shows each at a concrete change in one before-and-after example of its own.",
+    "The source's sentences and its examples (PEP 8 and Google Java Style as names) are not copied; the style and test points are read from the documents themselves."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Các nhận định về SOLID, mẫu thiết kế và tái cấu trúc là của người biên soạn; các câu giải nghĩa PEP, SOLID, OWASP, SQL là kiến thức chung. Chưa user testing hoặc phê duyệt phát hành."
 }

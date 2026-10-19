@@ -1,122 +1,111 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="2019" viewBox="0 0 320 2019" role="img" aria-labelledby="title desc">
-<title id="title">Mười một bước lên lập trình viên cấp cao</title>
-<desc id="desc">Bốn chuỗi bước, mười một bước. Cách làm việc: 1 công cụ cộng tác, 2 ngôn ngữ lập trình, 3 phát triển API. Vận hành và dữ liệu: 4 máy chủ web và lưu trữ, 5 xác thực và kiểm thử, 6 cơ sở dữ liệu. Tự động hóa và nền tảng: 7 CI/CD, 8 cấu trúc dữ liệu và thuật toán. Tầm nhìn: 9 thiết kế hệ thống, 10 mẫu thiết kế, 11 công cụ AI. Khung cuối nêu ba điều cần nhớ.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1807" viewBox="0 0 320 1807" role="img" aria-labelledby="title desc">
+<title id="title">Mười một bước lên cấp cao</title>
+<desc id="desc">Bốn chuỗi bước, mười một bước, minh họa bằng dịch vụ mượn sách. Cách làm việc: một phiếu việc cho mỗi thay đổi; viết hàm tính phí trả muộn bằng một ngôn ngữ; đặt tên và giao diện cho thao tác mượn sách. Vận hành và dữ liệu: chạy dịch vụ trên máy chủ và đám mây; đăng nhập an toàn và kiểm thử; lưu phiếu mượn trong cơ sở dữ liệu. Tự động hóa và nền tảng: mỗi thay đổi tự chạy kiểm thử; tìm sách trong một triệu mã bằng 20 phép so sánh thay vì một triệu. Tầm nhìn: bộ nhớ đệm và cân bằng tải cho ngày đông người; truyền bảng giảm giá vào hàm thay vì cố định trong mã; xem gợi ý của công cụ AI như mã của người lạ. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="2019" fill="#f8fafc"/>
+<rect width="320" height="1807" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười một bước lên lập</text>
-<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trình viên cấp cao</text>
-<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Lộ trình theo ý tác giả nguồn, giữ</text>
-<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nguyên số thứ tự.</text>
-<rect x="8" y="123" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cách làm việc</text>
-<rect x="20" y="168" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
-<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
-<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1 · Công cụ cộng tác</text>
-<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phát triển phần mềm là</text>
-<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoạt động xã hội: Jira,</text>
-<text x="70" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Confluence, Slack, MS</text>
-<text x="70" y="276.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Teams, Zoom.</text>
-<rect x="20" y="316" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="46" cy="342" r="14" fill="#1d4ed8"/>
-<text x="46" y="347.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
-<text x="70" y="342.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Ngôn ngữ lập trình</text>
-<text x="70" y="366.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn và thành thạo một hai</text>
-<text x="70" y="385.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngôn ngữ: Java, Python,</text>
-<text x="70" y="405.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript, C#, Go.</text>
-<polyline points="46,296 46,314" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="20" y="445" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="46" cy="471" r="14" fill="#1d4ed8"/>
-<text x="46" y="476.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
-<text x="70" y="471.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">3 · Phát triển API</text>
-<text x="70" y="495.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">REST, GraphQL và gRPC.</text>
-<polyline points="46,425 46,443" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="537" width="304" height="481" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="565.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vận hành và dữ liệu</text>
-<rect x="20" y="582" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="46" cy="608" r="14" fill="#0f766e"/>
-<text x="46" y="613.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
-<text x="70" y="608.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">4 · Máy chủ web và lưu</text>
-<text x="70" y="628.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">trữ</text>
-<text x="70" y="652.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ web và đám mây:</text>
-<text x="70" y="671.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">AWS, Azure, GCP,</text>
-<text x="70" y="691.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kubernetes.</text>
-<rect x="20" y="731" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="46" cy="757" r="14" fill="#0f766e"/>
-<text x="46" y="762.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
-<text x="70" y="757.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">5 · Xác thực và kiểm</text>
-<text x="70" y="777.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">thử</text>
-<text x="70" y="801.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JWT, OAuth2; TDD, kiểm thử</text>
-<text x="70" y="820.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu cuối, kiểm thử hiệu</text>
-<text x="70" y="840.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năng.</text>
-<polyline points="46,711 46,729" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="20" y="880" width="280" height="126" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="46" cy="906" r="14" fill="#0f766e"/>
-<text x="46" y="911.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
-<text x="70" y="906.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">6 · Cơ sở dữ liệu</text>
-<text x="70" y="930.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quan hệ: Postgres, MySQL,</text>
-<text x="70" y="949.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SQLite. Phi quan hệ:</text>
-<text x="70" y="969.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MongoDB, Cassandra,</text>
-<text x="70" y="988.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis.</text>
-<polyline points="46,860 46,878" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="1030" width="304" height="254" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="1058.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tự động hóa và nền tảng</text>
-<rect x="20" y="1075" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="46" cy="1101" r="14" fill="#b45309"/>
-<text x="46" y="1106.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
-<text x="70" y="1101.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">7 · CI/CD</text>
-<text x="70" y="1125.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GitHub Actions, Jenkins</text>
-<text x="70" y="1144.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoặc CircleCI.</text>
-<rect x="20" y="1184" width="280" height="88" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="46" cy="1210" r="14" fill="#b45309"/>
-<text x="46" y="1215.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
-<text x="70" y="1210.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">8 · Cấu trúc dữ liệu và</text>
-<text x="70" y="1230.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">thuật toán</text>
-<text x="70" y="1254.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Big O, sắp xếp, cây, đồ thị.</text>
-<polyline points="46,1164 46,1182" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="1296" width="304" height="441" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="1324.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tầm nhìn</text>
-<rect x="20" y="1341" width="280" height="126" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
-<circle cx="46" cy="1367" r="14" fill="#6d28d9"/>
-<text x="46" y="1372.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
-<text x="70" y="1367.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">9 · Thiết kế hệ thống</text>
-<text x="70" y="1391.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng, bộ nhớ đệm, CDN,</text>
-<text x="70" y="1410.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">microservice, nhắn tin, cân</text>
-<text x="70" y="1430.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng tải, nhân bản, hệ phân</text>
-<text x="70" y="1449.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tán.</text>
-<rect x="20" y="1489" width="280" height="107" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
-<circle cx="46" cy="1515" r="14" fill="#6d28d9"/>
-<text x="46" y="1520.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
-<text x="70" y="1515.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">10 · Mẫu thiết kế</text>
-<text x="70" y="1539.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dependency injection,</text>
-<text x="70" y="1558.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">factory, proxy, observer,</text>
-<text x="70" y="1578.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">facade.</text>
-<polyline points="46,1469 46,1487" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="20" y="1618" width="280" height="107" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
-<circle cx="46" cy="1644" r="14" fill="#6d28d9"/>
-<text x="46" y="1649.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
-<text x="70" y="1644.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">11 · Công cụ AI</text>
-<text x="70" y="1668.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GitHub Copilot, ChatGPT,</text>
-<text x="70" y="1687.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Langchain, prompt</text>
-<text x="70" y="1707.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">engineering.</text>
-<polyline points="46,1598 46,1616" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="1749" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="1777.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
-<rect x="20" y="1794" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1817" r="11" fill="#16a34a"/>
-<polyline points="37.9,1817.4 41.7,1821.4 48.5,1813" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1820.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là lộ trình theo ý tác giả,</text>
-<text x="64" y="1839.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không phải chuẩn nghề.</text>
-<rect x="20" y="1865" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1888" r="11" fill="#16a34a"/>
-<polyline points="37.9,1888.4 41.7,1892.4 48.5,1884" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1891.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên công cụ chỉ là ví dụ của</text>
-<text x="64" y="1910.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguồn.</text>
-<rect x="20" y="1936" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1959" r="11" fill="#16a34a"/>
-<polyline points="37.9,1959.4 41.7,1963.4 48.5,1955" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1962.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn không nói thế nào là</text>
-<text x="64" y="1981.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cấp cao.</text>
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười một bước lên cấp</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">cao</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Dịch vụ mượn sách đi qua từng bước.</text>
+<rect x="8" y="104" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cách làm việc</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1 · Công cụ cộng tác</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi thay đổi có một phiếu</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc và một người nhận.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Ngôn ngữ lập trình</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Viết hàm tính phí trả muộn</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng Python.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">3 · Phát triển API</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đặt tên và giao diện cho</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thao tác mượn sách.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="478" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="506.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vận hành và dữ liệu</text>
+<rect x="20" y="523" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="549" r="14" fill="#0f766e"/>
+<text x="46" y="554.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="549.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">4 · Máy chủ web và lưu</text>
+<text x="70" y="569.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">trữ</text>
+<text x="70" y="593.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy dịch vụ trên máy chủ</text>
+<text x="70" y="612.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và đám mây.</text>
+<rect x="20" y="652" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="678" r="14" fill="#0f766e"/>
+<text x="46" y="683.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="678.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">5 · Xác thực và kiểm</text>
+<text x="70" y="698.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">thử</text>
+<text x="70" y="722.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đăng nhập an toàn; ba ca</text>
+<text x="70" y="741.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểm thử.</text>
+<polyline points="46,632 46,650" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="781" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="807" r="14" fill="#0f766e"/>
+<text x="46" y="812.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="807.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">6 · Cơ sở dữ liệu</text>
+<text x="70" y="831.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu phiếu mượn lâu hơn</text>
+<text x="70" y="850.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chương trình.</text>
+<polyline points="46,761 46,779" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="892" width="304" height="293" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="920.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tự động hóa và nền tảng</text>
+<rect x="20" y="937" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="963" r="14" fill="#b45309"/>
+<text x="46" y="968.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="963.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">7 · CI/CD</text>
+<text x="70" y="987.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi thay đổi tự chạy kiểm</text>
+<text x="70" y="1006.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử.</text>
+<rect x="20" y="1046" width="280" height="127" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1072" r="14" fill="#b45309"/>
+<text x="46" y="1077.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="1072.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">8 · Cấu trúc dữ liệu và</text>
+<text x="70" y="1092.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">thuật toán</text>
+<text x="70" y="1116.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm trong một triệu mã: 20</text>
+<text x="70" y="1135.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phép so sánh thay vì một</text>
+<text x="70" y="1155.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">triệu.</text>
+<polyline points="46,1026 46,1044" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1197" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1225.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tầm nhìn</text>
+<rect x="20" y="1242" width="280" height="87" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
+<circle cx="46" cy="1268" r="14" fill="#6d28d9"/>
+<text x="46" y="1273.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="1268.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">9 · Thiết kế hệ thống</text>
+<text x="70" y="1292.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ nhớ đệm và cân bằng tải</text>
+<text x="70" y="1311.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho ngày đông người.</text>
+<rect x="20" y="1351" width="280" height="87" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
+<circle cx="46" cy="1377" r="14" fill="#6d28d9"/>
+<text x="46" y="1382.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="1377.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">10 · Mẫu thiết kế</text>
+<text x="70" y="1401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Truyền bảng giảm giá vào</text>
+<text x="70" y="1420.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàm.</text>
+<polyline points="46,1331 46,1349" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1460" width="280" height="87" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.5"/>
+<circle cx="46" cy="1486" r="14" fill="#6d28d9"/>
+<text x="46" y="1491.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="1486.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">11 · Công cụ AI</text>
+<text x="70" y="1510.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc gợi ý như mã của người</text>
+<text x="70" y="1529.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lạ.</text>
+<polyline points="46,1440 46,1458" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1571" width="304" height="228" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1599.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1616" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1639" r="11" fill="#16a34a"/>
+<polyline points="37.9,1639.4 41.7,1643.4 48.5,1635" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1642.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi bước là một việc cụ thể</text>
+<text x="64" y="1661.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">với dịch vụ.</text>
+<rect x="20" y="1687" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1710" r="11" fill="#16a34a"/>
+<polyline points="37.9,1710.4 41.7,1714.4 48.5,1706" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1713.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên công cụ chỉ là ví dụ.</text>
+<rect x="20" y="1741" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1764" r="11" fill="#16a34a"/>
+<polyline points="37.9,1764.4 41.7,1768.4 48.5,1760" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1767.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải lộ trình bắt buộc.</text>
 </g>
 </svg>

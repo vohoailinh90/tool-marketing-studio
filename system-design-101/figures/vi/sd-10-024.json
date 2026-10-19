@@ -1,22 +1,80 @@
 {
   "id": "sd-10-024",
   "title": "Chín thuật toán dùng hằng ngày",
-  "subtitle": "Tên theo nguồn, mô tả ngắn theo tài liệu thư viện.",
-  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Xếp, tìm đường và xếp hạng: sắp xếp, thuật toán Dijkstra, phân tích liên kết. Mật mã, số và nén: RSA, phân tích thừa số nguyên, mã Huffman, họ băm SHA. Học máy: Transformer, mạng nơ-ron tích chập. Khung cuối nêu ba điều cần nhớ.",
+  "subtitle": "Tên thuật toán, mỗi tên một phép thử nhỏ.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Xếp, tìm đường và xếp hạng: sắp xếp giữ nguyên thứ tự các bản ghi cùng khóa; thuật toán Dijkstra tìm đường A tới D dài 4 thay vì 5; phân tích liên kết cho nút c điểm cao nhất, nút không ai trỏ tới điểm thấp nhất. Mật mã, số và nén: RSA mã hóa 65 thành 2790 rồi giải lại ra 65; phân tích thừa số nguyên tách 3233 thành 53 và 61; mã Huffman nén abracadabra từ 88 bit xuống 23 bit; SHA-256 của abc luôn cho một chuỗi 64 ký tự thập lục phân. Học máy: Transformer và mạng nơ-ron tích chập có lớp tương ứng trong PyTorch. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
-    {"kind": "parts", "heading": "Xếp, tìm đường và xếp hạng",
-     "items": [{"name": "Sắp xếp", "role": "Xếp phần tử theo thứ tự; Python dùng Timsort, Java dùng Dual-Pivot Quicksort cho mảng số.", "icon": "list-ordered"},
-               {"name": "Thuật toán Dijkstra", "role": "Tìm đường đi có trọng số ngắn nhất giữa hai nút của đồ thị.", "icon": "route"},
-               {"name": "Phân tích liên kết", "role": "Xếp hạng nút theo liên kết đến; PageRank xếp hạng trang web.", "icon": "share-2"}]},
-    {"kind": "parts", "heading": "Mật mã, số và nén",
-     "items": [{"name": "RSA", "role": "Java có tham số để sinh một cặp khóa RSA.", "icon": "key-round"},
-               {"name": "Phân tích thừa số nguyên", "role": "Tìm các thừa số nguyên tố của một số nguyên.", "icon": "hash"},
-               {"name": "Mã Huffman", "role": "Nguồn chỉ nêu tên; bài không đối chiếu.", "icon": "package"},
-               {"name": "Họ băm SHA", "role": "Python hỗ trợ SHA-256, SHA-512 và dòng SHA-3.", "icon": "fingerprint-pattern"}]},
-    {"kind": "parts", "heading": "Học máy",
-     "items": [{"name": "Transformer", "role": "PyTorch có lớp theo bài báo Attention Is All You Need.", "icon": "brain"},
-               {"name": "Mạng nơ-ron tích chập", "role": "PyTorch có lớp Conv2d áp phép tích chập 2D.", "icon": "layers"}]},
-    {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Nguồn nêu chín tên, không mô tả từng cái bằng chữ.", "Nơi dùng của từng thuật toán nằm trong ảnh nguồn, bài không dùng.", "Cách chia nhóm là của bài, không phải của nguồn."]}
+    {
+      "kind": "parts",
+      "heading": "Xếp, tìm đường và xếp hạng",
+      "items": [
+        {
+          "name": "Sắp xếp",
+          "role": "Bản ghi cùng khóa giữ thứ tự cũ.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Thuật toán Dijkstra",
+          "role": "A tới D dài 4 qua C và B, không phải 5.",
+          "icon": "route"
+        },
+        {
+          "name": "Phân tích liên kết",
+          "role": "Nút c điểm cao nhất; nút không ai trỏ tới thấp nhất.",
+          "icon": "share-2"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Mật mã, số và nén",
+      "items": [
+        {
+          "name": "RSA",
+          "role": "65 thành 2790, giải lại ra 65.",
+          "icon": "key-round"
+        },
+        {
+          "name": "Phân tích thừa số nguyên",
+          "role": "3233 tách thành 53 và 61.",
+          "icon": "hash"
+        },
+        {
+          "name": "Mã Huffman",
+          "role": "abracadabra: 23 bit thay cho 88.",
+          "icon": "package"
+        },
+        {
+          "name": "Họ băm SHA",
+          "role": "SHA-256 luôn ra 64 ký tự.",
+          "icon": "fingerprint-pattern"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Học máy",
+      "items": [
+        {
+          "name": "Transformer",
+          "role": "PyTorch có lớp theo bài báo Attention Is All You Need.",
+          "icon": "brain"
+        },
+        {
+          "name": "Mạng nơ-ron tích chập",
+          "role": "PyTorch có lớp Conv2d, tích chập 2D.",
+          "icon": "layers"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mỗi thuật toán trả lời một câu hỏi riêng.",
+        "Bảy cái thử được bằng vài dòng mã.",
+        "Ví dụ nhỏ, không phải cách dùng thật."
+      ]
+    }
   ]
 }

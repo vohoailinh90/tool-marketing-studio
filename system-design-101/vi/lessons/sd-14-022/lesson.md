@@ -9,6 +9,7 @@ Bài này là bản đồ cho người mới: mỗi điều có định nghĩa b
 
 - **CIA** (Confidentiality, Integrity, Availability) — bí mật, toàn vẹn, sẵn sàng: bộ ba điều cần giữ; không liên quan tới cơ quan có cùng chữ viết tắt.
 - **USD** (United States Dollar) — đô la Mỹ: đơn vị tiền trong ví dụ “Pay Bob 100 USD”.
+- **DoS** (Denial of Service) — từ chối dịch vụ: kiểu tấn công làm cạn tài nguyên máy chủ, thường bằng cách dồn dập gửi yêu cầu, để người dùng thật không dùng được; trong bài là cách MDN gọi kẻ nhắm vào điều “sẵn sàng”.
 - **HMAC** (Hash-based Message Authentication Code) — mã xác thực thông điệp dùng hàm băm và một khóa bí mật: ai không có khóa thì không tính lại được thẻ đúng sau khi sửa tin.
 - **AES** (Advanced Encryption Standard) — chuẩn mã hóa tiên tiến: thuật toán mã hóa một khóa chung, dùng trong thí nghiệm.
 - **CTR** (CounTeR) — chế độ đếm: cách dùng AES để mã hóa tin dài; giữ bí mật nhưng không tự kiểm tin có bị sửa.

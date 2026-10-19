@@ -67,10 +67,16 @@
       "verified_by": "Tệp đọc ngày 2026-10-19 ở commit 8a9cb02."
     },
     {
-      "claim_vi": "Theo bản tài liệu EC2 trong kho lưu trữ, một Elastic IP gắn vào máy đang chạy miễn phí; địa chỉ chưa gắn, gắn vào máy đã dừng hoặc giao diện mạng chưa gắn bị tính theo giờ; địa chỉ đã gỡ vẫn thuộc tài khoản tới khi trả lại. Con số 'năm địa chỉ' của bài nguồn không khớp bản này. Quy tắc miễn phí cho địa chỉ đang gắn của bản lưu trữ đã cũ: từ tháng 2 năm 2024 AWS tính phí mọi địa chỉ IP công cộng (thông tin từ người rà soát, chưa đối chiếu với trang giá hiện hành).",
+      "claim_vi": "Theo bản tài liệu EC2 trong kho lưu trữ, một Elastic IP gắn vào máy đang chạy miễn phí; địa chỉ chưa gắn, gắn vào máy đã dừng hoặc giao diện mạng chưa gắn bị tính theo giờ; địa chỉ đã gỡ vẫn thuộc tài khoản tới khi trả lại. Con số 'năm địa chỉ' của bài nguồn không khớp bản này.",
       "source": "https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/elastic-ip-addresses-eip.md",
       "section": "Elastic IP pricing",
       "verified_by": "Tệp đọc ngày 2026-10-19 ở commit 8a9cb02; có thể cũ hơn chính sách hiện hành."
+    },
+    {
+      "claim_vi": "Từ tháng 2 năm 2024, AWS tính phí theo giờ cho mọi địa chỉ IP công cộng do AWS cấp, kể cả địa chỉ đang gắn vào máy đang chạy; quy tắc \"gắn vào máy đang chạy thì miễn phí\" của bản tài liệu lưu trữ đã cũ.",
+      "source": "https://aws.amazon.com/vpc/pricing/",
+      "section": "Public IPv4 Address",
+      "verified_by": "Chưa tự đọc được trang giá (tên miền bị chặn trong môi trường biên soạn); thông tin do người rà soát nêu và dẫn trang giá này, chưa đối chiếu."
     }
   ],
   "design_notes_vi": "Khung một: bốn thẻ theo cái được đếm (giờ, dung lượng, lời gọi, phần dở dang và dữ liệu đi ra); khung hai: ba việc dọn dẹp lấy từ tài liệu AWS. Không có đơn giá.",

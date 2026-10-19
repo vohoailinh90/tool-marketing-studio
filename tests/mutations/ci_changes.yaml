@@ -124,7 +124,19 @@ mutations:
   find: "        return imported_by_other_tests(path, root)"
   replace: "        return False"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_module_other_tests_import_helpers_from_runs_every_manifest
-- label: only `from tests.x import` counts as importing a test module
-  find: "|^\\s*from\\s+tests\\s+import\\s+[^\\n]*\\b{re.escape(module.rsplit('.', 1)[-1])}\\b\""
-  replace: "\""
+- label: a relative import of a test module is not recognised
+  find: "                base = \".\".join(parts[:len(parts) - node.level + 1]) if node.level - 1 <= len(parts) else \"\""
+  replace: "                base = \"__nowhere__\""
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_module_other_tests_import_helpers_from_runs_every_manifest
+- label: "`from tests import test_x` is not recognised"
+  find: "            if any(f\"{origin}.{alias.name}\" == module for alias in node.names):"
+  replace: "            if False:"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_module_other_tests_import_helpers_from_runs_every_manifest
+- label: a module whose name only starts like the changed one counts as importing it
+  find: "            if any(alias.name == module or alias.name.startswith(module + \".\") for alias in node.names):"
+  replace: "            if any(alias.name.startswith(module) for alias in node.names):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_an_import_of_a_different_module_with_a_shared_prefix_is_not_an_import
+- label: a test file that does not parse counts as not importing anything
+  find: "    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):\n        return True\n"
+  replace: "    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):\n        return False\n"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_file_that_does_not_parse_counts_as_importing

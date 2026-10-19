@@ -19,10 +19,10 @@ GITHUB_OUTPUT. It never fails the job on its own account.
 
 from __future__ import annotations
 
+import ast
 import os
 import pathlib
 import posixpath
-import re
 import subprocess
 import sys
 from collections.abc import Mapping
@@ -77,17 +77,38 @@ def manifest_files(manifest: str, root: pathlib.Path) -> set[str]:
     return {name for name in named if name}
 
 
+def imports_module(source: str, file: str, module: str) -> bool:
+    """Whether Python source at repo path `file` imports `module` in any form: `import a.b`, `import x, a.b as c`,
+    `from a.b import n`, `from a import b`, `from a import (x,\n b)`, or relative (`from .b import n`, `from . import b`)."""
+    package = file[:-len(".py")].replace("/", ".").rsplit(".", 1)[0] if "/" in file else ""
+    for node in ast.walk(ast.parse(source, filename=file)):
+        if isinstance(node, ast.Import):
+            if any(alias.name == module or alias.name.startswith(module + ".") for alias in node.names):
+                return True
+        elif isinstance(node, ast.ImportFrom):
+            if node.level:
+                parts = package.split(".") if package else []
+                base = ".".join(parts[:len(parts) - node.level + 1]) if node.level - 1 <= len(parts) else ""
+                origin = ".".join(part for part in (base, node.module or "") if part)
+            else:
+                origin = node.module or ""
+            if origin == module or origin.startswith(module + "."):
+                return True
+            if any(f"{origin}.{alias.name}" == module for alias in node.names):
+                return True
+    return False
+
+
 def imported_by_other_tests(path: str, root: pathlib.Path) -> bool:
-    """Whether another test file imports this test module (`from tests.test_render import ...`): its helpers then
-    decide tests no manifest names it for. A tree that cannot be read counts as importing it."""
+    """Whether another test file imports this test module (`from tests.test_render import ...`, in any import form): its
+    helpers then decide tests no manifest names it for. A file that cannot be read or parsed counts as importing it."""
     module = path[:-len(".py")].replace("/", ".")
-    pattern = re.compile(rf"^\s*(from|import)\s+{re.escape(module)}\b|^\s*from\s+tests\s+import\s+[^\n]*\b{re.escape(module.rsplit('.', 1)[-1])}\b",
-                         re.MULTILINE)
     try:
         for other in (root / "tests").rglob("*.py"):
-            if other.relative_to(root).as_posix() != path and pattern.search(other.read_text(encoding="utf-8")):
+            name = other.relative_to(root).as_posix()
+            if name != path and imports_module(other.read_text(encoding="utf-8"), name, module):
                 return True
-    except (OSError, UnicodeDecodeError):
+    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):
         return True
     return False
 

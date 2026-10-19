@@ -105,7 +105,10 @@ class SelectedManifestsTests(unittest.TestCase):
             write(folder, "tests/test_alone.py", "x = 1\n")
             self.assertEqual([], ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
             for importer in ("from tests.test_helpers_here import helper\n", "import tests.test_helpers_here\n",
-                             "from tests import test_alone, test_helpers_here\n"):
+                             "from tests import test_alone, test_helpers_here\n",
+                             "from tests import (\n    test_alone,\n    test_helpers_here,\n)\n",
+                             "import os, tests.test_helpers_here as helpers\n",
+                             "from .test_helpers_here import helper\n", "from . import test_helpers_here\n"):
                 with self.subTest(importer):
                     write(folder, "tests/test_user.py", importer)
                     self.assertIsNone(ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
@@ -114,6 +117,20 @@ class SelectedManifestsTests(unittest.TestCase):
         self.assertIsNone(ci_changes.selected_manifests(["tests/test_gone_since_this_change.py"], ROOT))
         self.assertIsNone(ci_changes.selected_manifests(["scripts/gone_since_this_change.py"], ROOT))
         self.assertEqual([], ci_changes.selected_manifests(["system-design-101/vi/gone.md"], ROOT))
+
+    def test_an_import_of_a_different_module_with_a_shared_prefix_is_not_an_import(self):
+        for source in ("import tests.test_helpers_here_too\n", "from tests.test_helpers_here_too import x\n",
+                       "from tests import test_helpers_here_too\n", "from .test_helpers_here_too import x\n"):
+            with self.subTest(source):
+                self.assertFalse(ci_changes.imports_module(source, "tests/test_user.py", "tests.test_helpers_here"))
+
+    def test_a_test_file_that_does_not_parse_counts_as_importing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_helpers_here.py", "x = 1\n")
+            write(folder, "tests/test_broken.py", "def broken(:\n")
+            self.assertIsNone(ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
 
     def test_manifests_that_cannot_be_read_run_every_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:

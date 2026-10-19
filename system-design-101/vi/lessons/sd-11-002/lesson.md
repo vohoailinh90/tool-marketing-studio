@@ -19,7 +19,7 @@ Tên tám mục giữ nguyên theo bài nguồn. Phần giải thích dưới đ
 
 **Caching (bộ nhớ đệm).** Gỡ: cùng một dữ liệu được đọc đi đọc lại từ nơi chậm. Giá: dữ liệu trong bộ nhớ đệm có thể cũ, và phải quyết định khi nào bỏ nó.
 
-**Database Replication (sao chép cơ sở dữ liệu).** Gỡ: quá nhiều lượt đọc dồn vào một cơ sở dữ liệu, và muốn có bản dự phòng khi nó hỏng. Giá: bản sao có thể chậm hơn bản gốc nên đọc ra dữ liệu cũ; sao chép không làm việc *ghi* nhanh hơn, vì mọi lần ghi vẫn phải đi qua nơi nhận ghi.
+**Database Replication (sao chép cơ sở dữ liệu).** Gỡ: quá nhiều lượt đọc dồn vào một cơ sở dữ liệu, và muốn có bản dự phòng khi nó hỏng. Giá: bản sao có thể chậm hơn bản gốc nên đọc ra dữ liệu cũ. Với kiểu một bản chính cộng các bản chỉ đọc (cách thường nói tới khi nhắc "sao chép"), việc *ghi* không nhanh hơn, vì mọi lần ghi vẫn đi qua bản chính; các cụm cho nhiều nút cùng nhận ghi là chuyện khác.
 
 **Database Sharding (chia nhỏ cơ sở dữ liệu).** Gỡ: dữ liệu hoặc lượt ghi lớn hơn sức một máy. Mỗi mảnh giữ một phần dữ liệu. Giá: truy vấn trải qua nhiều mảnh phức tạp hơn, chọn khóa chia khó, và chia lại khi đổi số mảnh tốn công.
 

@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit; only the names are used."
     },
     {
-      "claim_vi": "Hot-hot serves from several copies at once; hot-warm keeps a standby; single-leader clusters pause writes while electing a leader; leaderless clusters need quorum-style acknowledgements and reconciliation. Throughput differs from latency.",
+      "claim_vi": "Hot-hot serves from several copies at once; hot-warm keeps a standby; single-leader clusters pause writes while electing a leader; leaderless clusters need quorum-style acknowledgements and reconciliation. Throughput differs from latency; a single leader that acknowledges before a follower has the write can lose it on failover, so zero write loss needs acknowledgement from at least one replica or a quorum.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/system-design-cheat-sheet.md",
       "section": "Lesson body",
       "verified_by": "General knowledge of the author, not checked against an official document: the writing environment could only reach GitHub, and no official document for this topic is hosted there."

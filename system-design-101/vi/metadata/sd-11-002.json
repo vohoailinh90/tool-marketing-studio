@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit; only the names and order are used."
     },
     {
-      "claim_vi": "Each strategy removes a different bottleneck and has its own cost (e.g. replication does not speed up writes; auto scaling reacts after the load; caching can serve stale data).",
+      "claim_vi": "Each strategy removes a different bottleneck and has its own cost (e.g. single-leader (primary plus read replicas) replication does not speed up writes, while clusters with several write nodes differ; auto scaling reacts after the load; caching can serve stale data).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-must-know-scalability-strategies.md",
       "section": "Lesson body",
       "verified_by": "General knowledge of the author, not checked against an official document: the writing environment could only reach GitHub, and no official document for this topic is hosted there."

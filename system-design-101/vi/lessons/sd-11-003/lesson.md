@@ -22,7 +22,7 @@ Tên các mục giữ theo bài nguồn; lời giải thích là của người 
 
 ## Giới hạn cần nhớ
 
-Bảng này là tra cứu, không phải công thức chọn. Ba mục tiêu kéo nhau: dự phòng nhiều làm thêm việc đồng bộ dữ liệu và có thể hạ thông lượng. Chi tiết "bầu leader" và "đọc ghi cần nhiều nút xác nhận" ở trên là mô tả chung; mỗi sản phẩm làm khác nhau và bài chưa đối chiếu với tài liệu của sản phẩm cụ thể nào. Hai chữ "hot" và "warm" trong ngành không có định nghĩa chuẩn duy nhất.
+Bảng này là tra cứu, không phải công thức chọn. Ba mục tiêu kéo nhau: dự phòng nhiều làm thêm việc đồng bộ dữ liệu và có thể hạ thông lượng. Chi tiết "bầu leader" và "đọc ghi cần nhiều nút xác nhận" ở trên là mô tả chung (và việc sao chép sang các nút theo sau có thể là bất đồng bộ hoặc chờ xác nhận, hai chế độ có độ bền khác nhau); mỗi sản phẩm làm khác nhau và bài chưa đối chiếu với tài liệu của sản phẩm cụ thể nào. Hai chữ "hot" và "warm" trong ngành không có định nghĩa chuẩn duy nhất.
 
 ## Nhìn hình trả lời
 
@@ -31,7 +31,7 @@ Hệ thống đặt hàng của bạn không được mất lần ghi nào nhưn
 <details>
 <summary>Xem đáp án</summary>
 
-Cụm một leader hợp để bắt đầu: mọi lần ghi đi qua một nút nên thứ tự rõ ràng, và việc dừng ghi trong lúc bầu leader mới là đúng điều mà đề bài chấp nhận. Chưa chọn hot-hot vì nhiều nơi cùng nhận ghi buộc phải giải bài toán hai nơi ghi cùng một dữ liệu, một độ phức tạp mà đề bài chưa đòi hỏi. Đây là suy luận của người biên soạn.
+Cụm một leader hợp để bắt đầu: mọi lần ghi đi qua một nút nên thứ tự rõ ràng, và việc dừng ghi trong lúc bầu leader mới là đúng điều mà đề bài chấp nhận. Riêng yêu cầu "không mất lần ghi nào" thì chưa đủ nếu chỉ chọn kiểu này: nếu leader báo xong rồi hỏng trước khi bản sao nhận được, leader mới sẽ không có lần ghi đó. Cần thêm chính sách để leader chỉ báo xong sau khi ít nhất một bản sao (hoặc đa số) đã xác nhận, đổi lại mỗi lần ghi chậm hơn. Chưa chọn hot-hot vì nhiều nơi cùng nhận ghi buộc phải giải bài toán hai nơi ghi cùng một dữ liệu, một độ phức tạp mà đề bài chưa đòi hỏi. Đây là suy luận của người biên soạn.
 
 </details>
 

@@ -48,39 +48,57 @@
   },
   "claims": [
     {
-      "claim_vi": "The source lists six commonly used server types: web, mail, DNS, proxy, FTP and origin server, with one sentence each.",
+      "claim_vi": "The source names six server types: web, mail, DNS, proxy, FTP and origin server. Only the names are reused; the lesson explains each type in its own words.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "Whole page",
+      "section": "Top 6 most commonly used server types",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "A DNS server translates domain names into IP addresses so users can reach websites by their human-readable names.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "3. DNS Server",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "MDN: a server is software or hardware offering a service to a client; a web server is software that often runs on a hardware server; a web server sends an HTML file to the browser.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/server/index.md",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/web_server/index.md"
+      ],
+      "section": "Glossary: Server and Web server",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "A proxy server is an intermediary gateway between clients and other servers, providing additional security, performance optimization and anonymity.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "4. Proxy Server",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "MDN: a CDN is a group of servers spread over many locations that store duplicate copies of data so that the servers closest to the end users can fulfil requests.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cdn/index.md",
+      "section": "Glossary: CDN",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "An origin server hosts the central source of content that is cached and distributed to edge servers for faster delivery to end users.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "6. Origin Server",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "MDN: a proxy server is an intermediate program or computer that intercepts requests and serves back responses; it may forward the requests or not (for example a cache) and may modify them (for example headers); the two main types are a forward proxy and a reverse proxy.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/proxy_server/index.md",
+      "section": "Glossary: Proxy server",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The six types are roles, not six kinds of machine: one machine may take several roles and one role may be shared by several machines.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "Limits",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "claim_vi": "MDN: DNS is a hierarchical and decentralized naming system; its most prominent function is translating a human-friendly domain name into a numeric IP address, and a reverse lookup finds the domain name for an address.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/dns/index.md",
+      "section": "Glossary: DNS",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Typical order of events for a page load: the browser asks DNS first, then reaches the web server, possibly through a proxy.",
+      "claim_vi": "MDN: SMTP is a protocol used to send a new email; IMAP is a protocol used to retrieve and store emails and allows folders and rules on the server.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/smtp/index.md",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/imap/index.md"
+      ],
+      "section": "Glossary: SMTP and IMAP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: FTP is an insecure protocol for transferring files from one host to another; it was the de facto standard way but many hosting accounts no longer support it, and a secure, encrypted method should be used instead.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/ftp/index.md",
+      "section": "Glossary: FTP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The name 'origin server' for the holder of the original copy of the content, the grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "Answer to the check question",
+      "section": "Design",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
@@ -92,8 +110,8 @@
   ],
   "design_notes_vi": "Sáu thẻ chia hai nhóm: ba loại đưa nội dung tới người dùng và ba loại dịch vụ nền của mạng. Không có mũi tên vì nguồn không nói thứ tự giữa các loại. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source lists the six types in one flat order (web, mail, DNS, proxy, FTP, origin) without relating them; the lesson groups them into two sets of three and adds that they are roles rather than machines.",
+    "Source lists six server types in one flat order (web, mail, DNS, proxy, FTP, origin) with one sentence each; the lesson keeps only the six names, regroups them into two sets by position on the path of a request and writes its own explanation of each (MDN glossary pages for web server, proxy, CDN, DNS, SMTP, IMAP and FTP; general knowledge for the origin server) instead of translating the source sentences.",
     "The lesson qualifies the DNS-first answer as the cache-miss, direct-resolution path (author's general knowledge)."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào các trang từ điển thuật ngữ của MDN và kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

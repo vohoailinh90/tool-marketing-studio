@@ -1,69 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1228" viewBox="0 0 320 1228" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1169" viewBox="0 0 320 1169" role="img" aria-labelledby="title desc">
 <title id="title">Sáu loại máy chủ, sáu việc</title>
 <desc id="desc">Sáu loại máy chủ chia hai nhóm. Nhóm đưa nội dung tới người dùng: máy chủ web, máy chủ gốc, máy chủ proxy. Nhóm dịch vụ nền của mạng: máy chủ DNS, máy chủ thư, máy chủ FTP. Khung cuối nhắc rằng đây là sáu vai trò, không phải sáu loại máy.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1228" fill="#f8fafc"/>
+<rect width="320" height="1169" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu loại máy chủ, sáu</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">việc</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi loại làm một việc trên đường đi</text>
 <text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">của yêu cầu.</text>
-<rect x="8" y="123" width="304" height="425" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="123" width="304" height="386" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đưa nội dung tới người dùng</text>
 <rect x="20" y="168" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="221.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 210.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
 <text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ web</text>
-<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ trang web và gửi nội</text>
-<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung tới máy khách qua</text>
-<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Internet.</text>
-<rect x="20" y="289" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="50" cy="342.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 331.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần mềm trả lời trình</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">duyệt bằng nội dung của</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang.</text>
+<rect x="20" y="289" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="332.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 321.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
 <text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ gốc</text>
-<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ nội dung gốc, để lưu</text>
-<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhớ tạm và phát tới các</text>
-<text x="78" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ biên.</text>
-<rect x="20" y="410" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="50" cy="473" r="18" fill="#1d4ed8"/><g transform="translate(39.2 462.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></g>
-<text x="78" y="436.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ proxy</text>
-<text x="78" y="460.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đứng giữa máy khách và</text>
-<text x="78" y="479.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ khác: thêm bảo</text>
-<text x="78" y="499.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mật, tăng hiệu năng, ẩn</text>
-<text x="78" y="518.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh.</text>
-<rect x="8" y="560" width="304" height="386" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="588.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ nền của mạng</text>
-<rect x="20" y="605" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="658.5" r="18" fill="#0f766e"/><g transform="translate(39.2 647.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
-<text x="78" y="631.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ DNS</text>
-<text x="78" y="655.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch tên miền thành địa</text>
-<text x="78" y="674.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ IP để người dùng gõ</text>
-<text x="78" y="694.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tên dễ nhớ.</text>
-<rect x="20" y="726" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="769.5" r="18" fill="#0f766e"/><g transform="translate(39.2 758.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect height="16" rx="2" width="20" x="2" y="4"/></g>
-<text x="78" y="752.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ thư</text>
-<text x="78" y="776.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi, nhận và chuyển tiếp</text>
-<text x="78" y="795.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thư điện tử giữa các mạng.</text>
-<rect x="20" y="827" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="880.5" r="18" fill="#0f766e"/><g transform="translate(39.2 869.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></g>
-<text x="78" y="853.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ FTP</text>
-<text x="78" y="877.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Truyền tệp giữa máy</text>
-<text x="78" y="896.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách và máy chủ qua</text>
-<text x="78" y="916.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạng.</text>
-<rect x="8" y="958" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="986.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
-<rect x="20" y="1003" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1026" r="11" fill="#16a34a"/>
-<polyline points="37.9,1026.4 41.7,1030.4 48.5,1022" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1029.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là sáu vai trò, không</text>
-<text x="64" y="1048.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải sáu loại máy.</text>
-<rect x="20" y="1074" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1097" r="11" fill="#16a34a"/>
-<polyline points="37.9,1097.4 41.7,1101.4 48.5,1093" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1100.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một máy có thể giữ nhiều vai</text>
-<text x="64" y="1119.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trò cùng lúc.</text>
-<rect x="20" y="1145" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1168" r="11" fill="#16a34a"/>
-<polyline points="37.9,1168.4 41.7,1172.4 48.5,1164" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1171.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách chỉ gồm các loại</text>
-<text x="64" y="1190.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường gặp.</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ bản chính; máy chủ ở</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớp phân phối giữ bản sao.</text>
+<rect x="20" y="390" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="443.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 432.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ proxy</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bên trung gian: chuyển</text>
+<text x="78" y="459.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">yêu cầu đi, trả lời từ bộ</text>
+<text x="78" y="479.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm hoặc sửa yêu cầu.</text>
+<rect x="8" y="521" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="549.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ nền của mạng</text>
+<rect x="20" y="566" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="609.5" r="18" fill="#0f766e"/><g transform="translate(39.2 598.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="592.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ DNS</text>
+<text x="78" y="616.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hệ thống đặt tên: tra tên</text>
+<text x="78" y="635.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">miền ra địa chỉ IP.</text>
+<rect x="20" y="667" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="710.5" r="18" fill="#0f766e"/><g transform="translate(39.2 699.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect height="16" rx="2" width="20" x="2" y="4"/></g>
+<text x="78" y="693.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ thư</text>
+<text x="78" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nói SMTP để gửi thư mới,</text>
+<text x="78" y="736.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">IMAP để lấy và lưu thư.</text>
+<rect x="20" y="768" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="821.5" r="18" fill="#0f766e"/><g transform="translate(39.2 810.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></g>
+<text x="78" y="794.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ FTP</text>
+<text x="78" y="818.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuyển tệp giữa hai máy;</text>
+<text x="78" y="837.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không mã hóa nên nhiều</text>
+<text x="78" y="857.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nơi thôi hỗ trợ.</text>
+<rect x="8" y="899" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="927.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="944" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="967" r="11" fill="#16a34a"/>
+<polyline points="37.9,967.4 41.7,971.4 48.5,963" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="970.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là sáu vai trò, không</text>
+<text x="64" y="989.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải sáu loại máy.</text>
+<rect x="20" y="1015" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1038" r="11" fill="#16a34a"/>
+<polyline points="37.9,1038.4 41.7,1042.4 48.5,1034" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1041.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một máy có thể giữ nhiều vai</text>
+<text x="64" y="1060.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trò cùng lúc.</text>
+<rect x="20" y="1086" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1109" r="11" fill="#16a34a"/>
+<polyline points="37.9,1109.4 41.7,1113.4 48.5,1105" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1112.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách chỉ gồm các loại</text>
+<text x="64" y="1131.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường gặp.</text>
 </g>
 </svg>

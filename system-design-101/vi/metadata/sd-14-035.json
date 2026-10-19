@@ -1,0 +1,214 @@
+{
+  "id": "sd-14-035",
+  "title_vi": "OAuth 2.0 bằng lời đơn giản: token làm được gì và không làm được gì",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "review",
+  "source_ref": "sd-14-035",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/oauth-2-explained-with-siple-terms.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/oauth-2-explained-with-siple-terms.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6596c86d06e6a1a3b3f1a9bc1a118d6e9188984e",
+    "retrieved_body_sha256": "cfbd245509dc0b264a7619df42a52734fc983ee6dc77d1d631e442d2d2367ba7",
+    "retrieved_body_bytes": 1453
+  },
+  "diagram": "../diagrams/sd-14-035-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-011",
+      "relation": "builds-on",
+      "reason_vi": "Phân biệt đăng nhập và ủy quyền; bài này đi vào những gì một access token kiểm và nói được."
+    },
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "compare-with",
+      "reason_vi": "So sánh token OAuth với khóa SSH, chứng chỉ và mật khẩu."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "uses",
+      "reason_vi": "Chữ ký của JWT là chữ ký số: khóa riêng ký, khóa công khai kiểm."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "compare-with",
+      "reason_vi": "JWT và cái giá của việc thu hồi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Read at pinned commits: the OAuth 2.1 draft (d04b368), OWASP CheatSheetSeries (1c3144a: OAuth2, Authorization and Session Management cheat sheets) and authlib (8a308fc: docs and source). Ran a throw-away experiment with Python 3.13.16, authlib 1.9.1, joserfc 1.7.5 and cryptography 50.0.2 in a scratchpad venv, with a miniature authorization server and resource server on 127.0.0.1 at random ports; run three times with the same status codes. RFC texts and the OpenID Connect specification were not reachable and were not read; statements about them rest on the draft, OWASP and authlib."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source says OAuth 2.0 lets applications interact on behalf of users without sharing sensitive credentials; names the entities as the User, the Server and the Identity Provider (IDP); and says an OAuth token 'represents your identity and permissions' and can do three things: Single Sign-On (log into several services with one login), authorization across systems (share access rights so you need not log in separately everywhere), and access to parts of the user profile the user allows.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/oauth-2-explained-with-siple-terms.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "The OAuth 2.1 draft says OAuth is an authorization protocol, not an authentication protocol, because it does not define the components needed to authenticate users; an authentication protocol is needed for that, for example OpenID Connect, which builds on OAuth.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Introduction",
+      "verified_by": "Read in a local copy of the draft at the pinned commit."
+    },
+    {
+      "claim_vi": "The OAuth 2.1 draft says the client obtains an access token, a credential representing a specific set of access attributes such as scope and lifetime; that access tokens are short lived to reduce the blast radius of a leak; that the string is opaque to the client, which must not expect to parse it; and that a token is either looked up by the resource server (for example by token introspection) or self-contains signed authorization information (for example a JWT).",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Access Token",
+      "verified_by": "Read in a local copy of the draft at the pinned commit."
+    },
+    {
+      "claim_vi": "The OAuth 2.1 draft says that because the resource owner authenticates only with the authorization server, the resource owner's credentials are never shared with the client.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Authorization code description",
+      "verified_by": "Read in a local copy of the draft at the pinned commit."
+    },
+    {
+      "claim_vi": "The OAuth 2.1 draft says OAuth defines no scope values (the authorization server or extensions define them; OpenID Connect defines scopes for user profile information), and that the resource server is responsible for enforcing the scope of a limited-scope token.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Access Token Scope",
+      "verified_by": "Read in a local copy of the draft at the pinned commit."
+    },
+    {
+      "claim_vi": "The OAuth 2.1 draft defines a bearer token as one that any party in possession can use in any way, without proving possession of key material; says access tokens SHOULD be restricted to certain resource servers (audience restriction), preferably one, and that every resource server must verify for every request that the token was meant for it and refuse otherwise; and defines resource owner, client, authorization server and resource server as the roles.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Bearer Tokens; Access Token Privilege Restriction; Terminology",
+      "verified_by": "Read in a local copy of the draft at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP's OAuth 2.0 cheat sheet defines the roles client, authorization server, resource owner and resource server; describes OpenID Connect as a simple identity layer on top of OAuth 2.0 that lets clients verify the end user's identity based on authentication performed by an authorization server; says bearer tokens should be audience-restricted, preferably to a single resource server, to limit the impact of leakage; mentions sender-constrained / proof-of-possession tokens (DPoP, mTLS-bound); and says resource servers must refuse tokens not meant for them or for the action.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/OAuth2_Cheat_Sheet.md",
+      "section": "Terminology; Access Token Privilege Restriction; Token Replay Prevention",
+      "verified_by": "Read in a local copy at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP's Session Management cheat sheet says not to store authentication tokens, session IDs, JWTs, refresh tokens or any credential in localStorage or sessionStorage, because any JavaScript in the origin can read them.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Storage guidance",
+      "verified_by": "Read in a local copy at the pinned commit. The Authorization cheat sheet (authentication vs authorization, deny by default, validate on every request) was also read but is not cited in the lesson text."
+    },
+    {
+      "claim_vi": "authlib's documentation lists the OAuth roles client, resource owner, resource server and authorization server; describes an introspection-based resource server answering 401 invalid_token for an inactive token and 403 insufficient_scope for a missing scope, with an example introspection response containing active, client_id, token_type, username, scope, sub, aud, iss, exp and iat; says JWT access tokens may carry user information similar to an OpenID Connect id_token and, if the server does not store them, cannot be revoked and stay valid until exp; and draws the OpenID Provider as the authorization server.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/docs/oauth2/specs/rfc7662.rst",
+      "section": "Concepts; Introspection; JWT access tokens; RP-initiated logout",
+      "verified_by": "Read in a clone of the repository at the pinned commit (docs/oauth2/concepts.rst, docs/oauth2/specs/rfc7662.rst, rfc9068.rst, rpinitiated.rst)."
+    },
+    {
+      "claim_vi": "authlib 1.9.1 source: JWTBearerTokenValidator decodes and verifies the signature, then validates iss, exp, aud (must equal the resource server), sub, client_id, iat and jti, and the typ header only when it is present (at+jwt; the source compares typ if the header has it, so a token without typ can pass this check and a caller that needs typ must require it itself; the experiment did not run a token without typ), and raises InsufficientScopeError when the scope is missing; InvalidTokenError is documented as 401 and InsufficientScopeError as 403; the stock IntrospectTokenValidator checks only 'active' and scope; IDToken.validate checks essential iss, sub, aud, exp, iat and the nonce, whose docstring says it is passed unmodified from the authentication request to the ID token.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oauth2/rfc9068/token_validator.py",
+      "section": "Token validators; ID token claims",
+      "verified_by": "Read in a clone of the repository at the pinned commit (authlib/oauth2/rfc9068/token_validator.py, rfc6750/errors.py, rfc7662/token_validator.py, oidc/core/claims.py); behaviour confirmed by the experiment."
+    },
+    {
+      "claim_vi": "Observed: with a JWT access token for profile-api and scope read_profile the API answered 200 with the name only; with scope read_profile read_email it answered 200 with name and email; with scope read_photos only it answered 403 insufficient_scope; with no Authorization header it answered 401 missing_authorization.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/docs/oauth2/specs/rfc7662.rst",
+      "section": "Experiment 1, 2, 4",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: a token whose payload scope was edited from read_photos to read_profile with the old signature got 401 (library reason BadSignatureError); a token with alg none got 401 (UnsupportedAlgorithmError); a random string got 401 (DecodeError).",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oauth2/rfc9068/token_validator.py",
+      "section": "Experiment 4b (signature)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: a token issued with a 1 second lifetime was accepted immediately (200) and refused with 401 after 2.5 seconds (ExpiredTokenError); the 300 second lifetime of the other tokens was a value set in the script, not a recommendation.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oauth2/rfc9068/token_validator.py",
+      "section": "Experiment 4 (expiry)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: a token issued for audience photos-api presented to profile-api got 401 (library reason InvalidClaimError for aud).",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oauth2/rfc9068/token_validator.py",
+      "section": "Experiment 3 (audience)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed over the whole run: the user's password string appeared in 9 of 9 messages to the login endpoint of the authorization server and in 0 of the other 31 messages (code exchanges, API calls and introspection calls), and in none of the decoded headers or claims of the 7 JWTs issued (6 access tokens and 1 ID token). The scan looked only for the literal string in this experiment's messages.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Experiment 5 (password)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: the JWT access token claims were iss, sub (u-1001), aud, client_id, scope, iat, exp and jti, with no name or email; an opaque token was 43 random characters; the introspection response of the miniature server listed active, client_id, scope, aud, iat, exp and token_type, and contained sub only after the server was set to add it (that behaviour is the miniature server's own design, not a specification).",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/docs/oauth2/specs/rfc7662.rst",
+      "section": "Experiment 6 (what the token says)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: the miniature server's ID token had iss, sub, aud (the client id), iat, exp and nonce; validating it with authlib's CodeIDToken passed with the right nonce and failed with InvalidClaimError for a wrong nonce; the access token validated as an ID token failed with InvalidClaimError for aud; the ID token sent to the API as an access token got 401 with library reason InvalidClaimError for typ.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oidc/core/claims.py",
+      "section": "Experiment 6 (ID token)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: a different program sending the same access token string to the API received 200, so the API cannot tell holders apart.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Experiment 4c (bearer)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Observed: an opaque token issued for photos-api with scope read_profile was accepted (200) by a resource server using authlib's stock IntrospectTokenValidator, and refused with 401 once a check of the aud field of the introspection response was added; an expired opaque token was refused with 401.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oauth2/rfc7662/token_validator.py",
+      "section": "Experiment 7 (introspection and audience)",
+      "verified_by": "No external page reports this output; observed by running the authoring experiment (Python 3.13.16, authlib 1.9.1, joserfc 1.7.5, cryptography 50.0.2 in a throw-away venv, a miniature authorization server and resource server on 127.0.0.1 at random ports above 20000; script kept in the authoring scratchpad, not committed; run three times with the same status codes)."
+    },
+    {
+      "claim_vi": "Not examined: grant flows, refresh tokens, revocation (only authlib's statement is cited), sender-constrained tokens (DPoP, mTLS; only OWASP's mention is cited), the OAuth and OpenID Connect specifications themselves (not reachable), and whether the order of the four questions in the figure matches other libraries.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/oauth-2-explained-with-siple-terms.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    },
+    {
+      "claim_vi": "authlib 1.9.1 source (authlib/oidc/core/claims.py, IDToken.validate_auth_time): auth_time is the time the end-user authentication occurred; when a max_age request is made, or when auth_time is requested as an Essential Claim, the claim is required, so a missing auth_time raises MissingClaimError('auth_time') when the max_age parameter is given. The lesson therefore says an ID token tells who the user is but does not by itself show a recent login (the provider may reuse an existing login session), and that checking freshness takes a max_age request and an auth_time check; this part was read in the source and not run. The sd-14-035 lesson's bearer-token statement (whoever holds the token string can use it) is scoped to bearer tokens, the kind the experiment issues; sender-constrained tokens are mentioned in the lesson and not tested.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oidc/core/claims.py",
+      "section": "Token không nói ai; Đây là token loại bearer",
+      "verified_by": "Read authlib/oidc/core/claims.py at the pinned commit (validate_auth_time docstring and code); not run. The OpenID Connect specification text was not reachable."
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc: bốn phép thử của thí nghiệm trên một access token JWT (chữ ký, hạn, audience, scope); một khung ghi rõ đó chưa phải danh sách đầy đủ (token JWT còn phải kiểm bên phát hành và loại token, token chuỗi mờ không có chữ ký nên API hỏi máy chủ ủy quyền); và ba việc token không làm được (chứng minh đăng nhập, cho biết ai đang cầm, tự nâng quyền). Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source names the entities as User, Server and Identity Provider; OWASP, the OAuth 2.1 draft and authlib name the roles resource owner, client, authorization server and resource server, and 'Identity Provider' is not one of them there (authlib draws the OpenID Provider as the authorization server).",
+    "The source says the OAuth token represents your identity and permissions; the OAuth 2.1 draft says an access token represents authorization granted to the client (scope, lifetime) and that OAuth is not an authentication protocol, so the lesson says the token does not prove who just logged in.",
+    "The source says the token enables Single Sign-On; the lesson says SSO-style login rests on OpenID Connect and its ID token (an identity layer on top of OAuth, per OWASP), not on an access token.",
+    "The source says the token shares authorization across systems so you need not log in separately everywhere; the lesson says an authorization server can serve several APIs but each access token should be audience-restricted, preferably to one API, and shows an API refusing another API's token.",
+    "The source says apps with a token can access the parts of your profile that you allow; the lesson says the scope is set by the authorization server and enforced by the resource server, and a token does not filter the profile itself.",
+    "The source says nothing about expiry, audience, scope enforcement or that a leaked bearer token can be used by anyone; the lesson adds these and tests them.",
+    "The source's closing claim that OAuth keeps you and your data safe is not repeated; the lesson states the bearer limitation instead."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

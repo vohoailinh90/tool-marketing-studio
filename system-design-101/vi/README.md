@@ -321,6 +321,11 @@ Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa vi
 28. [Cookie là gì? Tấm thẻ khách quen và điều nó không phải](lessons/sd-14-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 29. [Các luồng OAuth 2.0: chọn luồng nào cho ứng dụng nào?](lessons/sd-14-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 30. [Tấn công mạng theo bảy tầng OSI: tầng nào chịu đòn gì?](lessons/sd-14-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [SSO hoạt động thế nào? Phiên toàn cục và vé xác nhận](lessons/sd-14-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng](lessons/sd-14-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+33. [Sáu cách nhận ra người dùng: session, token, JWT, SSO, OAuth2 và mã QR](lessons/sd-14-033/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+34. [JWT cho người mới: chiếc hộp trong suốt có dấu niêm phong](lessons/sd-14-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+35. [OAuth 2.0 bằng lời đơn giản: token làm được gì và không làm được gì](lessons/sd-14-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Nền tảng máy tính
 

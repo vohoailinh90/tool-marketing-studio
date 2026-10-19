@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit; only the names and order are used."
     },
     {
-      "claim_vi": "GET, PUT and DELETE are idempotent by HTTP's design while POST is not; an idempotency key stored with the result makes retries safe; check-then-write without an atomic constraint can double-apply; at-least-once messaging requires the receiver to drop duplicates.",
+      "claim_vi": "GET, PUT and DELETE are idempotent by HTTP's design while POST is not; an idempotency key stored with the result makes retries safe; check-then-write without an atomic constraint can double-apply; at-least-once messaging requires the receiver to drop duplicates, which is only reliable when recording the message id and applying the effect share one transaction or the effect is itself idempotent; an upsert is idempotent only if its update assigns a target value.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-cases-to-apply-idempotency.md",
       "section": "Lesson body",
       "verified_by": "General knowledge of the author, not checked against an official document: the writing environment could only reach GitHub, and no official document for this topic is hosted there."

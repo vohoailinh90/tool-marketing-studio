@@ -23,9 +23,9 @@ Tên sáu tình huống giữ theo bài nguồn; phần còn lại là của ng�
 
 **Lặp lại bên trong hệ thống**
 
-- **Thao tác cơ sở dữ liệu.** "Đặt số dư bằng 100" idempotent, "cộng thêm 10" thì không. Ràng buộc khóa duy nhất và kiểu "chèn hoặc cập nhật" biến thao tác lặp thành vô hại.
+- **Thao tác cơ sở dữ liệu.** "Đặt số dư bằng 100" idempotent, "cộng thêm 10" thì không. Ràng buộc khóa duy nhất ngăn tạo hàng trùng. Kiểu "chèn hoặc cập nhật" chỉ vô hại khi phần cập nhật gán giá trị đích (đặt số dư bằng 100); nếu phần cập nhật là "cộng thêm 10" thì mỗi lần thử lại lại cộng thêm một lần nữa.
 - **Quản lý tài khoản.** Đăng ký gửi hai lần không được tạo hai tài khoản trùng email. Ràng buộc duy nhất trên email là chốt cuối.
-- **Hệ thống phân tán và thông điệp.** Nhiều hàng đợi chỉ hứa giao *ít nhất một lần*, nên thông điệp có thể đến hai lần. Bên nhận ghi lại mã thông điệp đã xử lý để bỏ qua bản trùng.
+- **Hệ thống phân tán và thông điệp.** Nhiều hàng đợi chỉ hứa giao *ít nhất một lần*, nên thông điệp có thể đến hai lần. Bên nhận ghi lại mã thông điệp đã xử lý để bỏ qua bản trùng, nhưng chỉ đáng tin khi việc ghi mã và hiệu ứng nghiệp vụ nằm trong cùng một giao dịch: ghi mã trước rồi sập thì mất việc, làm việc trước rồi sập thì lần giao lại làm việc lần nữa. Nếu không có giao dịch chung, hãy làm cho chính hiệu ứng idempotent.
 
 ## Giới hạn cần nhớ
 

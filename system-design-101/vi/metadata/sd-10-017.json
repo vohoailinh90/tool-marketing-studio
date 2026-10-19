@@ -149,7 +149,7 @@
     "Source is seven bullets by decade; the lesson keeps the milestones and language names, redraws them as three timelines and does not use the source image.",
     "Source spells Object-C and places Go in the Java family and D, Rust, Zig and Carbon in the C++ family; the lesson uses Objective-C (general knowledge) and describes the languages whose project documentation was read with their own README instead of the source's families; the others (for example Fortran, LISP, Java, Zig) are only the source's words or unchecked.",
     "Only the Python and JavaScript origins are checked against documentation; the other dates are the source's word.",
-    "The lesson does not reproduce the source's sentences about popularity, simplicity and security or about Flutter and .NET."
+    "The lesson keeps one source-only statement, that Dart is popular thanks to Flutter, attributed to the source and not checked against any documentation; it does not reproduce the source's sentences about popularity, simplicity and security or about .NET."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,5 +1,23 @@
 id: sd-02-029
-status: doing
+status: done
 owner: claude/sd101-lessons-w6-6
 claimed_at: '2026-10-19T04:06:54Z'
-heartbeat_at: '2026-10-19T04:06:54Z'
+done_at: '2026-10-19T04:12:52Z'
+moda_canvas: cvs_4QZ5D5WNFB9XZBPWT0KVVEPYP4
+moda_url: https://moda.app/canvas/97f95a5e-55eb-4f7e-bb73-409ef6eb7ac4
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - 2x2-matrix
+  - one-big-number
+  - card-grid
+  - two-column-comparison
+  - one-highlighted-sentence
+  - flow
+  - lookup-table
+  - numbered-rows
+  - layers
+  - lookup-table
+  first_concept: 3

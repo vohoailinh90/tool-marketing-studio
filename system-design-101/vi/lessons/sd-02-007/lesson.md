@@ -1,6 +1,6 @@
 # McDonald's: chuẩn hóa sự kiện trước, mở rộng sau
 
-**Kiến trúc hướng sự kiện chỉ chạy tốt ở quy mô lớn khi mọi đội cùng hiểu một sự kiện trông thế nào.** Theo bài nguồn, McDonald's dựng bốn thành phần để chuẩn hóa sự kiện, rồi mới lo mở rộng phần xử lý theo vùng và theo miền nghiệp vụ.
+**Kiến trúc hướng sự kiện chỉ chạy tốt ở quy mô lớn khi mọi đội cùng hiểu một sự kiện trông thế nào.** Theo bài nguồn, McDonald's dùng bốn thành phần để chuẩn hóa sự kiện, và mở rộng phần xử lý theo vùng và theo miền nghiệp vụ.
 Bài này tách hai lớp đó: lớp giữ cho sự kiện đúng khuôn, và lớp giữ cho hệ thống chịu được tải.
 
 ![Ba khung xếp dọc. Chuẩn hóa sự kiện: sổ đăng ký sự kiện định nghĩa schema chuẩn; SDK riêng xử lý sự kiện và lỗi theo cách chung; cổng sự kiện xác thực danh tính và phân quyền; tiện ích và công cụ sửa sự kiện hỏng, giữ cụm khỏe và làm việc quản trị. Mở rộng trong một vùng: bên phát chia sự kiện theo miền nghiệp vụ, mỗi miền được một cụm MSK riêng xử lý, cụm tự mở rộng theo chỉ số như mức dùng CPU. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-007-main.svg)

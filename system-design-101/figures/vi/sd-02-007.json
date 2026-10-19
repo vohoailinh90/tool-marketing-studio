@@ -1,7 +1,7 @@
 {
   "id": "sd-02-007",
   "title": "Kiến trúc hướng sự kiện của McDonald's",
-  "subtitle": "Chuẩn hóa sự kiện trước, rồi mới mở rộng xử lý.",
+  "subtitle": "Hai lớp: chuẩn hóa sự kiện và mở rộng xử lý.",
   "desc": "Ba khung. Khung một: bốn thành phần chuẩn hóa sự kiện, gồm sổ đăng ký sự kiện giữ schema chuẩn, SDK riêng để xử lý sự kiện và lỗi, cổng sự kiện xác thực và phân quyền, tiện ích sửa sự kiện và giữ cụm khỏe. Khung hai: luồng mở rộng, bên phát chia sự kiện theo miền, mỗi miền một cụm MSK, cụm tự mở rộng theo chỉ số như CPU. Khung ba nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "parts", "heading": "Chuẩn hóa sự kiện",

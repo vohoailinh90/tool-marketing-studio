@@ -1,7 +1,7 @@
 # Chuỗi CI/CD của Netflix: tám chặng của một thay đổi
 
-**Theo bài nguồn, một thay đổi mã ở Netflix đi qua tám chặng, từ lập kế hoạch tới xử lý sự cố, và mỗi chặng có công cụ riêng.**
-Bài này đi theo một thay đổi nhỏ qua từng chặng, hỏi ở mỗi chặng: nó nhận gì vào và giao gì cho chặng sau.
+**Theo bài nguồn, chuỗi CI/CD của Netflix chia thành tám chặng, từ lập kế hoạch tới xử lý sự cố, và mỗi chặng có công cụ riêng.**
+Bài này đọc tám chặng như vòng đời của mã, hỏi ở mỗi chặng: nó nhận gì vào và giao gì cho chặng sau. Đó là cách đọc của người biên soạn; nguồn chỉ liệt kê các chặng, không nói mọi thay đổi đều đi qua cả tám theo đúng thứ tự.
 
 ![Tám chặng nối nhau. Lập kế hoạch: Jira để lên việc, Confluence để viết tài liệu. Viết mã: Java là ngôn ngữ chính cho dịch vụ phía sau. Build: Gradle và các plugin Gradle tự viết. Đóng gói: gói và các phụ thuộc vào một AMI. Kiểm thử: văn hóa thử trên môi trường thật, dựng công cụ hỗn loạn. Triển khai: Spinnaker tự làm, phát hành canary. Giám sát: số đo dồn về Atlas, Kayenta phát hiện bất thường. Sự cố: chia theo mức ưu tiên, xử lý bằng PagerDuty. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-019-main.svg)
 
@@ -19,7 +19,7 @@ Theo nguồn, tám chặng là:
 2. **Viết mã:** Java là ngôn ngữ chính cho dịch vụ phía sau; các ngôn ngữ khác dùng cho việc khác. Chặng này giao ra mã nguồn.
 3. **Build:** chủ yếu dùng Gradle, kèm các plugin Gradle Netflix tự viết cho nhiều trường hợp. Chặng này giao ra chương trình đã dịch.
 4. **Đóng gói:** gói phần mềm và các phụ thuộc được đóng vào một AMI để phát hành. Chặng này giao ra một ảnh máy chạy được ngay.
-5. **Kiểm thử:** nguồn nói văn hóa của Netflix nhấn vào thử trên môi trường thật, nên họ dựng các công cụ gây hỗn loạn (cố tình làm hỏng một phần hệ thống để xem phần còn lại chịu được không).
+5. **Kiểm thử:** nguồn nói văn hóa của Netflix nhấn vào thử trên môi trường thật, nên họ dựng các công cụ gây hỗn loạn (cố tình làm hỏng một phần hệ thống để xem phần còn lại chịu được không). Thử như vậy là thử độ bền của hệ thống đang chạy, nên không phải một bước mà mỗi thay đổi phải qua trước khi triển khai.
 6. **Triển khai:** Netflix dùng Spinnaker, công cụ họ tự làm, để phát hành kiểu canary: bản mới chạy trên một phần nhỏ máy trước.
 7. **Giám sát:** số đo dồn về Atlas; Kayenta dùng để phát hiện bất thường.
 8. **Báo sự cố:** sự cố được chia theo mức ưu tiên và xử lý bằng PagerDuty.
@@ -37,7 +37,7 @@ Kayenta báo bản canary có tỉ lệ lỗi cao bất thường. Theo hình, t
 <details>
 <summary>Xem đáp án</summary>
 
-Nó quay lại chặng triển khai: Spinnaker dừng đưa bản mới lên thêm máy và trả phần canary về bản cũ. Vì mỗi bản phát hành là một AMI đóng sẵn, quay lui chỉ là bật lại máy từ AMI trước đó, không phải sửa phần mềm trên từng máy đang chạy.
+Nó quay lại chặng triển khai: Spinnaker dừng đưa bản mới lên thêm máy và trả phần canary về bản cũ. Vì mỗi bản phát hành là một AMI đóng sẵn, quay lui phần mã chỉ là bật lại máy từ AMI trước đó, không phải sửa phần mềm trên từng máy đang chạy. Nếu bản mới đã đổi cấu hình, dữ liệu hay cách nói chuyện với dịch vụ khác, thì những thứ đó vẫn cần kế hoạch quay lui riêng.
 
 </details>
 

@@ -41,7 +41,7 @@ Nếu cổng chung trả cùng một dạng dữ liệu cho mọi máy khách th
 <details>
 <summary>Xem sâu hơn: GraphQL Federation đỡ việc ở đâu</summary>
 
-- Với GraphQL, máy khách tự nói nó cần những trường nào, nên không cần viết một script riêng cho mỗi loại máy khách.
+- Với GraphQL, máy khách tự nói nó cần những trường nào, nên những script chỉ dùng để cắt gọt dạng dữ liệu cho từng loại máy khách không còn cần. Xử lý riêng khác (biến đổi dữ liệu, phân quyền, ghép nhiều lời gọi) vẫn phải nằm ở đâu đó, có khi ở một BFF đặt cạnh GraphQL.
 - Federation ghép phần lược đồ dữ liệu của nhiều dịch vụ thành một lược đồ chung; mỗi đội vẫn giữ phần của mình.
 - Cái giá: cần một lớp ghép lược đồ và quy tắc chung để các đội không đặt trùng tên.
 

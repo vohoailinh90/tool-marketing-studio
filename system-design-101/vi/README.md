@@ -69,6 +69,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 5. [SapFix của Meta: máy đề xuất bản sửa, người quyết định](lessons/sd-02-005/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 6. [Levels.fyi: bảng tính làm backend cho hàng triệu người dùng](lessons/sd-02-006/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 7. [McDonald's: chuẩn hóa sự kiện trước, mở rộng sau](lessons/sd-02-007/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+8. [Uber giao phần mềm: chặng nào tự làm, chặng nào dùng sẵn](lessons/sd-02-008/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+9. [Stack Overflow: chín máy chủ web và một khối nguyên](lessons/sd-02-009/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+10. [Twitter 1.0: năm tầng, mười ba cái tên](lessons/sd-02-010/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+11. [Dòng "For You" của Twitter: từ 500 triệu tweet xuống một trang](lessons/sd-02-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [YouTube và VCU: con chip riêng cho việc chuyển mã video](lessons/sd-02-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

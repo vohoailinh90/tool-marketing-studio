@@ -177,6 +177,10 @@ class SelectedManifestsTests(unittest.TestCase):
             self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
             write(folder, "tests/mutations/broken.yaml", "target: [unclosed\n")
             self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
+            for wrong in ("target: []\n", "target: x\nmutations:\n- file: []\n", "target: x\nmutations:\n- test: {a: 1}\n"):
+                with self.subTest(wrong):
+                    write(folder, "tests/mutations/broken.yaml", wrong)
+                    self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
 
 
 def git(folder: Path, *args: str) -> str:

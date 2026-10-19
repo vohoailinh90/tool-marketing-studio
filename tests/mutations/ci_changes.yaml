@@ -153,8 +153,8 @@ mutations:
   replace: '    for base in ("",):'
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
 - label: a dependency that does not parse crashes the selection instead of running every manifest
-  find: "    except (OSError, ValueError, AttributeError, SyntaxError, yaml.YAMLError):"
-  replace: "    except (OSError, ValueError, AttributeError, yaml.YAMLError):"
+  find: "    except (OSError, ValueError, AttributeError, TypeError, SyntaxError, yaml.YAMLError):"
+  replace: "    except (OSError, ValueError, AttributeError, TypeError, yaml.YAMLError):"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
 - label: a relative import in a module the named tests reach is not followed
   find: "                above = parts[:len(parts) - node.level + 1] if node.level <= len(parts) + 1 else []"
@@ -172,3 +172,7 @@ mutations:
   find: "    if not found:\n        raise ValueError(f\"{file} loads a module by a path this script cannot read\")\n"
   replace: ""
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it
+- label: a manifest whose values have the wrong type crashes the selection instead of running every manifest
+  find: "    except (OSError, ValueError, AttributeError, TypeError, SyntaxError, yaml.YAMLError):"
+  replace: "    except (OSError, ValueError, AttributeError, SyntaxError, yaml.YAMLError):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_manifests_that_cannot_be_read_run_every_manifest

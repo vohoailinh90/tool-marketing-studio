@@ -222,7 +222,7 @@ def shared_test_file(path: str, root: pathlib.Path) -> bool:
 def selected_manifests(changed: list[str], root: pathlib.Path) -> list[str] | None:
     """The manifests that name a changed file, or None when every manifest has to run: a RUN_ALL file or shared test
     file changed, a changed file is gone (deleted or renamed, so a manifest may still name what is no longer there), or
-    the manifests could not be read."""
+    the manifests could not be read or name something that is not a file (`target: []`)."""
     if any(path in RUN_ALL or shared_test_file(path, root) for path in changed):
         return None
     if any(not in_store(path) and not (root / path).exists() for path in changed):
@@ -235,7 +235,7 @@ def selected_manifests(changed: list[str], root: pathlib.Path) -> list[str] | No
         wanted = set(changed)
         cache: dict[str, set[str]] = {}
         return [name for name in names if manifest_files(name, root, cache) & wanted]
-    except (OSError, ValueError, AttributeError, SyntaxError, yaml.YAMLError):
+    except (OSError, ValueError, AttributeError, TypeError, SyntaxError, yaml.YAMLError):
         return None
 
 

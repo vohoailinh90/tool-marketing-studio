@@ -60,7 +60,7 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "MDN: HTTP is the protocol that transfers hypermedia documents on the Web, typically between a browser and a server; it is textual and stateless; the https scheme means HTTP over a secure TLS channel.",
+      "claim_vi": "MDN: HTTP is the protocol that transfers hypermedia documents on the Web, typically between a browser and a server; it is described as textual (true of HTTP/1.x; HTTP/2 uses binary frames, which is the author's general knowledge) and stateless; the https scheme means HTTP over a secure TLS channel.",
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/http/index.md",
       "section": "HTTP",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."

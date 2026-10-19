@@ -21,7 +21,7 @@ Bài giữ ba nhóm và các ngôn ngữ ví dụ của bài nguồn, rồi gi�
 
 **Thông dịch (Python, JavaScript, Ruby).** Tài liệu của Python gọi Python là ngôn ngữ thông dịch, đối lập với ngôn ngữ biên dịch: có thể chạy thẳng tệp mã nguồn mà không phải tự tạo trước một tệp thực thi. Cách này thường rút ngắn vòng viết, chạy, sửa lỗi, đổi lại chương trình nhìn chung chạy chậm hơn. JavaScript trong trình duyệt là ví dụ cho thấy ranh giới có thể mờ: MDN nói các trình duyệt lớn đều có bộ máy JavaScript với trình JIT tích hợp để tăng tốc.
 
-**Chỗ ranh giới mờ.** Cũng theo tài liệu của Python, mã nguồn Python thực ra được biên dịch thành bytecode, một dạng nội bộ của trình thông dịch CPython, và bytecode được lưu tạm trong tệp `.pyc` để lần chạy sau nhanh hơn. Bytecode này chạy trên một máy ảo của Python. Chính tài liệu đó thừa nhận sự phân biệt biên dịch và thông dịch có thể mờ vì có bước biên dịch ra bytecode.
+**Chỗ ranh giới mờ.** Cũng theo tài liệu của Python, mã nguồn Python thực ra được biên dịch thành bytecode, một dạng nội bộ của trình thông dịch CPython, và bytecode được lưu tạm trong tệp `.pyc` để lần chạy sau nhanh hơn. Theo hiểu biết chung của người biên soạn (chưa đối chiếu), việc lưu này thường áp dụng cho các module được nạp bằng `import`, không áp dụng cho script chạy trực tiếp bằng `python tên_tệp.py`, và có thể bị tắt hoặc bị chặn vì quyền ghi tệp. Bytecode này chạy trên một máy ảo của Python. Chính tài liệu đó thừa nhận sự phân biệt biên dịch và thông dịch có thể mờ vì có bước biên dịch ra bytecode.
 
 ## Giới hạn cần nhớ
 
@@ -36,7 +36,7 @@ Một chương trình viết bằng Java được biên dịch thành bytecode. 
 <summary>Xem đáp án</summary>
 
 Máy ảo Java (JVM) nạp và chạy; trình JIT có thể dịch những đoạn chạy nhiều sang mã máy ngay lúc chạy để nhanh hơn.
-Python chạy thẳng từ mã nguồn qua trình thông dịch, nhưng bên trong mã nguồn được biên dịch thành bytecode (lưu trong tệp `.pyc`) rồi chạy trên máy ảo của Python, nên ranh giới mờ.
+Python chạy thẳng từ mã nguồn qua trình thông dịch, nhưng bên trong mã nguồn được biên dịch thành bytecode (có thể được lưu trong tệp `.pyc` khi là module được nạp) rồi chạy trên máy ảo của Python, nên ranh giới mờ.
 
 </details>
 

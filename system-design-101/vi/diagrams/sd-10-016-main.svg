@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1754" viewBox="0 0 320 1754" role="img" aria-labelledby="title desc">
 <title id="title">Cấu trúc dữ liệu dùng hằng ngày</title>
-<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách là dãy có thứ tự, ví dụ dòng tin; mảng là các giá trị có chỉ số, ví dụ tính toán số; ngăn xếp vào sau ra trước, ví dụ hoàn tác; hàng đợi chờ xử lý, ví dụ lệnh in. Tra cứu và sắp việc: bảng băm tra cứu nhanh nhờ hàm băm, ví dụ bộ nhớ đệm; đống lấy phần tử nhỏ nhất trước, ví dụ lập lịch; cây nối các nút, ví dụ tài liệu HTML; cây hậu tố, ví dụ tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường; R-tree tìm hàng xóm gần nhất; vertex buffer là bộ đệm điểm đỉnh để vẽ. Khung cuối nêu ba điều cần nhớ.</desc>
+<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách là dãy có thứ tự, ví dụ dòng tin; mảng là các giá trị có chỉ số, ví dụ tính toán số; ngăn xếp vào sau ra trước, ví dụ hoàn tác; hàng đợi chờ xử lý, ví dụ lệnh in. Tra cứu và sắp việc: bảng băm tra cứu nhanh nhờ hàm băm, ví dụ bộ nhớ đệm; đống lấy phần tử ưu tiên nhất trước, ví dụ lập lịch; cây nối các nút, ví dụ tài liệu HTML; cây hậu tố, ví dụ tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường; R-tree tìm hàng xóm gần nhất; vertex buffer là bộ đệm điểm đỉnh để vẽ. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1754" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -42,7 +42,7 @@
 <rect x="20" y="768" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <circle cx="50" cy="811.5" r="18" fill="#0f766e"/><g transform="translate(39.2 800.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
 <text x="78" y="794.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đống (Heap)</text>
-<text x="78" y="818.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy phần tử nhỏ nhất</text>
+<text x="78" y="818.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy phần tử ưu tiên nhất</text>
 <text x="78" y="837.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước. Ví dụ: lập lịch.</text>
 <rect x="20" y="869" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <circle cx="50" cy="912.5" r="18" fill="#0f766e"/><g transform="translate(39.2 901.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>

@@ -3,7 +3,7 @@
 **Mỗi cấu trúc dữ liệu thường đi với một việc quen thuộc: ngăn xếp với hoàn tác, hàng đợi với lệnh in, bảng băm với bộ nhớ đệm, đồ thị với quan hệ bạn bè.**
 Tiêu đề bài nguồn nói "10 cấu trúc" nhưng danh sách có mười một; bài giữ tên và ví dụ trong danh sách đó, đếm lại, rồi giải thích từng cấu trúc bằng tài liệu của Java, của MDN và của WebGL.
 
-![Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách là dãy có thứ tự, ví dụ dòng tin; mảng là các giá trị có chỉ số, ví dụ tính toán số; ngăn xếp vào sau ra trước, ví dụ hoàn tác; hàng đợi chờ xử lý, ví dụ lệnh in. Tra cứu và sắp việc: bảng băm tra cứu nhanh nhờ hàm băm, ví dụ bộ nhớ đệm; đống lấy phần tử nhỏ nhất trước, ví dụ lập lịch; cây nối các nút, ví dụ tài liệu HTML; cây hậu tố, ví dụ tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường; R-tree tìm hàng xóm gần nhất; vertex buffer là bộ đệm điểm đỉnh để vẽ. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-016-main.svg)
+![Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách là dãy có thứ tự, ví dụ dòng tin; mảng là các giá trị có chỉ số, ví dụ tính toán số; ngăn xếp vào sau ra trước, ví dụ hoàn tác; hàng đợi chờ xử lý, ví dụ lệnh in. Tra cứu và sắp việc: bảng băm tra cứu nhanh nhờ hàm băm, ví dụ bộ nhớ đệm; đống lấy phần tử ưu tiên nhất trước, ví dụ lập lịch; cây nối các nút, ví dụ tài liệu HTML; cây hậu tố, ví dụ tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường; R-tree tìm hàng xóm gần nhất; vertex buffer là bộ đệm điểm đỉnh để vẽ. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-016-main.svg)
 
 ## Từ viết tắt
 

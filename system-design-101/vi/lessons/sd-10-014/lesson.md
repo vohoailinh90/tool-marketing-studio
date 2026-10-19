@@ -25,7 +25,7 @@ Bài giữ tên tám chuẩn của bài nguồn, gom chúng thành ba nhóm theo
 
 **Mạng và web.**
 - TCP/IP: theo tài liệu MDN, TCP cho phép hai máy nối với nhau và trao đổi dòng dữ liệu, bảo đảm dữ liệu đến đủ và đúng thứ tự gửi, đồng thời có cơ chế kiểm soát tắc nghẽn để lượng gửi tăng dần theo sức chịu của mạng. IP là giao thức mà địa chỉ IP gắn vào: mỗi thiết bị trên một mạng IP có một địa chỉ riêng để được tìm thấy.
-- HTTP: giao thức đưa các tài liệu siêu văn bản qua Web, thường giữa trình duyệt và máy chủ. MDN nhấn mạnh hai tính chất: nó dạng văn bản và không nhớ trạng thái, tức mỗi lần trao đổi không biết gì về lần trước. Địa chỉ bắt đầu bằng `https` vẫn dùng HTTP nhưng đi qua một kênh bảo mật.
+- HTTP: giao thức đưa các tài liệu siêu văn bản qua Web, thường giữa trình duyệt và máy chủ. MDN nhấn mạnh hai tính chất: nó dạng văn bản và không nhớ trạng thái, tức mỗi lần trao đổi không biết gì về lần trước. Tính chất dạng văn bản đúng với HTTP/1.x; các phiên bản mới hơn như HTTP/2 truyền thông điệp thành các khung nhị phân nhưng giữ nguyên ngữ nghĩa (phần này là hiểu biết chung của người biên soạn, chưa đối chiếu). Địa chỉ bắt đầu bằng `https` vẫn dùng HTTP nhưng đi qua một kênh bảo mật.
 - HTML và CSS: HTML mô tả cấu trúc của trang web bằng các phần tử đặt trong thẻ; CSS là ngôn ngữ khai báo quyết định trang trông thế nào trong trình duyệt, mỗi luật gồm một bộ chọn và các thuộc tính. Kho mã của chuẩn HTML tự giới thiệu là nơi chứa HTML Standard.
 
 **Dữ liệu và trao đổi.**

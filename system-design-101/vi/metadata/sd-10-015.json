@@ -66,7 +66,7 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "CPython: Python source is compiled into bytecode, cached in .pyc files so that running the same file is faster the second time; the bytecode runs on a virtual machine.",
+      "claim_vi": "CPython: Python source is compiled into bytecode, cached in .pyc files so that running the same file is faster the second time; the bytecode runs on a virtual machine. Author's general knowledge, not checked: the caching normally applies to imported modules, not to a script run directly, and can be disabled or blocked by file permissions.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/glossary.rst",
       "section": "bytecode, virtual machine",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."

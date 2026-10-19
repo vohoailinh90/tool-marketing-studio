@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1212" viewBox="0 0 320 1212" role="img" aria-labelledby="title desc">
+<title id="title">TOTP: hai bên cùng tính ra mã</title>
+<desc id="desc">Hai khung các bước và một khung ghi nhớ. Cài đặt một lần: máy chủ tạo bí mật ngẫu nhiên; mã QR mang bí mật, tên tài khoản và nơi cấp; điện thoại quét và lưu. Mỗi lần đăng nhập: điện thoại tính mã sáu chữ số bằng HMAC của bí mật và số bước giờ; bạn gõ mã cùng mật khẩu; máy chủ tính lại và so khớp. Cần nhớ: chỉ có một triệu mã nên phải giới hạn số lần thử; lộ bí mật là lộ mã; trang giả chuyển mã được; mã dùng lại được nếu máy chủ không nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1212" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">TOTP: hai bên cùng tính</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">ra mã</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bí mật chung và giờ hiện tại cho ra</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">mã sáu số.</text>
+<rect x="8" y="123" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cài đặt, làm một lần</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ tạo bí mật</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một chuỗi ngẫu nhiên, máy</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chủ giữ lại.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hiện mã QR</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trong mã có bí mật, tên tài</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoản và nơi cấp.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điện thoại quét và lưu</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ đây tính mã được cả khi</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không có mạng.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="497" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="525.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mỗi lần đăng nhập</text>
+<rect x="20" y="542" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="568" r="14" fill="#0f766e"/>
+<text x="46" y="573.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="568.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điện thoại tính mã</text>
+<text x="70" y="592.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">HMAC của bí mật và số</text>
+<text x="70" y="611.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bước giờ, lấy sáu chữ số.</text>
+<rect x="20" y="651" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="677" r="14" fill="#0f766e"/>
+<text x="46" y="682.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bạn gõ mã</text>
+<text x="70" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng mật khẩu. Mã đổi sau</text>
+<text x="70" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi 30 giây.</text>
+<polyline points="46,631 46,649" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="760" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="786" r="14" fill="#0f766e"/>
+<text x="46" y="791.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="786.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ tính lại</text>
+<text x="70" y="810.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng bí mật, đồng hồ của</text>
+<text x="70" y="829.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ. Khớp thì cho vào.</text>
+<polyline points="46,740 46,758" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="871" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="899.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điều cần nhớ</text>
+<rect x="20" y="916" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="939" r="11" fill="#16a34a"/>
+<polyline points="37.9,939.4 41.7,943.4 48.5,935" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="942.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ có một triệu mã: máy</text>
+<text x="64" y="961.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chủ phải giới hạn số lần thử.</text>
+<rect x="20" y="987" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1010" r="11" fill="#16a34a"/>
+<polyline points="37.9,1010.4 41.7,1014.4 48.5,1006" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1013.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ai có bí mật đều tính ra đúng</text>
+<text x="64" y="1032.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã.</text>
+<rect x="20" y="1058" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1081" r="11" fill="#16a34a"/>
+<polyline points="37.9,1081.4 41.7,1085.4 48.5,1077" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1084.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang giả có thể chuyển mã</text>
+<text x="64" y="1103.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đi ngay trong 30 giây.</text>
+<rect x="20" y="1129" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1152" r="11" fill="#16a34a"/>
+<polyline points="37.9,1152.4 41.7,1156.4 48.5,1148" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1155.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ không nhớ bước đã</text>
+<text x="64" y="1174.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng thì mã dùng lại được.</text>
+</g>
+</svg>

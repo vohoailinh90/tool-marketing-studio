@@ -22,7 +22,7 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
@@ -42,64 +42,59 @@
   },
   "claims": [
     {
-      "claim_vi": "Compiled languages are compiled to machine code by the compiler, which the CPU executes directly; examples C, C++, Go.",
+      "claim_vi": "The source groups languages into three ways of running: compiled (C, C++, Go), bytecode (Java, C#) and interpreted (Python, JavaScript, Ruby); the lesson keeps the three groups and the example languages.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
-      "section": "Paragraph 2",
+      "section": "Whole body",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Bytecode languages such as Java compile source to bytecode and the JVM executes it; sometimes a JIT compiler compiles to machine code to speed execution; examples Java, C#.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
-      "section": "Paragraph 3",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Interpreted languages are not compiled but interpreted at runtime; examples Python, JavaScript, Ruby.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
-      "section": "Paragraph 4",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Compiled languages in general run faster than interpreted languages.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
-      "section": "Last sentence",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "CPython: Python source is compiled into bytecode, cached in .pyc files so that running the same file is faster the second time.",
-      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/glossary.rst",
-      "section": "Glossary: bytecode",
+      "claim_vi": "MDN: compiling transforms a program into instructions in another format or language, typically machine code; most compilers do ahead-of-time or just-in-time compilation; gcc is an AOT example invoked from a command line or IDE.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/compile/index.md",
+      "section": "Compile",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "CPython: Python is called an interpreted language as opposed to a compiled one, though the distinction can be blurry because of the bytecode compiler.",
-      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/glossary.rst",
-      "section": "Glossary: interpreted",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
-    },
-    {
-      "claim_vi": "MDN: JIT translates code from an intermediate representation or a higher-level language (e.g. JavaScript or Java bytecode) into machine code at runtime, and is commonly used in modern web browsers to optimize JavaScript.",
+      "claim_vi": "MDN: JIT translates an intermediate representation or higher-level language (e.g. Java bytecode) into machine code at runtime, compiling frequently executed hot spots when the speedup outweighs the compilation overhead; the compiled code is executed directly by the processor; all major browsers have JavaScript engines with built-in JIT.",
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/just_in_time_compilation/index.md",
-      "section": "Just-In-Time Compilation",
+      "section": "JIT and Compile",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "OpenJDK java command: java launches a Java application by starting the JVM, loading the main class and calling its main() method.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md",
+      "section": "Description",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "CPython: Python source is compiled into bytecode, cached in .pyc files so that running the same file is faster the second time; the bytecode runs on a virtual machine.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/glossary.rst",
+      "section": "bytecode, virtual machine",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "CPython: Python is called an interpreted language as opposed to a compiled one, though the distinction can be blurry because of the bytecode compiler; source files can be run directly without explicitly creating an executable; programs generally run more slowly than compiled ones.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/glossary.rst",
+      "section": "interpreted",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
       "claim_vi": "A language is not \"compiled\" or \"interpreted\" by itself; the way it runs belongs to a particular implementation.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
-      "section": "Limits",
+      "section": "Giới hạn cần nhớ",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
-      "claim_vi": "The glosses of CPU and JVM in the abbreviations section.",
+      "claim_vi": "A Java class file holds bytecode; the glosses of CPU, JVM and AOT in the abbreviations section.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
-      "section": "Từ viết tắt",
+      "section": "Đọc hình, Từ viết tắt",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba chuỗi bước cho ba nhóm và một khung ghi nhớ; trình JIT là bước tùy chọn trong nhóm bytecode. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba chuỗi bước cho ba nhóm và một khung ghi nhớ; trình JIT là bước tùy chọn trong nhóm bytecode. Lời trong thẻ viết từ tài liệu gốc, không từ câu của nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source states three clean categories; the lesson reports them and adds, from the Python glossary and MDN, that the boundaries are blurry.",
-    "Source says the JIT compiler compiles \"the source code\" to machine code; MDN says JIT translates from an intermediate representation such as bytecode or from a higher-level language, which the lesson notes."
+    "Source states three clean categories and says compiled languages in general run faster than interpreted ones; the lesson keeps the three groups and examples, takes the speed remark from the Python glossary (interpreted programs generally run more slowly) and shows from the glossary and MDN that the boundaries are blurry.",
+    "Source says the JIT compiler compiles \"the source code\" to machine code; MDN says JIT translates from an intermediate representation such as bytecode or from a higher-level language, which the lesson follows.",
+    "The lesson explains each group from the Python glossary, the OpenJDK java man page and MDN instead of following the sentences of the source."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

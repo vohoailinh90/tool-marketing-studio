@@ -39,7 +39,7 @@ Bạn cần một dấu vân tay (chuỗi băm) để nhận dạng một tệp 
 <details>
 <summary>Xem đáp án</summary>
 
-Họ băm SHA (ví dụ SHA-256): dữ liệu vào bất kỳ, chuỗi ra luôn dài 64 ký tự thập lục phân.
+SHA-256, một thành viên của họ băm SHA: dữ liệu vào bất kỳ, chuỗi ra luôn dài 64 ký tự thập lục phân (các thành viên khác của họ có độ dài khác).
 Dijkstra tìm đường có tổng trọng số nhỏ nhất, không phải ít nút nhất: A, C, B, D có tổng 1 + 2 + 1 = 4, nhỏ hơn 4 + 1 = 5 của A, B, D.
 
 </details>

@@ -250,6 +250,11 @@ Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách
 4. [Ngôn ngữ lập trình nào "xanh" nhất?](lessons/sd-10-004/lesson.md)
 5. [Cây phân cấp Java Collection](lessons/sd-10-005/lesson.md)
 6. [Chạy C, C++ và Rust trong trình duyệt bằng WebAssembly](lessons/sd-10-006/lesson.md)
+7. [Tám lĩnh vực hay dùng C++](lessons/sd-10-007/lesson.md)
+8. [Sáu mẫu thiết kế đa luồng cần biết](lessons/sd-10-008/lesson.md)
+9. [Dữ liệu đi từ ứng dụng này sang ứng dụng khác](lessons/sd-10-009/lesson.md)
+10. [Hàng đợi chặn và hàng đợi không chặn](lessons/sd-10-010/lesson.md)
+11. [Big endian và little endian: thứ tự byte trong bộ nhớ](lessons/sd-10-011/lesson.md)
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
 ## DevOps và CI/CD

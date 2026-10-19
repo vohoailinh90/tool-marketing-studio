@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1239" viewBox="0 0 320 1239" role="img" aria-labelledby="title desc">
+<title id="title">Học AWS từ đâu</title>
+<desc id="desc">Hai khung dịch vụ AWS và một khung bài tập. Khung một, nền tảng: máy chủ ảo cho thuê, S3 lưu đối tượng, VPC là mạng riêng, IAM quản lý ai được làm gì. Khung hai, dữ liệu và nhắn tin: RDS cho cơ sở dữ liệu quan hệ, DynamoDB cho khóa và giá trị, SQS và SNS cho hàng đợi và thông báo. Khung ba, bài tập ứng dụng chia sẻ ảnh: mỗi nhu cầu gắn với một dịch vụ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1239" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Học AWS từ đâu</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bản đồ nhóm dịch vụ cho người mới.</text>
+<rect x="8" y="80" width="304" height="390" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nền tảng</text>
+<rect x="20" y="125" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="159" r="18" fill="#1d4ed8"/><g transform="translate(39.2 148.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="151.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ ảo</text>
+<text x="78" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ cho thuê máy chủ.</text>
+<rect x="20" y="207" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="241" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="233.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">S3</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu tệp, ảnh, bản sao lưu.</text>
+<rect x="20" y="289" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="332.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 321.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">VPC</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng riêng cho tài nguyên</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy trong nó.</text>
+<rect x="20" y="390" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="424" r="18" fill="#1d4ed8"/><g transform="translate(39.2 413.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">IAM</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ai được làm gì.</text>
+<rect x="8" y="482" width="304" height="308" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="510.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu và nhắn tin</text>
+<rect x="20" y="527" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="561" r="18" fill="#0f766e"/><g transform="translate(39.2 550.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="553.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">RDS</text>
+<text x="78" y="577.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu quan hệ.</text>
+<rect x="20" y="609" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="652.5" r="18" fill="#0f766e"/><g transform="translate(39.2 641.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="635.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">DynamoDB</text>
+<text x="78" y="659.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa và giá trị, mở rộng</text>
+<text x="78" y="678.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn.</text>
+<rect x="20" y="710" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="744" r="18" fill="#0f766e"/><g transform="translate(39.2 733.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
+<text x="78" y="736.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">SQS, SNS</text>
+<text x="78" y="760.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàng đợi và thông báo.</text>
+<rect x="8" y="802" width="304" height="429" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="830.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bài tập: ứng dụng chia sẻ</text>
+<text x="20" y="852.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">ảnh</text>
+<rect x="20" y="869" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="892" r="11" fill="#16a34a"/>
+<polyline points="37.9,892.4 41.7,896.4 48.5,888" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="895.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu ảnh: S3.</text>
+<rect x="20" y="923" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="946" r="11" fill="#16a34a"/>
+<polyline points="37.9,946.4 41.7,950.4 48.5,942" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="949.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi cỡ ảnh khi tải lên:</text>
+<text x="64" y="968.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lambda.</text>
+<rect x="20" y="994" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1017" r="11" fill="#16a34a"/>
+<polyline points="37.9,1017.4 41.7,1021.4 48.5,1013" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1020.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài khoản người dùng: RDS.</text>
+<rect x="20" y="1048" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1071" r="11" fill="#16a34a"/>
+<polyline points="37.9,1071.4 41.7,1075.4 48.5,1067" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1074.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quyền đọc kho ảnh: IAM.</text>
+<rect x="20" y="1102" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1125" r="11" fill="#16a34a"/>
+<polyline points="37.9,1125.4 41.7,1129.4 48.5,1121" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1128.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo người theo dõi: SNS.</text>
+<rect x="20" y="1156" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1179" r="11" fill="#16a34a"/>
+<polyline points="37.9,1179.4 41.7,1183.4 48.5,1175" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1182.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Biết khi nào hỏng:</text>
+<text x="64" y="1201.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CloudWatch.</text>
+</g>
+</svg>

@@ -322,11 +322,27 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 15. [Hai mươi lăm bài báo đã định hình ngành máy tính, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Một kho hay nhiều kho: mỗi cách trả giá ở đâu](lessons/sd-11-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [Lỗi khi gọi web: khi nào thử lại, và thử lại sao cho không làm tệ thêm](lessons/sd-11-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [Sáu nguyên tắc chịu lỗi, và phép tính vì sao dư thừa có tác dụng](lessons/sd-11-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+21. [Mạng trên AWS: VPC và các cách nối ra, nối vào](lessons/sd-11-021/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+22. [Mã định danh duy nhất: 64 bit chia theo thời gian, máy và số thứ tự](lessons/sd-11-022/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 23. [Bộ phiên bản: dựng lại hôm nay cũng ra đúng kết quả của hôm qua](lessons/sd-11-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 24. [Hạ tầng bằng mã: bốn lớp, và vì sao khai báo hơn từng bước](lessons/sd-11-024/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 25. [Quản lý cấu hình và hạ tầng bằng mã: hai cách nhìn một việc](lessons/sd-11-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 26. [Event sourcing: lưu sự kiện thay vì trạng thái](lessons/sd-11-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 27. [Ứng dụng mười hai yếu tố: mười hai quy tắc gom thành ba nhóm](lessons/sd-11-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Năm cách sinh mã định danh duy nhất, và mỗi cách trả giá ở đâu](lessons/sd-11-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [Bốn cách chờ khi thử lại: tăng đều hay gấp đôi, có ngẫu nhiên hay không](lessons/sd-11-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Giám sát đám mây: chín khía cạnh, và vì sao cảnh báo là khâu dễ sai nhất](lessons/sd-11-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [Khóa phân tán: sáu nơi dùng, và cái bẫy khi khóa hết hạn](lessons/sd-11-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [Sáu mẫu nhắn tin trên đám mây, và điều mỗi mẫu giải](lessons/sd-11-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+33. [Học AWS từ đâu: nhóm dịch vụ nền tảng, dữ liệu, nhắn tin và vận hành](lessons/sd-11-033/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+34. [Chuyển hệ thống sang cloud native: sáu mảng việc cần phủ](lessons/sd-11-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+35. [Chi phí ẩn của đám mây: nhóm theo cách hóa đơn đếm](lessons/sd-11-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+36. [Hai thập kỷ đám mây: mỗi cột mốc đổi đường ranh giữa phần tự lo và phần thuê](lessons/sd-11-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+37. [Giảm chi phí đám mây: bốn đòn bẩy và thứ tự dùng chúng](lessons/sd-11-037/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+38. [Bảy mẫu hệ thống phân tán hay gặp: mỗi mẫu trả lời một vấn đề](lessons/sd-11-038/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 39. [Chọn bộ cân bằng tải trên đám mây: bốn ô và hai kiểu kết nối](lessons/sd-11-039/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 40. [AWS từ vài dịch vụ đến hơn hai trăm: đếm trong mã nguồn SDK](lessons/sd-11-040/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 41. [Azure theo mảng việc: mười một mảng và 266 nhà cung cấp tài nguyên](lessons/sd-11-041/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -478,7 +494,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 Tình huống thực tế (còn sd-02-030) → Cơ sở dữ liệu và lưu trữ (còn sd-04-013 đến sd-04-024) →
-Bộ nhớ đệm và hiệu năng (còn sd-06-023 đến sd-06-029) → Đám mây và hệ thống phân tán (đã viết một phần).
+Bộ nhớ đệm và hiệu năng (còn sd-06-023 đến sd-06-029).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

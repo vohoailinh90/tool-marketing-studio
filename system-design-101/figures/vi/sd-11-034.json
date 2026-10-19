@@ -1,0 +1,27 @@
+{
+  "id": "sd-11-034",
+  "title": "Sáu mảng việc của cloud native",
+  "subtitle": "Sáu câu hỏi cần có lời đáp.",
+  "desc": "Hai khung. Khung một, ba mảng nền nối nhau: cấp phát tạo hạ tầng và cấu hình, môi trường chạy giữ container, mạng và lưu trữ, điều phối xếp lịch và nối các bản chạy. Khung hai, ba mảng phía trên: định nghĩa ứng dụng dựng và đưa mã lên, quan sát cho thấy hệ thống đang làm gì, serverless bỏ việc quản máy chủ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba mảng nền",
+      "items": [
+        {"name": "Cấp phát", "role": "Tạo hạ tầng, cấu hình, kho ảnh.", "icon": "settings"},
+        {"name": "Môi trường chạy", "role": "Container, mạng, lưu trữ.", "icon": "container"},
+        {"name": "Điều phối", "role": "Xếp lịch, tìm dịch vụ, lưới dịch vụ.", "icon": "workflow"}
+      ],
+      "flow": [[0, 1], [1, 2]]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba mảng phía trên",
+      "items": [
+        {"name": "Định nghĩa ứng dụng", "role": "Dựng ảnh, tích hợp, phân phối liên tục.", "icon": "code"},
+        {"name": "Quan sát", "role": "Thấy hệ thống đang làm gì.", "icon": "eye"},
+        {"name": "Serverless", "role": "Chạy mã mà không quản máy chủ.", "icon": "zap"}
+      ]
+    }
+  ]
+}

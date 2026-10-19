@@ -560,15 +560,15 @@
 
 {"id": "sd-11-017", "status": "written", "title": "Must Know System Design Building Blocks", "owner": "claude/sd101-lessons-w16-4", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:29:43Z", "pr": 217}
 
-{"id": "sd-11-018", "status": "todo", "title": "Monorepo vs. Microrepo: Which is Best?"}
+{"id": "sd-11-018", "status": "written", "title": "Monorepo vs. Microrepo: Which is Best?", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-019", "status": "todo", "title": "How to Handle Web Request Errors"}
+{"id": "sd-11-019", "status": "written", "title": "How to Handle Web Request Errors", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-020", "status": "todo", "title": "A Cheat Sheet for Designing Fault-Tolerant Systems"}
+{"id": "sd-11-020", "status": "written", "title": "A Cheat Sheet for Designing Fault-Tolerant Systems", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-021", "status": "todo", "title": "Typical AWS Network Architecture"}
+{"id": "sd-11-021", "status": "written", "title": "Typical AWS Network Architecture", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-022", "status": "todo", "title": "Unique ID Generator"}
+{"id": "sd-11-022", "status": "written", "title": "Unique ID Generator", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
 {"id": "sd-11-023", "status": "written", "title": "Amazon's Build System: Brazil", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
@@ -580,27 +580,27 @@
 
 {"id": "sd-11-027", "status": "written", "title": "The 12-Factor App", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
-{"id": "sd-11-028", "status": "todo", "title": "Explaining 5 Unique ID Generators"}
+{"id": "sd-11-028", "status": "written", "title": "Explaining 5 Unique ID Generators", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-029", "status": "todo", "title": "Retry Strategies for System Failures"}
+{"id": "sd-11-029", "status": "written", "title": "Retry Strategies for System Failures", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-030", "status": "todo", "title": "Cloud Monitoring Cheat Sheet"}
+{"id": "sd-11-030", "status": "written", "title": "Cloud Monitoring Cheat Sheet", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-031", "status": "todo", "title": "Why Use a Distributed Lock?"}
+{"id": "sd-11-031", "status": "written", "title": "Why Use a Distributed Lock?", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-032", "status": "todo", "title": "Top 6 Cloud Messaging Patterns"}
+{"id": "sd-11-032", "status": "written", "title": "Top 6 Cloud Messaging Patterns", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-033", "status": "todo", "title": "Most Important AWS Services to Learn"}
+{"id": "sd-11-033", "status": "written", "title": "Most Important AWS Services to Learn", "owner": "claude/sd101-lessons-w17-4", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:29:14Z", "pr": 216}
 
-{"id": "sd-11-034", "status": "todo", "title": "How to Transform a System to be Cloud Native"}
+{"id": "sd-11-034", "status": "written", "title": "How to Transform a System to be Cloud Native", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-035", "status": "todo", "title": "Hidden Costs of the Cloud"}
+{"id": "sd-11-035", "status": "written", "title": "Hidden Costs of the Cloud", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-036", "status": "todo", "title": "2 Decades of Cloud Evolution"}
+{"id": "sd-11-036", "status": "written", "title": "2 Decades of Cloud Evolution", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-037", "status": "todo", "title": "Cloud Cost Reduction Techniques"}
+{"id": "sd-11-037", "status": "written", "title": "Cloud Cost Reduction Techniques", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-038", "status": "todo", "title": "Top 7 Most-Used Distributed System Patterns"}
+{"id": "sd-11-038", "status": "written", "title": "Top 7 Most-Used Distributed System Patterns", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
 {"id": "sd-11-039", "status": "written", "title": "Cloud Load Balancer Cheat Sheet", "owner": "claude/sd101-lessons-w18-2", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:17:32Z", "pr": 213}
 

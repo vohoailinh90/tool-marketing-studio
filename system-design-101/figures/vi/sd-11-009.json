@@ -1,0 +1,16 @@
+{
+  "id": "sd-11-009",
+  "title": "Sáu biến thể của nhịp tim",
+  "subtitle": "Nghi một nút hỏng bằng cách nào.",
+  "desc": "Hai khung. Khung một, ai chủ động: nút tự gửi nhịp, bên giám sát chủ động hỏi, hoặc nhịp kèm kiểm tra sức khỏe. Khung hai, làm cho đáng tin hơn: nhịp kèm mốc thời gian, nhịp có xác nhận, và nhiều nút cùng đồng ý trước khi kết luận.",
+  "sections": [
+    {"kind": "notes", "heading": "Ai chủ động", "items": [
+      "Push: nút tự gửi nhịp theo chu kỳ.",
+      "Pull: bên giám sát chủ động hỏi.",
+      "Health check: nhịp kèm kiểm tra việc làm được."]},
+    {"kind": "notes", "heading": "Làm cho đáng tin hơn", "items": [
+      "Mốc thời gian: thấy nhịp đến muộn.",
+      "Xác nhận: bên gửi biết nhịp đã tới.",
+      "Đa số: nhiều nút đồng ý rồi mới kết luận."]}
+  ]
+}

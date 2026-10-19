@@ -298,6 +298,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
+## Đám mây và hệ thống phân tán
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+6. [Chín mẫu kiến trúc cho dòng dữ liệu và giao tiếp: mỗi mẫu trả lời một câu hỏi khác](lessons/sd-11-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Idempotent: sáu chỗ gửi lại cùng một yêu cầu không được làm hai lần](lessons/sd-11-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Năm cặp đánh đổi trong thiết kế hệ thống: được cái này, trả bằng cái kia](lessons/sd-11-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+9. [Phát hiện nút hỏng trong hệ thống phân tán: sáu biến thể của nhịp tim](lessons/sd-11-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+10. [Giây nhuận: vì sao nhiều công ty lớn muốn thoát khỏi nó](lessons/sd-11-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

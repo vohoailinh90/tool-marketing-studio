@@ -1,0 +1,18 @@
+{
+  "id": "sd-11-010",
+  "title": "Giây nhuận",
+  "subtitle": "Một phút 61 giây, và lỗi nó gây ra.",
+  "desc": "Hai khung. Khung một, vì sao có giây nhuận và nó gây lỗi gì: Trái Đất quay không đều so với đồng hồ nguyên tử, người ta chèn thêm một giây, phần mềm thấy giây thứ sáu mươi, các mốc thời gian có thể lặp hoặc lùi. Khung hai, ba cách đối phó: chèn đúng giây nhuận, làm mịn thành những lát nhỏ, hoặc bỏ giây nhuận.",
+  "sections": [
+    {"kind": "steps", "heading": "Từ giây thừa tới lỗi", "items": [
+      {"title": "Quay không đều", "text": "Trái Đất lệch dần so với đồng hồ nguyên tử."},
+      {"title": "Chèn một giây", "text": "Sau 23:59:59 có 23:59:60."},
+      {"title": "Phần mềm vấp", "text": "Giả định phút có đúng 60 giây."},
+      {"title": "Mốc lặp hoặc lùi", "text": "Thứ tự sự kiện có thể sai."}
+    ]},
+    {"kind": "notes", "heading": "Ba cách đối phó", "items": [
+      "Chèn đúng: đúng chuẩn, nhưng dễ vỡ phần mềm.",
+      "Làm mịn: chia giây thừa thành lát nhỏ.",
+      "Bỏ: hết giây thừa, giờ lệch dần khỏi Mặt Trời."]}
+  ]
+}

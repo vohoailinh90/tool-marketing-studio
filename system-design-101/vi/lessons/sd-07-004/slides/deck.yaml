@@ -1,5 +1,23 @@
 id: sd-07-004
-status: doing
+status: done
 owner: claude/sd101-lessons-w7-1
 claimed_at: '2026-10-19T02:55:28Z'
-heartbeat_at: '2026-10-19T03:07:12Z'
+done_at: '2026-10-19T03:07:15Z'
+moda_canvas: cvs_7RY4REA2519QXRFZ71RJT8RPQE
+moda_url: https://moda.app/canvas/f8f130e5-08a1-4dfb-87fc-e1c4b48c5aee
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - timeline
+  - flow
+  - lookup-table
+  - connection-diagram
+  - sequence-diagram
+  - numbered-rows
+  - card-grid
+  - two-column-comparison
+  - layers
+  - card-grid
+  first_concept: 3

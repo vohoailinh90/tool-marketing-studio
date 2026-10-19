@@ -3,7 +3,7 @@
 **Theo bài nguồn, Shopify gom kinh nghiệm làm hệ thống thanh toán thành mười nguyên tắc: hỏng sớm, chặn lỗi lan, tính trước sức chứa, nhìn thấy hệ thống, không ghi trùng, đối soát, thử tải, và xử lý sự cố có vai trò rõ.**
 Bài này xếp mười nguyên tắc theo thời điểm chúng có tác dụng: trước khi lỗi xảy ra, trong lúc gọi dịch vụ khác, và sau khi đã có sự cố.
 
-![Ba khung. Khi gọi dịch vụ khác: hạ thời gian chờ, đọc 5 giây và ghi 1 giây thay cho mặc định 60 giây; cầu dao Semian bảo vệ các lời gọi tới HTTP, MySQL, Redis và gRPC; khóa chống trùng dùng mã sắp được theo thời gian thay cho UUID phiên bản 4. Để nhìn thấy và chuẩn bị: tính sức chứa, ví dụ 50 yêu cầu trong hàng đợi, mỗi yêu cầu 100 mili giây thì thông lượng là 500 yêu cầu mỗi giây; theo dõi bốn tín hiệu vàng là độ trễ, lưu lượng, lỗi và độ bão hòa; nhật ký có cấu trúc lưu tập trung; thử tải bằng cách mô phỏng đợt bán chớp nhoáng. Sau sự cố: lưu chênh lệch đối soát với đối tác tài chính; kênh sự cố có ba vai trò; buổi nhìn lại hỏi ba câu.](../../diagrams/sd-02-024-main.svg)
+![Ba khung. Khi gọi dịch vụ khác: hạ thời gian chờ, đọc 5 giây và ghi 1 giây thay cho mặc định 60 giây; cầu dao Semian bảo vệ các lời gọi tới HTTP, MySQL, Redis và gRPC; khóa chống trùng dùng mã sắp được theo thời gian thay cho UUID phiên bản 4. Để nhìn thấy và chuẩn bị: tính sức chứa, ví dụ 50 yêu cầu trong hàng đợi, mỗi yêu cầu 100 mili giây thì thông lượng là 500 yêu cầu mỗi giây nếu cả 50 được xử lý cùng lúc; theo dõi bốn tín hiệu vàng là độ trễ, lưu lượng, lỗi và độ bão hòa; nhật ký có cấu trúc lưu tập trung; thử tải bằng cách mô phỏng đợt bán chớp nhoáng. Sau sự cố: lưu chênh lệch đối soát với đối tác tài chính; kênh sự cố có ba vai trò; buổi nhìn lại hỏi ba câu.](../../diagrams/sd-02-024-main.svg)
 
 ## Từ viết tắt
 

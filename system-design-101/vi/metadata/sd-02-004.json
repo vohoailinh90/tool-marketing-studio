@@ -54,7 +54,7 @@
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Telegram's usual private and group chats are not end-to-end encrypted, so third parties can in principle intercept and read messages.",
+      "claim_vi": "Telegram's usual private and group chats are not end-to-end encrypted; the source reads this as third parties being able to intercept and read messages, which the lesson qualifies: client-server encryption stops network eavesdroppers, but Telegram's server side can decrypt.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
       "section": "Usual chats",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
@@ -66,7 +66,7 @@
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Secret chats are end-to-end encrypted but do not support group chat or normal one-to-one chat and are only enabled for mobile devices.",
+      "claim_vi": "Secret chats are end-to-end encrypted one-to-one chats; per the source they do not support group chat, do not replace the normal one-to-one chat, and are only enabled for mobile devices.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
       "section": "Secret chats",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."

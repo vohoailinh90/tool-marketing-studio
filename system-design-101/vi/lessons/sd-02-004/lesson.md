@@ -13,13 +13,13 @@ Bài này đọc hai loại đó theo cùng một câu hỏi: ngoài người g�
 
 **Định nghĩa trước.** Theo bài nguồn, một cuộc chat "an toàn" thường nghĩa là tin được mã hóa ở phía người gửi và chỉ giải mã được ở phía người nhận, tức là E2EE.
 
-**Chat thường và chat nhóm.** Đây là hai loại chat mặc định, và theo nguồn chúng không mã hóa đầu cuối: bên thứ ba về nguyên tắc có thể chặn và đọc tin. Cách Telegram bảo vệ chúng:
+**Chat thường và chat nhóm.** Đây là hai loại chat mặc định, và theo nguồn chúng không mã hóa đầu cuối. Bài nguồn diễn giải điều này là bên thứ ba có thể chặn và đọc tin; nói chính xác hơn, tin vẫn được mã hóa giữa máy khách và máy chủ, nên kẻ nghe lén trên mạng không đọc được, nhưng phía máy chủ của Telegram giải mã được. Rủi ro vì vậy nằm ở việc tin Telegram và cách họ giữ chìa khóa. Cách Telegram bảo vệ chúng, theo nguồn:
 - Tin đã mã hóa được lưu trên máy chủ Telegram, chia thành nhiều mảnh, cất ở các nước khác nhau.
 - Chìa khóa giải mã cũng được chia nhỏ và cất ở nhiều nước.
 
 Kẻ tấn công vì vậy phải lấy được mọi mảnh tin và mọi mảnh chìa khóa. Nguồn nói việc đó có thể làm được nhưng cực kỳ khó.
 
-**Secret chat.** Chọn "secret chat" thì tin được mã hóa đầu cuối. Theo nguồn, cái giá là: không dùng được cho chat nhóm hay chat một-một thông thường, và chỉ bật được trên thiết bị di động.
+**Secret chat.** Chọn "secret chat" thì tin được mã hóa đầu cuối. Secret chat là một cuộc chat một-một riêng, mở thêm bên cạnh chat một-một thường với cùng người đó. Theo nguồn, cái giá là: không dùng được cho chat nhóm, không thay cho chat một-một thường, và chỉ bật được trên thiết bị di động.
 
 ## Giới hạn cần nhớ
 

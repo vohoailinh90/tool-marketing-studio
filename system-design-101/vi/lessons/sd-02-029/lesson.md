@@ -45,7 +45,7 @@ Cassandra dùng cây LSM, nên đọc tốn hơn ghi. Hàng trăm người cùng
 <details>
 <summary>Xem sâu hơn: vì sao cây LSM đọc tốn hơn ghi</summary>
 
-- Ghi là nối thêm bản ghi vào nhật ký ghi (commit log) trên đĩa và cập nhật bảng trong bộ nhớ; về sau bảng này mới được đổ ra một tệp mới. Cả hai bước đều chỉ ghi nối tiếp, không sửa chỗ cũ, nên rất nhanh; nhờ nhật ký trên đĩa, dữ liệu đã nhận không mất khi máy tắt đột ngột.
+- Ghi là nối thêm bản ghi vào nhật ký ghi (commit log) trên đĩa và cập nhật bảng trong bộ nhớ; về sau bảng này mới được đổ ra một tệp mới. Cả hai bước đều chỉ ghi nối tiếp, không sửa chỗ cũ, nên rất nhanh; nhật ký trên đĩa là thứ giúp khôi phục dữ liệu khi máy tắt đột ngột. Ở chế độ mặc định, nhật ký chỉ được đẩy hẳn xuống đĩa theo chu kỳ, nên những lần ghi trong khoảng ngắn chưa kịp đẩy có thể mất.
 - Đọc có thể phải tìm trong nhiều tệp, vì bản mới nhất của một dòng nằm ở tệp nào thì chưa biết trước.
 - Gộp tệp giảm số tệp phải tìm, nhưng chính việc gộp lại tốn ổ đĩa và bộ xử lý của máy đang phục vụ.
 

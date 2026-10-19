@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1068" viewBox="0 0 320 1068" role="img" aria-labelledby="title desc">
 <title id="title">Big endian và little endian</title>
-<desc id="desc">Bốn nhóm xếp dọc. Big endian với số 1023: byte lớn nhất 03 ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.</desc>
+<desc id="desc">Bốn nhóm xếp dọc. Big endian với số 1023: byte trọng số cao nhất 03 ở địa chỉ thấp nhất, byte trọng số thấp nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte trọng số thấp nhất ff ở địa chỉ thấp nhất, byte trọng số cao nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1068" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -13,12 +13,12 @@
 <circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
 <text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
 <text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ thấp nhất</text>
-<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte lớn nhất: 03.</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte trọng số cao nhất: 03.</text>
 <rect x="20" y="239" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="46" cy="265" r="14" fill="#1d4ed8"/>
 <text x="46" y="270.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
 <text x="70" y="265.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ kế tiếp</text>
-<text x="70" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte nhỏ nhất: ff.</text>
+<text x="70" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte trọng số thấp nhất: ff.</text>
 <polyline points="46,219 46,237" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="8" y="331" width="304" height="215" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="359.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Little endian · số 1023</text>
@@ -26,12 +26,12 @@
 <circle cx="46" cy="402" r="14" fill="#0f766e"/>
 <text x="46" y="407.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
 <text x="70" y="402.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ thấp nhất</text>
-<text x="70" y="426.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte nhỏ nhất: ff.</text>
+<text x="70" y="426.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte trọng số thấp nhất: ff.</text>
 <rect x="20" y="466" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <circle cx="46" cy="492" r="14" fill="#0f766e"/>
 <text x="46" y="497.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
 <text x="70" y="492.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ kế tiếp</text>
-<text x="70" y="516.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte lớn nhất: 03.</text>
+<text x="70" y="516.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte trọng số cao nhất: 03.</text>
 <polyline points="46,446 46,464" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="8" y="558" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="586.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng ở đâu</text>

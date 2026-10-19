@@ -1,9 +1,9 @@
 # Big endian và little endian: thứ tự byte trong bộ nhớ
 
-**Một số nguyên nhiều byte có thể nằm trong bộ nhớ theo hai thứ tự: byte nhỏ nhất trước (little endian) hoặc byte lớn nhất trước (big endian).**
+**Một số nguyên nhiều byte có thể nằm trong bộ nhớ theo hai thứ tự: byte trọng số thấp nhất trước (little endian) hoặc byte trọng số cao nhất trước (big endian).**
 Bài nguồn gọi chung hai kiểu này là thứ tự byte; bài này giữ tên little endian, big endian và câu hỏi vì sao thứ tự byte quan trọng, rồi giải thích bằng ví dụ và lời khuyên trong tài liệu của Python.
 
-![Bốn nhóm xếp dọc. Big endian với số 1023 hay 0x3ff: byte lớn nhất 03 nằm ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff nằm ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-011-main.svg)
+![Bốn nhóm xếp dọc. Big endian với số 1023 hay 0x3ff: byte trọng số cao nhất 03 nằm ở địa chỉ thấp nhất, byte trọng số thấp nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte trọng số thấp nhất ff nằm ở địa chỉ thấp nhất, byte trọng số cao nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-011-main.svg)
 
 ## Từ viết tắt
 
@@ -15,7 +15,7 @@ Bài nguồn gọi chung hai kiểu này là thứ tự byte; bài này giữ t�
 
 Tên các thứ tự là của bài nguồn. Ví dụ, danh sách máy và lời khuyên dưới đây lấy từ tài liệu mô-đun `struct` của Python; cách giải thích là của người biên soạn.
 
-**Ví dụ: số 1023.** Tài liệu `struct` dùng chính số này. Viết thập lục phân, 1023 là `0x3ff`, nên khi lưu thành hai byte thì byte lớn nhất là `03` và byte nhỏ nhất là `ff`. Ở big endian, hai byte nằm theo thứ tự `03 ff`: byte lớn nhất ở địa chỉ thấp nhất. Ở little endian, chúng nằm theo thứ tự `ff 03`: byte nhỏ nhất ở địa chỉ thấp nhất. Trong Python, `struct.pack('>h', 1023)` ra `03 ff` và `struct.pack('<h', 1023)` ra `ff 03`.
+**Ví dụ: số 1023.** Tài liệu `struct` dùng chính số này. Viết thập lục phân, 1023 là `0x3ff`, nên khi lưu thành hai byte thì byte trọng số cao nhất là `03` và byte trọng số thấp nhất là `ff`. Hai tên này gọi theo vị trí trong số, không theo việc `03` nhỏ hơn `ff`: byte trọng số cao nhất là byte ở hàng giá trị lớn nhất của số, byte trọng số thấp nhất là byte ở hàng đơn vị. Ở big endian, hai byte nằm theo thứ tự `03 ff`: byte trọng số cao nhất ở địa chỉ thấp nhất. Ở little endian, chúng nằm theo thứ tự `ff 03`: byte trọng số thấp nhất ở địa chỉ thấp nhất. Trong Python, `struct.pack('>h', 1023)` ra `03 ff` và `struct.pack('<h', 1023)` ra `ff 03`.
 
 **Little endian.** Tài liệu `struct` nói thứ tự gốc của máy là big endian hoặc little endian tùy máy chủ; Intel x86, AMD64 và Apple M1 là little endian.
 
@@ -35,7 +35,7 @@ Một chương trình trên máy little endian ghi số 1023 thành hai byte r�
 <details>
 <summary>Xem đáp án</summary>
 
-Máy little endian gửi `ff 03`. Máy big endian coi byte đầu tiên là byte lớn nhất nên đọc thành `0xff03`, tức 65283 nếu hiểu là số nguyên không dấu hai byte (phép tính của người biên soạn), thay vì 1023.
+Máy little endian gửi `ff 03`. Máy big endian coi byte đầu tiên là byte trọng số cao nhất nên đọc thành `0xff03`, tức 65283 nếu hiểu là số nguyên không dấu hai byte (phép tính của người biên soạn), thay vì 1023.
 Vì thế khi gửi dữ liệu ra ngoài cần nêu rõ thứ tự byte, và thứ tự mạng là big endian.
 
 </details>

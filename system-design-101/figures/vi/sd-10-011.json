@@ -2,7 +2,7 @@
   "id": "sd-10-011",
   "title": "Big endian và little endian",
   "subtitle": "Cùng một số, hai cách xếp byte.",
-  "desc": "Bốn nhóm xếp dọc. Big endian với số 1023: byte lớn nhất 03 ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Bốn nhóm xếp dọc. Big endian với số 1023: byte trọng số cao nhất 03 ở địa chỉ thấp nhất, byte trọng số thấp nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte trọng số thấp nhất ff ở địa chỉ thấp nhất, byte trọng số cao nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {
       "kind": "steps",
@@ -10,11 +10,11 @@
       "items": [
         {
           "title": "Địa chỉ thấp nhất",
-          "text": "Byte lớn nhất: 03."
+          "text": "Byte trọng số cao nhất: 03."
         },
         {
           "title": "Địa chỉ kế tiếp",
-          "text": "Byte nhỏ nhất: ff."
+          "text": "Byte trọng số thấp nhất: ff."
         }
       ]
     },
@@ -24,11 +24,11 @@
       "items": [
         {
           "title": "Địa chỉ thấp nhất",
-          "text": "Byte nhỏ nhất: ff."
+          "text": "Byte trọng số thấp nhất: ff."
         },
         {
           "title": "Địa chỉ kế tiếp",
-          "text": "Byte lớn nhất: 03."
+          "text": "Byte trọng số cao nhất: 03."
         }
       ]
     },

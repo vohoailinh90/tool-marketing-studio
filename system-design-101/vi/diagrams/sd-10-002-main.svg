@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1490" viewBox="0 0 320 1490" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1550" viewBox="0 0 320 1550" role="img" aria-labelledby="title desc">
 <title id="title">Ba ngôn ngữ, ba cách dọn rác</title>
-<desc id="desc">Bốn nhóm thẻ. Java nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial và Parallel. Java nhóm quan tâm thời gian dừng: CMS, G1 và ZGC. CPython và Go: CPython đếm tham chiếu cộng bộ dọn vòng tham chiếu, Go dùng bộ dọn đánh dấu và quét chạy đồng thời. Khung cuối nêu ba điều cần nhớ.</desc>
+<desc id="desc">Bốn nhóm thẻ. Java nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial và Parallel. Java nhóm quan tâm thời gian dừng: CMS, G1 và ZGC. CPython và Go chuẩn: CPython đếm tham chiếu cộng bộ dọn vòng tham chiếu, Go chuẩn dùng bộ dọn đánh dấu và quét chạy đồng thời. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1490" fill="#f8fafc"/>
+<rect width="320" height="1550" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba ngôn ngữ, ba cách</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">dọn rác</text>
@@ -40,8 +40,8 @@
 <text x="78" y="717.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">ZGC</text>
 <text x="78" y="741.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng nhớ lớn, thời gian</text>
 <text x="78" y="760.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dừng tối thiểu.</text>
-<rect x="8" y="802" width="304" height="386" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="830.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">CPython và Go</text>
+<rect x="8" y="802" width="304" height="426" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="830.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">CPython và Go chuẩn</text>
 <rect x="20" y="847" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
 <circle cx="50" cy="900.5" r="18" fill="#b45309"/><g transform="translate(39.2 889.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></g>
 <text x="78" y="873.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">CPython: đếm tham</text>
@@ -54,28 +54,31 @@
 <text x="78" y="1014.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">tham chiếu</text>
 <text x="78" y="1038.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xử lý đối tượng trỏ vòng</text>
 <text x="78" y="1057.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quanh nhau.</text>
-<rect x="20" y="1089" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="50" cy="1132.5" r="18" fill="#b45309"/><g transform="translate(39.2 1121.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
-<text x="78" y="1115.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Go: đánh dấu và quét</text>
-<text x="78" y="1139.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy đồng thời với ứng</text>
-<text x="78" y="1158.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng để giảm lần dừng.</text>
-<rect x="8" y="1200" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="1228.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
-<rect x="20" y="1245" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1268" r="11" fill="#16a34a"/>
-<polyline points="37.9,1268.4 41.7,1272.4 48.5,1264" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1271.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn bộ dọn là chọn giữa</text>
-<text x="64" y="1290.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tổng việc làm và thời gian</text>
-<text x="64" y="1310.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chờ.</text>
-<rect x="20" y="1336" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1359" r="11" fill="#16a34a"/>
-<polyline points="37.9,1359.4 41.7,1363.4 48.5,1355" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1362.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dọn đồng thời giảm lần dừng</text>
-<text x="64" y="1381.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng có chi phí.</text>
-<rect x="20" y="1407" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1430" r="11" fill="#16a34a"/>
-<polyline points="37.9,1430.4 41.7,1434.4 48.5,1426" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1433.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xem tài liệu của phiên bản</text>
-<text x="64" y="1452.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java đang dùng.</text>
+<rect x="20" y="1089" width="280" height="127" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1152.5" r="18" fill="#b45309"/><g transform="translate(39.2 1141.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="1115.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Go chuẩn: đánh dấu</text>
+<text x="78" y="1135.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">và quét</text>
+<text x="78" y="1159.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần lớn việc chạy đồng</text>
+<text x="78" y="1178.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thời với ứng dụng; vẫn có</text>
+<text x="78" y="1198.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lúc dừng.</text>
+<rect x="8" y="1240" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1268.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1285" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1308" r="11" fill="#16a34a"/>
+<polyline points="37.9,1308.4 41.7,1312.4 48.5,1304" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1311.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn bộ dọn là chọn giữa</text>
+<text x="64" y="1330.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tổng việc làm và thời gian</text>
+<text x="64" y="1350.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chờ.</text>
+<rect x="20" y="1376" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1399" r="11" fill="#16a34a"/>
+<polyline points="37.9,1399.4 41.7,1403.4 48.5,1395" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1402.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dọn đồng thời giảm lần</text>
+<text x="64" y="1421.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dừng, không xóa hẳn, và có</text>
+<text x="64" y="1441.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chi phí.</text>
+<rect x="20" y="1467" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1490" r="11" fill="#16a34a"/>
+<polyline points="37.9,1490.4 41.7,1494.4 48.5,1486" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1493.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xem tài liệu của phiên bản</text>
+<text x="64" y="1512.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java đang dùng.</text>
 </g>
 </svg>

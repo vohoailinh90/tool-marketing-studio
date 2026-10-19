@@ -3,7 +3,7 @@
 **Chương trình xin bộ nhớ liên tục, còn bộ dọn rác tự thu hồi phần không còn dùng; mỗi ngôn ngữ chọn một cách dọn khác nhau.**
 Bài nguồn nêu cách làm của Java, Python và Go; bài này đọc ba cách đó theo cùng một câu hỏi: dọn bằng cơ chế nào, và chương trình bị chậm lại ra sao.
 
-![Bốn nhóm thẻ xếp dọc. Java, nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial hợp môi trường một luồng hoặc ứng dụng nhỏ; bộ dọn Parallel còn gọi là Throughput Collector. Java, nhóm quan tâm thời gian dừng: CMS nhắm độ trễ thấp, G1 cân bằng thông lượng và độ trễ, ZGC dành cho vùng nhớ lớn và thời gian dừng tối thiểu. CPython và Go: CPython đếm tham chiếu và giải phóng khi bộ đếm về không, thêm bộ dọn vòng tham chiếu cho các đối tượng trỏ vòng quanh nhau; Go dùng bộ dọn đánh dấu và quét chạy đồng thời với ứng dụng. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-10-002-main.svg)
+![Bốn nhóm thẻ xếp dọc. Java, nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial hợp môi trường một luồng hoặc ứng dụng nhỏ; bộ dọn Parallel còn gọi là Throughput Collector. Java, nhóm quan tâm thời gian dừng: CMS nhắm độ trễ thấp, G1 cân bằng thông lượng và độ trễ, ZGC dành cho vùng nhớ lớn và thời gian dừng tối thiểu. CPython và Go chuẩn: CPython đếm tham chiếu và giải phóng khi bộ đếm về không, thêm bộ dọn vòng tham chiếu cho các đối tượng trỏ vòng quanh nhau; Go chuẩn dùng bộ dọn đánh dấu và quét chạy đồng thời với ứng dụng. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-10-002-main.svg)
 
 ## Từ viết tắt
 
@@ -25,7 +25,7 @@ Hai thước đo hay gặp: **thông lượng** là tổng lượng việc làm 
 
 **Python (CPython).** Hai lớp. Lớp đầu là đếm tham chiếu: mỗi đối tượng có một bộ đếm, về không thì vùng nhớ được giải phóng. Lớp thứ hai là bộ dọn vòng tham chiếu, xử lý những đối tượng trỏ vòng quanh nhau mà bộ đếm không giải quyết được. Tài liệu của Python nói bộ dọn này bổ sung cho đếm tham chiếu và có thể tắt nếu chắc chương trình không tạo vòng. Đây là cách của CPython, bản cài đặt Python phổ biến nhất; các bản cài đặt khác, như PyPy, không nhất thiết đếm tham chiếu từng đối tượng, nên đừng coi đếm tham chiếu là bảo đảm của chính ngôn ngữ Python.
 
-**Go.** Bộ dọn kiểu đánh dấu rồi quét (mark-and-sweep) chạy đồng thời với ứng dụng để giảm các lần dừng. Tài liệu của Go nói nó không hoàn toàn dừng toàn bộ và làm phần lớn việc đồng thời.
+**Go (bộ công cụ chuẩn).** Bộ dọn kiểu đánh dấu rồi quét (mark-and-sweep) chạy đồng thời với ứng dụng để giảm các lần dừng. Tài liệu của Go nói nó không hoàn toàn dừng toàn bộ: phần lớn việc dọn chạy đồng thời với ứng dụng, nhưng không phải toàn bộ, nên vẫn có lúc ứng dụng phải dừng. Cũng theo tài liệu đó, đặc tả ngôn ngữ Go không đòi phải có bộ dọn rác, và phần mô tả này áp dụng cho bộ công cụ chuẩn của Go (trình biên dịch `gc` và các công cụ đi kèm), nên bản cài đặt Go khác có thể làm khác.
 
 ## Giới hạn cần nhớ
 

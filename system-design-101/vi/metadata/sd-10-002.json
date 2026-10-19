@@ -94,13 +94,20 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md",
       "section": "Python",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "Go GC guide: the Go specification does not require a garbage collector; the guide is about a specific implementation and applies to the standard toolchain (the gc compiler and tools), and the Go GC is not fully stop-the-world while doing most of its work concurrently.",
+      "source": "https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/gc-guide.html",
+      "section": "Introduction and Latency",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     }
   ],
   "design_notes_vi": "Năm bộ dọn của Java gộp thành hai nhóm theo điều nguồn nói mỗi bộ nhắm tới; Python và Go chung một khung vì mỗi ngôn ngữ có cơ chế chính riêng. Khung cuối nhắc đánh đổi giữa thông lượng và độ trễ. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source gives one line per collector per language; the lesson adds the throughput versus latency trade-off and the meaning of stop-the-world from the Go and Python documentation.",
     "Descriptions of the Java collectors come from the source only and were not checked against Java documentation.",
-    "Source says Python uses reference counting and a cycle collector; the lesson scopes this to CPython (author's general knowledge)."
+    "Source says Python uses reference counting and a cycle collector; the lesson scopes this to CPython (author's general knowledge).",
+    "Source describes Go's collector as concurrent mark-and-sweep; the lesson scopes it to the standard Go toolchain and says some pauses remain, following the Go GC guide."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

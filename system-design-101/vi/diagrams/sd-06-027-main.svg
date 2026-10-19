@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1196" viewBox="0 0 320 1196" role="img" aria-labelledby="title desc">
+<title id="title">Chín chỉ số hiệu năng web, xếp theo câu hỏi</title>
+<desc id="desc">Ba phần. Phần một, ba nhóm chỉ số: máy chủ và mạng gồm TTFB, thời gian chờ byte đầu tiên, và RTT, một lượt đi về; trang nặng cỡ nào gồm số yêu cầu, tổng dung lượng và số tài nguyên chặn hiển thị; người dùng thấy gì và khi nào gồm DOMContentLoaded, FCP, phần đầu màn hình và thời gian tải. Phần hai, thử trong Chromium với một tệp CSS trả chậm 800 mili giây: chặn hiển thị thì FCP 940 mili giây, không chặn thì 132; TTFB như nhau 104 mili giây; DOMContentLoaded khoảng 120 mili giây ở cả hai, trang không có script; sự kiện load khoảng 920 mili giây ở cả hai. Phần ba, bộ Core Web Vitals hiện nay: LCP tốt khi không quá 2,5 giây, INP tốt khi không quá 200 mili giây, CLS tốt khi không quá 0,1.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1196" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chín chỉ số hiệu năng</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">web, xếp theo câu hỏi</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi chỉ số trả lời một câu; chọn câu</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bạn cần hỏi.</text>
+<rect x="8" y="123" width="304" height="406" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba nhóm câu hỏi</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ và mạng</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TTFB: chờ byte đầu tiên.</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RTT: một lượt đi về.</text>
+<rect x="20" y="269" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="322.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 311.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trang nặng cỡ nào</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số yêu cầu, tổng dung</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lượng, số tài nguyên chặn</text>
+<text x="78" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hiển thị.</text>
+<rect x="20" y="390" width="280" height="127" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="453.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 442.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người dùng thấy gì,</text>
+<text x="78" y="436.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">khi nào</text>
+<text x="78" y="460.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DOMContentLoaded, FCP,</text>
+<text x="78" y="479.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần đầu màn hình, thời</text>
+<text x="78" y="499.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gian tải.</text>
+<rect x="8" y="541" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="569.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: CSS trả chậm 800 ms</text>
+<rect x="20" y="586" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="609" r="11" fill="#16a34a"/>
+<polyline points="37.9,609.4 41.7,613.4 48.5,605" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="612.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chặn hiển thị: FCP 940 ms.</text>
+<text x="64" y="631.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không chặn: FCP 132 ms.</text>
+<rect x="20" y="657" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="680" r="11" fill="#16a34a"/>
+<polyline points="37.9,680.4 41.7,684.4 48.5,676" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="683.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TTFB như nhau, 104 ms: việc</text>
+<text x="64" y="702.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn xảy ra sau byte đầu.</text>
+<rect x="20" y="728" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="751" r="11" fill="#16a34a"/>
+<polyline points="37.9,751.4 41.7,755.4 48.5,747" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="754.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DOMContentLoaded khoảng</text>
+<text x="64" y="773.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">120 ms ở cả hai (trang</text>
+<text x="64" y="793.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không có script).</text>
+<rect x="20" y="819" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="842" r="11" fill="#16a34a"/>
+<polyline points="37.9,842.4 41.7,846.4 48.5,838" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="845.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sự kiện load khoảng 920 ms</text>
+<text x="64" y="864.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ở cả hai trang.</text>
+<rect x="8" y="906" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="934.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Core Web Vitals hiện nay</text>
+<rect x="20" y="951" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="974" r="11" fill="#16a34a"/>
+<polyline points="37.9,974.4 41.7,978.4 48.5,970" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="977.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LCP: phần tử lớn nhất hiện</text>
+<text x="64" y="996.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ra; tốt khi không quá 2,5</text>
+<text x="64" y="1016.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây.</text>
+<rect x="20" y="1042" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1065" r="11" fill="#16a34a"/>
+<polyline points="37.9,1065.4 41.7,1069.4 48.5,1061" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1068.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">INP: phản hồi khi bấm, gõ;</text>
+<text x="64" y="1087.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tốt khi không quá 200 ms.</text>
+<rect x="20" y="1113" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1136" r="11" fill="#16a34a"/>
+<polyline points="37.9,1136.4 41.7,1140.4 48.5,1132" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1139.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CLS: độ xô lệch bố cục; tốt</text>
+<text x="64" y="1158.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khi không quá 0,1.</text>
+</g>
+</svg>

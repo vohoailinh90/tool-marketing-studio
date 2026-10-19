@@ -1,0 +1,54 @@
+{
+  "id": "sd-06-025",
+  "lang": "vi",
+  "title": "Thang độ trễ, đo trên một máy chủ đám mây",
+  "subtitle": "Nhớ bậc của con số, không nhớ con số.",
+  "desc": "Ba phần. Phần một, bốn bậc đo trên máy thử: bộ nhớ đệm của CPU, vùng 16 KB 1,5 nano giây và vùng 256 KB 3,9 nano giây; RAM, đọc ngẫu nhiên vùng 512 MB khoảng 315 nano giây; gửi 1 KB qua giao diện mạng nội bộ và nhận lại khoảng 60 micro giây; đĩa, đọc ngẫu nhiên 4 KB khoảng 60 micro giây, ghi 4 KB kèm fsync khoảng 440 micro giây. Phần hai, hai bậc chậm hơn: SQLite ghi một dòng và commit khoảng 1,3 mili giây; đi xuyên lục địa, bài nguồn ước 100 mili giây một vòng California, Hà Lan, không đo ở đây. Phần ba, ba điều cần nhớ: học bậc nano, micro, mili giây và giây; bước chậm đặt trong vòng lặp thì nhân lên; số trên máy của bạn sẽ khác, hãy đo.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Bốn bậc đo được",
+      "items": [
+        {
+          "title": "Bộ nhớ đệm của CPU",
+          "text": "Vùng 16 KB: 1,5 ns. Vùng 256 KB: 3,9 ns."
+        },
+        {
+          "title": "RAM",
+          "text": "Đọc ngẫu nhiên vùng 512 MB: khoảng 315 ns."
+        },
+        {
+          "title": "Mạng nội bộ máy",
+          "text": "Gửi 1 KB rồi nhận lại: khoảng 60 µs."
+        },
+        {
+          "title": "Đĩa ảo",
+          "text": "Đọc ngẫu nhiên 4 KB: 60 µs. Ghi kèm fsync: 440 µs."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Chậm hơn nữa",
+      "items": [
+        {
+          "title": "Ghi bền vào SQLite",
+          "text": "Một dòng kèm commit: khoảng 1,3 ms."
+        },
+        {
+          "title": "Xuyên lục địa",
+          "text": "Bài nguồn ước 100 ms một vòng California, Hà Lan; không đo ở đây."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đọc số thế nào",
+      "items": [
+        "Nhớ bậc: ns, µs, ms, giây; mỗi bậc gấp nghìn lần bậc trước.",
+        "Bước chậm nằm trong vòng lặp thì nhân lên theo số vòng.",
+        "Máy của bạn sẽ ra số khác: hãy đo."
+      ]
+    }
+  ]
+}

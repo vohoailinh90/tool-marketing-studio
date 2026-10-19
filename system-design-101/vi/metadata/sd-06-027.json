@@ -1,0 +1,125 @@
+{
+  "id": "sd-06-027",
+  "title_vi": "9 chỉ số hiệu năng website không thể bỏ qua",
+  "language": "vi",
+  "kind": "measurement",
+  "content_status": "draft",
+  "source_ref": "sd-06-027",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-9-website-performance-metrics-you-cannot-ignore.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-9-website-performance-metrics-you-cannot-ignore.md",
+    "blob_sha": "5e683dbd062c2f8df016b37a89921687bdaa3a77",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "08c3236e3ddd67a142f20600512af5a66bf9e96f7dfc94a27f5230215952402b",
+    "retrieved_body_bytes": 2415
+  },
+  "diagram": "../diagrams/sd-06-027-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-024",
+      "relation": "compare-with",
+      "reason_vi": "Các cách tối ưu giao diện nhắm vào những chỉ số đo ở đây."
+    },
+    {
+      "lesson_id": "sd-06-025",
+      "relation": "compare-with",
+      "reason_vi": "Thang độ trễ giúp đọc TTFB và RTT."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Definitions were checked against mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a and the web-vitals library at commit e773747b90f0e8763aed02ba5a74358d628a828c, read from a partial clone and from raw files at that commit. Measurements come from an experiment run on 2026-10-18 with Chromium 141.0.7390.37 driven by Playwright 1.56 against a local Python server (HTML after 100 ms, CSS after 800 ms), median of 5 loads per page."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "TTFB is the time from requesting a page to receiving the first byte; it includes DNS lookup and the TCP and TLS handshakes; it is navigation responseStart.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/time_to_first_byte/index.md",
+      "section": "Glossary: Time to First Byte",
+      "verified_by": "Read; measured 104 ms and 103 ms in the experiment."
+    },
+    {
+      "claim_vi": "FCP is when the browser first renders text, an image, a non-white canvas or SVG; LCP is the render time of the largest image or text block in the viewport.",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/first_contentful_paint/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/largest_contentful_paint/index.md"
+      ],
+      "section": "Glossary",
+      "verified_by": "Read; the experiment measured FCP 940 ms with the CSS render-blocking and 132 ms without, LCP equal to FCP on that small page."
+    },
+    {
+      "claim_vi": "Render-blocking delays rendering; the most common causes are initially loaded CSS or JavaScript files; resource timing exposes renderBlockingStatus.",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/render_blocking/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/api/performanceresourcetiming/renderblockingstatus/index.md"
+      ],
+      "section": "Glossary: Render-blocking; renderBlockingStatus",
+      "verified_by": "Read; Chromium reported blocking for the stylesheet on the first page and non-blocking on the second."
+    },
+    {
+      "claim_vi": "DOMContentLoaded fires when the HTML has been parsed and deferred scripts have run; it does not wait for stylesheets, images or async scripts; load marks a fully loaded page. Deferred scripts and ordinary scripts placed after a stylesheet wait for it, so DOMContentLoaded then waits too; the test pages had no script.",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/api/document/domcontentloaded_event/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/page_load_time/index.md"
+      ],
+      "section": "DOMContentLoaded event; Glossary: Page load time",
+      "verified_by": "Read; the experiment measured DOMContentLoaded at 117 and 124 ms and load at 920 and 924 ms on both pages."
+    },
+    {
+      "claim_vi": "RTT is the time for a packet to reach its destination plus the time for its acknowledgment to come back.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/round_trip_time/index.md",
+      "section": "Glossary: Round Trip Time",
+      "verified_by": "Read; not measured here."
+    },
+    {
+      "claim_vi": "The Core Web Vitals are CLS, INP and LCP, measured on real users by the web-vitals library; good thresholds are LCP 2500 ms, INP 200 ms, CLS 0.1 (poor above 4000 ms, 500 ms, 0.25); FCP 1800 ms and TTFB 800 ms.",
+      "sources": [
+        "https://github.com/GoogleChrome/web-vitals/blob/e773747b90f0e8763aed02ba5a74358d628a828c/README.md",
+        "https://github.com/GoogleChrome/web-vitals/blob/e773747b90f0e8763aed02ba5a74358d628a828c/src/onLCP.ts",
+        "https://github.com/GoogleChrome/web-vitals/blob/e773747b90f0e8763aed02ba5a74358d628a828c/src/onINP.ts",
+        "https://github.com/GoogleChrome/web-vitals/blob/e773747b90f0e8763aed02ba5a74358d628a828c/src/onCLS.ts"
+      ],
+      "section": "README Core Web Vitals; *Thresholds constants",
+      "verified_by": "Read the README and the threshold constants at that commit; INP and CLS were not measured."
+    }
+  ],
+  "design_notes_vi": "Ba thẻ nhóm câu hỏi chứa chín chỉ số của bài nguồn, bốn ghi chú kết quả thử và ba ghi chú Core Web Vitals. Bảng số liệu nằm trong bài, không trong hình. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source says TTFB shows the server's ability to handle traffic; MDN counts DNS, TCP and TLS in it, so the lesson groups it with the network.",
+    "Source describes DOMContentLoaded as the time for the full HTML to load and says faster DCL means users see functionality sooner; the experiment shows DOMContentLoaded at about 120 ms on a page that painted nothing until 940 ms.",
+    "Source does not mention the Core Web Vitals; the lesson adds LCP, INP and CLS with the web-vitals thresholds.",
+    "Lesson adds a lab experiment comparing a render-blocking and a non-blocking stylesheet."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-027.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,105 @@
+{
+  "id": "sd-06-025",
+  "title_vi": "Những con số độ trễ nào bạn nên biết?",
+  "language": "vi",
+  "kind": "measurement",
+  "content_status": "draft",
+  "source_ref": "sd-06-025",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/which-latency-numbers-should-you-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/which-latency-numbers-should-you-know.md",
+    "blob_sha": "4efa155e134e6b117877f03d57454f2ba895c087",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "d21bb93342872de5013d982e958c15b3764816ca01e9e97b7ef8d227edacb0c2",
+    "retrieved_body_bytes": 1739
+  },
+  "diagram": "../diagrams/sd-06-025-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-021",
+      "relation": "compare-with",
+      "reason_vi": "Redis nhanh một phần vì giữ dữ liệu ở bậc RAM thay vì bậc đĩa."
+    },
+    {
+      "lesson_id": "sd-06-028",
+      "relation": "applies-to",
+      "reason_vi": "Các cách tăng tốc API đều nhắm vào bước chậm nhất trên thang độ trễ."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Every number in the lesson except the source's own estimates was measured on 2026-10-18 on the session's cloud VM (4 vCPU Intel Xeon 2.80GHz, virtual disk /dev/vda) with C programs compiled with gcc -O2 (pointer chasing; O_DIRECT random reads; write + fsync), Python 3.13 (TCP loopback ping-pong; SQLite 3.45.1 with synchronous=FULL), redis-benchmark 7.0.15 and strace. The Grafana default and the Redis pipelining note were read from pinned commits."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source states its latency numbers are not accurate and come from online benchmarks; it lists L1/L2 1 ns/10 ns, RAM 100 ns, 1 KB over 1 Gbps 10 us, SSD read 100 us, database insert 1 ms, CA-Netherlands-CA 100 ms, refresh interval 1-10 s.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/which-latency-numbers-should-you-know.md",
+      "section": "Whole body",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "Measured: dependent loads over a shuffled pointer chain took 1.5 ns (16 KB), 3.9 ns (256 KB), about 99 ns (4 MB) and about 315 ns (512 MB) per load.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/which-latency-numbers-should-you-know.md",
+      "section": "Experiment run on 2026-10-18",
+      "verified_by": "Own measurement; the URL is the table the measurement is compared with. The explanation that large random working sets add page-table walks is the author's general knowledge."
+    },
+    {
+      "claim_vi": "Measured: 1 KB TCP round trip on loopback median 58.5 us (Python); Redis GET of a 1 KB value p50 63 us; random 4 KB O_DIRECT read median 60 us; 4 KB write + fsync median 443 us; SQLite INSERT + COMMIT with synchronous=FULL median 1.31 ms, and strace showed four fdatasync calls per commit.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/which-latency-numbers-should-you-know.md",
+      "section": "Experiment run on 2026-10-18",
+      "verified_by": "Own measurement on one VM; not a general figure."
+    },
+    {
+      "claim_vi": "Grafana's default configuration sets min_refresh_interval = 5s, the minimum dashboard refresh interval users may choose.",
+      "source": "https://github.com/grafana/grafana/blob/3920186ffd305507ae78ea7f035d0197e71d929f/conf/defaults.ini",
+      "section": "dashboards: min_refresh_interval",
+      "verified_by": "Read the file at that commit (head of the default branch when read)."
+    },
+    {
+      "claim_vi": "Even on a loopback interface, where RTT is sub-millisecond, round trips add up when many commands are sent one after another.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/using-commands/pipelining.md",
+      "section": "Request/Response protocols and round-trip time (RTT)",
+      "verified_by": "Read from a partial clone."
+    }
+  ],
+  "design_notes_vi": "Bốn bậc đo được nối từ nhanh tới chậm, hai bậc chậm hơn (một đo, một lấy số của bài nguồn và ghi rõ không đo), ba ghi chú cách đọc. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source gives one number per level from online benchmarks; the lesson measures every level it can on one machine and keeps only the order of magnitude as the lesson.",
+    "Source puts RAM access at 100 ns; the measured random access over 512 MB was about 315 ns on the VM, explained by the access pattern.",
+    "Source says 5-10 seconds is Grafana's default refresh; Grafana's defaults.ini sets 5 s as the minimum refresh interval, not as the default.",
+    "Source's 100 ms cross-continent round trip is kept as the source's estimate; the lesson does not measure it."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-025.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

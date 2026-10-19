@@ -132,6 +132,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Kiến trúc phần mềm
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+16. [Tám vấn đề thường gặp khi hệ thống lớn lên, và cái giá của từng cách giải](lessons/sd-08-016/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+17. [Sáu mẫu kiến trúc phần mềm: mỗi mẫu một lợi, một hại, và một phép đo](lessons/sd-08-017/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+18. [Phát hành ứng dụng di động: bảy bước của nguồn, điều tài liệu của hai cửa hàng xác nhận, và một mô hình phát hành theo pha](lessons/sd-08-018/lesson.md) — bài mới viết tại repo này (có mô hình tính riêng); chờ review kỹ thuật.
+19. [Chương trình chạy thế nào: tám bước của nguồn và những gì xem được trên Linux](lessons/sd-08-019/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+20. [Khởi động Linux: tám bước của nguồn, điều tài liệu thêm vào, và một lần đọc tĩnh các tệp đơn vị systemd](lessons/sd-08-020/lesson.md) — bài mới viết tại repo này (có phép đọc riêng); chờ review kỹ thuật.
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.

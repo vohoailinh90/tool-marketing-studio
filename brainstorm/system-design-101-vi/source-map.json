@@ -2131,54 +2131,54 @@
         },
         {
           "id": "sd-08-016",
-          "title_vi": null,
+          "title_vi": "Tám vấn đề thường gặp khi hệ thống lớn lên, và cái giá của từng cách giải",
           "title_source": "8 Common System Design Problems and Solutions",
           "source_url": "https://bytebytego.com/guides/8-common-system-design-problems-and-solutions",
           "source_path": "data/guides/8-common-system-design-problems-and-solutions.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "78e1f2680a9573dbd78f252b26ecbd7f23bbb617",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-common-system-design-problems-and-solutions.md"
         },
         {
           "id": "sd-08-017",
-          "title_vi": null,
+          "title_vi": "Sáu mẫu kiến trúc phần mềm: mỗi mẫu một lợi, một hại, và một phép đo",
           "title_source": "6 Software Architectural Patterns You Must Know",
           "source_url": "https://bytebytego.com/guides/6-software-architectural-patterns-you-must-know",
           "source_path": "data/guides/6-software-architectural-patterns-you-must-know.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "48edd71ff9e49e036d2c9389616371ae57797e25",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/6-software-architectural-patterns-you-must-know.md"
         },
         {
           "id": "sd-08-018",
-          "title_vi": null,
+          "title_vi": "Phát hành ứng dụng di động: bảy bước của nguồn, điều tài liệu của hai cửa hàng xác nhận, và một mô hình phát hành theo pha",
           "title_source": "How To Release A Mobile App",
           "source_url": "https://bytebytego.com/guides/how-to-release-a-mobile-app",
           "source_path": "data/guides/how-to-release-a-mobile-app.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "068648e60273c0f4b6021f43aff86b41be1f701f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-release-a-mobile-app.md"
         },
         {
           "id": "sd-08-019",
-          "title_vi": null,
+          "title_vi": "Chương trình chạy thế nào: tám bước của nguồn và những gì xem được trên Linux",
           "title_source": "How Do Computer Programs Run?",
           "source_url": "https://bytebytego.com/guides/how-do-computer-programs-run",
           "source_path": "data/guides/how-do-computer-programs-run.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7cb901177e597fa1bcda5e35c0939e60fabb98e6",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-computer-programs-run.md"
         },
         {
           "id": "sd-08-020",
-          "title_vi": null,
+          "title_vi": "Khởi động Linux: tám bước của nguồn, điều tài liệu thêm vào, và một lần đọc tĩnh các tệp đơn vị systemd",
           "title_source": "Linux Boot Process Explained",
           "source_url": "https://bytebytego.com/guides/linux-boot-process-explained",
           "source_path": "data/guides/linux-boot-process-explained.md",
           "same_source_as": [
             "sd-10-026"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "afd3a88fd8f9a085cbf052c550ea662b95af4b5f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-boot-process-explained.md"
         },

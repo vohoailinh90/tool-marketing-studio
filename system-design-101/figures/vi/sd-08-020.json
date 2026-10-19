@@ -1,0 +1,37 @@
+{
+  "id": "sd-08-020",
+  "title": "Khởi động Linux: tám bước và điều tài liệu thêm vào",
+  "subtitle": "Đối chiếu với boot(7), bootup(7) và các tệp đơn vị systemd của một máy thật.",
+  "desc": "Ba khung. Khung một, tám bước khởi động Linux của nguồn: bật nguồn và chạy POST, phát hiện thiết bị, chọn thiết bị khởi động, bộ nạp khởi động GRUB, nhân và systemd là tiến trình đầu tiên, đạt mục tiêu mặc định, chạy tập lệnh khởi động, màn hình đăng nhập. Khung hai, điều tài liệu độc lập thêm hoặc sửa: phần sụn chỉ khởi tạo tối thiểu rồi giao cho bộ nạp, hoặc nạp nhân trực tiếp; giữa bộ nạp và systemd có thể có initramfs; mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target. Khung ba, đọc tĩnh các tệp đơn vị systemd của máy đo: mục tiêu mặc định kéo 78 đơn vị, chuỗi thứ tự dài nhất 15 đơn vị, 41 đơn vị không phải chờ ai.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám bước của nguồn",
+      "items": [
+        "Bật nguồn, nạp phần sụn, POST; phát hiện thiết bị.",
+        "Chọn thiết bị khởi động; chạy bộ nạp khởi động GRUB.",
+        "Nhân sẵn sàng, systemd là tiến trình đầu tiên; đạt mục tiêu mặc định.",
+        "Chạy tập lệnh khởi động; hiện màn hình đăng nhập."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Tài liệu độc lập thêm hoặc sửa",
+      "items": [
+        "Phần sụn chỉ khởi tạo tối thiểu, giao cho bộ nạp; có phần sụn nạp nhân trực tiếp.",
+        "Giữa bộ nạp và systemd có thể có initramfs để tìm hệ thống tệp gốc.",
+        "mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target.",
+        "Nhân tạo tiến trình số 1 chạy chương trình init; không nhất thiết là systemd."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đọc tĩnh một máy thật",
+      "items": [
+        "mục tiêu mặc định kéo 78 đơn vị; 35 là dịch vụ, 18 là mục tiêu.",
+        "Chuỗi thứ tự dài nhất 15 đơn vị; 41 đơn vị không phải chờ đơn vị nào.",
+        "Máy đo không khởi động bằng systemd: chỉ đọc tệp, không đo thời gian khởi động."
+      ]
+    }
+  ]
+}

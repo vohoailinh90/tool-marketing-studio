@@ -636,8 +636,8 @@ mutations:
   replace: '               )'
   test: tests.test_sd101_claims.ClaimTests.test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names
 - label: the board is read only from this checkout, never from the remote's default branch
-  find: "    if not offline:\n        try:\n            base = "
-  replace: "    if False:\n        try:\n            base = "
+  find: "    if not offline:\n        try:\n            try:  # the branch the remote calls its default now"
+  replace: "    if False:\n        try:\n            try:  # the branch the remote calls its default now"
   test: tests.test_sd101_claims.ClaimTests.test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names
 - label: a board row marked done still reserves its range
   find: '        if row.get("status", "").lower() == "done":'

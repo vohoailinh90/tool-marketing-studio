@@ -22,8 +22,8 @@ take or give back a range.
 | | lessons |
 |---|---|
 | Source map | 404 positions; 178 lessons written (`progress.json`), 226 not written yet (no deck possible before the lesson) |
-| Decks done with PPTX (`exports: badged`) | 27 |
-| Decks done without PPTX (`exports: pending`) | 45 |
+| Decks done with PPTX (`exports: badged` on some branch, usually `main`) | 52 |
+| Decks done without PPTX on any branch (`exports: pending`) | 20: sd-14-001..008, sd-15-001..012 |
 | Decks being built (`doing`) | 27, among them the other account's `claude/sd101-decks-w1-1` .. `w5-1` |
 | Decks nobody has claimed | 79 (sd-01: 20, sd-04: 18, sd-13: 16, sd-06: 12, sd-09: 12, sd-10: 1) |
 
@@ -46,9 +46,11 @@ lessons of the same group through the tool, which settles each lesson.
 
 | Range | Session |
 |---|---|
-| sd-01-001..013, sd-02-001..003, sd-03-001..008 | export session A, `session_015U1QMJBxBFrqQh6qyz6yMm` |
-| sd-14-001..008, sd-15-001..012 | export session A after its first range (no second export session yet) |
-| sd-09-004 | left to its builder, `claude/sd101-decks-w4-1` |
+| sd-14-001..008 (finished records only on `claude/trusting-gauss-foyunq`, not on `main` yet), sd-15-001..012 | export session A, `session_015U1QMJBxBFrqQh6qyz6yMm` |
+
+A deck counts as exported when its record says `exports: badged` (or `done`) on **any** branch, `main` first: a builder's
+branch can still carry an older `pending` record of a deck whose PPTX is already on `main`. Never export a deck again
+that has one.
 
 An export session `canvas_read`s the deck's recorded canvas first. A canvas this account cannot read (`canvas_not_found`, as
 seen for sd-03-001) belongs to the other account's Moda: list it in the issue for that account instead of building a second

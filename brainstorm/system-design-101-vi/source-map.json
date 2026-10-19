@@ -1771,51 +1771,51 @@
       "lessons": [
         {
           "id": "sd-07-001",
-          "title_vi": null,
+          "title_vi": "Mua hàng trực tuyến: bốn mảng việc sau một đơn hàng",
           "title_source": "E-commerce Workflow",
           "source_url": "https://bytebytego.com/guides/e-commerce-workflow",
           "source_path": "data/guides/e-commerce-workflow.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "bb5f798a76c67e757e5a43f4a90213650fde93f0",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/e-commerce-workflow.md"
         },
         {
           "id": "sd-07-002",
-          "title_vi": null,
+          "title_vi": "Ví số ở ngân hàng và ví trên blockchain",
           "title_source": "Digital Wallets: Banks vs. Blockchain",
           "source_url": "https://bytebytego.com/guides/digital-wallet-in-traditional-banks-vs-wallet-in-blockchain",
           "source_path": "data/guides/digital-wallet-in-traditional-banks-vs-wallet-in-blockchain.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c985a08a57d652fcef248e42ca678e60bf03b700",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/digital-wallet-in-traditional-banks-vs-wallet-in-blockchain.md"
         },
         {
           "id": "sd-07-003",
-          "title_vi": null,
+          "title_vi": "Lệnh cắt lỗ: giá kích hoạt không phải giá bán",
           "title_source": "What is a Stop-Loss Order and How Does it Work?",
           "source_url": "https://bytebytego.com/guides/what-is-a-stop-loss-order-and-how-does-it-work",
           "source_path": "data/guides/what-is-a-stop-loss-order-and-how-does-it-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "9dbb435a10b67faa82863dcea74935cecaf1b109",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-stop-loss-order-and-how-does-it-work.md"
         },
         {
           "id": "sd-07-004",
-          "title_vi": null,
+          "title_vi": "Web 1.0, 2.0 và 3.0: ai giữ dữ liệu, ai kiếm tiền",
           "title_source": "What is Web 3.0? Why doesn't it have ads?",
           "source_url": "https://bytebytego.com/guides/what-is-web-3",
           "source_path": "data/guides/what-is-web-3.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "94100bfe2e7bba322dac1c02bcc0713086e4417c",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-web-3.md"
         },
         {
           "id": "sd-07-005",
-          "title_vi": null,
+          "title_vi": "SWIFT: tin nhắn thanh toán giữa các ngân hàng",
           "title_source": "SWIFT Payment Messaging System",
           "source_url": "https://bytebytego.com/guides/swift-payment-messaging-system",
           "source_path": "data/guides/swift-payment-messaging-system.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "22cd975d71edd4b5fbf36eacfabfd377a95d58b1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/swift-payment-messaging-system.md"
         },

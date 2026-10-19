@@ -1,0 +1,70 @@
+{
+  "id": "sd-07-001",
+  "title": "Bốn mảng việc sau một đơn hàng",
+  "subtitle": "Từ nhà cung cấp tới tay người mua.",
+  "desc": "Hai khung. Khung một, bốn mảng việc nối nhau: mua hàng từ nhà cung cấp, kho giữ hàng, nền tảng bán hàng, vận chuyển. Khung hai, đường đi của một đơn trên nền tảng bán hàng: người mua đăng nhập, chọn hàng bỏ vào giỏ, đặt đơn, hệ thống giữ hàng trong kho rồi mới thanh toán.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn mảng việc",
+      "items": [
+        {
+          "name": "Mua hàng",
+          "role": "Chọn nhà cung cấp, đặt hàng, trả hàng.",
+          "icon": "handshake"
+        },
+        {
+          "name": "Kho",
+          "role": "Nhận hàng, quản lý tồn kho.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Nền tảng bán hàng",
+          "role": "Đăng bán, định giá, nhận đơn.",
+          "icon": "store"
+        },
+        {
+          "name": "Vận chuyển",
+          "role": "Giao hàng theo lệnh xuất kho.",
+          "icon": "truck"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Một đơn trên nền tảng",
+      "items": [
+        {
+          "title": "Đăng nhập",
+          "text": "Người mua đăng ký hoặc đăng nhập vào ứng dụng."
+        },
+        {
+          "title": "Chọn hàng",
+          "text": "Duyệt danh sách, xem chi tiết, bỏ vào giỏ."
+        },
+        {
+          "title": "Đặt đơn",
+          "text": "Người mua gửi đơn mua hàng."
+        },
+        {
+          "title": "Giữ hàng, trả tiền",
+          "text": "Hệ thống đơn hàng giữ chỗ trong kho, rồi người mua thanh toán."
+        }
+      ]
+    }
+  ]
+}

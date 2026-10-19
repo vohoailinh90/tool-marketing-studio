@@ -1,14 +1,18 @@
 {
   "id": "sd-10-021",
-  "title": "Ba mức sao của thuật toán",
-  "subtitle": "Cách tác giả xếp thuật toán cho phỏng vấn.",
-  "desc": "Ba thẻ và một khung ghi nhớ. Năm sao: rất quan trọng, cố hiểu nó chạy thế nào và vì sao. Ba sao: quan trọng ở mức nào đó, có thể không cần biết chi tiết cài đặt. Một sao: nâng cao, nên biết với ứng viên cấp cao. Khung cuối nêu ba điều cần nhớ.",
+  "title": "Ba mức sao và ba ví dụ dùng thật",
+  "subtitle": "Thang sao của tác giả, rồi ba thuật toán trong tài liệu của hệ thống thật.",
+  "desc": "Hai nhóm thẻ và một khung ghi nhớ. Ba mức sao: năm sao là rất quan trọng, cố hiểu nó chạy thế nào và vì sao; ba sao là quan trọng ở mức nào đó, có thể không cần chi tiết cài đặt; một sao là nâng cao, nên biết với ứng viên cấp cao. Ba ví dụ dùng thật: bộ lọc Bloom giúp Cassandra bỏ qua tệp dữ liệu chắc chắn không chứa khóa; băm nhất quán trên vòng token giúp Cassandra chuyển ít khóa khi đổi số nút; giao thức Raft giúp một cụm nút giữ chung một nhật ký nhân bản trong thư viện etcd-io/raft. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "parts", "heading": "Ba mức sao",
-     "items": [{"name": "Năm sao", "role": "Rất quan trọng. Cố hiểu nó chạy thế nào và vì sao.", "icon": "zap"},
-               {"name": "Ba sao", "role": "Quan trọng ở mức nào đó. Có thể không cần biết chi tiết cài đặt.", "icon": "gauge"},
-               {"name": "Một sao", "role": "Nâng cao. Nên biết với ứng viên cấp cao.", "icon": "brain"}]},
+     "items": [{"name": "Năm sao", "role": "Rất quan trọng: hiểu chạy thế nào và vì sao.", "icon": "zap"},
+               {"name": "Ba sao", "role": "Quan trọng ở mức nào đó; chi tiết cài đặt có thể bỏ.", "icon": "gauge"},
+               {"name": "Một sao", "role": "Nâng cao; nên biết với ứng viên cấp cao.", "icon": "brain"}]},
+    {"kind": "parts", "heading": "Ba ví dụ dùng thật",
+     "items": [{"name": "Bộ lọc Bloom", "role": "Cassandra bỏ qua tệp chắc chắn không chứa khóa.", "icon": "search"},
+               {"name": "Băm nhất quán", "role": "Đổi số nút chỉ chuyển một phần nhỏ khóa.", "icon": "hash"},
+               {"name": "Raft", "role": "Cụm nút giữ chung một nhật ký nhân bản.", "icon": "users"}]},
     {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Hiểu thuật toán được dùng thế nào trong hệ thống thật thường quan trọng hơn chi tiết cài đặt.", "Xếp hạng khách quan rất khó; tác giả mở đón góp ý.", "Danh sách thuật toán nằm trong ảnh nguồn, bài không dùng."]}
+     "items": ["Hiểu thuật toán được dùng ở đâu quan trọng hơn chi tiết cài đặt.", "Xếp hạng khách quan rất khó; thang sao là ý kiến của tác giả.", "Ba ví dụ do bài chọn, không gán sao."]}
   ]
 }

@@ -28,7 +28,7 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "checked",
@@ -49,7 +49,7 @@
   },
   "claims": [
     {
-      "claim_vi": "The author put together a list of algorithms to know before system design interviews, explained why they are important, and says they are also good to understand for any software engineer.",
+      "claim_vi": "The author put together a list of algorithms to know before system design interviews, explained why they matter, and says they are also good to understand for any software engineer.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
       "section": "Introduction",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
@@ -61,27 +61,40 @@
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Five-star: very important, try to understand how it works and why; three-star: important to some extent, implementation details may not be needed; one-star: advanced, good to know for senior candidates.",
+      "claim_vi": "Five-star: very important, understand how it works and why; three-star: important to some extent, implementation details may not be needed; one-star: advanced, good to know for senior candidates. It is very difficult to rank algorithms objectively and the author is open to suggestions.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
       "section": "Stars",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "It is very difficult to rank algorithms by importance objectively; the author is open to suggestions and adjustments.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
-      "section": "Stars",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "Cassandra: on reads it merges data on disk with data in memory; to avoid checking every data file for the requested partition it uses a bloom filter, which says either that the data definitely does not exist in the file or that it probably does; accuracy improves with more memory and is tuned per table with bloom_filter_fp_chance.",
+      "source": "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/managing/operating/bloom_filters.adoc",
+      "section": "Bloom Filters",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The list of algorithms and their star counts is only in the source image, which the lesson does not use; the lesson therefore names no algorithm.",
+      "claim_vi": "Cassandra: naive hashing takes the key hash modulo the number of buckets and adding a node can invalidate almost all mappings; Cassandra maps each node to tokens on a continuous hash ring, hashes a key onto the ring and walks it in one direction; with consistent hashing only a small fraction of keys move when the number of nodes changes.",
+      "source": "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/architecture/dynamo.adoc",
+      "section": "Consistent Hashing using a Token Ring",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "etcd-io/raft: Raft is a protocol with which a cluster of nodes maintains a replicated state machine kept in sync by a replicated log; the library implements leader election and log replication among other features and implements only the Raft algorithm, leaving network and disk IO to the user.",
+      "source": "https://github.com/etcd-io/raft/blob/1d3216d845a72ef5a78c55772ea220a931e2c3ef/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The list of algorithms and their star counts is only in the source image, which the lesson does not use; the lesson names no algorithm from it. The three examples are the lesson's own choice and carry no stars.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
       "section": "Limits",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba thẻ cho ba mức sao và một khung ghi nhớ. Bài chỉ dựng phần chữ của nguồn; danh sách thuật toán nằm trong ảnh nguồn nên không có trong bài. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba thẻ cho ba mức sao, ba thẻ cho ba ví dụ dùng thật và một khung ghi nhớ. Thang sao theo nguồn; ví dụ do bài viết từ tài liệu của hệ thống thật. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "The source body text only explains the star scale; the list of algorithms is in the source image, which the lesson does not use, so the lesson explains the scale and names no algorithm."
+    "The source body text only explains the star scale and gives advice; the list of algorithms is in the source image, which the lesson does not use.",
+    "The lesson adds three examples (Bloom filter and consistent hashing in Cassandra, Raft in etcd-io/raft) written from those projects' documentation to illustrate the source's advice; they are not in the source and carry no star rating."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

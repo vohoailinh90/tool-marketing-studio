@@ -1,0 +1,119 @@
+{
+  "id": "sd-04-024",
+  "title_vi": "Các loại cơ sở dữ liệu khác nhau ở lời hứa: giao dịch, lược đồ và cách mở rộng",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/understanding-database-types.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/understanding-database-types.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "cc9fe36c3b1a35833eea6d6856975efbcef7fc14",
+    "retrieved_body_sha256": "3e7d6ae6abd2b8083e4dd728723df2d3215f9e9ebb780484a9a85cdfa1ef04cb",
+    "retrieved_body_bytes": 667
+  },
+  "diagram": "../diagrams/sd-04-024-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-021",
+      "relation": "related",
+      "reason_vi": "Sáu loại cơ sở dữ liệu và câu tóm tắt của từng loại."
+    },
+    {
+      "lesson_id": "sd-04-026",
+      "relation": "related",
+      "reason_vi": "Các mô hình dữ liệu xếp cùng một dữ liệu theo nhiều cách."
+    },
+    {
+      "lesson_id": "sd-04-019",
+      "relation": "related",
+      "reason_vi": "Khi giao dịch trải qua nhiều dịch vụ: saga và giao dịch bù."
+    },
+    {
+      "lesson_id": "sd-04-044",
+      "relation": "related",
+      "reason_vi": "Thử từng chữ của ACID trên PostgreSQL."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Azure Architecture Center page Understand data models, the PostgreSQL 16 tutorial on transactions (advanced.sgml) and the Redis transactions page were read from clones of MicrosoftDocs/architecture-center, postgres/postgres and redis/docs at pinned commits; the transfer and schema results were measured by the author, who ran them on PostgreSQL 16.15 and Redis 7.0.15 with psycopg 3.3.6 and redis-py 8.1.0 on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Relational stores use schema-on-write and support ACID multi-row transactions, and horizontal scale generally requires sharding or partitioning; document stores are schema on read with atomicity per document; key-value stores are schema on read with atomicity per single key and list linear scalability as a strength; strict multi-entity transactions point to relational.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/data-guide/technology-choices/understand-data-store-models.md",
+      "section": "Relational data stores; Key-value data stores; Comparative characteristics; Choose among models",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "A transaction bundles multiple steps into a single all-or-nothing operation; if a failure prevents it from completing, none of the steps affect the database.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/advanced.sgml",
+      "section": "Transactions",
+      "verified_by": "Read from a partial clone of postgres/postgres at commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "Errors after EXEC are not handled specially: all other queued commands run even if one fails; Redis does not support rollbacks because it would hurt simplicity and performance; WATCH makes EXEC abort the whole transaction if a watched key changed.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/using-commands/transactions.md",
+      "section": "Errors inside a transaction; What about rollbacks?; Optimistic locking using check-and-set",
+      "verified_by": "Read from a clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8."
+    },
+    {
+      "claim_vi": "All commands in a Redis transaction are serialized and executed sequentially as a single isolated operation; a request from another client is never served in the middle of it.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/using-commands/transactions.md",
+      "section": "Transactions: the two guarantees",
+      "verified_by": "Read from a clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8."
+    },
+    {
+      "claim_vi": "Measured: moving 100 from a (500) to b with a failing second step: in PostgreSQL, b = 0 and the amount was passed as the text 'một trăm', and the transaction left a = 500, b = 0; in Redis, b held the string 'không phải số', and a MULTI/EXEC block left a = 400 with b unchanged (EXEC returned 400 and 'value is not an integer or out of range'); a quantity 'hai' was rejected by an int column on write, accepted by a jsonb column (with a row missing the field) and failed only when a query summed it, and was accepted by a Redis hash.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/using-commands/transactions.md",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18 on PostgreSQL 16.15 and Redis 7.0.15."
+    },
+    {
+      "claim_vi": "The source states: Understanding database types means considering key characteristics, popular options and use cases of each type.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/understanding-database-types.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Ba câu hỏi về lời hứa, hai thử nghiệm (chuyển tiền hỏng giữa chừng, số lượng sai kiểu) và bốn ghi chú đọc kết quả. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source text is a single sentence and the rest is an image the lesson does not reuse; the lesson compares database types by what they promise (atomic scope, where the schema is checked, how they scale) instead of listing them.",
+    "Two of the three promises are measured on PostgreSQL and Redis; the scaling promise is taken from the Azure guide."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

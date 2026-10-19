@@ -1,0 +1,55 @@
+{
+  "id": "sd-04-023",
+  "lang": "vi",
+  "title": "Các tầng bộ nhớ, đo trên một máy",
+  "subtitle": "Mỗi tầng xuống dưới rộng hơn và chậm hơn; khoảng cách giữa các tầng mới là điều cần nhớ.",
+  "desc": "Ba khung, số đo trên máy biên soạn. Khung một, trong bộ xử lý và bộ nhớ: một phép cộng trên thanh ghi 0,4 ns; đọc ngẫu nhiên trong 16 KiB, vừa bộ đệm L1, 1,5 ns; trong 256 KiB, vừa bộ đệm L2, 4,4 ns; từ 4 MiB trở lên khoảng 150 ns, gần bằng bộ nhớ chính; trong 1 GiB 326 ns. Khung hai, ra ngoài: đọc ngẫu nhiên 4 KiB từ ổ đĩa ảo trung bình 72 µs; một yêu cầu HTTPS tới GitHub khoảng 60 ms, chưa kể việc mở kết nối. Khung ba, đọc con số: một lần đọc đĩa bằng khoảng 200 lần đọc bộ nhớ chính; một yêu cầu qua mạng bằng hơn 100.000 lần; máy báo bộ đệm L3 33 MiB nhưng từ 4 MiB đã mất khoảng 150 ns; dùng trang lớn 2 MiB, đọc trong 1 GiB còn 225 ns.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Trong bộ xử lý và bộ nhớ",
+      "items": [
+        {
+          "title": "Thanh ghi",
+          "text": "Một phép cộng: 0,4 ns."
+        },
+        {
+          "title": "Bộ đệm L1, 32 KiB",
+          "text": "Đọc trong 16 KiB: 1,5 ns."
+        },
+        {
+          "title": "Bộ đệm L2, 1 MiB",
+          "text": "Đọc trong 256 KiB: 4,4 ns."
+        },
+        {
+          "title": "Bộ nhớ chính",
+          "text": "Từ 4 MiB: ~150 ns; 1 GiB: 326 ns."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Ra ngoài: đĩa và mạng",
+      "items": [
+        {
+          "title": "Ổ đĩa ảo",
+          "text": "Đọc ngẫu nhiên 4 KiB: trung bình 72 µs."
+        },
+        {
+          "title": "Qua mạng",
+          "text": "Một yêu cầu HTTPS tới GitHub: khoảng 60 ms."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đọc con số",
+      "items": [
+        "Một lần đọc đĩa bằng khoảng 200 lần đọc bộ nhớ chính.",
+        "Một yêu cầu qua mạng bằng hơn 100.000 lần đọc bộ nhớ chính.",
+        "Máy báo bộ đệm L3 33 MiB, nhưng từ 4 MiB đọc đã mất khoảng 150 ns.",
+        "Trang lớn 2 MiB: đọc trong 1 GiB còn 225 ns thay vì 326 ns."
+      ]
+    }
+  ]
+}

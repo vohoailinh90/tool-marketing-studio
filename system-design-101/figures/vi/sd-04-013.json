@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-013",
+  "lang": "vi",
+  "title": "Mã xóa: chịu mất khối, ít tốn chỗ",
+  "subtitle": "Thử với thư viện zfec trên một đối tượng 4 MiB.",
+  "desc": "Ba khung. Khung một là bốn bước của mã xóa 4+2: cắt đối tượng 4 MiB thành 4 khối dữ liệu 1 MiB; tính thêm 2 khối mã và đặt 6 khối ở 6 nơi khác nhau; mất 2 khối bất kỳ vẫn dựng lại đủ, đúng ở cả 15 cách mất 2 trong 6 khối; mất 3 khối thì chỉ còn 3, không đủ để dựng lại. Khung hai so ba cách giữ an toàn cho 4 MiB: nhân bản 3 bản lưu 12 MiB và chịu mất 2 bản; mã xóa 4+2 lưu 6 MiB và chịu mất 2 khối; một khối chẵn lẻ 4+1 lưu 5 MiB và chỉ chịu mất 1 khối. Khung ba là cái giá: phục hồi phải đọc các khối còn lại, dựng lại rồi ghi khối mới; Ceph khuyên không dùng một khối mã cho dữ liệu thật; các khối phải nằm ở những nơi hỏng độc lập với nhau.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Mã xóa 4+2",
+      "items": [
+        {
+          "title": "Cắt",
+          "text": "4 MiB thành 4 khối dữ liệu 1 MiB."
+        },
+        {
+          "title": "Tính và rải",
+          "text": "Thêm 2 khối mã; 6 khối ở 6 nơi khác nhau."
+        },
+        {
+          "title": "Mất 2 khối",
+          "text": "Còn 4 khối bất kỳ là đủ: đúng cả 15 cách mất."
+        },
+        {
+          "title": "Mất 3 khối",
+          "text": "Còn 3 khối: không đủ, mất dữ liệu."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Giữ an toàn cho 4 MiB",
+      "items": [
+        {
+          "name": "Nhân bản 3 bản",
+          "role": "Lưu 12 MiB, gấp 3; chịu mất 2 bản.",
+          "icon": "layers"
+        },
+        {
+          "name": "Mã xóa 4+2",
+          "role": "Lưu 6 MiB, gấp 1,5; chịu mất 2 khối bất kỳ.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Một khối chẵn lẻ, 4+1",
+          "role": "Lưu 5 MiB, gấp 1,25; chỉ chịu mất 1 khối.",
+          "icon": "hash"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Cái giá",
+      "items": [
+        "Phục hồi phải đọc các khối còn lại, dựng lại rồi ghi khối mới.",
+        "Ceph khuyên không dùng một khối mã cho dữ liệu thật.",
+        "Các khối phải nằm ở những nơi hỏng độc lập: ổ, máy, giá khác nhau."
+      ]
+    }
+  ]
+}

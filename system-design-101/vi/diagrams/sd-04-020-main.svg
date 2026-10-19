@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1423" viewBox="0 0 320 1423" role="img" aria-labelledby="title desc">
+<title id="title">B-tree và LSM-tree: trả giá lúc ghi hay lúc gộp</title>
+<desc id="desc">Ba khung. Khung một, hai cách giữ khóa có thứ tự: B-tree là cây các trang 4 KiB, sửa một dòng là ghi lại cả trang chứa nó; LSM-tree ghi vào nhật ký và bộ nhớ, đầy thì đổ ra tệp đã sắp xếp rồi gộp dần xuống tầng dưới. Khung hai, thử với một triệu khóa ngẫu nhiên, 116 MB dữ liệu: B-tree commit mỗi 1.000 dòng với bộ đệm 256 MiB ghi ra 12,2 GB, gấp 105 lần; B-tree một giao dịch với bộ đệm 256 MiB ghi 281 MB, gấp 2,4 lần; LSM-tree ghi 621 MB, gấp 5,4 lần; tìm 100.000 khóa không có mất 0,07 s với bộ lọc Bloom, 0,74 s khi tắt. Khung ba, chọn theo việc: ghi nhiều và rải rác hợp LSM-tree; B-tree ghi ít khi gom nhiều thay đổi và bộ đệm đủ lớn; LSM-tree cần bộ lọc Bloom và việc gộp chạy nền.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1423" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">B-tree và LSM-tree: trả</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">giá lúc ghi hay lúc gộp</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một triệu khóa ngẫu nhiên vào</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">SQLite và RocksDB trên cùng một</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="8" y="143" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cách giữ khóa có thứ tự</text>
+<rect x="20" y="188" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="241.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">B-tree</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cây các trang 4 KiB; sửa</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một dòng là ghi lại cả</text>
+<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang chứa nó.</text>
+<rect x="20" y="309" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="362.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 351.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="335.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">LSM-tree</text>
+<text x="78" y="359.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi vào nhật ký và bộ nhớ;</text>
+<text x="78" y="378.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầy thì đổ ra tệp đã sắp</text>
+<text x="78" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xếp, gộp dần.</text>
+<rect x="8" y="440" width="304" height="531" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="468.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: một triệu khóa, 116 MB</text>
+<rect x="20" y="485" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="511" r="14" fill="#0f766e"/>
+<text x="46" y="516.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="511.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">B-tree, commit mỗi</text>
+<text x="70" y="531.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1.000 dòng, đệm 256</text>
+<text x="70" y="551.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">MiB</text>
+<text x="70" y="575.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi ra 12,2 GB, gấp 105 lần</text>
+<text x="70" y="594.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu.</text>
+<rect x="20" y="634" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="660" r="14" fill="#0f766e"/>
+<text x="46" y="665.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="660.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">B-tree, một giao dịch</text>
+<text x="70" y="684.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đệm 256 MiB chứa đủ mọi</text>
+<text x="70" y="703.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang: ghi 281 MB, gấp 2,4</text>
+<text x="70" y="723.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần.</text>
+<polyline points="46,614 46,632" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="763" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="789" r="14" fill="#0f766e"/>
+<text x="46" y="794.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="789.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">LSM-tree</text>
+<text x="70" y="813.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhật ký, đổ tệp, gộp: ghi</text>
+<text x="70" y="832.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">621 MB, gấp 5,4 lần.</text>
+<polyline points="46,743 46,761" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="872" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="898" r="14" fill="#0f766e"/>
+<text x="46" y="903.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="898.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tìm khóa không có</text>
+<text x="70" y="922.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LSM-tree: 0,07 s có bộ lọc</text>
+<text x="70" y="941.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bloom, 0,74 s khi tắt.</text>
+<polyline points="46,852 46,870" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="983" width="304" height="432" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1011.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn theo việc</text>
+<rect x="20" y="1028" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1051" r="11" fill="#16a34a"/>
+<polyline points="37.9,1051.4 41.7,1055.4 48.5,1047" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1054.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi nhiều, khóa ngẫu nhiên,</text>
+<text x="64" y="1073.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi lần một ít: LSM-tree gom</text>
+<text x="64" y="1093.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thay đổi rồi ghi tuần tự.</text>
+<rect x="20" y="1119" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1142" r="11" fill="#16a34a"/>
+<polyline points="37.9,1142.4 41.7,1146.4 48.5,1138" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1145.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">B-tree ghi ít hơn hẳn khi một</text>
+<text x="64" y="1164.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao dịch chứa nhiều thay</text>
+<text x="64" y="1184.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đổi và bộ đệm đủ lớn.</text>
+<rect x="20" y="1210" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1233" r="11" fill="#16a34a"/>
+<polyline points="37.9,1233.4 41.7,1237.4 48.5,1229" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1236.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LSM-tree cần bộ lọc Bloom</text>
+<text x="64" y="1255.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và việc gộp chạy nền; gộp</text>
+<text x="64" y="1275.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không kịp thì việc ghi bị làm</text>
+<text x="64" y="1294.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chậm.</text>
+<rect x="20" y="1320" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1343" r="11" fill="#16a34a"/>
+<polyline points="37.9,1343.4 41.7,1347.4 48.5,1339" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1346.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm một khóa trong B-tree đi</text>
+<text x="64" y="1365.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">qua vài trang, từ gốc xuống</text>
+<text x="64" y="1385.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lá.</text>
+</g>
+</svg>

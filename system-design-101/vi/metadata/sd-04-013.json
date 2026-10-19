@@ -1,0 +1,97 @@
+{
+  "id": "sd-04-013",
+  "title_vi": "Mã xóa: chịu mất khối mà không phải nhân ba dữ liệu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/erasure-coding.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/erasure-coding.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "ecb49c4b2910516ff6939de002e38626e418e255",
+    "retrieved_body_sha256": "b551930f1cc448cafad32c85f674f6ad750968bec5d438363d990f12f9167e03",
+    "retrieved_body_bytes": 1780
+  },
+  "diagram": "../diagrams/sd-04-013-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-017",
+      "relation": "related",
+      "reason_vi": "Kho đối tượng là nơi mã xóa hay được dùng."
+    },
+    {
+      "lesson_id": "sd-04-018",
+      "relation": "related",
+      "reason_vi": "Các trường hợp dùng kho đối tượng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Ceph's erasure-code page was read from a partial clone of ceph/ceph and the zfec README from a clone of tahoe-lafs/zfec; the encode, loss and rebuild results were measured by the author, who ran zfec 1.6.0.0 on Python 3.13 on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Erasure coding splits data into data chunks (K) and coding chunks (M); M is the number of OSDs that can be missing without data loss; the overhead factor is (k+m)/k, 1.5 for 4+2 against 3.0 for three replicas; it is not a free lunch, with a significant performance trade-off especially on HDDs and during recovery; 4+2 or 6+3 are suggested, m=1 strongly discouraged; most deployments need at least k+m failure domains and benefit from k+m+1; pools recover while at least K shards remain; the default erasure-coded pool profile is k=2 m=2, and when unsure which profile to use Ceph suggests 4+2 or 6+3; in Octopus and later releases pools can recover while at least K shards remain.",
+      "source": "https://github.com/ceph/ceph/blob/c0b32d47115c516baef9eb0111b4dc1c21c91ff4/doc/rados/operations/erasure-code.rst",
+      "section": "Introduction; Erasure-coded pool overhead; recovery; glossary",
+      "verified_by": "Read from a partial clone of ceph/ceph at commit c0b32d47115c516baef9eb0111b4dc1c21c91ff4."
+    },
+    {
+      "claim_vi": "zfec implements an erasure code, compares itself with RAID-5 but lets the number of tolerated losses be chosen, is based on Luigi Rizzo's fec library, and decoding needs k of the blocks.",
+      "source": "https://github.com/tahoe-lafs/zfec/blob/1fede6c166592c98da7f102539f94daf99db4756/README.rst",
+      "section": "Intro and Licence; Overview",
+      "verified_by": "Read from a clone of tahoe-lafs/zfec at commit 1fede6c166592c98da7f102539f94daf99db4756."
+    },
+    {
+      "claim_vi": "Measured with zfec 1.6.0.0, k=4, m=2, a seeded random 4 MiB object: six 1 MiB blocks whose first four equal the data chunks; every one of the 15 possible pairs of lost blocks was rebuilt byte for byte; decoding from 3 blocks was refused; a 4+1 XOR parity rebuilt a lost data chunk.",
+      "source": "https://github.com/tahoe-lafs/zfec/blob/1fede6c166592c98da7f102539f94daf99db4756/README.rst",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18; speed was not measured."
+    },
+    {
+      "claim_vi": "The source states: Erasure coding with 4+2 chunks data and computes parities; storage overhead 50% against 200% for 3-copy replication; citing Backblaze, 11 nines versus 6 nines durability at a 0.81% annual node failure rate.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/erasure-coding.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Bốn bước của mã xóa 4 + 2 với kết quả thử, ba cách giữ an toàn cho cùng 4 MiB, ba điểm về cái giá. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source illustrates parity with simplified integer formulas; the lesson does not repeat them because real codes compute over a finite field.",
+    "The source's Backblaze durability figures (11 versus 6 nines) are not reused because the original calculation was not read."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1795" viewBox="0 0 320 1795" role="img" aria-labelledby="title desc">
+<title id="title">Bảng tra cơ sở dữ liệu trên đám mây</title>
+<desc id="desc">Bốn khung, theo bảng so sánh của Azure Architecture Center. Khung một, cơ sở dữ liệu quan hệ: có quản lý là Amazon RDS, Azure SQL Database và Azure Database for MySQL, PostgreSQL, Google Cloud SQL; serverless là Aurora Serverless và Azure SQL Database serverless; mở rộng ngang là Cloud Spanner. Khung hai: khóa–giá trị và tài liệu là DynamoDB và Cosmos DB for NoSQL; tài liệu kiểu MongoDB là Amazon DocumentDB và Azure DocumentDB; cột rộng kiểu Cassandra là Amazon Keyspaces và Cosmos DB for Apache Cassandra. Khung ba: đồ thị là Neptune và Cosmos DB for Apache Gremlin; bộ nhớ đệm là ElastiCache, Memorystore và Azure Managed Redis. Khung bốn, bốn điều bảng tra không nói.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1795" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảng tra cơ sở dữ liệu</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trên đám mây</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi dòng là điểm bắt đầu: cùng loại</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">chưa chắc cùng tính năng.</text>
+<rect x="8" y="123" width="304" height="425" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Quan hệ</text>
+<rect x="20" y="168" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="231" r="18" fill="#1d4ed8"/><g transform="translate(39.2 220.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Có quản lý</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon RDS · Azure SQL</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Database, Database for</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MySQL, PostgreSQL ·</text>
+<text x="78" y="276.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Google Cloud SQL</text>
+<rect x="20" y="308" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="361.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 350.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="78" y="334.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Serverless</text>
+<text x="78" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon Aurora Serverless</text>
+<text x="78" y="377.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">· Azure SQL Database</text>
+<text x="78" y="397.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">serverless</text>
+<rect x="20" y="429" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="482.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 471.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="455.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mở rộng ngang</text>
+<text x="78" y="479.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Google Cloud Spanner ·</text>
+<text x="78" y="498.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Azure ghép với Cosmos DB</text>
+<text x="78" y="518.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">for NoSQL</text>
+<rect x="8" y="560" width="304" height="428" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="588.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tài liệu, khóa–giá trị, cột</text>
+<text x="20" y="610.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">rộng</text>
+<rect x="20" y="627" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="680.5" r="18" fill="#0f766e"/><g transform="translate(39.2 669.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="653.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa–giá trị, tài liệu</text>
+<text x="78" y="677.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon DynamoDB ·</text>
+<text x="78" y="696.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Azure Cosmos DB for</text>
+<text x="78" y="716.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">NoSQL</text>
+<rect x="20" y="748" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="791.5" r="18" fill="#0f766e"/><g transform="translate(39.2 780.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="774.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tài liệu kiểu MongoDB</text>
+<text x="78" y="798.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon DocumentDB ·</text>
+<text x="78" y="817.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Azure DocumentDB</text>
+<rect x="20" y="849" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="912.5" r="18" fill="#0f766e"/><g transform="translate(39.2 901.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="875.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cột rộng kiểu</text>
+<text x="78" y="895.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cassandra</text>
+<text x="78" y="919.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon Keyspaces · Azure</text>
+<text x="78" y="938.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cosmos DB for Apache</text>
+<text x="78" y="958.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cassandra</text>
+<rect x="8" y="1000" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1028.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đồ thị và bộ nhớ đệm</text>
+<rect x="20" y="1045" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1098.5" r="18" fill="#b45309"/><g transform="translate(39.2 1087.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></g>
+<text x="78" y="1071.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đồ thị</text>
+<text x="78" y="1095.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon Neptune · Azure</text>
+<text x="78" y="1114.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cosmos DB for Apache</text>
+<text x="78" y="1134.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gremlin</text>
+<rect x="20" y="1166" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1219.5" r="18" fill="#b45309"/><g transform="translate(39.2 1208.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="1192.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ nhớ đệm</text>
+<text x="78" y="1216.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Amazon ElastiCache ·</text>
+<text x="78" y="1235.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Google Memorystore ·</text>
+<text x="78" y="1255.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Azure Managed Redis</text>
+<rect x="8" y="1297" width="304" height="490" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1325.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn điều bảng tra không nói</text>
+<rect x="20" y="1342" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1365" r="11" fill="#16a34a"/>
+<polyline points="37.9,1365.4 41.7,1369.4 48.5,1361" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1368.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giao diện tương thích không</text>
+<text x="64" y="1387.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có nghĩa là tính năng và</text>
+<text x="64" y="1407.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cách vận hành giống nhau.</text>
+<rect x="20" y="1433" width="280" height="122" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1456" r="11" fill="#16a34a"/>
+<polyline points="37.9,1456.4 41.7,1460.4 48.5,1452" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1459.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có dòng không có tương</text>
+<text x="64" y="1478.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đương: Amazon MemoryDB</text>
+<text x="64" y="1498.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là nơi lưu chính, Azure</text>
+<text x="64" y="1517.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Managed Redis chỉ là bộ</text>
+<text x="64" y="1537.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm.</text>
+<rect x="20" y="1563" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1586" r="11" fill="#16a34a"/>
+<polyline points="37.9,1586.4 41.7,1590.4 48.5,1582" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1589.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Neptune chạy được cả RDF</text>
+<text x="64" y="1608.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và property graph; Cosmos</text>
+<text x="64" y="1628.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DB for Gremlin chỉ property</text>
+<text x="64" y="1647.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">graph.</text>
+<rect x="20" y="1673" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1696" r="11" fill="#16a34a"/>
+<polyline points="37.9,1696.4 41.7,1700.4 48.5,1692" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1699.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người xếp khác nhau có thể</text>
+<text x="64" y="1718.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xếp khác: Spanner là quan</text>
+<text x="64" y="1738.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hệ mà được ghép với một</text>
+<text x="64" y="1757.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kho NoSQL.</text>
+</g>
+</svg>

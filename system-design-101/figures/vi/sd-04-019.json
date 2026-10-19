@@ -1,0 +1,121 @@
+{
+  "id": "sd-04-019",
+  "lang": "vi",
+  "title": "Bốn mẫu nhất quán cuối cùng",
+  "subtitle": "Bản đọc đi sau bao lâu, và khi một bước hỏng thì ai sửa lại.",
+  "desc": "Bốn khung. Khung một, bốn mẫu: theo sự kiện, bên nghe tự sửa bản của mình; đồng bộ nền, tác vụ theo lịch chép phần đã đổi; saga, giao dịch cục bộ nối nhau, hỏng thì bù; CQRS, ghi một kho, đọc kho khác đi sau. Khung hai, thử trên PostgreSQL 16 với 200 lần sửa 20 đơn hàng: theo sự kiện, trigger gửi thông báo, bản đọc trễ trung vị 2,3 ms, lâu nhất 23,8 ms; đồng bộ mỗi 2 giây trễ trung vị 640 ms, chỉ 117 trong 200 phiên bản tới nơi; đọc ngay sau khi ghi ra bản cũ 194/200 lần với sự kiện, 200/200 lần với đồng bộ. Khung ba, saga: trừ 300, giữ hàng bị chặn vì hết hàng, bù bằng một dòng hoàn 300 rồi hủy đơn. Khung bốn, bốn câu hỏi trước khi chọn mẫu.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn cách cho thay đổi lan đi",
+      "items": [
+        {
+          "name": "Theo sự kiện",
+          "role": "Phát sự kiện; bên nghe tự sửa bản của mình.",
+          "icon": "radio"
+        },
+        {
+          "name": "Đồng bộ nền",
+          "role": "Tác vụ theo lịch chép phần đã đổi.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Saga",
+          "role": "Giao dịch cục bộ nối nhau; hỏng thì bù.",
+          "icon": "workflow"
+        },
+        {
+          "name": "CQRS",
+          "role": "Ghi một kho, đọc kho khác đi sau.",
+          "icon": "split"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Thử: bản đọc đi sau bao lâu",
+      "items": [
+        {
+          "title": "Ghi 200 lần",
+          "text": "Sửa 20 đơn hàng 200 lần trên PostgreSQL 16."
+        },
+        {
+          "title": "Theo sự kiện",
+          "text": "Trigger gửi thông báo: trễ trung vị 2,3 ms, lâu nhất 23,8 ms."
+        },
+        {
+          "title": "Đồng bộ mỗi 2 giây",
+          "text": "Trễ trung vị 640 ms; 117/200 phiên bản tới nơi."
+        },
+        {
+          "title": "Đọc ngay sau khi ghi",
+          "text": "Bản cũ: sự kiện 194/200 lần, đồng bộ 200/200 lần."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Saga hỏng ở bước giữ hàng",
+      "actors": [
+        {
+          "name": "Đơn hàng",
+          "icon": "list-checks"
+        },
+        {
+          "name": "Thanh toán",
+          "icon": "credit-card"
+        },
+        {
+          "name": "Kho",
+          "icon": "package"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Trừ 300 cho đơn 1"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Đã trừ",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Giữ 1 cuốn sách"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "Hết hàng: bị chặn",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Bù: ghi dòng hoàn 300"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Đã hoàn; hủy đơn",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hỏi trước khi chọn",
+      "items": [
+        "Người dùng phải thấy ngay điều vừa ghi? Đọc từ nơi ghi, không từ bản đọc.",
+        "Bên nghe tắt thì sao? Thông báo chỉ tới phiên đang nghe; cần hàng đợi bền.",
+        "Giữa saga, người khác thấy tiền đã trừ mà đơn chưa xong.",
+        "Bước bù cũng có thể hỏng: phải thử lại được mà không làm hai lần."
+      ]
+    }
+  ]
+}

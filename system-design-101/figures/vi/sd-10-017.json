@@ -2,7 +2,7 @@
   "id": "sd-10-017",
   "title": "Bảy mươi năm ngôn ngữ lập trình",
   "subtitle": "Các mốc của bài nguồn, ngôn ngữ đã đọc tài liệu thì tả bằng tài liệu đó.",
-  "desc": "Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng; mốc thập niên 2010 là của nguồn và lệch với Go năm 2009 và Carbon năm 2022. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "steps", "heading": "Các thế hệ đầu",
      "items": [{"title": "Thế hệ 1", "text": "Thẻ đục lỗ."},
@@ -15,8 +15,9 @@
                {"title": "Tháng 9 năm 1995", "text": "JavaScript vào Netscape; Java, PHP, Ruby cùng năm."}]},
     {"kind": "steps", "heading": "Từ năm 2000",
      "items": [{"title": "2000", "text": "C#, do nhóm thiết kế riêng."},
-               {"title": "Thập niên 2010", "text": "Rust, Go, Carbon, Kotlin: mỗi cái một mục tiêu."},
-               {"title": "Cũng thập niên 2010", "text": "TypeScript trên JavaScript; Swift; Dart."}]},
+               {"title": "Thập niên 2010 theo nguồn", "text": "Rust, Go, Carbon, Kotlin: mỗi cái một mục tiêu."},
+               {"title": "Cũng thập niên 2010", "text": "TypeScript trên JavaScript; Swift; Dart."},
+               {"title": "Lệch mốc", "text": "Go ra mắt năm 2009; Carbon công bố năm 2022."}]},
     {"kind": "notes", "heading": "Nhớ gì",
      "items": ["Mốc thời gian là của bài nguồn, trừ Python và JavaScript.", "Ngôn ngữ đã đọc tài liệu nêu mục tiêu riêng; Fortran, LISP, Java theo nguồn.", "Không phải danh sách đầy đủ."]}
   ]

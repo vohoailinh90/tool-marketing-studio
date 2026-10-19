@@ -3,7 +3,7 @@
 **Trong khoảng bảy mươi năm, ngôn ngữ lập trình đi từ thẻ đục lỗ và hợp ngữ tới các ngôn ngữ bậc cao; mỗi giai đoạn để lại những tính năng và thói quen vẫn còn dùng ngày nay.**
 Bài giữ các mốc thời gian và tên ngôn ngữ của bài nguồn, rồi tả bằng lời của chính dự án hay tài liệu của nó những ngôn ngữ mà bài đã đọc được tài liệu; ngôn ngữ nào chỉ lặp lại lời nguồn (như Fortran, LISP, Java) hoặc chưa đối chiếu được (như Zig), và mốc nào chưa đối chiếu được, thì bài nói rõ.
 
-![Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-017-main.svg)
+![Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng; mốc thập niên 2010 là của nguồn và lệch với Go năm 2009 và Carbon năm 2022. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-017-main.svg)
 
 ## Từ viết tắt
 
@@ -25,7 +25,7 @@ Bài giữ các mốc thời gian và tên ngôn ngữ của bài nguồn, rồi
 
 **Năm 2000: C#.** Bài nguồn nói Microsoft phát hành C# năm 2000. Kho thiết kế của C# giới thiệu mình là nơi các tính năng mới của ngôn ngữ được phát triển, thông qua và đặc tả, do một nhóm thiết kế ngôn ngữ làm việc sát với dự án Roslyn, nơi cài đặt ngôn ngữ; kho cũng có bản tóm tắt lịch sử các phiên bản.
 
-**Thập niên 2010.** Bài nguồn kể nhiều ngôn ngữ ra đời trong thập niên này. Bài không lặp cách xếp họ của nguồn mà dùng lời của từng dự án:
+**Thập niên 2010 theo nguồn.** Bài nguồn kể nhiều ngôn ngữ ra đời trong thập niên này, nhưng mốc ấy không đúng với mọi ngôn ngữ trong danh sách: README của Carbon liệt kê các bài nói công bố dự án từ năm 2022, và Go ra mắt công khai năm 2009 theo hiểu biết chung của người biên soạn (chưa đối chiếu). Bài không lặp cách xếp họ của nguồn mà dùng lời của từng dự án:
 - Rust: README của dự án nêu mục tiêu là giúp mọi người xây phần mềm tin cậy và hiệu quả.
 - Go: ngôn ngữ mã nguồn mở giúp xây phần mềm đơn giản, tin cậy và hiệu quả dễ dàng.
 - Kotlin: ngôn ngữ ngắn gọn, đa nền tảng, do JetBrains và những người đóng góp phát triển.

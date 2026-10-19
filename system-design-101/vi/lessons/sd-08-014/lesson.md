@@ -56,7 +56,7 @@ Ba bài học. Một, hạn chờ chỉ có lợi khi dịch vụ thật sự h�
 
 ## Giới hạn cần nhớ
 
-Dịch vụ giả chạy trên cùng máy với bên gọi, nên không có độ trễ mạng, hàng đợi hay nhiều bên gọi cùng lúc; nó cũng không chịu tải thật nên không thể nói gì về "sập dây chuyền". Bộ ngắt mạch tự viết không có trạng thái nửa mở đầy đủ như mô tả của Microsoft. Mô hình lỗi chỉ gồm chậm, lỗi ngẫu nhiên 30% và chết hẳn; lỗi thật thường lẫn lộn. Thử lại ở đây không có độ trễ tăng dần (exponential backoff), nên cái giá về tải là cận trên. Sáu việc còn lại của nguồn không được thử.
+Dịch vụ giả chạy trên cùng máy với bên gọi, nên không có độ trễ mạng, hàng đợi hay nhiều bên gọi cùng lúc; nó cũng không chịu tải thật nên không thể nói gì về "sập dây chuyền". Bộ ngắt mạch tự viết không có trạng thái nửa mở đầy đủ như mô tả của Microsoft. Mô hình lỗi chỉ gồm chậm, lỗi ngẫu nhiên 30% và chết hẳn; lỗi thật thường lẫn lộn. Thử lại ở đây không có độ trễ tăng dần (exponential backoff). Độ trễ tăng dần chỉ làm giảm tốc độ gọi tức thời và cho dịch vụ thời gian hồi phục; nếu mọi lần thử đều chạy xong thì tổng số lần gọi vẫn như vậy, nên con số 1.500 ở đây không bị nó thay đổi. Sáu việc còn lại của nguồn không được thử.
 
 ## Nhìn hình trả lời
 

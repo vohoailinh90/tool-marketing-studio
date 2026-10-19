@@ -41,7 +41,7 @@ Bốn điều đọc được. Một, hai thành phần "tra cứu" (sổ đăng
 
 ## Giới hạn cần nhớ
 
-Mọi dịch vụ, sổ đăng ký, máy chủ cấp quyền chạy trên cùng một máy nên bước nhảy mạng rẻ hơn thật nhiều (cỡ 170 micro giây cho một lời gọi HTTP đo ở đây); trên mạng thật giữa hai máy hoặc hai vùng, mỗi bước nhảy đắt hơn nên các thời gian tuyệt đối sẽ lớn hơn. Các tỷ lệ thì không đổi cùng một hướng: khi độ trễ mạng chiếm hết, so sánh "tra sổ mỗi lần" với "nhớ địa chỉ" tiến về cỡ 2 lần (hai lời gọi so với một), thấp hơn mức 2,5 đến 3 lần đã đo, và tỷ lệ giữa làm việc ngay và đẩy vào hàng đợi cũng có thể nhỏ đi khi hàng đợi nằm trên một máy khác. Phép kiểm chữ ký dùng khoá chia sẻ; token ký bằng khoá công khai sẽ đắt hơn. Các công cụ cụ thể mà nguồn nêu tên không được thử. Bốn thành phần (cổng, tầng dịch vụ, kho dữ liệu, phần vẽ biểu đồ và tìm nhật ký) chưa đo.
+Mọi dịch vụ, sổ đăng ký, máy chủ cấp quyền chạy trên cùng một máy nên bước nhảy mạng rẻ hơn thật nhiều (cỡ 170 micro giây cho một lời gọi HTTP đo ở đây); trên mạng thật giữa hai máy hoặc hai vùng, mỗi bước nhảy đắt hơn nên các thời gian tuyệt đối sẽ lớn hơn. Các tỷ lệ thì không đổi cùng một hướng: khi độ trễ mạng chiếm hết, so sánh "tra sổ mỗi lần" với "nhớ địa chỉ" tiến về cỡ 2 lần (hai lời gọi so với một), thấp hơn mức 2,5 đến 3 lần đã đo, và tỷ lệ giữa làm việc ngay và đẩy vào hàng đợi cũng có thể nhỏ đi khi hàng đợi nằm trên một máy khác. Phép kiểm chữ ký dùng khoá chia sẻ; token ký bất đối xứng (người cấp ký bằng khoá riêng, dịch vụ kiểm bằng khoá công khai) sẽ đắt hơn. Các công cụ cụ thể mà nguồn nêu tên không được thử. Bốn thành phần (cổng, tầng dịch vụ, kho dữ liệu, phần vẽ biểu đồ và tìm nhật ký) chưa đo.
 
 ## Nhìn hình trả lời
 

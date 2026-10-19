@@ -3,7 +3,7 @@
 **Hóa đơn đám mây phình lên thường không vì thứ bạn dùng nhiều, mà vì thứ bạn quên: mỗi dịch vụ có một "đồng hồ" riêng, và có đồng hồ cứ chạy khi bạn không còn dùng gì.**
 Bài sắp tám khoản chi ẩn trong bài nguồn theo đồng hồ đếm chúng (theo giờ, theo dung lượng, theo lời gọi, theo phần dở dang, theo dữ liệu đi ra), để biết nên đi tìm ở đâu.
 
-![Hai khung. Khung một, bốn cách hóa đơn đếm: theo giờ khi tài nguyên còn tồn tại, như bộ cân bằng tải và địa chỉ IP nhàn rỗi; theo dung lượng mỗi tháng, như ổ đĩa và bản chụp; theo số lời gọi, như lấy và liệt kê trên kho đối tượng; theo phần dở dang và dữ liệu đi ra. Khung hai, ba việc dọn dẹp: trả địa chỉ IP không dùng, xóa ổ đĩa không gắn máy, đặt quy tắc hủy các phần tải lên dở.](../../diagrams/sd-11-035-main.svg)
+![Hai khung. Khung một, bốn cách hóa đơn đếm: theo giờ khi tài nguyên còn tồn tại, như bộ cân bằng tải và địa chỉ IP công cộng, cả khi đang gắn; theo dung lượng mỗi tháng, như ổ đĩa và bản chụp; theo số lời gọi, như lấy và liệt kê trên kho đối tượng; theo phần dở dang và dữ liệu đi ra. Khung hai, ba việc dọn dẹp: trả địa chỉ IP không dùng, xóa ổ đĩa không gắn máy, đặt quy tắc hủy các phần tải lên dở.](../../diagrams/sd-11-035-main.svg)
 
 ## Từ viết tắt
 
@@ -66,7 +66,7 @@ Bài nguồn là một hình và danh sách tám khoản theo thứ tự của h
 - [AWS — tài liệu `S3` về tải lên nhiều phần (kho lưu trữ, commit 838da1b)](https://github.com/awsdocs/amazon-s3-userguide/blob/838da1b4daaf051faf6e33388f1068a955a301e8/doc_source/mpuoverview.md): phần dở dang vẫn bị tính tiền.
 - [AWS — tài liệu EC2 về bản chụp EBS (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/EBSSnapshots.md): cách tính bản chụp.
 - [AWS — tài liệu EC2 về xóa ổ đĩa EBS (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/ebs-deleting-volume.md): trạng thái ổ đĩa và việc chụp trước khi xóa.
-- [AWS — tài liệu EC2 về Elastic IP (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/elastic-ip-addresses-eip.md): địa chỉ IP nhàn rỗi.
+- [AWS — tài liệu EC2 về Elastic IP (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/elastic-ip-addresses-eip.md): quy tắc về địa chỉ IP của bản lưu trữ, nay đã cũ.
 
 Đã đọc nguồn ngày 2026-10-19. Hai kho tài liệu AWS đã ngừng cập nhật, nên chưa đối chiếu với bảng giá hiện hành.
 Bài viết và hình được thiết kế độc lập.

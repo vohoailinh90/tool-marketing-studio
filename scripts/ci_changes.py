@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
-"""Decide whether the CI mutation check has to run for this change.
+"""Decide whether the CI mutation check has to run for this change, and on which manifests.
 
 `scripts/mutation_check.py --all` is by far the longest step of the engine job. It proves that the
 safety-rail tests notice their own removal, which only a change to code, tests or CI can break. A pull
 request that touches nothing but the System Design store (lessons, figures, metadata, progress files and
-its source map) cannot, so it skips the step. Every push to main, and every pull request that touches
-anything else, runs it. A change this script cannot read is treated as one that needs the check.
+its source map) cannot, so it skips the step. Any other pull request runs only the manifests that name a
+file it changes: the manifest itself, its target, a `file:` of one of its entries, or the module of a test
+an entry names (owner decision 2026-10-19: the full run took about 90 minutes and every merge into main
+restarted it on every open pull request). A change to the checker, the workflow, the dependencies or the
+shared test setup (RUN_ALL) runs every manifest. Every push to main runs every manifest, so what a pull
+request leaves out is still checked once it lands. A change this script cannot read is treated as one
+that needs the whole check.
 
 In CI it reads GITHUB_EVENT_NAME and PR_BASE_SHA, prints the decision with its reason, and appends
-`mutation=true` or `mutation=false` to GITHUB_OUTPUT. It never fails the job on its own account.
+`mutation=true` or `mutation=false`, and `manifests=all` or the space-separated manifests to run, to
+GITHUB_OUTPUT. It never fails the job on its own account.
 """
 
 from __future__ import annotations
@@ -20,8 +26,17 @@ import subprocess
 import sys
 from collections.abc import Mapping
 
+import yaml
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+MANIFESTS = "tests/mutations"
+
 # Only content of the System Design store: the lessons and the source map the checker reads.
 STORE_PREFIXES = ("system-design-101/", "brainstorm/system-design-101-vi/")
+
+# A change to any of these can change the verdict of every manifest, so a pull request touching one runs them all.
+RUN_ALL = frozenset({"scripts/mutation_check.py", ".github/workflows/ci.yml", "requirements.txt", "requirements-dev.txt",
+                     "tests/__init__.py", "tests/conftest.py", "pytest.ini", "pyproject.toml", "setup.cfg"})
 
 
 def in_store(path: str) -> bool:
@@ -39,6 +54,42 @@ def mutation_needed(event: str, changed: list[str] | None) -> tuple[bool, str]:
     if outside:
         return True, f"{len(outside)} changed file(s) outside the System Design store, e.g. {outside[0]}"
     return False, f"only the System Design store changed ({len(changed)} file(s))"
+
+
+def test_module_file(test: str, root: pathlib.Path) -> str | None:
+    """The file of the module a dotted test name lives in (`tests.test_x.Case.test_y` -> `tests/test_x.py`)."""
+    parts = test.split(".")
+    for end in range(len(parts), 0, -1):
+        candidate = "/".join(parts[:end]) + ".py"
+        if (root / candidate).is_file():
+            return candidate
+    return None
+
+
+def manifest_files(manifest: str, root: pathlib.Path) -> set[str]:
+    """Every file a manifest names: itself, its target, the `file:` of each entry and the module of each test."""
+    data = yaml.safe_load((root / manifest).read_text(encoding="utf-8"))
+    named = {manifest, data.get("target", "")}
+    for entry in data.get("mutations") or []:
+        named.add(entry.get("file", ""))
+        named.add(test_module_file(entry.get("test", ""), root) or "")
+    return {name for name in named if name}
+
+
+def selected_manifests(changed: list[str], root: pathlib.Path) -> list[str] | None:
+    """The manifests that name a changed file, or None when every manifest has to run (a RUN_ALL file changed, or the
+    manifests could not be read)."""
+    if any(path in RUN_ALL for path in changed):
+        return None
+    folder = root / MANIFESTS
+    try:
+        names = sorted(path.relative_to(root).as_posix() for path in folder.glob("*.yaml"))
+        if not names:
+            return None
+        wanted = set(changed)
+        return [name for name in names if manifest_files(name, root) & wanted]
+    except (OSError, ValueError, AttributeError, yaml.YAMLError):
+        return None
 
 
 def changed_files(base: str, cwd: pathlib.Path | None = None) -> list[str] | None:
@@ -61,12 +112,22 @@ def main(environ: Mapping[str, str] | None = None, cwd: pathlib.Path | None = No
     event = environ.get("GITHUB_EVENT_NAME", "")
     changed = changed_files(environ.get("PR_BASE_SHA", ""), cwd) if event == "pull_request" else None
     needed, reason = mutation_needed(event, changed)
+    chosen: list[str] | None = None
+    if needed and event == "pull_request" and changed:
+        chosen = selected_manifests(changed, cwd or ROOT)
+        if chosen == []:
+            needed, reason = False, f"{reason}, but no mutation manifest names a changed file"
+        elif chosen:
+            reason = f"{reason}; {len(chosen)} manifest(s) name a changed file: {' '.join(chosen)}"
+        else:
+            reason = f"{reason}; every manifest runs (a shared file changed, or the manifests could not be read)"
     print(f"ci_changes: the mutation check {'runs' if needed else 'is skipped'}: {reason}")
     output = environ.get("GITHUB_OUTPUT")
     if output:
         try:
             with open(output, "a", encoding="utf-8") as handle:
                 handle.write(f"mutation={'true' if needed else 'false'}\n")
+                handle.write(f"manifests={' '.join(chosen) if chosen else 'all'}\n")
         except OSError as error:
             print(f"ci_changes: could not write {output}: {error}; the step output stays unset, so the check runs",
                   file=sys.stderr)

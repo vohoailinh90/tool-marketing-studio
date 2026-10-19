@@ -544,3 +544,24 @@ class ParallelTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ManifestSelectionTests(unittest.TestCase):
+    """CI passes the manifests a pull request touches (scripts/ci_changes.py); every one of them must run, each once."""
+
+    def test_every_manifest_named_is_run_once_in_the_order_given(self) -> None:
+        names = ["tests/mutations/ci_changes.yaml", "tests/mutations/sd101_claims.yaml", "tests/mutations/ci_changes.yaml"]
+        self.assertEqual([mutation_check.ROOT / names[0], mutation_check.ROOT / names[1]],
+                         mutation_check.manifests([str(mutation_check.ROOT / name) for name in names]))
+
+    def test_no_manifest_named_means_every_manifest(self) -> None:
+        self.assertEqual(sorted(mutation_check.MANIFEST_DIR.glob("*.yaml")), mutation_check.manifests([]))
+
+    def test_the_command_line_takes_several_manifests(self) -> None:
+        checked: list[Path] = []
+        with mock.patch.object(mutation_check, "check", lambda path, **_: checked.append(path) or []), \
+                mock.patch.object(mutation_check, "dirty_files", return_value=set()), contextlib.redirect_stdout(io.StringIO()):
+            code = mutation_check.main([str(mutation_check.ROOT / "tests/mutations/ci_changes.yaml"),
+                                        str(mutation_check.ROOT / "tests/mutations/sd101_claims.yaml")])
+        self.assertEqual(0, code)
+        self.assertEqual(["ci_changes.yaml", "sd101_claims.yaml"], [path.name for path in checked])

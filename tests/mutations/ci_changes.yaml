@@ -75,3 +75,36 @@ mutations:
   find: " --jobs ${{ vars.MUTATION_JOBS || '2' }}\n"
   replace: "\n"
   test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_runs_on_several_tree_copies_unless_the_variable_says_otherwise
+- label: a pull request runs every manifest instead of the ones that name a changed file
+  find: "        return [name for name in names if manifest_files(name, root) & wanted]"
+  replace: "        return names"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_an_unrelated_change_chooses_no_manifest
+- label: a change to the checker or the workflow runs only the manifests that name it
+  find: "    if any(path in RUN_ALL for path in changed):\n        return None\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_file_runs_every_manifest
+- label: a manifest is not chosen by the module of a test it names
+  find: "        named.add(test_module_file(entry.get(\"test\", \"\"), root) or \"\")\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_the_real_manifests_are_chosen_by_target_entry_file_test_module_and_themselves
+- label: a manifest is not chosen by the file of one of its entries
+  find: "        named.add(entry.get(\"file\", \"\"))\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_the_real_manifests_are_chosen_by_target_entry_file_test_module_and_themselves
+- label: manifests that cannot be read choose none instead of all
+  find: "        if not names:\n            return None\n"
+  replace: "        if not names:\n            return []\n"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_manifests_that_cannot_be_read_run_every_manifest
+- label: a pull request no manifest names still runs the check
+  find: "            needed, reason = False, f\"{reason}, but no mutation manifest names a changed file\""
+  replace: "            pass"
+  test: tests.test_ci_changes.MainTests.test_a_pull_request_no_manifest_names_skips_the_check
+- label: the chosen manifests are not written for the workflow
+  find: "                handle.write(f\"manifests={' '.join(chosen) if chosen else 'all'}\\n\")"
+  replace: "                handle.write(\"manifests=all\\n\")"
+  test: tests.test_ci_changes.MainTests.test_a_pull_request_runs_only_the_manifests_that_name_a_changed_file
+- label: the workflow step ignores the chosen manifests and runs them all
+  file: .github/workflows/ci.yml
+  find: "then set -- --all; else set -- $MANIFESTS; fi"
+  replace: "then set -- --all; else set -- --all; fi"
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_step_runs_the_chosen_manifests_or_all_of_them

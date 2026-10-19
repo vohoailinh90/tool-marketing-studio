@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="938" viewBox="0 0 320 938" role="img" aria-labelledby="title desc">
+<title id="title">Quadtree tìm quán gần bạn</title>
+<desc id="desc">Hai khung. Khung một, xây quadtree: cả bản đồ là gốc, ô nào có hơn 100 quán thì chia thành bốn ô con, lặp lại cho tới khi không ô nào hơn 100 quán. Khung hai, tìm quán gần bạn: đi từ gốc xuống ô lá chứa vị trí của bạn, nếu ô đủ 100 quán thì trả về, nếu thiếu thì lấy thêm quán từ các ô bên cạnh.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="938" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Quadtree tìm quán gần</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bạn</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chia ô đông thành bốn ô nhỏ.</text>
+<rect x="8" y="104" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Xây cây</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gốc là cả bản đồ</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đếm số quán trong ô.</text>
+<rect x="20" y="239" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="265" r="14" fill="#1d4ed8"/>
+<text x="46" y="270.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="265.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quá đông thì chia</text>
+<text x="70" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hơn 100 quán: chia thành</text>
+<text x="70" y="308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bốn ô con.</text>
+<polyline points="46,219 46,237" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lặp lại</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm tra từng ô con như</text>
+<text x="70" y="417.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vậy.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="457" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="483" r="14" fill="#1d4ed8"/>
+<text x="46" y="488.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="483.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dừng</text>
+<text x="70" y="507.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mọi ô lá có từ 100 quán trở</text>
+<text x="70" y="526.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xuống.</text>
+<polyline points="46,437 46,455" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="568" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="596.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tìm quán gần bạn</text>
+<rect x="20" y="613" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="639" r="14" fill="#0f766e"/>
+<text x="46" y="644.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="639.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đi xuống</text>
+<text x="70" y="663.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ gốc, chọn ô con chứa vị</text>
+<text x="70" y="682.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trí của bạn.</text>
+<rect x="20" y="722" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="748" r="14" fill="#0f766e"/>
+<text x="46" y="753.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="748.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tới ô lá</text>
+<text x="70" y="772.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy danh sách quán của ô</text>
+<text x="70" y="791.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đó.</text>
+<polyline points="46,702 46,720" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="831" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="857" r="14" fill="#0f766e"/>
+<text x="46" y="862.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="857.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thiếu thì bù</text>
+<text x="70" y="881.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy thêm quán từ các ô lá</text>
+<text x="70" y="900.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bên cạnh.</text>
+<polyline points="46,811 46,829" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

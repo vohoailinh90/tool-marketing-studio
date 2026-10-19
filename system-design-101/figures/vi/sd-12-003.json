@@ -1,0 +1,62 @@
+{
+  "id": "sd-12-003",
+  "title": "Alice gửi thư cho Bob",
+  "subtitle": "Từ ứng dụng Outlook tới hộp thư Gmail.",
+  "desc": "Hai khung. Khung một, gửi thư: Alice dùng ứng dụng thư (giả định cấu hình gửi bằng SMTP) gửi thư tới máy chủ Outlook; máy chủ Outlook chuyển thư tới máy chủ Gmail cũng bằng SMTP sau khi tra DNS; máy chủ Gmail trả lời đã nhận. Khung hai, nhận thư: Gmail lưu thư vào hộp thư của Bob, Bob đăng nhập, nếu Bob dùng một ứng dụng thư riêng thì ứng dụng đó lấy thư về bằng IMAP hoặc POP3.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Gửi thư",
+      "actors": [
+        {
+          "name": "Alice (ứng dụng thư)",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ Outlook",
+          "icon": "server"
+        },
+        {
+          "name": "Máy chủ Gmail",
+          "icon": "server"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "SMTP (giả định): gửi thư"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Tra DNS, rồi SMTP"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Đã nhận (250)",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Nhận thư",
+      "items": [
+        {
+          "title": "Gmail lưu thư",
+          "text": "Thư nằm trong hộp thư của Bob."
+        },
+        {
+          "title": "Bob đọc thư",
+          "text": "Anh mở hộp thư của mình."
+        },
+        {
+          "title": "Lấy thư về",
+          "text": "Ứng dụng thư riêng dùng IMAP hoặc POP3."
+        }
+      ]
+    }
+  ]
+}

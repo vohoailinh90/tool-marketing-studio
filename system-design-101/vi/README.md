@@ -317,6 +317,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
 
+1. [AirTag: tìm đồ nhờ điện thoại của người lạ đi ngang](lessons/sd-12-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Thư điện tử đi từ người gửi tới người nhận: bốn vai và hai nhóm giao thức](lessons/sd-12-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Alice gửi thư cho Bob: đường đi qua máy chủ Outlook và Gmail](lessons/sd-12-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Làm mờ biển số và khuôn mặt trên ảnh đường phố: ba đường ống](lessons/sd-12-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Quadtree: chia bản đồ thành bốn ô để tìm quán gần bạn](lessons/sd-12-005/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 6. [Ứng dụng chat đơn giản với Redis: kênh phát tin và tập có thứ tự](lessons/sd-12-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 7. [Phát trực tiếp: video được cắt thành đoạn vài giây rồi đẩy ra ngay](lessons/sd-12-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 8. [Quốc tế hóa một website bán hàng: năm mảng, và những chỗ máy làm giúp](lessons/sd-12-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.

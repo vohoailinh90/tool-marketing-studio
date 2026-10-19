@@ -1,0 +1,39 @@
+{
+  "id": "sd-12-001",
+  "title": "AirTag tìm đồ thế nào",
+  "subtitle": "Tín hiệu Bluetooth, thiết bị đi ngang, bản đồ.",
+  "desc": "Hai khung. Khung một, đường đi của một lần định vị: AirTag phát tín hiệu Bluetooth kèm một mã công khai; thiết bị Apple đi ngang nhận tín hiệu rồi gửi vị trí của mình, đã mã hóa, lên máy chủ Apple; chủ đồ mở ứng dụng Find My và giải mã để xem vị trí trên bản đồ. Khung hai, ba điều nên nhớ: bên đi ngang không biết đồ của ai, Apple không đọc được vị trí, và nơi ít thiết bị Apple thì vị trí cũ hoặc thiếu.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một lần định vị",
+      "items": [
+        {
+          "title": "AirTag phát tín hiệu",
+          "text": "Bluetooth, kèm mã công khai đổi theo thời gian."
+        },
+        {
+          "title": "Điện thoại đi ngang nghe",
+          "text": "Thiết bị Apple lấy vị trí của chính nó."
+        },
+        {
+          "title": "Gửi báo cáo mã hóa",
+          "text": "Mã hóa bằng mã công khai, gửi lên Apple."
+        },
+        {
+          "title": "Chủ đồ xem bản đồ",
+          "text": "Find My giải mã bằng khóa riêng."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều nên nhớ",
+      "items": [
+        "Người đi ngang không biết thẻ của ai.",
+        "Apple không đọc được vị trí.",
+        "Ít thiết bị Apple thì vị trí cũ hoặc thiếu."
+      ]
+    }
+  ]
+}

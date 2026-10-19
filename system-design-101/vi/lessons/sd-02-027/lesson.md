@@ -15,6 +15,7 @@ Bài này đọc tám mảng theo đường đi của một yêu cầu đặt xe
 - **UDP** (User Datagram Protocol) — giao thức gửi gói tin không cần bắt tay trước.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách các dịch vụ gọi nhau.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc; chữ SQL trong tên MySQL và PostgreSQL.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên AresDB và RocksDB.
 - **DevOps** (DEVelopment and OPerationS) — phát triển và vận hành: cách làm gộp việc viết mã với việc phát hành và vận hành nó.
 - **OLTP** (OnLine Transaction Processing) — xử lý giao dịch trực tuyến: phần cơ sở dữ liệu phục vụ các thao tác đọc ghi hằng ngày như đặt xe.
 

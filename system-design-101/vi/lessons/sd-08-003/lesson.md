@@ -38,7 +38,7 @@ Ngày 2026-10-19, một đoạn chương trình Python đọc mã (ast) của ba
 | unittest | 54 | 31 | 1 |
 | Cộng | 288 | 214 | 12 |
 
-Hai điều đọc được. Một, trong mã thật, kế thừa là thứ dễ thấy nhất và nhiều nhất: đọc được thẳng từ danh sách lớp cha. Hai, thứ "ai tạo ra đối tượng" mã cho thấy (12 chỗ) cũng chưa đủ để kết luận hợp thành: để biết nó có hủy đi khi lớp chứa bị hủy, phải biết ai còn giữ tham chiếu tới nó, mà việc đó không nằm ở kiểu khai báo. Nên tập hợp và hợp thành là **lời tuyên bố của người thiết kế**, không suy ra được tự động từ mã.
+Hai điều đọc được. Một, trong ba gói này, đường kế thừa (214) nhiều hơn hẳn chỗ lớp tự tạo đối tượng lớp khác (12), và đọc được thẳng từ danh sách lớp cha; đó là so sánh hai mẫu hẹp mà phép quét đếm được, không phải kết luận rằng kế thừa là quan hệ phổ biến nhất trong mã thật (kết hợp, phụ thuộc, đối tượng truyền vào, hàm tạo riêng không được đếm). Hai, thứ "ai tạo ra đối tượng" mã cho thấy (12 chỗ) cũng chưa đủ để kết luận hợp thành: để biết nó có hủy đi khi lớp chứa bị hủy, phải biết ai còn giữ tham chiếu tới nó, mà việc đó không nằm ở kiểu khai báo. Nên tập hợp và hợp thành là **lời tuyên bố của người thiết kế**, không suy ra được tự động từ mã.
 
 ## Giới hạn cần nhớ
 

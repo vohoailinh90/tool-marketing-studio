@@ -89,6 +89,11 @@ class BoardTests(unittest.TestCase):
     def test_text_outside_the_tables_reserves_nothing(self) -> None:
         self.assertEqual(set(), claims.board_reservations("The decks of sd-11-001..049 are not reserved.\n", "deck"))
 
+    def test_the_real_board_still_parses_into_reservations_for_both_kinds_of_work(self) -> None:
+        text = (Path(__file__).resolve().parents[1] / claims.BOARD).read_text(encoding="utf-8")
+        self.assertTrue(claims.board_reservations(text, "lesson"), "a board edit broke its tables: --next would skip nothing")
+        self.assertTrue(claims.board_reservations(text, "deck"), "a board edit broke its tables: --next would skip nothing")
+
     def test_a_board_that_is_not_there_reserves_nothing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(set(), claims.reserved_on_board(Path(tmp), "origin", True, "lesson"))

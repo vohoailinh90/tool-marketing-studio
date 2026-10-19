@@ -1,0 +1,131 @@
+{
+  "id": "sd-07-005",
+  "title": "Tin nhắn SWIFT đi từ New York tới London",
+  "subtitle": "Lưu hai lần, xác nhận hai lần.",
+  "desc": "Ba khung nối nhau, mỗi khung một lược đồ. Khung một, phía ngân hàng gửi: Bank A gửi tin tới Regional Processor A, nơi kiểm tra định dạng rồi chuyển cho Slice Processor A lưu, sau đó Bank A nhận ACK hoặc NAK. Khung hai, sang London: Slice Processor A chuyển tin cho Regional Processor B, nơi gán số MON; Slice Processor B kiểm tra MON và cho phép gửi. Khung ba, phía ngân hàng nhận: Regional Processor B gửi tin cho Bank B, Bank B trả UAK hoặc UNK, báo cáo được lưu và một bản sao về lại Slice Processor A.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Ngân hàng A gửi",
+      "actors": [
+        {
+          "name": "Bank A",
+          "icon": "store"
+        },
+        {
+          "name": "Regional A",
+          "icon": "server"
+        },
+        {
+          "name": "Slice A",
+          "icon": "database"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Tin chuyển tiền"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Đã kiểm tra, nhờ lưu"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Đã lưu tin",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "ACK (sẽ gửi) / NAK (không)",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2. Sang London",
+      "actors": [
+        {
+          "name": "Slice A",
+          "icon": "database"
+        },
+        {
+          "name": "Regional B",
+          "icon": "server"
+        },
+        {
+          "name": "Slice B",
+          "icon": "database"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Chuyển tin sang London"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Gán số MON, nhờ kiểm tra"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "MON hợp lệ, cho phép gửi",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "3. Ngân hàng B nhận",
+      "actors": [
+        {
+          "name": "Regional B",
+          "icon": "server"
+        },
+        {
+          "name": "Bank B",
+          "icon": "store"
+        },
+        {
+          "name": "Slice B",
+          "icon": "database"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Gửi tin cho Bank B"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "UAK (nhận đúng) hoặc UNK (lỗi)",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Báo cáo theo phản hồi của Bank B"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "ACK chỉ nói tin sẽ được gửi đi, chưa nói Bank B đã nhận.",
+        "Bank B nhận đúng hay lỗi thì có UAK hoặc UNK.",
+        "Báo cáo được lưu ở Slice B rồi sao một bản về Slice A."
+      ]
+    }
+  ]
+}

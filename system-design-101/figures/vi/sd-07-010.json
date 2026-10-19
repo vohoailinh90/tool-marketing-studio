@@ -1,0 +1,80 @@
+{
+  "id": "sd-07-010",
+  "title": "Quét mã để trả tiền",
+  "subtitle": "Quầy tạo mã, rồi khách quét và trả.",
+  "desc": "Hai khung, mỗi khung một lược đồ. Khung một, quầy tạo mã: máy thu ngân gửi mã đơn và số tiền cho nhà cung cấp dịch vụ thanh toán, nơi lưu lại, tạo địa chỉ mã QR và trả về để quầy hiển thị mã, trong chưa đầy một giây. Khung hai, khách quét và trả: ví điện tử báo nhà cung cấp rằng mã đã được trả, nhà cung cấp đánh dấu đã trả và trả kết quả thành công cho ví, rồi báo người bán.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Quầy tạo mã",
+      "actors": [
+        {
+          "name": "Máy thu ngân",
+          "icon": "monitor"
+        },
+        {
+          "name": "PSP",
+          "icon": "server"
+        },
+        {
+          "name": "Quầy",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Mã đơn và số tiền"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Địa chỉ mã QR",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Hiển thị mã QR"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2. Khách quét và trả",
+      "actors": [
+        {
+          "name": "Ví của khách",
+          "icon": "smartphone"
+        },
+        {
+          "name": "PSP",
+          "icon": "server"
+        },
+        {
+          "name": "Người bán",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Đã trả mã này"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Thành công",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Khách đã trả"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "sd-02-032",
+  "title": "Netflix xếp thành tám mảng",
+  "subtitle": "Hỏng thì người xem thấy khi nào?",
+  "desc": "Ba nhóm thẻ. Ứng dụng và dịch vụ: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey. Khung cuối: phép thử của người biên soạn, hỏng thì người xem thấy khi nào.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ứng dụng và dịch vụ",
+      "items": [
+        {
+          "name": "Di động và web",
+          "role": "Swift, Kotlin; React.",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Giao tiếp",
+          "role": "GraphQL.",
+          "icon": "arrow-left-right"
+        },
+        {
+          "name": "Dịch vụ phía sau",
+          "role": "Zuul, Eureka, Spring Boot.",
+          "icon": "server"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Lưu dữ liệu",
+      "items": [
+        {
+          "name": "Cơ sở dữ liệu",
+          "role": "EVCache, Cassandra, CockroachDB.",
+          "icon": "database"
+        },
+        {
+          "name": "Lưu video",
+          "role": "S3 và Open Connect.",
+          "icon": "video"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Dữ liệu và phát hành",
+      "items": [
+        {
+          "name": "Truyền tin",
+          "role": "Kafka, Flink.",
+          "icon": "send"
+        },
+        {
+          "name": "Xử lý dữ liệu",
+          "role": "Flink, Spark, Tableau.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Phát hành",
+          "role": "Jenkins, Spinnaker.",
+          "icon": "rocket"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Phép thử của bài này",
+      "items": [
+        "Ứng dụng, cổng, Open Connect hỏng: thấy ngay.",
+        "EVCache hỏng: có thể chỉ chậm hơn.",
+        "Kafka, Spark, Jenkins hỏng: thấy muộn, hoặc không."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1400" viewBox="0 0 320 1400" role="img" aria-labelledby="title desc">
+<title id="title">Uber giao phần mềm qua những chặng nào?</title>
+<desc id="desc">Hai khung bước nối nhau. Khung một, từ ý tưởng tới mã: lên kế hoạch bằng Jira; viết dịch vụ bằng Spring Boot, cấu hình phát hành nhanh bằng Flipr; giữ mã sạch bằng NullAway chặn lỗi con trỏ null và Piranha dọn cờ tính năng cũ; một kho mã chung, build bằng Bazel. Khung hai, từ mã tới người dùng: kiểm thử trong môi trường ngắn hạn và phát lại lưu lượng thật; uBuild đóng gói vào container, chạy trên Buildkite; triển khai bằng Spinnaker của Netflix; giám sát bằng uMetric trên Cassandra. Khung ba nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1400" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Uber giao phần mềm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">qua những chặng nào?</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi chặng một công cụ, nhiều cái</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Uber tự làm.</text>
+<rect x="8" y="123" width="304" height="472" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ ý tưởng tới mã</text>
+<rect x="20" y="168" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lên kế hoạch</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quản lý dự án bằng Jira.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Viết dịch vụ</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Spring Boot; Flipr để phát</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hành cấu hình nhanh.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giữ mã sạch</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">NullAway chặn lỗi null;</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Piranha dọn cờ tính năng</text>
+<text x="70" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũ.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="496" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="522" r="14" fill="#1d4ed8"/>
+<text x="46" y="527.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="522.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một kho mã chung</text>
+<text x="70" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Monorepo, build bằng Bazel</text>
+<text x="70" y="565.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ở quy mô lớn.</text>
+<polyline points="46,476 46,494" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="607" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="635.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ mã tới người dùng</text>
+<rect x="20" y="652" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="678" r="14" fill="#0f766e"/>
+<text x="46" y="683.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="678.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kiểm thử</text>
+<text x="70" y="702.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Môi trường ngắn hạn; phát</text>
+<text x="70" y="721.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lại lưu lượng thật để thử tải.</text>
+<rect x="20" y="761" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="787" r="14" fill="#0f766e"/>
+<text x="46" y="792.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="787.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đóng gói</text>
+<text x="70" y="811.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">uBuild đóng vào container,</text>
+<text x="70" y="830.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy trên Buildkite.</text>
+<polyline points="46,741 46,759" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="870" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="896" r="14" fill="#0f766e"/>
+<text x="46" y="901.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="896.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Triển khai</text>
+<text x="70" y="920.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Spinnaker, công cụ của</text>
+<text x="70" y="939.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Netflix.</text>
+<polyline points="46,850 46,868" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="979" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="1005" r="14" fill="#0f766e"/>
+<text x="46" y="1010.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="1005.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giám sát</text>
+<text x="70" y="1029.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nền tảng uMetric dựng trên</text>
+<text x="70" y="1048.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cassandra.</text>
+<polyline points="46,959 46,977" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1090" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1118.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1135" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1158" r="11" fill="#16a34a"/>
+<polyline points="37.9,1158.4 41.7,1162.4 48.5,1154" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1161.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi chặng giao phần mềm</text>
+<text x="64" y="1180.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có một công cụ riêng.</text>
+<rect x="20" y="1206" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1229" r="11" fill="#16a34a"/>
+<polyline points="37.9,1229.4 41.7,1233.4 48.5,1225" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1232.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Uber tự làm nhiều công cụ ở</text>
+<text x="64" y="1251.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặng giữ mã sạch và kiểm</text>
+<text x="64" y="1271.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử.</text>
+<rect x="20" y="1297" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1320" r="11" fill="#16a34a"/>
+<polyline points="37.9,1320.4 41.7,1324.4 48.5,1316" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1323.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách là ảnh chụp một</text>
+<text x="64" y="1342.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thời điểm, không phải bộ</text>
+<text x="64" y="1362.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nên chép.</text>
+</g>
+</svg>

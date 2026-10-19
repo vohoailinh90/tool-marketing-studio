@@ -1,0 +1,85 @@
+{
+  "id": "sd-01-050",
+  "title_vi": "Sáu giao thức API: chọn theo kiểu hội thoại",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-050",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-evolving-landscape-of-api-protocols-in-2023.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-evolving-landscape-of-api-protocols-in-2023.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "12f5a34b14d4595e3fac0a57387e13952b11f31b",
+    "retrieved_body_sha256": "e8cdf440d7306560c232338eea554feadb8e9cc5983883b2733852677b93c038",
+    "retrieved_body_bytes": 729
+  },
+  "diagram": "../diagrams/sd-01-050-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-001",
+      "relation": "see_also",
+      "reason_vi": "Polling, SSE và WebSocket."
+    },
+    {
+      "lesson_id": "sd-01-043",
+      "relation": "see_also",
+      "reason_vi": "gRPC chi tiết hơn."
+    },
+    {
+      "lesson_id": "sd-01-046",
+      "relation": "see_also",
+      "reason_vi": "REST API và GraphQL."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The six most popular API protocols in 2023 are REST, Webhooks, GraphQL, SOAP, WebSocket and gRPC.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-evolving-landscape-of-api-protocols-in-2023.md",
+      "section": "Body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Each protocol has its own benefits and challenges, discussed in the longer blog post the source links to.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-evolving-landscape-of-api-protocols-in-2023.md",
+      "section": "Body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The grouping by who initiates (request-response, callback, open channel) and the per-protocol descriptions are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-evolving-landscape-of-api-protocols-in-2023.md",
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Sáu giao thức được xếp vào ba kiểu hội thoại theo ai mở lời; hai khung trình tự cho Webhook và WebSocket. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source only lists the six protocols and links to a longer post; the lesson groups them by who initiates the exchange, from the author's general knowledge.",
+    "The linked blog post was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "sd-02-009",
+  "title": "Stack Overflow: tưởng thế này, thật ra thế kia",
+  "subtitle": "Câu trả lời phỏng vấn và hệ thống thật theo bài nguồn.",
+  "desc": "Hai khung thẻ. Khung một, điều thường được chờ trong buổi phỏng vấn: tách thành nhiều microservice; mỗi dịch vụ một cơ sở dữ liệu riêng và dùng bộ đệm nhiều; chia dữ liệu thành nhiều mảnh; các dịch vụ nói chuyện bất đồng bộ qua hàng đợi tin nhắn. Khung hai, theo bài nguồn: chín máy chủ web phục vụ toàn bộ lưu lượng; một ứng dụng khối nguyên; máy chủ riêng đặt tại chỗ, không chạy trên đám mây. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Điều thường được chờ khi phỏng vấn",
+     "items": [{"name": "Nhiều microservice", "role": "Tách hệ thống thành nhiều phần nhỏ.", "icon": "boxes"},
+               {"name": "Cơ sở dữ liệu riêng", "role": "Mỗi dịch vụ một cái, dùng bộ đệm nhiều.", "icon": "database"},
+               {"name": "Chia mảnh", "role": "Dữ liệu chia ra nhiều máy.", "icon": "split"},
+               {"name": "Hàng đợi tin nhắn", "role": "Dịch vụ nói chuyện bất đồng bộ.", "icon": "inbox"}]},
+    {"kind": "parts", "heading": "Thật ra, theo bài nguồn",
+     "items": [{"name": "9 máy chủ web", "role": "Phục vụ toàn bộ lưu lượng.", "icon": "server"},
+               {"name": "Một khối nguyên", "role": "Một ứng dụng, không tách dịch vụ.", "icon": "box"},
+               {"name": "Máy chủ tại chỗ", "role": "Máy riêng, không chạy trên đám mây.", "icon": "hard-drive"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Chọn thiết kế theo nhu cầu, không theo danh sách kỹ thuật.", "Chín máy chủ web không có nghĩa cả hệ thống chỉ chín máy.", "Bài nguồn không nêu năm và mức tải."]}
+  ]
+}

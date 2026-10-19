@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1324" viewBox="0 0 320 1324" role="img" aria-labelledby="title desc">
+<title id="title">ACH trả lương theo lô</title>
+<desc id="desc">Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; giờ trong hình là của ví dụ, lịch thật tùy ngân hàng gốc và ngày hiệu lực; ACH trong ngày triển khai từ 2016.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1324" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">ACH trả lương theo lô</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ví dụ của nguồn: gửi trước 19 giờ, tới</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">6 giờ sáng hôm sau.</text>
+<rect x="8" y="99" width="304" height="334" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">1. Công ty tới ngân hàng</text>
+<text x="20" y="149.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">gốc</text>
+<rect x="20" y="166" width="84" height="105" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="62" cy="188" r="14" fill="#1d4ed8"/><g transform="translate(53.6 179.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g>
+<text x="62" y="219.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Công ty</text>
+<text x="62" y="238.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">trả</text>
+<text x="62" y="257.4" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">lương</text>
+<rect x="118" y="166" width="84" height="105" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="160" cy="188" r="14" fill="#1d4ed8"/><g transform="translate(151.6 179.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="160" y="219.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bên xử</text>
+<text x="160" y="238.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">lý thứ</text>
+<text x="160" y="257.4" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">ba</text>
+<rect x="216" y="166" width="84" height="105" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="258" cy="188" r="14" fill="#1d4ed8"/><g transform="translate(249.6 179.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="258" y="219.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">ODFI</text>
+<polyline points="62,271 62,421" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,271 160,421" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,271 258,421" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="299.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Các giao</text>
+<text x="111" y="318.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">dịch lương</text>
+<polyline points="63,332 157,332" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="360.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Tệp ACH,</text>
+<text x="209" y="379.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">trước 19</text>
+<text x="209" y="399.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">giờ</text>
+<polyline points="161,413 255,413" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="445" width="304" height="351" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="473.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">2. Qua đêm</text>
+<rect x="20" y="490" width="84" height="105" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="62" cy="512" r="14" fill="#0f766e"/><g transform="translate(53.6 503.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="62" y="543.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">ODFI</text>
+<rect x="118" y="490" width="84" height="105" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="160" cy="512" r="14" fill="#0f766e"/><g transform="translate(151.6 503.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="160" y="543.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Nhà vận</text>
+<text x="160" y="562.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">hành</text>
+<text x="160" y="581.4" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">ACH</text>
+<rect x="216" y="490" width="84" height="105" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="258" cy="512" r="14" fill="#0f766e"/><g transform="translate(249.6 503.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="258" y="543.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">RDFI</text>
+<polyline points="62,595 62,784" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,595 160,784" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,595 258,784" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="623.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Chuyển</text>
+<text x="111" y="642.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">tệp sau giờ</text>
+<text x="111" y="662.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">làm việc</text>
+<polyline points="63,676 157,676" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="704.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Xử lý</text>
+<text x="209" y="723.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">quanh nửa</text>
+<text x="209" y="743.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">đêm,</text>
+<text x="209" y="762.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">chuyển tệp</text>
+<polyline points="161,776 255,776" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="808" width="304" height="234" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="836.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">3. Sáng hôm sau</text>
+<rect x="20" y="853" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="879" r="14" fill="#b45309"/>
+<text x="46" y="884.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="879.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">6 giờ sáng</text>
+<text x="70" y="903.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RDFI mở cửa làm việc.</text>
+<rect x="20" y="943" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="969" r="14" fill="#b45309"/>
+<text x="46" y="974.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="969.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cập nhật tài khoản</text>
+<text x="70" y="993.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RDFI cộng 100 đô la cho</text>
+<text x="70" y="1012.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người nhận.</text>
+<polyline points="46,923 46,941" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1054" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1082.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điều cần nhớ</text>
+<rect x="20" y="1099" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1122" r="11" fill="#16a34a"/>
+<polyline points="37.9,1122.4 41.7,1126.4 48.5,1118" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1125.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ACH xử lý theo lô, không</text>
+<text x="64" y="1144.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo thời gian thực.</text>
+<rect x="20" y="1170" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1193" r="11" fill="#16a34a"/>
+<polyline points="37.9,1193.4 41.7,1197.4 48.5,1189" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1196.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trong ví dụ: gửi trước 19 giờ</text>
+<text x="64" y="1215.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thì tới sáng hôm sau.</text>
+<rect x="20" y="1241" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1264" r="11" fill="#16a34a"/>
+<polyline points="37.9,1264.4 41.7,1268.4 48.5,1260" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1267.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lịch thật tùy ngân hàng; có</text>
+<text x="64" y="1286.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ACH trong ngày (từ 2016).</text>
+</g>
+</svg>

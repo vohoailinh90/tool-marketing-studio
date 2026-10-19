@@ -1,0 +1,48 @@
+{
+  "id": "sd-07-008",
+  "title": "Đối soát thanh toán",
+  "subtitle": "So các bản ghi ở nhiều hệ thống cho khớp nhau.",
+  "desc": "Hai khung. Khung một, ba bản ghi của một khoản 200 đô la mua đồng hồ: đơn hàng trên website thương mại điện tử, giao dịch ở PayPal, sổ cái ghi nợ người mua 200 và ghi có người bán 200. Khung hai, ba nỗi đau và cách gỡ: định dạng dữ liệu khác nhau thì thêm một lớp chuyển về cùng định dạng; dữ liệu rất lớn thì dùng xử lý dữ liệu lớn, luồng nếu cần gần thời gian thực, lô cuối ngày nếu không; lệch giờ chốt thì xếp vào lệch tạm thời rồi so lại với bản ghi ngày sau.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba bản ghi của 200 đô la",
+      "items": [
+        {
+          "name": "Đơn hàng",
+          "role": "Website ghi một đơn mua 200 đô la.",
+          "icon": "file-text"
+        },
+        {
+          "name": "Giao dịch PayPal",
+          "role": "PayPal ghi một giao dịch 200 đô la.",
+          "icon": "credit-card"
+        },
+        {
+          "name": "Sổ cái",
+          "role": "Ghi nợ người mua 200, ghi có người bán 200.",
+          "icon": "history"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Ba nỗi đau, ba cách gỡ",
+      "items": [
+        {
+          "title": "Khác định dạng",
+          "text": "Thêm một lớp đổi về cùng định dạng."
+        },
+        {
+          "title": "Dữ liệu rất lớn",
+          "text": "Xử lý dữ liệu lớn: luồng nếu cần gần thời gian thực, lô cuối ngày nếu không."
+        },
+        {
+          "title": "Lệch giờ chốt",
+          "text": "Xếp vào lệch tạm thời, so lại với bản ghi ngày sau."
+        }
+      ]
+    }
+  ]
+}

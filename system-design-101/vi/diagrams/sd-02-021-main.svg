@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1106" viewBox="0 0 320 1106" role="img" aria-labelledby="title desc">
+<title id="title">Netflix và ba đời kiến trúc Java</title>
+<desc id="desc">Ba bước. Cổng API: mỗi chức năng là một microservice Java, ban đầu Java 8. BFF với Groovy và RxJava: mỗi loại máy khách một lớp riêng vì TV, di động, web khác nhau; Zuul thành proxy. GraphQL Federation: rời Groovy vì người làm giao diện phải viết script và lập trình phản ứng khó. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1106" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Netflix và ba đời kiến</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trúc Java</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Dịch vụ vẫn là Java; lớp ở giữa thay</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">đổi.</text>
+<rect x="8" y="123" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba đời</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cổng API</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi chức năng là một</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">microservice Java.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">BFF, Groovy, RxJava</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi loại máy khách một lớp</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">GraphQL Federation</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ script Groovy và lập</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trình phản ứng.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="497" width="304" height="327" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="525.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vì sao phải đổi</text>
+<rect x="20" y="542" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="585.5" r="18" fill="#0f766e"/><g transform="translate(39.2 574.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="78" y="568.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một cổng chung</text>
+<text x="78" y="592.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TV, di động, web khác</text>
+<text x="78" y="611.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhau chút ít.</text>
+<rect x="20" y="643" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="686.5" r="18" fill="#0f766e"/><g transform="translate(39.2 675.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="669.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Script Groovy</text>
+<text x="78" y="693.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người làm giao diện phải</text>
+<text x="78" y="712.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viết thêm.</text>
+<rect x="20" y="744" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="778" r="18" fill="#0f766e"/><g transform="translate(39.2 767.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></g>
+<text x="78" y="770.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lập trình phản ứng</text>
+<text x="78" y="794.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nói chung là khó.</text>
+<rect x="8" y="836" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="864.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="881" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="904" r="11" fill="#16a34a"/>
+<polyline points="37.9,904.4 41.7,908.4 48.5,900" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mọi ứng dụng phía sau đều</text>
+<text x="64" y="926.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là Java.</text>
+<rect x="20" y="952" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="975" r="11" fill="#16a34a"/>
+<polyline points="37.9,975.4 41.7,979.4 48.5,971" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="978.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Zuul chuyển sang vai trò</text>
+<text x="64" y="997.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">proxy.</text>
+<rect x="20" y="1023" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1046" r="11" fill="#16a34a"/>
+<polyline points="37.9,1046.4 41.7,1050.4 48.5,1042" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1049.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn không giải thích</text>
+<text x="64" y="1068.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GraphQL Federation.</text>
+</g>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "id": "sd-02-010",
+  "title": "Twitter 1.0 dùng những gì?",
+  "subtitle": "Năm tầng, mười ba cái tên.",
+  "desc": "Hai khung thẻ. Khung một, phía người dùng: di động gồm Swift, Kotlin và ứng dụng web tiến bộ; web gồm JavaScript, React và Redux. Khung hai, phía máy chủ: dịch vụ chạy trên Mesos và Finagle; bộ đệm là Pelikan Cache và Redis; cơ sở dữ liệu là Manhattan, MySQL và PostgreSQL. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Phía người dùng",
+     "items": [{"name": "Di động", "role": "Swift, Kotlin, ứng dụng web tiến bộ.", "icon": "smartphone"},
+               {"name": "Web", "role": "JavaScript, React, Redux.", "icon": "globe"}]},
+    {"kind": "parts", "heading": "Phía máy chủ",
+     "items": [{"name": "Dịch vụ", "role": "Mesos, Finagle.", "icon": "server"},
+               {"name": "Bộ đệm", "role": "Pelikan Cache, Redis.", "icon": "zap"},
+               {"name": "Cơ sở dữ liệu", "role": "Manhattan, MySQL, PostgreSQL.", "icon": "database"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Một stack là danh sách công cụ xếp theo tầng.", "Một tầng thường có nhiều hơn một công cụ.", "Danh sách cho biết có gì, không cho biết nối ra sao."]}
+  ]
+}

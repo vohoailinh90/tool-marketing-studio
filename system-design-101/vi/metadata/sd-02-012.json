@@ -1,0 +1,93 @@
+{
+  "id": "sd-02-012",
+  "title_vi": "YouTube và VCU: con chip riêng cho việc chuyển mã video",
+  "language": "vi",
+  "kind": "topology",
+  "content_status": "draft",
+  "source_ref": "sd-02-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "f8a763529470172ca33c2ab2a374d9ef295cfb47",
+    "retrieved_body_sha256": "55b1e513ad491ad0ba5abeaec7aa15aba2c38153afa4f4e73d58d5f68906a253",
+    "retrieved_body_bytes": 1735
+  },
+  "diagram": "../diagrams/sd-02-012-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-001",
+      "relation": "see_also",
+      "reason_vi": "Một tình huống mở rộng hạ tầng khác."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "YouTube handles 500+ hours of video uploads every minute on average.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+      "section": "Body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "YouTube transcodes raw video into different compression rates for devices: mobile (720p), laptop (1080p), high-resolution TV (4k).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+      "section": "Traditional Software Encoding",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Video consumption increased during the COVID-19 pandemic and software-based encoding became slow and costly.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+      "section": "Traditional Software Encoding",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "YouTube developed the VCU (Video transCoding Unit), published in 2021; each cluster has VCU-accelerated servers, each server multiple accelerator trays, each tray multiple VCU cards, each card encoders and decoders; output is stored in cloud storage.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+      "section": "YouTube's Transcoding Brain - VCU",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The new design brought 20-33x improvements in computing efficiency compared to the previous optimized system.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+      "section": "YouTube's Transcoding Brain - VCU",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "When a custom chip is worth building.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-youtube-handle-massive-video-content-upload.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Khung một là lý do cần chip riêng, khung hai là các lớp của cụm VCU; khung cuối ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The lesson adds limits on the 20-33x figure (unit not stated) and general conditions for building a custom chip.",
+    "The 2021 YouTube publication was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

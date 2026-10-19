@@ -1,0 +1,56 @@
+{
+  "id": "sd-02-021",
+  "title": "Netflix và ba đời kiến trúc Java",
+  "subtitle": "Dịch vụ vẫn là Java; lớp ở giữa thay đổi.",
+  "desc": "Ba bước. Cổng API: mỗi chức năng là một microservice Java, ban đầu Java 8. BFF với Groovy và RxJava: mỗi loại máy khách một lớp riêng vì TV, di động, web khác nhau; Zuul thành proxy. GraphQL Federation: rời Groovy vì người làm giao diện phải viết script và lập trình phản ứng khó. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba đời",
+      "items": [
+        {
+          "title": "Cổng API",
+          "text": "Mỗi chức năng là một microservice Java."
+        },
+        {
+          "title": "BFF, Groovy, RxJava",
+          "text": "Mỗi loại máy khách một lớp riêng."
+        },
+        {
+          "title": "GraphQL Federation",
+          "text": "Bỏ script Groovy và lập trình phản ứng."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Vì sao phải đổi",
+      "items": [
+        {
+          "name": "Một cổng chung",
+          "role": "TV, di động, web khác nhau chút ít.",
+          "icon": "monitor"
+        },
+        {
+          "name": "Script Groovy",
+          "role": "Người làm giao diện phải viết thêm.",
+          "icon": "code"
+        },
+        {
+          "name": "Lập trình phản ứng",
+          "role": "Nói chung là khó.",
+          "icon": "triangle-alert"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mọi ứng dụng phía sau đều là Java.",
+        "Zuul chuyển sang vai trò proxy.",
+        "Nguồn không giải thích GraphQL Federation."
+      ]
+    }
+  ]
+}

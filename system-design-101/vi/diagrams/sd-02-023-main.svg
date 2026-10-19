@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1177" viewBox="0 0 320 1177" role="img" aria-labelledby="title desc">
+<title id="title">Reddit: trả lời ngay, làm phần nặng sau</title>
+<desc id="desc">Hai dải. Đường trả lời ngay: CDN Fastly, bộ cân bằng tải, dịch vụ Go thay khối nguyên Python sau lớp GraphQL Federation, Postgres có memcached đứng trước và Cassandra cho tính năng mới. Đường chạy sau: RabbitMQ đưa bỏ phiếu và gửi liên kết cho worker, Kafka đưa dữ liệu cho luật kiểm duyệt, Debezium bắt thay đổi để sao chép và giữ bộ đệm nhất quán. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1177" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Reddit: trả lời ngay, làm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">phần nặng sau</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hai đường trong kiến trúc lõi của</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Reddit.</text>
+<rect x="8" y="123" width="304" height="414" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường trả lời ngay</text>
+<rect x="20" y="168" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">CDN Fastly</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đứng trước ứng dụng.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cân bằng tải</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuyển tới đúng dịch vụ.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ, GraphQL</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Go thay Python; Federation</text>
+<text x="70" y="417.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">từ 2021.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="457" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="483" r="14" fill="#1d4ed8"/>
+<text x="46" y="488.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="483.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Postgres</text>
+<text x="70" y="507.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có memcached đứng trước.</text>
+<polyline points="46,437 46,455" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="549" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="577.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường chạy sau</text>
+<rect x="20" y="594" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="637.5" r="18" fill="#0f766e"/><g transform="translate(39.2 626.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="620.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">RabbitMQ</text>
+<text x="78" y="644.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ phiếu, gửi liên kết:</text>
+<text x="78" y="663.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">worker làm sau.</text>
+<rect x="20" y="695" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="738.5" r="18" fill="#0f766e"/><g transform="translate(39.2 727.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+<text x="78" y="721.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kafka</text>
+<text x="78" y="745.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu thời gian thực cho</text>
+<text x="78" y="764.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luật kiểm duyệt.</text>
+<rect x="20" y="796" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="839.5" r="18" fill="#0f766e"/><g transform="translate(39.2 828.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="78" y="822.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Debezium</text>
+<text x="78" y="846.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bắt thay đổi để sao chép,</text>
+<text x="78" y="865.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữ bộ đệm khớp.</text>
+<rect x="8" y="907" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="935.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="952" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="975" r="11" fill="#16a34a"/>
+<polyline points="37.9,975.4 41.7,979.4 48.5,971" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="978.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Việc tốn kém được đẩy vào</text>
+<text x="64" y="997.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng đợi.</text>
+<rect x="20" y="1023" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1046" r="11" fill="#16a34a"/>
+<polyline points="37.9,1046.4 41.7,1050.4 48.5,1042" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1049.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cassandra dùng cho tính</text>
+<text x="64" y="1068.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năng mới.</text>
+<rect x="20" y="1094" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1117" r="11" fill="#16a34a"/>
+<polyline points="37.9,1117.4 41.7,1121.4 48.5,1113" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1120.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy trên AWS và</text>
+<text x="64" y="1139.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kubernetes.</text>
+</g>
+</svg>

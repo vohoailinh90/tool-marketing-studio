@@ -1,0 +1,45 @@
+{
+  "id": "sd-08-007",
+  "title": "Chín việc làm khi phát triển dịch vụ nhỏ",
+  "subtitle": "Việc nào có chỗ đối chiếu, và giữ trạng thái ngoài tiến trình giá bao nhiêu.",
+  "desc": "Bốn khung. Khung một, cách chia việc: dữ liệu riêng cho mỗi dịch vụ, mỗi dịch vụ một trách nhiệm, thiết kế theo miền nghiệp vụ. Khung hai, cách xây và chạy: bản xây riêng, đóng gói container, dịch vụ không giữ trạng thái. Khung ba, cách ghép: giao diện người dùng chia nhỏ, điều phối các dịch vụ, giữ mã ở cùng mức trưởng thành. Khung bốn, thử với ba bản chạy và phân phát lượt vòng tròn: giữ phiên trong bộ nhớ thì chỉ 20 phần trăm lượt có phiên hợp lệ, còn giữ ở kho chung thì 100 phần trăm, đổi lại mỗi lượt chậm thêm khoảng 65 đến 150 micro giây.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Cách chia việc",
+      "items": [
+        "Dữ liệu riêng cho mỗi dịch vụ.",
+        "Mỗi dịch vụ một trách nhiệm.",
+        "Thiết kế theo miền nghiệp vụ."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cách xây và chạy",
+      "items": [
+        "Mỗi dịch vụ một bản xây riêng.",
+        "Đóng gói và chạy trong container.",
+        "Dịch vụ không giữ trạng thái."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cách ghép và phối hợp",
+      "items": [
+        "Chia nhỏ cả giao diện người dùng.",
+        "Điều phối các dịch vụ.",
+        "Giữ mã ở cùng mức trưởng thành."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: phiên đặt ở đâu",
+      "items": [
+        "Phiên trong bộ nhớ từng bản: 20% lượt hợp lệ.",
+        "Phiên ở kho chung: 100% lượt hợp lệ.",
+        "Một bản biến mất: 100 phiên mất thật, 200 trên 301 yêu cầu đầu bị từ chối; kho chung 0.",
+        "Giá: chậm thêm khoảng 65 đến 150 µs mỗi lượt."
+      ]
+    }
+  ]
+}

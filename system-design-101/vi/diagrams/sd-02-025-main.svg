@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1128" viewBox="0 0 320 1128" role="img" aria-labelledby="title desc">
+<title id="title">Một tin nhắn Slack đi qua năm máy chủ</title>
+<desc id="desc">Hai dải bước. Từ người gửi tới Channel Server: WebApp định nghĩa API; Admin Server dùng mã kênh tìm Channel Server; Channel Server giữ lịch sử kênh, kênh được chia bằng băm nhất quán. Từ Channel Server tới người nhận: Gateway Server ở từng vùng giữ đăng ký kênh; Envoy làm proxy; người nhận dùng WebSocket nên nhận ngay. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1128" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một tin nhắn Slack đi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">qua năm máy chủ</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi chặng biết thêm một điều.</text>
+<rect x="8" y="104" width="304" height="365" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ người gửi tới Channel</text>
+<text x="20" y="154.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Server</text>
+<rect x="20" y="171" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="197" r="14" fill="#1d4ed8"/>
+<text x="46" y="202.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="197.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">WebApp</text>
+<text x="70" y="221.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Định nghĩa API cho ứng</text>
+<text x="70" y="240.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng.</text>
+<rect x="20" y="280" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="306" r="14" fill="#1d4ed8"/>
+<text x="46" y="311.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="306.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Admin Server</text>
+<text x="70" y="330.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng mã kênh tìm đúng</text>
+<text x="70" y="349.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy kênh.</text>
+<polyline points="46,260 46,278" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="389" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="415" r="14" fill="#1d4ed8"/>
+<text x="46" y="420.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="415.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Channel Server</text>
+<text x="70" y="439.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ lịch sử kênh.</text>
+<polyline points="46,369 46,387" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="481" width="304" height="365" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="509.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ Channel Server tới người</text>
+<text x="20" y="531.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nhận</text>
+<rect x="20" y="548" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="574" r="14" fill="#0f766e"/>
+<text x="46" y="579.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="574.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gateway Server</text>
+<text x="70" y="598.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ở từng vùng, giữ đăng ký</text>
+<text x="70" y="617.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kênh.</text>
+<rect x="20" y="657" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="683" r="14" fill="#0f766e"/>
+<text x="46" y="688.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="683.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Envoy</text>
+<text x="70" y="707.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Proxy dịch vụ.</text>
+<polyline points="46,637 46,655" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="747" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="773" r="14" fill="#0f766e"/>
+<text x="46" y="778.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="773.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người nhận</text>
+<text x="70" y="797.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WebSocket hai chiều, nhận</text>
+<text x="70" y="816.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngay.</text>
+<polyline points="46,727 46,745" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="858" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="886.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="903" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="926" r="11" fill="#16a34a"/>
+<polyline points="37.9,926.4 41.7,930.4 48.5,922" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="929.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm nhất quán chia hàng</text>
+<text x="64" y="948.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">triệu kênh.</text>
+<rect x="20" y="974" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="997" r="11" fill="#16a34a"/>
+<polyline points="37.9,997.4 41.7,1001.4 48.5,993" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1000.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ đẩy tin, không chờ</text>
+<text x="64" y="1019.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏi.</text>
+<rect x="20" y="1045" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1068" r="11" fill="#16a34a"/>
+<polyline points="37.9,1068.4 41.7,1072.4 48.5,1064" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1071.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn không nói khi một</text>
+<text x="64" y="1090.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy kênh hỏng.</text>
+</g>
+</svg>

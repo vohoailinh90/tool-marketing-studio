@@ -1,0 +1,17 @@
+{
+  "id": "sd-02-011",
+  "title": "Twitter chọn dòng For You thế nào?",
+  "subtitle": "Năm chặng, khoảng 1,5 giây.",
+  "desc": "Hai khung bước. Khung một, thu hẹp: gom ứng viên, bắt đầu từ khoảng 500 triệu tweet; lọc chung, còn 1.500 ứng viên; chấm điểm và xếp hạng bằng mạng nơ-ron 48 triệu tham số, có cộng điểm cho Twitter Blue. Khung hai, hoàn thiện trang: lọc để đa dạng tác giả và nội dung; trộn với quảng cáo và gợi ý nên theo dõi ai. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "steps", "heading": "Thu hẹp",
+     "items": [{"title": "Gom ứng viên", "text": "Bắt đầu từ khoảng 500 triệu tweet."},
+               {"title": "Lọc chung", "text": "Còn 1.500 ứng viên."},
+               {"title": "Chấm điểm, xếp hạng", "text": "Mạng nơ-ron 48 triệu tham số; Twitter Blue được cộng điểm."}]},
+    {"kind": "steps", "heading": "Hoàn thiện trang",
+     "items": [{"title": "Lọc cho đa dạng", "text": "Đa dạng tác giả và nội dung."},
+               {"title": "Trộn", "text": "Ghép quảng cáo và gợi ý nên theo dõi ai."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Chặng rẻ đi trước, mô hình đắt chỉ chấm số ít.", "Xếp hạng chấm từng tweet, lọc sau nhìn cả trang.", "Số liệu đọc từ mã đã công bố tại một thời điểm."]}
+  ]
+}

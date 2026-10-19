@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit; only the names and order are used."
     },
     {
-      "claim_vi": "Simulated (author's model, not a measurement): one heartbeat per second, network delay 20 ms plus an exponential of mean 80 ms, 1% of beats delayed a further 0.5 to 2 s; over 2,000,000 beats (about 556 h) a threshold on the gap between consecutive arrivals of 1.5 s gave about 38 false suspicions per hour, 2 s about 23.7 per hour, 3 s 492 in the whole run (under one per hour), 5 s none.",
+      "claim_vi": "Simulated (author's model, not a measurement): one heartbeat per second, network delay 20 ms plus an exponential of mean 80 ms, 1% of beats delayed a further 0.5 to 2 s; over 2,000,000 beats (about 556 h) a threshold on the gap between consecutive arrivals, with arrivals sorted by arrival time as a monitor sees them, of 1.5 s gave about 38 false suspicions per hour, 2 s about 12.5 per hour, 3 s 2 in the whole run, 5 s none.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-detect-node-failures-in-distributed-systems.md",
       "section": "Experiment in the lesson",
       "verified_by": "Computed by the author with Python (random, seed 1) and re-run after review; the code is not stored, the model is written in the lesson."

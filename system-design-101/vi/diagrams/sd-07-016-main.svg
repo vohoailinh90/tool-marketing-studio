@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="950" viewBox="0 0 320 950" role="img" aria-labelledby="title desc">
+<title id="title">Một lệnh thanh toán, đúng một lần</title>
+<desc id="desc">Ba khung. Khung một, đúng một lần gồm hai phần: ít nhất một lần được đảm bảo bằng việc thử lại, nhiều nhất một lần được đảm bảo bằng khóa chống trùng. Khung hai, thử lại: máy khách trả 10 đô la, ba lần đầu thất bại vì mạng yếu, lần thứ tư thành công. Khung ba, khóa chống trùng: một giá trị duy nhất do máy khách tạo, hết hạn sau một thời gian, thường là UUID, gửi kèm ở phần đầu của yêu cầu; gọi lại cùng khóa thì cho cùng kết quả.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="950" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một lệnh thanh toán,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đúng một lần</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ít nhất một lần nhờ thử lại, nhiều</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nhất một lần nhờ khóa chống trùng.</text>
+<rect x="8" y="123" width="304" height="226" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đúng một lần = hai phần</text>
+<rect x="20" y="168" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="202" r="18" fill="#1d4ed8"/><g transform="translate(39.2 191.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ít nhất một lần</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đảm bảo bằng việc thử lại.</text>
+<rect x="20" y="250" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="293.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 282.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhiều nhất một lần</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đảm bảo bằng khóa chống</text>
+<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trùng.</text>
+<rect x="8" y="361" width="304" height="253" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="389.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử lại: 10 đô la</text>
+<rect x="20" y="406" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="432" r="14" fill="#0f766e"/>
+<text x="46" y="437.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="432.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lần 1 đến lần 3</text>
+<text x="70" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thanh toán thất bại vì</text>
+<text x="70" y="475.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạng yếu.</text>
+<rect x="20" y="515" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="541" r="14" fill="#0f766e"/>
+<text x="46" y="546.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="541.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lần 4</text>
+<text x="70" y="565.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi lại, thanh toán thành</text>
+<text x="70" y="584.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công.</text>
+<polyline points="46,495 46,513" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="626" width="304" height="316" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="654.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa chống trùng</text>
+<rect x="20" y="671" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="694" r="11" fill="#16a34a"/>
+<polyline points="37.9,694.4 41.7,698.4 48.5,690" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="697.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một giá trị duy nhất do máy</text>
+<text x="64" y="716.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách tạo.</text>
+<rect x="20" y="742" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="765" r="11" fill="#16a34a"/>
+<polyline points="37.9,765.4 41.7,769.4 48.5,761" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="768.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hết hạn sau một thời gian.</text>
+<rect x="20" y="796" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="819" r="11" fill="#16a34a"/>
+<polyline points="37.9,819.4 41.7,823.4 48.5,815" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="822.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thường là UUID, gửi kèm ở</text>
+<text x="64" y="841.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần đầu yêu cầu.</text>
+<rect x="20" y="867" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="890" r="11" fill="#16a34a"/>
+<polyline points="37.9,890.4 41.7,894.4 48.5,886" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="893.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi lại cùng khóa thì cho</text>
+<text x="64" y="912.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cùng kết quả.</text>
+</g>
+</svg>

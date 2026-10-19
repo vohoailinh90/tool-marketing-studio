@@ -1,0 +1,49 @@
+{
+  "id": "sd-07-016",
+  "title": "Một lệnh thanh toán, đúng một lần",
+  "subtitle": "Ít nhất một lần nhờ thử lại, nhiều nhất một lần nhờ khóa chống trùng.",
+  "desc": "Ba khung. Khung một, đúng một lần gồm hai phần: ít nhất một lần được đảm bảo bằng việc thử lại, nhiều nhất một lần được đảm bảo bằng khóa chống trùng. Khung hai, thử lại: máy khách trả 10 đô la, ba lần đầu thất bại vì mạng yếu, lần thứ tư thành công. Khung ba, khóa chống trùng: một giá trị duy nhất do máy khách tạo, hết hạn sau một thời gian, thường là UUID, gửi kèm ở phần đầu của yêu cầu; gọi lại cùng khóa thì cho cùng kết quả.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đúng một lần = hai phần",
+      "items": [
+        {
+          "name": "Ít nhất một lần",
+          "role": "Đảm bảo bằng việc thử lại.",
+          "icon": "repeat"
+        },
+        {
+          "name": "Nhiều nhất một lần",
+          "role": "Đảm bảo bằng khóa chống trùng.",
+          "icon": "key-round"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Thử lại: 10 đô la",
+      "items": [
+        {
+          "title": "Lần 1 đến lần 3",
+          "text": "Thanh toán thất bại vì mạng yếu."
+        },
+        {
+          "title": "Lần 4",
+          "text": "Gửi lại, thanh toán thành công."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Khóa chống trùng",
+      "items": [
+        "Một giá trị duy nhất do máy khách tạo.",
+        "Hết hạn sau một thời gian.",
+        "Thường là UUID, gửi kèm ở phần đầu yêu cầu.",
+        "Gọi lại cùng khóa thì cho cùng kết quả."
+      ]
+    }
+  ]
+}

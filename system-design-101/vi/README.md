@@ -180,6 +180,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 13. [Học về thanh toán: bản đồ bảy phần của ngành](lessons/sd-07-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Hệ sinh thái thanh toán qua một giao dịch thẻ](lessons/sd-07-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Thanh toán ngoại tệ: 100 đô la thành 88 euro](lessons/sd-07-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Tránh trả tiền hai lần: thử lại và khóa chống trùng](lessons/sd-07-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [Apple Pay và Google Pay: ai giữ thông tin thẻ](lessons/sd-07-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Quẹt thẻ tín dụng: Visa đứng ở đâu](lessons/sd-07-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [ACH: trả lương theo lô, tới sáng hôm sau](lessons/sd-07-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [Visa kiếm tiền thế nào: các khoản phí của một lần quẹt thẻ](lessons/sd-07-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 

@@ -323,6 +323,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 25. [Quản lý cấu hình và hạ tầng bằng mã: hai cách nhìn một việc](lessons/sd-11-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 26. [Event sourcing: lưu sự kiện thay vì trạng thái](lessons/sd-11-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 27. [Ứng dụng mười hai yếu tố: mười hai quy tắc gom thành ba nhóm](lessons/sd-11-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Năm cách sinh mã định danh duy nhất, và mỗi cách trả giá ở đâu](lessons/sd-11-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [Bốn cách chờ khi thử lại: tăng đều hay gấp đôi, có ngẫu nhiên hay không](lessons/sd-11-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Giám sát đám mây: chín khía cạnh, và vì sao cảnh báo là khâu dễ sai nhất](lessons/sd-11-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [Khóa phân tán: sáu nơi dùng, và cái bẫy khi khóa hết hạn](lessons/sd-11-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [Sáu mẫu nhắn tin trên đám mây, và điều mỗi mẫu giải](lessons/sd-11-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 34. [Chuyển hệ thống sang cloud native: sáu mảng việc cần phủ](lessons/sd-11-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 35. [Chi phí ẩn của đám mây: nhóm theo cách hóa đơn đếm](lessons/sd-11-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 36. [Hai thập kỷ đám mây: mỗi cột mốc đổi đường ranh giữa phần tự lo và phần thuê](lessons/sd-11-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

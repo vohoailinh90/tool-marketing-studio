@@ -1,0 +1,43 @@
+{
+  "title": "Bốn cách chờ khi thử lại",
+  "subtitle": "Tăng đều hay gấp đôi, có ngẫu nhiên hay không.",
+  "desc": "Hai khung. Khung một, bốn cách chờ giữa các lần thử lại, mỗi cách một thẻ: chờ tăng đều, tăng đều cộng ngẫu nhiên, tăng gấp đôi, tăng gấp đôi cộng ngẫu nhiên. Khung hai, mô phỏng 1000 máy khách cùng thử lại vào một máy chủ nhận 100 yêu cầu mỗi bước: hai cách không ngẫu nhiên khiến 100 máy bỏ cuộc sau 5400 yêu cầu; cách cộng ngẫu nhiên đưa tất cả vào xong chỉ sau 2560 yêu cầu.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn cách chờ",
+      "items": [
+        {
+          "name": "Tăng đều",
+          "role": "Chờ 2, 4, 6, 8... bước.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Tăng đều + ngẫu nhiên",
+          "role": "Như trên, cộng một đoạn ngẫu nhiên.",
+          "icon": "shuffle"
+        },
+        {
+          "name": "Gấp đôi",
+          "role": "Chờ 2, 4, 8, 16... có trần.",
+          "icon": "timer"
+        },
+        {
+          "name": "Gấp đôi + ngẫu nhiên",
+          "role": "Gấp đôi rồi trộn ngẫu nhiên.",
+          "icon": "shuffle"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Mô phỏng 1000 máy khách",
+      "items": [
+        "Không ngẫu nhiên: 100 máy bỏ cuộc, 5400 yêu cầu.",
+        "Cộng ngẫu nhiên: không máy nào bỏ cuộc, 2560 yêu cầu.",
+        "Gấp đôi thuần tuý xong chậm nhất: bước 254 so với bước 22 đến 26."
+      ]
+    }
+  ],
+  "id": "sd-11-029"
+}

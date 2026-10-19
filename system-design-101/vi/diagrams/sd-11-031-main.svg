@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1087" viewBox="0 0 320 1087" role="img" aria-labelledby="title desc">
+<title id="title">Khóa phân tán: sáu nơi dùng</title>
+<desc id="desc">Ba khung. Hai khung đầu, mỗi khung ba trong sáu tình huống dùng khóa phân tán: bầu người dẫn đầu, lập lịch tác vụ, cấp phát tài nguyên, điều phối vi dịch vụ, quản lý tồn kho, quản lý phiên. Khung ba, thử nghiệm: máy A giữ khóa hết hạn sau 10 bước rồi tạm dừng tới bước 15, máy B lấy khóa ở bước 12 và ghi; khi A tỉnh dậy ghi đè, kho nhận cả hai; nếu kho kiểm tra số thứ tự khóa thì lần ghi của A bị từ chối.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1087" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa phân tán: sáu nơi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">dùng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Và một cái bẫy khi khóa hết hạn.</text>
+<rect x="8" y="104" width="304" height="308" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba tình huống đầu</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="183" r="18" fill="#1d4ed8"/><g transform="translate(39.2 172.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bầu người dẫn đầu</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lúc chỉ một nút dẫn.</text>
+<rect x="20" y="231" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="265" r="18" fill="#1d4ed8"/><g transform="translate(39.2 254.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="257.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lập lịch tác vụ</text>
+<text x="78" y="281.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi tác vụ một máy chạy.</text>
+<rect x="20" y="313" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="356.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 345.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="339.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cấp phát tài nguyên</text>
+<text x="78" y="363.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một lúc một tiến trình</text>
+<text x="78" y="382.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng.</text>
+<rect x="8" y="424" width="304" height="327" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="452.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba tình huống sau</text>
+<rect x="20" y="469" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="512.5" r="18" fill="#0f766e"/><g transform="translate(39.2 501.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="495.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điều phối vi dịch vụ</text>
+<text x="78" y="519.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cập nhật liên quan có thứ</text>
+<text x="78" y="538.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tự.</text>
+<rect x="20" y="570" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="604" r="18" fill="#0f766e"/><g transform="translate(39.2 593.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="78" y="596.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quản lý tồn kho</text>
+<text x="78" y="620.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không bán quá số còn.</text>
+<rect x="20" y="652" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="695.5" r="18" fill="#0f766e"/><g transform="translate(39.2 684.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="78" y="678.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quản lý phiên</text>
+<text x="78" y="702.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một máy sửa phiên mỗi</text>
+<text x="78" y="721.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lúc.</text>
+<rect x="8" y="763" width="304" height="316" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="791.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử khóa hết hạn</text>
+<rect x="20" y="808" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="831" r="11" fill="#16a34a"/>
+<polyline points="37.9,831.4 41.7,835.4 48.5,827" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="834.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">A giữ khóa tới bước 10, dừng</text>
+<text x="64" y="853.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tới bước 15.</text>
+<rect x="20" y="879" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="902" r="11" fill="#16a34a"/>
+<polyline points="37.9,902.4 41.7,906.4 48.5,898" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="905.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">B lấy khóa ở bước 12 và ghi.</text>
+<rect x="20" y="933" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="956" r="11" fill="#16a34a"/>
+<polyline points="37.9,956.4 41.7,960.4 48.5,952" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="959.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không kiểm tra số khóa: A</text>
+<text x="64" y="978.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi đè B.</text>
+<rect x="20" y="1004" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1027" r="11" fill="#16a34a"/>
+<polyline points="37.9,1027.4 41.7,1031.4 48.5,1023" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1030.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có kiểm tra số khóa: A bị từ</text>
+<text x="64" y="1049.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chối.</text>
+</g>
+</svg>

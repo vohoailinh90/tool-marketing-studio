@@ -4,15 +4,56 @@
   "subtitle": "Cách làm quen thuộc khi nhiều luồng dùng chung bộ nhớ.",
   "desc": "Ba nhóm thẻ. Chia việc và lấy kết quả: Producer-Consumer, Thread pool, Futures và Promises. Bảo vệ và đồng bộ: Monitor object, Barrier, Read-write lock. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
-    {"kind": "parts", "heading": "Chia việc và lấy kết quả",
-     "items": [{"name": "Producer-Consumer", "role": "Luồng sản xuất và luồng xử lý, đệm bằng hàng đợi chặn.", "icon": "inbox"},
-               {"name": "Thread pool", "role": "Nhóm luồng tái sử dụng, khỏi tạo và hủy luồng.", "icon": "boxes"},
-               {"name": "Futures và Promises", "role": "Promise giữ kết quả sẽ có, future để lấy nó mà không chặn.", "icon": "clock"}]},
-    {"kind": "parts", "heading": "Bảo vệ và đồng bộ",
-     "items": [{"name": "Monitor object", "role": "Mỗi lúc chỉ một luồng truy cập tài nguyên chia sẻ.", "icon": "shield"},
-               {"name": "Barrier", "role": "Cả nhóm luồng chờ nhau tới cùng một điểm.", "icon": "users"},
-               {"name": "Read-write lock", "role": "Nhiều luồng cùng đọc, chỉ một luồng ghi.", "icon": "lock-keyhole"}]},
-    {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Luồng dùng chung bộ nhớ nên cần đồng bộ và giao tiếp.", "Mẫu thiết kế giúp tránh race condition.", "Chọn mẫu theo việc: chia việc hay bảo vệ dữ liệu."]}
+    {
+      "kind": "parts",
+      "heading": "Chia việc và lấy kết quả",
+      "items": [
+        {
+          "name": "Producer-Consumer",
+          "role": "Một bên tạo việc, một bên nhận việc, qua hàng đợi có khóa sẵn.",
+          "icon": "inbox"
+        },
+        {
+          "name": "Thread pool",
+          "role": "Nhóm luồng lập sẵn nhận việc, thay vì mỗi việc một luồng mới.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Futures và Promises",
+          "role": "Future đại diện cho kết quả của việc đang chạy; hỏi lấy sau.",
+          "icon": "clock"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Bảo vệ và đồng bộ",
+      "items": [
+        {
+          "name": "Monitor object",
+          "role": "Mỗi lúc chỉ một luồng sở hữu monitor của đối tượng.",
+          "icon": "shield"
+        },
+        {
+          "name": "Barrier",
+          "role": "Số luồng cố định chờ nhau; đủ mặt thì thả cùng lúc.",
+          "icon": "users"
+        },
+        {
+          "name": "Read-write lock",
+          "role": "Nhiều luồng đọc cùng lúc nếu không có ghi; ghi độc quyền.",
+          "icon": "lock-keyhole"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Luồng dùng chung bộ nhớ nên cần đồng bộ và giao tiếp.",
+        "Mẫu thiết kế giúp tránh race condition.",
+        "Chọn mẫu theo việc: chia việc hay bảo vệ dữ liệu."
+      ]
+    }
   ]
 }

@@ -54,76 +54,51 @@
   },
   "claims": [
     {
-      "claim_vi": "Multithreading lets one program execute multiple tasks concurrently; threads are lightweight units of execution sharing process resources such as memory; it brings synchronization, communication and race-condition complexity.",
+      "claim_vi": "The source names six multithreading design patterns: Producer-Consumer, Thread pool, Futures and Promises, Monitor object, Barrier and Read-write lock. Only the names are reused; the lesson explains each pattern from Python and JDK documentation.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Introduction",
+      "section": "Top 6 multithreading design patterns",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Producer-Consumer uses producer and consumer threads with a blocking queue as the buffer between them.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Producer-Consumer Pattern",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "A thread pool reuses worker threads, removes thread creation and destruction overhead and suits many short-lived tasks.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Thread Pool Pattern",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "A promise holds the eventual result and a future gives access to it; suited to long-running operations without blocking the main thread.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Futures and Promises Pattern",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Monitor object allows one thread at a time to access or modify a shared resource within an object, preventing race conditions.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Monitor Object Pattern",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "A barrier synchronizes a group of threads: each runs until it reaches the barrier and blocks until all have reached it.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Barrier Pattern",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "A read-write lock lets multiple threads read but only one write at a time; ideal when reads are more frequent than writes.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
-      "section": "Read-Write Lock Pattern",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Python queue implements multi-producer, multi-consumer queues with the required locking semantics.",
+      "claim_vi": "Python queue module: it implements multi-producer, multi-consumer queues, especially useful in threaded programming when information must be exchanged safely between multiple threads; the Queue class implements all the required locking semantics.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/queue.rst",
-      "section": "queue module introduction",
+      "section": "queue",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "ThreadPoolExecutor uses a pool of threads to execute calls asynchronously; Future encapsulates the asynchronous execution of a callable.",
+      "claim_vi": "Python concurrent.futures: ThreadPoolExecutor is an Executor subclass that uses a pool of at most max_workers threads to execute calls asynchronously, is often used to overlap I/O instead of CPU work, and it is recommended not to use it for long-running tasks; the Future class encapsulates the asynchronous execution of a callable and is created by Executor.submit.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/concurrent.futures.rst",
-      "section": "concurrent.futures",
+      "section": "ThreadPoolExecutor and Future",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "threading.Barrier is a synchronization primitive for a fixed number of threads that wait for each other; they are released simultaneously.",
+      "claim_vi": "Python threading.Barrier: a simple synchronization primitive for a fixed number of threads that need to wait for each other; each thread calls wait and blocks until all have called wait, at which point they are released simultaneously; the barrier can be reused any number of times for the same number of threads.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/threading.rst",
       "section": "Barrier objects",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Java ReadWriteLock: the read lock may be held by multiple readers while there are no writers; the write lock is exclusive.",
-      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/locks/ReadWriteLock.java",
-      "section": "Class comment",
+      "claim_vi": "JDK Object class documentation: only one thread at a time can own an object's monitor, and a thread becomes the owner by executing a synchronized instance method of the object, the body of a synchronized statement on the object, or, for objects of type Class, a static synchronized method of that class.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/lang/Object.java",
+      "section": "Object.notify",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK ReadWriteLock: it maintains a pair of associated locks, one for read-only operations and one for writing; the read lock may be held simultaneously by multiple reader threads so long as there are no writers; the write lock is exclusive; a thread acquiring the read lock sees all updates made before the write lock was released.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/locks/ReadWriteLock.java",
+      "section": "ReadWriteLock",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The background paragraph (threads share memory, race conditions depend on the order the threads run) and the meaning of promise as the side that promises the result are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-multithreading-design-patterns-you-must-know.md",
+      "section": "Design",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
   "design_notes_vi": "Sáu mẫu chia thành hai nhóm (chia việc và lấy kết quả; bảo vệ và đồng bộ). Không có mũi tên vì nguồn không nói thứ tự giữa các mẫu. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source gives a short introduction and six patterns in one flat order; the lesson groups them into two sets by what they do.",
-    "Library examples (Python and Java) are not in the source and were added from the language documentation, with the caveat that they are not exhaustive."
+    "Source gives a short introduction and one sentence per pattern in one flat order; the lesson keeps only the six names, groups them into two sets by what they do and writes its own explanation of each pattern from the Python queue, concurrent.futures and threading documentation and the JDK Object and ReadWriteLock sources instead of translating the source sentences."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào tài liệu Python và JDK ở các commit cố định; phần nền và nghĩa của promise là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

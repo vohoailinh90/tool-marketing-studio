@@ -1,66 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1169" viewBox="0 0 320 1169" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1209" viewBox="0 0 320 1209" role="img" aria-labelledby="title desc">
 <title id="title">Sáu mẫu thiết kế đa luồng</title>
 <desc id="desc">Ba nhóm thẻ. Chia việc và lấy kết quả: Producer-Consumer, Thread pool, Futures và Promises. Bảo vệ và đồng bộ: Monitor object, Barrier, Read-write lock. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1169" fill="#f8fafc"/>
+<rect width="320" height="1209" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu mẫu thiết kế đa</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">luồng</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cách làm quen thuộc khi nhiều luồng</text>
 <text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">dùng chung bộ nhớ.</text>
-<rect x="8" y="123" width="304" height="386" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="123" width="304" height="406" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chia việc và lấy kết quả</text>
 <rect x="20" y="168" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="221.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 210.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
 <text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Producer-Consumer</text>
-<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng sản xuất và luồng</text>
-<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xử lý, đệm bằng hàng đợi</text>
-<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn.</text>
-<rect x="20" y="289" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="50" cy="332.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 321.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một bên tạo việc, một bên</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận việc, qua hàng đợi có</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa sẵn.</text>
+<rect x="20" y="289" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="342.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 331.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
 <text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thread pool</text>
-<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhóm luồng tái sử dụng,</text>
-<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khỏi tạo và hủy luồng.</text>
-<rect x="20" y="390" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="50" cy="443.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 432.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
-<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Futures và Promises</text>
-<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Promise giữ kết quả sẽ có,</text>
-<text x="78" y="459.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">future để lấy nó mà không</text>
-<text x="78" y="479.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn.</text>
-<rect x="8" y="521" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="549.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bảo vệ và đồng bộ</text>
-<rect x="20" y="566" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="609.5" r="18" fill="#0f766e"/><g transform="translate(39.2 598.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></g>
-<text x="78" y="592.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Monitor object</text>
-<text x="78" y="616.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lúc chỉ một luồng truy</text>
-<text x="78" y="635.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cập tài nguyên chia sẻ.</text>
-<rect x="20" y="667" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="710.5" r="18" fill="#0f766e"/><g transform="translate(39.2 699.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g>
-<text x="78" y="693.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Barrier</text>
-<text x="78" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cả nhóm luồng chờ nhau</text>
-<text x="78" y="736.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tới cùng một điểm.</text>
-<rect x="20" y="768" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="811.5" r="18" fill="#0f766e"/><g transform="translate(39.2 800.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect height="12" rx="2" width="18" x="3" y="10"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></g>
-<text x="78" y="794.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Read-write lock</text>
-<text x="78" y="818.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều luồng cùng đọc, chỉ</text>
-<text x="78" y="837.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một luồng ghi.</text>
-<rect x="8" y="879" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="907.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
-<rect x="20" y="924" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="947" r="11" fill="#16a34a"/>
-<polyline points="37.9,947.4 41.7,951.4 48.5,943" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="950.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng dùng chung bộ nhớ</text>
-<text x="64" y="969.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nên cần đồng bộ và giao</text>
-<text x="64" y="989.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiếp.</text>
-<rect x="20" y="1015" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1038" r="11" fill="#16a34a"/>
-<polyline points="37.9,1038.4 41.7,1042.4 48.5,1034" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1041.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mẫu thiết kế giúp tránh race</text>
-<text x="64" y="1060.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">condition.</text>
-<rect x="20" y="1086" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1109" r="11" fill="#16a34a"/>
-<polyline points="37.9,1109.4 41.7,1113.4 48.5,1105" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1112.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn mẫu theo việc: chia</text>
-<text x="64" y="1131.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc hay bảo vệ dữ liệu.</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhóm luồng lập sẵn nhận</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc, thay vì mỗi việc một</text>
+<text x="78" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luồng mới.</text>
+<rect x="20" y="410" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="463.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 452.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="436.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Futures và Promises</text>
+<text x="78" y="460.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Future đại diện cho kết</text>
+<text x="78" y="479.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quả của việc đang chạy;</text>
+<text x="78" y="499.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏi lấy sau.</text>
+<rect x="8" y="541" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="569.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bảo vệ và đồng bộ</text>
+<rect x="20" y="586" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="629.5" r="18" fill="#0f766e"/><g transform="translate(39.2 618.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></g>
+<text x="78" y="612.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Monitor object</text>
+<text x="78" y="636.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lúc chỉ một luồng sở</text>
+<text x="78" y="655.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hữu monitor của đối tượng.</text>
+<rect x="20" y="687" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="730.5" r="18" fill="#0f766e"/><g transform="translate(39.2 719.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g>
+<text x="78" y="713.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Barrier</text>
+<text x="78" y="737.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số luồng cố định chờ nhau;</text>
+<text x="78" y="756.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đủ mặt thì thả cùng lúc.</text>
+<rect x="20" y="788" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="841.5" r="18" fill="#0f766e"/><g transform="translate(39.2 830.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect height="12" rx="2" width="18" x="3" y="10"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></g>
+<text x="78" y="814.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Read-write lock</text>
+<text x="78" y="838.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều luồng đọc cùng lúc</text>
+<text x="78" y="857.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nếu không có ghi; ghi độc</text>
+<text x="78" y="877.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quyền.</text>
+<rect x="8" y="919" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="947.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="964" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="987" r="11" fill="#16a34a"/>
+<polyline points="37.9,987.4 41.7,991.4 48.5,983" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="990.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng dùng chung bộ nhớ</text>
+<text x="64" y="1009.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nên cần đồng bộ và giao</text>
+<text x="64" y="1029.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiếp.</text>
+<rect x="20" y="1055" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1078" r="11" fill="#16a34a"/>
+<polyline points="37.9,1078.4 41.7,1082.4 48.5,1074" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1081.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mẫu thiết kế giúp tránh race</text>
+<text x="64" y="1100.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">condition.</text>
+<rect x="20" y="1126" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1149" r="11" fill="#16a34a"/>
+<polyline points="37.9,1149.4 41.7,1153.4 48.5,1145" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1152.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn mẫu theo việc: chia</text>
+<text x="64" y="1171.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc hay bảo vệ dữ liệu.</text>
 </g>
 </svg>

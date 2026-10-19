@@ -15,7 +15,7 @@
 
 **Chín trang của Microsoft.** Loạt bài "Azure for AWS professionals" có một trang giới thiệu và mười một trang theo mảng việc. Ba trang (tài khoản, vùng và khu, quản lý tài nguyên) kể về khái niệm, không có bảng ghép dịch vụ. Tám trang còn lại cộng với trang giới thiệu là chín trang có bảng, và chỉ chín trang này đóng góp dòng cho phép đếm.
 
-**Trang giới thiệu cũng là một "kho chứa".** Chính trang này viết "Not every AWS service or Azure service is listed", rồi ở mục sau: "The preceding list doesn't include all services." Trang này gom các dịch vụ mà loạt bài không dành trang theo mảng riêng, dưới tiêu đề `Other services` (53 dòng, mười mục) và mục `Miscellaneous` (10 dòng).
+**Trang giới thiệu cũng là một "kho chứa".** Chính trang này viết "Not every AWS service or Azure service is listed", rồi ở mục sau: "The preceding list doesn't include all services." Trang này có thêm các bảng dưới tiêu đề `Other services` (53 dòng, mười mục) và mục `Miscellaneous` (10 dòng); một số dịch vụ trong đó cũng xuất hiện ở trang theo mảng.
 
 ## Thử: đếm dòng theo trang
 

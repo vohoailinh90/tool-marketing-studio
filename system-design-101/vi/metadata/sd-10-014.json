@@ -1,0 +1,136 @@
+{
+  "id": "sd-10-014",
+  "title_vi": "Tám chuẩn mọi lập trình viên nên biết",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-8-standards-every-developer-should-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "be974382fb083bde216f82b277ead56a03465283",
+    "retrieved_body_sha256": "2a0c3835682d54ecdc29da7bb57e027d1d3a907774cbedea592afc933169db88",
+    "retrieved_body_bytes": 1840
+  },
+  "diagram": "../diagrams/sd-10-014-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the TCP, IP, HTTP, HTML, CSS, SQL and ECMAScript statements (MDN), the HTML Standard, ECMA-262, OpenAPI and OAuth 2.1 draft statements were read in raw copies at the pinned commits and are recorded in the claims below; the HTTP/2 binary-framing qualification added to the HTTP claim and the ISO 8601 statement are not checked, and the glosses of the abbreviations are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names eight standards: TCP/IP, HTTP, SQL, OAuth, HTML/CSS, ECMAScript, ISO date format, OpenAPI; the lesson keeps these names.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "MDN: TCP lets two hosts connect and exchange data streams, guarantees delivery of data and packets in the order sent, and implements congestion control.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/tcp/index.md",
+      "section": "TCP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: an IP address is a number used to address each device on an IP network uniquely.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/ip_address/index.md",
+      "section": "IP address",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: HTTP is the protocol that transfers hypermedia documents on the Web, typically between a browser and a server; it is described as textual (true of HTTP/1.x; HTTP/2 uses binary frames, which is the author's general knowledge) and stateless; the https scheme means HTTP over a secure TLS channel.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/http/index.md",
+      "section": "HTTP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: HTML is a descriptive language that specifies webpage structure, using elements surrounded by tags.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/html/index.md",
+      "section": "HTML",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: CSS is a declarative language that controls how webpages look in the browser; a rule has a selector and properties.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/css/index.md",
+      "section": "CSS",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The whatwg/html repository hosts the HTML Standard.",
+      "source": "https://github.com/whatwg/html/blob/de953a7cf0523f5873a1904ba2ce010c689dfb66/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: SQL is a descriptive computer language designed for updating, retrieving and calculating data in table-based databases.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/sql/index.md",
+      "section": "SQL",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: ECMAScript is a scripting language specification on which JavaScript is based; Ecma International is in charge of standardizing it.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/ecmascript/index.md",
+      "section": "ECMAScript",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The tc39/ecma262 repository holds the source for the current draft of ECMA-262, the ECMAScript Language Specification.",
+      "source": "https://github.com/tc39/ecma262/blob/4feb0272b799ea795c5eadee9b482aea0c10ce45/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The OpenAPI Specification defines a standard, programming-language-agnostic interface description for HTTP APIs; documents can drive interactive documentation and code generation.",
+      "source": "https://github.com/OAI/OpenAPI-Specification/blob/8273770d983c99bb07b389d1706a9f8312ced503/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "OAuth 2.1 draft: OAuth adds an authorization layer; instead of the resource owner's credentials, the client obtains an access token (scope and lifetime) issued by an authorization server, with the resource owner's approval where a user delegates access (the lesson adds that other grant types need not involve this step); the older model made applications store credentials and servers support password authentication. This is an Internet-Draft, not a published standard.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "ISO 8601 is the ISO standard for writing dates and times, from the largest unit to the smallest.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
+      "section": "ISO Date",
+      "verified_by": "Author's general knowledge; not checked against the ISO text, which is not reachable from the authoring environment."
+    },
+    {
+      "claim_vi": "Grouping the eight standards into three sets is the author's arrangement; the glosses in the abbreviations section are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-standards-every-developer-should-know.md",
+      "section": "Design and Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ theo việc chuẩn lo (mạng và web; dữ liệu và trao đổi; truy cập và ngôn ngữ) và một khung ghi nhớ. Cách chia nhóm là của bài. Mỗi chuẩn được giải thích từ tài liệu gốc, không từ câu của nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source lists eight standards in a flat order; the lesson groups them into three sets by the job each does and says the grouping is the lesson's.",
+    "Source describes OpenAPI as for RESTful APIs and names the IETF as developer of TCP/IP and HTTP; the lesson does not repeat those sentences and explains each standard from its own documentation instead (OpenAPI: HTTP APIs).",
+    "OAuth is described from the OAuth 2.1 Internet-Draft, which is not a published standard; the lesson says so."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

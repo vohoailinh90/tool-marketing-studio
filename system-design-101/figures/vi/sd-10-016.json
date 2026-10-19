@@ -1,0 +1,24 @@
+{
+  "id": "sd-10-016",
+  "title": "Cấu trúc dữ liệu dùng hằng ngày",
+  "subtitle": "Mỗi cấu trúc là gì, và một việc quen thuộc của nó.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách là dãy có thứ tự, ví dụ dòng tin; mảng là các giá trị có chỉ số, ví dụ tính toán số; ngăn xếp vào sau ra trước, ví dụ hoàn tác; hàng đợi chờ xử lý, ví dụ lệnh in. Tra cứu và sắp việc: bảng băm tra cứu nhanh nhờ hàm băm, ví dụ bộ nhớ đệm; đống lấy phần tử ưu tiên nhất trước, ví dụ lập lịch; cây nối các nút, ví dụ tài liệu HTML; cây hậu tố, ví dụ tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường; R-tree tìm hàng xóm gần nhất; vertex buffer là bộ đệm điểm đỉnh để vẽ. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Danh sách và thứ tự",
+     "items": [{"name": "Danh sách (List)", "role": "Dãy có thứ tự. Ví dụ: dòng tin.", "icon": "list-ordered"},
+               {"name": "Mảng (Array)", "role": "Giá trị có chỉ số. Ví dụ: tính toán số.", "icon": "layers"},
+               {"name": "Ngăn xếp (Stack)", "role": "Vào sau, ra trước. Ví dụ: hoàn tác.", "icon": "history"},
+               {"name": "Hàng đợi (Queue)", "role": "Chờ xử lý, thường vào trước ra trước. Ví dụ: lệnh in.", "icon": "inbox"}]},
+    {"kind": "parts", "heading": "Tra cứu và sắp việc",
+     "items": [{"name": "Bảng băm (Hash table)", "role": "Tra cứu nhanh nhờ hàm băm. Ví dụ: bộ nhớ đệm.", "icon": "hash"},
+               {"name": "Đống (Heap)", "role": "Lấy phần tử ưu tiên nhất trước. Ví dụ: lập lịch.", "icon": "timer"},
+               {"name": "Cây (Tree)", "role": "Các nút nối thành cây. Ví dụ: tài liệu HTML.", "icon": "git-branch"},
+               {"name": "Cây hậu tố (Suffix tree)", "role": "Ví dụ: tìm một chuỗi trong tài liệu.", "icon": "search"}]},
+    {"kind": "parts", "heading": "Quan hệ, không gian và đồ họa",
+     "items": [{"name": "Đồ thị (Graph)", "role": "Ví dụ: quan hệ bạn bè, tìm đường.", "icon": "share-2"},
+               {"name": "R-tree", "role": "Ví dụ: tìm hàng xóm gần nhất.", "icon": "route"},
+               {"name": "Vertex buffer", "role": "Bộ đệm giữ dữ liệu điểm đỉnh để vẽ.", "icon": "cpu"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Mười một cấu trúc, mỗi cái một việc quen thuộc.", "Tiêu đề nguồn nói mười, nhưng danh sách có mười một.", "Cách chia nhóm là của bài."]}
+  ]
+}

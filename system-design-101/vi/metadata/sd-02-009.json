@@ -1,0 +1,75 @@
+{
+  "id": "sd-02-009",
+  "title_vi": "Stack Overflow: chín máy chủ web và một khối nguyên",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-02-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-will-you-design-the-stack-overflow-website.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-will-you-design-the-stack-overflow-website.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "cfce3f8d2aa9eee4b2fc7cac48766f45e059772a",
+    "retrieved_body_sha256": "e6b8c7b5c93a515d0beed17f8edfd863a4c70a8f655d78ff2ac67ae438df66e1",
+    "retrieved_body_bytes": 1290
+  },
+  "diagram": "../diagrams/sd-02-009-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-022",
+      "relation": "see_also",
+      "reason_vi": "Airbnb đi từ khối nguyên sang microservice."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "An interview answer for Stack Overflow is likely expected to use microservices, a database per service with heavy caching, sharding, asynchronous message queues, Event Sourcing with CQRS and distributed-systems concepts such as eventual consistency and the CAP theorem.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-will-you-design-the-stack-overflow-website.md",
+      "section": "What people think it should look like",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Stack Overflow serves all traffic with only 9 on-premise web servers, is a monolith, and has its own servers rather than running on the cloud.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-will-you-design-the-stack-overflow-website.md",
+      "section": "What it actually is",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Reasons a monolith can be enough (read-heavy load, team size, cost of each extra service).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-will-you-design-the-stack-overflow-website.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Hai cột thẻ: điều thường được chờ khi phỏng vấn và điều bài nguồn nói hệ thống thật dùng; khung cuối ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The lesson adds limits the source does not state (no year, no traffic figure, other servers not counted) and general reasons a monolith can suffice.",
+    "The source cites no primary Stack Overflow document; the server count was not checked."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

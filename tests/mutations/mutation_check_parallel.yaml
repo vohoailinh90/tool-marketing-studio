@@ -87,3 +87,7 @@ mutations:
   find: '    clean = not problem and len(answers) == len(group)'
   replace: '    clean = True'
   test: tests.test_mutation_check.ParallelTests.test_a_result_left_by_an_earlier_group_is_not_read_for_the_next_one
+- label: only the first manifest named on the command line is run
+  find: "        return list(dict.fromkeys(pathlib.Path(name).resolve() for name in selected))"
+  replace: "        return [pathlib.Path(selected[0]).resolve()]"
+  test: tests.test_mutation_check.ManifestSelectionTests.test_every_manifest_named_is_run_once_in_the_order_given

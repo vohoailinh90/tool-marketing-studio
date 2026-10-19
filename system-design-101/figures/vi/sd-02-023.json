@@ -1,0 +1,60 @@
+{
+  "id": "sd-02-023",
+  "title": "Reddit: trả lời ngay, làm phần nặng sau",
+  "subtitle": "Hai đường trong kiến trúc lõi của Reddit.",
+  "desc": "Hai dải. Đường trả lời ngay: CDN Fastly, bộ cân bằng tải, dịch vụ Go thay khối nguyên Python sau lớp GraphQL Federation, Postgres có memcached đứng trước và Cassandra cho tính năng mới. Đường chạy sau: RabbitMQ đưa bỏ phiếu và gửi liên kết cho worker, Kafka đưa dữ liệu cho luật kiểm duyệt, Debezium bắt thay đổi để sao chép và giữ bộ đệm nhất quán. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường trả lời ngay",
+      "items": [
+        {
+          "title": "CDN Fastly",
+          "text": "Đứng trước ứng dụng."
+        },
+        {
+          "title": "Cân bằng tải",
+          "text": "Chuyển tới đúng dịch vụ."
+        },
+        {
+          "title": "Dịch vụ, GraphQL",
+          "text": "Go thay Python; Federation từ 2021."
+        },
+        {
+          "title": "Postgres",
+          "text": "Có memcached đứng trước."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Đường chạy sau",
+      "items": [
+        {
+          "name": "RabbitMQ",
+          "role": "Bỏ phiếu, gửi liên kết: worker làm sau.",
+          "icon": "inbox"
+        },
+        {
+          "name": "Kafka",
+          "role": "Dữ liệu thời gian thực cho luật kiểm duyệt.",
+          "icon": "shield-check"
+        },
+        {
+          "name": "Debezium",
+          "role": "Bắt thay đổi để sao chép, giữ bộ đệm khớp.",
+          "icon": "refresh-cw"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Việc tốn kém được đẩy vào hàng đợi.",
+        "Cassandra dùng cho tính năng mới.",
+        "Chạy trên AWS và Kubernetes."
+      ]
+    }
+  ]
+}

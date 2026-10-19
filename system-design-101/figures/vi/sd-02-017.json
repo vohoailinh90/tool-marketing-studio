@@ -1,0 +1,56 @@
+{
+  "id": "sd-02-017",
+  "title": "Netflix gửi thông báo đẩy thế nào?",
+  "subtitle": "Bảy bước, từ sự kiện tới từng loại thiết bị.",
+  "desc": "Hai khung bước. Khung một, quyết định gửi gì: sự kiện do đồng hồ, người dùng hoặc hệ thống tạo; bộ quản lý sự kiện chuyển vào hàng đợi theo ưu tiên; cụm xử lý tạo dữ liệu thông báo và lưu vào Cassandra. Khung hai, gửi tới đâu: hệ thống nhắn tin ra ngoài; Android qua FCM, Apple qua APNs, web và tivi qua Zuul Push. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Quyết định gửi gì",
+      "items": [
+        {
+          "title": "Sự kiện",
+          "text": "Do đồng hồ, người dùng hoặc hệ thống tạo."
+        },
+        {
+          "title": "Bộ quản lý sự kiện",
+          "text": "Chuyển vào hàng đợi theo luật ưu tiên."
+        },
+        {
+          "title": "Cụm xử lý theo ưu tiên",
+          "text": "Tạo dữ liệu thông báo, lưu vào Cassandra."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Gửi tới đâu",
+      "items": [
+        {
+          "name": "Android",
+          "role": "Qua FCM.",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Thiết bị Apple",
+          "role": "Qua APNs.",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Web, tivi, thiết bị phát",
+          "role": "Qua Zuul Push do Netflix tự làm.",
+          "icon": "monitor"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Theo nguồn: khoảng 220 triệu người dùng.",
+        "Hàng đợi tách theo mức ưu tiên.",
+        "Mỗi loại thiết bị một đường gửi riêng."
+      ]
+    }
+  ]
+}

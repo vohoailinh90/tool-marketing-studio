@@ -1,0 +1,23 @@
+id: sd-07-015
+status: done
+owner: claude/sd101-lessons-w7-3
+claimed_at: '2026-10-19T03:39:13Z'
+done_at: '2026-10-19T03:49:44Z'
+moda_canvas: cvs_1PET8Y1KQA9XXAFYQ07ENYQCSR
+moda_url: https://moda.app/canvas/367691e0-ceea-4f7a-a7fa-e03babebb338
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - flow
+  - numbered-rows
+  - 2x2-matrix
+  - flow
+  - one-big-number
+  - one-highlighted-sentence
+  - card-grid
+  - layers
+  - lookup-table
+  - card-grid
+  first_concept: 3

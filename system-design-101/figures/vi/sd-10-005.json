@@ -9,7 +9,7 @@
                {"name": "Collection", "role": "Khai báo thêm, xóa, hỏi phần tử; thêm và xóa là tùy chọn.", "icon": "boxes"}],
      "flow": [[0, 1]]},
     {"kind": "parts", "heading": "Ba nhánh chính của Collection",
-     "items": [{"name": "List", "role": "Có thứ tự theo vị trí, cho phép trùng. Ví dụ: ArrayList, LinkedList.", "icon": "list-ordered"},
+     "items": [{"name": "List", "role": "Có thứ tự theo vị trí, thường cho phép trùng. Ví dụ: ArrayList, LinkedList.", "icon": "list-ordered"},
                {"name": "Set", "role": "Không chứa phần tử trùng. Ví dụ: HashSet, TreeSet.", "icon": "shuffle"},
                {"name": "Queue", "role": "Giữ phần tử chờ xử lý. Ví dụ: PriorityQueue, ArrayDeque.", "icon": "inbox"}]},
     {"kind": "notes", "heading": "Nhớ gì",

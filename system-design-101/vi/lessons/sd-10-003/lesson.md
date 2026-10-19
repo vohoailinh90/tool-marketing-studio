@@ -1,28 +1,36 @@
 # Bản đồ kỹ năng của lập trình viên full-stack
 
 **Full-stack nghĩa là làm được việc ở nhiều vùng của một ứng dụng, từ màn hình người dùng tới hạ tầng chạy ứng dụng; bảy vùng dưới đây là tấm bản đồ.**
-Bài nguồn là một lộ trình; bài này giữ đúng bảy vùng nguồn nêu và xếp chúng thành ba nhóm theo vị trí trong một ứng dụng.
+Bài nguồn chỉ nêu tên bảy vùng; bài này giữ đúng bảy vùng đó, xếp thành ba nhóm theo vị trí trong một ứng dụng, và tự giải thích từng vùng bằng lời của người biên soạn cùng vài tài liệu của MDN.
 
-![Ba nhóm thẻ xếp dọc. Phía người dùng gồm giao diện web (frontend), ứng dụng di động và thiết kế giao diện, trải nghiệm. Phía máy chủ gồm backend với logic phía máy chủ và tích hợp dịch vụ, và cơ sở dữ liệu với lưu trữ, truy xuất, xử lý dữ liệu. Phía vận hành gồm điện toán đám mây và hạ tầng cùng DevOps, gồm triển khai và CI/CD. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-003-main.svg)
+![Ba nhóm thẻ xếp dọc. Phía người dùng: frontend là phần chạy trong trình duyệt với HTML, CSS và JavaScript; phát triển di động là ứng dụng cài trên điện thoại; thiết kế giao diện và trải nghiệm quyết định bố cục, luồng thao tác và độ dễ dùng. Phía máy chủ: backend là chương trình nhận yêu cầu, xử lý rồi trả lời; cơ sở dữ liệu lưu dữ liệu có tổ chức. Phía vận hành: điện toán đám mây là thuê máy và dịch vụ; hạ tầng và DevOps giữ ứng dụng chạy và đưa bản mới lên qua CI/CD. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-003-main.svg)
 
 ## Từ viết tắt
 
+- **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc của một trang web.
+- **CSS** (Cascading Style Sheets) — bảng kiểu xếp tầng: các luật mô tả màu sắc, cỡ chữ và cách bố trí của trang.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
 - **DevOps** (Development and Operations) — phát triển và vận hành: cách làm gắn việc viết phần mềm với việc đưa nó lên chạy và giữ nó chạy.
 - **CI** (Continuous Integration) — tích hợp liên tục: tự động gộp và kiểm tra mã mỗi khi có thay đổi.
 - **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; CI/CD là đường ống gồm cả hai.
 
 ## Đọc hình
 
-Mô tả từng vùng theo bài nguồn; cách chia ba nhóm là của người biên soạn.
+Hình chia bảy vùng theo vị trí trong một ứng dụng; cả cách chia lẫn lời giải thích dưới đây là của người biên soạn, chỉ có tên bảy vùng là của bài nguồn.
 
 **Phía người dùng.**
-Frontend là việc tạo giao diện và trải nghiệm người dùng của ứng dụng web. Phát triển di động là tạo ứng dụng cho thiết bị di động. Thiết kế giao diện và trải nghiệm là việc thiết kế cách ứng dụng trông thế nào và dùng ra sao.
+- Frontend là phần chạy ngay trong trình duyệt. Theo MDN, HTML mô tả cấu trúc của trang, CSS quyết định trang trông ra sao, và JavaScript thường dùng cho các đoạn mã động chạy phía người dùng. Đây là phần người dùng nhìn thấy và bấm vào.
+- Phát triển di động đưa chức năng tương tự vào ứng dụng cài trên điện thoại. Ứng dụng đó thường nói chuyện với cùng một backend với trang web (đây là kiến thức chung của người biên soạn).
+- Thiết kế giao diện và trải nghiệm quyết định bố cục màn hình, luồng thao tác và độ dễ dùng, thường trước khi có mã. Việc này gần với con người hơn là với mã.
 
 **Phía máy chủ.**
-Backend lo logic phía máy chủ, cơ sở dữ liệu và việc tích hợp nhiều dịch vụ. Phát triển cơ sở dữ liệu lo việc lưu trữ, truy xuất và xử lý dữ liệu.
+- Backend là chương trình chạy trên máy chủ. Theo MDN, máy chủ web chờ thông điệp yêu cầu từ trình duyệt, xử lý khi nó tới rồi trả lời bằng thông điệp HTTP; với trang động, nội dung trả về thường được dựng từ dữ liệu lấy trong cơ sở dữ liệu.
+- Cơ sở dữ liệu là nơi lưu dữ liệu bền vững. MDN định nghĩa nó là hệ thống lưu trữ gom dữ liệu có tổ chức, giúp việc tìm, sắp xếp và mở rộng dễ hơn.
 
 **Phía vận hành.**
-Điện toán đám mây là triển khai và quản lý ứng dụng trên các nền tảng đám mây. Hạ tầng và DevOps là quản lý hạ tầng, việc triển khai và CI/CD của ứng dụng.
+- Điện toán đám mây là thuê máy và dịch vụ từ một nhà cung cấp để chạy ứng dụng, thay vì tự mua và tự đặt máy (kiến thức chung của người biên soạn).
+- Hạ tầng và DevOps giữ cho ứng dụng chạy được và đưa bản mới lên chạy; CI/CD là đường ống tự động hóa việc kiểm tra rồi chuyển giao các thay đổi (kiến thức chung của người biên soạn).
 
 ## Giới hạn cần nhớ
 
@@ -45,14 +53,15 @@ Nhận yêu cầu và kiểm tra giờ trống là logic backend, còn ghi lại
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn liệt kê bảy vùng theo thứ tự frontend, backend, cơ sở dữ liệu, di động, đám mây, thiết kế giao diện và trải nghiệm, hạ tầng và DevOps, mỗi vùng một câu. Hình đổi thứ tự để các vùng gần nhau trong một ứng dụng đứng cạnh nhau.
-Bài không dùng ảnh lộ trình của nguồn nên không nêu tên công nghệ nào.
+Bài nguồn liệt kê bảy vùng theo thứ tự frontend, backend, cơ sở dữ liệu, di động, đám mây, thiết kế giao diện và trải nghiệm, hạ tầng và DevOps, mỗi vùng một câu mô tả ngắn. Bài này chỉ giữ tên bảy vùng; không dịch hay diễn đạt lại các câu mô tả đó mà tự giải thích từng vùng, dựa vào tài liệu MDN ở phần frontend, backend và cơ sở dữ liệu, còn lại là kiến thức chung của người biên soạn.
+Hình đổi thứ tự để các vùng gần nhau trong một ứng dụng đứng cạnh nhau. Bài không dùng ảnh lộ trình của nguồn nên không nêu tên công nghệ nào (trừ HTML, CSS, JavaScript lấy từ MDN).
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md): bảy vùng kỹ thuật của người làm full-stack.
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md): tên bảy vùng kỹ thuật của người làm full-stack.
+- MDN tại commit cố định: [HTML](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/html/index.md), [CSS](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/css/index.md), [JavaScript](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/javascript/index.md), [Database](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/database/index.md) và [giới thiệu lập trình phía máy chủ](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/learn_web_development/extensions/server-side/first_steps/introduction/index.md): vai trò của frontend, backend và cơ sở dữ liệu. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-18. Các câu giải nghĩa DevOps, CI và CD trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
+Đã đọc nguồn ngày 2026-10-18. Phần giải thích di động, thiết kế giao diện, đám mây và hạ tầng cùng các câu giải nghĩa DevOps, CI, CD, HTTP trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
 Bài viết và hình được thiết kế độc lập.

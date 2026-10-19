@@ -20,8 +20,8 @@
 <circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
 <text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
 <text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biên dịch ra WASM</text>
-<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trình biên dịch tạo mô-đun</text>
-<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WASM, không viết tay.</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thường do trình biên dịch</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tạo mô-đun WASM.</text>
 <polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="46" cy="412" r="14" fill="#1d4ed8"/>

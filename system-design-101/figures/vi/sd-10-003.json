@@ -2,19 +2,69 @@
   "id": "sd-10-003",
   "title": "Bảy vùng của người làm full-stack",
   "subtitle": "Từ màn hình người dùng tới hạ tầng chạy ứng dụng.",
-  "desc": "Bảy vùng kỹ năng chia ba nhóm. Phía người dùng: frontend, phát triển di động, thiết kế giao diện và trải nghiệm. Phía máy chủ: backend, cơ sở dữ liệu. Phía vận hành: điện toán đám mây, hạ tầng và DevOps. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Bảy vùng kỹ năng chia ba nhóm. Phía người dùng: frontend chạy trong trình duyệt với HTML, CSS và JavaScript; phát triển di động; thiết kế giao diện và trải nghiệm. Phía máy chủ: backend nhận yêu cầu và trả lời; cơ sở dữ liệu lưu dữ liệu có tổ chức. Phía vận hành: điện toán đám mây; hạ tầng và DevOps đưa bản mới lên qua CI/CD. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
-    {"kind": "parts", "heading": "Phía người dùng",
-     "items": [{"name": "Frontend", "role": "Tạo giao diện và trải nghiệm của ứng dụng web.", "icon": "monitor"},
-               {"name": "Di động", "role": "Tạo ứng dụng cho thiết bị di động.", "icon": "smartphone"},
-               {"name": "Thiết kế giao diện", "role": "Thiết kế giao diện và trải nghiệm của ứng dụng.", "icon": "sparkles"}]},
-    {"kind": "parts", "heading": "Phía máy chủ",
-     "items": [{"name": "Backend", "role": "Logic phía máy chủ, cơ sở dữ liệu và tích hợp dịch vụ.", "icon": "server"},
-               {"name": "Cơ sở dữ liệu", "role": "Lưu trữ, truy xuất và xử lý dữ liệu.", "icon": "database"}]},
-    {"kind": "parts", "heading": "Phía vận hành",
-     "items": [{"name": "Điện toán đám mây", "role": "Triển khai và quản lý ứng dụng trên nền tảng đám mây.", "icon": "cloud"},
-               {"name": "Hạ tầng và DevOps", "role": "Quản lý hạ tầng, triển khai và CI/CD.", "icon": "workflow"}]},
-    {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Nguồn nêu vùng, không nêu công nghệ cụ thể.", "Thứ tự trong hình chỉ để đọc, không phải thứ tự học.", "Full-stack là một dải rộng, không phải sâu ở mọi vùng."]}
+    {
+      "kind": "parts",
+      "heading": "Phía người dùng",
+      "items": [
+        {
+          "name": "Frontend",
+          "role": "Phần chạy trong trình duyệt: HTML dựng cấu trúc, CSS tạo dáng, JavaScript tạo hành vi.",
+          "icon": "monitor"
+        },
+        {
+          "name": "Di động",
+          "role": "Cùng chức năng, đóng gói thành ứng dụng cài trên điện thoại.",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Thiết kế giao diện",
+          "role": "Quyết định bố cục, luồng thao tác và độ dễ dùng.",
+          "icon": "sparkles"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phía máy chủ",
+      "items": [
+        {
+          "name": "Backend",
+          "role": "Chương trình trên máy chủ nhận yêu cầu, xử lý rồi trả lời.",
+          "icon": "server"
+        },
+        {
+          "name": "Cơ sở dữ liệu",
+          "role": "Nơi lưu dữ liệu có tổ chức, để tìm và mở rộng.",
+          "icon": "database"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phía vận hành",
+      "items": [
+        {
+          "name": "Điện toán đám mây",
+          "role": "Thuê máy và dịch vụ để chạy ứng dụng, thay vì tự mua máy.",
+          "icon": "cloud"
+        },
+        {
+          "name": "Hạ tầng và DevOps",
+          "role": "Giữ ứng dụng chạy và đưa bản mới lên qua CI/CD.",
+          "icon": "workflow"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Nguồn nêu bảy vùng; lời giải thích từng vùng là của bài.",
+        "Thứ tự trong hình chỉ để đọc, không phải thứ tự học.",
+        "Full-stack là một dải rộng, không phải sâu ở mọi vùng."
+      ]
+    }
   ]
 }

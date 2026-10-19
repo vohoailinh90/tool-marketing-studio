@@ -14,7 +14,7 @@ Bài nguồn đặt câu hỏi vì sao nó thu hút nhiều chú ý; bài này t
 
 ## Đọc hình
 
-**Đường đi của mã.** Mã gốc viết bằng C, C++ hoặc Rust được biên dịch ra mô-đun WASM, không viết tay. Trình duyệt tải mô-đun cùng với JavaScript. JavaScript gọi các hàm mà mô-đun mở ra, và mô-đun chạy với hiệu năng gần mã gốc.
+**Đường đi của mã.** Mã gốc viết bằng C, C++ hoặc Rust thường được biên dịch ra mô-đun WASM; WebAssembly cũng có dạng văn bản đọc được nên về nguyên tắc viết tay được, nhưng không chủ yếu dành cho việc đó. Trình duyệt tải mô-đun cùng với JavaScript. JavaScript gọi các hàm mà mô-đun mở ra, và mô-đun chạy với hiệu năng gần mã gốc.
 
 **Trước và sau.** Theo bài nguồn, trước đây trình duyệt chỉ làm việc với JavaScript và hiệu năng không sánh được với mã gốc như C hay C++. Với WASM, ta tái sử dụng các thư viện mã gốc có sẵn, ví dụ thư viện mã hóa và giải mã video viết bằng C++, để chạy trong trình duyệt với hiệu năng gần mã gốc.
 

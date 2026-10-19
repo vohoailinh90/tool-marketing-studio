@@ -2,7 +2,7 @@
   "id": "sd-10-002",
   "title": "Ba ngôn ngữ, ba cách dọn rác",
   "subtitle": "Mỗi cách cân nhắc khác nhau giữa tổng việc làm và thời gian dừng.",
-  "desc": "Bốn nhóm thẻ. Java nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial và Parallel. Java nhóm quan tâm thời gian dừng: CMS, G1 và ZGC. Python và Go: Python đếm tham chiếu cộng bộ dọn vòng tham chiếu, Go dùng bộ dọn đánh dấu và quét chạy đồng thời. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Bốn nhóm thẻ. Java nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial và Parallel. Java nhóm quan tâm thời gian dừng: CMS, G1 và ZGC. CPython và Go: CPython đếm tham chiếu cộng bộ dọn vòng tham chiếu, Go dùng bộ dọn đánh dấu và quét chạy đồng thời. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "parts", "heading": "Java: nhỏ gọn hoặc đề cao thông lượng",
      "items": [{"name": "Serial", "role": "Hợp môi trường một luồng hoặc ứng dụng nhỏ.", "icon": "cpu"},
@@ -11,9 +11,9 @@
      "items": [{"name": "CMS", "role": "Độ trễ thấp, cố giảm thời gian dừng.", "icon": "timer"},
                {"name": "G1", "role": "Cân bằng giữa thông lượng và độ trễ.", "icon": "scale"},
                {"name": "ZGC", "role": "Vùng nhớ lớn, thời gian dừng tối thiểu.", "icon": "zap"}]},
-    {"kind": "parts", "heading": "Python và Go",
-     "items": [{"name": "Python: đếm tham chiếu", "role": "Bộ đếm về không thì giải phóng vùng nhớ.", "icon": "hash"},
-               {"name": "Python: dọn vòng tham chiếu", "role": "Xử lý đối tượng trỏ vòng quanh nhau.", "icon": "refresh-cw"},
+    {"kind": "parts", "heading": "CPython và Go",
+     "items": [{"name": "CPython: đếm tham chiếu", "role": "Bộ đếm về không thì giải phóng vùng nhớ.", "icon": "hash"},
+               {"name": "CPython: dọn vòng tham chiếu", "role": "Xử lý đối tượng trỏ vòng quanh nhau.", "icon": "refresh-cw"},
                {"name": "Go: đánh dấu và quét", "role": "Chạy đồng thời với ứng dụng để giảm lần dừng.", "icon": "workflow"}]},
     {"kind": "notes", "heading": "Nhớ gì",
      "items": ["Chọn bộ dọn là chọn giữa tổng việc làm và thời gian chờ.", "Dọn đồng thời giảm lần dừng nhưng có chi phí.", "Xem tài liệu của phiên bản Java đang dùng."]}

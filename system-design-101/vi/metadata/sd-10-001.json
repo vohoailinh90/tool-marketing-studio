@@ -82,11 +82,18 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
       "section": "Answer to the check question",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "A browser that already holds a usable cached DNS answer does not query a DNS server for the page load, and behind a forward proxy the proxy may resolve the host name; the DNS-first answer therefore describes the cache-miss, direct-resolution path.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
+      "section": "Nhìn hình trả lời",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
   "design_notes_vi": "Sáu thẻ chia hai nhóm: ba loại đưa nội dung tới người dùng và ba loại dịch vụ nền của mạng. Không có mũi tên vì nguồn không nói thứ tự giữa các loại. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source lists the six types in one flat order (web, mail, DNS, proxy, FTP, origin) without relating them; the lesson groups them into two sets of three and adds that they are roles rather than machines."
+    "Source lists the six types in one flat order (web, mail, DNS, proxy, FTP, origin) without relating them; the lesson groups them into two sets of three and adds that they are roles rather than machines.",
+    "The lesson qualifies the DNS-first answer as the cache-miss, direct-resolution path (author's general knowledge)."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

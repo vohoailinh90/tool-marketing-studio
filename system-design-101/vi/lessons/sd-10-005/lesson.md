@@ -3,7 +3,7 @@
 **Các kiểu tập hợp trong Java cùng xuất phát từ interface `Collection`, rồi tách thành ba nhánh chính: List, Set và Queue.**
 Nắm cây này giúp chọn đúng cấu trúc dữ liệu cho từng bài toán thay vì dùng một kiểu cho mọi việc.
 
-![Ba nhóm thẻ xếp dọc. Phần gốc: Iterable cho phép duyệt từng phần tử, kể cả bằng vòng lặp for nâng cao, và Collection kế thừa nó, khai báo các thao tác cơ bản thêm, xóa và hỏi phần tử, trong đó thêm và xóa là thao tác tùy chọn. Ba nhánh chính của Collection: List có thứ tự theo vị trí và cho phép trùng, ví dụ ArrayList và LinkedList; Set không chứa phần tử trùng, ví dụ HashSet và TreeSet; Queue giữ phần tử chờ xử lý, ví dụ PriorityQueue và ArrayDeque. Khung cuối nhắc rằng Map nằm ngoài cây Collection.](../../diagrams/sd-10-005-main.svg)
+![Ba nhóm thẻ xếp dọc. Phần gốc: Iterable cho phép duyệt từng phần tử, kể cả bằng vòng lặp for nâng cao, và Collection kế thừa nó, khai báo các thao tác cơ bản thêm, xóa và hỏi phần tử, trong đó thêm và xóa là thao tác tùy chọn. Ba nhánh chính của Collection: List có thứ tự theo vị trí và thường cho phép trùng, ví dụ ArrayList và LinkedList; Set không chứa phần tử trùng, ví dụ HashSet và TreeSet; Queue giữ phần tử chờ xử lý, ví dụ PriorityQueue và ArrayDeque. Khung cuối nhắc rằng Map nằm ngoài cây Collection.](../../diagrams/sd-10-005-main.svg)
 
 ## Từ viết tắt
 
@@ -16,7 +16,7 @@ Nắm cây này giúp chọn đúng cấu trúc dữ liệu cho từng bài toá
 `Collection` là interface gốc của các tập hợp: nó khai báo các thao tác cơ bản như thêm, xóa và hỏi phần tử. Với thêm và xóa, tài liệu của JDK gọi đó là thao tác tùy chọn (optional): một lớp không hỗ trợ thì ném `UnsupportedOperationException`, như các tập hợp không sửa được. Nó kế thừa `Iterable`, nên có thể duyệt từng phần tử bằng vòng lặp for nâng cao hoặc bằng iterator.
 
 **Ba nhánh.** `Collection` có ba interface con chính, mỗi interface có đặc điểm và cách dùng riêng:
-- `List`: có thứ tự theo vị trí và cho phép phần tử trùng. Lớp cài đặt thường gặp: `ArrayList`, `LinkedList`.
+- `List`: có thứ tự theo vị trí và thường cho phép phần tử trùng. Lớp cài đặt thường gặp: `ArrayList`, `LinkedList`.
 - `Set`: không chứa phần tử trùng. Lớp cài đặt thường gặp: `HashSet`, `TreeSet`.
 - `Queue`: giữ phần tử chờ xử lý. Lớp cài đặt thường gặp: `PriorityQueue`, `ArrayDeque`.
 
@@ -24,7 +24,7 @@ Nắm cây này giúp chọn đúng cấu trúc dữ liệu cho từng bài toá
 
 ## Giới hạn cần nhớ
 
-`Queue` thường, nhưng không nhất thiết, lấy phần tử theo thứ tự vào trước ra trước; `PriorityQueue` lấy theo thứ tự ưu tiên. Vì vậy phải đọc tài liệu của lớp cụ thể chứ không chỉ nhìn tên interface.
+`Queue` thường, nhưng không nhất thiết, lấy phần tử theo thứ tự vào trước ra trước; `PriorityQueue` lấy theo thứ tự ưu tiên. Vì vậy phải đọc tài liệu của lớp cụ thể chứ không chỉ nhìn tên interface. Tương tự, `List` chỉ thường cho phép phần tử trùng: tài liệu JDK để ngỏ việc một cài đặt từ chối phần tử trùng.
 Tương tự, thêm và xóa phần tử là thao tác tùy chọn của `Collection`: một tập hợp không sửa được, như kết quả của `List.of(...)`, sẽ ném `UnsupportedOperationException` khi bị thêm hoặc xóa.
 Hình là bản rút gọn. Trong mã nguồn của JDK hiện tại, `List` không kế thừa trực tiếp `Collection` mà qua một interface trung gian tên `SequencedCollection`, và các lớp cụ thể có thêm nhiều interface khác; hình bỏ những tầng đó để thấy ba nhánh chính của bài nguồn.
 

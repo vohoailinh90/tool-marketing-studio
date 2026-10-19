@@ -30,12 +30,12 @@ Danh sách cũng chỉ là "sáu loại thường dùng", không phải mọi lo
 
 ## Nhìn hình trả lời
 
-Bạn gõ tên một website vào trình duyệt. Trong sáu loại ở hình, loại nào được hỏi trước, và để làm gì?
+Bạn gõ tên một website vào trình duyệt lần đầu, khi chưa có địa chỉ nào được nhớ sẵn và trình duyệt đi thẳng tới trang. Trong sáu loại ở hình, loại nào được hỏi trước, và để làm gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Máy chủ DNS. Trình duyệt biết tên nhưng cần địa chỉ IP để gửi yêu cầu đi, nên phải hỏi DNS trước.
+Máy chủ DNS. Trình duyệt biết tên nhưng cần địa chỉ IP để gửi yêu cầu đi, nên khi chưa có sẵn địa chỉ thì phải hỏi DNS trước. Nếu địa chỉ đã được nhớ sẵn (bộ nhớ đệm) thì không phải hỏi lại, và khi đi qua proxy thì việc dịch tên có thể do proxy làm.
 Có địa chỉ rồi, yêu cầu tới máy chủ web, có thể qua một proxy đứng giữa. Nếu nội dung đã được phân phát tới máy chủ biên, người dùng nhận từ máy chủ biên thay vì từ máy chủ gốc.
 
 </details>

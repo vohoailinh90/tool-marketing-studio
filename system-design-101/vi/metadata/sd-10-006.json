@@ -76,13 +76,20 @@
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
       "section": "Concepts",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: WebAssembly has a human-readable text format, but it is not primarily intended to be written by hand; usually you write code in a high-level language and compile it.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "Concepts",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     }
   ],
   "design_notes_vi": "Hình gồm đường đi của mã bốn bước, thẻ trước và sau, và ba giới hạn. Ý về serverless và khởi động tức thì chỉ nêu như nhận định của nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source explains the JavaScript performance gap by saying it is interpreted; the lesson keeps this as the source wording and uses MDN wording (intensive use cases) in its own text.",
     "Source does not mention the compile step, JavaScript loading the module, or that Wasm cannot access the DOM directly; the lesson adds them from MDN.",
-    "The serverless and edge computing claims are the source's and were not checked."
+    "The serverless and edge computing claims are the source's and were not checked.",
+    "Source says the code is compiled to WASM; the lesson says it is usually compiled and may in principle be written in the text format, following MDN."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

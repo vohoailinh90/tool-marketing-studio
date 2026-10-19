@@ -88,12 +88,19 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md",
       "section": "Limits",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "Per-object reference counting is how CPython manages memory; other Python implementations such as PyPy need not use per-object reference counts, so the lesson labels this section as CPython behaviour.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md",
+      "section": "Python",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
   "design_notes_vi": "Năm bộ dọn của Java gộp thành hai nhóm theo điều nguồn nói mỗi bộ nhắm tới; Python và Go chung một khung vì mỗi ngôn ngữ có cơ chế chính riêng. Khung cuối nhắc đánh đổi giữa thông lượng và độ trễ. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source gives one line per collector per language; the lesson adds the throughput versus latency trade-off and the meaning of stop-the-world from the Go and Python documentation.",
-    "Descriptions of the Java collectors come from the source only and were not checked against Java documentation."
+    "Descriptions of the Java collectors come from the source only and were not checked against Java documentation.",
+    "Source says Python uses reference counting and a cycle collector; the lesson scopes this to CPython (author's general knowledge)."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

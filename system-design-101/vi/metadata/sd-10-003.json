@@ -54,34 +54,47 @@
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "The source names seven areas: frontend, backend, database, mobile, cloud computing, UI/UX design, and infrastructure and DevOps, with one sentence each.",
+      "claim_vi": "The source names seven areas: frontend, backend, database, mobile, cloud computing, UI/UX design, and infrastructure and DevOps. Only the names are reused; the lesson explains each area in its own words.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md",
       "section": "Technical Stacks for Full-Stack Development",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Infrastructure and DevOps involve managing the infrastructure, deployment and CI/CD of applications.",
+      "claim_vi": "MDN: HTML specifies webpage structure; CSS controls how webpages look in the browser; JavaScript is used most often for dynamic client-side scripts on webpages.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/html/index.md",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/css/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/javascript/index.md"
+      ],
+      "section": "Glossary",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: web servers wait for client request messages, process them and reply with an HTTP response; on a dynamic website the HTML pages are normally created by inserting data from a database into templates; a database is a storage system that collects organized data, making it easier to search, structure and extend.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/learn_web_development/extensions/server-side/first_steps/introduction/index.md",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/database/index.md"
+      ],
+      "section": "Server-side introduction and Database",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The explanations of mobile, UI/UX design, cloud computing and infrastructure and DevOps, and the glosses of DevOps, CI, CD and HTTP, are the author's general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md",
-      "section": "Infrastructure and DevOps",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
       "claim_vi": "Grouping the seven areas into user side, server side and operations side is the author's arrangement, not the source's.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md",
       "section": "Design",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
-    },
-    {
-      "claim_vi": "The glosses of DevOps, CI and CD in the abbreviations section.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md",
-      "section": "Từ viết tắt",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Bảy vùng nguồn nêu, xếp thành ba nhóm theo vị trí trong ứng dụng. Không có mũi tên và không nêu công nghệ nào vì nguồn chỉ nêu vùng. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Bảy vùng nguồn nêu, xếp thành ba nhóm theo vị trí trong ứng dụng. Chỉ giữ tên vùng của nguồn; lời giải thích từng vùng do bài tự viết (MDN và kiến thức chung). Không có mũi tên. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source lists seven areas in the order frontend, backend, database, mobile, cloud, UI/UX, infrastructure and DevOps; the lesson regroups them into three sets by position in an application.",
-    "Source image (a roadmap with named technologies) is not used, so no technology is named."
+    "Source lists seven areas in the order frontend, backend, database, mobile, cloud, UI/UX, infrastructure and DevOps with one sentence each; the lesson keeps only the seven names, regroups them into three sets by position in an application and writes its own explanation of each area (MDN for frontend, backend and database; general knowledge for the rest) instead of translating the source sentences.",
+    "Source image (a roadmap with named technologies) is not used, so no technology is named beyond HTML, CSS and JavaScript from MDN."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

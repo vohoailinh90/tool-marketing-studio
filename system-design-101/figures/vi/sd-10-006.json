@@ -6,7 +6,7 @@
   "sections": [
     {"kind": "steps", "heading": "Đường đi của mã",
      "items": [{"title": "Có sẵn mã gốc", "text": "Viết hoặc dùng lại mã C, C++ hay Rust."},
-               {"title": "Biên dịch ra WASM", "text": "Trình biên dịch tạo mô-đun WASM, không viết tay."},
+               {"title": "Biên dịch ra WASM", "text": "Thường do trình biên dịch tạo mô-đun WASM."},
                {"title": "Trình duyệt tải về", "text": "Mô-đun được tải cùng JavaScript."},
                {"title": "JavaScript gọi hàm", "text": "Mô-đun chạy gần tốc độ mã gốc."}]},
     {"kind": "parts", "heading": "Trước và sau",

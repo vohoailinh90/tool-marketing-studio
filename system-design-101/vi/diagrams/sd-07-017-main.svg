@@ -18,8 +18,8 @@
 <text x="252" y="216.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">hàng</text>
 <polyline points="68,230 68,360" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
 <polyline points="252,230 252,360" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
-<text x="160" y="258.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Thông tin thẻ (Apple</text>
-<text x="160" y="277.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">không lưu)</text>
+<text x="160" y="258.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Thông tin thẻ (không</text>
+<text x="160" y="277.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">lưu số gốc)</text>
 <polyline points="69,291 249,291" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <text x="160" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Mã DAN, lưu vào chip</text>
 <text x="160" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">riêng</text>
@@ -96,8 +96,8 @@
 <rect x="20" y="1343" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1366" r="11" fill="#16a34a"/>
 <polyline points="37.9,1366.4 41.7,1370.4 48.5,1362" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1369.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Apple không lưu thông tin</text>
-<text x="64" y="1388.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thẻ; ngân hàng giữ thẻ.</text>
+<text x="64" y="1369.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Apple không lưu số thẻ gốc;</text>
+<text x="64" y="1388.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngân hàng giữ thẻ.</text>
 <rect x="20" y="1414" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1437" r="11" fill="#16a34a"/>
 <polyline points="37.9,1437.4 41.7,1441.4 48.5,1433" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

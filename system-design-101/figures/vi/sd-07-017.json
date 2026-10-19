@@ -21,7 +21,7 @@
         {
           "from": 0,
           "to": 1,
-          "text": "Thông tin thẻ (Apple không lưu)"
+          "text": "Thông tin thẻ (không lưu số gốc)"
         },
         {
           "from": 1,
@@ -122,7 +122,7 @@
       "kind": "notes",
       "heading": "Điều cần nhớ",
       "items": [
-        "Apple không lưu thông tin thẻ; ngân hàng giữ thẻ.",
+        "Apple không lưu số thẻ gốc; ngân hàng giữ thẻ.",
         "Google lưu thông tin thẻ trên máy chủ của mình.",
         "Mũi tên đỏ trên hình gốc: thông tin thẻ đi qua mạng công cộng, đã mã hóa."
       ]

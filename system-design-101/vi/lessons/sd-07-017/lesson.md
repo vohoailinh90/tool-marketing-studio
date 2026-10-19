@@ -13,13 +13,13 @@ Nguồn tách quy trình thành hai luồng: đăng ký thẻ và thanh toán c�
 
 **Đăng ký thẻ (bước 1 đến 3, cả hai cách).**
 
-- *Apple Pay.* Apple không lưu thông tin thẻ nào. Thông tin thẻ được chuyển cho ngân hàng. Ngân hàng trả về cho iPhone một mã gọi là DAN, và iPhone lưu DAN vào một chip phần cứng đặc biệt.
+- *Apple Pay.* Theo sơ đồ nguồn, Apple không lưu số thẻ gốc và thông tin thẻ được chuyển cho ngân hàng (sơ đồ đã giản lược: theo tài liệu của Apple, dữ liệu thẻ đã mã hóa đi qua máy chủ Apple để chuyển tiếp, và Apple có lưu một phần mã thiết bị). Ngân hàng trả về cho iPhone một mã gọi là DAN, và iPhone lưu DAN vào một chip phần cứng đặc biệt.
 - *Google Pay.* Khi bạn đăng ký thẻ với Google Pay, thông tin thẻ được lưu trên máy chủ của Google. Google trả về cho điện thoại một mã thanh toán (payment token).
 
 **Thanh toán cơ bản.** Luồng này bắt đầu khi bạn bấm nút "Trả" trên điện thoại.
 
 - *Apple Pay.* Với iPhone, máy chủ của trang bán hàng chuyển DAN cho ngân hàng.
-- *Google Pay.* Máy chủ của trang bán hàng chuyển mã thanh toán cho máy chủ Google. Máy chủ Google tra ra thông tin thẻ rồi chuyển cho ngân hàng.
+- *Google Pay.* Máy chủ của trang bán hàng chuyển mã thanh toán cho máy chủ Google. Máy chủ Google tra ra thông tin thẻ rồi chuyển cho ngân hàng. Đây là luồng của sơ đồ nguồn; với thanh toán trên web hiện nay, Google Pay thường trả mã do cổng thanh toán mà trang bán hàng đã cấu hình phát ra, và trang bán hàng xử lý qua cổng đó chứ không gửi về máy chủ Google.
 
 Trên sơ đồ gốc có một mũi tên đỏ, nghĩa là thông tin thẻ có mặt trên mạng công cộng, dù đã được mã hóa.
 

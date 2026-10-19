@@ -1,6 +1,6 @@
 # ACH: trả lương theo lô, tới sáng hôm sau
 
-**Ở Hoa Kỳ, các công ty công nghệ thường trả lương qua ACH, một hệ thống thanh toán xử lý theo lô chứ không theo thời gian thực: tệp gửi trước 19 giờ thì tiền tới tài khoản người nhận vào sáng hôm sau.**
+**Ở Hoa Kỳ, các công ty công nghệ thường trả lương qua ACH, một hệ thống thanh toán xử lý theo lô chứ không theo thời gian thực: trong ví dụ của nguồn, tệp gửi trước 19 giờ thì tiền tới tài khoản người nhận vào sáng hôm sau; giờ chốt và ngày hiệu lực thật do từng ngân hàng gốc và loại lệnh quyết định.**
 Nguồn kể quy trình qua ví dụ một công ty trả lương 100 đô la cho một nhân viên.
 
 ![Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; từ 2018 có tùy chọn ACH trong ngày.](../../diagrams/sd-07-019-main.svg)

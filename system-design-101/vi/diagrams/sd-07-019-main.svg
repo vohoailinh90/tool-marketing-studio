@@ -5,8 +5,8 @@
 <rect width="320" height="1324" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">ACH trả lương theo lô</text>
-<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Gửi trước 19 giờ, tới tài khoản người</text>
-<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nhận vào 6 giờ sáng hôm sau.</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ví dụ của nguồn: gửi trước 19 giờ, tới</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">6 giờ sáng hôm sau.</text>
 <rect x="8" y="99" width="304" height="334" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">1. Công ty tới ngân hàng</text>
 <text x="20" y="149.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">gốc</text>
@@ -82,8 +82,8 @@
 <rect x="20" y="1170" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1193" r="11" fill="#16a34a"/>
 <polyline points="37.9,1193.4 41.7,1197.4 48.5,1189" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1196.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi trước 19 giờ thì tới sáng</text>
-<text x="64" y="1215.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hôm sau.</text>
+<text x="64" y="1196.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trong ví dụ: gửi trước 19 giờ</text>
+<text x="64" y="1215.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thì tới sáng hôm sau.</text>
 <rect x="20" y="1241" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1264" r="11" fill="#16a34a"/>
 <polyline points="37.9,1264.4 41.7,1268.4 48.5,1260" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

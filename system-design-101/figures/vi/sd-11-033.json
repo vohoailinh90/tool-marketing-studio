@@ -1,0 +1,66 @@
+{
+  "title": "Học AWS từ đâu",
+  "subtitle": "Bản đồ nhóm dịch vụ cho người mới.",
+  "desc": "Hai khung dịch vụ AWS và một khung bài tập. Khung một, nền tảng: máy chủ ảo cho thuê, S3 lưu đối tượng, VPC là mạng riêng, IAM quản lý ai được làm gì. Khung hai, dữ liệu và nhắn tin: RDS cho cơ sở dữ liệu quan hệ, DynamoDB cho khóa và giá trị, SQS và SNS cho hàng đợi và thông báo. Khung ba, bài tập ứng dụng chia sẻ ảnh: mỗi nhu cầu gắn với một dịch vụ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Nền tảng",
+      "items": [
+        {
+          "name": "Máy chủ ảo",
+          "role": "Dịch vụ cho thuê máy chủ.",
+          "icon": "server"
+        },
+        {
+          "name": "S3",
+          "role": "Lưu tệp, ảnh, bản sao lưu.",
+          "icon": "hard-drive"
+        },
+        {
+          "name": "VPC",
+          "role": "Mạng riêng của bạn.",
+          "icon": "network"
+        },
+        {
+          "name": "IAM",
+          "role": "Ai được làm gì.",
+          "icon": "key-round"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Dữ liệu và nhắn tin",
+      "items": [
+        {
+          "name": "RDS",
+          "role": "Cơ sở dữ liệu quan hệ.",
+          "icon": "database"
+        },
+        {
+          "name": "DynamoDB",
+          "role": "Khóa và giá trị, mở rộng lớn.",
+          "icon": "boxes"
+        },
+        {
+          "name": "SQS, SNS",
+          "role": "Hàng đợi và thông báo.",
+          "icon": "send"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bài tập: ứng dụng chia sẻ ảnh",
+      "items": [
+        "Lưu ảnh: S3.",
+        "Đổi cỡ ảnh khi tải lên: Lambda.",
+        "Tài khoản và quyền: IAM.",
+        "Báo người theo dõi: SNS.",
+        "Biết khi nào hỏng: CloudWatch."
+      ]
+    }
+  ],
+  "id": "sd-11-033"
+}

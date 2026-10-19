@@ -47,6 +47,87 @@ Bài nguồn mô tả ba thành phần và các bước của dịch vụ lập 
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con số của phần thử nghiệm; hạt giống ngẫu nhiên được đặt cố định trong chương trình nên chạy lại ra đúng các số đó. Con số dung lượng ô (`15KB`) là giả định đã nêu trong bài.
+
+```python
+import math, heapq, random
+# tiles: standard web mercator slippy tiles
+def tile(lat,lon,z):
+    n=2**z; x=int((lon+180)/360*n)
+    lr=math.radians(lat); y=int((1-math.asinh(math.tan(lr))/math.pi)/2*n); return x,y
+print('tiles per zoom', {z:4**z for z in (0,5,10,15,18)})
+for z in (0,5,10,15,18): print(z, tile(21.0285,105.8542,z))   # Hanoi
+# ground resolution at equator for 256px tiles
+for z in (0,10,18): print('m/px at equator z',z, 40075016.686/256/2**z)
+# storage estimate if every tile 15 KB: total tiles to z=15
+tot=sum(4**z for z in range(16)); print('tiles to z15',tot, 'at 15KB =',tot*15/1e9,'TB')
+# route planning: grid graph 40x40, random edge length; k shortest simple paths via Yen's (k=3)
+rnd=random.Random(5); W=40
+def node(x,y): return y*W+x
+adj={}
+dist_edge={}
+for y in range(W):
+    for x in range(W):
+        for dx,dy in((1,0),(0,1)):
+            nx,ny=x+dx,y+dy
+            if nx<W and ny<W:
+                d=rnd.uniform(0.8,1.2)
+                a,b=node(x,y),node(nx,ny)
+                adj.setdefault(a,[]).append((b,d)); adj.setdefault(b,[]).append((a,d)); dist_edge[(a,b)]=dist_edge[(b,a)]=d
+def dijkstra(src,dst,banned_nodes=set(),banned_edges=set(),w=None):
+    w=w or (lambda a,b:dist_edge[(a,b)])
+    D={src:0};P={};h=[(0,src)]
+    while h:
+        d,u=heapq.heappop(h)
+        if u==dst: break
+        if d>D[u]: continue
+        for v,_ in adj[u]:
+            if v in banned_nodes or (u,v) in banned_edges: continue
+            nd=d+w(u,v)
+            if nd<D.get(v,1e18): D[v]=nd;P[v]=u;heapq.heappush(h,(nd,v))
+    if dst not in D: return None
+    p=[dst]
+    while p[-1]!=src: p.append(P[p[-1]])
+    return D[dst],p[::-1]
+def yen(src,dst,K):
+    A=[dijkstra(src,dst)];B=[]
+    for k in range(1,K):
+        prev=A[-1][1]
+        for i in range(len(prev)-1):
+            spur=prev[i];root=prev[:i+1]
+            be=set();bn=set(root[:-1])
+            for c,p in A:
+                if p[:i+1]==root: be.add((p[i],p[i+1]))
+            r=dijkstra(spur,dst,bn,be)
+            if r:
+                total=sum(dist_edge[(root[j],root[j+1])] for j in range(i))+r[0]
+                path=root[:-1]+r[1]
+                if all(path!=b[1] for b in B) and all(path!=a[1] for a in A): B.append((total,path))
+        if not B: break
+        B.sort(); A.append(B.pop(0))
+    return A
+src,dst=node(2,2),node(37,35)
+ks=yen(src,dst,3)
+print('top3 dist',[round(d,2) for d,_ in ks],'hops',[len(p)-1 for _,p in ks])
+# traffic: slow down edges of the best route by 3x ; recompute time
+best=set(zip(ks[0][1],ks[0][1][1:]))|set(zip(ks[0][1][1:],ks[0][1]))
+def tm(path,jam):
+    t=0
+    for a,b in zip(path,path[1:]):
+        t+=dist_edge[(a,b)]*(3 if (a,b) in jam else 1)
+    return t
+# jam only the middle third of best route
+bp=ks[0][1]; mid=bp[len(bp)//3:2*len(bp)//3]
+jam=set(zip(mid,mid[1:]))|set(zip(mid[1:],mid))
+print('time under jam',[round(tm(p,jam),2) for _,p in ks])
+order=sorted(range(3),key=lambda i:tm(ks[i][1],jam)); print('rank by time',order)
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-google-maps.md): ba thành phần dịch vụ vị trí, hiển thị bản đồ, dẫn đường.

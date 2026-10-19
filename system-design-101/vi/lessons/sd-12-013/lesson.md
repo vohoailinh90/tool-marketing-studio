@@ -51,6 +51,57 @@ Bài nguồn mô tả hai luồng (đăng nhập và nhắn tin) với tám bư�
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con số của phần thử nghiệm; hạt giống ngẫu nhiên được đặt cố định trong chương trình nên chạy lại ra đúng các số đó.
+
+```python
+import random, itertools
+rnd=random.Random(3)
+# Alice sends 20 messages to Bob via two chat servers; delivery is at-least-once with reordering
+msgs=[(i,f"m{i}") for i in range(1,6)]
+def network(msgs,dup=0.2,swap=0.3):
+    out=[]
+    for m in msgs:
+        out.append(m)
+        if rnd.random()<dup: out.append(m)
+    for i in range(len(out)-1):
+        if rnd.random()<swap: out[i],out[i+1]=out[i+1],out[i]
+    return out
+trials=1000;bad_naive=bad_fixed=0;dups=0
+for _ in range(trials):
+    net=network(msgs)
+    # naive: display in arrival order
+    naive=[m[1] for m in net]
+    if naive!=[m[1] for m in msgs]: bad_naive+=1
+    # fixed: dedupe by id, sort by sequence id
+    seen=set();fixed=[]
+    for i,t in net:
+        if i not in seen: seen.add(i);fixed.append((i,t))
+    fixed.sort()
+    if [t for _,t in fixed]!=[m[1] for m in msgs]: bad_fixed+=1
+print('naive wrong',bad_naive,'of',trials,'fixed wrong',bad_fixed)
+# sequencing: per-conversation counter vs timestamps from two servers with skewed clocks
+cnt=0
+for _ in range(10000):
+    # Alice msg then Bob reply 5ms later, but server clocks differ by up to 50ms
+    skew=rnd.uniform(-0.05,0.05)
+    t_a=0.0; t_b=0.005+skew
+    if t_b<t_a: cnt+=1
+print('reply stamped earlier than message by clock skew', cnt,'of 10000')
+# offline: push queue; presence flips
+online=False; delivered=0; pushed=0
+for i in range(1,11):
+    if i in (4,5,6): online=False
+    else: online=True
+    if online: delivered+=1
+    else: pushed+=1
+print('online path',delivered,'push path',pushed)
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md): luồng đăng nhập và luồng nhắn tin một-một.

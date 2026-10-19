@@ -34,7 +34,7 @@
     },
     "mobile": {
       "status": "pending",
-      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
     },
     "user_testing": {
       "status": "not_performed"
@@ -54,7 +54,7 @@
       "verified_by": "Script run in the session; parameters are the author's choice."
     },
     {
-      "claim_vi": "Own simulation: a message sent at a random time in the first day to a device back online after 1, 6, 24 or 72 hours was still valid in 100, 92.1, 15.8 and 0 percent of runs with a 4-hour lifetime and 100 percent with a 28-day lifetime; ten updates with one key collapse to the last one.",
+      "claim_vi": "Own simulation: a message sent at a random time in the first day to a device back online after 1, 6, 24 or 72 hours was still valid in 100, 92.5, 16.5 and 0 percent of runs with a 4-hour lifetime and 100 percent with a 28-day lifetime; ten updates with one key collapse to the last one.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-are-notifications-pushed-to-our-phones-or-pcs.md",
       "section": "Thử nghiệm: tin ngoại tuyến",
       "verified_by": "Script run in the session; parameters are the author's choice, not FCM defaults."

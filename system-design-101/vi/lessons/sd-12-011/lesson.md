@@ -60,6 +60,69 @@ Bài nguồn chỉ liệt kê bốn thành phần của nền tảng, trích t�
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con số của phần thử nghiệm; hạt giống ngẫu nhiên được đặt cố định trong chương trình nên chạy lại ra đúng các số đó.
+
+```python
+import hashlib, math, random
+def bucket(user, exp, n=1000):
+    h=hashlib.sha256(f"{exp}:{user}".encode()).digest()
+    return int.from_bytes(h[:8],'big')%n
+def variant(user, exp, split=0.5):
+    return 'B' if bucket(user,exp) < split*1000 else 'A'
+N=100000
+users=[f"u{i}" for i in range(N)]
+# 1 balance
+cnt={'A':0,'B':0}
+for u in users: cnt[variant(u,'checkout-v2')]+=1
+print('balance',cnt)
+# stability: same user same variant on repeat
+print('stable', all(variant(u,'checkout-v2')==variant(u,'checkout-v2') for u in users[:1000]))
+# 2 independence across experiments: cross-tab
+ct={}
+for u in users:
+    k=(variant(u,'checkout-v2'),variant(u,'search-v3')); ct[k]=ct.get(k,0)+1
+print('cross salted',sorted(ct.items()))
+ct={}
+for u in users:
+    k=(variant(u,'x'),variant(u,'x')); ct[k]=ct.get(k,0)+1
+print('cross same salt',sorted(ct.items()))
+# 3 A/A test false-positive rate: z-test two proportions
+def ztest(a_conv,a_n,b_conv,b_n):
+    p=(a_conv+b_conv)/(a_n+b_n); se=math.sqrt(p*(1-p)*(1/a_n+1/b_n))
+    z=(b_conv/b_n-a_conv/a_n)/se
+    pv=math.erfc(abs(z)/math.sqrt(2)); return z,pv
+rnd=random.Random(11)
+def run(n,pa,pb):
+    a=sum(rnd.random()<pa for _ in range(n)); b=sum(rnd.random()<pb for _ in range(n)); return ztest(a,n,b,n)
+R=1000
+fp=sum(run(2000,0.10,0.10)[1]<0.05 for _ in range(R))
+print('A/A false positives',fp,'of',R)
+# 4 power: true lift 10% -> 11% at n=2000 and 20000
+for n in (2000,20000):
+    pw=sum(run(n,0.10,0.11)[1]<0.05 for _ in range(300))
+    print('power n',n,pw,'of 300')
+# 5 peeking: A/A, check every 500 users per arm up to 5000, stop at first p<0.05
+def peek():
+    a=b=0
+    for i in range(1,5001):
+        a+=rnd.random()<0.10; b+=rnd.random()<0.10
+        if i%500==0 and ztest(a,i,b,i)[1]<0.05: return True
+    return False
+pk=sum(peek() for _ in range(500))
+print('peeking false positives',pk,'of 500')
+# 6 sample ratio mismatch: 50/50 expected, observed 50.4/49.6 on 100k
+def srm(a,b):
+    e=(a+b)/2; chi=((a-e)**2+(b-e)**2)/e; return chi, math.erfc(math.sqrt(chi/2))
+print('srm ok',srm(cnt['A'],cnt['B']))
+print('srm bad',srm(50400,49600))
+print('srm bad2 (lost 3% of B)',srm(50000,48500))
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md): bốn thành phần của nền tảng thử nghiệm.

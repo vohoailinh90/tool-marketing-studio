@@ -49,6 +49,54 @@ Bài nguồn liệt kê các bước theo thứ tự và nêu lý do đánh số
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con số của phần thử nghiệm; hạt giống ngẫu nhiên được đặt cố định trong chương trình nên chạy lại ra đúng các số đó.
+
+```python
+import heapq, random, itertools
+class Book:
+    def __init__(s): s.bids=[];s.asks=[];s.n=0
+    def submit(s,oid,side,price,qty,seq):
+        ex=[]
+        if side=='B':
+            while qty and s.asks and s.asks[0][0]<=price:
+                p,sq,aid,aq=s.asks[0]; m=min(qty,aq); ex.append((oid,aid,p,m)); qty-=m
+                if m==aq: heapq.heappop(s.asks)
+                else: s.asks[0]=(p,sq,aid,aq-m); heapq.heapify(s.asks)
+            if qty: heapq.heappush(s.bids,(-price,seq,oid,qty))
+        else:
+            while qty and s.bids and -s.bids[0][0]>=price:
+                p,sq,bid,bq=s.bids[0]; p=-p; m=min(qty,bq); ex.append((bid,oid,p,m)); qty-=m
+                if m==bq: heapq.heappop(s.bids)
+                else: s.bids[0]=(s.bids[0][0],sq,bid,bq-m); heapq.heapify(s.bids)
+            if qty: heapq.heappush(s.asks,(price,seq,oid,qty))
+        return ex
+def run(orders):
+    b=Book(); ex=[]
+    for seq,(oid,side,price,qty) in enumerate(orders):
+        ex+=b.submit(oid,side,price,qty,seq)
+    return ex
+rnd=random.Random(2)
+orders=[]
+for i in range(2000):
+    orders.append((f"o{i}",rnd.choice('BS'),rnd.randint(95,105),rnd.randint(1,10)))
+base=run(orders)
+print('executions',len(base),'volume',sum(e[3] for e in base))
+print('replay same sequence identical:',run(orders)==base)
+diff=0
+for t in range(200):
+    o=orders[:]; 
+    i=rnd.randrange(len(o)-1); o[i],o[i+1]=o[i+1],o[i]   # one adjacent swap
+    if run(o)!=base: diff+=1
+print('one adjacent swap changes executions in',diff,'of 200 trials')
+# price-time priority example
+b=Book(); print(b.submit('s1','S',100,5,0),b.submit('s2','S',100,5,1),b.submit('b1','B',100,7,2))
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-stock-exchange.md): đường đi của một lệnh, đường găng, đánh số thứ tự để lặp lại được.

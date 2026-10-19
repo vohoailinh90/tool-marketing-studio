@@ -34,7 +34,7 @@ Ngày 2026-10-19, người biên soạn viết một mô phỏng bằng Python. 
 
 Nếu không dọn, cứ 5 lần gửi thì gần 2 lần gửi vào thẻ không còn ai nhận (tốn băng thông, và một số dịch vụ còn trả lỗi cho mỗi lần). Số thẻ còn sống trong hai cách gần như nhau (78.547 và 78.300), nên việc dọn không làm mất người nhận nào.
 
-**Tin ngoại tuyến.** Một tin được gửi vào một thời điểm ngẫu nhiên trong ngày đầu, và máy trở lại mạng sau 1, 6, 24 hoặc 72 giờ. Với thời gian sống 4 giờ, tỷ lệ tin còn hiệu lực khi máy trở lại là 100%, 92,1%, 15,8% và 0%; với thời gian sống 28 ngày thì cả bốn mức đều 100%. Thời gian sống ngắn hợp với tin hết giá trị nhanh (mã xác thực một lần), dài hợp với tin quan trọng không hết hạn. Nếu mười lần cập nhật cùng một mục (ví dụ tỷ số trận đấu) xếp hàng khi máy ngoại tuyến, chỉ lần cuối cùng đáng giao: gộp theo khóa, mười tin còn một.
+**Tin ngoại tuyến.** Một tin được gửi vào một thời điểm ngẫu nhiên trong ngày đầu, và máy trở lại mạng sau 1, 6, 24 hoặc 72 giờ. Với thời gian sống 4 giờ, tỷ lệ tin còn hiệu lực khi máy trở lại là 100%, 92,5%, 16,5% và 0%; với thời gian sống 28 ngày thì cả bốn mức đều 100%. Thời gian sống ngắn hợp với tin hết giá trị nhanh (mã xác thực một lần), dài hợp với tin quan trọng không hết hạn. Nếu mười lần cập nhật cùng một mục (ví dụ tỷ số trận đấu) xếp hàng khi máy ngoại tuyến, chỉ lần cuối cùng đáng giao: gộp theo khóa, mười tin còn một.
 
 ## Giới hạn cần nhớ
 
@@ -55,6 +55,64 @@ Phần lớn dịch vụ nhắn tin trả về kết quả theo từng thẻ, n�
 <summary>Xem sâu hơn: điều đã thêm so với bài nguồn</summary>
 
 Bài nguồn mô tả bảy bước của FCM và khuyên lưu thẻ kèm mốc thời gian để xóa thẻ cũ. Bài này giữ các bước, gom lại thành ba chặng, và thêm hai mô phỏng: thẻ chết tích tụ khi không dọn và thời gian sống của tin ngoại tuyến. Mọi con số là của mô phỏng với tham số tự chọn.
+
+</details>
+
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con số của phần thử nghiệm; hạt giống ngẫu nhiên được đặt cố định trong chương trình nên chạy lại ra đúng các số đó.
+
+```python
+import random
+rnd = random.Random(9)
+USERS = 100000
+
+def simulate(cleanup):
+    # mỗi người một thẻ; mỗi tháng 3% cài lại (thẻ cũ chết, thẻ mới sinh ra), 2% gỡ ứng dụng (thẻ chết)
+    tokens, dead, next_id = {}, set(), [0]
+    def new_token():
+        next_id[0] += 1
+        return next_id[0]
+    for user in range(USERS):
+        tokens[new_token()] = (user, 0)            # thẻ -> (người dùng, lần cuối thấy hoạt động, tính bằng ngày)
+    for month in range(1, 13):
+        day = 30 * month
+        for t, (user, last_seen) in list(tokens.items()):
+            if t in dead:
+                continue
+            r = rnd.random()
+            if r < 0.03:
+                dead.add(t); tokens[new_token()] = (user, day)
+            elif r < 0.05:
+                dead.add(t)
+            else:
+                tokens[t] = (user, day)            # máy còn sống làm mới mốc thời gian
+        if cleanup:                                # xóa thẻ chết đã im lặng từ 60 ngày
+            for t, (user, last_seen) in list(tokens.items()):
+                if t in dead and day - last_seen >= 60:
+                    del tokens[t]
+    return len(tokens), sum(1 for t in tokens if t in dead)
+
+for cleanup in (False, True):
+    total, dead_count = simulate(cleanup)
+    print("dọn" if cleanup else "không dọn", "| thẻ đang lưu", total, "| thẻ chết", dead_count, "| %.1f%%" % (100 * dead_count / total))
+
+def still_valid(offline_hours, ttl_hours, n=1000):
+    ok = 0
+    for _ in range(n):
+        sent = rnd.uniform(0, 24)                  # tin gửi vào một thời điểm ngẫu nhiên của ngày đầu
+        if offline_hours - sent <= ttl_hours:      # máy trở lại sau offline_hours giờ
+            ok += 1
+    return ok / n
+
+for off in (1, 6, 24, 72):
+    print("máy trở lại sau", off, "giờ | hạn 4 giờ:", still_valid(off, 4), "| hạn 28 ngày:", still_valid(off, 28 * 24))
+queue = {}
+for i in range(10):
+    queue["score"] = "v%d" % i                     # gộp theo khóa: chỉ giữ tin mới nhất
+print("gộp:", queue)
+```
 
 </details>
 

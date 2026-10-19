@@ -22,7 +22,7 @@ Hiểu hai đường này, bạn biết vì sao lần gọi đầu thường ch�
 
 ## Giới hạn cần nhớ
 
-Tài liệu Firecracker chỉ nói về lớp máy ảo; nó không mô tả bộ điều phối của Lambda (cách chọn máy chủ, cách giữ môi trường ấm). Các bước tìm, dựng, khởi tạo và hàng đợi trong hình là mô hình chung của người biên soạn, dựa trên cách Lambda được mô tả công khai, chưa đối chiếu với tài liệu Lambda hiện hành trong phiên viết bài (không đọc được tài liệu AWS từ môi trường biên soạn). Thời gian giữ môi trường ấm và số lần thử lại cụ thể thay đổi theo cấu hình và theo phiên bản dịch vụ, nên bài không nêu con số.
+Mô hình trong bài là của loại chạy mặc định. Lambda còn có loại cấu hình khác (Managed Instances), theo tài liệu AWS chạy container trên máy chủ ảo thuê của AWS thay vì máy ảo siêu nhẹ, xử lý nhiều lời gọi đồng thời và không có khởi động nguội do từng lời gọi; vòng đời mô tả ở đây không áp dụng cho loại đó. Điều này lấy từ tài liệu AWS do người đánh giá dẫn, chưa được kiểm trong phiên viết. Tài liệu Firecracker chỉ nói về lớp máy ảo; nó không mô tả bộ điều phối của Lambda (cách chọn máy chủ, cách giữ môi trường ấm). Các bước tìm, dựng, khởi tạo và hàng đợi trong hình là mô hình chung của người biên soạn, dựa trên cách Lambda được mô tả công khai, chưa đối chiếu với tài liệu Lambda hiện hành trong phiên viết bài (không đọc được tài liệu AWS từ môi trường biên soạn). Thời gian giữ môi trường ấm và số lần thử lại cụ thể thay đổi theo cấu hình và theo phiên bản dịch vụ, nên bài không nêu con số.
 
 ## Nhìn hình trả lời
 

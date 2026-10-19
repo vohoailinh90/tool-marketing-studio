@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit; only the names are used."
     },
     {
-      "claim_vi": "Changing the shard count under hash mod N moves most keys: 100000 integer keys 0..99999 hashed with MD5 move 80.0% from mod 4 to mod 5, 49.9% from 4 to 8, 90.9% from 10 to 11; a consistent-hash ring with 200 points per shard moved about 22% of 20000 keys when a fifth shard was added to four.",
+      "claim_vi": "Changing the shard count under hash mod N moves most keys: 100000 integer keys 0..99999 hashed with MD5 move 80.0% from mod 4 to mod 5, 49.9% from 4 to 8, 90.9% from 10 to 11; a consistent-hash ring (MD5 as a 128-bit integer; key hashed from its decimal string; shard j point i hashed from the string 'j-i', 200 points per shard; first point at or after the key hash, wrapping) moved 19.9% of the 100000 keys when a fifth shard was added to four.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/vertical-partitioning-vs-horizontal-partitioning.md",
       "section": "Experiment in the lesson",
       "verified_by": "Computed by the author in the writing session with Python (hashlib.md5); the code is not stored, the method is written in the lesson."

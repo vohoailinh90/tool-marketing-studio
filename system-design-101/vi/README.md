@@ -138,6 +138,8 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 21. [MVC, MVP, MVVM, VIPER: cùng một nút bấm, bốn cách chia việc, và luật nằm ở đâu](lessons/sd-08-021/lesson.md) — bốn mẫu chia khung nhìn và mô hình, đối chiếu Apple và Microsoft, một màn hình viết bốn lần
 22. [Bản đồ kiến thức của kiến trúc sư: tám vùng, năm mươi cái tên, và "biết" một cái tên nghĩa là gì](lessons/sd-08-022/lesson.md) — tám vùng của nguồn, đếm tên, hai cái tên thành hai phép thử (giao dịch, thẻ JWT)
+23. [Kiến trúc dịch vụ nhỏ điển hình: bảy bộ phận, và mỗi bộ phận thêm một cái giá](lessons/sd-08-023/lesson.md) — bảy bộ phận của nguồn, đối chiếu tài liệu Microsoft, năm phép đo trên một máy
+24. [Năm mẫu kiến trúc hàng đầu: nguồn không nêu tên, nên bài đo năm lựa chọn mà mọi kiểu đều đẩy cho bạn](lessons/sd-08-024/lesson.md) — nguồn chỉ có lời dẫn; năm lựa chọn (chờ, co giãn, gọi nhau, lưu dữ liệu, hỏng) đo trên một máy
 
 ## Công cụ và năng suất
 

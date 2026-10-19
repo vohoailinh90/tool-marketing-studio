@@ -1,0 +1,36 @@
+{
+  "id": "sd-08-023",
+  "title": "Kiến trúc dịch vụ nhỏ: mỗi bộ phận một cái giá",
+  "subtitle": "Bảy bộ phận của nguồn, năm cái giá đo thử trên một máy.",
+  "desc": "Ba khung. Khung một, bảy bộ phận của kiến trúc dịch vụ nhỏ theo nguồn: bộ cân bằng tải, CDN và cổng API đứng trước các dịch vụ; nhà cấp danh tính xác thực; sổ đăng ký giúp cổng tìm dịch vụ; phần quản lý theo dõi; mỗi miền có cơ sở dữ liệu riêng. Khung hai, các phép đo trên một máy: qua cổng mất 0,9 mili giây thay vì 0,5; cổng gộp hai lời gọi thì 42 mili giây thay vì 82 khi mạng ngoài mất 40; hỏi sổ đăng ký mỗi lần 0,6 thay vì 0,24; kiểm chữ ký tại chỗ 2 micro giây, hỏi máy chủ khác 230; lấy 200 đơn kèm tên khách, một phép nối 0,2 mili giây, gọi từng đơn 50. Khung ba, cân bằng tải, CDN và quản lý chưa được đo.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Bảy bộ phận của nguồn",
+      "items": [
+        "Cân bằng tải, CDN và cổng API đứng trước các dịch vụ.",
+        "Nhà cấp danh tính xác thực; sổ đăng ký giúp cổng tìm dịch vụ.",
+        "Quản lý theo dõi; mỗi miền có cơ sở dữ liệu riêng."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Năm cái giá đo được",
+      "items": [
+        "Qua cổng: 0,9 ms thay vì 0,5 ms mỗi lời gọi.",
+        "Cổng gộp hai lời gọi: 42 ms thay vì 82 ms, khi mạng ngoài mất 40 ms.",
+        "Hỏi sổ đăng ký mỗi lần: 0,6 ms thay vì 0,24 ms.",
+        "Kiểm chữ ký tại chỗ 2 µs; hỏi máy chủ khác 230 µs.",
+        "200 đơn kèm tên khách: một phép nối 0,2 ms; gọi từng đơn 50 ms."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn",
+      "items": [
+        "Một máy, một ngôn ngữ; mạng ngoài 40 ms là số đặt thêm.",
+        "Cân bằng tải, CDN và quản lý chưa được đo."
+      ]
+    }
+  ]
+}

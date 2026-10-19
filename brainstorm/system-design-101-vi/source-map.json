@@ -2204,21 +2204,21 @@
         },
         {
           "id": "sd-08-023",
-          "title_vi": null,
+          "title_vi": "Kiến trúc dịch vụ nhỏ điển hình: bảy bộ phận, và mỗi bộ phận thêm một cái giá",
           "title_source": "Typical Microservice Architecture",
           "source_url": "https://bytebytego.com/guides/what-does-a-typical-microservice-architecture-look-like",
           "source_path": "data/guides/what-does-a-typical-microservice-architecture-look-like.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "a84ae6f9b88e0ce58dc3e8d16c96f2ee02372ae4",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-a-typical-microservice-architecture-look-like.md"
         },
         {
           "id": "sd-08-024",
-          "title_vi": null,
+          "title_vi": "Năm mẫu kiến trúc hàng đầu: nguồn không nêu tên, nên bài đo năm lựa chọn mà mọi kiểu đều đẩy cho bạn",
           "title_source": "Top 5 Software Architectural Patterns",
           "source_url": "https://bytebytego.com/guides/top-5-software-architectural-patterns",
           "source_path": "data/guides/top-5-software-architectural-patterns.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c82dfc4ddfbd8a557254ce93551deff03685e250",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-software-architectural-patterns.md"
         }

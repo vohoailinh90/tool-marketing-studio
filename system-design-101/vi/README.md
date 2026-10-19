@@ -226,7 +226,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
 
-49. [Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang "dịch vụ khác" chứa gần một phần ba số dòng ghép dịch vụ](lessons/sd-11-049/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+49. [Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang giới thiệu chứa gần một phần ba số dòng ghép dịch vụ ở hai mục Other services và Miscellaneous](lessons/sd-11-049/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 

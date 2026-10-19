@@ -1,4 +1,4 @@
-# Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang "dịch vụ khác" chứa gần một phần ba số dòng ghép dịch vụ
+# Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang giới thiệu chứa gần một phần ba số dòng ghép dịch vụ ở hai mục Other services và Miscellaneous
 
 **Bài nguồn giới thiệu một tờ hướng dẫn bằng hình để tìm đường trong rất nhiều dịch vụ AWS; nội dung nằm trong ảnh và bài này không đọc ảnh. Thay vào đó, bài hỏi một câu đếm được: khi Microsoft phải xếp các dịch vụ AWS vào những trang để người đến từ AWS tìm lại, họ chia thế nào? Trong 194 dòng ghép dịch vụ, 63 dòng nằm ở các bảng "dịch vụ khác" của trang giới thiệu: gần một phần ba.**
 Đó là cách Microsoft chia, không phải cách AWS chia, và phép đếm không đo số dịch vụ của AWS.

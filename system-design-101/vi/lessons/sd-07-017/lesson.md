@@ -3,7 +3,7 @@
 **Cả Apple Pay lẫn Google Pay đều rất an toàn, nhưng cách làm khác nhau ở một điểm: thông tin thẻ nằm ở đâu. Apple không lưu thông tin thẻ mà đưa nó cho ngân hàng, còn Google lưu thông tin thẻ trên máy chủ của mình.**
 Nguồn tách quy trình thành hai luồng: đăng ký thẻ và thanh toán cơ bản.
 
-![Năm khung. Khung một, đăng ký thẻ với Apple Pay: iPhone gửi thông tin thẻ cho ngân hàng, Apple không lưu; ngân hàng trả lại một mã DAN, iPhone lưu mã vào một chip phần cứng riêng. Khung hai, đăng ký thẻ với Google Pay: điện thoại gửi thông tin thẻ cho máy chủ Google, nơi lưu thông tin thẻ; Google trả lại một mã thanh toán. Khung ba, thanh toán với Apple Pay: khách bấm Trả, máy chủ bán hàng chuyển mã DAN cho ngân hàng. Khung bốn, thanh toán với Google Pay: máy chủ bán hàng chuyển mã thanh toán cho máy chủ Google, nơi tra thông tin thẻ rồi chuyển cho ngân hàng. Khung năm, điều cần nhớ.](../../diagrams/sd-07-017-main.svg)
+![Theo sơ đồ nguồn, giản lược. Năm khung. Khung một, đăng ký thẻ với Apple Pay: iPhone gửi thông tin thẻ cho ngân hàng, Apple không lưu; ngân hàng trả lại một mã DAN, iPhone lưu mã vào một chip phần cứng riêng. Khung hai, đăng ký thẻ với Google Pay: điện thoại gửi thông tin thẻ cho máy chủ Google, nơi lưu thông tin thẻ; Google trả lại một mã thanh toán. Khung ba, thanh toán với Apple Pay: khách bấm Trả, máy chủ bán hàng chuyển mã DAN cho ngân hàng. Khung bốn, thanh toán với Google Pay: máy chủ bán hàng chuyển mã thanh toán cho máy chủ Google, nơi tra thông tin thẻ rồi chuyển cho ngân hàng. Khung năm, điều cần nhớ.](../../diagrams/sd-07-017-main.svg)
 
 ## Từ viết tắt
 

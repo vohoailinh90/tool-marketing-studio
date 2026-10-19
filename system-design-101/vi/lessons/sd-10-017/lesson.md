@@ -10,7 +10,7 @@ Bài giữ các mốc thời gian và tên ngôn ngữ của bài nguồn, rồi
 - **LISP** (LISt Processing) — xử lý danh sách: tên một ngôn ngữ lập trình ra đời sớm, thường được nhắc cùng Fortran trong số những ngôn ngữ đầu tiên.
 - **GUI** (Graphical User Interface) — giao diện người dùng đồ họa: giao diện có cửa sổ và nút bấm; bài nguồn nói lập trình hướng đối tượng phổ biến nhờ lợi thế với loại giao diện này.
 - **PC** (Personal Computer) — máy tính cá nhân: máy dùng riêng cho một người, như máy bàn hoặc máy xách tay.
-- **PHP** (Personal Home Page) — trang chủ cá nhân: tên ban đầu của một ngôn ngữ lập trình, nay thường chỉ gọi là PHP.
+- **PHP** (Personal Home Page) — trang chủ cá nhân: tên ban đầu của một ngôn ngữ lập trình; tài liệu của PHP ngày nay đọc tên đó là "PHP: Hypertext Preprocessor", một tên đệ quy (tự nhắc lại chính nó).
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
 
 ## Đọc hình

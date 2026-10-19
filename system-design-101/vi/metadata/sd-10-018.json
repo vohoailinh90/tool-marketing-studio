@@ -26,7 +26,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the nginx and HAProxy statements were read in raw copies of their documentation at the pinned commits and are recorded in the claims below, but the \"usually stateless\" remark is the source's word and the glosses of IP and URL are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the nginx and HAProxy statements were read in raw copies of their documentation at the pinned commits and are recorded in the claims below, but the \"usually stateless\" remark is the source's word and the glosses of IP, URL, IPv4, IPv6, HA and HTTP are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",

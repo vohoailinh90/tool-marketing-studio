@@ -1,6 +1,6 @@
 # Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang giới thiệu chứa gần một phần ba số dòng ghép dịch vụ ở hai mục Other services và Miscellaneous
 
-**Bài nguồn giới thiệu một tờ hướng dẫn bằng hình để tìm đường trong rất nhiều dịch vụ AWS; nội dung nằm trong ảnh và bài này không đọc ảnh. Thay vào đó, bài hỏi một câu đếm được: khi Microsoft phải xếp các dịch vụ AWS vào những trang để người đến từ AWS tìm lại, họ chia thế nào? Trong 194 dòng ghép dịch vụ, 63 dòng nằm ở các bảng "dịch vụ khác" của trang giới thiệu: gần một phần ba.**
+**Bài nguồn giới thiệu một tờ hướng dẫn bằng hình để tìm đường trong rất nhiều dịch vụ AWS; nội dung nằm trong ảnh và bài này không đọc ảnh. Thay vào đó, bài hỏi một câu đếm được: khi Microsoft phải xếp các dịch vụ AWS vào những trang để người đến từ AWS tìm lại, họ chia thế nào? Trong 194 dòng ghép dịch vụ, 63 dòng nằm ở trang giới thiệu, trong hai mục `Other services` (53 dòng) và `Miscellaneous` (10 dòng): gần một phần ba.**
 Đó là cách Microsoft chia, không phải cách AWS chia, và phép đếm không đo số dịch vụ của AWS.
 
 ![Ba khung. Khung một, bài nguồn: một ảnh hướng dẫn các dịch vụ AWS, ảnh không được đọc. Khung hai, chín trang của Microsoft chứa 194 dòng ghép dịch vụ: trang giới thiệu gom 63 dòng, tính toán 27, mạng 24, phân tích 23, lưu trữ 17, cơ sở dữ liệu 13, danh tính 13, trí tuệ nhân tạo và học máy 9, nhắn tin 5. Khung ba, điều cần nhớ: có 183 tên dịch vụ AWS khác nhau, 17 tên nằm ở hai trang, và đây là cách chia của Microsoft chứ không phải của AWS.](../../diagrams/sd-11-049-main.svg)
@@ -23,7 +23,7 @@ Ngày 2026-10-19, người biên soạn viết một chương trình đọc các
 
 | Trang | Số dòng | Tỷ lệ |
 |---|---|---|
-| Giới thiệu (dịch vụ khác) | 63 | 32,5% |
+| Giới thiệu (hai mục Other services và Miscellaneous) | 63 | 32,5% |
 | Tính toán | 27 | 13,9% |
 | Mạng | 24 | 12,4% |
 | Phân tích | 23 | 11,9% |
@@ -92,7 +92,7 @@ Bạn dựng bản đồ dịch vụ AWS cho đồng đội và chia thành chí
 <details>
 <summary>Xem đáp án</summary>
 
-Vì trong cách chia của Microsoft, 63 trên 194 dòng (32,5%) nằm ở các bảng "dịch vụ khác" của trang giới thiệu (con số đo các dòng ở đó, không chứng minh dịch vụ nào thiếu trang theo mảng, vì 14 tên còn xuất hiện ở cả hai nơi), nên một bản đồ chỉ có chín chủ đề thiếu chỗ cho một phần đáng kể các dòng (tối đa 63 trên 194; số dịch vụ chỉ có ở đó thấp hơn, và bài không đếm số này). Nhóm "khác" cần được chia mục nhỏ, như Microsoft chia trang giới thiệu thành mười một mục. Cũng cho phép một dịch vụ có hai nhà, vì 17 trong 183 tên xuất hiện ở hai trang. Đây là suy luận của người biên soạn từ một cách chia, không phải quy tắc chung.
+Vì trong cách chia của Microsoft, 63 trên 194 dòng (32,5%) nằm ở hai mục `Other services` và `Miscellaneous` của trang giới thiệu (con số đo các dòng ở đó, không chứng minh dịch vụ nào thiếu trang theo mảng, vì 14 tên còn xuất hiện ở cả hai nơi), nên một bản đồ chỉ có chín chủ đề thiếu chỗ cho một phần đáng kể các dòng (tối đa 63 trên 194; số dịch vụ chỉ có ở đó thấp hơn, và bài không đếm số này). Nhóm "khác" cần được chia mục nhỏ, như Microsoft chia trang giới thiệu thành mười một mục. Cũng cho phép một dịch vụ có hai nhà, vì 17 trong 183 tên xuất hiện ở hai trang. Đây là suy luận của người biên soạn từ một cách chia, không phải quy tắc chung.
 
 </details>
 

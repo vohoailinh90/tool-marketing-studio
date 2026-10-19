@@ -70,7 +70,7 @@
   "design_notes_vi": "Ba khung: bài nguồn chỉ là ảnh hướng dẫn, kết quả đếm 194 dòng trên chín trang của Microsoft, và các giới hạn của phép đếm.",
   "source_deviations": [
     "Bài nguồn là một ảnh hướng dẫn dịch vụ AWS; bài này không đọc ảnh mà đếm cách Microsoft xếp dịch vụ AWS vào các trang.",
-    "Phép chia theo trang, tỷ lệ của trang dịch vụ khác và số tên trùng giữa các trang là của người biên soạn; nguồn không có."
+    "Phép chia theo trang, tỷ lệ của trang giới thiệu và số tên trùng giữa các trang là của người biên soạn; nguồn không có."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói W18), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -313,6 +313,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 15. [Hai mươi lăm bài báo đã định hình ngành máy tính, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Một kho hay nhiều kho: mỗi cách trả giá ở đâu](lessons/sd-11-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [Lỗi khi gọi web: khi nào thử lại, và thử lại sao cho không làm tệ thêm](lessons/sd-11-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [Sáu nguyên tắc chịu lỗi, và phép tính vì sao dư thừa có tác dụng](lessons/sd-11-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+21. [Mạng trên AWS: VPC và các cách nối ra, nối vào](lessons/sd-11-021/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+22. [Mã định danh duy nhất: 64 bit chia theo thời gian, máy và số thứ tự](lessons/sd-11-022/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 23. [Bộ phiên bản: dựng lại hôm nay cũng ra đúng kết quả của hôm qua](lessons/sd-11-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 24. [Hạ tầng bằng mã: bốn lớp, và vì sao khai báo hơn từng bước](lessons/sd-11-024/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 25. [Quản lý cấu hình và hạ tầng bằng mã: hai cách nhìn một việc](lessons/sd-11-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -470,6 +475,10 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 Tình huống thực tế (còn sd-02-030) → Cơ sở dữ liệu và lưu trữ (còn sd-04-013 đến sd-04-024) →
 Bộ nhớ đệm và hiệu năng (còn sd-06-023 đến sd-06-029) → Đám mây và hệ thống phân tán (đã viết một phần).
+Tình huống thực tế (còn sd-02-030) →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) →
+Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
+Đám mây và hệ thống phân tán (đã viết một phần) → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

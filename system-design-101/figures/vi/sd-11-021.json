@@ -1,0 +1,68 @@
+{
+  "title": "Mạng trên AWS",
+  "subtitle": "VPC và các cách nối.",
+  "desc": "Ba khung. Khung một, bốn lớp từ ngoài vào trong: Region, vùng sẵn sàng AZ, VPC, subnet. Khung hai, bốn cách nối VPC ra ngoài: Internet gateway ra internet, Client VPN cho người làm từ xa, Virtual private gateway cho trung tâm dữ liệu công ty, NAT gateway cho máy trong mạng riêng đi ra. Khung ba, bốn cách nối giữa các VPC và dịch vụ: VPC peering, Transit gateway, endpoint dạng gateway, endpoint dạng interface hay PrivateLink.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Từ ngoài vào trong",
+      "items": [
+        {
+          "name": "Region",
+          "role": "Vùng địa lý chứa nhiều AZ.",
+          "icon": "globe"
+        },
+        {
+          "name": "AZ",
+          "role": "Một hay vài trung tâm dữ liệu riêng biệt.",
+          "icon": "server"
+        },
+        {
+          "name": "VPC",
+          "role": "Mạng ảo riêng của bạn, trải nhiều AZ.",
+          "icon": "cloud"
+        },
+        {
+          "name": "Subnet",
+          "role": "Dải địa chỉ nằm trong một AZ.",
+          "icon": "network"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nối VPC ra ngoài",
+      "items": [
+        "Internet gateway: đường ra và vào internet.",
+        "Client VPN: người làm từ xa vào mạng.",
+        "Virtual private gateway: nối trung tâm dữ liệu công ty.",
+        "NAT gateway: máy mạng riêng đi ra, không cho vào."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nối VPC với nhau và với dịch vụ",
+      "items": [
+        "Peering: nối hai VPC, không bắc cầu.",
+        "Transit gateway: một trạm trung chuyển cho nhiều VPC.",
+        "Gateway endpoint: tới S3 hay DynamoDB không qua internet.",
+        "Interface endpoint: lối vào riêng tới dịch vụ khác."
+      ]
+    }
+  ],
+  "id": "sd-11-021"
+}

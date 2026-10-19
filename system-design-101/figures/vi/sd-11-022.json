@@ -1,0 +1,35 @@
+{
+  "title": "Mã định danh duy nhất",
+  "subtitle": "64 bit chia theo thời gian, máy và số thứ tự.",
+  "desc": "Hai khung. Khung một, mã 64 bit chia thành ba phần: 41 bit thời gian tính bằng mili giây, 10 bit số hiệu máy, 12 bit số thứ tự trong cùng một mili giây. Khung hai, thử nghiệm: hai máy sinh 400000 mã đều khác nhau và tăng dần theo máy, một mili giây tối đa 4096 mã mỗi máy, đồng hồ lùi thì máy sinh mã từ chối.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Mã 64 bit chia ba phần",
+      "items": [
+        {
+          "title": "41 bit thời gian",
+          "text": "Mili giây tính từ một mốc tự chọn, đủ khoảng 69,7 năm."
+        },
+        {
+          "title": "10 bit số hiệu máy",
+          "text": "Tối đa 1024 máy sinh mã."
+        },
+        {
+          "title": "12 bit số thứ tự",
+          "text": "Tối đa 4096 mã mỗi máy trong một mili giây."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử nghiệm nhỏ",
+      "items": [
+        "Hai máy sinh 400000 mã: không trùng mã nào.",
+        "Mã của mỗi máy tăng dần theo thứ tự sinh.",
+        "Đồng hồ lùi: từ chối; mốc cũ phải được nhớ."
+      ]
+    }
+  ],
+  "id": "sd-11-022"
+}

@@ -51,7 +51,7 @@
     },
     "mobile": {
       "status": "checked",
-      "checked_on": "2026-10-18",
+      "checked_on": "2026-10-19",
       "widths_px": [
         320,
         375,
@@ -87,7 +87,7 @@
       "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
     },
     {
-      "claim_vi": "If max_slot_wal_keep_size is -1 (the default), replication slots may retain an unlimited amount of WAL files; otherwise a slot that falls behind by more than that size may lose the WAL it needs.",
+      "claim_vi": "If max_slot_wal_keep_size is -1 (the default), replication slots may retain an unlimited amount of WAL files; otherwise, if a slot's restart_lsn falls behind the current LSN by more than that size, the consumer using the slot may no longer be able to continue replication because required WAL files were removed.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
       "section": "max_slot_wal_keep_size",
       "verified_by": "Read from a partial clone of postgres/postgres at commit 8e928803020e5b5694cde58e4851fce64ef9d520."

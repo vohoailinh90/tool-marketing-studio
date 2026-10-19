@@ -31,7 +31,7 @@ Tài liệu Debezium nêu đúng những điểm này làm lợi thế của CDC
 
 ## Giới hạn cần nhớ
 
-Với mặc định `max_slot_wal_keep_size = -1`, slot giữ lại mọi đoạn WAL mà người đọc chưa nhận, kể cả khi người đọc đang tắt; đặt giới hạn này để một slot bị bỏ quên không làm đầy đĩa. Trong thử nghiệm, sau một triệu dòng thêm mà không ai đọc slot, PostgreSQL giữ 61 MiB WAL cho nó; đọc hết và chạy checkpoint thì còn 6.712 byte.
+Với mặc định `max_slot_wal_keep_size = -1`, slot giữ lại mọi đoạn WAL mà người đọc chưa nhận, kể cả khi người đọc đang tắt; đặt giới hạn này thì một slot bị bỏ quên không làm đầy đĩa được, nhưng đổi lại: nếu người đọc tụt lại quá giới hạn, PostgreSQL có thể xóa những đoạn WAL slot còn cần, và người đọc không đọc tiếp được từ slot đó nữa. Chọn giữa đầy đĩa và mất chỗ đọc tiếp là việc của người vận hành. Trong thử nghiệm, sau một triệu dòng thêm mà không ai đọc slot, PostgreSQL giữ 61 MiB WAL cho nó; đọc hết và chạy checkpoint thì còn 6.712 byte.
 Tài liệu PostgreSQL cảnh báo slot không biết gì về người đọc và vẫn ngăn dọn WAL lẫn dữ liệu danh mục hệ thống khi không có ai kết nối; trường hợp xấu có thể làm cơ sở dữ liệu tự dừng. Slot không dùng nữa phải được xóa, và slot đang dùng phải được giám sát.
 
 ## Nhìn hình trả lời
@@ -60,7 +60,7 @@ Thử nghiệm dùng plugin `test_decoding` vì nó in thay đổi thành chữ 
 - [Debezium — Features, tại commit cố định](https://github.com/debezium/debezium/blob/a058ebb7e267b4010ee0f37c68f3f9f0c01c31af/documentation/modules/ROOT/pages/features.adoc): lợi thế của CDC dựa trên nhật ký so với thăm dò. Đọc từ bản clone của kho.
 - [Debezium — PostgreSQL connector, tại commit cố định](https://github.com/debezium/debezium/blob/a058ebb7e267b4010ee0f37c68f3f9f0c01c31af/documentation/modules/ROOT/pages/connectors/postgresql.adoc): ảnh chụp nhất quán ban đầu, `pgoutput`, replication slot giữ WAL khi connector dừng, `REPLICA IDENTITY FULL`.
 - [PostgreSQL 16 — Logical Decoding, tại commit cố định](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/logicaldecoding.sgml): replication slot ngăn dọn WAL và dữ liệu danh mục khi không ai kết nối; slot không cần nữa thì xóa. Đọc từ bản clone, nhánh `REL_16_STABLE`.
-- [PostgreSQL 16 — `max_slot_wal_keep_size`, tại commit cố định](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml): mặc định -1, slot có thể giữ WAL không giới hạn.
+- [PostgreSQL 16 — `max_slot_wal_keep_size`, tại commit cố định](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml): mặc định -1, slot có thể giữ WAL không giới hạn; đặt giới hạn thì slot tụt quá xa có thể không dùng tiếp được vì WAL nó cần đã bị xóa.
 
 Đã đọc nguồn và chạy thử nghiệm ngày 2026-10-18 trên PostgreSQL 16.15 (`wal_level = logical`, plugin `test_decoding`); không chạy Debezium.
 Bài viết và hình được thiết kế độc lập.

@@ -22,11 +22,11 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+      "reason": "source_names_and_groups_listed_with_the_pinned_source; the descriptions of the books are the author's general knowledge, not checked against the publisher's or author's pages"
     },
     "technical_review": {
       "status": "pending",
@@ -42,40 +42,40 @@
   },
   "claims": [
     {
-      "claim_vi": "The source lists ten books in five groups of two: general advice (The Pragmatic Programmer, Code Complete), coding (Clean Code, Refactoring), software architecture (Designing Data-Intensive Applications, System Design Interview), design patterns (Design Patterns, Domain-Driven Design), data structures and algorithms (Introduction to Algorithms, Cracking the Coding Interview).",
+      "claim_vi": "The source lists ten books in five groups of two: general advice, coding, software architecture, design patterns, data structures and algorithms; the lesson keeps the group names, book titles and author names.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
       "section": "Whole body",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "The authors the source names: Hunt and Thomas, McConnell, Robert C. Martin, Martin Fowler, Martin Kleppmann, Eric Evans, Cormen/Leiserson/Rivest/Stein, Gayle Laakmann McDowell; for Design Patterns the source writes \"Eric Gamma and Others\".",
+      "claim_vi": "The source calls System Design Interview its own book; the lesson names Alex Xu as its author and ByteByteGo as the source's team.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
-      "section": "Whole body",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "section": "Software Architecture",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text. The author's name is general knowledge."
     },
     {
-      "claim_vi": "Only Code Complete has a description: often considered a bible for software developers, covering design, coding, testing and maintenance; System Design Interview is called the source authors' own book.",
+      "claim_vi": "The source writes the first author of Design Patterns as \"Eric Gamma\"; the lesson uses Erich Gamma and lists the other three authors (Helm, Johnson, Vlissides).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
-      "section": "General Advice and Software Architecture",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "section": "Design Patterns",
+      "verified_by": "Author's general knowledge; not checked against the publisher's or author's page (not reachable from the authoring environment)."
     },
     {
-      "claim_vi": "The first author of Design Patterns is Erich Gamma (the source spells \"Eric Gamma\").",
+      "claim_vi": "What each book is about (practical craft advice; a construction handbook; readable code; small behavior-preserving restructurings; storage, replication, partitioning, transactions and stream/batch processing; sample system-design walkthroughs; a catalogue of object-oriented patterns; domain modeling; an algorithms textbook; interview questions with solutions).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
-      "section": "Limits",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against the publisher's or author's page (not reachable from the authoring environment)."
     },
     {
-      "claim_vi": "The source gives no reading order, level or reason for the selection; the book list comes from a party with a stake in one of the titles.",
+      "claim_vi": "The source gives no reading order, level or reason for the selection; the list comes from a party with a stake in one of the titles.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
-      "section": "Limits",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against the publisher's or author's page (not reachable from the authoring environment)."
     }
   ],
-  "design_notes_vi": "Năm nhóm giữ nguyên thứ tự và tên nhóm của nguồn, mỗi nhóm hai thẻ; cuốn nào nguồn không mô tả thì chỉ ghi tác giả. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Năm nhóm giữ nguyên thứ tự và tên nhóm của nguồn, mỗi nhóm hai thẻ; mỗi thẻ có một dòng nói cuốn đó bàn về gì, do người biên soạn viết. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source writes the first author of Design Patterns as \"Eric Gamma\"; the lesson reports it as written and notes the likely correct spelling as the author's general knowledge.",
-    "Source has no description for nine of the ten books; the lesson adds none."
+    "Source writes the first author of Design Patterns as \"Eric Gamma\"; the lesson writes Erich Gamma and states that this is the editor's general knowledge.",
+    "Source describes only one book (Code Complete); the lesson describes all ten in its own words from general knowledge and does not reuse the source's sentence."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

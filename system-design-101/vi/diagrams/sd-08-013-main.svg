@@ -37,7 +37,7 @@
 <polyline points="37.9,539.4 41.7,543.4 48.5,535" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="542.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏi máy chủ cấp quyền: 192</text>
 <text x="64" y="561.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 223 µs; kiểm tại chỗ:</text>
-<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1,8.</text>
+<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1,8 (chỉ so thời gian).</text>
 <rect x="20" y="607" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="630" r="11" fill="#16a34a"/>
 <polyline points="37.9,630.4 41.7,634.4 48.5,626" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

@@ -18,7 +18,7 @@
       "heading": "Năm cái giá đo được",
       "items": [
         "Tra sổ đăng ký mỗi lần: 507 đến 559 µs thay vì 179 đến 206.",
-        "Hỏi máy chủ cấp quyền: 192 đến 223 µs; kiểm tại chỗ: 1,8.",
+        "Hỏi máy chủ cấp quyền: 192 đến 223 µs; kiểm tại chỗ: 1,8 (chỉ so thời gian).",
         "Đọc Redis: 39 đến 40 µs; đọc trong tiến trình: 1 đến 5.",
         "Đẩy vào hàng đợi: 36 đến 40 µs thay vì 5,1 ms.",
         "Một dòng nhật ký ra tệp: 12 đến 13 µs."

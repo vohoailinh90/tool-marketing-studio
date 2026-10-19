@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "HTTPS: HTTP đặt trong kênh TLS",
   "subtitle": "HTTPS thêm gì, bắt tay dựng kênh ra sao, và giới hạn của nó.",
-  "desc": "Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. ClientHello và ServerHello đi nguyên văn; chứng chỉ, CertificateVerify và hai thông điệp Finished sau đó được mã hóa (hình bỏ qua bản ghi ChangeCipherSpec 1 byte, không chứa nội dung bắt tay). Rồi yêu cầu HTTP và phản hồi HTTP, mỗi chiều mã hóa bằng một khóa riêng. Khung bốn, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.",
+  "desc": "Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. ClientHello và ServerHello đi nguyên văn; chứng chỉ, CertificateVerify và hai thông điệp Finished sau đó được mã hóa (hình bỏ qua bản ghi ChangeCipherSpec 1 byte, không chứa nội dung bắt tay). Rồi yêu cầu HTTP và phản hồi HTTP, mỗi chiều mã hóa bằng một khóa riêng. Khung bốn, giới hạn của HTTPS: tên máy chủ thường vẫn nằm trong ClientHello (trừ khi dùng ECH), chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói vẫn lộ.",
   "sections": [
     {
       "kind": "parts",
@@ -107,7 +107,7 @@
       "kind": "notes",
       "heading": "4 · Nhớ: giới hạn của HTTPS",
       "items": [
-        "Tên máy chủ vẫn nằm sẵn trong ClientHello, ai nghe lén cũng thấy.",
+        "Tên máy chủ thường vẫn nằm trong ClientHello, trừ khi dùng ECH.",
         "Chứng chỉ chỉ gắn khóa với tên: nó không bảo đảm trang đáng tin.",
         "Máy chủ vẫn giải mã và đọc được mọi thứ bạn gửi.",
         "Độ dài từng gói dữ liệu vẫn lộ."

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1840" viewBox="0 0 320 1840" role="img" aria-labelledby="title desc">
 <title id="title">HTTPS: HTTP đặt trong kênh TLS</title>
-<desc id="desc">Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. ClientHello và ServerHello đi nguyên văn; chứng chỉ, CertificateVerify và hai thông điệp Finished sau đó được mã hóa (hình bỏ qua bản ghi ChangeCipherSpec 1 byte, không chứa nội dung bắt tay). Rồi yêu cầu HTTP và phản hồi HTTP, mỗi chiều mã hóa bằng một khóa riêng. Khung bốn, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.</desc>
+<desc id="desc">Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. ClientHello và ServerHello đi nguyên văn; chứng chỉ, CertificateVerify và hai thông điệp Finished sau đó được mã hóa (hình bỏ qua bản ghi ChangeCipherSpec 1 byte, không chứa nội dung bắt tay). Rồi yêu cầu HTTP và phản hồi HTTP, mỗi chiều mã hóa bằng một khóa riêng. Khung bốn, giới hạn của HTTPS: tên máy chủ thường vẫn nằm trong ClientHello (trừ khi dùng ECH), chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói vẫn lộ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1840" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -84,9 +84,9 @@
 <rect x="20" y="1504" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1527" r="11" fill="#16a34a"/>
 <polyline points="37.9,1527.4 41.7,1531.4 48.5,1523" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1530.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên máy chủ vẫn nằm sẵn</text>
-<text x="64" y="1549.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong ClientHello, ai nghe lén</text>
-<text x="64" y="1569.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng thấy.</text>
+<text x="64" y="1530.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên máy chủ thường vẫn</text>
+<text x="64" y="1549.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nằm trong ClientHello, trừ</text>
+<text x="64" y="1569.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khi dùng ECH.</text>
 <rect x="20" y="1595" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1618" r="11" fill="#16a34a"/>
 <polyline points="37.9,1618.4 41.7,1622.4 48.5,1614" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

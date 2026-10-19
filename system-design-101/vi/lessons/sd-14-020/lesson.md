@@ -38,7 +38,7 @@ Với cặp khóa (`ES256` dùng ECDSA, `RS256` dùng RSA), khóa riêng ký, kh
 
 **Khung 3 · Bên kiểm phải tự quyết.** Header do người gửi viết, nên `alg` trong token chỉ là điều người gửi tuyên bố. Bên kiểm phải đưa ra danh sách thuật toán chấp nhận từ phía mình: PyJWT từ chối mọi `alg` ngoài danh sách bằng `InvalidAlgorithmError`, và tài liệu của nó dặn không tính danh sách từ `alg` của token. Thử: token `alg: none` (không có dấu ký) bị từ chối khi bên kiểm chỉ nhận `HS256`; token ký `HS256` bị từ chối khi bên kiểm chỉ nhận `RS256`.
 
-Dấu ký đúng cũng chưa đủ. Thử: `exp` đã qua thì `ExpiredSignatureError`; `nbf` ở tương lai thì `ImmatureSignatureError`; `aud` không khớp bên nhận thì `InvalidAudienceError`. Token không có `exp` vẫn được nhận theo mặc định; muốn bắt buộc thì truyền `options={"require": ["exp"]}` (thử: `MissingRequiredClaimError`).
+Dấu ký đúng cũng chưa đủ. Thử: `exp` đã qua thì `ExpiredSignatureError`; `nbf` ở tương lai thì `ImmatureSignatureError`; `aud` không khớp bên nhận thì `InvalidAudienceError`; `iss` không khớp bên phát hành mong đợi thì `InvalidIssuerError`. Hai kiểm tra này chỉ chạy khi bên kiểm truyền bên nhận (`audience`) và bên phát hành (`issuer`) mong đợi: không truyền `issuer` thì token mang `iss` nào cũng qua (thử), còn truyền mà token không có `iss` thì `MissingRequiredClaimError`. Token không có `exp` vẫn được nhận theo mặc định; muốn bắt buộc thì truyền `options={"require": ["exp"]}` (thử: `MissingRequiredClaimError`).
 
 ## Giới hạn cần nhớ
 

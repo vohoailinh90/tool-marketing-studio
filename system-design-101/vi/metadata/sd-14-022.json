@@ -189,6 +189,12 @@
       "verified_by": "Read from a sparse clone of mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a on 2026-10-18. The ASVS README was fetched from raw.githubusercontent.com at commit 2b47a9dd16760ee484a6672d197f1f7e25d9c632 (https://github.com/OWASP/ASVS/blob/2b47a9dd16760ee484a6672d197f1f7e25d9c632/README.md). Texts of standards bodies were not reachable and were not read."
     },
     {
+      "claim_vi": "The glossary expands STRIDE and LINDDUN from MDN's category lists, in MDN's order: STRIDE is Spoofing, Tampering, Repudiation, Information disclosure, Denial of Service, Elevation of privilege; LINDDUN is Linking, Identifying, Non-repudiation, Detecting, Data disclosure, Unawareness, Non-compliance (privacy threats). MDN says each letter of the acronym stands for one category (six for STRIDE, seven for LINDDUN). The OWASP Threat Modeling cheat sheet calls STRIDE a threat modeling technique and mnemonic and lists the same six categories as S, T, R, I, D, E. The glossary shows the first word of each category so that the initials give the abbreviation, and gives the full category name in the explanation.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/threat_modeling/frameworks/index.md",
+      "section": "Từ viết tắt: STRIDE, LINDDUN",
+      "verified_by": "The MDN frameworks page was fetched from raw.githubusercontent.com at commit a1aa79c09717761fc72c20bac94bb9c430ed487a on 2026-10-19 and its STRIDE and LINDDUN bullet lists read; the OWASP Threat Modeling cheat sheet was read at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the STRIDE table). The MDN page never writes the expansions in one sentence; the expansion is read off the category lists, whose order matches the letters."
+    },
+    {
       "claim_vi": "OWASP Password Storage says stored passwords must be protected from an attacker even if the application or database is compromised, that they should be hashed with a strong slow algorithm rather than stored in plain text, and that hashing is one-way so an attacker who obtains the hash cannot use it to log in as the victim. Details of password storage are in the sibling lesson sd-14-003.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Password_Storage_Cheat_Sheet.md",
       "section": "Đọc hình: Bí mật",

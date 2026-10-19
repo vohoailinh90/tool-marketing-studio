@@ -17,6 +17,8 @@ Bài này là bản đồ cho người mới: mỗi điều có định nghĩa b
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
 - **ASVS** (Application Security Verification Standard) — tiêu chuẩn kiểm chứng an ninh ứng dụng: bộ yêu cầu an ninh của OWASP cho ứng dụng web.
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, tài liệu tra cứu công nghệ web của Mozilla và cộng đồng; bài dùng nó để đối chiếu.
+- **STRIDE** (Spoofing, Tampering, Repudiation, Information, Denial, Elevation) — mẹo nhớ sáu loại mối đe dọa về an ninh, mỗi chữ cái là chữ đầu của một loại: giả mạo (Spoofing), sửa đổi trái phép (Tampering), chối bỏ hành vi (Repudiation), lộ thông tin (Information disclosure), từ chối dịch vụ (Denial of service), nâng quyền (Elevation of privilege); OWASP và MDN dùng nó để gọi tên các loại mối đe dọa.
+- **LINDDUN** (Linking, Identifying, Non, Detecting, Data, Unawareness, Non) — mẹo nhớ bảy loại mối đe dọa về quyền riêng tư mà MDN nêu cùng STRIDE, mỗi chữ cái là chữ đầu của một loại: liên kết (Linking), nhận dạng (Identifying), không thể chối bỏ (Non-repudiation), phát hiện (Detecting), lộ dữ liệu (Data disclosure), thiếu nhận biết (Unawareness), không tuân thủ (Non-compliance).
 
 ## Đọc hình
 

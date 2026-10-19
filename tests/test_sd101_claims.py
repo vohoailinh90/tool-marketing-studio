@@ -129,6 +129,22 @@ class BoardTests(unittest.TestCase):
         self.assertEqual(["refs/remotes/origin/trunk:docs/sd101-assignments.md"], shown)
         self.assertEqual({"sd-01-001", "sd-01-002"}, reserved)
 
+    def test_a_board_that_is_not_valid_utf8_fails_closed(self) -> None:
+        broken = BOARD_TEXT.encode().replace(b"lesson", b"less\xffon", 1)
+        self.assertNotEqual(BOARD_TEXT.encode(), broken)
+
+        def fake_git(root, *args, check=True, data=None):
+            return subprocess.CompletedProcess(args, 0, broken, b"")
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(claims, "default_branch", lambda *a, **k: "main"), \
+                mock.patch.object(claims, "git", fake_git):
+            with self.assertRaisesRegex(claims.ClaimsError, "not valid UTF-8"):
+                claims.reserved_on_board(Path(tmp), "origin", False, "lesson")
+            (Path(tmp) / "docs").mkdir()
+            (Path(tmp) / claims.BOARD).write_bytes(broken)
+            with self.assertRaisesRegex(claims.ClaimsError, "not valid UTF-8"):
+                claims.reserved_on_board(Path(tmp), "origin", True, "lesson")
+
     def test_a_board_that_is_not_there_reserves_nothing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(set(), claims.reserved_on_board(Path(tmp), "origin", True, "lesson"))

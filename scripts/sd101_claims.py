@@ -892,11 +892,11 @@ def board_reservations(text: str, work: str) -> set[str]:
 def reserved_on_board(root: pathlib.Path, remote: str, offline: bool, work: str) -> set[str]:
     """What the assignment board reserves, in this checkout and on the remote's default branch together: `--next` leaves
     those ids to the sessions the board names, which claim them by id. A board that is missing reserves nothing; one that
-    is there but malformed raises ClaimsError (board_reservations)."""
-    texts = []
+    is there but malformed, or not valid UTF-8, raises ClaimsError (board_reservations)."""
+    boards = []
     local = root / BOARD
     if local.is_file():
-        texts.append(local.read_text(encoding="utf-8"))
+        boards.append(("this checkout", local.read_bytes()))
     if not offline:
         try:
             try:  # the branch the remote calls its default now: a cached origin/HEAD goes stale when it is renamed
@@ -905,9 +905,15 @@ def reserved_on_board(root: pathlib.Path, remote: str, offline: bool, work: str)
                 branch = default_branch(root, remote, ask=False)
             shown = git(root, "show", f"refs/remotes/{remote}/{branch}:{BOARD}", check=False)
             if shown.returncode == 0:
-                texts.append(shown.stdout.decode("utf-8", "replace"))
+                boards.append((f"{remote}/{branch}", shown.stdout))
         except ClaimsError:
             pass
+    texts = []
+    for where, data in boards:
+        try:  # a replaced byte could turn a reserving row into one that reserves nothing
+            texts.append(data.decode("utf-8"))
+        except UnicodeDecodeError as error:
+            raise ClaimsError(f"{BOARD} on {where} is not valid UTF-8 ({error}); fix it before claiming") from None
     return set().union(*(board_reservations(text, work) for text in texts))
 
 

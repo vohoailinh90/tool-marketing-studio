@@ -663,3 +663,7 @@ mutations:
   find: '            if "range" in header and "work" not in header:'
   replace: '            if False:'
   test: tests.test_sd101_claims.BoardTests.test_a_table_with_a_range_column_but_no_work_column_fails_closed
+- label: a board that is not valid UTF-8 is decoded with replacement and silently loses the rows it garbles
+  find: '            texts.append(data.decode("utf-8"))'
+  replace: '            texts.append(data.decode("utf-8", "replace"))'
+  test: tests.test_sd101_claims.BoardTests.test_a_board_that_is_not_valid_utf8_fails_closed

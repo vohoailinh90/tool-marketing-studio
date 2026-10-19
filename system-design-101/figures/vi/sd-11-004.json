@@ -1,0 +1,18 @@
+{
+  "id": "sd-11-004",
+  "title": "Bốn mức khôi phục thảm họa",
+  "subtitle": "Càng chạy sẵn, càng nhanh và càng đắt.",
+  "desc": "Hai khung. Khung một, bốn chiến lược xếp từ rẻ và chậm tới đắt và nhanh: sao lưu và khôi phục, đèn mồi, dự phòng ấm, hai vùng cùng chạy. Khung hai, hai mốc cần đặt trước khi chọn: RTO là thời gian chịu ngừng, RPO là lượng dữ liệu chịu mất.",
+  "sections": [
+    {"kind": "parts", "heading": "Từ rẻ tới đắt", "items": [
+      {"name": "Sao lưu", "role": "Giữ bản sao; dựng lại khi cần.", "icon": "hard-drive"},
+      {"name": "Đèn mồi", "role": "Chạy lõi dữ liệu, bật dần phần còn lại.", "icon": "zap"},
+      {"name": "Dự phòng ấm", "role": "Chạy sẵn bản thu nhỏ.", "icon": "server"},
+      {"name": "Hai vùng", "role": "Hai vùng cùng phục vụ.", "icon": "cloud"}
+    ], "flow": [[0, 1], [1, 2], [2, 3]]},
+    {"kind": "notes", "heading": "Đặt hai mốc trước", "items": [
+      "RTO: chịu ngừng tối đa bao lâu.",
+      "RPO: chịu mất dữ liệu mới của bao lâu.",
+      "Việc kinh doanh đặt mốc, rồi mới chọn mức."]}
+  ]
+}

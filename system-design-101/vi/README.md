@@ -323,6 +323,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 25. [Quản lý cấu hình và hạ tầng bằng mã: hai cách nhìn một việc](lessons/sd-11-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 26. [Event sourcing: lưu sự kiện thay vì trạng thái](lessons/sd-11-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 27. [Ứng dụng mười hai yếu tố: mười hai quy tắc gom thành ba nhóm](lessons/sd-11-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+34. [Chuyển hệ thống sang cloud native: sáu mảng việc cần phủ](lessons/sd-11-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+35. [Chi phí ẩn của đám mây: nhóm theo cách hóa đơn đếm](lessons/sd-11-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+36. [Hai thập kỷ đám mây: mỗi cột mốc đổi đường ranh giữa phần tự lo và phần thuê](lessons/sd-11-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+37. [Giảm chi phí đám mây: bốn đòn bẩy và thứ tự dùng chúng](lessons/sd-11-037/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+38. [Bảy mẫu hệ thống phân tán hay gặp: mỗi mẫu trả lời một vấn đề](lessons/sd-11-038/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 39. [Chọn bộ cân bằng tải trên đám mây: bốn ô và hai kiểu kết nối](lessons/sd-11-039/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 40. [AWS từ vài dịch vụ đến hơn hai trăm: đếm trong mã nguồn SDK](lessons/sd-11-040/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 41. [Azure theo mảng việc: mười một mảng và 266 nhà cung cấp tài nguyên](lessons/sd-11-041/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

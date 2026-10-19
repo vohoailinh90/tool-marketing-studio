@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1003" viewBox="0 0 320 1003" role="img" aria-labelledby="title desc">
+<title id="title">Mười bốn mẫu thiết kế, tìm trong Python</title>
+<desc id="desc">Ba khung. Khung một, tìm mười bốn mẫu trong thư viện chuẩn Python 3.13: chín mẫu có ví dụ rõ là bộ chuyển tiếp, thành phần, bộ trang trí, mặt tiền, mẫu dùng chung, đại diện, bộ lặp, bản lưu trạng thái và người thăm; hai mẫu gần đúng là lệnh và người quan sát; ba mẫu chưa tìm được là nhà máy trừu tượng, cầu nối và người trung gian. Khung hai, ba phép đo: bọc một hàm bằng bộ trang trí thêm khoảng 55 đến 60 nano giây mỗi lần gọi, đại diện yếu thêm khoảng 13 nano giây mỗi lần truy cập, dùng chung chuỗi giảm từ 53,3 triệu xuống 8,5 triệu byte. Khung ba, giới hạn của cách tìm.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1003" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười bốn mẫu thiết kế,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tìm trong Python</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chín mẫu có ví dụ rõ, hai gần đúng,</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">ba chưa tìm được.</text>
+<rect x="8" y="123" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mười bốn mẫu, ba kết quả</text>
+<rect x="20" y="168" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Rõ: chuyển tiếp, thành phần,</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang trí, mặt tiền, dùng</text>
+<text x="64" y="233.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung, đại diện, bộ lặp, lưu</text>
+<text x="64" y="252.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trạng thái, người thăm.</text>
+<rect x="20" y="278" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="301" r="11" fill="#16a34a"/>
+<polyline points="37.9,301.4 41.7,305.4 48.5,297" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="304.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gần đúng: lệnh, người quan</text>
+<text x="64" y="323.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sát.</text>
+<rect x="20" y="349" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="372" r="11" fill="#16a34a"/>
+<polyline points="37.9,372.4 41.7,376.4 48.5,368" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="375.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chưa tìm được: nhà máy</text>
+<text x="64" y="394.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trừu tượng, cầu nối, người</text>
+<text x="64" y="414.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trung gian.</text>
+<rect x="8" y="456" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="484.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba phép đo</text>
+<rect x="20" y="501" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="524" r="11" fill="#16a34a"/>
+<polyline points="37.9,524.4 41.7,528.4 48.5,520" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="527.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ trang trí: thêm 55 đến 60</text>
+<text x="64" y="546.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nano giây mỗi lần gọi.</text>
+<rect x="20" y="572" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="595" r="11" fill="#16a34a"/>
+<polyline points="37.9,595.4 41.7,599.4 48.5,591" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="598.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đại diện yếu: thêm 13 nano</text>
+<text x="64" y="617.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây mỗi lần truy cập.</text>
+<rect x="20" y="643" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="666" r="11" fill="#16a34a"/>
+<polyline points="37.9,666.4 41.7,670.4 48.5,662" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="669.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng chung chuỗi: 53,3</text>
+<text x="64" y="688.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xuống 8,5 triệu byte.</text>
+<rect x="8" y="730" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="758.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn</text>
+<rect x="20" y="775" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="798" r="11" fill="#16a34a"/>
+<polyline points="37.9,798.4 41.7,802.4 48.5,794" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="801.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi mẫu chỉ một ví dụ.</text>
+<rect x="20" y="829" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="852" r="11" fill="#16a34a"/>
+<polyline points="37.9,852.4 41.7,856.4 48.5,848" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="855.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không chứng minh tác giả</text>
+<text x="64" y="874.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chủ ý theo mẫu.</text>
+<rect x="20" y="900" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="923" r="11" fill="#16a34a"/>
+<polyline points="37.9,923.4 41.7,927.4 48.5,919" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="926.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba mẫu chưa tìm được</text>
+<text x="64" y="945.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không có nghĩa là Python</text>
+<text x="64" y="965.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không có.</text>
+</g>
+</svg>

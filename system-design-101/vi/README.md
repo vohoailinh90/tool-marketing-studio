@@ -214,6 +214,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 3. [Đọc một sơ đồ lớp UML](lessons/sd-08-003/lesson.md) — bài mới viết tại repo này (có phép quét mã riêng); chờ review kỹ thuật.
 4. [Prime Video gộp về một khối: khi ranh giới giữa các thành phần quá đắt](lessons/sd-08-004/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 5. [Dịch vụ nhỏ không phải đũa thần: khi nào một khối hợp hơn](lessons/sd-08-005/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+11. [Mười tám mẫu thiết kế của nguồn: mười bốn mẫu, tìm trong thư viện chuẩn của Python](lessons/sd-08-011/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+12. [Mười đánh đổi thiết kế hệ thống: bốn cặp thử được bằng một đoạn chương trình nhỏ](lessons/sd-08-012/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+13. [Chín thành phần của một ứng dụng dịch vụ nhỏ chạy thật, và cái giá của từng thành phần](lessons/sd-08-013/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+14. [Chín việc khi xây dịch vụ nhỏ: thiết kế cho lỗi, thử ba lớp bảo vệ trên một dịch vụ giả](lessons/sd-08-014/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+15. [Tám khái niệm của thiết kế hướng miền: bảy có chỗ đối chiếu, một kiểm bằng mã](lessons/sd-08-015/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 

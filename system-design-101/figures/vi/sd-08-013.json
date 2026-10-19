@@ -1,0 +1,36 @@
+{
+  "id": "sd-08-013",
+  "title": "Chín thành phần của dịch vụ nhỏ chạy thật",
+  "subtitle": "Mỗi thành phần thêm một cái giá, đo thử năm cái.",
+  "desc": "Ba khung. Khung một, chín thành phần của nguồn: cổng vào, sổ đăng ký dịch vụ, tầng dịch vụ, máy chủ cấp quyền, kho dữ liệu, bộ nhớ đệm phân tán, liên lạc bất đồng bộ, đo lường và gom nhật ký. Khung hai, năm cái giá đo trên một máy: tra sổ đăng ký mỗi lần gọi làm một lời gọi tốn 507 đến 559 micro giây thay vì 179 đến 206; kiểm chữ ký tại chỗ mất 1,8 micro giây còn hỏi máy chủ cấp quyền mất 192 đến 223; một lần đọc Redis mất 39 đến 40 micro giây còn đọc cơ sở dữ liệu trong cùng tiến trình mất 1 đến 5; đẩy việc vào hàng đợi trả lời sau 36 đến 40 micro giây thay vì 5,1 mili giây; một dòng nhật ký ra tệp mất 12 đến 13 micro giây. Khung ba, ba thành phần chưa đo.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Chín thành phần",
+      "items": [
+        "Cổng vào, sổ đăng ký, tầng dịch vụ, máy chủ cấp quyền.",
+        "Kho dữ liệu, bộ đệm phân tán, liên lạc bất đồng bộ.",
+        "Đo lường và gom nhật ký."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Năm cái giá đo được",
+      "items": [
+        "Tra sổ đăng ký mỗi lần: 507 đến 559 µs thay vì 179 đến 206.",
+        "Hỏi máy chủ cấp quyền: 192 đến 223 µs; kiểm tại chỗ: 1,8 (chỉ so thời gian).",
+        "Đọc Redis: 39 đến 40 µs; đọc trong tiến trình: 1 đến 5.",
+        "Đẩy vào hàng đợi: 36 đến 40 µs thay vì 5,1 ms.",
+        "Một dòng nhật ký ra tệp: 12 đến 13 µs."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Chưa đo",
+      "items": [
+        "Cổng vào, tầng dịch vụ, kho dữ liệu.",
+        "Đo lường chỉ đo chi phí tăng bộ đếm, không đo hệ thống vẽ biểu đồ."
+      ]
+    }
+  ]
+}

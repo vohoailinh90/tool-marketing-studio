@@ -14,6 +14,7 @@ Bài chỉ nói về bước thương lượng: phiên bản TLS, bộ mã, nhó
 - **AES** (Advanced Encryption Standard) — chuẩn mã hóa tiên tiến, thuật toán mã hóa đối xứng; 128 hay 256 là số bit bí mật của khóa.
 - **GCM** (Galois/Counter Mode) — chế độ Galois/Counter: cách dùng AES để mã hóa thông điệp dài hơn một khối.
 - **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành chuỗi cố định; SHA-256 là một loại.
+- **AEAD** (Authenticated Encryption with Associated Data) — mã hóa có xác thực kèm dữ liệu liên kết: một phép vừa mã hóa vừa gắn thẻ để phát hiện dữ liệu bị sửa; GCM là một chế độ như vậy.
 - **RSA** (Rivest-Shamir-Adleman) — thuật toán khóa công khai đặt theo ba tác giả, dùng để ký lẫn mã hóa.
 - **ECDHE** (Elliptic Curve Diffie-Hellman Ephemeral) — cách hai bên cùng tính ra khóa chung từ các khóa tạm thời trên đường cong elliptic.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng về bảo mật ứng dụng, có hướng dẫn mà bài dùng để đối chiếu.
@@ -22,7 +23,7 @@ Bài chỉ nói về bước thương lượng: phiên bản TLS, bộ mã, nhó
 
 **Khung 1 · Client đưa danh sách.** `ClientHello`, thông điệp đầu tiên của TLS, mang bốn danh sách. Với `openssl s_client -trace` mặc định, máy thử đưa ra 2 phiên bản (TLS 1.3, TLS 1.2); 31 mục bộ mã (3 của TLS 1.3, 27 của TLS 1.2, 1 mục tín hiệu đặc biệt); 10 nhóm khóa, `x25519` đứng đầu; 20 thuật toán chữ ký. Đó là danh sách của OpenSSL, không phải của trình duyệt.
 
-**Đọc tên bộ mã.** Theo tài liệu Mozilla, bộ mã gồm trao đổi khóa, xác thực, mã hóa dữ liệu và mã xác thực thông điệp: trong `ECDHE-RSA-AES128-GCM-SHA256` là ECDHE, RSA, AES-128 chế độ GCM và SHA-256 (hàm băm cho phần xác thực). Tên của TLS 1.3 ngắn hơn, như `TLS_AES_256_GCM_SHA384`: `openssl ciphers -v` in `Kx=any Au=any` cho chúng, và tài liệu OpenSSL dùng "any" khi bộ mã không buộc thuật toán trao đổi khóa hay xác thực nào, như ở TLS 1.3.
+**Đọc tên bộ mã.** Theo tài liệu Mozilla, bộ mã gồm trao đổi khóa, xác thực, mã hóa dữ liệu và mã xác thực thông điệp; tài liệu đó đọc `ECDHE-RSA-AES128-GCM-SHA256` là ECDHE, RSA, AES-128 chế độ GCM và SHA-256 làm mã xác thực. Đọc kỹ hơn: GCM là kiểu mã hóa có xác thực (AEAD), tự gắn thẻ phát hiện sửa cho từng bản ghi, nên `openssl ciphers -v` in `Mac=AEAD` cho bộ này, còn `Mac=SHA256` chỉ hiện ở bộ không dùng GCM như `ECDHE-RSA-AES128-SHA256` (đã chạy). Với bộ GCM, SHA-256 không phải mã xác thực của bản ghi mà là hàm băm dùng trong bắt tay: tài liệu OpenSSL nói hàm băm của bắt tay có thể khác hàm băm tính mã xác thực bản ghi. Tên của TLS 1.3 ngắn hơn, như `TLS_AES_256_GCM_SHA384`: `openssl ciphers -v` in `Kx=any Au=any` cho chúng, và tài liệu OpenSSL dùng "any" khi bộ mã không buộc thuật toán trao đổi khóa hay xác thực nào, như ở TLS 1.3.
 
 **Khung 1 · Máy chủ chọn.** Mỗi loại một mục:
 

@@ -76,10 +76,16 @@
       "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
     },
     {
-      "claim_vi": "MDN: a cipher suite is a combination of a key exchange algorithm, an authentication method, a bulk encryption cipher and a message authentication code; ECDHE_RSA_WITH_AES_128_GCM_SHA256 / ECDHE-RSA-AES128-GCM-SHA256 means ECDHE for key exchange, RSA for authentication, AES-128 with GCM as the cipher and mode, and SHA-256 as the HMAC.",
+      "claim_vi": "MDN: a cipher suite is a combination of a key exchange algorithm, an authentication method, a bulk encryption cipher and a message authentication code; ECDHE_RSA_WITH_AES_128_GCM_SHA256 / ECDHE-RSA-AES128-GCM-SHA256 means ECDHE for key exchange, RSA for authentication, AES-128 with GCM as the cipher and mode, and SHA-256 as the HMAC. The lesson reports this as MDN's reading and then corrects it for GCM suites (see the next claim).",
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cipher_suite/index.md",
       "section": "Đọc hình (Đọc tên bộ mã)",
       "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OpenSSL manual (SSL_CIPHER_get_name): SSL_CIPHER_get_digest_nid returns the digest of the MAC used for record encryption, and none for AEAD cipher suites (e.g. GCM, ChaCha20/Poly1305); SSL_CIPHER_get_handshake_digest returns the digest used during the handshake, which may differ from the digest used to calculate the MAC for encrypted records; the Mac field of openssl ciphers -v is the message digest, as in Mac=AEAD for ECDHE-RSA-AES256-GCM-SHA256. Observed with openssl 3.0.13: openssl ciphers -v printed Mac=AEAD for ECDHE-RSA-AES128-GCM-SHA256 and for the three TLS 1.3 suites, and Mac=SHA256 for ECDHE-RSA-AES128-SHA256 (not GCM). So in a GCM suite name the SHA-256 is not the record MAC; the lesson calls it the handshake digest, following the manual, and does not go further into its role.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man3/SSL_CIPHER_get_name.pod",
+      "section": "Đọc hình (Đọc tên bộ mã)",
+      "verified_by": "Manual page read at the pinned commit (raw.githubusercontent.com); output observed by running openssl ciphers -v locally (openssl 3.0.13)."
     },
     {
       "claim_vi": "MDN: public-key encryption systems are typically much slower than symmetric algorithms and the size of the messages they can encrypt is proportional to the key size, so they do not scale to long messages; it is common to encrypt messages with a symmetric algorithm and encrypt the symmetric key with a public-key system. MDN defines encryption as public key encrypts, private key decrypts. The 'goes only one way' argument of the source does not appear on the MDN pages read.",
@@ -161,7 +167,8 @@
     "The source says the server hello lets the browser know whether it can support the algorithms and TLS version; the lesson says the ServerHello names the single choice made and that, when there is no common option, the server sends a fatal alert instead.",
     "The source says a hijacker only gets 'binary code'; the lesson names the three properties MDN lists (encryption, integrity, authentication) instead.",
     "The source's 'security' reason for switching to symmetric encryption (asymmetric encryption goes only one way) is not in the MDN or OWASP pages read and is not used; the lesson reports only the MDN reasons (speed and message size).",
-    "The source says nothing about what happens when client and server share no version, cipher suite, group or signature algorithm; the lesson shows the alert and the log lines for each case."
+    "The source says nothing about what happens when client and server share no version, cipher suite, group or signature algorithm; the lesson shows the alert and the log lines for each case.",
+    "MDN's cipher suite glossary reads SHA-256 in ECDHE-RSA-AES128-GCM-SHA256 as the HMAC (message authentication code); for a GCM suite the record authentication is done by GCM itself (openssl ciphers -v prints Mac=AEAD), and the OpenSSL manual describes the digest in the name as the handshake digest, so the lesson says so instead of repeating MDN's reading."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

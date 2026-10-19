@@ -160,7 +160,7 @@
       "verified_by": "Author's general knowledge for the consent part; not checked against any Fiddler documentation. Fiddler was not run."
     },
     {
-      "claim_vi": "Not examined: real browsers and operating-system trust stores, certificate revocation, Certificate Transparency, HSTS behaviour, name-constrained CAs, how routing of traffic to a proxy is done in practice, and what happens if the relay skips validation of the real server's certificate.",
+      "claim_vi": "Not examined: real browsers and operating-system trust stores, certificate revocation, Certificate Transparency, HSTS behaviour, name-constrained CAs, expired or not-yet-valid certificates, key usage and other path constraints (the experiment used one valid test certificate per name, so the lesson says trusting a CA makes its certificates acceptable only if the remaining certificate checks also pass), how routing of traffic to a proxy is done in practice, and what happens if the relay skips validation of the real server's certificate.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-https-safe.md",
       "section": "Giới hạn cần nhớ",
       "verified_by": "Not examined."

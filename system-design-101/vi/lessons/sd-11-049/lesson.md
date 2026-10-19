@@ -1,4 +1,4 @@
-# Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang "dịch vụ khác" chứa gần một phần ba
+# Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang "dịch vụ khác" chứa gần một phần ba số dòng ghép dịch vụ
 
 **Bài nguồn giới thiệu một tờ hướng dẫn bằng hình để tìm đường trong rất nhiều dịch vụ AWS; nội dung nằm trong ảnh và bài này không đọc ảnh. Thay vào đó, bài hỏi một câu đếm được: khi Microsoft phải xếp các dịch vụ AWS vào những trang để người đến từ AWS tìm lại, họ chia thế nào? Trong 194 dòng ghép dịch vụ, 63 dòng nằm ở các bảng "dịch vụ khác" của trang giới thiệu: gần một phần ba.**
 Đó là cách Microsoft chia, không phải cách AWS chia, và phép đếm không đo số dịch vụ của AWS.
@@ -43,7 +43,7 @@ Tự thử: chọn ba dịch vụ bạn biết, đoán trang nào sẽ chứa ch
 <details>
 <summary>Xem chương trình đếm và kết quả</summary>
 
-Chạy `python3 count.py <thư mục docs/aws-professional>` trên bản clone commit `8e2c239`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho.
+Lưu mã dưới đây vào một tệp tên `count.py`, rồi chạy `python3 count.py <thư mục docs/aws-professional>` trên bản clone commit `8e2c239`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho.
 
 ```python
 import re, glob, collections, sys

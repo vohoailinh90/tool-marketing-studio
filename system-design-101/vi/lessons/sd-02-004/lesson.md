@@ -34,7 +34,7 @@ Một người lấy được toàn bộ dữ liệu của một máy chủ Tele
 <summary>Xem đáp án</summary>
 
 Chat thường: chưa, vì theo nguồn tin và chìa khóa đều bị chia nhỏ ra nhiều nước, nên họ còn phải lấy các mảnh ở nơi khác. Khó, nhưng không phải không thể.
-Secret chat: không, vì máy chủ chỉ giữ dữ liệu đã mã hóa và không có chìa khóa; chìa khóa chỉ nằm trên hai máy của người gửi và người nhận.
+Secret chat: không, vì máy chủ chỉ chuyển tiếp dữ liệu đã mã hóa và không có chìa khóa; chìa khóa chỉ nằm trên hai máy của người gửi và người nhận.
 
 </details>
 

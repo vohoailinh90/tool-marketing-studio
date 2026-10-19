@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="889" viewBox="0 0 320 889" role="img" aria-labelledby="title desc">
+<title id="title">Đường ống dữ liệu lớn</title>
+<desc id="desc">Ba khung. Khung một, năm chặng: thu thập, hồ dữ liệu, tính toán, kho dữ liệu, trình bày. Khung hai, các dịch vụ bài nguồn nêu: AWS dùng Kinesis, S3, EMR, Redshift, QuickSight; Azure dùng Event Hubs, Data Lake Store, Databricks, Cosmos DB, Power BI; Google Cloud dùng PubSub, Cloud Storage, DataProc và DataFlow, BigQuery, Data Studio. Khung ba, kiểm bằng hai trang của Microsoft: bảy trên mười phép ghép khớp; ba phép lệch là Cloud Storage với Data Lake Store, và hai phép kho dữ liệu với Cosmos DB.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="889" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Đường ống dữ liệu lớn</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Năm chặng, và bảng nguồn thử với</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bảng Microsoft.</text>
+<rect x="8" y="99" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm chặng</text>
+<rect x="20" y="144" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="167" r="11" fill="#16a34a"/>
+<polyline points="37.9,167.4 41.7,171.4 48.5,163" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="170.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thu thập, rồi hồ dữ liệu.</text>
+<rect x="20" y="198" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="221" r="11" fill="#16a34a"/>
+<polyline points="37.9,221.4 41.7,225.4 48.5,217" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="224.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính toán, rồi kho dữ liệu.</text>
+<rect x="20" y="252" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="275" r="11" fill="#16a34a"/>
+<polyline points="37.9,275.4 41.7,279.4 48.5,271" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="278.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cuối cùng là trình bày.</text>
+<rect x="8" y="322" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="350.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nguồn nêu</text>
+<rect x="20" y="367" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="390" r="11" fill="#16a34a"/>
+<polyline points="37.9,390.4 41.7,394.4 48.5,386" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="393.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">AWS: Kinesis, S3, EMR,</text>
+<text x="64" y="412.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redshift, QuickSight.</text>
+<rect x="20" y="438" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="461" r="11" fill="#16a34a"/>
+<polyline points="37.9,461.4 41.7,465.4 48.5,457" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="464.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Azure: Event Hubs, Data</text>
+<text x="64" y="483.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lake Store, Databricks,</text>
+<text x="64" y="503.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cosmos DB, Power BI.</text>
+<rect x="20" y="529" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="552" r="11" fill="#16a34a"/>
+<polyline points="37.9,552.4 41.7,556.4 48.5,548" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="555.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Google Cloud: PubSub, Cloud</text>
+<text x="64" y="574.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Storage, DataProc,</text>
+<text x="64" y="594.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">BigQuery.</text>
+<rect x="8" y="636" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="664.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kiểm bằng Microsoft</text>
+<rect x="20" y="681" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="704" r="11" fill="#16a34a"/>
+<polyline points="37.9,704.4 41.7,708.4 48.5,700" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="707.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">7 trên 10 phép ghép khớp.</text>
+<rect x="20" y="735" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="758" r="11" fill="#16a34a"/>
+<polyline points="37.9,758.4 41.7,762.4 48.5,754" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="761.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệch: Cloud Storage với Data</text>
+<text x="64" y="780.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lake Store.</text>
+<rect x="20" y="806" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="829" r="11" fill="#16a34a"/>
+<polyline points="37.9,829.4 41.7,833.4 48.5,825" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="832.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệch: kho dữ liệu với Cosmos</text>
+<text x="64" y="851.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DB, cả hai bên.</text>
+</g>
+</svg>

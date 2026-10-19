@@ -1,0 +1,10 @@
+{
+  "id": "sd-11-046",
+  "title": "Cloud native là gì",
+  "subtitle": "Bốn mặt của nguồn, và định nghĩa CNCF đổi ra sao.",
+  "desc": "Hai khung. Khung một, bốn mặt theo bài nguồn: quy trình phát triển đi từ thác nước sang agile rồi DevOps; kiến trúc đi từ khối đơn sang vi dịch vụ; đóng gói và triển khai đi từ máy chủ vật lý sang máy ảo rồi container; hạ tầng đi từ tự chủ máy sang chạy trên hạ tầng đám mây. Khung hai, định nghĩa của CNCF: bản 1.0 duyệt năm 2018 nêu năm công nghệ ví dụ và ba đặc tính; bản 1.1 duyệt năm 2024 nêu bảy công nghệ ví dụ, năm đặc tính và nói rõ danh sách chưa đầy đủ.",
+  "sections": [
+    {"kind": "notes", "heading": "Bốn mặt theo nguồn", "items": ["Quy trình: thác nước, agile, DevOps.", "Kiến trúc: khối đơn sang vi dịch vụ.", "Đóng gói: máy vật lý, máy ảo, container.", "Hạ tầng: tự quản sang trên đám mây."]},
+    {"kind": "notes", "heading": "Định nghĩa CNCF", "items": ["1.0 (2018): 5 công nghệ ví dụ, 3 đặc tính.", "1.1 (2024): 7 công nghệ ví dụ, 5 đặc tính.", "1.1 nói rõ: danh sách chưa đầy đủ."]}
+  ]
+}

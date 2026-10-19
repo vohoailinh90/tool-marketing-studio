@@ -322,6 +322,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 41. [Azure theo mảng việc: mười một mảng và 266 nhà cung cấp tài nguyên](lessons/sd-11-041/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 42. [Mười lăm khái niệm khi thiết kế hệ thống: chia theo việc, và đếm xem tài liệu ôn thi nói gì](lessons/sd-11-042/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 43. [CAP, BASE, SOLID, KISS: bốn từ viết tắt, và một thử nghiệm với CAP](lessons/sd-11-043/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+44. [Khung thảo luận thiết kế hệ thống: mười ba mục xếp thành ba loại, và hai câu hỏi khung không nêu](lessons/sd-11-044/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Tính sẵn sàng cao: ba kiểu hai nút, và phép tính khi nút hỏng cùng lúc](lessons/sd-11-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Cloud native là gì: bốn mặt của bài nguồn, và định nghĩa CNCF đã đổi từ bản 1.0 sang 1.1](lessons/sd-11-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+47. [So sánh ba đám mây qua một điểm chung: đếm hai bài so sánh của Microsoft](lessons/sd-11-047/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+48. [Đường ống dữ liệu lớn trên ba đám mây: năm chặng, và kiểm bảng nguồn bằng bảng của Microsoft](lessons/sd-11-048/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Hệ thống hoạt động thế nào?
 

@@ -1,0 +1,11 @@
+{
+  "id": "sd-11-047",
+  "title": "So sánh ba đám mây",
+  "subtitle": "Azure làm điểm chung giữa hai trang so sánh.",
+  "desc": "Ba khung. Khung một, bài nguồn: một ảnh so sánh dịch vụ bản 2023 và một dòng giới thiệu, ảnh không được đọc. Khung hai, hai trang so sánh của Microsoft: trang cho người dùng AWS có 194 dòng ghép dịch vụ và 203 tên dịch vụ Azure khác nhau; trang cho người dùng Google Cloud có 140 dòng và 146 tên. Khung ba, Azure làm điểm chung: 58 dịch vụ Azure xuất hiện ở cả hai trang; ví dụ Azure Event Hubs ghép với Kinesis Data Streams và với Cloud Pub/Sub, nhưng mỗi cặp chỉ gần tương đương.",
+  "sections": [
+    {"kind": "notes", "heading": "Bài nguồn", "items": ["Một ảnh so sánh bản 2023.", "Ảnh không được đọc trong bài này."]},
+    {"kind": "notes", "heading": "Hai trang của Microsoft", "items": ["Cho người dùng AWS: 194 dòng, 203 tên Azure.", "Cho người dùng Google Cloud: 140 dòng, 146 tên Azure."]},
+    {"kind": "notes", "heading": "Azure làm điểm chung", "items": ["58 dịch vụ Azure có ở cả hai trang.", "Event Hubs: ghép với Kinesis và với Pub/Sub.", "Mỗi cặp chỉ gần tương đương."]}
+  ]
+}

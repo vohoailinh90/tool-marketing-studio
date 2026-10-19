@@ -1,6 +1,6 @@
 # Mười tám mẫu thiết kế của nguồn: mười bốn mẫu, tìm trong thư viện chuẩn của Python
 
-**Bài nguồn là một hình liệt kê mười tám mẫu thiết kế, mỗi mẫu có một biệt danh ngắn ("Family Creator", "Universal Plug", "Time Capsule"...). Bài này lấy mười bốn mẫu trong số đó (bỏ bốn mẫu đã có bài riêng trong nhóm này) rồi tìm từng mẫu trong thư viện chuẩn Python 3.13: chín mẫu có ví dụ rõ, hai gần đúng, ba chưa tìm được, kèm ba phép đo cho thấy mỗi mẫu tốn hay tiết kiệm gì.**
+**Bài nguồn là một hình liệt kê mười tám mẫu thiết kế, mỗi mẫu có một biệt danh ngắn ("Family Creator", "Universal Plug", "Time Capsule"...). Bài này lấy mười bốn mẫu trong số đó (không xét bốn mẫu còn lại: Builder, Prototype, Singleton và Chain of Responsibility; bài này không nói gì về chúng) rồi tìm từng mẫu trong thư viện chuẩn Python 3.13: chín mẫu có ví dụ rõ, hai gần đúng, ba chưa tìm được, kèm ba phép đo cho thấy mỗi mẫu tốn hay tiết kiệm gì.**
 
 ![Ba khung. Khung một, tìm mười bốn mẫu trong thư viện chuẩn Python 3.13: chín mẫu có ví dụ rõ là bộ chuyển tiếp, thành phần, bộ trang trí, mặt tiền, mẫu dùng chung, đại diện, bộ lặp, bản lưu trạng thái và người thăm; hai mẫu gần đúng là lệnh và người quan sát; ba mẫu chưa tìm được là nhà máy trừu tượng, cầu nối và người trung gian. Khung hai, ba phép đo: bọc một hàm bằng bộ trang trí thêm khoảng 55 đến 60 nano giây mỗi lần gọi, đại diện yếu thêm khoảng 13 nano giây mỗi lần truy cập, dùng chung chuỗi giảm từ 53,3 triệu xuống 8,5 triệu byte. Khung ba, giới hạn của cách tìm.](../../diagrams/sd-08-011-main.svg)
 

@@ -79,7 +79,7 @@
   ],
   "design_notes_vi": "Ba khung: mười bốn mẫu chia ba kết quả, ba phép đo, giới hạn.",
   "source_deviations": [
-    "The source is a picture with eighteen nicknames; the lesson keeps fourteen (four have their own lesson), looks each up in the Python standard library, labels three as not found and two as approximate.",
+    "The source is a picture with eighteen nicknames; the lesson keeps fourteen (the other four - Builder, Prototype, Singleton, Chain of Responsibility - are not covered here), looks each up in the Python standard library, labels three as not found and two as approximate.",
     "The lesson adds experiments the source does not contain."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

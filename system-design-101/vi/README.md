@@ -337,6 +337,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 8. [Quốc tế hóa một website bán hàng: năm mảng, và những chỗ máy làm giúp](lessons/sd-12-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 9. [Soạn thảo chung theo thời gian thực: vì sao cần biến đổi thao tác](lessons/sd-12-009/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 10. [Ví, sổ cái và tệp quyết toán: ba nơi giữ số tiền phải khớp nhau](lessons/sd-12-010/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng; cùng nguồn với sd-07-012 nhưng khác góc nhìn); chờ review kỹ thuật.
+11. [Nền tảng thử nghiệm A/B: chia nhóm, ghi nhận, phân tích và ba chỗ dễ sai](lessons/sd-12-011/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+12. [Bản đồ trực tuyến đơn giản hóa: ô bản đồ, vị trí và dẫn đường](lessons/sd-12-012/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+13. [Chat một-một: vì sao tin nhắn cần mã thứ tự và đường đi cho người ngoại tuyến](lessons/sd-12-013/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+14. [Một lệnh đi qua sàn chứng khoán: đường găng và khớp lệnh lặp lại được](lessons/sd-12-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+15. [Thông báo đẩy tới điện thoại: thẻ đăng ký, hàng đợi và việc dọn thẻ cũ](lessons/sd-12-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 

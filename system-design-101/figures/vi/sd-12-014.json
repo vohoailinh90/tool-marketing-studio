@@ -1,0 +1,43 @@
+{
+  "id": "sd-12-014",
+  "title": "Một lệnh đi qua sàn chứng khoán",
+  "subtitle": "Luồng giao dịch là đường găng; khớp lệnh phải lặp lại được.",
+  "desc": "Hai khung. Khung một, đường đi của một lệnh: khách đặt lệnh qua công ty môi giới, công ty gửi lệnh tới sàn, cổng khách hàng kiểm tra đầu vào, giới hạn tốc độ và xác thực, người quản lý lệnh kiểm tra rủi ro và số dư, bộ khớp lệnh khớp mua với bán và phát hai bản thực hiện, kết quả trả về cho khách. Khung hai, vì sao thứ tự quan trọng: lệnh và kết quả đều được đánh số thứ tự để phát lại ra đúng kết quả cũ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường đi của một lệnh",
+      "items": [
+        {
+          "title": "Khách đặt lệnh",
+          "text": "Qua công ty môi giới."
+        },
+        {
+          "title": "Cổng khách hàng",
+          "text": "Kiểm tra đầu vào, xác thực."
+        },
+        {
+          "title": "Quản lý lệnh",
+          "text": "Kiểm tra rủi ro và số dư."
+        },
+        {
+          "title": "Khớp lệnh",
+          "text": "Phát hai bản thực hiện."
+        },
+        {
+          "title": "Trả kết quả",
+          "text": "Về cho khách."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Vì sao đánh số thứ tự",
+      "items": [
+        "Phát lại cùng dãy lệnh thì ra cùng kết quả.",
+        "Đổi chỗ hai lệnh có thể đổi người được khớp.",
+        "Chỉ luồng giao dịch nằm trên đường găng."
+      ]
+    }
+  ]
+}

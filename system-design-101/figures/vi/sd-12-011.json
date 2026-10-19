@@ -1,0 +1,39 @@
+{
+  "id": "sd-12-011",
+  "title": "Nền tảng thử nghiệm A/B",
+  "subtitle": "Bốn phần, và ba chỗ dễ làm sai kết quả.",
+  "desc": "Hai khung. Khung một, bốn phần của nền tảng thử nghiệm: định nghĩa và quản lý thử nghiệm, triển khai và chia nhóm, ghi nhận sự kiện, phân tích kết quả. Khung hai, ba chỗ dễ sai: chia nhóm phải ổn định và không tương quan giữa các thử nghiệm, số người mỗi nhóm phải đúng tỷ lệ đã định, và không nhìn kết quả giữa chừng để dừng sớm.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Bốn phần của nền tảng",
+      "items": [
+        {
+          "title": "Định nghĩa",
+          "text": "Tạo và quản lý thử nghiệm trên giao diện."
+        },
+        {
+          "title": "Triển khai",
+          "text": "Chia người dùng vào nhóm."
+        },
+        {
+          "title": "Ghi nhận",
+          "text": "Lưu sự kiện của từng người."
+        },
+        {
+          "title": "Phân tích",
+          "text": "So sánh hai nhóm."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba chỗ dễ sai",
+      "items": [
+        "Chia nhóm ổn định, và không tương quan giữa các thử nghiệm.",
+        "Kiểm tra số người mỗi nhóm có đúng tỷ lệ không.",
+        "Không dừng sớm chỉ vì thấy kết quả đẹp."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "sd-12-011",
+  "title_vi": "Nền tảng thử nghiệm A/B: chia nhóm, ghi nhận, phân tích và ba chỗ dễ sai",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-12-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/possible-experiment-platform-architecture.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from raw.githubusercontent.com at the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6f316a8e7917404dfb82b4db5d92e75a041f6df9",
+    "retrieved_body_sha256": "068230a153ca54dc5df3dae3e5bf9f421e72ab21d1a841152b9fe69ea72bb1df",
+    "retrieved_body_bytes": 1181
+  },
+  "diagram": "../diagrams/sd-12-011-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists four high-level components of a possible experiment platform, taken from the book Trustworthy Online Controlled Experiments: experiment definition, setup and management via a UI stored in the experiment system configuration; experiment deployment to server and client side including variant assignment and parameterization; experiment instrumentation; experiment analysis.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md",
+      "section": "Key Components",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Own experiment, 2026-10-19, Python 3 standard library: sha256 of 'experiment:user' modulo 1000 assigned 100,000 users 50,190 to A and 49,810 to B; repeat calls were stable; two experiments with different names gave cells of 25,045 / 25,145 / 24,734 / 25,076, while two with the same name gave only A-A and B-B.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md",
+      "section": "Thử nghiệm: chia nhóm bằng băm",
+      "verified_by": "Script run in the session; results copied from output."
+    },
+    {
+      "claim_vi": "Own experiment, chi-square sample ratio mismatch check at a 50/50 design: 50,190 vs 49,810 gave p about 0.23; 50,400 vs 49,600 gave p about 0.011; 50,000 vs 48,500 gave p about 0.0000018.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md",
+      "section": "Thử nghiệm: lệch tỷ lệ",
+      "verified_by": "Script run in the session; results copied from output."
+    },
+    {
+      "claim_vi": "Own experiment, A/A with true rate 10% and 2,000 users per arm: the two-proportion z-test at p < 0.05 reported a difference in 48 of 1,000 runs; looking ten times (every 500 per arm up to 5,000) and stopping at the first p < 0.05 gave 83 of 500; with a true lift 10% to 11% it detected 47 of 300 at 2,000 per arm and 269 of 300 at 20,000 per arm.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md",
+      "section": "Thử nghiệm: nhìn giữa chừng",
+      "verified_by": "Script run in the session with a fixed random seed; results copied from output."
+    },
+    {
+      "claim_vi": "The explanation of hash-based assignment, sample ratio mismatch and peeking is the author's general knowledge of online experimentation, not matched against the book.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/possible-experiment-platform-architecture.md",
+      "section": "Explanation",
+      "verified_by": "Author's general knowledge, not checked against the primary document in this session (the egress proxy allows GitHub only)."
+    }
+  ],
+  "design_notes_vi": "Khung một là bốn bước của nền tảng; khung hai là ba chỗ dễ sai. Ba thí nghiệm nằm trong bài.",
+  "source_deviations": [
+    "The source only lists four components; the lesson keeps them and adds three experiments (hash assignment, sample ratio mismatch, peeking).",
+    "The book the source quotes was not available in this session, so the extra statements are the author's own and are labelled so."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W19), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

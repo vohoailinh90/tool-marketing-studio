@@ -1,0 +1,11 @@
+{
+  "id": "sd-11-048",
+  "title": "Đường ống dữ liệu lớn",
+  "subtitle": "Năm chặng, và bảng nguồn thử với bảng Microsoft.",
+  "desc": "Ba khung. Khung một, năm chặng: thu thập, hồ dữ liệu, tính toán, kho dữ liệu, trình bày. Khung hai, các dịch vụ bài nguồn nêu: AWS dùng Kinesis, S3, EMR, Redshift, QuickSight; Azure dùng Event Hubs, Data Lake Store, Databricks, Cosmos DB, Power BI; Google Cloud dùng PubSub, Cloud Storage, DataProc và DataFlow, BigQuery, Data Studio. Khung ba, kiểm bằng hai trang của Microsoft: bảy trên mười phép ghép khớp; ba phép lệch là Cloud Storage với Data Lake Store, và hai phép kho dữ liệu với Cosmos DB.",
+  "sections": [
+    {"kind": "notes", "heading": "Năm chặng", "items": ["Thu thập, rồi hồ dữ liệu.", "Tính toán, rồi kho dữ liệu.", "Cuối cùng là trình bày."]},
+    {"kind": "notes", "heading": "Nguồn nêu", "items": ["AWS: Kinesis, S3, EMR, Redshift, QuickSight.", "Azure: Event Hubs, Data Lake Store, Databricks, Cosmos DB, Power BI.", "Google Cloud: PubSub, Cloud Storage, DataProc, BigQuery."]},
+    {"kind": "notes", "heading": "Kiểm bằng Microsoft", "items": ["7 trên 10 phép ghép khớp.", "Lệch: Cloud Storage với Data Lake Store.", "Lệch: kho dữ liệu với Cosmos DB, cả hai bên."]}
+  ]
+}

@@ -222,6 +222,26 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Đám mây và hệ thống phân tán
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+44. [Khung thảo luận thiết kế hệ thống: mười ba mục xếp thành ba loại, và hai câu hỏi khung không nêu](lessons/sd-11-044/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Tính sẵn sàng cao: ba kiểu hai nút, và phép tính khi nút hỏng cùng lúc](lessons/sd-11-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Tính sẵn sàng cao: ba kiểu hai nút, và phép tính khi nút hỏng cùng lúc](lessons/sd-11-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Tính sẵn sàng cao: ba kiểu hai nút, và phép tính khi nút hỏng cùng lúc](lessons/sd-11-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Tính sẵn sàng cao: ba kiểu hai nút, và phép tính khi nút hỏng cùng lúc](lessons/sd-11-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Tính sẵn sàng cao: ba kiểu hai nút, và phép tính khi nút hỏng cùng lúc](lessons/sd-11-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Cloud native là gì: bốn mặt của bài nguồn, và định nghĩa CNCF đã đổi từ bản 1.0 sang 1.1](lessons/sd-11-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Cloud native là gì: bốn mặt của bài nguồn, và định nghĩa CNCF đã đổi từ bản 1.0 sang 1.1](lessons/sd-11-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Cloud native là gì: bốn mặt của bài nguồn, và định nghĩa CNCF đã đổi từ bản 1.0 sang 1.1](lessons/sd-11-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Cloud native là gì: bốn mặt của bài nguồn, và định nghĩa CNCF đã đổi từ bản 1.0 sang 1.1](lessons/sd-11-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+47. [So sánh ba đám mây qua một điểm chung: đếm hai bài so sánh của Microsoft](lessons/sd-11-047/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+47. [So sánh ba đám mây qua một điểm chung: đếm hai bài so sánh của Microsoft](lessons/sd-11-047/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+47. [So sánh ba đám mây qua một điểm chung: đếm hai bài so sánh của Microsoft](lessons/sd-11-047/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+48. [Đường ống dữ liệu lớn trên ba đám mây: năm chặng, và kiểm bảng nguồn bằng bảng của Microsoft](lessons/sd-11-048/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+48. [Đường ống dữ liệu lớn trên ba đám mây: năm chặng, và kiểm bảng nguồn bằng bảng của Microsoft](lessons/sd-11-048/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
@@ -330,7 +350,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế (còn sd-02-030) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) →
 Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
-Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+Đám mây và hệ thống phân tán (đã viết một phần) → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

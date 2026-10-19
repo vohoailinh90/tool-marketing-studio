@@ -1,0 +1,88 @@
+{
+  "id": "sd-14-029",
+  "lang": "vi",
+  "title": "Chọn luồng OAuth theo người có mặt",
+  "subtitle": "Ai có mặt, và ứng dụng giữ kín được bí mật không?",
+  "desc": "Hai khung. Khung một, bốn thẻ luồng OAuth: mã ủy quyền kèm PKCE là mặc định khi có người dùng; client credentials khi không có người dùng, dịch vụ tự lấy token; implicit để token nằm trên địa chỉ chuyển hướng, nên bỏ; luồng mật khẩu đưa mật khẩu người dùng cho ứng dụng, không dùng. Khung hai: ứng dụng xin mã kèm challenge và nhận mã; kẻ trộm mã thiếu verifier bị từ chối; ứng dụng gửi mã cùng verifier thì nhận token.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn luồng, bốn tình huống",
+      "items": [
+        {
+          "name": "Mã ủy quyền + PKCE",
+          "role": "Có người dùng; mật khẩu gõ ở máy chủ ủy quyền. Mặc định.",
+          "icon": "user"
+        },
+        {
+          "name": "Client credentials",
+          "role": "Không có người dùng; dịch vụ tự lấy token.",
+          "icon": "server"
+        },
+        {
+          "name": "Implicit",
+          "role": "Token nằm trên địa chỉ chuyển hướng. Bỏ.",
+          "icon": "triangle-alert"
+        },
+        {
+          "name": "Luồng mật khẩu",
+          "role": "Ứng dụng cầm mật khẩu người dùng. Không dùng.",
+          "icon": "key-round"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "PKCE: mã bị trộm thì vô dụng",
+      "actors": [
+        {
+          "name": "Ứng dụng",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Máy chủ ủy quyền",
+          "icon": "shield-check"
+        },
+        {
+          "name": "Kẻ trộm",
+          "icon": "bug"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Xin mã + challenge"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Mã",
+          "reply": true
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Mã trộm, thiếu verifier"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Từ chối",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Mã + verifier"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Token",
+          "reply": true
+        }
+      ]
+    }
+  ]
+}

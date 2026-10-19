@@ -49,7 +49,7 @@ Dijkstra tìm đường có tổng trọng số nhỏ nhất, không phải ít 
 
 Sắp xếp, RSA (`pow` với ba tham số), Huffman (tự viết bằng `heapq`) và SHA chạy bằng thư viện chuẩn của Python 3.13. Dijkstra chạy bằng NetworkX, phân tích thừa số bằng SymPy; PageRank là vòng lặp công thức với hệ số 0,85 và 100 lần lặp. Khi nhiều chữ cùng tần số (c và d, b và r), mã gán cho chúng có thể khác tùy cách chọn, nhưng tổng độ dài vẫn là 23 bit; đó là tổng nhỏ nhất của một bộ mã tiền tố cho chuỗi này (kiến thức chung của người biên soạn).
 
-Chín thuật toán này không cùng loại: sắp xếp, Dijkstra và Huffman là thuật toán cổ điển cho một bài toán rõ ràng; RSA và SHA dựa vào toán học của số và hàm một chiều; Transformer và CNN là kiến trúc mô hình cần huấn luyện. Vì vậy "chạy một ví dụ nhỏ" làm được với bảy thuật toán đầu (sắp xếp, Dijkstra, PageRank, RSA, phân tích thừa số, Huffman và SHA), còn Transformer và CNN chỉ đọc từ tài liệu vì cần huấn luyện.
+Chín thuật toán này không cùng loại: sắp xếp, Dijkstra và Huffman là thuật toán cổ điển cho một bài toán rõ ràng; RSA và SHA dựa vào toán học của số và hàm một chiều; Transformer và CNN là kiến trúc mô hình học máy, thường được huấn luyện trên dữ liệu rồi mới dùng. Vì vậy "chạy một ví dụ nhỏ" làm được với bảy thuật toán đầu (sắp xếp, Dijkstra, PageRank, RSA, phân tích thừa số, Huffman và SHA), còn Transformer và CNN bài chỉ đọc từ tài liệu, không chạy, vì chúng cần cài thư viện PyTorch nằm ngoài phạm vi của bài (về nguyên tắc vẫn chạy thử được một lớp nhỏ).
 
 </details>
 

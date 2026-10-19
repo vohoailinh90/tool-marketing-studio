@@ -3,7 +3,7 @@
 **Hai tiến trình trên cùng một máy muốn trao đổi dữ liệu thì phải nhờ nhân hệ điều hành mở đường, và Linux có năm đường quen thuộc: ống dẫn, hàng đợi thông điệp, tín hiệu, semaphore và bộ nhớ chia sẻ.**
 Bài này nói mỗi đường dùng để làm gì, rồi đo thử: cái khiến một lần trao đổi chậm thường không phải là cách chọn mà là việc đánh thức tiến trình đang ngủ.
 
-![Hai khung. Khung một, năm cách: ống dẫn là dòng byte một chiều; hàng đợi thông điệp giữ từng thông điệp có độ ưu tiên; tín hiệu chỉ báo một sự kiện, không mang dữ liệu; semaphore là một con số để chờ và báo; bộ nhớ chia sẻ là vùng nhớ cả hai cùng thấy. Khung hai, thử 100.000 vòng đi về một byte giữa hai tiến trình: hai tiến trình ở hai lõi mất khoảng 23 đến 33 micro giây mỗi vòng với ống dẫn, socket, hàng đợi, semaphore và tín hiệu; bộ nhớ chia sẻ mà bên kia liên tục nhìn vào một cờ chỉ mất 0,4 micro giây. Khi hai tiến trình chung một lõi thì mọi cách chỉ mất 1,5 đến 5,6 micro giây.](../../diagrams/sd-08-001-main.svg)
+![Hai khung. Khung một, năm cách: ống dẫn là dòng byte một chiều; hàng đợi thông điệp giữ từng thông điệp có độ ưu tiên; tín hiệu chuẩn chỉ báo một sự kiện; semaphore là một con số để chờ và báo; bộ nhớ chia sẻ là vùng nhớ cả hai cùng thấy. Khung hai, thử 100.000 vòng đi về một byte giữa hai tiến trình: hai tiến trình ở hai lõi mất khoảng 23 đến 33 micro giây mỗi vòng với ống dẫn, socket, hàng đợi, semaphore và tín hiệu; bộ nhớ chia sẻ mà bên kia liên tục nhìn vào một cờ chỉ mất 0,13 đến 0,4 micro giây, nhưng chung một lõi thì nhìn thuần mất khoảng 8 mili giây mỗi vòng. Khi hai tiến trình chung một lõi thì các cách ngủ chỉ mất 2,3 đến 5,6 micro giây.](../../diagrams/sd-08-001-main.svg)
 
 ## Từ viết tắt
 
@@ -15,11 +15,11 @@ Bài này nói mỗi đường dùng để làm gì, rồi đo thử: cái khi�
 
 ## Đọc hình
 
-**1 · Ống dẫn (pipe).** Một dòng byte một chiều: một đầu ghi, một đầu đọc, byte vào trước thì ra trước. Đọc ống rỗng thì chờ; ghi vào ống đầy thì chờ. Từ Linux 2.6.11 ống chứa được 16 trang bộ nhớ, tức 65.536 byte với trang 4.096 byte. Một lần ghi không quá `PIPE_BUF` byte (4.096 trên Linux) được bảo đảm liền khối, không bị trộn với dữ liệu của tiến trình khác; ghi lớn hơn thì có thể bị trộn. Ghi vào ống không còn ai đọc thì nhận `SIGPIPE`, tín hiệu báo ống đã hỏng. Ống thường nối các tiến trình có họ hàng (cha và con); muốn nối hai tiến trình xa lạ thì dùng ống có tên (FIFO), cùng cách hoạt động nhưng có tên trong hệ tệp.
+**1 · Ống dẫn (pipe).** Một dòng byte một chiều: một đầu ghi, một đầu đọc, byte vào trước thì ra trước. Đọc ống rỗng thì chờ; ghi vào ống đầy thì chờ. Mặc định từ Linux 2.6.11 ống chứa được 16 trang bộ nhớ, tức 65.536 byte với trang 4.096 byte (con số của máy thử); dung lượng này hỏi và đặt lại được bằng `F_GETPIPE_SZ` và `F_SETPIPE_SZ` của `fcntl`, và tài liệu dặn ứng dụng đừng dựa vào một dung lượng cố định. Một lần ghi không quá `PIPE_BUF` byte (4.096 trên Linux) được bảo đảm liền khối, không bị trộn với dữ liệu của tiến trình khác; ghi lớn hơn thì có thể bị trộn. Ghi vào ống không còn ai đọc thì nhận `SIGPIPE`, tín hiệu báo ống đã hỏng. Ống thường nối các tiến trình có họ hàng (cha và con); muốn nối hai tiến trình xa lạ thì dùng ống có tên (FIFO), cùng cách hoạt động nhưng có tên trong hệ tệp.
 
 **2 · Hàng đợi thông điệp (POSIX message queue).** Khác ống, nó giữ từng thông điệp có ranh giới rõ ràng chứ không phải dòng byte, và mỗi thông điệp có độ ưu tiên: thông điệp ưu tiên cao luôn được giao trước. Hàng có giới hạn số thông điệp và cỡ thông điệp (trên máy thử: 10 thông điệp, mỗi thông điệp tối đa 8.192 byte).
 
-**3 · Tín hiệu (signal).** Cách cổ nhất: nhân hoặc một tiến trình khác gõ cửa để báo một sự kiện. Bấm Ctrl+C là nhân gửi `SIGINT`, và hành động mặc định là kết thúc tiến trình. Tín hiệu chuẩn chỉ cho biết "sự kiện này đã xảy ra", không chở dữ liệu của ứng dụng, và **không xếp hàng**: nếu nhiều lần cùng một tín hiệu đến lúc nó đang bị chặn thì khi gỡ chặn chỉ giao một lần.
+**3 · Tín hiệu (signal).** Cách cổ nhất: nhân hoặc một tiến trình khác gõ cửa để báo một sự kiện. Bấm Ctrl+C là nhân gửi `SIGINT`, và hành động mặc định là kết thúc tiến trình. Tín hiệu chuẩn gửi bằng `kill` chỉ cho biết "sự kiện này đã xảy ra", không chở dữ liệu của ứng dụng (`sigqueue` kèm được một số nguyên hoặc một con trỏ cho bộ xử lý đăng ký với `SA_SIGINFO`, nhưng không đổi chuyện nhiều lần giao liên tiếp bị gộp), và **không xếp hàng**: nếu nhiều lần cùng một tín hiệu đến lúc nó đang bị chặn thì khi gỡ chặn chỉ giao một lần.
 
 **4 · Semaphore.** Một con số nguyên không bao giờ xuống dưới 0, với hai thao tác: tăng một (`sem_post`) và giảm một (`sem_wait`); nếu số đang là 0 thì `sem_wait` chờ cho tới khi có ai tăng. Nó không chở dữ liệu, chỉ để phối hợp ("tôi xong rồi", "tới lượt bạn"), nên thường đi cùng bộ nhớ chia sẻ.
 
@@ -27,7 +27,7 @@ Bài này nói mỗi đường dùng để làm gì, rồi đo thử: cái khi�
 
 ## Thử: đo một vòng đi về
 
-Ngày 2026-10-19, trên một máy ảo 4 lõi Intel Xeon 2,1 GHz, nhân Linux 6.18.44. Một chương trình C nhỏ cho tiến trình cha gửi một byte (hoặc một thông điệp một byte, hoặc một tín hiệu) sang tiến trình con, con trả lại ngay, và lặp 100.000 vòng; số liệu là thời gian trung bình của một vòng đi về. Mỗi cách được đo 3 lần khi hai tiến trình ghim ở hai lõi khác nhau và 4 lần khi ghim cùng một lõi. Ống dẫn cần hai ống (mỗi chiều một ống); semaphore đi cùng một vùng nhớ chia sẻ và hai semaphore; dòng cuối không dùng nhân để chờ: hai bên liên tục nhìn vào một cờ trong bộ nhớ chia sẻ.
+Ngày 2026-10-19, trên một máy ảo 4 lõi Intel Xeon 2,1 GHz, nhân Linux 6.18.44. Một chương trình C nhỏ cho tiến trình cha gửi một byte (hoặc một thông điệp một byte, hoặc một tín hiệu) sang tiến trình con, con trả lại ngay, và lặp 100.000 vòng; số liệu là thời gian trung bình của một vòng đi về. Mỗi cách được đo 3 lần khi hai tiến trình ghim ở hai lõi khác nhau và 4 lần khi ghim cùng một lõi. Hai dòng nhìn cờ ở cuối bảng được đo thêm bằng một chương trình C riêng cùng cách ghim, 3 lần mỗi dòng, để tách việc có hay không gọi `sched_yield`. Ống dẫn cần hai ống (mỗi chiều một ống); semaphore đi cùng một vùng nhớ chia sẻ và hai semaphore; hai dòng cuối không ngủ để chờ: hai bên liên tục nhìn vào một cờ trong bộ nhớ chia sẻ, một kiểu có gọi `sched_yield` (nhường lõi cho tiến trình khác, là một lời gọi vào nhân) mỗi lần nhìn mà chưa thấy cờ, một kiểu nhìn thuần không gọi gì.
 
 | Cách | Hai lõi (µs mỗi vòng) | Cùng một lõi (µs mỗi vòng) |
 |---|---|---|
@@ -36,13 +36,14 @@ Ngày 2026-10-19, trên một máy ảo 4 lõi Intel Xeon 2,1 GHz, nhân Linux 6
 | Hàng đợi thông điệp | 24 đến 27 | 2,7 đến 3,2 |
 | Bộ nhớ chia sẻ và semaphore | 23 đến 24 | 2,3 đến 2,9 |
 | Tín hiệu | 25 đến 26 | 2,9 đến 3,9 |
-| Bộ nhớ chia sẻ, nhìn cờ liên tục | 0,4 | 1,5 đến 2,0 |
+| Bộ nhớ chia sẻ, nhìn cờ và gọi `sched_yield` | 0,3 đến 0,4 | 1,5 đến 2,2 |
+| Bộ nhớ chia sẻ, nhìn cờ thuần (không nhường) | 0,13 đến 0,17 | 8.100 đến 8.200 (200 vòng) |
 
-Hai điều đọc được. Một, khi hai tiến trình ở hai lõi khác nhau, bốn cách chờ bằng cách ngủ (ống, hàng đợi, semaphore, tín hiệu) đều mất cỡ 25 µs, gần như bằng nhau: thứ chiếm thời gian là việc đánh thức một tiến trình đang ngủ trên lõi khác, không phải cấu trúc dữ liệu của từng cách. Hai, khi hai tiến trình chung một lõi thì cả bốn rẻ hơn khoảng tám lần (không còn phải đánh thức một lõi khác). Cách duy nhất rẻ hơn hẳn là không ngủ: nhìn cờ liên tục chỉ mất 0,4 µs, nhưng cái giá là hai lõi chạy hết công suất để chờ nhau. Tương tự, thử gửi 5 lần `SIGUSR1` khi tín hiệu đang bị chặn thì sau khi gỡ chặn bộ xử lý tín hiệu chạy 1 lần, còn 5 lần ghi một byte vào ống thì đọc lại được đủ 5 byte.
+Hai điều đọc được. Một, khi hai tiến trình ở hai lõi khác nhau, bốn cách chờ bằng cách ngủ (ống, hàng đợi, semaphore, tín hiệu) đều mất cỡ 25 µs, gần như bằng nhau: thứ chiếm thời gian là việc đánh thức một tiến trình đang ngủ trên lõi khác, không phải cấu trúc dữ liệu của từng cách. Hai, khi hai tiến trình chung một lõi thì cả bốn rẻ hơn khoảng tám lần (không còn phải đánh thức một lõi khác). Cách duy nhất rẻ hơn hẳn là không ngủ: nhìn cờ chỉ mất 0,13 đến 0,4 µs ở hai lõi, nhưng cái giá là hai lõi chạy hết công suất để chờ nhau. Chung một lõi thì nhìn cờ thuần gần như không chạy được: bên đang nhìn giữ lõi cho tới khi bộ lập lịch cắt ngang nó, nên mỗi vòng mất cỡ 8 ms (đo 200 vòng); chỉ khi có `sched_yield` thì mới còn 1,5 đến 2,2 µs, và khi đó nó không còn là chờ thuần mà đã nhờ nhân đổi tiến trình. Tương tự, thử gửi 5 lần `SIGUSR1` khi tín hiệu đang bị chặn thì sau khi gỡ chặn bộ xử lý tín hiệu chạy 1 lần, còn 5 lần ghi một byte vào ống thì đọc lại được đủ 5 byte.
 
 ## Giới hạn cần nhớ
 
-Cả năm cách chỉ nối các tiến trình trên cùng một máy; qua mạng phải dùng cách khác. Ống dẫn một chiều, nên trao đổi hai chiều cần hai ống (như phép thử) hoặc một cách hai chiều khác. Tín hiệu không xếp hàng và không chở dữ liệu, nên không dùng để đếm sự kiện hay gửi nội dung. Semaphore và bộ nhớ chia sẻ không tự bảo vệ dữ liệu: bộ nhớ chia sẻ mà không có cách phối hợp (như semaphore) thì hai bên ghi chồng lên nhau được. Phép thử chỉ đo thông điệp một byte trên một máy ảo, tức đo độ trễ của một lần đánh thức, không đo thông lượng khi chuyển khối dữ liệu lớn và cũng không đo các semaphore System V hay hàng đợi System V; con số trên máy thật sẽ khác, nên đừng dùng chúng làm bảng giá mà chỉ dùng để thấy cái gì chiếm thời gian.
+Cả năm cách chỉ nối các tiến trình trên cùng một máy; qua mạng phải dùng cách khác. Ống dẫn một chiều, nên trao đổi hai chiều cần hai ống (như phép thử) hoặc một cách hai chiều khác. Tín hiệu chuẩn không xếp hàng và (trừ khi dùng `sigqueue` với `SA_SIGINFO`) không chở dữ liệu, nên không dùng để đếm sự kiện hay gửi nội dung. Semaphore và bộ nhớ chia sẻ không tự bảo vệ dữ liệu: bộ nhớ chia sẻ mà không có cách phối hợp (như semaphore) thì hai bên ghi chồng lên nhau được. Phép thử chỉ đo thông điệp một byte trên một máy ảo, tức đo độ trễ của một lần đánh thức, không đo thông lượng khi chuyển khối dữ liệu lớn và cũng không đo các semaphore System V hay hàng đợi System V; con số trên máy thật sẽ khác, nên đừng dùng chúng làm bảng giá mà chỉ dùng để thấy cái gì chiếm thời gian.
 
 ## Nhìn hình trả lời
 
@@ -51,7 +52,7 @@ Tiến trình A cần gửi cho tiến trình B hàng nghìn bản ghi nhật k�
 <details>
 <summary>Xem đáp án</summary>
 
-Ống dẫn (hoặc ống có tên nếu A và B không cùng họ): byte vào trước ra trước nên thứ tự được giữ, và nếu B chậm thì ống đầy khiến A phải chờ thay vì mất dữ liệu. Nếu mỗi bản ghi cần ranh giới rõ hoặc độ ưu tiên thì hàng đợi thông điệp hợp hơn. Tín hiệu không hợp vì nó không chở dữ liệu và không xếp hàng: gửi nhiều tín hiệu liên tiếp khi B chưa kịp nhận có thể gộp thành một, nên B không đếm được đã có bao nhiêu bản ghi.
+Ống dẫn (hoặc ống có tên nếu A và B không cùng họ): byte vào trước ra trước nên thứ tự được giữ, và nếu B chậm thì ống đầy khiến A phải chờ thay vì mất dữ liệu. Nếu mỗi bản ghi cần ranh giới rõ hoặc độ ưu tiên thì hàng đợi thông điệp hợp hơn. Tín hiệu không hợp vì nó thường không chở dữ liệu và không xếp hàng: gửi nhiều tín hiệu liên tiếp khi B chưa kịp nhận có thể gộp thành một, nên B không đếm được đã có bao nhiêu bản ghi.
 
 </details>
 

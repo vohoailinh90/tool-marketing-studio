@@ -20,12 +20,12 @@ Hệ thống khuyến mãi thì định ra các đợt giảm giá lớn, phiế
 
 **Vận chuyển (bước 14 đến 16).** Hệ thống tồn kho gửi lệnh xuất kho sang hệ thống vận chuyển, nơi quản lý việc giao hàng thật. Bước cuối, ký nhận hàng, là tùy chọn.
 
-Điểm đáng chú ý là thứ tự ở bước 12 và 13: hàng được *giữ chỗ trước*, tiền trả *sau*. Nhờ vậy hai người không cùng trả tiền cho món hàng chỉ còn một cái.
+Điểm đáng chú ý là thứ tự ở bước 12 và 13: hàng được *giữ chỗ trước*, tiền trả *sau*. Thứ tự này giúp tránh cảnh hai người cùng trả tiền cho món hàng chỉ còn một cái, nhưng chỉ với hai điều kiện: việc giữ chỗ phải là một thao tác trọn vẹn (kiểm tra còn hàng và trừ hàng diễn ra một lần, không yêu cầu nào chen vào giữa), và chỗ giữ phải còn hiệu lực cho tới khi thanh toán xong. Nếu hai yêu cầu cùng thấy món cuối còn trống rồi cùng giữ, hoặc chỗ giữ hết hạn khi người mua đang trả tiền, thì vẫn có thể bán trùng.
 
 ## Giới hạn cần nhớ
 
 Tác giả bài nguồn tự nói mình hiểu biết hạn chế về thương mại điện tử: sơ đồ dựa trên nghiên cứu cá nhân, và ông nhờ người đọc góp ý về tên thành phần hay chỉ ra chỗ sai. Vì vậy hãy coi đây là một bản đồ chung, không phải mô tả kiến trúc của một công ty cụ thể nào. Công ty thật có thể thêm, bớt hay đổi thứ tự các hệ thống.
-Câu "nhờ vậy hai người không cùng trả tiền cho món hàng chỉ còn một cái" là suy luận của người biên soạn từ thứ tự giữ chỗ trước, trả tiền sau; nguồn không nói điều đó.
+Ý "giữ chỗ trước giúp tránh bán trùng món hàng cuối cùng", cùng hai điều kiện đi kèm, là suy luận của người biên soạn từ thứ tự giữ chỗ trước, trả tiền sau; nguồn không nói điều đó.
 
 ## Nhìn hình trả lời
 

@@ -56,7 +56,7 @@ Carbon tự mô tả là ngôn ngữ kế nhiệm thử nghiệm của C++.
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn có một ảnh và mở đầu bằng một câu hỏi, rồi kể bằng bảy gạch đầu dòng theo thập niên. Bài này giữ các mốc và tên ngôn ngữ vì đó là dữ kiện của bản kể, nhưng không lặp câu chữ của nguồn: mỗi ngôn ngữ được tả bằng README hoặc tài liệu của chính nó, và cách xếp "họ C++" và "họ Java" của nguồn không được dùng. Hình vẽ lại thành ba chuỗi bước theo thời gian và không dùng ảnh nguồn.
+Bài nguồn có một ảnh và mở đầu bằng một câu hỏi, rồi kể bằng bảy gạch đầu dòng theo thập niên. Bài này giữ các mốc và tên ngôn ngữ vì đó là dữ kiện của bản kể, nhưng không lặp câu chữ của nguồn: những ngôn ngữ đã đọc được tài liệu thì được tả bằng README hoặc tài liệu của chính nó (Fortran, LISP, Java chỉ theo lời nguồn và Zig chưa đối chiếu), và cách xếp "họ C++" và "họ Java" của nguồn không được dùng. Hình vẽ lại thành ba chuỗi bước theo thời gian và không dùng ảnh nguồn.
 Các phần về Python, JavaScript và các README lấy từ tài liệu giấy phép của Python, bảng thuật ngữ MDN và kho mã của từng dự án tại commit cố định ở mục nguồn.
 
 </details>

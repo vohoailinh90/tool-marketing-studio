@@ -113,10 +113,10 @@
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba nhóm thẻ (cách mô tả chương trình; cách tổ chức mã; nhiều việc và dữ liệu thay đổi) và một khung ghi nhớ; cách chia nhóm là của bài. Lời trong thẻ viết từ tài liệu gốc. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba nhóm thẻ (cách mô tả chương trình; cách tổ chức mã; nhiều việc và dữ liệu thay đổi) và một khung ghi nhớ; cách chia nhóm là của bài. Lời trong thẻ viết từ tài liệu gốc, trừ định nghĩa chung của mô hình phản ứng (chưa đối chiếu). Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is eight short paragraphs with a definition and example languages each; the lesson keeps the eight names, groups them into three sets and explains the paradigms from the Python, MDN, Spring, AspectJ, Reactive Streams, JDK and Go documentation without reusing the source's sentences or its language lists.",
+    "Source is eight short paragraphs with a definition and example languages each; the lesson keeps the eight names, groups them into three sets and explains the paradigms (except the general definition of reactive programming, which is the author's unchecked knowledge, with Reactive Streams as one example) from the Python, MDN, Spring, AspectJ, Reactive Streams, JDK and Go documentation without reusing the source's sentences or its language lists.",
     "The Python HOWTO says procedural where the source says imperative; the lesson notes it reads them as close, which is the author's interpretation."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích các mô hình đã được đối chiếu với tài liệu ở commit đã ghim, trừ định nghĩa chung của mô hình phản ứng và các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

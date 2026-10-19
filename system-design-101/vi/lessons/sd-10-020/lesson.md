@@ -3,7 +3,7 @@
 **Mô hình lập trình là một cách nghĩ về chương trình; bài nguồn nêu tám cách: mệnh lệnh, khai báo, hướng đối tượng, hướng khía cạnh, hàm, phản ứng, tổng quát và đồng thời.**
 Bài giữ tên tám mô hình của nguồn, gom chúng thành ba nhóm theo việc mô hình lo, và giải thích các mô hình bằng tài liệu của Python, MDN, Spring, AspectJ, Reactive Streams, JDK và Go; riêng định nghĩa chung của mô hình phản ứng là kiến thức của người biên soạn, chưa đối chiếu, và Reactive Streams chỉ làm ví dụ.
 
-![Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là luồng bất đồng bộ có điều tiết lưu lượng; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-020-main.svg)
+![Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là phản ứng với dữ liệu đến theo thời gian, ví dụ Reactive Streams; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-020-main.svg)
 
 ## Từ viết tắt
 
@@ -52,7 +52,7 @@ Khai báo: người viết mô tả điều cần có, phần cài đặt quyế
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn có một ảnh và tám đoạn, mỗi đoạn định nghĩa một mô hình kèm vài tên ngôn ngữ. Bài này giữ tên tám mô hình, gom chúng thành ba nhóm của riêng bài, và viết lại phần giải thích từ tài liệu Python, bảng thuật ngữ MDN, tài liệu Spring, README của AspectJ và Reactive Streams, mã nguồn JDK và Effective Go tại commit cố định ở mục nguồn nên không lặp câu chữ của nguồn. Hình không dùng ảnh nguồn.
+Bài nguồn có một ảnh và tám đoạn, mỗi đoạn định nghĩa một mô hình kèm vài tên ngôn ngữ. Bài này giữ tên tám mô hình, gom chúng thành ba nhóm của riêng bài, và viết lại phần giải thích từ tài liệu Python, bảng thuật ngữ MDN, tài liệu Spring, README của AspectJ và Reactive Streams, mã nguồn JDK và Effective Go tại commit cố định ở mục nguồn nên không lặp câu chữ của nguồn; riêng định nghĩa chung của mô hình phản ứng là kiến thức của người biên soạn, chưa đối chiếu, và Reactive Streams chỉ làm ví dụ. Hình không dùng ảnh nguồn.
 
 </details>
 

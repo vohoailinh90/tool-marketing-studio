@@ -144,12 +144,12 @@
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba chuỗi bước theo thời gian (các thế hệ đầu; 1972 đến thập niên 1990; từ năm 2000) và một khung ghi nhớ. Mốc theo bài nguồn; mỗi ngôn ngữ được tả bằng tài liệu của chính nó. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba chuỗi bước theo thời gian (các thế hệ đầu; 1972 đến thập niên 1990; từ năm 2000) và một khung ghi nhớ. Mốc theo bài nguồn; các ngôn ngữ đã đọc được tài liệu thì được tả bằng tài liệu của chính nó, còn lại theo lời nguồn hoặc chưa đối chiếu. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source is seven bullets by decade; the lesson keeps the milestones and language names, redraws them as three timelines and does not use the source image.",
     "Source spells Object-C and places Go in the Java family and D, Rust, Zig and Carbon in the C++ family; the lesson uses Objective-C (general knowledge) and describes the languages whose project documentation was read with their own README instead of the source's families; the others (for example Fortran, LISP, Java, Zig) are only the source's words or unchecked.",
     "Only the Python and JavaScript origins are checked against documentation; the other dates are the source's word.",
     "The lesson keeps one source-only statement, that Dart is popular thanks to Flutter, attributed to the source and not checked against any documentation; it does not reproduce the source's sentences about popularity, simplicity and security or about .NET."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Mô tả các ngôn ngữ đã đọc được tài liệu đã được đối chiếu ở commit đã ghim; Fortran, LISP, Java, Zig và các mốc thời gian khác theo lời nguồn hoặc chưa đối chiếu, và các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn. Chưa user testing hoặc phê duyệt phát hành."
 }

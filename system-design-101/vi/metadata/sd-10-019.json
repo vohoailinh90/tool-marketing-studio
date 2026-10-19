@@ -107,5 +107,5 @@
     "Source is four short paragraphs with an example for three of the pillars; the lesson keeps the four names and their order, explains each from MDN and the Python documentation, replaces the source's Vehicle and Car examples with its own Shape example and does not use the source image.",
     "Python behavior is not in the source and comes from the pinned CPython documentation; the lesson notes that access modifiers belong to some languages and Python relies on convention."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích bốn ý tưởng đã được đối chiếu với MDN và tài liệu Python ở commit đã ghim; ví dụ Shape do bài tự nghĩ và các câu giải nghĩa từ viết tắt là của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -113,5 +113,5 @@
     "Source is a nested list with one or two sentences per algorithm; the lesson keeps the six names and the static and dynamic labels, explains each algorithm from the nginx and HAProxy documentation and does not reproduce the source's sentences or its Alice example.",
     "The source does not define static or dynamic; HAProxy defines them differently (whether weights can change on the fly), which the lesson reports; the figure groups the algorithms by what they depend on (turns and weights, hash key, load) instead of the source's two groups."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích về nginx và HAProxy đã được đối chiếu với tài liệu ở commit đã ghim; chỉ các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

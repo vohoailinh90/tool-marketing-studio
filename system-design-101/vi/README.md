@@ -300,6 +300,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 8. [Năm cặp đánh đổi trong thiết kế hệ thống: được cái này, trả bằng cái kia](lessons/sd-11-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 9. [Phát hiện nút hỏng trong hệ thống phân tán: sáu biến thể của nhịp tim](lessons/sd-11-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 10. [Giây nhuận: vì sao nhiều công ty lớn muốn thoát khỏi nó](lessons/sd-11-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [Bốn thước đo của một hệ thống: mở rộng, sẵn sàng, tin cậy và hiệu năng](lessons/sd-11-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Vì sao AWS Lambda phản hồi nhanh: bốn trụ cột](lessons/sd-11-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+13. [Từ một máy chủ tới hàng triệu người dùng: sáu bước mở rộng một trang web](lessons/sd-11-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+14. [Tám mẫu thiết kế giữ cho một lỗi nhỏ không thành sự cố lớn](lessons/sd-11-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Hai mươi lăm bài báo đã định hình ngành máy tính, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 

@@ -1,0 +1,16 @@
+{
+  "id": "sd-11-012",
+  "title": "Bốn trụ làm Lambda nhanh",
+  "subtitle": "Mỗi trụ cắt một loại thời gian chờ.",
+  "desc": "Hai khung. Khung một, nhận việc và giao việc: lời gọi đồng bộ hoặc bất đồng bộ, rồi dịch vụ phân công chọn môi trường chạy. Khung hai, dựng và nạp: máy ảo siêu nhẹ cách ly từng môi trường, và kho thành phần chia nhỏ mã, mã hóa chung, khởi tạo trước để bớt khởi động nguội.",
+  "sections": [
+    {"kind": "parts", "heading": "Nhận việc và giao việc", "items": [
+      {"name": "Gọi hàm", "role": "Đồng bộ hoặc xếp hàng.", "icon": "send"},
+      {"name": "Phân công", "role": "Chọn môi trường rảnh.", "icon": "route"}
+    ], "flow": [[0, 1]]},
+    {"kind": "parts", "heading": "Dựng và nạp", "items": [
+      {"name": "Máy ảo nhẹ", "role": "Cách ly, dựng nhanh.", "icon": "box"},
+      {"name": "Kho thành phần", "role": "Chia mẩu, khởi tạo sẵn.", "icon": "package"}
+    ], "flow": [[0, 1]]}
+  ]
+}

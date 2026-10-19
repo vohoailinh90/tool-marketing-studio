@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="574" viewBox="0 0 320 574" role="img" aria-labelledby="title desc">
+<title id="title">Bốn trụ làm Lambda nhanh</title>
+<desc id="desc">Hai khung. Khung một, nhận việc và giao việc: lời gọi đồng bộ hoặc bất đồng bộ, rồi dịch vụ phân công chọn môi trường chạy. Khung hai, dựng và nạp: máy ảo siêu nhẹ cách ly từng môi trường, và kho thành phần chia nhỏ mã, mã hóa chung, khởi tạo trước để bớt khởi động nguội.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="574" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn trụ làm Lambda</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nhanh</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi trụ cắt một loại thời gian chờ.</text>
+<rect x="8" y="104" width="304" height="225" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhận việc và giao việc</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="183" r="18" fill="#1d4ed8"/><g transform="translate(39.2 172.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi hàm</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồng bộ hoặc xếp hàng.</text>
+<rect x="20" y="249" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="283" r="18" fill="#1d4ed8"/><g transform="translate(39.2 272.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="78" y="275.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phân công</text>
+<text x="78" y="299.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn môi trường rảnh.</text>
+<polyline points="160,219 160,247" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="341" width="304" height="225" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="369.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dựng và nạp</text>
+<rect x="20" y="386" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="420" r="18" fill="#0f766e"/><g transform="translate(39.2 409.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></g>
+<text x="78" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy ảo nhẹ</text>
+<text x="78" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cách ly, dựng nhanh.</text>
+<rect x="20" y="486" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="520" r="18" fill="#0f766e"/><g transform="translate(39.2 509.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="512.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho thành phần</text>
+<text x="78" y="536.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia mẩu, khởi tạo sẵn.</text>
+<polyline points="160,456 160,484" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

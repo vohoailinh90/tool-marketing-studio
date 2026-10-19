@@ -244,6 +244,12 @@ Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách
 
 ## Phát triển phần mềm
 
+1. [Sáu loại máy chủ thường gặp](lessons/sd-10-001/lesson.md)
+2. [Dọn rác bộ nhớ hoạt động thế nào?](lessons/sd-10-002/lesson.md)
+3. [Bản đồ kỹ năng của lập trình viên full-stack](lessons/sd-10-003/lesson.md)
+4. [Ngôn ngữ lập trình nào "xanh" nhất?](lessons/sd-10-004/lesson.md)
+5. [Cây phân cấp Java Collection](lessons/sd-10-005/lesson.md)
+6. [Chạy C, C++ và Rust trong trình duyệt bằng WebAssembly](lessons/sd-10-006/lesson.md)
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
 ## DevOps và CI/CD

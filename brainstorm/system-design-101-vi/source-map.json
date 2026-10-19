@@ -2438,61 +2438,61 @@
       "lessons": [
         {
           "id": "sd-10-001",
-          "title_vi": null,
+          "title_vi": "Sáu loại máy chủ thường gặp",
           "title_source": "Top 6 Most Commonly Used Server Types",
           "source_url": "https://bytebytego.com/guides/top-6-most-commonly-used-server-types",
           "source_path": "data/guides/top-6-most-commonly-used-server-types.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7829d42fc3e38ca4d278fe087e43b9ebaf4b25ee",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md"
         },
         {
           "id": "sd-10-002",
-          "title_vi": null,
+          "title_vi": "Dọn rác bộ nhớ hoạt động thế nào?",
           "title_source": "How does Garbage Collection work?",
           "source_url": "https://bytebytego.com/guides/how-does-garbage-collection-work",
           "source_path": "data/guides/how-does-garbage-collection-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ecbd2812a4071a2007caf39f177b0a8da33cad41",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md"
         },
         {
           "id": "sd-10-003",
-          "title_vi": null,
+          "title_vi": "Bản đồ kỹ năng của lập trình viên full-stack",
           "title_source": "A Roadmap for Full-Stack Development",
           "source_url": "https://bytebytego.com/guides/a-roadmap-for-full-stack-development",
           "source_path": "data/guides/a-roadmap-for-full-stack-development.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "03ee45df40accd7f89537124f23be756d091a5e7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-roadmap-for-full-stack-development.md"
         },
         {
           "id": "sd-10-004",
-          "title_vi": null,
+          "title_vi": "Ngôn ngữ lập trình nào \"xanh\" nhất?",
           "title_source": "What Are the Greenest Programming Languages?",
           "source_url": "https://bytebytego.com/guides/what-are-the-greenest-programming-languages",
           "source_path": "data/guides/what-are-the-greenest-programming-languages.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6b4a7655399d36153b50416c6a907a6e5e85e4ad",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-greenest-programming-languages.md"
         },
         {
           "id": "sd-10-005",
-          "title_vi": null,
+          "title_vi": "Cây phân cấp Java Collection",
           "title_source": "Java Collection Hierarchy",
           "source_url": "https://bytebytego.com/guides/java-collection-hierarchy",
           "source_path": "data/guides/java-collection-hierarchy.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "fff58062008be888e8869cc93f779183532b5eac",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md"
         },
         {
           "id": "sd-10-006",
-          "title_vi": null,
+          "title_vi": "Chạy C, C++ và Rust trong trình duyệt bằng WebAssembly",
           "title_source": "Running C, C++, or Rust in a Web Browser",
           "source_url": "https://bytebytego.com/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser",
           "source_path": "data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "eb2cb255577b9e1270efb7b0753ca327986ec831",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md"
         },

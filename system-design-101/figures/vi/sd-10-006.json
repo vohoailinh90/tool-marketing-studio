@@ -1,0 +1,65 @@
+{
+  "id": "sd-10-006",
+  "title": "Mã C, C++, Rust chạy trong trình duyệt",
+  "subtitle": "WASM chạy cạnh JavaScript, không thay nó.",
+  "desc": "Ba nhóm thẻ. Từ mã nguồn đến trang web, bốn bước: viết bằng ngôn ngữ cấp cao như C, C++ hoặc Rust; trình biên dịch xuất tệp nhị phân WASM; trình duyệt biên dịch tệp đó thành một Module; JavaScript tạo Instance rồi gọi hàm xuất. Bốn khái niệm trong trình duyệt: Module, Memory, Table và Instance. Khung cuối nêu ba điều cần nhớ: WASM bổ sung cho JavaScript, không chạm DOM trực tiếp, và thường không viết tay.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Từ mã nguồn đến trang web",
+      "items": [
+        {
+          "title": "Viết ngôn ngữ cấp cao",
+          "text": "C, C++ hoặc Rust; không viết WASM bằng tay."
+        },
+        {
+          "title": "Biên dịch ra WASM",
+          "text": "Trình biên dịch xuất tệp nhị phân WASM."
+        },
+        {
+          "title": "Trình duyệt biên dịch",
+          "text": "Tệp nhị phân thành mã máy: một Module."
+        },
+        {
+          "title": "JavaScript gọi hàm",
+          "text": "Tạo Instance rồi gọi các hàm nó mở ra."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Bốn khái niệm trong trình duyệt",
+      "items": [
+        {
+          "name": "Module",
+          "role": "Bản nhị phân đã biên dịch; không giữ trạng thái.",
+          "icon": "package"
+        },
+        {
+          "name": "Memory",
+          "role": "Vùng byte liền kề, có thể lớn dần.",
+          "icon": "database"
+        },
+        {
+          "name": "Table",
+          "role": "Mảng tham chiếu, ví dụ tới hàm.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Instance",
+          "role": "Một Module cùng trạng thái lúc chạy.",
+          "icon": "boxes"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn cần nhớ",
+      "items": [
+        "WASM bổ sung cho JavaScript, không thay thế.",
+        "WASM không chạm DOM trực tiếp: gọi qua JavaScript.",
+        "Tốc độ thật tùy việc; bài này không đo."
+      ]
+    }
+  ]
+}

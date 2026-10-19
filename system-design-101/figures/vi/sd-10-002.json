@@ -1,0 +1,75 @@
+{
+  "id": "sd-10-002",
+  "title": "Ba ngôn ngữ, ba cách dọn rác",
+  "subtitle": "Mỗi cách cân nhắc khác nhau giữa tổng việc làm và thời gian dừng.",
+  "desc": "Bốn nhóm thẻ. Java nhóm đơn giản hoặc đề cao thông lượng: bộ dọn Serial và Parallel. Java nhóm quan tâm thời gian dừng: G1, ZGC và Shenandoah. CPython và Go chuẩn: CPython đếm tham chiếu cộng bộ dọn vòng tham chiếu, Go chuẩn dùng bộ dọn đánh dấu và quét chạy đồng thời. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Java: đơn giản hoặc đề cao thông lượng",
+      "items": [
+        {
+          "name": "Serial",
+          "role": "Thường hợp ứng dụng nhỏ và đơn giản.",
+          "icon": "cpu"
+        },
+        {
+          "name": "Parallel",
+          "role": "Dùng nhiều bộ xử lý; còn gọi là bộ dọn thông lượng.",
+          "icon": "gauge"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Java: quan tâm thời gian dừng",
+      "items": [
+        {
+          "name": "G1",
+          "role": "Hợp vùng nhớ lớn; mặc định trong tài liệu đã đọc.",
+          "icon": "scale"
+        },
+        {
+          "name": "ZGC",
+          "role": "Thời gian dừng cỡ mili giây, không tăng theo vùng nhớ.",
+          "icon": "zap"
+        },
+        {
+          "name": "Shenandoah",
+          "role": "Đồng thời, thời gian dừng thấp.",
+          "icon": "timer"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "CPython và Go chuẩn",
+      "items": [
+        {
+          "name": "CPython: đếm tham chiếu",
+          "role": "Bộ đếm về không thì giải phóng vùng nhớ.",
+          "icon": "hash"
+        },
+        {
+          "name": "CPython: dọn vòng tham chiếu",
+          "role": "Xử lý đối tượng trỏ vòng quanh nhau.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Go chuẩn: đánh dấu và quét",
+          "role": "Phần lớn việc chạy đồng thời với ứng dụng; vẫn có lúc dừng.",
+          "icon": "workflow"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Chọn bộ dọn là chọn giữa tổng việc làm và thời gian chờ.",
+        "Dọn đồng thời giảm lần dừng, không xóa hẳn, và có chi phí.",
+        "Xem tài liệu của phiên bản JDK đang dùng."
+      ]
+    }
+  ]
+}

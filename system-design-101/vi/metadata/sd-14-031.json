@@ -180,6 +180,12 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/v1what-is-sso-single-sign-on.md",
       "section": "Whole guide",
       "verified_by": "Not examined."
+    },
+    {
+      "claim_vi": "The lesson defines SSO in general terms (log in once in one place and use many applications) and states that the one-time ticket redeemed over a back channel is the mechanism of the CAS-style model built and run in this lesson, not of every SSO protocol. That other protocols (SAML is named as one example) can return the login result by a different flow is general knowledge; the lesson does not run or describe them.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol.md",
+      "section": "Phần mở đầu",
+      "verified_by": "The ticket flow in the lesson was observed in the lab (one identity server, two applications, Chromium) and matches the CAS protocol text read at the pinned commit. The statement that other protocols use other flows is the author's general knowledge, not checked in this session; no OpenID Connect or SAML text was read."
     }
   ],
   "design_notes_vi": "Hai trình tự cùng ba nhân vật (trình duyệt, ứng dụng, máy chủ định danh), lần đầu ở A rồi lần sau ở B, và một khung ghi chú những gì đã đo, kể cả đăng xuất. Không dùng ảnh nguồn.",

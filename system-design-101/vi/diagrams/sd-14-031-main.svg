@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1652" viewBox="0 0 320 1652" role="img" aria-labelledby="title desc">
-<title id="title">SSO: hai loại phiên, một vé</title>
+<title id="title">SSO kiểu vé CAS: hai loại phiên, một vé</title>
 <desc id="desc">Ba khung. Một: lần đầu ở ứng dụng A, trình duyệt mở trang, A chuyển sang máy chủ định danh, người dùng nhập mật khẩu ở đó, máy chủ định danh đặt cookie phiên toàn cục và cấp vé, A kiểm vé qua kênh sau rồi đặt cookie phiên cục bộ. Hai: lần sau ở ứng dụng B, trình duyệt mang cookie phiên toàn cục nên vé được cấp ngay, không hỏi mật khẩu. Ba, đo trên một máy: vé dùng một lần; đăng xuất ở A thì mở lại A là vào luôn; đăng xuất ở máy chủ định danh không xóa phiên cục bộ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1652" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">SSO: hai loại phiên, một</text>
-<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">vé</text>
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">SSO kiểu vé CAS: hai</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">loại phiên, một vé</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Phiên cục bộ và phiên toàn cục.</text>
 <rect x="8" y="104" width="304" height="506" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lần đầu, ở ứng dụng A</text>

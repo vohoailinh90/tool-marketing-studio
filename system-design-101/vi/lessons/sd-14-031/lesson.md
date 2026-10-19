@@ -1,7 +1,7 @@
 # SSO hoạt động thế nào? Phiên toàn cục và vé xác nhận
 
-**Đăng nhập một lần (SSO) nghĩa là đăng nhập ở một máy chủ định danh, rồi mỗi ứng dụng tự lập phiên riêng nhờ một vé dùng một lần.**
-Có hai loại phiên: phiên toàn cục ở máy chủ định danh và phiên cục bộ ở từng ứng dụng; vé nối hai loại đó.
+**Đăng nhập một lần (SSO) nghĩa là đăng nhập một lần ở một nơi rồi dùng được nhiều ứng dụng. Trong mô hình kiểu CAS mà bài này dựng thử, đó là đăng nhập ở một máy chủ định danh, rồi mỗi ứng dụng tự lập phiên riêng nhờ một vé dùng một lần.**
+Trong mô hình này có hai loại phiên: phiên toàn cục ở máy chủ định danh và phiên cục bộ ở từng ứng dụng; vé nối hai loại đó. Giao thức khác (SAML là một ví dụ) có thể trả kết quả đăng nhập theo luồng khác; bài không chạy thử chúng.
 Bài chỉ nói cơ chế, kiểm bằng thí nghiệm nhỏ: một máy chủ định danh, hai ứng dụng và trình duyệt Chromium thật. SSO khác ủy quyền ở đâu: [bài sd-14-011](../sd-14-011/lesson.md). Cookie, session, token: [bài sd-14-008](../sd-14-008/lesson.md), [bài sd-14-009](../sd-14-009/lesson.md), [bài sd-14-010](../sd-14-010/lesson.md).
 
 ![Ba khung. Một: lần đầu ở ứng dụng A, trình duyệt mở trang, A chuyển sang máy chủ định danh, người dùng nhập mật khẩu ở đó, máy chủ định danh đặt cookie phiên toàn cục và cấp vé, A kiểm vé qua kênh sau rồi đặt cookie phiên cục bộ. Hai: lần sau ở ứng dụng B, trình duyệt mang cookie phiên toàn cục nên vé được cấp ngay, không hỏi mật khẩu. Ba, đo trên một máy: vé dùng một lần; đăng xuất ở A thì mở lại A là vào luôn; đăng xuất ở máy chủ định danh không xóa phiên cục bộ.](../../diagrams/sd-14-031-main.svg)

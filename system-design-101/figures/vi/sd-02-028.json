@@ -1,7 +1,7 @@
 {
   "id": "sd-02-028",
   "title": "API của Netflix qua bốn bước",
-  "subtitle": "Máy khách vẫn gọi một chỗ; ai làm chỗ đó thì đổi.",
+  "subtitle": "Từ bước ba, máy khách chỉ gọi một chỗ; ai làm chỗ đó thì đổi.",
   "desc": "Bốn bước. Khối nguyên: cả ứng dụng triển khai một khối, như một tệp Java WAR. Gọi thẳng: máy khách gọi từng microservice. Lớp cổng gộp: gom phim, sản xuất, diễn viên cho một màn hình. Cổng liên hợp: một cổng GraphQL lấy dữ liệu từ mọi API. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {

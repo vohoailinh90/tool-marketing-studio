@@ -10,6 +10,8 @@ Bài này đọc ba chặng đó theo con số của nguồn, rồi xem vì sao 
 - **RAM** (Random Access Memory) — bộ nhớ trong của máy chủ: nơi cơ sở dữ liệu giữ dữ liệu và chỉ mục để đọc nhanh.
 - **LSM** (Log-Structured Merge) — cách lưu dữ liệu của Cassandra: ghi nối thêm cho nhanh, rồi định kỳ gộp các tệp lại; đổi lại, đọc tốn hơn ghi.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: ở đây là lớp mà ứng dụng Discord gọi để đọc và ghi tin nhắn.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên MongoDB và ScyllaDB.
+- **SST** (Sorted String Table) — bảng chuỗi đã sắp xếp: tệp chứa các khóa đã sắp thứ tự, ghi một lần rồi không sửa; SSTable là tên của loại tệp này.
 
 ## Đọc hình
 

@@ -28,12 +28,12 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "checked",
-      "checked_on": "2026-10-18",
-      "evidence": "The source statements were read from the pinned source body; the example, the network order and the architecture statements were read in a raw copy of the CPython struct documentation at the pinned commit; 0xff03 = 65283 was computed. The remark that bit order inside a byte is a separate matter is the author's general knowledge."
+      "checked_on": "2026-10-19",
+      "evidence": "The concept names were read from the pinned source body. The 1023 example, the machine families, the network byte order and the advice were read in a raw copy of the CPython struct documentation at the pinned commit; the conversion functions were read in a Linux kernel header at the pinned commit. The IETF standard cited by the struct documentation was not readable from this session, and the 65283 computation and the glosses of IBM, AMD and IETF are the author's own."
     },
     "technical_review": {
       "status": "pending",
@@ -49,52 +49,59 @@
   },
   "claims": [
     {
-      "claim_vi": "Microprocessors commonly store the individual bytes of a value in memory in one of two byte orders, called byte ordering or endian nature.",
+      "claim_vi": "The source names little endian, big endian and the question why byte order matters when data moves between systems. Only the names and the question are reused; the source's PowerPC, Motorola 68k and file storage statements are not repeated because the primary documents read do not contain them.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md",
-      "section": "Introduction",
+      "section": "Whole guide",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Intel x86 processors store a two-byte integer with the least significant byte first (little endian).",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md",
-      "section": "Little Endian",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "In big endian the most significant byte is at the lowest memory address; older PowerPC and Motorola 68k often use big endian; network communications and file storage use big endian.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md",
-      "section": "Big Endian",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Byte order matters when data moves between systems or is processed by systems with different endianness; it must be handled correctly.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md",
-      "section": "Last paragraph",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Python struct documentation: the number 1023 (0x3ff) is 03 ff in big endian and ff 03 in little endian; network order is big-endian; native order depends on the host; Intel x86, AMD64 and Apple M1 are little-endian, IBM z and many legacy architectures big-endian; sys.byteorder tells the host order.",
+      "claim_vi": "Python struct documentation: the number 1023 (0x3ff) is 03 ff in big-endian and ff 03 in little-endian, and struct.pack('>h', 1023) and struct.pack('<h', 1023) give those bytes.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/struct.rst",
-      "section": "Byte order note",
+      "section": "Byte Order, Size, and Alignment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Python struct documentation: native byte order depends on the host system; Intel x86, AMD64 (x86-64) and Apple M1 are little-endian; IBM z and many legacy architectures are big-endian; sys.byteorder reports the system's byte order.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/struct.rst",
+      "section": "Byte Order, Size, and Alignment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Python struct documentation: network byte order is always big-endian, as defined in an IETF RFC the documentation cites (the RFC itself was not read).",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/struct.rst",
+      "section": "Byte Order, Size, and Alignment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Python struct documentation advice: when exchanging data beyond the process, such as networking or storage, specify the exact byte order, size and alignment and do not assume the native order; network byte order is big-endian while many popular CPUs are little-endian.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/struct.rst",
+      "section": "Standard Formats",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux byteorder/generic.h comment: htonl, htons, ntohl and ntohs convert long and short integers between network and host format.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/include/linux/byteorder/generic.h",
+      "section": "Header comment",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
       "claim_vi": "Reading ff 03 as a big-endian unsigned two-byte integer gives 0xff03 = 65283 (computed by the author).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md",
-      "section": "Answer to the check question",
+      "section": "Check question",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
-      "claim_vi": "Byte order concerns the order of bytes of a number, not of bits within a byte.",
+      "claim_vi": "Byte order concerns the order of bytes of a number, not of bits within a byte; the glosses of IBM, AMD and IETF.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md",
-      "section": "Limits",
+      "section": "Limits and abbreviations",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Hai chuỗi hai bước cho big và little endian với số 1023, nơi dùng, ba điều cần nhớ. Ví dụ lấy từ tài liệu Python thay vì tự nghĩ. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai chuỗi hai bước cho big và little endian với số 1023, nơi dùng (theo tài liệu Python), ba điều cần nhớ. Ví dụ lấy từ tài liệu Python thay vì tự nghĩ. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source gives no worked example; the lesson uses the 1023 example from the Python struct documentation.",
+    "Source has three short sections and no worked example; the lesson keeps the names and the question why byte order matters, and explains them with the 1023 example, the machine list and the advice of the Python struct documentation and a Linux header comment instead of translating the source sentences.",
+    "Source says older PowerPC and Motorola 68k are often big endian and that file storage uses big endian; the documents read do not say so, so the lesson drops both and names the machines the Python documentation names (Intel x86, AMD64, Apple M1, IBM z).",
     "Source does not mention that byte order is distinct from bit order or give a mixed-endian failure case; the lesson adds the check question as the author's computation."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào tài liệu Python struct và một tệp của nhân Linux ở commit cố định; chuẩn của IETF mà tài liệu Python dẫn chưa được đọc trực tiếp, và phép tính 65283 cùng giải nghĩa viết tắt là của người biên soạn. Chưa user testing hoặc phê duyệt phát hành."
 }

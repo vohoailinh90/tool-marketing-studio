@@ -1,24 +1,32 @@
 # Big endian và little endian: thứ tự byte trong bộ nhớ
 
 **Một số nguyên nhiều byte có thể nằm trong bộ nhớ theo hai thứ tự: byte nhỏ nhất trước (little endian) hoặc byte lớn nhất trước (big endian).**
-Hai kiểu này không sai hay đúng; chúng chỉ gây rắc rối khi dữ liệu đi giữa hai hệ thống dùng kiểu khác nhau.
+Bài nguồn gọi chung hai kiểu này là thứ tự byte; bài này giữ tên little endian, big endian và câu hỏi vì sao thứ tự byte quan trọng, rồi giải thích bằng ví dụ và lời khuyên trong tài liệu của Python.
 
-![Bốn nhóm xếp dọc. Big endian với số 1023 hay 0x3ff: byte lớn nhất 03 nằm ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff nằm ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở bộ xử lý Intel x86; big endian ở PowerPC và Motorola 68k đời cũ, trong truyền thông mạng và lưu tệp. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-011-main.svg)
+![Bốn nhóm xếp dọc. Big endian với số 1023 hay 0x3ff: byte lớn nhất 03 nằm ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff nằm ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-011-main.svg)
+
+## Từ viết tắt
+
+- **IBM** (International Business Machines) — tên một hãng máy tính; bài nhắc dòng máy IBM z, một dòng dùng big endian.
+- **AMD** (Advanced Micro Devices) — tên một hãng bộ xử lý; AMD64 là tên một kiến trúc x86 64 bit, dùng little endian.
+- **IETF** (Internet Engineering Task Force) — lực lượng đặc nhiệm kỹ thuật Internet: tổ chức soạn các chuẩn của Internet; tài liệu Python dẫn một chuẩn của nó khi nói về thứ tự mạng.
 
 ## Đọc hình
 
-**Ví dụ: số 1023.** Số 1023 viết thập lục phân là `0x3ff`, nên cần hai byte: byte lớn nhất là `03`, byte nhỏ nhất là `ff`. Big endian ghi `03 ff`, nghĩa là byte lớn nhất ở địa chỉ thấp nhất. Little endian ghi `ff 03`, nghĩa là byte nhỏ nhất ở địa chỉ thấp nhất. Ví dụ này lấy từ tài liệu mô-đun `struct` của Python.
+Tên các thứ tự là của bài nguồn. Ví dụ, danh sách máy và lời khuyên dưới đây lấy từ tài liệu mô-đun `struct` của Python; cách giải thích là của người biên soạn.
 
-**Little endian.** Bộ xử lý Intel x86 lưu số nguyên hai byte với byte nhỏ nhất (least significant byte) trước, rồi tới byte lớn nhất (most significant byte). Đó là thứ tự little endian.
+**Ví dụ: số 1023.** Tài liệu `struct` dùng chính số này. Viết thập lục phân, 1023 là `0x3ff`, nên khi lưu thành hai byte thì byte lớn nhất là `03` và byte nhỏ nhất là `ff`. Ở big endian, hai byte nằm theo thứ tự `03 ff`: byte lớn nhất ở địa chỉ thấp nhất. Ở little endian, chúng nằm theo thứ tự `ff 03`: byte nhỏ nhất ở địa chỉ thấp nhất. Trong Python, `struct.pack('>h', 1023)` ra `03 ff` và `struct.pack('<h', 1023)` ra `ff 03`.
 
-**Big endian.** Với thứ tự big endian, byte lớn nhất nằm ở địa chỉ bộ nhớ thấp nhất và byte nhỏ nhất ở địa chỉ cao nhất. Các kiến trúc PowerPC và Motorola 68k đời cũ thường dùng big endian. Trong truyền thông mạng và lưu tệp, big endian cũng được dùng.
+**Little endian.** Tài liệu `struct` nói thứ tự gốc của máy là big endian hoặc little endian tùy máy chủ; Intel x86, AMD64 và Apple M1 là little endian.
 
-**Vì sao quan trọng.** Thứ tự byte trở nên quan trọng khi dữ liệu được chuyển giữa các hệ thống, hoặc được xử lý bởi các hệ thống có thứ tự khác nhau. Cần xử lý đúng thứ tự byte để đọc dữ liệu nhất quán.
+**Big endian.** Cũng theo tài liệu đó, IBM z và nhiều kiến trúc cũ là big endian. Thứ tự mạng (network byte order) luôn là big endian; tài liệu dẫn chuẩn của IETF làm gốc cho điều này, mà bài không đọc trực tiếp.
+
+**Vì sao quan trọng.** Tài liệu `struct` khuyên: khi trao đổi dữ liệu ra ngoài tiến trình, như qua mạng hay lưu trữ, hãy nêu rõ thứ tự byte và đừng giả định nó giống thứ tự gốc của máy mình, vì thứ tự mạng là big endian còn nhiều bộ xử lý phổ biến là little endian. Nhờ nêu rõ, người viết mã không phải bận tâm máy chạy mã là loại nào. Nhân Linux cũng có sẵn các hàm `htonl`, `htons`, `ntohl`, `ntohs` để đổi số giữa dạng mạng và dạng máy (chú thích trong tệp `byteorder/generic.h`).
 
 ## Giới hạn cần nhớ
 
 Thứ tự byte nói về cách xếp **byte** của một số trong bộ nhớ, không phải về thứ tự các bit trong một byte.
-Nguồn nêu Intel x86 cho little endian, PowerPC và Motorola 68k đời cũ cho big endian, và nói mạng dùng big endian; bài không nói máy nào "nhanh hơn". Tài liệu `struct` của Python ghi thêm rằng thứ tự gốc của máy phụ thuộc máy, và dùng `sys.byteorder` để biết máy mình dùng kiểu nào.
+Bài nguồn nêu thêm PowerPC và Motorola 68k đời cũ là big endian, và nói big endian cũng được dùng khi lưu tệp; các tài liệu đã đọc không có hai điều đó nên bài này không lặp lại. Bài không nói máy nào "nhanh hơn" và không có mã ngoài hai lệnh ví dụ ở trên. Dùng `sys.byteorder` trong Python để biết máy mình dùng kiểu nào.
 
 ## Nhìn hình trả lời
 
@@ -28,22 +36,23 @@ Một chương trình trên máy little endian ghi số 1023 thành hai byte r�
 <summary>Xem đáp án</summary>
 
 Máy little endian gửi `ff 03`. Máy big endian coi byte đầu tiên là byte lớn nhất nên đọc thành `0xff03`, tức 65283 nếu hiểu là số nguyên không dấu hai byte (phép tính của người biên soạn), thay vì 1023.
-Vì thế cần thống nhất thứ tự khi truyền dữ liệu, và mạng dùng big endian làm thứ tự chung.
+Vì thế khi gửi dữ liệu ra ngoài cần nêu rõ thứ tự byte, và thứ tự mạng là big endian.
 
 </details>
 
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn có một ảnh và ba phần ngắn: little endian, big endian, vì sao quan trọng. Bài này không dùng ảnh; ví dụ 1023 lấy từ tài liệu Python thay cho một ví dụ tự nghĩ ra, và có thêm câu hỏi kiểm tra.
-Việc `struct` coi thứ tự mạng là big endian, và nêu Intel x86 là little endian còn nhiều kiến trúc cũ là big endian, đã được đối chiếu với tài liệu Python tại commit cố định ở mục nguồn.
+Bài nguồn có một ảnh và ba phần ngắn: little endian, big endian, vì sao quan trọng. Bài này chỉ giữ các tên đó; không dịch hay diễn đạt lại các câu của nguồn mà dùng ví dụ 1023, danh sách máy và lời khuyên của tài liệu Python `struct` (tại commit cố định ở mục nguồn) cùng chú thích của nhân Linux, và thêm câu hỏi kiểm tra.
+Hai chi tiết của nguồn mà các tài liệu đã đọc không có (PowerPC và Motorola 68k, lưu tệp) bị bỏ. Bài không dùng ảnh nguồn.
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md): hai thứ tự byte, nơi dùng, vì sao quan trọng.
-- [Python — tài liệu mô-đun struct](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/struct.rst): ví dụ 1023, thứ tự mạng là big endian, thứ tự gốc phụ thuộc máy. Đọc từ kho mã.
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/big-endian-vs-little-endian.md): tên little endian, big endian và câu hỏi vì sao thứ tự byte quan trọng.
+- [Python — tài liệu mô-đun struct](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/struct.rst): ví dụ 1023, các máy little endian và big endian, thứ tự mạng, lời khuyên khi trao đổi dữ liệu. Đọc từ kho mã.
+- [Linux — include/linux/byteorder/generic.h](https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/include/linux/byteorder/generic.h): các hàm đổi giữa dạng mạng và dạng máy. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-18. Phép đổi `ff03` thành 65283 là phép tính của người biên soạn.
+Đã đọc nguồn ngày 2026-10-19. Phép đổi `ff03` thành 65283 và giải nghĩa IBM, AMD là của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
 Bài viết và hình được thiết kế độc lập.

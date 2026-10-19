@@ -1,23 +1,24 @@
 {
   "id": "sd-10-010",
   "title": "Hàng đợi chặn và không chặn",
-  "subtitle": "Khác nhau ở chỗ luồng B phải làm gì khi bị từ chối.",
-  "desc": "Bốn nhóm xếp dọc. Hàng đợi chặn: luồng A lấy khóa và truy cập, luồng B xin truy cập, hàng đợi bắt B đợi tới khi khóa được nhả. Hàng đợi không chặn: B xin truy cập, hàng đợi từ chối ngay, A truy cập và làm xong trong số bước nhất định. Hai tính chất: không bị bỏ đói và wait-free. Ba lợi ích của hàng đợi không chặn: không treo luồng, không khóa chết, cài đặt bằng CAS.",
+  "subtitle": "Khác nhau ở chỗ luồng làm gì khi việc chưa làm được ngay.",
+  "desc": "Bốn nhóm xếp dọc. Hàng đợi chặn: luồng B lấy phần tử nhưng hàng đang trống nên phải đợi, luồng A thêm phần tử thì B được giao nó. Hàng đợi không chặn: hai luồng cùng gắn nút vào cuối hàng bằng CAS, luồng thua đọc lại rồi thử tiếp. Hai tính chất: không bị bỏ đói và wait-free. Ba điều cần nhớ về hàng đợi không chặn: không treo luồng, không có khóa nên không khóa chết, dựng bằng CAS.",
   "sections": [
     {"kind": "sequence", "heading": "Hàng đợi chặn",
      "actors": [{"name": "Luồng A", "icon": "user"}, {"name": "Hàng đợi", "icon": "inbox"}, {"name": "Luồng B", "icon": "users"}],
-     "messages": [{"from": 0, "to": 1, "text": "Lấy khóa, truy cập"},
-                  {"from": 2, "to": 1, "text": "Xin truy cập"},
-                  {"from": 1, "to": 2, "text": "Đợi tới khi khóa được nhả", "reply": true}]},
+     "messages": [{"from": 2, "to": 1, "text": "Lấy phần tử, hàng đang trống"},
+                  {"from": 1, "to": 2, "text": "B đợi tới khi có phần tử", "reply": true},
+                  {"from": 0, "to": 1, "text": "Thêm một phần tử"},
+                  {"from": 1, "to": 2, "text": "Giao phần tử cho B", "reply": true}]},
     {"kind": "sequence", "heading": "Hàng đợi không chặn",
      "actors": [{"name": "Luồng A", "icon": "user"}, {"name": "Hàng đợi", "icon": "inbox"}, {"name": "Luồng B", "icon": "users"}],
-     "messages": [{"from": 2, "to": 1, "text": "Xin truy cập"},
-                  {"from": 1, "to": 2, "text": "Từ chối ngay", "reply": true},
-                  {"from": 0, "to": 1, "text": "Truy cập, làm xong trong số bước nhất định"}]},
+     "messages": [{"from": 0, "to": 1, "text": "Gắn nút cuối bằng CAS"},
+                  {"from": 2, "to": 1, "text": "Cùng lúc gắn nút bằng CAS"},
+                  {"from": 1, "to": 2, "text": "B thua CAS, đọc lại, thử tiếp", "reply": true}]},
     {"kind": "parts", "heading": "Hai tính chất",
-     "items": [{"name": "Không bị bỏ đói", "role": "Không luồng nào bị chặn mãi khỏi tài nguyên chia sẻ.", "icon": "circle-check"},
-               {"name": "Wait-free", "role": "Mọi luồng hoàn thành việc trong số bước hữu hạn.", "icon": "gauge"}]},
-    {"kind": "notes", "heading": "Lợi ích của hàng đợi không chặn",
-     "items": ["Không treo luồng: B nhận phản hồi ngay.", "Không khóa chết, vì không ai chờ khóa.", "Có thể cài đặt bằng CAS."]}
+     "items": [{"name": "Không bị bỏ đói", "role": "Luồng nào cũng có lúc được truy cập tài nguyên chia sẻ.", "icon": "circle-check"},
+               {"name": "Wait-free", "role": "Mỗi luồng xong việc trong số bước hữu hạn.", "icon": "gauge"}]},
+    {"kind": "notes", "heading": "Hàng đợi không chặn",
+     "items": ["Không treo luồng: không ai đợi một khóa.", "Không có khóa để giữ, nên không khóa chết.", "Dựng bằng CAS: ghi nếu giá trị chưa đổi."]}
   ]
 }

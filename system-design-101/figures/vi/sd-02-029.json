@@ -1,0 +1,56 @@
+{
+  "id": "sd-02-029",
+  "title": "Discord đổi nơi lưu tin nhắn",
+  "subtitle": "Mỗi lần đổi vì độ trễ thất thường.",
+  "desc": "Ba bước. MongoDB năm 2015: một bản sao, 100 triệu tin nhắn thì bộ nhớ không chứa nổi. Cassandra: 12 máy năm 2017, 177 máy đầu năm 2022 với hàng nghìn tỷ tin nhắn. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba chặng",
+      "items": [
+        {
+          "title": "MongoDB, 2015",
+          "text": "100 triệu tin nhắn, bộ nhớ không đủ."
+        },
+        {
+          "title": "Cassandra, 2017–2022",
+          "text": "Từ 12 máy lên 177 máy."
+        },
+        {
+          "title": "ScyllaDB",
+          "text": "Tương thích Cassandra, viết bằng C++."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Vì sao Cassandra chậm",
+      "items": [
+        {
+          "name": "Đọc tốn hơn ghi",
+          "role": "Nhiều lượt đọc dồn một máy.",
+          "icon": "gauge"
+        },
+        {
+          "name": "Gộp tệp",
+          "role": "Bảo trì cụm làm chậm máy.",
+          "icon": "wrench"
+        },
+        {
+          "name": "Dọn bộ nhớ",
+          "role": "Mỗi lần dừng, độ trễ vọt lên.",
+          "icon": "timer"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Độ trễ p99 theo nguồn",
+      "items": [
+        "Đọc: 15 ms, so với 40 đến 125 ms.",
+        "Ghi: 5 ms, so với 5 đến 70 ms.",
+        "Nguồn không nói cách đo."
+      ]
+    }
+  ]
+}

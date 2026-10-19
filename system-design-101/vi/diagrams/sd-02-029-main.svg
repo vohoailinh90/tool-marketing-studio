@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1070" viewBox="0 0 320 1070" role="img" aria-labelledby="title desc">
+<title id="title">Discord đổi nơi lưu tin nhắn</title>
+<desc id="desc">Ba bước. MongoDB năm 2015: một bản sao, 100 triệu tin nhắn thì bộ nhớ không chứa nổi. Cassandra: 12 máy năm 2017, 177 máy đầu năm 2022 với hàng nghìn tỷ tin nhắn. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1070" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Discord đổi nơi lưu tin</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nhắn</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi lần đổi vì độ trễ thất thường.</text>
+<rect x="8" y="104" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chặng</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">MongoDB, 2015</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 triệu tin nhắn, bộ nhớ</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đủ.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cassandra, 2017–2022</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ 12 máy lên 177 máy.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">ScyllaDB</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tương thích Cassandra, viết</text>
+<text x="70" y="417.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng C++.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="459" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="487.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vì sao Cassandra chậm</text>
+<rect x="20" y="504" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="547.5" r="18" fill="#0f766e"/><g transform="translate(39.2 536.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<text x="78" y="530.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc tốn hơn ghi</text>
+<text x="78" y="554.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều lượt đọc dồn một</text>
+<text x="78" y="573.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="20" y="605" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="648.5" r="18" fill="#0f766e"/><g transform="translate(39.2 637.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></g>
+<text x="78" y="631.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gộp tệp</text>
+<text x="78" y="655.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảo trì cụm làm chậm</text>
+<text x="78" y="674.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="20" y="706" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="749.5" r="18" fill="#0f766e"/><g transform="translate(39.2 738.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
+<text x="78" y="732.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dọn bộ nhớ</text>
+<text x="78" y="756.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lần dừng, độ trễ vọt</text>
+<text x="78" y="775.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lên.</text>
+<rect x="8" y="817" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="845.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Độ trễ p99 theo nguồn</text>
+<rect x="20" y="862" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="885" r="11" fill="#16a34a"/>
+<polyline points="37.9,885.4 41.7,889.4 48.5,881" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="888.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc: 15 ms, so với 40 đến</text>
+<text x="64" y="907.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">125 ms.</text>
+<rect x="20" y="933" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="956" r="11" fill="#16a34a"/>
+<polyline points="37.9,956.4 41.7,960.4 48.5,952" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="959.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi: 5 ms, so với 5 đến 70</text>
+<text x="64" y="978.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ms.</text>
+<rect x="20" y="1004" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1027" r="11" fill="#16a34a"/>
+<polyline points="37.9,1027.4 41.7,1031.4 48.5,1023" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1030.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn không nói cách đo.</text>
+</g>
+</svg>

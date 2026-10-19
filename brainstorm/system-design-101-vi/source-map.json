@@ -796,21 +796,21 @@
         },
         {
           "id": "sd-02-028",
-          "title_vi": null,
+          "title_vi": "API của Netflix qua bốn giai đoạn",
           "title_source": "Evolution of the Netflix API Architecture",
           "source_url": "https://bytebytego.com/guides/evolution-of-the-netflix-api-architecture",
           "source_path": "data/guides/evolution-of-the-netflix-api-architecture.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5e25858555ef20adfdfca6c1c853f417e89e14aa",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md"
         },
         {
           "id": "sd-02-029",
-          "title_vi": null,
+          "title_vi": "Discord lưu hàng nghìn tỷ tin nhắn thế nào",
           "title_source": "How Discord Stores Trillions of Messages",
           "source_url": "https://bytebytego.com/guides/how-discord-stores-trillions-of-messages",
           "source_path": "data/guides/how-discord-stores-trillions-of-messages.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "8b02016e8fa1c9b084cd51e23b186825b9104ef2",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-discord-stores-trillions-of-messages.md"
         },
@@ -826,21 +826,21 @@
         },
         {
           "id": "sd-02-031",
-          "title_vi": null,
+          "title_vi": "Lớp API của Uber qua ba thế hệ",
           "title_source": "Evolution of Uber's API Layer",
           "source_url": "https://bytebytego.com/guides/evolution-of-uber's-api-layer",
           "source_path": "data/guides/evolution-of-uber's-api-layer.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "08f8f4620e8d29e9c7b322ffb729351c10a211db",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md"
         },
         {
           "id": "sd-02-032",
-          "title_vi": null,
+          "title_vi": "Ngăn xếp công nghệ của Netflix",
           "title_source": "Netflix's Tech Stack",
           "source_url": "https://bytebytego.com/guides/netflixs-tech-stack",
           "source_path": "data/guides/netflixs-tech-stack.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "bcb14a6990cdafe53a665163a617ac4bc0b6b1c9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflixs-tech-stack.md"
         }

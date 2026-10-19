@@ -64,6 +64,10 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 1. [Figma mở rộng Postgres: ba bậc thang](lessons/sd-02-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 2. [API của các API: nối ứng dụng bằng trigger và action](lessons/sd-02-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 3. [Pinterest cắt thời gian clone bằng một dòng refspec](lessons/sd-02-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+28. [API của Netflix qua bốn giai đoạn](lessons/sd-02-028/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+29. [Discord lưu hàng nghìn tỷ tin nhắn thế nào](lessons/sd-02-029/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+31. [Lớp API của Uber qua ba thế hệ](lessons/sd-02-031/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+32. [Ngăn xếp công nghệ của Netflix](lessons/sd-02-032/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

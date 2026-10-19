@@ -1,0 +1,61 @@
+{
+  "id": "sd-02-032",
+  "title": "Netflix xếp thành tám mảng",
+  "subtitle": "Từ ứng dụng tới phát hành.",
+  "desc": "Hai dải bước và một cột. Đường xem phim: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Phía dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Đứng ngoài đường đi: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường xem phim",
+      "items": [
+        {
+          "title": "Di động và web",
+          "text": "Swift, Kotlin; React."
+        },
+        {
+          "title": "Giao diện và máy chủ",
+          "text": "GraphQL."
+        },
+        {
+          "title": "Dịch vụ phía sau",
+          "text": "Zuul, Eureka, Spring Boot."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Phía dữ liệu",
+      "items": [
+        {
+          "title": "Cơ sở dữ liệu",
+          "text": "EVCache, Cassandra, CockroachDB."
+        },
+        {
+          "title": "Lưu video",
+          "text": "S3 và Open Connect."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Đứng ngoài đường đi",
+      "items": [
+        {
+          "name": "Truyền tin",
+          "role": "Kafka, Flink.",
+          "icon": "send"
+        },
+        {
+          "name": "Xử lý dữ liệu",
+          "role": "Flink, Spark, Tableau.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Phát hành",
+          "role": "Jenkins, Spinnaker.",
+          "icon": "rocket"
+        }
+      ]
+    }
+  ]
+}

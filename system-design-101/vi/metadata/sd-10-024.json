@@ -54,16 +54,28 @@
       "verified_by": "Read from the pinned commit; the small stable-sort example was run."
     },
     {
-      "claim_vi": "The Java array sorting methods note that the sorting algorithm is a Dual-Pivot Quicksort; RSAKeyGenParameterSpec carries the modulus size in bits and the public exponent for generating an RSA key pair.",
+      "claim_vi": "The Java array sorting methods note that the sorting algorithm is a Dual-Pivot Quicksort.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Arrays.java",
-      "section": "Arrays; RSAKeyGenParameterSpec",
+      "section": "Arrays",
       "verified_by": "Read from the pinned commit."
     },
     {
-      "claim_vi": "NetworkX computes weighted shortest paths with Dijkstra's method and describes PageRank as ranking nodes by the structure of incoming links, originally designed for web pages. On the four-node example dijkstra_path returns A, C, B, D (length 4).",
+      "claim_vi": "RSAKeyGenParameterSpec carries the modulus size in bits and the public exponent for generating an RSA key pair.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/security/spec/RSAKeyGenParameterSpec.java",
+      "section": "RSAKeyGenParameterSpec",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "NetworkX describes PageRank as ranking nodes by the structure of incoming links, originally designed for web pages.",
       "source": "https://github.com/networkx/networkx/blob/abf2feda2252ee4e0d5a66964addf179225dfe76/networkx/algorithms/link_analysis/pagerank_alg.py",
-      "section": "pagerank; dijkstra_path",
-      "verified_by": "Read from the pinned commit; dijkstra_path run with NetworkX from PyPI. The PageRank scores come from the author's own power iteration (damping 0.85), not from NetworkX."
+      "section": "pagerank",
+      "verified_by": "Read from the pinned commit. The PageRank scores in the lesson come from the author's own power iteration (damping 0.85), not from NetworkX."
+    },
+    {
+      "claim_vi": "NetworkX computes weighted shortest paths with Dijkstra's method; on the four-node example dijkstra_path returns A, C, B, D (length 4).",
+      "source": "https://github.com/networkx/networkx/blob/abf2feda2252ee4e0d5a66964addf179225dfe76/networkx/algorithms/shortest_paths/weighted.py",
+      "section": "dijkstra_path",
+      "verified_by": "Read from the pinned commit; dijkstra_path run with NetworkX from PyPI."
     },
     {
       "claim_vi": "SymPy's factorint returns the prime factors of a positive integer with their multiplicities; factorint(360) is {2: 3, 3: 2, 5: 1} and factorint(3233) is {53: 1, 61: 1}.",
@@ -90,9 +102,15 @@
       "verified_by": "Computed by the author with Python's three-argument pow; the numbers are far too small to be secure."
     },
     {
-      "claim_vi": "PyTorch's Transformer layer implements the original architecture of Attention Is All You Need as a reference implementation (defaults 8 heads, 6 encoder and 6 decoder layers); Conv2d applies a 2D convolution over an input signal of several planes.",
+      "claim_vi": "PyTorch's Transformer layer implements the original architecture of Attention Is All You Need as a reference implementation (defaults 8 heads, 6 encoder and 6 decoder layers).",
       "source": "https://github.com/pytorch/pytorch/blob/a0f92a5ebaafec79f18454ffab8d8a08c6255f76/torch/nn/modules/transformer.py",
-      "section": "Transformer; Conv2d",
+      "section": "Transformer",
+      "verified_by": "Read from the pinned commit; not run."
+    },
+    {
+      "claim_vi": "PyTorch's Conv2d applies a 2D convolution over an input signal composed of several input planes.",
+      "source": "https://github.com/pytorch/pytorch/blob/a0f92a5ebaafec79f18454ffab8d8a08c6255f76/torch/nn/modules/conv.py",
+      "section": "Conv2d",
       "verified_by": "Read from the pinned commit; not run."
     }
   ],

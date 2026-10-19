@@ -65,10 +65,16 @@
       "verified_by": "Read from a raw copy at the pinned commit."
     },
     {
-      "claim_vi": "unittest: a test case checks a specific response to a particular set of inputs; assertRaises verifies that an exception is raised. Python functional HOWTO: functional style discourages functions with side effects.",
+      "claim_vi": "unittest: a test case checks a specific response to a particular set of inputs; assertRaises verifies that an exception is raised.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/unittest.rst",
-      "section": "unittest basic concepts; functional HOWTO introduction",
-      "verified_by": "Read from raw copies at the pinned commit."
+      "section": "unittest basic concepts",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "Python functional HOWTO: functional style discourages functions with side effects.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
+      "section": "introduction",
+      "verified_by": "Read from a raw copy at the pinned commit."
     },
     {
       "claim_vi": "OWASP Input Validation Cheat Sheet: validate both syntax and semantics; numbers get type, format, minimum and maximum; validation does not replace parameterized queries for SQL.",

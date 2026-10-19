@@ -26,7 +26,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the Python, MDN (compile, JIT), OpenJDK java and Microsoft managed-execution (CIL to native code) statements were read in raw copies at the pinned commits and are recorded in the claims below; the remark that a language does not itself determine how it runs, the qualification that .pyc caching normally applies to imported modules and not to a script run directly and can be disabled or blocked by file permissions (not checked), and the glosses of CPU, JVM, CLR, CIL and AOT are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the Python, MDN (compile, JIT), OpenJDK java and Microsoft managed-execution (CIL to native code) statements were read in raw copies at the pinned commits and are recorded in the claims below; the remark that a language does not itself determine how it runs, a Java class file holding bytecode (not checked), the qualification that .pyc caching normally applies to imported modules and not to a script run directly and can be disabled or blocked by file permissions (not checked), and the glosses of CPU, JVM, CLR, CIL and AOT are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",

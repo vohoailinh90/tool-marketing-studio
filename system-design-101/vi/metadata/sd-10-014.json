@@ -26,7 +26,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; OpenAPI, ECMAScript and HTML were read in raw copies at the pinned commits, and the SQL (MDN) and OAuth (OAuth 2.1 draft) statements were checked against pinned copies recorded in the claims below; only the ISO 8601 statement is the source's word, and the glosses of the abbreviations are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the TCP, IP, HTTP, HTML, CSS, SQL and ECMAScript statements (MDN), the HTML Standard, ECMA-262, OpenAPI and OAuth 2.1 draft statements were read in raw copies at the pinned commits and are recorded in the claims below; the HTTP/2 binary-framing qualification added to the HTTP claim and the ISO 8601 statement are not checked, and the glosses of the abbreviations are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",

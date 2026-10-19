@@ -80,8 +80,8 @@ mutations:
   replace: "        return names"
   test: tests.test_ci_changes.SelectedManifestsTests.test_an_unrelated_change_chooses_no_manifest
 - label: a change to the checker or the workflow runs only the manifests that name it
-  find: "    if any(path in RUN_ALL for path in changed):\n        return None\n"
-  replace: ""
+  find: "    if any(path in RUN_ALL or shared_test_file(path) for path in changed):"
+  replace: "    if any(shared_test_file(path) for path in changed):"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_file_runs_every_manifest
 - label: a manifest is not chosen by the module of a test it names
   find: "        named.add(test_module_file(entry.get(\"test\", \"\"), root) or \"\")\n"

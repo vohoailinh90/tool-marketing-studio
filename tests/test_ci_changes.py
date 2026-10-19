@@ -103,6 +103,7 @@ class SelectedManifestsTests(unittest.TestCase):
     def test_manifests_that_cannot_be_read_run_every_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)
+            write(folder, "scripts/tool.py", "x = 1\n")  # present, so only the missing manifests can decide
             self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
             write(folder, "tests/mutations/broken.yaml", "target: [unclosed\n")
             self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))

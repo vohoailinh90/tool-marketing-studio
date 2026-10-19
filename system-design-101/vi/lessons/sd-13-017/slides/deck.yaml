@@ -1,0 +1,23 @@
+id: sd-13-017
+status: done
+owner: claude/sd13-slides-0219
+claimed_at: '2026-10-19T00:50:06Z'
+done_at: '2026-10-19T00:52:34Z'
+moda_canvas: cvs_3T3XGZ025P81A9A77GMF64NWJ0
+moda_url: https://moda.app/canvas/7a1f61f0-08b6-4054-951c-f0a3cc4af240
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - card-grid
+  - one-highlighted-sentence
+  - card-grid
+  - flow
+  - two-column-comparison
+  - layers
+  - numbered-rows
+  - one-big-number
+  - lookup-table
+  - card-grid
+  first_concept: 3

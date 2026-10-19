@@ -67,6 +67,7 @@ Con số 60 ms là của môi trường biên soạn, qua proxy tới GitHub; gi
 
 Bài nguồn kể sáu loại: thanh ghi, bộ đệm, RAM, SSD, HDD và kho lưu trữ từ xa, mỗi loại một câu mô tả. Bài này đo thay vì mô tả, nên gộp SSD và HDD thành "ổ đĩa" (máy ảo không cho biết ổ thật) và lấy một yêu cầu HTTPS làm đại diện cho "qua mạng".
 Thử nghiệm thêm hai điều bài nguồn không có: bộ đệm báo trên giấy có thể không hiện ra trong số đo, và thời gian đọc bộ nhớ chính còn phụ thuộc vào việc dịch địa chỉ.
+Bài về các loại bộ nhớ và lưu trữ trong cùng nhóm đo theo cùng cách trên một máy ảo khác và giải nghĩa tên các loại bộ nhớ, ổ lưu trữ mà nguồn của nó nêu; bài này thêm tầng thanh ghi, tầng mạng và ảnh hưởng của việc dịch địa chỉ.
 
 </details>
 

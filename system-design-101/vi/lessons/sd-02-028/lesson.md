@@ -18,11 +18,11 @@ Bài này đọc bốn giai đoạn đó theo một câu hỏi: mỗi bước s�
 3. **Lớp cổng gộp.** Một số việc cần dữ liệu từ nhiều dịch vụ. Ví dụ của nguồn: ứng dụng Netflix cần ba API (phim, sản xuất, diễn viên) để dựng giao diện; lớp cổng gộp lấy cả ba và trả về một lần.
 4. **Cổng liên hợp.** Số lập trình viên tăng và nghiệp vụ phức tạp hơn, nên phát triển lớp gộp ngày càng khó. GraphQL Federation cho Netflix dựng một cổng GraphQL duy nhất, lấy dữ liệu từ mọi API khác.
 
-Giai đoạn hai là lúc máy khách gọi thẳng từng dịch vụ. Từ giai đoạn ba, máy khách lại chỉ gọi một chỗ là cổng; ở giai đoạn bốn, chỗ đó do nhiều đội cùng làm thay vì một đội ôm hết.
+Giai đoạn hai là lúc máy khách gọi thẳng từng dịch vụ. Từ giai đoạn ba, máy khách lại chỉ gọi một chỗ là cổng; ở giai đoạn bốn, chỗ đó vẫn là một cổng, nhưng là cổng GraphQL lấy dữ liệu từ mọi API khác thay cho lớp gộp ngày càng khó phát triển.
 
 ## Giới hạn cần nhớ
 
-Bài nguồn chỉ có một đoạn ngắn cho mỗi giai đoạn. Nó không nói mỗi giai đoạn diễn ra năm nào, không giải thích cổng liên hợp chia việc giữa các đội ra sao, và không nói vì sao gọi thẳng microservice "không hay". Lời giải thích ở phần dưới là của người biên soạn.
+Bài nguồn chỉ có một đoạn ngắn cho mỗi giai đoạn. Nó không nói mỗi giai đoạn diễn ra năm nào, không giải thích cổng liên hợp chia việc giữa các đội ra sao (ai làm cổng, ai làm phần dữ liệu phía sau), và không nói vì sao gọi thẳng microservice "không hay". Lời giải thích ở phần dưới là của người biên soạn.
 
 ## Nhìn hình thử trả lời
 
@@ -40,7 +40,7 @@ Màn hình trang phim cần tên phim, hãng sản xuất và danh sách diễn 
 
 - Mỗi yêu cầu đi qua mạng di động tốn thời gian; một màn hình cần nhiều yêu cầu thì chậm hơn.
 - Máy khách gọi thẳng từng dịch vụ thì khi phía sau đổi địa chỉ hay đổi cách trả lời mà ứng dụng cũ đang dựa vào, ứng dụng cũ đã cài sẽ hỏng; đổi tên hay tách dịch vụ mà vẫn giữ nguyên địa chỉ và cách trả lời cũ thì không sao, nhưng phải giữ được điều đó.
-- Cổng liên hợp để mỗi đội giữ phần dữ liệu của mình, rồi ghép lại thành một chỗ cho máy khách gọi.
+- Theo cách GraphQL Federation thường được dùng, mỗi đội giữ và khai báo phần dữ liệu của mình (gọi là subgraph); cổng không do các đội cùng viết, nó chỉ ghép các phần đó thành một chỗ cho máy khách gọi.
 
 Đây là kiến thức chung của người biên soạn, không phải từ bài nguồn.
 

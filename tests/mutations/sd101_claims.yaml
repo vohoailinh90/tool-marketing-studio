@@ -495,8 +495,8 @@ mutations:
   replace: '    if gone := []:'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
 - label: a lesson the default branch dropped is still offered
-  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
-  replace: '    exclude = (*exclude, *repartnered_upstream(context))'
+  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context),'
+  replace: '    exclude = (*exclude, *repartnered_upstream(context),'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
 - label: an existing claim on a lesson the default branch dropped is still held
   find: "    if lesson_id in gone:\n        return \"was removed from the source map"
@@ -555,8 +555,8 @@ mutations:
   replace: "    if False and lesson_id in moved:\n        return (\"shares its source file with different lessons"
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
 - label: a lesson whose pairing changed upstream is still offered
-  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
-  replace: '    exclude = (*exclude, *removed_upstream(context))'
+  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context),'
+  replace: '    exclude = (*exclude, *removed_upstream(context),'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
 - label: a finished lesson taken over meanwhile is pushed anyway
   find: "    overtaken, stand_ins = overtaken_writes(context, header, lessons)\n    if overtaken:"
@@ -631,3 +631,39 @@ mutations:
   find: 'if member.islnk() and not inside('
   replace: 'if False and not inside('
   test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: claim --next takes a lesson the assignment board reserves for another session
+  find: '               *reserved_on_board(context.root, context.remote, context.offline, "lesson"))'
+  replace: '               )'
+  test: tests.test_sd101_claims.ClaimTests.test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names
+- label: the board is read only from this checkout, never from the remote's default branch
+  find: "    if not offline:\n        try:\n            try:  # the branch the remote calls its default now"
+  replace: "    if False:\n        try:\n            try:  # the branch the remote calls its default now"
+  test: tests.test_sd101_claims.ClaimTests.test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names
+- label: a board row marked done still reserves its range
+  find: '        if row.get("status", "").lower() == "done":'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done
+- label: a board row reserves for work it does not name
+  find: '        if not any(word in row.get("work", "").lower() for word in BOARD_WORK[work]):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done
+- label: the board is read from the cached default branch, which goes stale when the remote renames it
+  find: "                branch = default_branch(root, remote)\n"
+  replace: "                branch = default_branch(root, remote, ask=False)\n"
+  test: tests.test_sd101_claims.BoardTests.test_the_board_is_read_from_the_branch_the_remote_calls_its_default_now
+- label: a board row whose Range cell does not parse whole silently reserves only what does
+  find: '        if not matches or not BOARD_SEPARATORS.fullmatch(BOARD_RANGE.sub(" ", cell)):'
+  replace: '        if not matches:'
+  test: tests.test_sd101_claims.BoardTests.test_a_reserving_row_whose_range_cell_does_not_parse_whole_fails_closed
+- label: a board range that ends before it starts silently reserves nothing
+  find: '            if last < first:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_reserving_row_whose_range_cell_does_not_parse_whole_fails_closed
+- label: a board table with a Range column but a mistyped Work column silently reserves nothing
+  find: '            if "range" in header and "work" not in header:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_table_with_a_range_column_but_no_work_column_fails_closed
+- label: a board that is not valid UTF-8 is decoded with replacement and silently loses the rows it garbles
+  find: '            texts.append(data.decode("utf-8"))'
+  replace: '            texts.append(data.decode("utf-8", "replace"))'
+  test: tests.test_sd101_claims.BoardTests.test_a_board_that_is_not_valid_utf8_fails_closed

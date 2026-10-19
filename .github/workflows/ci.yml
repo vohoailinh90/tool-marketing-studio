@@ -66,8 +66,8 @@ jobs:
         id: changes
         # The longest step of this job by far (look at the step timings of a run). A pull request that
         # touches only the System Design store cannot break the safety-rail tests, so it skips the check;
-        # every push to main and every other pull request runs it (scripts/ci_changes.py). An unset output
-        # runs it too.
+        # any other pull request runs only the manifests that name a file it changes, and every push to main
+        # runs them all (scripts/ci_changes.py). An unset output runs them all too.
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: python scripts/ci_changes.py
@@ -76,7 +76,11 @@ jobs:
         # Each worker mutates its own copy of the tree, so MUTATION_JOBS entries run at once. Two is the default;
         # set the repository variable MUTATION_JOBS to 1 to go back to one tree, or higher on a runner with cores
         # to spare, after timing this step in a run's log (docs/agent-team.md, "CI runner").
-        run: python scripts/mutation_check.py --all --jobs ${{ vars.MUTATION_JOBS || '2' }}
+        env:
+          MANIFESTS: ${{ steps.changes.outputs.manifests }}
+        run: |
+          if [ -z "$MANIFESTS" ] || [ "$MANIFESTS" = all ]; then set -- --all; else set -- $MANIFESTS; fi
+          python scripts/mutation_check.py "$@" --jobs ${{ vars.MUTATION_JOBS || '2' }}
 
   web:
     runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}

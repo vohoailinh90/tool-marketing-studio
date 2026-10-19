@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="888" viewBox="0 0 320 888" role="img" aria-labelledby="title desc">
+<title id="title">Netflix dùng EVCache theo bốn cách</title>
+<desc id="desc">Hai khung thẻ. Khung một, bộ đệm theo nghĩa quen: bộ đệm bên cạnh, hỏi EVCache trước, thiếu thì lấy từ dịch vụ phía sau và Cassandra; kho dữ liệu tạm, giữ phiên phát video. Khung hai, khi bộ đệm là nơi đọc chính: kho chính, trang chủ tính trước mỗi đêm ghi vào EVCache; dữ liệu đọc rất nhiều như chuỗi chữ giao diện và bản dịch. Khung ba nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="888" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Netflix dùng EVCache</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">theo bốn cách</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cùng một bộ đệm, bốn vai trò.</text>
+<rect x="8" y="104" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm theo nghĩa quen</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm bên cạnh</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏi EVCache trước, thiếu</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thì hỏi Cassandra.</text>
+<rect x="20" y="250" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="293.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 282.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho dữ liệu tạm</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ phiên phát video giữa</text>
+<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều dịch vụ.</text>
+<rect x="8" y="361" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="389.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm là nơi đọc chính</text>
+<rect x="20" y="406" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="449.5" r="18" fill="#0f766e"/><g transform="translate(39.2 438.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="432.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho chính</text>
+<text x="78" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang chủ tính trước mỗi</text>
+<text x="78" y="475.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đêm, ghi vào EVCache.</text>
+<rect x="20" y="507" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="550.5" r="18" fill="#0f766e"/><g transform="translate(39.2 539.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="533.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu đọc rất nhiều</text>
+<text x="78" y="557.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuỗi chữ giao diện, bản</text>
+<text x="78" y="576.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch, đẩy vào sẵn.</text>
+<rect x="8" y="618" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="646.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="663" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="686" r="11" fill="#16a34a"/>
+<polyline points="37.9,686.4 41.7,690.4 48.5,682" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="689.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mục tiêu: giảm độ trễ để</text>
+<text x="64" y="708.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người xem không bỏ đi.</text>
+<rect x="20" y="734" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="757" r="11" fill="#16a34a"/>
+<polyline points="37.9,757.4 41.7,761.4 48.5,753" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="760.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏi ở mỗi cách dùng: dữ liệu</text>
+<text x="64" y="779.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gốc nằm ở đâu?</text>
+<rect x="20" y="805" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="828" r="11" fill="#16a34a"/>
+<polyline points="37.9,828.4 41.7,832.4 48.5,824" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="831.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo nguồn, sự chú ý chỉ</text>
+<text x="64" y="850.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kéo dài khoảng 90 giây.</text>
+</g>
+</svg>

@@ -1,0 +1,93 @@
+{
+  "id": "sd-02-015",
+  "title_vi": "Netflix dùng sáu loại cơ sở dữ liệu, mỗi loại một việc",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-02-015",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/netflix-tech-stack-databases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "e985f830c60644d82f5cd4c219ea4fb8652377b1",
+    "retrieved_body_sha256": "28cf56feb54848cc7f55bc7256af5b3388dfcb0f8a88b50ee9ab9f0e66533b7e",
+    "retrieved_body_bytes": 1900
+  },
+  "diagram": "../diagrams/sd-02-015-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-014",
+      "relation": "see_also",
+      "reason_vi": "EVCache và bốn cách Netflix dùng nó."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Netflix uses MySQL for billing transactions, subscriptions, taxes and revenue, and CockroachDB for multi-region active-active architecture, global transactions and data pipeline workflows.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+      "section": "Relational databases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Columnar databases Redshift and Druid are used for analytics, with Spark and data pipelines for processing and Tableau for visualization.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+      "section": "Columnar databases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "EVCache, built on Memcached and at Netflix for over 10 years, caches data such as the home page and personal recommendations.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+      "section": "Key-value databases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Cassandra is usually the default choice and stores video/actor information, user data, device information and viewing history.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+      "section": "Wide-column databases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Netflix built Atlas, an open-source in-memory time-series database, for metrics; S3 stores image, video, metrics and log files, with Apache Iceberg for big data.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+      "section": "Time-series databases, Unstructured data",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The question each database type answers well.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-databases.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Sáu loại cơ sở dữ liệu chia hai khung: dữ liệu nghiệp vụ, phân tích và tệp; khung cuối ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The six types are grouped into business data and analytics/files; the grouping is the author's.",
+    "The source's closing invitation to contact the author is left out."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

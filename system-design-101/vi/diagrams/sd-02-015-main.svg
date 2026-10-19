@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1072" viewBox="0 0 320 1072" role="img" aria-labelledby="title desc">
+<title id="title">Netflix dùng những cơ sở dữ liệu nào?</title>
+<desc id="desc">Hai khung thẻ. Khung một, dữ liệu nghiệp vụ: quan hệ MySQL cho thanh toán và CockroachDB cho nhiều vùng; cột rộng Cassandra cho gần như mọi thứ; khóa–giá trị EVCache trên Memcached làm bộ đệm. Khung hai, phân tích và tệp: cột Redshift và Druid cho phân tích; chuỗi thời gian Atlas cho số đo; kho đối tượng S3 cho ảnh, video và nhật ký. Khung ba nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1072" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Netflix dùng những cơ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">sở dữ liệu nào?</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Sáu loại, mỗi loại một việc.</text>
+<rect x="8" y="104" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu nghiệp vụ</text>
+<rect x="20" y="149" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="202.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 191.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="5"/><line x1="2" x2="22" y1="10" y2="10"/><path d="M6 14h2"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quan hệ</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MySQL cho tiền;</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CockroachDB cho nhiều</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vùng.</text>
+<rect x="20" y="270" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="313.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 302.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="296.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cột rộng</text>
+<text x="78" y="320.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cassandra: phim, người</text>
+<text x="78" y="339.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng, lịch sử xem.</text>
+<rect x="20" y="371" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="414.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 403.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="397.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa–giá trị</text>
+<text x="78" y="421.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">EVCache trên Memcached</text>
+<text x="78" y="440.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">làm bộ đệm.</text>
+<rect x="8" y="482" width="304" height="308" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="510.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phân tích, số đo và tệp</text>
+<rect x="20" y="527" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="570.5" r="18" fill="#0f766e"/><g transform="translate(39.2 559.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g>
+<text x="78" y="553.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cột</text>
+<text x="78" y="577.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redshift và Druid cho phân</text>
+<text x="78" y="596.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tích.</text>
+<rect x="20" y="628" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="662" r="18" fill="#0f766e"/><g transform="translate(39.2 651.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></g>
+<text x="78" y="654.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chuỗi thời gian</text>
+<text x="78" y="678.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Atlas lưu và gộp số đo.</text>
+<rect x="20" y="710" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="744" r="18" fill="#0f766e"/><g transform="translate(39.2 733.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="736.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho đối tượng</text>
+<text x="78" y="760.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">S3 cho ảnh, video, nhật ký.</text>
+<rect x="8" y="802" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="830.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="847" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="870" r="11" fill="#16a34a"/>
+<polyline points="37.9,870.4 41.7,874.4 48.5,866" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="873.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn cơ sở dữ liệu theo loại</text>
+<text x="64" y="892.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu.</text>
+<rect x="20" y="918" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="941" r="11" fill="#16a34a"/>
+<polyline points="37.9,941.4 41.7,945.4 48.5,937" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="944.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tiền cần giao dịch đúng một</text>
+<text x="64" y="963.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần.</text>
+<rect x="20" y="989" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1012" r="11" fill="#16a34a"/>
+<polyline points="37.9,1012.4 41.7,1016.4 48.5,1008" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1015.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách không cho biết dữ</text>
+<text x="64" y="1034.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu chảy ra sao.</text>
+</g>
+</svg>

@@ -1,0 +1,49 @@
+{
+  "id": "sd-02-014",
+  "title": "Netflix dùng EVCache theo bốn cách",
+  "subtitle": "Cùng một bộ đệm, bốn vai trò.",
+  "desc": "Hai khung thẻ. Khung một, bộ đệm theo nghĩa quen: bộ đệm bên cạnh, hỏi EVCache trước, thiếu thì lấy từ dịch vụ phía sau và Cassandra; kho dữ liệu tạm, giữ phiên phát video. Khung hai, khi bộ đệm là nơi đọc chính: kho chính, trang chủ tính trước mỗi đêm ghi vào EVCache; dữ liệu đọc rất nhiều như chuỗi chữ giao diện và bản dịch. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bộ đệm theo nghĩa quen",
+      "items": [
+        {
+          "name": "Bộ đệm bên cạnh",
+          "role": "Hỏi EVCache trước, thiếu thì hỏi Cassandra.",
+          "icon": "search"
+        },
+        {
+          "name": "Kho dữ liệu tạm",
+          "role": "Giữ phiên phát video giữa nhiều dịch vụ.",
+          "icon": "timer"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Bộ đệm là nơi đọc chính",
+      "items": [
+        {
+          "name": "Kho chính",
+          "role": "Trang chủ tính trước mỗi đêm, ghi vào EVCache.",
+          "icon": "database"
+        },
+        {
+          "name": "Dữ liệu đọc rất nhiều",
+          "role": "Chuỗi chữ giao diện, bản dịch, đẩy vào sẵn.",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mục tiêu: giảm độ trễ để người xem không bỏ đi.",
+        "Hỏi ở mỗi cách dùng: dữ liệu gốc nằm ở đâu?",
+        "Theo nguồn, sự chú ý chỉ kéo dài khoảng 90 giây."
+      ]
+    }
+  ]
+}

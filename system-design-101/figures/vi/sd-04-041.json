@@ -1,0 +1,43 @@
+{
+  "id": "sd-04-041",
+  "lang": "vi",
+  "title": "Chia bảng trước khi chia máy",
+  "desc": "Ba khung dọc. Khung một, hai cách cắt một bảng: chia ngang, mỗi mảnh giữ một phần các dòng với đủ mọi cột; chia dọc, mỗi mảnh giữ một nhóm cột với đủ mọi dòng. Khung hai, ba cách chọn mảnh cho một dòng: theo dải, mỗi tháng một mảnh; theo khóa băm, băm mã khách rồi chia dư cho 3; theo danh bạ, một bảng tra ghi khách nào nằm ở mảnh nào. Khung ba, thử trên PostgreSQL 16: chia băm dư 3 cho ba mảnh 98.880, 100.500 và 100.620 dòng; hỏi một khách chỉ quét một trong ba mảnh; bỏ dữ liệu một tháng bằng cách xóa cả mảnh mất 2 đến 3 mili giây, còn xóa từng dòng mất 63 đến 236 mili giây; tách cột tiểu sử ra bảng riêng thì câu tìm theo số điện thoại đọc 768 trang thay vì 11.112.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Hai cách cắt một bảng",
+      "items": [
+        {
+          "name": "Chia ngang",
+          "role": "Mỗi mảnh giữ một phần các dòng, đủ mọi cột.",
+          "icon": "split"
+        },
+        {
+          "name": "Chia dọc",
+          "role": "Mỗi mảnh giữ một nhóm cột, đủ mọi dòng.",
+          "icon": "layers"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba cách chọn mảnh cho một dòng",
+      "items": [
+        "Theo dải: mỗi tháng một mảnh.",
+        "Theo khóa băm: băm mã khách, chia dư cho 3.",
+        "Theo danh bạ: bảng tra ghi khách nào ở mảnh nào."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử trên PostgreSQL 16",
+      "items": [
+        "Băm dư 3: ba mảnh 98.880, 100.500, 100.620 dòng.",
+        "Hỏi một khách: chỉ quét 1 trong 3 mảnh.",
+        "Bỏ một tháng: xóa cả mảnh 2 đến 3 ms, xóa từng dòng 63 đến 236 ms.",
+        "Tách cột tiểu sử ra: đọc 768 trang thay vì 11.112."
+      ]
+    }
+  ]
+}

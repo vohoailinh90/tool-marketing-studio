@@ -1,0 +1,79 @@
+{
+  "id": "sd-09-016",
+  "title_vi": "Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/20-popular-open-source-projects-started-or-supported-by-big-companies.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/20-popular-open-source-projects-started-or-supported-by-big-companies.md",
+    "blob_sha": "1dc5e57ac03b1195e9101ee89b8ac4dd2e20f713",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "0019097af29fac430fd577ccc05158ccb9821e5e9092f1ca10d3f77ec8b44b0b",
+    "retrieved_body_bytes": 819
+  },
+  "diagram": "../diagrams/sd-09-016-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Ví dụ Kafka bắt đầu tại LinkedIn và hiện thuộc hệ sinh thái Apache; Kubernetes bắt đầu tại Google và được quản trị trong CNCF. Mối liên hệ ban đầu giúp hiểu bối cảnh nhưng không thay thế đọc tài liệu dự án hiện hành.\n\nDanh mục lịch sử trong snapshot có 20 tên: Angular, Ansible, Cassandra, Ceph Storage, Chaos Monkey, Go, GraphQL, Hystrix, Kafka, Kubernetes, OpenShift, Pinot, Playwright, PyTorch, React, Samza, TensorFlow, TypeScript, VSCode, Zuul. Các tên bao gồm những dạng khác nhau: ngôn ngữ, thư viện, đặc tả và nền tảng. Không coi chúng là 20 sản phẩm đang được hỗ trợ như nhau.",
+      "sources": [
+        "https://kafka.apache.org/intro",
+        "https://kubernetes.io/blog/2018/07/20/the-history-of-kubernetes-the-community-behind-it/",
+        "https://github.com/Netflix/Hystrix",
+        "https://github.com/ceph/ceph"
+      ]
+    },
+    {
+      "claim_vi": "Không suy “khởi xướng” từ “hỗ trợ”: Ansible và Ceph không phải đều do Red Hat ban đầu tạo ra. Hystrix thông báo chế độ bảo trì; không giới thiệu nó như lựa chọn mặc định cho hệ thống mới.",
+      "sources": [
+        "https://kafka.apache.org/intro",
+        "https://kubernetes.io/blog/2018/07/20/the-history-of-kubernetes-the-community-behind-it/",
+        "https://github.com/Netflix/Hystrix",
+        "https://github.com/ceph/ceph"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành.",
+  "source_only_trivia": [
+    {
+      "note_vi": "Danh mục tên trong snapshot chỉ được kiểm đếm; tính năng, quan hệ doanh nghiệp và tình trạng hiện hành chưa được xác minh toàn bộ.",
+      "status": "not_verified_current"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "sd-06-015",
+  "title": "Bộ nhớ đệm hỏng theo bốn kiểu",
+  "subtitle": "Kiểu nào cũng kết thúc bằng việc dồn tải về cơ sở dữ liệu.",
+  "desc": "Ba khung. Khung một, bốn kiểu hỏng: nhiều khóa hết hạn cùng lúc làm yêu cầu dồn về cơ sở dữ liệu; khóa không tồn tại thì lần nào cũng xuyên qua; một khóa nóng hết hạn làm hàng loạt yêu cầu cùng nạp lại; bộ đệm sập thì mọi yêu cầu đổ về cơ sở dữ liệu. Khung hai, thử khóa nóng hết hạn với 50 yêu cầu cùng lúc: không bảo vệ thì 50 lần hỏi cơ sở dữ liệu; giành khóa trong Redis thì 1 hoặc 2 lần; giành khóa rồi đọc lại bộ đệm thì 1 lần trong cả 10 lần thử. Khung ba, hạn sống lệch nhau: 10 nghìn khóa cùng hạn sống hết hạn trong cùng một phút; cộng thêm 0 đến 10 phút ngẫu nhiên thì rải ra 11 phút, phút đông nhất 1.042 khóa.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Bốn kiểu hỏng",
+      "items": [
+        "Nhiều khóa hết hạn cùng lúc: dồn về cơ sở dữ liệu.",
+        "Khóa không tồn tại: lần nào cũng xuyên qua.",
+        "Một khóa nóng hết hạn: hàng loạt yêu cầu cùng nạp lại.",
+        "Bộ đệm sập: mọi yêu cầu đổ về cơ sở dữ liệu."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: khóa nóng hết hạn, 50 yêu cầu",
+      "items": [
+        "Không bảo vệ: 50 lần hỏi cơ sở dữ liệu.",
+        "Giành khóa trong Redis: 1 hoặc 2 lần.",
+        "Giành khóa rồi đọc lại bộ đệm: 1 lần, cả 10 lần thử."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hạn sống lệch nhau",
+      "items": [
+        "10 nghìn khóa cùng hạn: hết hạn trong cùng một phút.",
+        "Cộng thêm 0 đến 10 phút ngẫu nhiên: rải ra 11 phút, đông nhất 1.042 khóa."
+      ]
+    }
+  ]
+}

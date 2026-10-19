@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="786" viewBox="0 0 320 786" role="img" aria-labelledby="title desc">
 <title id="title">Một kho hay nhiều kho</title>
-<desc id="desc">Hai khung. Khung một, một kho chung cho mọi dịch vụ: một thay đổi chạm nhiều dịch vụ nằm trong một commit, mọi dịch vụ dùng cùng phiên bản thư viện, cần công cụ build biết cái gì đổi, mỗi thư mục cần người sở hữu. Khung hai, mỗi dịch vụ một kho: quyền truy cập và cấu hình build riêng, mỗi đội tự chọn lúc nâng phiên bản, đổi chung nhiều dịch vụ cần nhiều thay đổi nối nhau, chuẩn chất lượng có thể lệch nhau.</desc>
+<desc id="desc">Hai khung. Khung một, một kho chung cho mọi dịch vụ: một thay đổi chạm nhiều dịch vụ nằm trong một commit, có thể áp một phiên bản thư viện chung (là chính sách), cần công cụ build biết cái gì đổi, mỗi thư mục cần người sở hữu. Khung hai, mỗi dịch vụ một kho: quyền truy cập và cấu hình build riêng, mỗi đội tự chọn lúc nâng phiên bản, đổi chung nhiều dịch vụ cần nhiều thay đổi nối nhau, chuẩn chất lượng có thể lệch nhau.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="786" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -16,8 +16,8 @@
 <rect x="20" y="196" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="219" r="11" fill="#16a34a"/>
 <polyline points="37.9,219.4 41.7,223.4 48.5,215" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mọi dịch vụ dùng cùng một</text>
-<text x="64" y="241.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phiên bản thư viện.</text>
+<text x="64" y="222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có thể áp một phiên bản thư</text>
+<text x="64" y="241.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viện chung.</text>
 <rect x="20" y="267" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="290" r="11" fill="#16a34a"/>
 <polyline points="37.9,290.4 41.7,294.4 48.5,286" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

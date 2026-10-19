@@ -1,14 +1,14 @@
 {
   "title": "Một kho hay nhiều kho",
   "subtitle": "Chi phí nằm ở đâu.",
-  "desc": "Hai khung. Khung một, một kho chung cho mọi dịch vụ: một thay đổi chạm nhiều dịch vụ nằm trong một commit, mọi dịch vụ dùng cùng phiên bản thư viện, cần công cụ build biết cái gì đổi, mỗi thư mục cần người sở hữu. Khung hai, mỗi dịch vụ một kho: quyền truy cập và cấu hình build riêng, mỗi đội tự chọn lúc nâng phiên bản, đổi chung nhiều dịch vụ cần nhiều thay đổi nối nhau, chuẩn chất lượng có thể lệch nhau.",
+  "desc": "Hai khung. Khung một, một kho chung cho mọi dịch vụ: một thay đổi chạm nhiều dịch vụ nằm trong một commit, có thể áp một phiên bản thư viện chung (là chính sách), cần công cụ build biết cái gì đổi, mỗi thư mục cần người sở hữu. Khung hai, mỗi dịch vụ một kho: quyền truy cập và cấu hình build riêng, mỗi đội tự chọn lúc nâng phiên bản, đổi chung nhiều dịch vụ cần nhiều thay đổi nối nhau, chuẩn chất lượng có thể lệch nhau.",
   "sections": [
     {
       "kind": "notes",
       "heading": "Một kho chung",
       "items": [
         "Đổi chạm nhiều dịch vụ vẫn là một commit.",
-        "Mọi dịch vụ dùng cùng một phiên bản thư viện.",
+        "Có thể áp một phiên bản thư viện chung.",
         "Cần công cụ build biết cái gì đổi để chỉ build phần đó.",
         "Mỗi thư mục cần người sở hữu rõ ràng."
       ]

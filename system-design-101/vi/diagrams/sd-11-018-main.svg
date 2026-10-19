@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="786" viewBox="0 0 320 786" role="img" aria-labelledby="title desc">
+<title id="title">Một kho hay nhiều kho</title>
+<desc id="desc">Hai khung. Khung một, một kho chung cho mọi dịch vụ: một thay đổi chạm nhiều dịch vụ nằm trong một commit, mọi dịch vụ dùng cùng phiên bản thư viện, cần công cụ build biết cái gì đổi, mỗi thư mục cần người sở hữu. Khung hai, mỗi dịch vụ một kho: quyền truy cập và cấu hình build riêng, mỗi đội tự chọn lúc nâng phiên bản, đổi chung nhiều dịch vụ cần nhiều thay đổi nối nhau, chuẩn chất lượng có thể lệch nhau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="786" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một kho hay nhiều kho</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chi phí nằm ở đâu.</text>
+<rect x="8" y="80" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một kho chung</text>
+<rect x="20" y="125" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="148" r="11" fill="#16a34a"/>
+<polyline points="37.9,148.4 41.7,152.4 48.5,144" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi chạm nhiều dịch vụ vẫn</text>
+<text x="64" y="170.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là một commit.</text>
+<rect x="20" y="196" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="219" r="11" fill="#16a34a"/>
+<polyline points="37.9,219.4 41.7,223.4 48.5,215" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mọi dịch vụ dùng cùng một</text>
+<text x="64" y="241.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phiên bản thư viện.</text>
+<rect x="20" y="267" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="290" r="11" fill="#16a34a"/>
+<polyline points="37.9,290.4 41.7,294.4 48.5,286" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="293.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cần công cụ build biết cái gì</text>
+<text x="64" y="312.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đổi để chỉ build phần đó.</text>
+<rect x="20" y="338" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="361" r="11" fill="#16a34a"/>
+<polyline points="37.9,361.4 41.7,365.4 48.5,357" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="364.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi thư mục cần người sở</text>
+<text x="64" y="383.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hữu rõ ràng.</text>
+<rect x="8" y="425" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="453.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mỗi dịch vụ một kho</text>
+<rect x="20" y="470" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="493" r="11" fill="#16a34a"/>
+<polyline points="37.9,493.4 41.7,497.4 48.5,489" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="496.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quyền truy cập và cấu hình</text>
+<text x="64" y="515.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">build đặt theo từng kho.</text>
+<rect x="20" y="541" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="564" r="11" fill="#16a34a"/>
+<polyline points="37.9,564.4 41.7,568.4 48.5,560" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="567.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi đội tự chọn lúc nâng</text>
+<text x="64" y="586.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phiên bản thư viện.</text>
+<rect x="20" y="612" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="635" r="11" fill="#16a34a"/>
+<polyline points="37.9,635.4 41.7,639.4 48.5,631" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="638.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi chung nhiều dịch vụ</text>
+<text x="64" y="657.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thành nhiều thay đổi nối</text>
+<text x="64" y="677.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhau.</text>
+<rect x="20" y="703" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="726" r="11" fill="#16a34a"/>
+<polyline points="37.9,726.4 41.7,730.4 48.5,722" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="729.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuẩn chất lượng do từng</text>
+<text x="64" y="748.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đội đặt nên dễ lệch.</text>
+</g>
+</svg>

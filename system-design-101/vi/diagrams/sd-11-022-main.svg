@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="724" viewBox="0 0 320 724" role="img" aria-labelledby="title desc">
+<title id="title">Mã định danh duy nhất</title>
+<desc id="desc">Hai khung. Khung một, mã 64 bit chia thành ba phần: 41 bit thời gian tính bằng mili giây, 10 bit số hiệu máy, 12 bit số thứ tự trong cùng một mili giây. Khung hai, thử nghiệm: hai máy sinh 400000 mã đều khác nhau và tăng dần theo máy, một mili giây tối đa 4096 mã mỗi máy, đồng hồ lùi thì máy sinh mã từ chối.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="724" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mã định danh duy nhất</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">64 bit chia theo thời gian, máy và số</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thứ tự.</text>
+<rect x="8" y="99" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mã 64 bit chia ba phần</text>
+<rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="170" r="14" fill="#1d4ed8"/>
+<text x="46" y="175.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">41 bit thời gian</text>
+<text x="70" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mili giây tính từ một mốc tự</text>
+<text x="70" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chọn, đủ khoảng 69,7 năm.</text>
+<rect x="20" y="253" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="279" r="14" fill="#1d4ed8"/>
+<text x="46" y="284.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="279.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">10 bit số hiệu máy</text>
+<text x="70" y="303.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tối đa 1024 máy sinh mã.</text>
+<polyline points="46,233 46,251" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="343" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="369" r="14" fill="#1d4ed8"/>
+<text x="46" y="374.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="369.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">12 bit số thứ tự</text>
+<text x="70" y="393.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tối đa 4096 mã mỗi máy</text>
+<text x="70" y="412.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong một mili giây.</text>
+<polyline points="46,323 46,341" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="454" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="482.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử nghiệm nhỏ</text>
+<rect x="20" y="499" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="522" r="11" fill="#16a34a"/>
+<polyline points="37.9,522.4 41.7,526.4 48.5,518" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="525.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai máy sinh 400000 mã:</text>
+<text x="64" y="544.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không trùng mã nào.</text>
+<rect x="20" y="570" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="593" r="11" fill="#16a34a"/>
+<polyline points="37.9,593.4 41.7,597.4 48.5,589" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="596.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã của mỗi máy tăng dần</text>
+<text x="64" y="615.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo thứ tự sinh.</text>
+<rect x="20" y="641" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="664" r="11" fill="#16a34a"/>
+<polyline points="37.9,664.4 41.7,668.4 48.5,660" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="667.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồng hồ lùi: máy sinh mã từ</text>
+<text x="64" y="686.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chối, không sinh mã trùng.</text>
+</g>
+</svg>

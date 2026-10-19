@@ -24,6 +24,7 @@ total = 0
 for n in numbers:
     if n % 2 == 0:
         total += n * n
+print(total)
 ```
 
 Có một biến `total` đổi giá trị sau mỗi vòng; ta nhìn thấy từng bước (lặp, kiểm tra, cộng). Tài liệu Python gọi lối này là thủ tục (procedural) và nêu C, Pascal, thậm chí shell Unix là ví dụ; bài coi "mệnh lệnh" và "thủ tục" là cùng một họ.
@@ -36,6 +37,7 @@ def is_even(n):
 def square(n):
     return n * n
 total = sum(map(square, filter(is_even, numbers)))
+print(total)
 ```
 
 Không biến nào bị đổi: `filter` giữ số chẵn, `map` bình phương, `sum` cộng. `filter` và `map` là hàm bậc cao, vì chúng nhận một hàm làm đầu vào. Tài liệu Python nói phong cách hàm không khuyến khích hàm có tác dụng phụ (side effect), tức đổi trạng thái hay gây thay đổi không thấy qua giá trị trả về; hàm không có tác dụng phụ nào gọi là "thuần" (purely functional). Cũng theo tài liệu đó, mỗi hàm nhỏ dễ kiểm thử hơn vì chỉ cần tạo đầu vào rồi so đầu ra.
@@ -53,6 +55,7 @@ class SquareSum:
 acc = SquareSum()
 for n in numbers:
     acc.add(n)
+print(acc.total)
 ```
 
 Trạng thái `total` nằm trong đối tượng; bên ngoài chỉ gọi `add` rồi đọc `acc.total`. Với bài toán nhỏ này cách viết dài nhất, nhưng khi trạng thái và các thao tác trên nó gắn bó (một tài khoản, một phiếu mượn), gom chúng vào một đối tượng giúp mã dễ tìm.

@@ -158,6 +158,12 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-https-work.md",
       "section": "Whole guide",
       "verified_by": "Not examined."
+    },
+    {
+      "claim_vi": "Observed with openssl 3.0.13 (s_server -WWW and s_client -keylogfile on a random port above 20000, self-signed RSA certificate): the TLS 1.3 key log had five lines, CLIENT_HANDSHAKE_TRAFFIC_SECRET, SERVER_HANDSHAKE_TRAFFIC_SECRET, CLIENT_TRAFFIC_SECRET_0, SERVER_TRAFFIC_SECRET_0 and EXPORTER_SECRET, each a 48-byte value, all different from each other in the one connection (so the client and server traffic secrets differ); the TLS 1.2 key log had a single CLIENT_RANDOM line with one 48-byte secret, which does not show per-direction keys. That TLS 1.2 also derives separate keys for each direction from its master secret is the author's general knowledge, not run here.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Khung 2 (Hai kết cục)",
+      "verified_by": "Observed by running openssl 3.0.13 locally; the -keylogfile option is documented in the s_client manual page read at the pinned commit. The RFC text on key derivation was not reachable and was not read."
     }
   ],
   "design_notes_vi": "Ba khung xếp dọc: trình tự client đưa danh sách và máy chủ chọn, hai kết cục (có điểm chung hoặc cảnh báo), ba điều cần nhớ. Không dùng ảnh nguồn.",

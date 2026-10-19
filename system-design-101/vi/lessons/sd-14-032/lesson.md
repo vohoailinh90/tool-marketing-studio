@@ -1,10 +1,10 @@
 # HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng
 
-**Trước khi mã hóa một byte HTTP, hai bên phải thỏa thuận cách mã hóa: client đưa danh sách những gì nó hỗ trợ, máy chủ chọn từ danh sách đó, và nếu không có mục chung thì kết nối dừng ngay bằng một cảnh báo.** Chọn xong, hai bên tính ra cùng một khóa đối xứng để mã hóa dữ liệu HTTP.
+**Trước khi mã hóa một byte HTTP, hai bên phải thỏa thuận cách mã hóa: client đưa danh sách những gì nó hỗ trợ, máy chủ chọn từ danh sách đó, và nếu không có mục chung thì kết nối dừng ngay bằng một cảnh báo.** Chọn xong, hai bên cùng tính ra khóa đối xứng để mã hóa dữ liệu HTTP: từ một bí mật chung, mỗi chiều (client gửi, máy chủ gửi) có khóa riêng.
 
 Bài chỉ nói về bước thương lượng: phiên bản TLS, bộ mã, nhóm trao đổi khóa, thuật toán chữ ký. Việc máy chủ chứng minh danh tính nằm ở [bài sd-14-014](../sd-14-014/lesson.md) (chứng chỉ) và [bài sd-14-015](../sd-14-015/lesson.md) (chữ ký số). Kết quả trong bài là một lần chạy OpenSSL 3.0.13 trên máy người viết (cục bộ, chứng chỉ tự ký dùng một lần), không phải trình duyệt hay máy chủ thật.
 
-![Ba khung dọc. Khung một: client gửi danh sách phiên bản, bộ mã, nhóm khóa, chữ ký; máy chủ chọn mỗi loại một mục hoặc gửi cảnh báo rồi dừng. Khung hai: có điểm chung thì hai bên cùng có khóa đối xứng và HTTP đi qua bộ mã đã chọn; không có thì kết nối dừng. Khung ba: máy chủ chỉ chọn mục client đã đưa; thứ tự ưu tiên mặc định là của client; HTTP không đổi dù TLS 1.2 hay 1.3.](../../diagrams/sd-14-032-main.svg)
+![Ba khung dọc. Khung một: client gửi danh sách phiên bản, bộ mã, nhóm khóa, chữ ký; máy chủ chọn mỗi loại một mục hoặc gửi cảnh báo rồi dừng. Khung hai: có điểm chung thì hai bên cùng tính ra khóa đối xứng, mỗi chiều một khóa, và HTTP đi qua bộ mã đã chọn; không có thì kết nối dừng. Khung ba: máy chủ chỉ chọn mục client đã đưa; thứ tự ưu tiên mặc định là của client; HTTP không đổi dù TLS 1.2 hay 1.3.](../../diagrams/sd-14-032-main.svg)
 
 ## Từ viết tắt
 
@@ -31,7 +31,7 @@ Bài chỉ nói về bước thương lượng: phiên bản TLS, bộ mã, nhó
 - Bộ mã: theo tài liệu `s_server`, mặc định là mục đầu tiên trong danh sách client mà máy chủ cũng có. Máy chủ có ba bộ TLS 1.3: client xếp AES-256 đầu thì ra `TLS_AES_256_GCM_SHA384`, xếp ChaCha20 đầu thì ra `TLS_CHACHA20_POLY1305_SHA256`; bật `-serverpref` thì cả hai lần ra `TLS_AES_128_GCM_SHA256`, bộ đứng đầu danh sách máy chủ.
 - `ServerHello` chỉ ghi lựa chọn: một bộ mã, TLS 1.3 trong `supported_versions`, nhóm `x25519`.
 
-**Khung 2 · Hai kết cục.** Có điểm chung: hai bên cùng có khóa đối xứng, HTTP đi qua bộ mã đã chọn. Không có: máy chủ gửi cảnh báo `fatal` kèm mã lý do rồi dừng. Bốn cách "không chung" đã thử:
+**Khung 2 · Hai kết cục.** Có điểm chung: hai bên cùng tính ra khóa đối xứng, mỗi chiều một khóa, và HTTP đi qua bộ mã đã chọn. Trong lần thử, nhật ký khóa của TLS 1.3 (`-keylogfile`) có hai bí mật lưu lượng khác nhau, `CLIENT_TRAFFIC_SECRET_0` và `SERVER_TRAFFIC_SECRET_0`; nhật ký của TLS 1.2 chỉ có một bí mật chủ (`CLIENT_RANDOM`), nên không cho thấy khóa từng chiều (TLS 1.2 cũng dẫn khóa từng chiều từ bí mật đó: hiểu biết chung, không thử). Không có: máy chủ gửi cảnh báo `fatal` kèm mã lý do rồi dừng. Bốn cách "không chung" đã thử:
 
 - Phiên bản (máy chủ TLS 1.2, client TLS 1.3, và ngược lại): `tlsv1 alert protocol version`, mã 70; máy chủ ghi `unsupported protocol`.
 - Bộ mã: `sslv3 alert handshake failure`, mã 40; máy chủ ghi `no shared cipher`.

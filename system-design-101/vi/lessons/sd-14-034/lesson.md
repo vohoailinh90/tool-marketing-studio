@@ -22,7 +22,7 @@ Các lần thử dùng Python 3.13 (`hmac`, `hashlib`, `base64`) và một bí m
 
 **2 · Hộp trong suốt.** Không cần khóa nào: giải base64url là đọc ra `{"alg":"HS256","typ":"JWT"}` và `{"name":"Minh","level":1}`. Nhân tiện, JWT thường bắt đầu bằng `eyJ`, tức phần mở đầu `{"` của nhãn sau khi đổi sang base64url.
 
-**3 · Dấu niêm phong.** Dấu là HMAC (hàm băm 256 bit) của đoạn “nhãn.nội dung”, lấy bí mật làm khóa. PyJWT 2.14.0 nhận token tự làm là hợp lệ, và khi tạo token từ cùng dữ liệu với cùng bí mật thì cho ra đúng chuỗi ấy: hộp tự làm là một JWT thật.
+**3 · Dấu niêm phong.** Dấu là mã xác thực HMAC của đoạn “nhãn.nội dung”: HMAC dựng trên một hàm băm 256 bit và lấy bí mật làm khóa. PyJWT 2.14.0 nhận token tự làm là hợp lệ, và khi tạo token từ cùng dữ liệu với cùng bí mật thì cho ra đúng chuỗi ấy: hộp tự làm là một JWT thật.
 
 **4 · Người nhận kiểm.** Tách ba phần, tự tính lại dấu từ hai phần đầu cùng bí mật của mình, rồi so với phần thứ ba. Đổi đúng một ký tự trong nội dung (`"level":1` thành `"level":9`), giữ nguyên dấu cũ: phép kiểm báo lệch, PyJWT báo `InvalidSignatureError`. Đổi một chữ của nhãn (`JWT` thành `JWS`) cũng lệch, vì dấu bao cả nhãn lẫn nội dung.
 

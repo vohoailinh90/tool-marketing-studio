@@ -123,7 +123,7 @@
       "verified_by": "The OWASP sheet says the payload is only base64url encoded, not encrypted; the eyJ prefix was observed in the hop.py output (token began eyJhbGciOiJIUzI1NiIs). Why {\" maps to eyJ is the author's general knowledge of base64."
     },
     {
-      "claim_vi": "HS256 is HMAC with a 256-bit hash function (SHA-256).",
+      "claim_vi": "HS256 is HMAC (a keyed message authentication code, not itself a hash) built on a 256-bit hash function (SHA-256); the JWT signature is its output.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
       "section": "MAC; Example",
       "verified_by": "The OWASP sheet computes the example signature as HMACSHA256 and lists HS256 as HMAC with SHA-2; the observation that hashlib.sha256 under hmac reproduces PyJWT's HS256 output comes from hop.py."

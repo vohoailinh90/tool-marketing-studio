@@ -29,14 +29,14 @@ Uber mở thêm mảng giao đồ tạp hóa, cần vài API mới cho ứng d�
 <details>
 <summary>Xem đáp án</summary>
 
-Với một cổng ôm hết, mọi API mới đều phải đi qua cổng chung, nên đội làm mảng mới phải chờ hoặc phối hợp với đội giữ cổng. Theo bài nguồn, thế hệ ba theo hướng tự phục vụ và phi tập trung, nên đội làm mảng mới không còn phải xếp hàng chờ một đội giữ cổng chung. Bài nguồn không nói chi tiết đội đó làm gì trên cổng, nên đừng hiểu là mỗi đội viết mã riêng vào cổng.
+Bài nguồn không nói thế hệ hai vướng ở đâu. Nó chỉ nói thế hệ ba ra đời khi Uber có nhiều mảng kinh doanh mới, và theo hướng tự phục vụ, phi tập trung, chia tầng. Cách hiểu chung của người biên soạn: với một cổng ôm hết, API của mọi mảng dồn vào cùng một chỗ, nên cổng phình to và khó giữ gọn; tự phục vụ và chia tầng là cách tách phần chung khỏi phần riêng của từng mảng. Bài nguồn không nói chi tiết các đội làm gì trên cổng.
 
 </details>
 
 <details>
 <summary>Xem sâu hơn: vì sao một cổng chung khó theo kịp</summary>
 
-- Một đội giữ cổng cho hàng nghìn dịch vụ dễ thành nút thắt: mọi thay đổi đều xếp hàng chờ đội đó.
+- Một cổng chung cho hàng nghìn dịch vụ, nơi nhiều đội cùng thêm việc vào, dễ phình to và khó giữ gọn.
 - Một lỗi trong cổng chung có thể ảnh hưởng mọi sản phẩm cùng lúc.
 - Chia tầng tách phần chung (xác thực, giới hạn lượt gọi) khỏi phần riêng của từng sản phẩm.
 

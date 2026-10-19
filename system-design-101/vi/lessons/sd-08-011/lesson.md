@@ -16,7 +16,7 @@ Biệt danh ở cột hai là của bài nguồn; cột ba và bốn do phép th
 | Composite | Tree Builder | phần tử của `xml.etree.ElementTree`: nút chứa nút cùng loại | duyệt cây `a, b, c` bằng một vòng lặp |
 | Decorator | Customizer | hàm bọc, `functools.wraps` | tên hàm được giữ, hàm gốc ở `__wrapped__` |
 | Facade | One-Stop-Shop | `shutil.make_archive`: một lời gọi che việc duyệt thư mục và ghi tệp nén | cho ra tệp `z.zip` có nội dung |
-| Flyweight | Space Saver | số nguyên nhỏ dùng chung, `sys.intern` cho chuỗi | `256 is 256` đúng, `257 is 257` sai; hai chuỗi bằng nhau thành một đối tượng sau `sys.intern` |
+| Flyweight | Space Saver | số nguyên nhỏ dùng chung, `sys.intern` cho chuỗi | `int("256") is int("256")` đúng, `int("257") is int("257")` sai (hai số tạo riêng lúc chạy; viết thẳng `257 is 257` trong cùng một đoạn mã có thể cho đúng vì trình biên dịch gộp hai hằng); hai chuỗi bằng nhau thành một đối tượng sau `sys.intern` |
 | Proxy | Stand-In Actor | `weakref.proxy` | truy cập `.v` qua đại diện được; khi đối tượng đã mất thì báo `ReferenceError` |
 | Command | Task Wrapper | gần đúng: `functools.partial` gói một hàm với đối số | `partial(pow, 2, 10)()` cho 1024 |
 | Iterator | Collection Explorer | giao thức `__iter__` và `__next__` | `list(Countdown(3))` cho `[3, 2, 1]` |

@@ -1,27 +1,29 @@
 # Dọn rác bộ nhớ hoạt động thế nào?
 
 **Chương trình xin bộ nhớ liên tục, còn bộ dọn rác tự thu hồi phần không còn dùng; mỗi ngôn ngữ chọn một cách dọn khác nhau.**
-Bài nguồn nêu cách làm của Java, Python và Go; bài này đọc ba cách đó theo cùng một câu hỏi: dọn bằng cơ chế nào, và chương trình bị chậm lại ra sao.
+Bài nguồn chỉ nêu tên ba ngôn ngữ Java, Python và Go; bài này giữ ba ngôn ngữ đó và đọc từng cách theo cùng một câu hỏi: dọn bằng cơ chế nào, và chương trình bị chậm lại ra sao, dựa vào tài liệu của chính JDK, Python và Go.
 
-![Bốn nhóm thẻ xếp dọc. Java, nhóm nhỏ gọn hoặc đề cao thông lượng: bộ dọn Serial hợp môi trường một luồng hoặc ứng dụng nhỏ; bộ dọn Parallel còn gọi là Throughput Collector. Java, nhóm quan tâm thời gian dừng: CMS nhắm độ trễ thấp, G1 cân bằng thông lượng và độ trễ, ZGC dành cho vùng nhớ lớn và thời gian dừng tối thiểu. CPython và Go chuẩn: CPython đếm tham chiếu và giải phóng khi bộ đếm về không, thêm bộ dọn vòng tham chiếu cho các đối tượng trỏ vòng quanh nhau; Go chuẩn dùng bộ dọn đánh dấu và quét chạy đồng thời với ứng dụng. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-10-002-main.svg)
+![Bốn nhóm thẻ xếp dọc. Java, nhóm đơn giản hoặc đề cao thông lượng: Serial dành cho ứng dụng nhỏ và đơn giản, Parallel dùng nhiều bộ xử lý và còn gọi là bộ dọn thông lượng. Java, nhóm quan tâm thời gian dừng: G1 hợp vùng nhớ lớn và là bộ dọn mặc định trong tài liệu JDK được đọc; ZGC và Shenandoah nhắm thời gian dừng rất thấp, không tăng theo kích thước vùng nhớ. CPython và Go chuẩn: CPython đếm tham chiếu và giải phóng khi bộ đếm về không, thêm bộ dọn vòng tham chiếu cho các đối tượng trỏ vòng quanh nhau; Go chuẩn dùng bộ dọn đánh dấu và quét chạy đồng thời với ứng dụng. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-10-002-main.svg)
 
 ## Từ viết tắt
 
 - **GC** (Garbage Collection) — dọn rác bộ nhớ: cơ chế tự động thu hồi vùng nhớ mà chương trình không còn dùng; bài cũng gọi bộ dọn rác thực hiện việc đó là GC.
-- **CMS** (Concurrent Mark-Sweep) — đánh dấu rồi quét đồng thời: tên một bộ dọn rác của Java, nhắm tới việc giảm thời gian dừng.
-- **ZGC** (Z Garbage Collector) — bộ dọn rác Z: một bộ dọn rác của Java dành cho vùng nhớ lớn và thời gian dừng tối thiểu.
+- **ZGC** (Z Garbage Collector) — bộ dọn rác Z: một bộ dọn rác của Java nhắm tới thời gian dừng rất thấp.
+- **CMS** (Concurrent Mark-Sweep) — đánh dấu rồi quét đồng thời: tên một bộ dọn rác cũ của Java, mà tài liệu JDK được đọc không còn mô tả.
+- **JDK** (Java Development Kit) — bộ công cụ phát triển Java: gói gồm thư viện chuẩn, trình chạy `java` và tài liệu đi kèm; bài trích tài liệu của nó để đối chiếu.
 
 ## Đọc hình
 
 **Điều chung.** Mọi bộ dọn rác phải biết vùng nhớ nào còn được dùng và thu hồi phần còn lại. Chúng khác nhau ở cách biết điều đó và ở việc có buộc chương trình dừng hẳn hay không. Kiểu dừng hẳn trong lúc dọn gọi là "stop-the-world".
 Hai thước đo hay gặp: **thông lượng** là tổng lượng việc làm được trong một khoảng thời gian, còn **độ trễ** là thời gian chờ của từng việc, kể cả lúc chương trình bị dừng để dọn.
 
-**Java.** Bài nguồn nêu năm bộ dọn rác, mỗi bộ hợp một hoàn cảnh:
-- Serial: hợp môi trường một luồng hoặc ứng dụng nhỏ.
-- Parallel: còn gọi là "Throughput Collector", đề cao thông lượng.
-- CMS: nhắm độ trễ thấp, giảm thời gian dừng.
-- G1 (Garbage-First): cân bằng giữa thông lượng và độ trễ.
-- ZGC: dành cho ứng dụng cần vùng nhớ lớn và thời gian dừng tối thiểu.
+**Java.** Tài liệu của trình chạy `java` trong JDK mô tả năm bộ dọn rác mà người dùng có thể chọn bằng các tùy chọn dòng lệnh:
+- Serial: theo tài liệu, thường là lựa chọn tốt nhất cho ứng dụng nhỏ và đơn giản, không cần tính năng đặc biệt nào từ bộ dọn rác.
+- Parallel: còn gọi là bộ dọn thông lượng (throughput collector); dùng nhiều bộ xử lý để cải thiện hiệu năng của ứng dụng.
+- G1 (Garbage-First): bộ dọn kiểu máy chủ, hướng tới máy nhiều bộ xử lý và nhiều bộ nhớ; theo tài liệu, nó đạt mục tiêu thời gian dừng với xác suất cao mà vẫn giữ thông lượng tốt, và là bộ dọn mặc định trong bản tài liệu đã đọc.
+- ZGC: bộ dọn có độ trễ thấp, thời gian dừng tối đa cỡ vài mili giây, đổi lại một phần thông lượng; thời gian dừng không phụ thuộc kích thước vùng nhớ.
+- Shenandoah: bộ dọn đồng thời với thời gian dừng thấp, cũng không tăng theo kích thước vùng nhớ.
+Bài nguồn có nhắc thêm CMS, nhưng tài liệu JDK được đọc không có tùy chọn nào cho CMS, nên bài này không mô tả nó. Bộ nào có sẵn và bộ nào là mặc định tùy phiên bản JDK.
 
 **Python (CPython).** Hai lớp. Lớp đầu là đếm tham chiếu: mỗi đối tượng có một bộ đếm, về không thì vùng nhớ được giải phóng. Lớp thứ hai là bộ dọn vòng tham chiếu, xử lý những đối tượng trỏ vòng quanh nhau mà bộ đếm không giải quyết được. Tài liệu của Python nói bộ dọn này bổ sung cho đếm tham chiếu và có thể tắt nếu chắc chương trình không tạo vòng. Đây là cách của CPython, bản cài đặt Python phổ biến nhất; các bản cài đặt khác, như PyPy, không nhất thiết đếm tham chiếu từng đối tượng, nên đừng coi đếm tham chiếu là bảo đảm của chính ngôn ngữ Python.
 
@@ -30,7 +32,7 @@ Hai thước đo hay gặp: **thông lượng** là tổng lượng việc làm 
 ## Giới hạn cần nhớ
 
 Dọn đồng thời không miễn phí. Tài liệu của Go nói thực tế nó thường dẫn tới thiết kế có thông lượng thấp hơn một bộ dọn dừng toàn bộ tương đương, và cũng nói rõ độ trễ thấp không đương nhiên kéo theo thông lượng thấp. Vì vậy chọn bộ dọn là chọn cái cần nhất: tổng việc làm hay thời gian chờ từng việc.
-Bài nguồn không nói phiên bản Java. Bộ dọn nào có sẵn và bộ nào là mặc định tùy phiên bản, nên xem tài liệu của phiên bản đang dùng; đây là kiến thức chung của người biên soạn.
+Mô tả các bộ dọn của Java lấy từ một bản tài liệu JDK cố định; bộ nào có sẵn và bộ nào là mặc định tùy phiên bản, nên hãy xem tài liệu của phiên bản đang dùng.
 Bài này so sánh cách làm, không đo tốc độ, nên không có con số nào ở đây.
 
 ## Nhìn hình trả lời
@@ -48,16 +50,17 @@ Không. Mỗi đối tượng vẫn được đối tượng kia trỏ tới nê
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn chia theo ngôn ngữ và chỉ ghi mỗi bộ dọn một dòng. Hình này gộp năm bộ của Java thành hai nhóm theo điều mỗi bộ nhắm tới trong chính mô tả của nguồn, và đặt Python cạnh Go vì cả hai chỉ có một cơ chế chính.
-Những câu về chi phí của dọn đồng thời, về việc tắt bộ dọn vòng và về "stop-the-world" lấy từ tài liệu của Go và Python, không phải từ bài nguồn.
+Bài nguồn chia theo ngôn ngữ và chỉ ghi mỗi bộ dọn của Java một dòng. Bài này chỉ giữ tên ba ngôn ngữ và ý "mỗi ngôn ngữ chọn một cách dọn"; không dịch hay diễn đạt lại các dòng mô tả đó mà dựng phần Java từ tài liệu trình chạy `java` của JDK (nên có Shenandoah, không có CMS), phần Python từ tài liệu mô-đun `gc` và phần Go từ hướng dẫn về bộ dọn rác của Go.
+Hình đặt Serial và Parallel thành một nhóm, G1, ZGC và Shenandoah thành nhóm quan tâm thời gian dừng, và đặt Python cạnh Go vì cả hai chỉ có một cơ chế chính. Những câu về chi phí của dọn đồng thời, về việc tắt bộ dọn vòng và về "stop-the-world" lấy từ tài liệu của Go và Python.
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md): ba ngôn ngữ và các bộ dọn rác.
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md): tên ba ngôn ngữ.
+- [OpenJDK — tài liệu trình chạy java](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md): các tùy chọn chọn bộ dọn rác Serial, Parallel, G1, ZGC và Shenandoah. Đọc từ kho mã.
 - [Python — tài liệu mô-đun gc](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/gc.rst): bộ dọn bổ sung cho đếm tham chiếu, có thể tắt nếu không tạo vòng tham chiếu. Đọc từ kho mã.
 - [Go — hướng dẫn về bộ dọn rác](https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/gc-guide.html): mark-sweep, chạy đồng thời, thông lượng và độ trễ. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-18. Mô tả các bộ dọn của Java là của bài nguồn, chưa đối chiếu với tài liệu Java.
+Đã đọc nguồn ngày 2026-10-19. Câu giải nghĩa GC trong mục từ viết tắt và phần nói về đếm tham chiếu của CPython so với PyPy là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
 Bài viết và hình được thiết kế độc lập.

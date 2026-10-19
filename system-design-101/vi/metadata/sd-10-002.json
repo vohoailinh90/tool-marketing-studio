@@ -48,7 +48,7 @@
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Java provides Serial (single-threaded environments or small applications), Parallel (the Throughput Collector), CMS (low-latency, minimizing pause times), G1 (balancing throughput and latency) and ZGC (large heaps, minimal pause times) collectors.",
+      "claim_vi": "The source names Serial, Parallel, CMS, G1 and ZGC as Java collectors; only the fact that Java has several collectors is reused, and the lesson describes the collectors from the JDK documentation instead.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md",
       "section": "Java",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
@@ -84,10 +84,28 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Which Java collectors are available and which is the default depends on the Java version.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-garbage-collection-work.md",
-      "section": "Limits",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "claim_vi": "JDK java launcher man page: -XX:+UseSerialGC enables the serial collector, generally the best choice for small and simple applications that do not require special functionality from garbage collection; -XX:+UseParallelGC enables the parallel scavenge collector (also known as the throughput collector) to improve performance by leveraging multiple processors.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md",
+      "section": "Advanced garbage collection options",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK java launcher man page: -XX:+UseG1GC enables the garbage-first (G1) collector, a server-style collector for multiprocessor machines with a large amount of RAM that meets GC pause time goals with high probability while maintaining good throughput; by default it is enabled and G1 is the default collector.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md",
+      "section": "Advanced garbage collection options",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK java launcher man page: -XX:+UseZGC enables the Z collector, a low-latency collector with maximum pause times of a few milliseconds at some throughput cost, with pause times independent of the heap size; -XX:+UseShenandoahGC enables Shenandoah, a low pause time concurrent collector whose pause times are not proportional to the heap size.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md",
+      "section": "Advanced garbage collection options",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The JDK java launcher man page at the pinned commit contains no option for CMS (no UseConcMarkSweepGC entry); which collectors exist and which is the default depends on the JDK version.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md",
+      "section": "Advanced garbage collection options",
+      "verified_by": "Searched the pinned file for the CMS option names; none found."
     },
     {
       "claim_vi": "Per-object reference counting is how CPython manages memory; other Python implementations such as PyPy need not use per-object reference counts, so the lesson labels this section as CPython behaviour.",
@@ -104,8 +122,8 @@
   ],
   "design_notes_vi": "Năm bộ dọn của Java gộp thành hai nhóm theo điều nguồn nói mỗi bộ nhắm tới; Python và Go chung một khung vì mỗi ngôn ngữ có cơ chế chính riêng. Khung cuối nhắc đánh đổi giữa thông lượng và độ trễ. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source gives one line per collector per language; the lesson adds the throughput versus latency trade-off and the meaning of stop-the-world from the Go and Python documentation.",
-    "Descriptions of the Java collectors come from the source only and were not checked against Java documentation.",
+    "Source gives one line per collector per language; the lesson keeps only the three language names, builds the Java part from the JDK java launcher man page at a pinned commit (Serial, Parallel, G1, ZGC and Shenandoah; no CMS, which the page does not document) and adds the throughput versus latency trade-off and the meaning of stop-the-world from the Go and Python documentation.",
+    "The source's CMS line is not reproduced because the pinned JDK documentation has no CMS option; Shenandoah appears because the same documentation describes it.",
     "Source says Python uses reference counting and a cycle collector; the lesson scopes this to CPython (author's general knowledge).",
     "Source describes Go's collector as concurrent mark-and-sweep; the lesson scopes it to the standard Go toolchain and says some pauses remain, following the Go GC guide."
   ],

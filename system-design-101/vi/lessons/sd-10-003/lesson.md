@@ -46,7 +46,7 @@ Một nhóm nhỏ làm chức năng đặt lịch hẹn: người dùng chọn g
 
 Màn hình chọn giờ là frontend (và mobile nếu làm ứng dụng điện thoại); cách bố trí và độ dễ dùng thuộc thiết kế giao diện và trải nghiệm.
 Nhận yêu cầu và kiểm tra giờ trống là logic backend, còn ghi lại lịch là việc của cơ sở dữ liệu.
-Đưa bản mới lên chạy thuộc điện toán đám mây, hạ tầng và DevOps, qua đường ống CI/CD.
+Đưa bản mới lên chạy thuộc hạ tầng và DevOps, qua đường ống CI/CD; chỉ khi ứng dụng chạy trên tài nguyên đám mây thì việc đó mới dính tới điện toán đám mây.
 
 </details>
 

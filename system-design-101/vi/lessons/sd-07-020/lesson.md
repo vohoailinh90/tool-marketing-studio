@@ -19,7 +19,7 @@
 5. Mạng thẻ thu phí và đánh giá của các ngân hàng, như ví dụ Visa ở trên.
 6. Chủ thẻ trả cho ngân hàng phát hành tiền dịch vụ của ngân hàng đó.
 
-**Vì sao ngân hàng phát hành phải được trả.** Ngân hàng phát hành trả người bán ngay cả khi chủ thẻ không trả. Nó trả người bán trước khi chủ thẻ trả nó. Và nó có các chi phí vận hành khác: quản lý tài khoản khách hàng, in sao kê, phát hiện gian lận, quản lý rủi ro, bù trừ và quyết toán, v.v.
+**Vì sao ngân hàng phát hành phải được trả.** Ngân hàng phát hành chuyển tiền cho phía người bán (qua mạng thẻ và ngân hàng thu, nơi ghi có cho người bán) ngay cả khi chủ thẻ không trả, và chuyển trước khi chủ thẻ trả nó; nguồn viết gọn là "trả người bán". Và nó có các chi phí vận hành khác: quản lý tài khoản khách hàng, in sao kê, phát hiện gian lận, quản lý rủi ro, bù trừ và quyết toán, v.v.
 
 ## Giới hạn cần nhớ
 
@@ -34,7 +34,7 @@ Vì sao phí liên ngân hàng do mạng thẻ đặt, không để từng ngân
 <summary>Xem đáp án</summary>
 
 Theo nguồn, để từng ngân hàng phát hành đàm phán phí với từng người bán thì kém hiệu quả hơn; nên mạng thẻ đặt mức phí liên ngân hàng chung.
-Ngân hàng phát hành được trả vì nó trả người bán ngay cả khi chủ thẻ không trả, trả người bán trước khi chủ thẻ trả, và có chi phí vận hành như quản lý tài khoản, sao kê, chống gian lận, quản lý rủi ro, bù trừ và quyết toán.
+Ngân hàng phát hành được trả vì nó chuyển tiền cho phía người bán (qua mạng thẻ và ngân hàng thu) ngay cả khi chủ thẻ không trả, chuyển trước khi chủ thẻ trả, và có chi phí vận hành như quản lý tài khoản, sao kê, chống gian lận, quản lý rủi ro, bù trừ và quyết toán.
 Câu hỏi mở của nguồn (phí có như nhau cho người bán lớn và nhỏ?) nguồn không trả lời.
 
 </details>

@@ -32,7 +32,7 @@ Một chương trình gọi hai mươi dịch vụ ngoài, mỗi lần gọi ch�
 <summary>Xem đáp án</summary>
 
 Chương trình gọi dịch vụ hợp với đồng thời (asyncio hoặc luồng): thời gian chờ chồng nhau, như bốn việc chờ từ 2,00 giây xuống 0,50 giây.
-Chương trình nén ảnh hợp với song song (nhiều tiến trình để hệ điều hành xếp lên nhiều lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn việc tính toán vẫn chạy nối đuôi nhau.
+Chương trình nén ảnh hợp với song song (nhiều tiến trình để hệ điều hành xếp lên nhiều lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn luồng chỉ thay phiên nhau chứ không chạy mã Python cùng lúc, và việc chuyển qua lại còn tốn thêm thời gian.
 
 </details>
 

@@ -3,7 +3,7 @@
 **Mỗi phút có hơn 500 giờ video được tải lên YouTube, và mỗi video phải được chuyển mã ra nhiều độ phân giải; theo bài nguồn, YouTube làm riêng một loại chip, VCU, cho việc này.**
 Bài này đi theo đúng câu hỏi của bài nguồn: vì sao chuyển mã bằng phần mềm không còn đủ, và VCU được xếp vào trung tâm dữ liệu theo những lớp nào.
 
-![Hai khung và một khung ghi nhớ. Khung một, vì sao cần chip riêng: mỗi video được chuyển mã ra nhiều mức, 720p cho điện thoại, 1080p cho máy tính xách tay, 4K cho màn hình lớn; lượng video tải lên tăng mạnh trong đại dịch; chuyển mã bằng phần mềm trở nên chậm và tốn. Khung hai, VCU xếp theo lớp: một cụm có nhiều máy chủ tăng tốc bằng VCU; mỗi máy chủ có nhiều khay tăng tốc; mỗi khay có nhiều thẻ VCU; mỗi thẻ có bộ mã hóa, bộ giải mã. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-012-main.svg)
+![Hai khung và một khung ghi nhớ. Khung một, vì sao cần chip riêng: mỗi video được chuyển mã ra nhiều bản, với ví dụ của nguồn là 720p cho điện thoại, 1080p cho máy tính xách tay, 4K cho màn hình lớn; lượng video tải lên tăng mạnh trong đại dịch; chuyển mã bằng phần mềm trở nên chậm và tốn. Khung hai, VCU xếp theo lớp: một cụm có nhiều máy chủ tăng tốc bằng VCU; mỗi máy chủ có nhiều khay tăng tốc; mỗi khay có nhiều thẻ VCU; mỗi thẻ có bộ mã hóa, bộ giải mã. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-012-main.svg)
 
 ## Từ viết tắt
 
@@ -14,7 +14,7 @@ Bài này đi theo đúng câu hỏi của bài nguồn: vì sao chuyển mã b�
 
 ## Đọc hình
 
-**Vì sao cần chip riêng.** YouTube phải chuyển mã video gốc ra nhiều mức nén để hợp với từng thiết bị: điện thoại (720p), máy tính xách tay (1080p), màn hình độ phân giải cao (4K). Người sáng tạo tải lên một lượng video rất lớn mỗi phút, và trong đại dịch COVID-19 lượng xem video còn tăng mạnh vì người ta ở nhà. Chuyển mã bằng phần mềm trở nên chậm và tốn kém, nên cần một "bộ não" làm riêng cho mã hóa và giải mã video.
+**Vì sao cần chip riêng.** Theo bài nguồn, YouTube phải chuyển mã video gốc ra nhiều mức nén để hợp với từng thiết bị, với ví dụ: điện thoại (720p), máy tính xách tay (1080p), tivi độ phân giải cao (4K). Nói chính xác hơn, 720p, 1080p và 4K là độ phân giải, tức số điểm ảnh của mỗi khung hình; mức nén là chuyện khác, do tốc độ bit và chuẩn mã hóa quyết định. Cùng một độ phân giải có thể có nhiều bản với tốc độ bit khác nhau, trình phát tự chuyển giữa các bản theo đường mạng, và một video tải lên ở 1080p không thể thành bản 4K thật. Ví dụ theo thiết bị của nguồn chỉ là cách nói đơn giản, không phải quy tắc cố định. Người sáng tạo tải lên một lượng video rất lớn mỗi phút, và trong đại dịch COVID-19 lượng xem video còn tăng mạnh vì người ta ở nhà. Chuyển mã bằng phần mềm trở nên chậm và tốn kém, nên cần một "bộ não" làm riêng cho mã hóa và giải mã video.
 
 **VCU xếp theo lớp.** Giống như GPU hay TPU dùng cho đồ họa hay học máy, YouTube làm VCU cho xử lý video ở quy mô trung tâm dữ liệu:
 - Mỗi cụm có một số máy chủ tăng tốc bằng VCU.
@@ -35,7 +35,7 @@ Một video 10 phút được tải lên. Vì sao YouTube không chỉ lưu đú
 <details>
 <summary>Xem đáp án</summary>
 
-Vì mỗi thiết bị và mỗi đường mạng cần một mức khác nhau: điện thoại với mạng yếu cần bản 720p nhẹ, màn hình lớn cần 4K. Bản gốc cần được chuyển mã ra nhiều mức, và việc đó nhân lên với hơn 500 giờ video mỗi phút, nên chuyển mã là phần việc khổng lồ mà VCU được làm ra để gánh.
+Vì mỗi thiết bị và mỗi đường mạng cần một bản khác nhau: mạng yếu cần bản nhẹ (độ phân giải hoặc tốc độ bit thấp hơn), màn hình lớn với mạng tốt nhận bản nét hơn. Bản gốc cần được chuyển mã ra nhiều bản, và việc đó nhân lên với hơn 500 giờ video mỗi phút, nên chuyển mã là phần việc khổng lồ mà VCU được làm ra để gánh.
 
 </details>
 

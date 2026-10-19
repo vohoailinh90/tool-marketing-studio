@@ -2,10 +2,10 @@
   "id": "sd-02-012",
   "title": "YouTube chuyển mã video bằng chip riêng",
   "subtitle": "Hơn 500 giờ video mỗi phút, mỗi video nhiều mức.",
-  "desc": "Hai khung. Khung một, vì sao cần chip riêng: mỗi video được chuyển mã ra nhiều mức, 720p cho điện thoại, 1080p cho máy tính xách tay, 4K cho màn hình lớn; lượng video tải lên tăng mạnh trong đại dịch; chuyển mã bằng phần mềm chậm và tốn. Khung hai, VCU xếp theo lớp: một cụm có nhiều máy chủ tăng tốc bằng VCU; mỗi máy chủ có nhiều khay tăng tốc; mỗi khay có nhiều thẻ VCU; mỗi thẻ có bộ mã hóa, bộ giải mã. Khung ba nêu ba điều cần nhớ.",
+  "desc": "Hai khung. Khung một, vì sao cần chip riêng: mỗi video được chuyển mã ra nhiều bản, ví dụ của nguồn: 720p cho điện thoại, 1080p cho máy tính xách tay, 4K cho màn hình lớn; lượng video tải lên tăng mạnh trong đại dịch; chuyển mã bằng phần mềm chậm và tốn. Khung hai, VCU xếp theo lớp: một cụm có nhiều máy chủ tăng tốc bằng VCU; mỗi máy chủ có nhiều khay tăng tốc; mỗi khay có nhiều thẻ VCU; mỗi thẻ có bộ mã hóa, bộ giải mã. Khung ba nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "steps", "heading": "Vì sao cần chip riêng",
-     "items": [{"title": "Nhiều mức cho mỗi video", "text": "720p điện thoại, 1080p máy xách tay, 4K màn hình lớn."},
+     "items": [{"title": "Nhiều bản cho mỗi video", "text": "Ví dụ nguồn: 720p, 1080p, 4K."},
                {"title": "Lượng tải lên rất lớn", "text": "Hơn 500 giờ mỗi phút, tăng mạnh trong đại dịch."},
                {"title": "Phần mềm không theo kịp", "text": "Chuyển mã bằng phần mềm chậm và tốn."}]},
     {"kind": "parts", "heading": "VCU xếp theo lớp",

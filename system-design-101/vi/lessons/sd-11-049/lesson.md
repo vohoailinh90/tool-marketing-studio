@@ -92,7 +92,7 @@ Bạn dựng bản đồ dịch vụ AWS cho đồng đội và chia thành chí
 <details>
 <summary>Xem đáp án</summary>
 
-Vì trong cách chia của Microsoft, 63 trên 194 dòng (32,5%) nằm ở các bảng "dịch vụ khác" của trang giới thiệu (con số đo các dòng ở đó, không chứng minh dịch vụ nào thiếu trang theo mảng, vì 14 tên còn xuất hiện ở cả hai nơi), nên một danh sách chỉ có chín chủ đề sẽ giấu mất gần một phần ba. Nhóm "khác" cần được chia mục nhỏ, như Microsoft chia trang giới thiệu thành mười một mục. Cũng cho phép một dịch vụ có hai nhà, vì 17 trong 183 tên xuất hiện ở hai trang. Đây là suy luận của người biên soạn từ một cách chia, không phải quy tắc chung.
+Vì trong cách chia của Microsoft, 63 trên 194 dòng (32,5%) nằm ở các bảng "dịch vụ khác" của trang giới thiệu (con số đo các dòng ở đó, không chứng minh dịch vụ nào thiếu trang theo mảng, vì 14 tên còn xuất hiện ở cả hai nơi), nên một bản đồ chỉ có chín chủ đề thiếu chỗ cho một phần đáng kể các dòng (tối đa 63 trên 194; số dịch vụ chỉ có ở đó thấp hơn, và bài không đếm số này). Nhóm "khác" cần được chia mục nhỏ, như Microsoft chia trang giới thiệu thành mười một mục. Cũng cho phép một dịch vụ có hai nhà, vì 17 trong 183 tên xuất hiện ở hai trang. Đây là suy luận của người biên soạn từ một cách chia, không phải quy tắc chung.
 
 </details>
 

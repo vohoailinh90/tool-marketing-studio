@@ -25,7 +25,7 @@ Bài nguồn liệt kê tám khoản và lấy AWS làm ví dụ, nói rằng c�
 | Dữ liệu đi ra | Data Transfer Costs | Đưa dữ liệu vào thường rẻ hoặc miễn phí, kéo ra mới đắt |
 | Ngưỡng miễn phí | Free Tier Ambiguity | Có nhiều loại miễn phí, dịch vụ ngoài ngưỡng bị tính, vượt ngưỡng thì giá theo bảng thường |
 
-Phần "Vì sao tiền vẫn chạy" được đối chiếu với tài liệu của AWS ở mục dưới; riêng khoản dữ liệu đi ra, ngưỡng miễn phí, tiền theo lời gọi và bộ cân bằng tải (`Load Balancers`) chỉ theo bài nguồn.
+Về tên: `S3` là dịch vụ lưu trữ đối tượng của AWS, tên đầy đủ là Amazon Simple Storage Service (ba chữ S nên gọi là S3); trong bài nó chỉ là tên một dịch vụ. Phần "Vì sao tiền vẫn chạy" được đối chiếu với tài liệu của AWS ở mục dưới; riêng khoản dữ liệu đi ra, ngưỡng miễn phí, tiền theo lời gọi và bộ cân bằng tải (`Load Balancers`) chỉ theo bài nguồn.
 
 ## Thử: đọc tài liệu AWS để kiểm từng khoản
 

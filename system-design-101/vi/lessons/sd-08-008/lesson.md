@@ -55,7 +55,9 @@ Bài nguồn là một hình bảng tóm tắt kèm danh sách vài tên mẫu (
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-patterns-cheat-sheet-part-1-and-part-2.md): tên năm mẫu đầu của bảng tóm tắt.
-- [Python 3.13 — mô-đun logging, copy và xml.etree.ElementTree](https://docs.python.org/3.13/library/logging.html): mã nguồn đọc từ bản cài đặt trên máy thử.
+- [Python 3.13 — mô-đun logging](https://docs.python.org/3.13/library/logging.html): ví dụ Singleton (bộ ghi nhật ký theo tên). Mã nguồn đọc từ bản cài đặt trên máy thử.
+- [Python 3.13 — mô-đun copy](https://docs.python.org/3.13/library/copy.html): `copy.copy` và `copy.deepcopy` cho ví dụ Prototype.
+- [Python 3.13 — mô-đun xml.etree.ElementTree](https://docs.python.org/3.13/library/xml.etree.elementtree.html): `TreeBuilder` cho ví dụ Builder.
 
 Đã đọc nguồn ngày 2026-10-19. Các phép thử là của người biên soạn.
 Bài viết và hình được thiết kế độc lập.

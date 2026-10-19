@@ -57,7 +57,7 @@ Danh sách tám khái niệm là lựa chọn của người biên soạn; bài 
 <details>
 <summary>Xem đáp án</summary>
 
-Phép thử đóng gói: `a._balance = -999` từ bên ngoài vẫn được nhận, vì gạch dưới chỉ là quy ước. Để luật luôn đúng, mọi thay đổi phải đi qua phương thức như `deposit` (nơi có kiểm tra), và nhóm làm việc thoả thuận không chạm vào thuộc tính gạch dưới từ ngoài; nếu cần chặt hơn thì dùng thuộc tính chỉ đọc (`property`) cho số dư.
+Phép thử đóng gói: `a._balance = -999` từ bên ngoài vẫn được nhận, vì gạch dưới chỉ là quy ước. Python không có cách chặn một đoạn mã cố tình ghi vào `_balance`: luật chỉ được giữ nhờ thoả thuận và kiểm tra. Hãy để mọi thay đổi đi qua phương thức như `deposit` (nơi có kiểm tra), thoả thuận không chạm vào thuộc tính gạch dưới từ ngoài, và viết kiểm thử cùng xem xét mã để bắt chỗ vi phạm. Một thuộc tính chỉ đọc (`property`) chỉ giúp báo lỗi khi ai đó gán qua tên công khai, không ngăn được việc ghi thẳng vào `_balance`.
 
 </details>
 

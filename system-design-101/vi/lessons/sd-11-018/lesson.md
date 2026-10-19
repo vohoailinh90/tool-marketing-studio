@@ -33,7 +33,7 @@ Một đội sáu người có hai dịch vụ, hiếm khi đổi chung, và ch�
 <details>
 <summary>Xem đáp án</summary>
 
-Hai kho thường đủ: cái lợi lớn nhất của một kho (đổi chung trong một commit) hiếm khi cần tới, trong khi cái giá của nó (công cụ build theo đồ thị phụ thuộc, quản lý sở hữu thư mục) có thật. Nếu sau này hai dịch vụ bắt đầu đổi cùng nhau liên tục, đó là tín hiệu để xem lại, và gộp kho là việc làm được.
+Cả hai cách đều chạy được; ở quy mô này khác biệt không lớn, và đây là một đánh đổi theo hoàn cảnh. Một kho nhỏ vẫn có thể dùng lệnh build thường của từng ngôn ngữ, chạy kiểm thử cả hai dịch vụ và phân công sở hữu thư mục một cách không chính thức, nên các khoản chi phí của kho rất lớn (công cụ build theo đồ thị phụ thuộc, cơ chế sở hữu thư mục) chưa chắc phát sinh. Điều hai dịch vụ hiếm đổi chung nói rõ là cái lợi lớn nhất của một kho (đổi chung trong một commit) ít được dùng tới, nên hai kho là lựa chọn gọn và thường đủ; nếu đội muốn lịch phát hành hoặc quyền truy cập tách riêng thì càng hợp hai kho. Nếu sau này hai dịch vụ bắt đầu đổi cùng nhau liên tục, đó là tín hiệu để xem lại, và gộp kho là việc làm được.
 Đây là suy luận của người biên soạn, không phải kết quả đo.
 
 </details>

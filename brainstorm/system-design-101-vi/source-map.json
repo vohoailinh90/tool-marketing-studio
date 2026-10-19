@@ -2184,41 +2184,41 @@
         },
         {
           "id": "sd-08-021",
-          "title_vi": null,
+          "title_vi": "MVC, MVP, MVVM, VIPER: cùng một nút bấm, bốn cách chia việc, và luật nằm ở đâu",
           "title_source": "MVC, MVP, MVVM, VIPER Patterns",
           "source_url": "https://bytebytego.com/guides/mvc-mvp-mvvm-viper-patterns",
           "source_path": "data/guides/mvc-mvp-mvvm-viper-patterns.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "634f337826cf2b08a318c8b30e59d36c45d331e7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mvc-mvp-mvvm-viper-patterns.md"
         },
         {
           "id": "sd-08-022",
-          "title_vi": null,
+          "title_vi": "Bản đồ kiến thức của kiến trúc sư: tám vùng, năm mươi cái tên, và \"biết\" một cái tên nghĩa là gì",
           "title_source": "The Ultimate Software Architect Knowledge Map",
           "source_url": "https://bytebytego.com/guides/the-ultimate-software-architect-knowledge-map",
           "source_path": "data/guides/the-ultimate-software-architect-knowledge-map.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "57644609e91e0b4e80f9a6967214951f1019f1e5",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-software-architect-knowledge-map.md"
         },
         {
           "id": "sd-08-023",
-          "title_vi": null,
+          "title_vi": "Kiến trúc dịch vụ nhỏ điển hình: bảy bộ phận, và mỗi bộ phận thêm một cái giá",
           "title_source": "Typical Microservice Architecture",
           "source_url": "https://bytebytego.com/guides/what-does-a-typical-microservice-architecture-look-like",
           "source_path": "data/guides/what-does-a-typical-microservice-architecture-look-like.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "a84ae6f9b88e0ce58dc3e8d16c96f2ee02372ae4",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-a-typical-microservice-architecture-look-like.md"
         },
         {
           "id": "sd-08-024",
-          "title_vi": null,
+          "title_vi": "Năm mẫu kiến trúc hàng đầu: nguồn không nêu tên, nên bài đo năm lựa chọn mà mọi kiểu đều đẩy cho bạn",
           "title_source": "Top 5 Software Architectural Patterns",
           "source_url": "https://bytebytego.com/guides/top-5-software-architectural-patterns",
           "source_path": "data/guides/top-5-software-architectural-patterns.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c82dfc4ddfbd8a557254ce93551deff03685e250",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-software-architectural-patterns.md"
         }

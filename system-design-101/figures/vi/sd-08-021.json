@@ -1,0 +1,36 @@
+{
+  "id": "sd-08-021",
+  "title": "MVC, MVP, MVVM, VIPER: bốn cách chia một nút bấm",
+  "subtitle": "Mẫu giữa là chỗ giữ luật; thử xem mỗi mẫu cần gì để thử luật đó.",
+  "desc": "Ba khung. Khung một, bốn mẫu chia việc giữa khung nhìn và mô hình: MVC, bộ điều khiển nối khung nhìn với mô hình; MVP, bộ trình bày giữ luật và khung nhìn chỉ hiện; MVVM, mô hình khung nhìn giữ luật và khung nhìn chỉ buộc vào; VIPER, thêm bộ tương tác, thực thể và bộ điều hướng. Khung hai, thử trên một nút bấm: mẫu giữa biết hai trường của khung nhìn ở MVC, một hàm ở MVP và VIPER, không gì ở MVVM; thử luật nút Trừ, MVVM không cần khung nhìn giả; thêm nút Đặt lại sửa 8 đến 11 dòng ở cả bốn mẫu. Khung ba, đồ chơi nhỏ, MVP và VIPER chưa có tài liệu độc lập để đối chiếu.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Bốn mẫu, cùng một việc",
+      "items": [
+        "MVC: bộ điều khiển đứng giữa khung nhìn và mô hình.",
+        "MVP: bộ trình bày giữ luật; khung nhìn chỉ hiện.",
+        "MVVM: mô hình khung nhìn giữ luật; khung nhìn chỉ buộc vào.",
+        "VIPER: thêm bộ tương tác, thực thể và bộ điều hướng."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử trên một nút bấm",
+      "items": [
+        "Mẫu giữa biết về khung nhìn: MVC hai trường, MVP và VIPER một hàm, MVVM không gì.",
+        "Thử luật nút Trừ: MVVM không cần khung nhìn giả, ba mẫu kia cần.",
+        "Thêm nút Đặt lại: sửa 8 đến 11 dòng ở cả bốn mẫu.",
+        "VIPER 5 lớp; ba mẫu kia 3 lớp."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn",
+      "items": [
+        "Đồ chơi 18 đến 27 dòng, không nói gì về ứng dụng lớn.",
+        "MVP và VIPER: chưa có tài liệu độc lập để đối chiếu."
+      ]
+    }
+  ]
+}

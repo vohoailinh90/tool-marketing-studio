@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1214" viewBox="0 0 320 1214" role="img" aria-labelledby="title desc">
+<title id="title">Năm lựa chọn sau mỗi kiểu kiến trúc</title>
+<desc id="desc">Ba khung. Khung một, phần chữ của nguồn không nêu tên năm mẫu nào, nên bài đặt năm lựa chọn mà việc chọn kiểu kiến trúc đẩy cho bạn: chờ ở đâu, co giãn ra sao, gọi nhau thế nào, lưu dữ liệu thế nào, hỏng thì sao. Khung hai, năm phép đo trên một máy: 50 lần chờ 20 mili giây mất 1,01 giây khi tuần tự và 0,022 giây khi đồng thời; bốn tiến trình nhanh gấp 2 đến 2,5 lần chứ không gấp 4; một truy vấn 0,23 mili giây thay vì ba lời gọi 0,7; đổi tên khách tốn 3 micro giây khi chuẩn hóa và 100 đến 140 khi dữ liệu phẳng; thử lại tối đa 3 lần nâng tỷ lệ thành công từ 71% lên 97%. Khung ba, một máy, đồ chơi; số chỉ cho thấy hình dạng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1214" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm lựa chọn sau mỗi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">kiểu kiến trúc</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Nguồn không nêu tên năm mẫu; đo</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">năm lựa chọn mà mọi kiểu đều đẩy</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">cho bạn.</text>
+<rect x="8" y="143" width="304" height="424" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm lựa chọn</text>
+<rect x="20" y="188" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="211" r="11" fill="#16a34a"/>
+<polyline points="37.9,211.4 41.7,215.4 48.5,207" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ ở đâu: tuần tự hay bất</text>
+<text x="64" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đồng bộ.</text>
+<rect x="20" y="259" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="282" r="11" fill="#16a34a"/>
+<polyline points="37.9,282.4 41.7,286.4 48.5,278" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="285.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Co giãn ra sao: thêm tiến</text>
+<text x="64" y="304.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trình, có phần không chia</text>
+<text x="64" y="324.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+<rect x="20" y="350" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="373" r="11" fill="#16a34a"/>
+<polyline points="37.9,373.4 41.7,377.4 48.5,369" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="376.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi nhau thế nào: nhiều lời</text>
+<text x="64" y="395.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gọi hay một truy vấn.</text>
+<rect x="20" y="421" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="444" r="11" fill="#16a34a"/>
+<polyline points="37.9,444.4 41.7,448.4 48.5,440" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="447.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu dữ liệu thế nào: chuẩn</text>
+<text x="64" y="466.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hóa hay phẳng.</text>
+<rect x="20" y="492" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="515" r="11" fill="#16a34a"/>
+<polyline points="37.9,515.4 41.7,519.4 48.5,511" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="518.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏng thì sao: thời hạn, thử</text>
+<text x="64" y="537.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lại, ngắt mạch.</text>
+<rect x="8" y="579" width="304" height="404" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="607.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm phép đo</text>
+<rect x="20" y="624" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="647" r="11" fill="#16a34a"/>
+<polyline points="37.9,647.4 41.7,651.4 48.5,643" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="650.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">50 lần chờ 20 ms: tuần tự</text>
+<text x="64" y="669.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1,01 s, đồng thời 0,022 s.</text>
+<rect x="20" y="695" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="718" r="11" fill="#16a34a"/>
+<polyline points="37.9,718.4 41.7,722.4 48.5,714" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="721.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bốn tiến trình: nhanh gấp 2</text>
+<text x="64" y="740.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 2,5 lần, không gấp 4.</text>
+<rect x="20" y="766" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="789" r="11" fill="#16a34a"/>
+<polyline points="37.9,789.4 41.7,793.4 48.5,785" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="792.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một truy vấn 0,23 ms thay vì</text>
+<text x="64" y="811.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ba lời gọi 0,7 ms.</text>
+<rect x="20" y="837" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="860" r="11" fill="#16a34a"/>
+<polyline points="37.9,860.4 41.7,864.4 48.5,856" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="863.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi tên khách: 3 µs chuẩn</text>
+<text x="64" y="882.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hóa, 100 đến 140 µs phẳng.</text>
+<rect x="20" y="908" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="931" r="11" fill="#16a34a"/>
+<polyline points="37.9,931.4 41.7,935.4 48.5,927" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="934.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thử lại tối đa 3 lần: thành</text>
+<text x="64" y="953.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công từ 71% lên 97%.</text>
+<rect x="8" y="995" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1023.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn</text>
+<rect x="20" y="1040" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1063" r="11" fill="#16a34a"/>
+<polyline points="37.9,1063.4 41.7,1067.4 48.5,1059" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1066.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần chữ của nguồn không</text>
+<text x="64" y="1085.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nêu tên năm mẫu; bài không</text>
+<text x="64" y="1105.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đoán.</text>
+<rect x="20" y="1131" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1154" r="11" fill="#16a34a"/>
+<polyline points="37.9,1154.4 41.7,1158.4 48.5,1150" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1157.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một máy, đồ chơi; số chỉ cho</text>
+<text x="64" y="1176.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thấy hình dạng.</text>
+</g>
+</svg>

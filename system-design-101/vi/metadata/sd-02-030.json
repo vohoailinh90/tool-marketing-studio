@@ -1,0 +1,123 @@
+{
+  "id": "sd-02-030",
+  "title_vi": "Kiến trúc Twitter 2022 so với 2012: đọc từ mã nguồn mở của chính Twitter",
+  "language": "vi",
+  "kind": "timeline",
+  "content_status": "draft",
+  "source_ref": "sd-02-030",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/twitter-architecture-2022-vs-2012.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/twitter-architecture-2022-vs-2012.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. The body is a title, a one-line description and one image; the image host was not reachable, so no source-image bytes used and the figure's content is unknown to the author.",
+    "blob_sha": "73730abb1fd857e29f0d50a69427c9bd07224db2",
+    "retrieved_body_sha256": "dfb3400e1947b6170a2518368bb6d3b25144916d57d4c61947ff8d90eb12e910",
+    "retrieved_body_bytes": 475
+  },
+  "diagram": "../diagrams/sd-02-030-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-010",
+      "relation": "see_also",
+      "reason_vi": "Bài này nằm cùng nhóm với bài sd-02-010."
+    },
+    {
+      "lesson_id": "sd-02-011",
+      "relation": "see_also",
+      "reason_vi": "Bài này nằm cùng nhóm với bài sd-02-011."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-20"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_come_from_READMEs_of_Twitter_open_source_repositories_pinned_by_commit; Twitter engineering blog posts were not reachable and were not read; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source file holds only a title, a description and one image; the figure's content was not read.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/twitter-architecture-2022-vs-2012.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Gizzard: Scala framework for custom fault-tolerant distributed datastores, extracted from several Twitter datastores; no longer maintained.",
+      "source": "https://github.com/twitter/gizzard/blob/9b84325490185f1fa29cb4c9116b39eea374f345/README.markdown",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "FlockDB: distributed graph database of adjacency lists, stores social graphs; as of April 2010, 13+ billion edges, peak 20k writes/s and 100k reads/s; edges stored in both directions; no multi-hop queries.",
+      "source": "https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.markdown",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Snowflake: initial release 2010 on Apache Thrift, predates Finagle, retired and rewritten internally.",
+      "source": "https://github.com/twitter/snowflake/blob/ec40836e3f47af92cf0c83cbb4187c529d7e7fa5/README.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Finagle: extensible RPC system for the JVM, used in production at Twitter and actively developed.",
+      "source": "https://github.com/twitter/finagle/blob/ca472deb355c7d3b8d7eb077223991e8c8f4ad8b/README.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Home Mixer builds the Home timelines on Product Mixer (Scala); For You stages: candidate generation, ~6000 features, ML scoring, filters and heuristics, mixing; Following is reverse chronological.",
+      "source": "https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/home-mixer/README.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Search index (Earlybird) is the source of ~50% of For You posts; Earlybird has realtime (~7 days), protected and archive clusters, partitioned and replicated.",
+      "source": "https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/README.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Earlybird cluster layout and partitioning.",
+      "source": "https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/src/java/com/twitter/search/README.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Navi serves ML models in Rust and is used in Twitter's home recommendation.",
+      "source": "https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/navi/README.md",
+      "section": "Đọc hình",
+      "verified_by": "README of the pinned commit read; the statement is in the text."
+    },
+    {
+      "claim_vi": "Why FlockDB stores each edge twice (looking up by destination instead of scanning every edge).",
+      "source": "https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.markdown",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba khung: công cụ thời đầu, năm chặng dựng dòng tin, và ba điều nguồn không nói. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source is a single image with no text; the lesson is written from Twitter's open-source READMEs instead and does not describe the image.",
+    "The READMEs date only FlockDB's figures (April 2010) and Snowflake's first release (2010); the 2012 and 2022 labels of the title are not confirmed by them.",
+    "The Twitter engineering blog was not reachable from the authoring environment and was not read."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

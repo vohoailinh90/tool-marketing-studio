@@ -1,0 +1,38 @@
+{
+  "id": "sd-02-030",
+  "title": "Twitter qua mã nguồn mở",
+  "subtitle": "Công cụ thời đầu, rồi dòng tin Home.",
+  "desc": "Ba khung. Khung một, công cụ thời đầu theo README của Twitter: Gizzard, khung dựng kho dữ liệu phân tán; FlockDB, kho đồ thị quan hệ, tháng 4 năm 2010 có hơn 13 tỷ cạnh; Snowflake, bản đầu phát hành năm 2010; Finagle, hệ gọi dịch vụ từ xa cho JVM. Khung hai, năm chặng dựng dòng tin For You: lấy ứng viên, gắn khoảng 6000 đặc trưng, chấm điểm bằng mô hình, lọc, trộn nội dung khác. Khung ba: ba điều nguồn không nói.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Công cụ thời đầu",
+      "items": [
+        {"name": "Gizzard", "role": "Khung dựng kho dữ liệu phân tán.", "icon": "database"},
+        {"name": "FlockDB", "role": "Đồ thị quan hệ: 13 tỷ cạnh, 4/2010.", "icon": "network"},
+        {"name": "Snowflake", "role": "Bản đầu phát hành năm 2010.", "icon": "clock"},
+        {"name": "Finagle", "role": "Gọi dịch vụ từ xa cho JVM.", "icon": "server"}
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Dòng tin For You",
+      "items": [
+        {"title": "Lấy ứng viên", "text": "Từ nhiều nguồn khác nhau."},
+        {"title": "Gắn đặc trưng", "text": "Khoảng 6000 đặc trưng."},
+        {"title": "Chấm điểm", "text": "Mô hình học máy xếp hạng."},
+        {"title": "Lọc", "text": "Bỏ tweet đã xem, bị chặn."},
+        {"title": "Trộn", "text": "Thêm quảng cáo, gợi ý theo dõi."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nguồn không nói",
+      "items": [
+        "Hình nguồn vẽ gì.",
+        "Số liệu quy mô năm 2012 và 2022.",
+        "Vì sao mỗi công cụ được thay."
+      ]
+    }
+  ]
+}

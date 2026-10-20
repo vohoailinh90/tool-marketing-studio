@@ -816,11 +816,11 @@
         },
         {
           "id": "sd-02-030",
-          "title_vi": null,
+          "title_vi": "Kiến trúc Twitter 2022 so với 2012: đọc từ mã nguồn mở của chính Twitter",
           "title_source": "Twitter Architecture 2022 vs. 2012",
           "source_url": "https://bytebytego.com/guides/twitter-architecture-2022-vs-2012",
           "source_path": "data/guides/twitter-architecture-2022-vs-2012.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "73730abb1fd857e29f0d50a69427c9bd07224db2",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/twitter-architecture-2022-vs-2012.md"
         },

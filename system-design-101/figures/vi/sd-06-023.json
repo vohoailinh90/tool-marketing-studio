@@ -1,0 +1,45 @@
+{
+  "id": "sd-06-023",
+  "lang": "vi",
+  "title": "CDN hứa bốn điều, mỗi điều có điều kiện",
+  "subtitle": "Lợi ích chỉ đến khi máy biên giữ được nội dung.",
+  "desc": "Hai phần. Phần một, bốn lợi ích của CDN và điều kiện của từng cái: giảm độ trễ vì máy biên ở gần, nhưng chỉ với nội dung đã có trong bộ đệm; giảm tải và băng thông máy gốc vì nhiều người dùng chung một bản đã giữ; chống tấn công từ chối dịch vụ vì mạng lớn hứng lưu lượng, nhưng địa chỉ máy gốc phải được giấu; tăng tính sẵn sàng vì máy gốc sập vẫn trả bản cũ, nhưng chỉ khi được cấu hình như vậy. Phần hai, kết quả thử với nginx: 100 lần tải ảnh 200 KB thẳng máy gốc thì máy gốc gửi 20 MB; 100 lần qua máy biên thì máy gốc gửi 200 KB một lần; máy gốc tắt và bản đã hết hạn thì máy biên thường trả lỗi 502; bật dùng bản cũ khi lỗi thì máy biên trả 200 với bản cũ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn lợi ích, bốn điều kiện",
+      "items": [
+        {
+          "name": "Giảm độ trễ",
+          "role": "Máy biên ở gần; chỉ với nội dung đã có sẵn.",
+          "icon": "gauge"
+        },
+        {
+          "name": "Giảm tải máy gốc",
+          "role": "Nhiều người dùng chung một bản đã giữ.",
+          "icon": "download"
+        },
+        {
+          "name": "Chống từ chối dịch vụ",
+          "role": "Mạng lớn hứng lưu lượng; phải giấu máy gốc.",
+          "icon": "shield"
+        },
+        {
+          "name": "Tăng tính sẵn sàng",
+          "role": "Máy gốc sập vẫn trả bản cũ, nếu bật sẵn.",
+          "icon": "refresh-cw"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử với nginx, ảnh 200 KB",
+      "items": [
+        "100 lần tải thẳng máy gốc: máy gốc gửi 20 MB.",
+        "100 lần qua máy biên: máy gốc gửi 200 KB, một lần.",
+        "Máy gốc tắt, bản đã hết hạn: máy biên trả lỗi 502.",
+        "Bật dùng bản cũ khi lỗi: máy biên trả 200 với bản cũ."
+      ]
+    }
+  ]
+}

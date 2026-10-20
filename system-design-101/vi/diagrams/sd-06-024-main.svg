@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1420" viewBox="0 0 320 1420" role="img" aria-labelledby="title desc">
+<title id="title">Tám cách làm trang tải nhanh: gửi ít, gửi sau, gửi trước</title>
+<desc id="desc">Bốn phần. Gửi ít hơn: nén tệp trước khi gửi bằng gzip hay brotli; bỏ mã chết khi đóng gói. Gửi sau: tách mã và nạp động phần chỉ cần khi người dùng bấm; chỉ vẽ và tải phần đang nhìn thấy. Gửi trước, đúng thứ tự: ưu tiên tài nguyên quan trọng và phần đầu màn hình; tải trước thứ trang này sắp cần; tìm nạp trước thứ trang sau có thể cần. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười, màn hình 375 × 800, thì lúc tải trang chỉ tải 11 ảnh.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám cách làm trang tải</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nhanh: gửi ít, gửi sau,</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">gửi trước</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi cách trả lời một câu: byte nào,</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">lúc nào.</text>
+<rect x="8" y="147" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="175.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gửi ít hơn</text>
+<rect x="20" y="192" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="235.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 224.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="218.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nén</text>
+<text x="78" y="242.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gzip, brotli: nén tệp văn</text>
+<text x="78" y="261.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản trước khi gửi.</text>
+<rect x="20" y="293" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="336.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 325.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="319.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bỏ mã chết</text>
+<text x="78" y="343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khi đóng gói, bỏ những</text>
+<text x="78" y="362.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàm không ai gọi tới.</text>
+<rect x="8" y="404" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="432.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gửi sau</text>
+<rect x="20" y="449" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="492.5" r="18" fill="#0f766e"/><g transform="translate(39.2 481.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="475.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tách mã, nạp động</text>
+<text x="78" y="499.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần chỉ cần khi bấm thì</text>
+<text x="78" y="518.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tải lúc bấm.</text>
+<rect x="20" y="550" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="593.5" r="18" fill="#0f766e"/><g transform="translate(39.2 582.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="576.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chỉ phần nhìn thấy</text>
+<text x="78" y="600.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vẽ và tải phần trong màn</text>
+<text x="78" y="619.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hình; phần dưới để sau.</text>
+<rect x="8" y="661" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="689.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gửi trước, đúng thứ tự</text>
+<rect x="20" y="706" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="759.5" r="18" fill="#b45309"/><g transform="translate(39.2 748.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="732.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ưu tiên</text>
+<text x="78" y="756.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài nguyên quan trọng và</text>
+<text x="78" y="775.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần đầu màn hình đi</text>
+<text x="78" y="795.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước.</text>
+<rect x="20" y="827" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="870.5" r="18" fill="#b45309"/><g transform="translate(39.2 859.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g>
+<text x="78" y="853.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tải trước</text>
+<text x="78" y="877.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo sớm thứ trang này sắp</text>
+<text x="78" y="896.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cần.</text>
+<rect x="20" y="928" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="971.5" r="18" fill="#b45309"/><g transform="translate(39.2 960.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="954.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tìm nạp trước</text>
+<text x="78" y="978.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy sẵn thứ trang sau có</text>
+<text x="78" y="997.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thể cần, mức ưu tiên thấp.</text>
+<rect x="8" y="1039" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1067.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo thử</text>
+<rect x="20" y="1084" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1107" r="11" fill="#16a34a"/>
+<polyline points="37.9,1107.4 41.7,1111.4 48.5,1103" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1110.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gói giao diện của kho này</text>
+<text x="64" y="1129.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">499 KB: gzip 156 KB, brotli</text>
+<text x="64" y="1149.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">133 KB.</text>
+<rect x="20" y="1175" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1198" r="11" fill="#16a34a"/>
+<polyline points="37.9,1198.4 41.7,1202.4 48.5,1194" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1201.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ hai hàm không dùng: gói</text>
+<text x="64" y="1220.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">từ 189 KB còn 60 KB.</text>
+<rect x="20" y="1246" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1269" r="11" fill="#16a34a"/>
+<polyline points="37.9,1269.4 41.7,1273.4 48.5,1265" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1272.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tách phần soạn thảo: tệp</text>
+<text x="64" y="1291.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu còn 313 byte.</text>
+<rect x="20" y="1317" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1340" r="11" fill="#16a34a"/>
+<polyline points="37.9,1340.4 41.7,1344.4 48.5,1336" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang 40 ảnh, tải lười, màn</text>
+<text x="64" y="1362.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hình 375 × 800: lúc tải chỉ</text>
+<text x="64" y="1382.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">11 ảnh.</text>
+</g>
+</svg>

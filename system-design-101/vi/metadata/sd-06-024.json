@@ -1,0 +1,110 @@
+{
+  "id": "sd-06-024",
+  "title_vi": "Tối ưu hiệu năng giao diện (frontend)",
+  "language": "vi",
+  "kind": "catalog",
+  "content_status": "draft",
+  "source_ref": "sd-06-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-load-your-websites-at-lightning-speed.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-load-your-websites-at-lightning-speed.md",
+    "blob_sha": "df4e378f1faac0e522fb8bda3cdf3143b13c5727",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "f3cdbdff4dcf6e425e4bce1ddb3bcf97144f17000bc34331efb4427ef3ff50aa",
+    "retrieved_body_bytes": 1423
+  },
+  "diagram": "../diagrams/sd-06-024-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-027",
+      "relation": "compare-with",
+      "reason_vi": "Các chỉ số dùng để đo xem một cách tối ưu có tác dụng không."
+    },
+    {
+      "lesson_id": "sd-06-023",
+      "relation": "compare-with",
+      "reason_vi": "CDN là một cách khác để byte tới người dùng nhanh hơn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Definitions were checked against mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a, read from a partial clone. Numbers come from an experiment run on 2026-10-18: Node.js zlib on this repository's committed web/dist bundle at commit 1c544ad683dad2445b66a05e029f90e44dc32615, esbuild 0.25.10 on a small purpose-built app, and Chromium 141 via Playwright 1.56 on a local 40-image page."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Compression is mostly already implemented in browsers and servers, which must be configured correctly; text files gain most.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/compression/index.md",
+      "section": "Compression in HTTP",
+      "verified_by": "Read; measured on web/dist: JavaScript 498691 bytes to 155855 (gzip level 9) and 133404 (brotli quality 11); CSS 36954 to 7343 and 6414."
+    },
+    {
+      "claim_vi": "Tree shaking removes dead code, relying on import and export statements; module bundlers do it when bundling.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/tree_shaking/index.md",
+      "section": "Glossary: Tree shaking",
+      "verified_by": "Read; esbuild produced 189400 bytes with tree shaking off and 59822 bytes with it on for an app using one of three library functions."
+    },
+    {
+      "claim_vi": "Code splitting separates code into bundles loaded independently and on demand; import() loads a module dynamically.",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/code_splitting/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/javascript/reference/operators/import/index.md"
+      ],
+      "section": "Glossary: Code splitting; import()",
+      "verified_by": "Read; with --splitting esbuild emitted a 313-byte entry file and a 58995-byte chunk referenced by import()."
+    },
+    {
+      "claim_vi": "Lazy loading identifies non-critical resources and loads them only when needed, shortening the critical rendering path; loading=lazy defers off-screen images.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/performance/guides/lazy_loading/index.md",
+      "section": "Lazy loading",
+      "verified_by": "Read; in Chromium on a 375x800 viewport, a 40-image page loaded all 40 images (about 2017 KB) by the load event without lazy loading and 11 (about 555 KB) with it. Rerun on 2026-10-19 recording image indices (exp/024/lazy_idx.txt): 0-10 by load, then 29-39 after one wheel scroll to the end; 11-28 never requested."
+    },
+    {
+      "claim_vi": "rel=preload declares resources the page will need soon so they are fetched early with higher priority, without executing them; rel=prefetch hints resources likely needed for future navigations, fetched at low priority and kept in the HTTP cache; fetchpriority signals that a resource matters more or less than the browser would infer.",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/html/reference/attributes/rel/preload/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/html/reference/attributes/rel/prefetch/index.md",
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/html/reference/attributes/fetchpriority/index.md"
+      ],
+      "section": "rel=preload; rel=prefetch; fetchpriority",
+      "verified_by": "Read from a partial clone; not measured."
+    }
+  ],
+  "design_notes_vi": "Bảy thẻ chia ba nhóm gửi ít hơn, gửi sau, gửi trước; tách mã và nạp động gộp làm một thẻ. Bốn ghi chú đo thử. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source lists eight tips; the lesson groups them by the question each answers (fewer bytes, later bytes, earlier bytes) and merges code splitting with dynamic imports.",
+    "Lesson measures four tips (compression on this repository's own bundle, tree shaking, code splitting, lazy loading) and states the trade-off of each, which the source does not."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-024.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

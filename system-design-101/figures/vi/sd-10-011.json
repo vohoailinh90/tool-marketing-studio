@@ -1,0 +1,61 @@
+{
+  "id": "sd-10-011",
+  "title": "Big endian và little endian",
+  "subtitle": "Cùng một số, hai cách xếp byte.",
+  "desc": "Bốn nhóm xếp dọc. Big endian với số 1023: byte trọng số cao nhất 03 ở địa chỉ thấp nhất, byte trọng số thấp nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte trọng số thấp nhất ff ở địa chỉ thấp nhất, byte trọng số cao nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86, AMD64 và Apple M1; big endian ở IBM z, nhiều kiến trúc cũ và trong thứ tự mạng. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Big endian · số 1023",
+      "items": [
+        {
+          "title": "Địa chỉ thấp nhất",
+          "text": "Byte trọng số cao nhất: 03."
+        },
+        {
+          "title": "Địa chỉ kế tiếp",
+          "text": "Byte trọng số thấp nhất: ff."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Little endian · số 1023",
+      "items": [
+        {
+          "title": "Địa chỉ thấp nhất",
+          "text": "Byte trọng số thấp nhất: ff."
+        },
+        {
+          "title": "Địa chỉ kế tiếp",
+          "text": "Byte trọng số cao nhất: 03."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Dùng ở đâu",
+      "items": [
+        {
+          "name": "Little endian",
+          "role": "Intel x86, AMD64, Apple M1.",
+          "icon": "cpu"
+        },
+        {
+          "name": "Big endian",
+          "role": "IBM z, nhiều kiến trúc cũ; thứ tự mạng.",
+          "icon": "network"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Đây là thứ tự byte, không phải thứ tự bit.",
+        "Gửi dữ liệu ra ngoài thì ghi rõ thứ tự byte.",
+        "Thứ tự mạng là big endian."
+      ]
+    }
+  ]
+}

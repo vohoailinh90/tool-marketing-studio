@@ -1,0 +1,22 @@
+{
+  "id": "sd-10-012",
+  "title": "Bộ lọc Bloom",
+  "subtitle": "Chắc chắn chưa có, hoặc có thể đã có.",
+  "desc": "Bốn nhóm xếp dọc. Ba cách kiểm tra một địa chỉ trang đã cào chưa: tập hợp giữ nguyên mọi địa chỉ nên tốn bộ nhớ, cơ sở dữ liệu mỗi lần hỏi là một truy vấn ra ngoài, bộ lọc Bloom là dãy bit nhỏ trả lời có thể có hoặc chắc chắn chưa. Thêm một địa chỉ, ba bước: băm để tính vài vị trí trong dãy bit; đặt 1 tại mỗi vị trí đó; địa chỉ khác nhau có thể trùng một vị trí. Kiểm tra một địa chỉ, ba bước: băm lại để tính đúng các vị trí đó; mọi bit là 1 thì có thể đã có; có bit là 0 thì chắc chắn chưa có. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Ba cách kiểm tra trùng",
+     "items": [{"name": "Tập hợp (Set)", "role": "Giữ nguyên mọi địa chỉ nên tốn bộ nhớ.", "icon": "list-checks"},
+               {"name": "Cơ sở dữ liệu", "role": "Mỗi lần hỏi là một truy vấn ra ngoài.", "icon": "database"},
+               {"name": "Bộ lọc Bloom", "role": "Dãy bit nhỏ, trả lời có thể có hoặc chắc chắn chưa.", "icon": "search"}]},
+    {"kind": "steps", "heading": "Thêm một địa chỉ",
+     "items": [{"title": "Băm", "text": "Từ địa chỉ tính ra vài vị trí trong dãy bit."},
+               {"title": "Đặt bit", "text": "Đặt 1 tại mỗi vị trí đó."},
+               {"title": "Dùng chung bit", "text": "Địa chỉ khác nhau có thể trùng một vị trí."}]},
+    {"kind": "steps", "heading": "Kiểm tra một địa chỉ",
+     "items": [{"title": "Băm lại", "text": "Tính lại đúng các vị trí đó."},
+               {"title": "Mọi bit là 1", "text": "Có thể đã có."},
+               {"title": "Có bit là 0", "text": "Chắc chắn chưa có."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Báo nhầm là đã có thì được; báo nhầm là chưa có thì không.", "Vị trí do hàm băm nhanh, phân bố đều tính ra.", "Đây không phải danh sách địa chỉ."]}
+  ]
+}

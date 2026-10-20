@@ -1,0 +1,43 @@
+{
+  "id": "sd-12-015",
+  "title": "Thông báo đẩy tới điện thoại",
+  "subtitle": "Thẻ đăng ký, hàng đợi cho máy ngoại tuyến, và dọn thẻ cũ.",
+  "desc": "Hai khung. Khung một, đường đi của thông báo qua dịch vụ nhắn tin của Firebase: ứng dụng khách đăng ký và nhận thẻ đăng ký, gửi thẻ cho máy chủ ứng dụng lưu lại; máy chủ ứng dụng gửi tin tới Firebase; Firebase xếp hàng nếu máy ngoại tuyến, rồi chuyển qua lớp vận chuyển của nền tảng tới thiết bị. Khung hai, ba điều rút ra từ thử nghiệm: thẻ chết tích tụ nếu không dọn, tin ngoại tuyến cần hạn sống, và tin cùng loại có thể gộp lại.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường đi của một thông báo",
+      "items": [
+        {
+          "title": "Đăng ký",
+          "text": "Ứng dụng nhận thẻ."
+        },
+        {
+          "title": "Lưu thẻ",
+          "text": "Máy chủ lưu thẻ."
+        },
+        {
+          "title": "Gửi tin",
+          "text": "Tới Firebase."
+        },
+        {
+          "title": "Xếp hàng",
+          "text": "Nếu máy ngoại tuyến."
+        },
+        {
+          "title": "Hiển thị",
+          "text": "Trên thiết bị."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều rút ra từ thử nghiệm",
+      "items": [
+        "Không dọn thì khoảng 40% thẻ là thẻ chết.",
+        "Tin ngoại tuyến cần hạn sống.",
+        "Tin cùng loại có thể gộp lại."
+      ]
+    }
+  ]
+}

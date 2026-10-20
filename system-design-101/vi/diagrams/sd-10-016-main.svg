@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1754" viewBox="0 0 320 1754" role="img" aria-labelledby="title desc">
+<title id="title">Cấu trúc dữ liệu dùng hằng ngày</title>
+<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách là dãy có thứ tự, ví dụ dòng tin; mảng là các giá trị có chỉ số, ví dụ tính toán số; ngăn xếp vào sau ra trước, ví dụ hoàn tác; hàng đợi chờ xử lý, ví dụ lệnh in. Tra cứu và sắp việc: bảng băm tra cứu nhanh nhờ hàm băm, ví dụ bộ nhớ đệm; đống lấy phần tử ưu tiên nhất trước, ví dụ lập lịch; cây nối các nút, ví dụ tài liệu HTML; cây hậu tố, ví dụ tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường; R-tree tìm hàng xóm gần nhất; vertex buffer là bộ đệm điểm đỉnh để vẽ. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1754" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Cấu trúc dữ liệu dùng</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">hằng ngày</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi cấu trúc là gì, và một việc quen</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thuộc của nó.</text>
+<rect x="8" y="123" width="304" height="467" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Danh sách và thứ tự</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Danh sách (List)</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dãy có thứ tự. Ví dụ: dòng</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin.</text>
+<rect x="20" y="269" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="312.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 301.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mảng (Array)</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giá trị có chỉ số. Ví dụ: tính</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">toán số.</text>
+<rect x="20" y="370" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="413.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 402.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></g>
+<text x="78" y="396.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ngăn xếp (Stack)</text>
+<text x="78" y="420.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vào sau, ra trước. Ví dụ:</text>
+<text x="78" y="439.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoàn tác.</text>
+<rect x="20" y="471" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="524.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 513.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="497.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi (Queue)</text>
+<text x="78" y="521.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ xử lý, thường vào</text>
+<text x="78" y="540.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước ra trước. Ví dụ: lệnh</text>
+<text x="78" y="560.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">in.</text>
+<rect x="8" y="602" width="304" height="487" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="630.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tra cứu và sắp việc</text>
+<rect x="20" y="647" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="700.5" r="18" fill="#0f766e"/><g transform="translate(39.2 689.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></g>
+<text x="78" y="673.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bảng băm (Hash</text>
+<text x="78" y="693.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">table)</text>
+<text x="78" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tra cứu nhanh nhờ hàm</text>
+<text x="78" y="736.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">băm. Ví dụ: bộ nhớ đệm.</text>
+<rect x="20" y="768" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="811.5" r="18" fill="#0f766e"/><g transform="translate(39.2 800.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
+<text x="78" y="794.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đống (Heap)</text>
+<text x="78" y="818.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy phần tử ưu tiên nhất</text>
+<text x="78" y="837.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước. Ví dụ: lập lịch.</text>
+<rect x="20" y="869" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="912.5" r="18" fill="#0f766e"/><g transform="translate(39.2 901.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>
+<text x="78" y="895.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cây (Tree)</text>
+<text x="78" y="919.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các nút nối thành cây. Ví</text>
+<text x="78" y="938.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụ: tài liệu HTML.</text>
+<rect x="20" y="970" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="1023.5" r="18" fill="#0f766e"/><g transform="translate(39.2 1012.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="996.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cây hậu tố (Suffix</text>
+<text x="78" y="1016.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">tree)</text>
+<text x="78" y="1040.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ví dụ: tìm một chuỗi trong</text>
+<text x="78" y="1059.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tài liệu.</text>
+<rect x="8" y="1101" width="304" height="368" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1129.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Quan hệ, không gian và đồ</text>
+<text x="20" y="1151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">họa</text>
+<rect x="20" y="1168" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1211.5" r="18" fill="#b45309"/><g transform="translate(39.2 1200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></g>
+<text x="78" y="1194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đồ thị (Graph)</text>
+<text x="78" y="1218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ví dụ: quan hệ bạn bè, tìm</text>
+<text x="78" y="1237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đường.</text>
+<rect x="20" y="1269" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1312.5" r="18" fill="#b45309"/><g transform="translate(39.2 1301.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="78" y="1295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">R-tree</text>
+<text x="78" y="1319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ví dụ: tìm hàng xóm gần</text>
+<text x="78" y="1338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất.</text>
+<rect x="20" y="1370" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1413.5" r="18" fill="#b45309"/><g transform="translate(39.2 1402.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect height="16" rx="2" width="16" x="4" y="4"/><rect height="8" rx="1" width="8" x="8" y="8"/></g>
+<text x="78" y="1396.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Vertex buffer</text>
+<text x="78" y="1420.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đệm giữ dữ liệu điểm</text>
+<text x="78" y="1439.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đỉnh để vẽ.</text>
+<rect x="8" y="1481" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1509.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1526" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1549" r="11" fill="#16a34a"/>
+<polyline points="37.9,1549.4 41.7,1553.4 48.5,1545" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1552.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mười một cấu trúc, mỗi cái</text>
+<text x="64" y="1571.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một việc quen thuộc.</text>
+<rect x="20" y="1597" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1620" r="11" fill="#16a34a"/>
+<polyline points="37.9,1620.4 41.7,1624.4 48.5,1616" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1623.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tiêu đề nguồn nói mười,</text>
+<text x="64" y="1642.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng danh sách có mười</text>
+<text x="64" y="1662.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một.</text>
+<rect x="20" y="1688" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1711" r="11" fill="#16a34a"/>
+<polyline points="37.9,1711.4 41.7,1715.4 48.5,1707" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1714.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cách chia nhóm là của bài.</text>
+</g>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "id": "sd-11-006",
+  "title": "Chín mẫu kiến trúc",
+  "subtitle": "Giao tiếp, và dòng dữ liệu.",
+  "desc": "Hai khung. Khung một, năm mẫu về cách các thành phần giao tiếp và phối hợp: Peer-to-Peer, API Gateway, Request-Response, Pub-Sub, Orchestration; mỗi ghi chú nói mẫu đó giải quyết gì. Khung hai, bốn mẫu về dữ liệu: Event Sourcing, ETL, Batching, Streaming Processing.",
+  "sections": [
+    {"kind": "notes", "heading": "Giao tiếp và phối hợp", "items": [
+      "Peer-to-Peer: không cần máy chủ trung tâm.",
+      "API Gateway: một cửa vào cho nhiều dịch vụ.",
+      "Request-Response: hỏi rồi chờ đáp.",
+      "Pub-Sub: tách bên gửi khỏi bên nhận.",
+      "Orchestration: một bộ điều phối chỉ huy."]},
+    {"kind": "notes", "heading": "Dữ liệu", "items": [
+      "Event Sourcing: lưu chuỗi sự kiện.",
+      "ETL: gom dữ liệu từ nguồn về kho.",
+      "Batching: gom lô rồi xử lý một lần.",
+      "Streaming: xử lý từng bản ghi ngay."]}
+  ]
+}

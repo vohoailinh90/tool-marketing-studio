@@ -1,0 +1,11 @@
+{
+  "id": "sd-11-044",
+  "title": "Khung thảo luận thiết kế hệ thống",
+  "subtitle": "Mười ba mục, ba loại.",
+  "desc": "Ba khung. Khung một, sáu thành phần: cân bằng tải, cổng API, mạng phân phối nội dung, cơ sở dữ liệu, bộ nhớ đệm, hàng đợi thông điệp; mỗi thành phần có dịch vụ tương ứng ở cả hai trang so sánh của Microsoft. Khung hai, hai bài toán phải tự quyết: giao thức liên lạc và sinh mã định danh duy nhất; hai trang so sánh không có dòng nào nhắc mã định danh duy nhất. Khung ba, năm tính chất: khả năng mở rộng, tính sẵn sàng, hiệu năng, bảo mật, chịu lỗi và phục hồi; so với năm lăng kính của công cụ đánh giá Microsoft thì thiếu chi phí và vận hành.",
+  "sections": [
+    {"kind": "notes", "heading": "Sáu thành phần", "items": ["Cân bằng tải, cổng API, mạng phân phối.", "Cơ sở dữ liệu, bộ nhớ đệm, hàng đợi.", "Đủ 12 trên 12 ô có dịch vụ tương ứng."]},
+    {"kind": "notes", "heading": "Hai bài toán tự quyết", "items": ["Giao thức liên lạc.", "Sinh mã định danh duy nhất: 0 dòng trong hai trang."]},
+    {"kind": "notes", "heading": "Năm tính chất", "items": ["Mở rộng, sẵn sàng, hiệu năng, bảo mật, chịu lỗi.", "Lăng kính Microsoft có thêm: chi phí và vận hành."]}
+  ]
+}

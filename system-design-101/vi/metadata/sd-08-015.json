@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-015",
+  "title_vi": "Tám khái niệm của thiết kế hướng miền: bảy có chỗ đối chiếu, một kiểm bằng mã",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-015",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/8-key-concepts-in-ddd.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-key-concepts-in-ddd.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "e306a395ae60b99d24b51a9c439ad5ff6915fdea",
+    "retrieved_body_sha256": "b55c63f109183482210568a9c75570f098794f4206f350ffabbc6eb1c00f5b2d",
+    "retrieved_body_bytes": 1997
+  },
+  "diagram": "../diagrams/sd-08-015-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Source's eight concepts from the source body; Microsoft's domain analysis and tactical DDD pages read from local clones; the layer-check demo is a Python 3.13.16 program run on generated toy projects on 2026-10-19 (three runs). Evans' book unreachable, so definitions rest on the source and Microsoft. The four-layer list in the demo is the author's choice."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: eight concepts - domain-driven design (drive design through domain modeling, unified language), business entities, model boundaries (loose boundaries among sets of domain models), aggregation (cluster treated as a single unit for data changes), entities vs value objects (value objects have no ID), operational modeling (objects as operators), layering the architecture (layered like a computer network), build the domain model.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-key-concepts-in-ddd.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Microsoft domain analysis: ubiquitous language is a shared vocabulary created by developers and domain experts within each bounded context and the same word (account) can mean different things in different contexts; a bounded context is the boundary where a specific domain model applies and contexts interact (context map); four-step process (analyze domain, define bounded contexts, define entities/aggregates/services, identify microservices); design microservices around business capabilities, not horizontal layers like data access or messaging.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/model/domain-analysis.md",
+      "section": "Introduction; Define bounded contexts",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Microsoft tactical DDD: entities have a persistent identity, value objects have no identity and are immutable, an aggregate is a consistency boundary with one root, domain services hold business rules spanning entities and application services orchestrate use cases.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/model/tactical-domain-driven-design.md",
+      "section": "Overview of the tactical patterns",
+      "verified_by": "Read from the same local clone."
+    },
+    {
+      "claim_vi": "Layer check with ast: allowed imports from the same or lower layer in the list presentation, application, domain, infrastructure; a 12-file toy project with 1 injected violation: 1 found in 0.001-0.002 s; 10,000 files and 30,000 layer imports with 0 violations: 0 found in 0.71-0.78 s; with 5 injected: 5 found in 0.69-0.75 s.",
+      "source": "https://docs.python.org/3.13/library/ast.html",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19 (three runs); generated toy projects only."
+    }
+  ],
+  "design_notes_vi": "Ba khung: tám khái niệm và bảy chỗ đối chiếu, hai nghĩa của chia tầng, bộ kiểm tầng.",
+  "source_deviations": [
+    "The source is a picture with eight short paragraphs; the lesson keeps the eight concepts in order, adds a cross-check column, separates two meanings of layering and adds a runnable layer check.",
+    "The layer check runs only on generated toy projects."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

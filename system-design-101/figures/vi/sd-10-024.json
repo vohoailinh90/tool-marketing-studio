@@ -1,0 +1,80 @@
+{
+  "id": "sd-10-024",
+  "title": "Chín thuật toán dùng hằng ngày",
+  "subtitle": "Chín tên: bảy phép thử nhỏ, hai ví dụ chỉ đọc tài liệu.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Xếp, tìm đường và xếp hạng: sắp xếp giữ nguyên thứ tự các bản ghi cùng khóa; thuật toán Dijkstra tìm đường A tới D dài 4 thay vì 5; phân tích liên kết cho nút c điểm cao nhất, nút không ai trỏ tới điểm thấp nhất. Mật mã, số và nén: RSA mã hóa 65 thành 2790 rồi giải lại ra 65; phân tích thừa số nguyên tách 3233 thành 53 và 61; mã Huffman nén abracadabra từ 88 bit xuống 23 bit; SHA-256 của abc luôn cho một chuỗi 64 ký tự thập lục phân. Học máy: Transformer và mạng nơ-ron tích chập có lớp tương ứng trong PyTorch. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Xếp, tìm đường và xếp hạng",
+      "items": [
+        {
+          "name": "Sắp xếp",
+          "role": "Bản ghi cùng khóa giữ thứ tự cũ.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Thuật toán Dijkstra",
+          "role": "A tới D dài 4 qua C và B, không phải 5.",
+          "icon": "route"
+        },
+        {
+          "name": "Phân tích liên kết",
+          "role": "Nút c điểm cao nhất; nút không ai trỏ tới thấp nhất.",
+          "icon": "share-2"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Mật mã, số và nén",
+      "items": [
+        {
+          "name": "RSA",
+          "role": "65 thành 2790, giải lại ra 65.",
+          "icon": "key-round"
+        },
+        {
+          "name": "Phân tích thừa số nguyên",
+          "role": "3233 tách thành 53 và 61.",
+          "icon": "hash"
+        },
+        {
+          "name": "Mã Huffman",
+          "role": "abracadabra: 23 bit thay cho 88.",
+          "icon": "package"
+        },
+        {
+          "name": "Họ băm SHA",
+          "role": "SHA-256: 64 ký tự thập lục phân.",
+          "icon": "fingerprint-pattern"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Học máy",
+      "items": [
+        {
+          "name": "Transformer",
+          "role": "PyTorch có lớp theo bài báo Attention Is All You Need.",
+          "icon": "brain"
+        },
+        {
+          "name": "Mạng nơ-ron tích chập",
+          "role": "PyTorch có lớp Conv2d, tích chập 2D.",
+          "icon": "layers"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mỗi thuật toán trả lời một câu hỏi riêng.",
+        "Bài đã chạy thử bảy cái bằng vài dòng mã.",
+        "Ví dụ nhỏ, không phải cách dùng thật."
+      ]
+    }
+  ]
+}

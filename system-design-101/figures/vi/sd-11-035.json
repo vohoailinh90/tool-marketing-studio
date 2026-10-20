@@ -1,0 +1,43 @@
+{
+  "id": "sd-11-035",
+  "title": "Chi phí ẩn theo cách hóa đơn đếm",
+  "subtitle": "Tìm đúng đồng hồ vẫn đang quay.",
+  "desc": "Hai khung. Khung một, bốn cách hóa đơn đếm: theo giờ khi tài nguyên còn tồn tại, như bộ cân bằng tải và địa chỉ IP công cộng, cả khi đang gắn; theo dung lượng mỗi tháng, như ổ đĩa, bản chụp và các phần tải dở; theo số lời gọi, như Lấy và liệt kê đối tượng; theo dữ liệu đi ra. Khung hai, ba việc dọn dẹp: trả địa chỉ IP không dùng, xóa ổ đĩa không gắn máy, đặt quy tắc hủy các phần tải lên dở.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn cách hóa đơn đếm",
+      "items": [
+        {
+          "name": "Theo giờ",
+          "role": "Bộ cân bằng tải, địa chỉ IP công cộng.",
+          "icon": "timer"
+        },
+        {
+          "name": "Theo dung lượng",
+          "role": "Ổ đĩa, bản chụp, phần tải dở.",
+          "icon": "hard-drive"
+        },
+        {
+          "name": "Theo lời gọi",
+          "role": "Lấy và liệt kê đối tượng.",
+          "icon": "arrow-left-right"
+        },
+        {
+          "name": "Dữ liệu đi ra",
+          "role": "Dữ liệu kéo ra ngoài.",
+          "icon": "upload"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba việc dọn dẹp",
+      "items": [
+        "Trả địa chỉ IP đã gỡ: nó vẫn thuộc tài khoản.",
+        "Xóa ổ không gắn máy, chụp một bản trước nếu cần.",
+        "Đặt quy tắc tự hủy phần tải lên dở sau vài ngày."
+      ]
+    }
+  ]
+}

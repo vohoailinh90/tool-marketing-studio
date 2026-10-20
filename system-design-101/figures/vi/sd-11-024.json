@@ -1,0 +1,57 @@
+{
+  "title": "Hạ tầng bằng mã",
+  "subtitle": "Bốn lớp, và vì sao khai báo hơn từng bước.",
+  "desc": "Hai khung. Khung một, bốn lớp bổ trợ nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn lớp",
+      "items": [
+        {
+          "name": "Container",
+          "role": "Đóng gói ứng dụng bằng mã.",
+          "icon": "container"
+        },
+        {
+          "name": "Điều phối",
+          "role": "Quản nhiều container cùng lúc.",
+          "icon": "workflow"
+        },
+        {
+          "name": "Hạ tầng bằng mã",
+          "role": "Khai báo hạ tầng trong tệp.",
+          "icon": "code"
+        },
+        {
+          "name": "GitOps",
+          "role": "Đổi hạ tầng qua quy trình của Git.",
+          "icon": "git-branch"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử nghiệm nhỏ",
+      "items": [
+        "Kịch bản từng bước chạy hai lần: 6 máy thay vì 3.",
+        "Khai báo đủ 3 máy: lần đầu thay đổi 3, lần hai thay đổi 0.",
+        "Giảm từ 3 xuống 2: chỉ xóa đúng 1 máy."
+      ]
+    }
+  ],
+  "id": "sd-11-024"
+}

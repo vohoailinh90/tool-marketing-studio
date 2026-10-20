@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="856" viewBox="0 0 320 856" role="img" aria-labelledby="title desc">
+<title id="title">Đếm dịch vụ AWS trong mã SDK</title>
+<desc id="desc">Ba khung. Khung một, số thư mục dịch vụ theo năm của phiên bản API đầu tiên, đợt đầu: đến 2010 có 11; từ 2011 đến 2013 có 18; từ 2014 đến 2016 có 63. Khung hai, đợt sau: từ 2017 đến 2019 có 161; từ 2020 đến 2022 có 111; từ 2023 đến 2026 có 73. Khung ba, ba điều cần nhớ: thư mục khác dịch vụ; năm của phiên bản API khác năm ra mắt; thư mục ec2 chỉ còn các phiên bản từ 2014.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="856" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Đếm dịch vụ AWS trong</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mã SDK</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">437 thư mục mô hình, mỗi cái một</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">API.</text>
+<rect x="8" y="123" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đợt đầu: đến 2016</text>
+<rect x="20" y="168" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đến 2010: 11 thư mục.</text>
+<rect x="20" y="222" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="245" r="11" fill="#16a34a"/>
+<polyline points="37.9,245.4 41.7,249.4 48.5,241" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="248.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2011 đến 2013: 18 thư mục.</text>
+<rect x="20" y="276" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="299" r="11" fill="#16a34a"/>
+<polyline points="37.9,299.4 41.7,303.4 48.5,295" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="302.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2014 đến 2016: 63 thư mục.</text>
+<rect x="8" y="346" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="374.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đợt sau: từ 2017</text>
+<rect x="20" y="391" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="414" r="11" fill="#16a34a"/>
+<polyline points="37.9,414.4 41.7,418.4 48.5,410" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2017 đến 2019: 161 thư</text>
+<text x="64" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục.</text>
+<rect x="20" y="462" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="485" r="11" fill="#16a34a"/>
+<polyline points="37.9,485.4 41.7,489.4 48.5,481" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2020 đến 2022: 111 thư</text>
+<text x="64" y="507.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục.</text>
+<rect x="20" y="533" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="556" r="11" fill="#16a34a"/>
+<polyline points="37.9,556.4 41.7,560.4 48.5,552" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="559.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2023 đến 2026: 73 thư mục.</text>
+<rect x="8" y="603" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="631.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba điều cần nhớ</text>
+<rect x="20" y="648" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="671" r="11" fill="#16a34a"/>
+<polyline points="37.9,671.4 41.7,675.4 48.5,667" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="674.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thư mục khác dịch vụ.</text>
+<rect x="20" y="702" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="725" r="11" fill="#16a34a"/>
+<polyline points="37.9,725.4 41.7,729.4 48.5,721" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="728.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Năm phiên bản API khác</text>
+<text x="64" y="747.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năm ra mắt.</text>
+<rect x="20" y="773" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="796" r="11" fill="#16a34a"/>
+<polyline points="37.9,796.4 41.7,800.4 48.5,792" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="799.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thư mục ec2 chỉ còn phiên</text>
+<text x="64" y="818.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản từ 2014.</text>
+</g>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1457" viewBox="0 0 320 1457" role="img" aria-labelledby="title desc">
+<title id="title">Vì sao Kafka nhanh</title>
+<desc id="desc">Ba khung. Khung một, ba quyết định: ghi nối vào cuối tệp nhật ký để đĩa chỉ làm việc tuần tự; gom nhiều tin thành một lô cho mỗi yêu cầu, nén chung và giữ nguyên dạng trên đĩa; gửi thẳng từ page cache ra socket bằng sendfile, không qua bộ nhớ của tiến trình Kafka. Khung hai, đường thường khi gửi tệp ra mạng: đĩa vào page cache, sang bộ đệm của ứng dụng, vào bộ đệm socket, ra card mạng; sendfile chỉ giữ bước cuối. Khung ba, số đo một lần chạy: 50.000 tin 100 byte, mỗi yêu cầu một tin, mất 8,30 giây với 50.000 yêu cầu; gom lô thì 0,07 giây với 11 yêu cầu; một consumer đọc 100.000 tin thì broker gửi bằng 68 lời gọi sendfile; bật TLS thì Kafka không dùng sendfile.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1457" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Vì sao Kafka nhanh</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ba quyết định thiết kế, và điều đo</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">được trên Kafka 4.4 chạy trên một</text>
+<text x="16" y="99.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="8" y="119" width="304" height="442" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="147.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba quyết định thiết kế</text>
+<rect x="20" y="164" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="190" r="14" fill="#1d4ed8"/>
+<text x="46" y="195.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="190.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi nối vào cuối tệp</text>
+<text x="70" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đĩa chỉ đọc ghi tuần tự; hệ</text>
+<text x="70" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điều hành gom ghi và đọc</text>
+<text x="70" y="253.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước giúp.</text>
+<rect x="20" y="293" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="319" r="14" fill="#1d4ed8"/>
+<text x="46" y="324.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="319.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gom tin thành lô</text>
+<text x="70" y="343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một yêu cầu mang nhiều</text>
+<text x="70" y="362.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin; lô được nén chung, nằm</text>
+<text x="70" y="382.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguyên dạng trên đĩa.</text>
+<polyline points="46,273 46,291" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="422" width="280" height="127" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="448" r="14" fill="#1d4ed8"/>
+<text x="46" y="453.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="448.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gửi thẳng từ page</text>
+<text x="70" y="468.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">cache</text>
+<text x="70" y="492.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng sendfile: dữ liệu</text>
+<text x="70" y="511.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đi qua bộ nhớ của</text>
+<text x="70" y="531.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiến trình Kafka.</text>
+<polyline points="46,402 46,420" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="573" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="601.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường thường: bốn lần chép</text>
+<rect x="20" y="618" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="644" r="14" fill="#0f766e"/>
+<text x="46" y="649.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="644.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đĩa vào page cache</text>
+<text x="70" y="668.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hệ điều hành đọc tệp vào</text>
+<text x="70" y="687.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ nhớ đệm của nhân.</text>
+<rect x="20" y="727" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="753" r="14" fill="#0f766e"/>
+<text x="46" y="758.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="753.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sang bộ đệm ứng dụng</text>
+<text x="70" y="777.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ứng dụng đọc dữ liệu ra bộ</text>
+<text x="70" y="796.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhớ của mình.</text>
+<polyline points="46,707 46,725" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="836" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="862" r="14" fill="#0f766e"/>
+<text x="46" y="867.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="862.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Vào bộ đệm socket</text>
+<text x="70" y="886.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ứng dụng ghi dữ liệu trở lại</text>
+<text x="70" y="905.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhân.</text>
+<polyline points="46,816 46,834" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="945" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="971" r="14" fill="#0f766e"/>
+<text x="46" y="976.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="971.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ra card mạng</text>
+<text x="70" y="995.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là bước duy nhất còn</text>
+<text x="70" y="1014.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lại khi dùng sendfile.</text>
+<polyline points="46,925 46,943" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1056" width="304" height="393" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1084.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo được (một lần chạy)</text>
+<rect x="20" y="1101" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1124" r="11" fill="#16a34a"/>
+<polyline points="37.9,1124.4 41.7,1128.4 48.5,1120" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1127.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">50.000 tin 100 byte, mỗi yêu</text>
+<text x="64" y="1146.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cầu một tin: 8,30 giây,</text>
+<text x="64" y="1166.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">50.000 yêu cầu.</text>
+<rect x="20" y="1192" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1215" r="11" fill="#16a34a"/>
+<polyline points="37.9,1215.4 41.7,1219.4 48.5,1211" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng số tin, chờ 5 mili giây</text>
+<text x="64" y="1237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để gom lô: 0,07 giây, 11 yêu</text>
+<text x="64" y="1257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cầu.</text>
+<rect x="20" y="1283" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1306" r="11" fill="#16a34a"/>
+<polyline points="37.9,1306.4 41.7,1310.4 48.5,1302" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1309.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Consumer đọc 100.000 tin:</text>
+<text x="64" y="1328.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">broker gửi bằng 68 lời gọi</text>
+<text x="64" y="1348.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sendfile.</text>
+<rect x="20" y="1374" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1397" r="11" fill="#16a34a"/>
+<polyline points="37.9,1397.4 41.7,1401.4 48.5,1393" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1400.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bật TLS thì Kafka không</text>
+<text x="64" y="1419.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng sendfile.</text>
+</g>
+</svg>

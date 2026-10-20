@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1364" viewBox="0 0 320 1364" role="img" aria-labelledby="title desc">
+<title id="title">Bảy vùng của người làm full-stack</title>
+<desc id="desc">Bảy vùng kỹ năng chia ba nhóm. Phía người dùng: frontend chạy trong trình duyệt với HTML, CSS và JavaScript; phát triển di động; thiết kế giao diện và trải nghiệm. Phía máy chủ: backend nhận yêu cầu và trả lời; cơ sở dữ liệu lưu dữ liệu có tổ chức. Phía vận hành: điện toán đám mây; hạ tầng và DevOps đưa bản mới lên qua CI/CD. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1364" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy vùng của người làm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">full-stack</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Từ màn hình người dùng tới hạ tầng</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">chạy ứng dụng.</text>
+<rect x="8" y="123" width="304" height="405" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía người dùng</text>
+<rect x="20" y="168" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="231" r="18" fill="#1d4ed8"/><g transform="translate(39.2 220.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Frontend</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần chạy trong trình</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">duyệt: HTML dựng cấu</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trúc, CSS tạo dáng,</text>
+<text x="78" y="276.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript tạo hành vi.</text>
+<rect x="20" y="308" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="361.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 350.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="20" rx="2" ry="2" width="14" x="5" y="2"/><path d="M12 18h.01"/></g>
+<text x="78" y="334.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Di động</text>
+<text x="78" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng chức năng, đóng gói</text>
+<text x="78" y="377.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thành ứng dụng cài trên</text>
+<text x="78" y="397.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điện thoại.</text>
+<rect x="20" y="429" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="472.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 461.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></g>
+<text x="78" y="455.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thiết kế giao diện</text>
+<text x="78" y="479.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quyết định bố cục, luồng</text>
+<text x="78" y="498.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thao tác và độ dễ dùng.</text>
+<rect x="8" y="540" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="568.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía máy chủ</text>
+<rect x="20" y="585" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="638.5" r="18" fill="#0f766e"/><g transform="translate(39.2 627.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="611.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Backend</text>
+<text x="78" y="635.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chương trình trên máy chủ</text>
+<text x="78" y="654.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận yêu cầu, xử lý rồi trả</text>
+<text x="78" y="674.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lời.</text>
+<rect x="20" y="706" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="749.5" r="18" fill="#0f766e"/><g transform="translate(39.2 738.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="732.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu</text>
+<text x="78" y="756.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nơi lưu dữ liệu có tổ chức,</text>
+<text x="78" y="775.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để tìm và mở rộng.</text>
+<rect x="8" y="817" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="845.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía vận hành</text>
+<rect x="20" y="862" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="915.5" r="18" fill="#b45309"/><g transform="translate(39.2 904.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="78" y="888.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điện toán đám mây</text>
+<text x="78" y="912.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng máy và dịch vụ theo</text>
+<text x="78" y="931.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhu cầu, thường thuê của</text>
+<text x="78" y="951.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhà cung cấp.</text>
+<rect x="20" y="983" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1026.5" r="18" fill="#b45309"/><g transform="translate(39.2 1015.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="1009.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hạ tầng và DevOps</text>
+<text x="78" y="1033.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ ứng dụng chạy và đưa</text>
+<text x="78" y="1052.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản mới lên qua CI/CD.</text>
+<rect x="8" y="1094" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1122.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1139" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1162" r="11" fill="#16a34a"/>
+<polyline points="37.9,1162.4 41.7,1166.4 48.5,1158" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1165.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn nêu bảy vùng; lời giải</text>
+<text x="64" y="1184.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thích từng vùng là của bài.</text>
+<rect x="20" y="1210" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1233" r="11" fill="#16a34a"/>
+<polyline points="37.9,1233.4 41.7,1237.4 48.5,1229" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1236.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thứ tự trong hình chỉ để đọc,</text>
+<text x="64" y="1255.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không phải thứ tự học.</text>
+<rect x="20" y="1281" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1304" r="11" fill="#16a34a"/>
+<polyline points="37.9,1304.4 41.7,1308.4 48.5,1300" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1307.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Full-stack là một dải rộng,</text>
+<text x="64" y="1326.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không phải sâu ở mọi vùng.</text>
+</g>
+</svg>

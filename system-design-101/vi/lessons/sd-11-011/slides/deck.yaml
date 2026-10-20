@@ -1,0 +1,23 @@
+id: sd-11-011
+status: done
+owner: claude/sd101-lessons-w16-3
+claimed_at: '2026-10-19T15:10:19Z'
+done_at: '2026-10-19T15:12:26Z'
+moda_canvas: cvs_3A1ZYME8JD8RQRPQW2ZZX7PX8S
+moda_url: https://moda.app/canvas/6a0ffd47-224d-462f-8b5f-82fffa7b7519
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - card-grid
+  - one-highlighted-sentence
+  - two-column-comparison
+  - lookup-table
+  - flow
+  - numbered-rows
+  - 2x2-matrix
+  - layers
+  - lookup-table
+  first_concept: 3

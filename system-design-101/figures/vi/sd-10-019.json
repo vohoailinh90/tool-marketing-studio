@@ -1,0 +1,16 @@
+{
+  "id": "sd-10-019",
+  "title": "Bốn trụ cột hướng đối tượng",
+  "subtitle": "Mỗi trụ cột một câu hỏi, kèm ví dụ của bài.",
+  "desc": "Hai nhóm thẻ và một khung ghi nhớ. Che bớt chi tiết: trừu tượng cho người dùng chỉ thấy giao diện đơn giản, ví dụ gọi area của một Shape mà không cần biết công thức; đóng gói gói dữ liệu và hàm vào một lớp rồi kiểm soát truy cập, ví dụ Circle giữ bán kính bên trong. Dùng lại và thay đổi: kế thừa cho lớp con giữ hoặc thêm thuộc tính và phương thức của lớp cha, ví dụ Circle và Square kế thừa Shape; đa hình cho mỗi lớp có hàm riêng, ví dụ area chạy theo từng hình. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Che bớt chi tiết",
+     "items": [{"name": "Trừu tượng", "role": "Chỉ lộ giao diện đơn giản. Ví dụ: gọi area của Shape.", "icon": "eye"},
+               {"name": "Đóng gói", "role": "Gói dữ liệu và hàm vào lớp, kiểm soát truy cập. Ví dụ: Circle giữ bán kính.", "icon": "lock"}]},
+    {"kind": "parts", "heading": "Dùng lại và thay đổi",
+     "items": [{"name": "Kế thừa", "role": "Lớp con giữ hoặc thêm phần của lớp cha. Ví dụ: Circle, Square từ Shape.", "icon": "git-branch"},
+               {"name": "Đa hình", "role": "Mỗi lớp có hàm riêng. Ví dụ: area chạy theo từng hình.", "icon": "shuffle"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Bốn trụ cột: trừu tượng, đóng gói, kế thừa, đa hình.", "Kiểm soát truy cập là cách của từng ngôn ngữ.", "Ví dụ Shape do bài tự nghĩ."]}
+  ]
+}

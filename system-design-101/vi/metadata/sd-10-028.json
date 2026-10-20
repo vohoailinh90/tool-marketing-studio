@@ -1,0 +1,104 @@
+{
+  "id": "sd-10-028",
+  "title_vi": "Mười nguyên tắc viết mã tốt để nâng chất lượng mã",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-028",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-good-coding-principles-to-improve-code-quality.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "74ea3f372613479c6400fbe056e65a7aed3650ec",
+    "retrieved_body_sha256": "a255ac6ed8b75d155d541caae200b462471c4cf6b1e2411b3a7d4048753cdec0",
+    "retrieved_body_bytes": 2974
+  },
+  "diagram": "../diagrams/sd-10-028-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-019",
+      "relation": "see-also",
+      "reason_vi": "Trừu tượng là một trong bốn trụ cột hướng đối tượng và cũng là nguyên tắc số 6 ở bài này."
+    },
+    {
+      "lesson_id": "sd-10-020",
+      "relation": "see-also",
+      "reason_vi": "Hàm không tác dụng phụ gần với mô hình lập trình hàm."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "PEP 8, the Google Java guide, unittest, the Python functional HOWTO and the OWASP cheat sheet were read in raw copies at the pinned commits; the two code samples and the three tests were run by the author on 2026-10-19; the readings of SOLID, design patterns and refactoring are the author's"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured arithmetically by scripts.figures check; no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "PEP 8: code is read much more often than it is written and the guidelines aim at readability and consistency; constants are usually module-level and in all capital letters with underscores; inline comments that state the obvious are unnecessary and distracting; comments that contradict the code are worse than none; a bare except catches SystemExit and KeyboardInterrupt and can disguise other problems.",
+      "source": "https://github.com/python/peps/blob/6068058b896441388bbf22f2607ab681193f6a3d/peps/pep-0008.rst",
+      "section": "Introduction; Constants; Comments; Programming Recommendations",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "The Google Java Style Guide describes itself as the complete definition of Google's coding standards for Java source; a file is in Google Style if and only if it follows the rules.",
+      "source": "https://github.com/google/styleguide/blob/f43b95b083a5e52c85fcbb9e7e76cbd5e1c2b3f8/javaguide.html",
+      "section": "1 Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "unittest: a test case checks a specific response to a particular set of inputs; assertRaises verifies that an exception is raised.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/unittest.rst",
+      "section": "unittest basic concepts",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "Python functional HOWTO: functional style discourages functions with side effects.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
+      "section": "introduction",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP Input Validation Cheat Sheet: validate both syntax and semantics; numbers get type, format, minimum and maximum; validation does not replace parameterized queries for SQL.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/d89285c7bfc3f24fa79881407c89a85bf6d17272/cheatsheets/Input_Validation_Cheat_Sheet.md",
+      "section": "Introduction; Input Validation Strategies",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "The example late_fee function and its three unittest cases pass on Python 3.13.16; calc(2, 'vip') returns 5000.0 while calc('2', 'vip') and calc(None, 'vip') return 0; late_fee('2') raises TypeError.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Code in the lesson",
+      "verified_by": "Run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Mapping the example to SOLID, to design patterns (a dictionary instead of a strategy hierarchy) and to refactoring in small steps is the author's judgement.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Principles 4, 7 and 9",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ theo mười nguyên tắc đánh số, mỗi thẻ nêu chỗ sửa trong ví dụ, và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source gives each principle one paragraph of general advice; the lesson keeps only the ten names and their order and shows each at a concrete change in one before-and-after example of its own.",
+    "The source's sentences and its examples (PEP 8 and Google Java Style as names) are not copied; the style and test points are read from the documents themselves."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Các nhận định về SOLID, mẫu thiết kế và tái cấu trúc là của người biên soạn; các câu giải nghĩa PEP, SOLID, OWASP, SQL là kiến thức chung. Chưa user testing hoặc phê duyệt phát hành."
+}

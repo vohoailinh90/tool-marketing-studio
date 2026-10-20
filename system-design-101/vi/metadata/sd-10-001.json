@@ -1,0 +1,141 @@
+{
+  "id": "sd-10-001",
+  "title_vi": "Sáu loại máy chủ thường gặp",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-6-most-commonly-used-server-types.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "7829d42fc3e38ca4d278fe087e43b9ebaf4b25ee",
+    "retrieved_body_sha256": "5ed23aa3585bc08bc6340e3038bc5e50e98ccc4aab05cf6b4588527090d1b64c",
+    "retrieved_body_bytes": 1141
+  },
+  "diagram": "../diagrams/sd-10-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-003",
+      "relation": "see-also",
+      "reason_vi": "Máy chủ web, DNS và proxy là hạ tầng mà người làm backend và vận hành gặp hằng ngày."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names six server types: web, mail, DNS, proxy, FTP and origin server. Only the names are reused; the lesson explains each type in its own words.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
+      "section": "Top 6 most commonly used server types",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "MDN: a server is software or hardware offering a service to a client; a web server is software that often runs on a hardware server; a web server sends an HTML file to the browser.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/server/index.md",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/web_server/index.md"
+      ],
+      "section": "Glossary: Server and Web server",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: a CDN is a group of servers spread over many locations that store duplicate copies of data so that the servers closest to the end users can fulfil requests.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cdn/index.md",
+      "section": "Glossary: CDN",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: a proxy server is an intermediate program or computer that intercepts requests and serves back responses; it may forward the requests or not (for example a cache) and may modify them (for example headers); the two main types are a forward proxy and a reverse proxy.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/proxy_server/index.md",
+      "section": "Glossary: Proxy server",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: DNS is a hierarchical and decentralized naming system; its most prominent function is translating a human-friendly domain name into a numeric IP address, and a reverse lookup finds the domain name for an address.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/dns/index.md",
+      "section": "Glossary: DNS",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: SMTP is a protocol used to send a new email; IMAP is a protocol used to retrieve and store emails and allows folders and rules on the server.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/smtp/index.md",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/imap/index.md"
+      ],
+      "section": "Glossary: SMTP and IMAP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: FTP is an insecure protocol for transferring files from one host to another; it was the de facto standard way but many hosting accounts no longer support it, and a secure, encrypted method should be used instead.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/ftp/index.md",
+      "section": "Glossary: FTP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "RFC 9110: the term origin server refers to a program that can originate authoritative responses for a given target resource; a gateway (reverse proxy) is an intermediary that acts as an origin server for the outbound connection; a proxy is a message-forwarding agent chosen by the client.",
+      "source": "https://github.com/httpwg/http-core/blob/bde37f634681bd5462568b73aa722af9c9a3ef5e/rfc9110.xml",
+      "section": "Origin Server; Intermediaries",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "An origin server may build a response at request time from application logic and data (a dynamic or personalised resource), so it does not necessarily hold a master copy.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
+      "section": "Origin Server",
+      "verified_by": "Author's general knowledge; not checked against primary documentation. RFC 9110 defines the role by authoritative responses and does not describe dynamic generation."
+    },
+    {
+      "claim_vi": "A CDN is a group of servers spread over many locations that store copies of data, so that servers close to the end user can answer requests in place of the origin (MDN, CDN page).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cdn/index.md",
+      "section": "Glossary: CDN",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "An IP address is a network-layer address assigned to a network interface of a device; it is not necessarily a single decimal-number sequence and does not necessarily identify exactly one machine. The grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge. The conclusion that the DNS-first answer describes only the path without a cached answer and without a proxy resolving the host name is the author's inference.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
+      "section": "Design",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "MDN: DNS caching can help reduce the latency of DNS resolution, which turns a domain name into an IP address before the browser can issue a request.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/performance/guides/dns-prefetch/index.md",
+      "section": "Why use dns-prefetch?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: a forward proxy stores and forwards Internet services (like the DNS, or web pages) for a client or a group of clients.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/proxy_servers_and_tunneling/index.md",
+      "section": "Forward proxies",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    }
+  ],
+  "design_notes_vi": "Sáu thẻ chia hai nhóm: ba loại đưa nội dung tới người dùng và ba loại dịch vụ nền của mạng. Không có mũi tên vì nguồn không nói thứ tự giữa các loại. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source lists six server types in one flat order (web, mail, DNS, proxy, FTP, origin) with one sentence each; the lesson keeps only the six names, regroups them into two sets by position on the path of a request and writes its own explanation of each (MDN glossary pages for web server, proxy, CDN, DNS, SMTP, IMAP and FTP; RFC 9110 for the origin server) instead of translating the source sentences.",
+    "The lesson qualifies the DNS-first answer as the cache-miss, direct-resolution path (author's general knowledge)."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào các trang từ điển thuật ngữ của MDN và kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

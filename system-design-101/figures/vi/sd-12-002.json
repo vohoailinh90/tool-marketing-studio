@@ -1,0 +1,57 @@
+{
+  "id": "sd-12-002",
+  "title": "Thư điện tử đi thế nào",
+  "subtitle": "Bốn vai, hai nhóm giao thức.",
+  "desc": "Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, chương trình giao thư bỏ thư vào hộp thư của người nhận. Khung hai, ba điều cần nhớ: SMTP đẩy thư từ ứng dụng của người gửi tới máy chủ của họ rồi sang máy chủ của người nhận, còn IMAP hoặc POP3 là việc riêng: ứng dụng của người nhận lấy thư về từ hộp thư; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn vai",
+      "items": [
+        {
+          "name": "Ứng dụng thư (MUA)",
+          "role": "Soạn thư, bấm gửi.",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ gửi (MTA)",
+          "role": "Nhận thư rồi chuyển đi.",
+          "icon": "server"
+        },
+        {
+          "name": "Máy chủ nhận (MTA)",
+          "role": "Nhận thư từ máy chủ gửi.",
+          "icon": "server"
+        },
+        {
+          "name": "Giao thư (MDA)",
+          "role": "Bỏ thư vào hộp thư của người nhận.",
+          "icon": "mail"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều cần nhớ",
+      "items": [
+        "SMTP đẩy thư đi; IMAP hoặc POP3 lấy thư về.",
+        "Bản ghi MX trong DNS chỉ ra máy chủ nhận.",
+        "Máy chủ nhận chưa sẵn sàng: thư xếp hàng và được thử lại."
+      ]
+    }
+  ]
+}

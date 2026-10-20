@@ -18,42 +18,35 @@ authority on what is being worked on right now; this page only reserves what com
 - **Expiry.** A reservation lapses when nothing in its range has been claimed, touched or merged for 72 hours since the date of its
   row (the same lease the claim tools use). The tools keep skipping it until its row changes, so a session that takes a lapsed range
   claims it by id and, in the same pull request, rewrites the row with its own branch.
-- **Snapshot.** Counted on 2026-10-19 from `main` and every remote branch, against source commit `b28380a` of
-  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons. 178 are on `main`: 43 with a deck record (31 with their PPTX,
-  the 12 of sd-15 still without one) and 135 without (8 of them, sd-14-001..008, have a finished deck on an unmerged branch).
-  139 are only on unmerged branches and 87 are not written anywhere.
+- **Snapshot.** Counted on 2026-10-19 at 20:30 UTC from `main` and every remote branch, against source commit `b28380a` of
+  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons. 384 are written (368 on `main`, 16 more in merge train 4).
+  The 20 not written yet: sd-02-030 (its source is a picture alone; it waits on the owner), sd-04-013..024 and sd-06-023..029.
 
 ## Assigned (dispatched 2026-10-19)
 
 | Range | Work | Session branch prefix | Status |
 |---|---|---|---|
-| sd-15-001..012 | PPTX of the finished decks (exports pending) | `claude/sd101-decks-w1-` | assigned |
-| sd-05-001..005, sd-06-001..015 | deck and PPTX | `claude/sd101-decks-w1-` | assigned |
-| sd-01-022..049 | deck and PPTX | `claude/sd101-decks-w2-` | assigned |
-| sd-04-025..047 | deck and PPTX | `claude/sd101-decks-w3-` | assigned |
-| sd-09-001..020 | deck and PPTX | `claude/sd101-decks-w4-` | assigned |
-| sd-13-004..027 | deck and PPTX | `claude/sd101-decks-w5-` | assigned |
-| sd-01-050, sd-02-004..032 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w6-` | assigned |
-
-## Queued for the same coordinator (reserved, not started)
-
-| Range | Work | Status |
-|---|---|---|
-| sd-07-001..020 | lesson, figure, deck and PPTX | queued |
-| sd-08-001..024 | lesson, figure, deck and PPTX | queued |
+| sd-15-001..012 | PPTX of the finished decks (exports pending) | `claude/sd101-decks-w1-` | done |
+| sd-05-001..005, sd-06-001..015 | deck and PPTX | `claude/sd101-decks-w1-` | done |
+| sd-01-022..049 | deck and PPTX | `claude/sd101-decks-w2-` | done |
+| sd-04-025..047 | deck and PPTX | `claude/sd101-decks-w3-` | done |
+| sd-09-001..020 | deck and PPTX | `claude/sd101-decks-w4-` | done |
+| sd-13-004..027 | deck and PPTX | `claude/sd101-decks-w5-` | done |
+| sd-01-050, sd-02-004..029, sd-02-031..032 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w6-` | done |
+| sd-07-001..020 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w7-` | done |
+| sd-08-001..024 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w8-` | done |
+| sd-10-001..028 | lesson, figure, deck and PPTX | `claude/sd101-sd10-lot` | done |
+| sd-14-016..035 | lesson, figure, deck and PPTX | `claude/sd101-sd14-lo` | done |
+| sd-11-001..049, sd-12-001..018 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w16-` .. `w19-` | done |
+| sd-14-001..015 | deck and PPTX | `claude/trusting-gauss-foyunq` | done |
+| sd-04-001..012, sd-06-016..022 | deck and PPTX | `claude/sd101-decks-w21-` | assigned |
 
 ## Held by other sessions (already claimed or in an open pull request)
 
 | Range | Work | Branch or pull request |
 |---|---|---|
-| sd-10-001..028 | lessons and decks | `claude/sd101-sd10-lot23` .. `lot27` (#149) |
-| sd-14-016..035 | lessons and decks | `claude/sd101-sd14-lo19` .. `lo22` (#146) |
-| sd-14-001..015 | decks | `claude/trusting-gauss-foyunq` |
-| sd-11-001..049, sd-12-001..018 | lessons | waits on #151; old drafts #47, #51 |
-| sd-04-001..024 | lessons | #144, `claude/sd101-l3-sd04` |
-| sd-06-016..029 | lessons | #142, `claude/sd101-l6-sd06-b` |
-| sd-01-018..021 | decks | `claude/sd101-slides-batch-gaouoy` (claim lapses 2026-10-21 13:55 UTC) |
+| sd-04-013..024 | lessons | `claude/sd101-l3-sd04` (claim lapses 2026-10-21 13:32 UTC) |
+| sd-06-023..029 | lessons | `claude/sd101-l6-sd06-b` (written, no pull request yet) |
+| sd-06-001..003, sd-06-009..011, sd-13-009..011, sd-13-017..020 | decks | the other account: #194 (`claude/sd101-slides-sd06`), #197 (`claude/sd13-slides-0219`) |
 
-The decks of the rows whose Work is `lessons` alone (sd-11, sd-12, sd-04-001..024, sd-06-016..029) are not reserved by anyone yet:
-once such a lesson is on `main` and its owner is not building its deck, it can be assigned here. Every row that names decks keeps
-its decks reserved.
+sd-02-030 is not reserved: its source is a picture with no text, and whether it gets a lesson is the owner's decision.

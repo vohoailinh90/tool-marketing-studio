@@ -1,0 +1,17 @@
+{
+  "id": "sd-11-005",
+  "title": "Hai cách cắt dữ liệu",
+  "subtitle": "Theo cột hay theo hàng.",
+  "desc": "Hai khung. Khung một, hai cách cắt một bảng: chiều dọc giữ mỗi nhóm cột ở một nơi, chiều ngang giữ mỗi nhóm hàng ở một nơi. Khung hai, chọn nơi cho một hàng: theo khoảng giá trị khóa hoặc theo băm khóa, với điều mỗi cách làm tốt và làm kém.",
+  "sections": [
+    {"kind": "parts", "heading": "Cắt một bảng", "items": [
+      {"name": "Theo cột", "role": "Mỗi nơi giữ một nhóm cột của mọi hàng.", "icon": "split"},
+      {"name": "Theo hàng", "role": "Mỗi mảnh giữ trọn một số hàng.", "icon": "database"}
+    ]},
+    {"kind": "notes", "heading": "Chọn mảnh cho một hàng", "items": [
+      "Theo khoảng: truy vấn dải nhanh.",
+      "Theo khoảng: khóa tăng dần dồn ghi vào một mảnh.",
+      "Theo băm: dữ liệu rải đều.",
+      "Theo băm: đổi số mảnh làm nhiều khóa chuyển chỗ."]}
+  ]
+}

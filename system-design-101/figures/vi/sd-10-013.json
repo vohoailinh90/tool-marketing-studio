@@ -1,0 +1,25 @@
+{
+  "id": "sd-10-013",
+  "title": "Mười cuốn sách, năm nhóm",
+  "subtitle": "Năm nhóm, mỗi nhóm hai cuốn; mỗi cuốn một việc.",
+  "desc": "Năm nhóm xếp dọc, mỗi nhóm hai cuốn. Lời khuyên chung: The Pragmatic Programmer của Hunt và Thomas, Code Complete của McConnell. Viết mã: Clean Code của Martin, Refactoring của Fowler. Kiến trúc phần mềm: Designing Data-Intensive Applications của Kleppmann, System Design Interview của Alex Xu. Mẫu thiết kế: Design Patterns của Gamma cùng ba đồng tác giả, Domain-Driven Design của Evans. Cấu trúc dữ liệu và thuật toán: Introduction to Algorithms của Cormen, Leiserson, Rivest và Stein, Cracking the Coding Interview của McDowell. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Lời khuyên chung",
+     "items": [{"name": "The Pragmatic Programmer", "role": "Hunt và Thomas: lời khuyên thực dụng về nghề viết phần mềm.", "icon": "book-open"},
+               {"name": "Code Complete", "role": "McConnell: sổ tay xây dựng phần mềm.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Viết mã",
+     "items": [{"name": "Clean Code", "role": "Martin: viết mã dễ đọc, dễ sửa.", "icon": "book-open"},
+               {"name": "Refactoring", "role": "Fowler: sửa cấu trúc mã mà không đổi hành vi.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Kiến trúc phần mềm",
+     "items": [{"name": "Data-Intensive Applications", "role": "Tên đầy đủ: Designing Data-Intensive Applications. Kleppmann: lưu trữ và xử lý dữ liệu ở quy mô lớn.", "icon": "book-open"},
+               {"name": "System Design Interview", "role": "Alex Xu: các bài thiết kế hệ thống mẫu.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Mẫu thiết kế",
+     "items": [{"name": "Design Patterns", "role": "Gamma và ba đồng tác giả: các mẫu thiết kế hướng đối tượng.", "icon": "book-open"},
+               {"name": "Domain-Driven Design", "role": "Evans: mô hình hóa miền nghiệp vụ phức tạp.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Cấu trúc dữ liệu và thuật toán",
+     "items": [{"name": "Introduction to Algorithms", "role": "Cormen, Leiserson, Rivest, Stein: giáo trình thuật toán.", "icon": "book-open"},
+               {"name": "Cracking the Coding Interview", "role": "McDowell: câu hỏi lập trình phỏng vấn kèm lời giải.", "icon": "book-open"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Mười cuốn, năm nhóm, mỗi nhóm hai cuốn.", "Mỗi cuốn trả lời một câu hỏi khác nhau.", "Danh sách gợi ý, không có thứ tự đọc."]}
+  ]
+}

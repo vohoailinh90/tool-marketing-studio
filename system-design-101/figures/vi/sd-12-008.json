@@ -1,0 +1,25 @@
+{
+  "id": "sd-12-008",
+  "title": "Quốc tế hóa website bán hàng",
+  "subtitle": "Năm mảng cần tách khỏi mã.",
+  "desc": "Hai khung. Khung một, ba mảng giao diện: ngôn ngữ (văn bản tách khỏi mã, không ghép chuỗi), bố cục (chừa chỗ cho chữ dài, định dạng số và ngày theo nơi), múi giờ (lưu giờ UTC, hiển thị giờ địa phương). Khung hai, hai mảng nghiệp vụ: tiền tệ (tiền hiển thị, tiền quyết toán, dịch vụ quy đổi) và pháp nhân cùng kế toán (mỗi nước một pháp nhân, chuẩn kế toán khác nhau).",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba mảng giao diện",
+      "items": [
+        {"name": "Ngôn ngữ", "role": "Văn bản tách khỏi mã, không ghép chuỗi.", "icon": "globe"},
+        {"name": "Bố cục", "role": "Chừa chỗ cho chữ dài, đổi dạng số và ngày.", "icon": "layers"},
+        {"name": "Múi giờ", "role": "Lưu giờ UTC, hiển thị giờ địa phương.", "icon": "clock"}
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hai mảng nghiệp vụ",
+      "items": [
+        {"name": "Tiền tệ", "role": "Tiền hiển thị, tiền quyết toán, quy đổi.", "icon": "credit-card"},
+        {"name": "Pháp nhân, kế toán", "role": "Mỗi nước một pháp nhân, chuẩn khác nhau.", "icon": "store"}
+      ]
+    }
+  ]
+}

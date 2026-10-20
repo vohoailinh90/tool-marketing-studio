@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1034" viewBox="0 0 320 1034" role="img" aria-labelledby="title desc">
+<title id="title">VPN: ai thấy gì</title>
+<desc id="desc">Hình có hai phần. Phần một là bốn thẻ nối bằng mũi tên theo đường đi của một yêu cầu qua VPN. Thiết bị của bạn bọc tin vào đường hầm mã hóa. Người nghe, như Wi-Fi hay nhà mạng, chỉ thấy kết nối từ bạn tới máy chủ VPN, kích thước và giờ gửi. Máy chủ VPN giải mã, thấy đích, và cả nội dung nếu trang không dùng HTTPS, rồi gửi tiếp bằng địa chỉ của nó. Trang web thấy địa chỉ máy chủ VPN nhưng vẫn thấy cookie hay tài khoản của bạn. Phần hai là bốn điều cần nhớ: đoạn sau máy chủ VPN chỉ được che nếu trang dùng HTTPS; phải tin máy chủ VPN; trang vẫn nhận ra bạn; tin đi ngoài đường hầm vẫn lộ địa chỉ thật.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1034" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">VPN: ai thấy gì</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đường hầm chỉ che đoạn đầu.</text>
+<rect x="8" y="80" width="304" height="521" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một yêu cầu đi qua VPN</text>
+<rect x="20" y="125" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="168.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 157.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="78" y="151.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thiết bị của bạn</text>
+<text x="78" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bọc tin vào đường hầm mã</text>
+<text x="78" y="194.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hóa.</text>
+<rect x="20" y="244" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="297.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 286.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="270.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người nghe</text>
+<text x="78" y="294.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Wi-Fi, nhà mạng: chỉ thấy</text>
+<text x="78" y="313.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết nối từ bạn tới máy chủ</text>
+<text x="78" y="333.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">VPN, kích thước và giờ gửi.</text>
+<rect x="20" y="383" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="426.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 415.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="409.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ VPN</text>
+<text x="78" y="433.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giải mã, thấy đích, rồi gửi</text>
+<text x="78" y="452.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiếp bằng địa chỉ của nó.</text>
+<rect x="20" y="502" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="545.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 534.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="528.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trang web</text>
+<text x="78" y="552.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thấy địa chỉ máy chủ VPN,</text>
+<text x="78" y="571.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vẫn thấy cookie của bạn.</text>
+<polyline points="160,214 160,242" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,353 160,381" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,472 160,500" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="613" width="304" height="413" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="641.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điều cần nhớ</text>
+<rect x="20" y="658" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="681" r="11" fill="#16a34a"/>
+<polyline points="37.9,681.4 41.7,685.4 48.5,677" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="684.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ máy chủ VPN tới trang,</text>
+<text x="64" y="703.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin chỉ được che nếu trang</text>
+<text x="64" y="723.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng HTTPS.</text>
+<rect x="20" y="749" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="772" r="11" fill="#16a34a"/>
+<polyline points="37.9,772.4 41.7,776.4 48.5,768" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="775.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ VPN thấy đích, và</text>
+<text x="64" y="794.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả nội dung nếu trang không</text>
+<text x="64" y="814.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng HTTPS: bạn phải tin nó.</text>
+<rect x="20" y="840" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="863" r="11" fill="#16a34a"/>
+<polyline points="37.9,863.4 41.7,867.4 48.5,859" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="866.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cookie và tài khoản vẫn đi</text>
+<text x="64" y="885.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo yêu cầu, nên trang vẫn</text>
+<text x="64" y="905.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận ra bạn.</text>
+<rect x="20" y="931" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="954" r="11" fill="#16a34a"/>
+<polyline points="37.9,954.4 41.7,958.4 48.5,950" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="957.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tin không được định tuyến</text>
+<text x="64" y="976.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào đường hầm vẫn lộ địa</text>
+<text x="64" y="996.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ thật.</text>
+</g>
+</svg>

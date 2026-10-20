@@ -1,0 +1,27 @@
+{
+  "id": "sd-11-039",
+  "title": "Chọn bộ cân bằng tải: bốn ô",
+  "subtitle": "Hai câu hỏi, rồi một câu về kết nối.",
+  "desc": "Hai khung. Khung một, bốn ô chọn: toàn cầu và HTTP(S) là Front Door; toàn cầu và không phải HTTP(S) là Traffic Manager, dùng DNS; khu vực và HTTP(S) là Application Gateway; khu vực và không phải HTTP(S) là Load Balancer. Khung hai, hai kiểu kết nối: xuyên suốt thì máy khách nối thẳng tới máy chủ được chọn; kết thúc kết nối thì máy khách nối tới bộ cân bằng tải, rồi nó mở một kết nối khác tới máy chủ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn ô chọn",
+      "items": [
+        {"name": "Toàn cầu, HTTP(S)", "role": "Front Door.", "icon": "globe"},
+        {"name": "Toàn cầu, kiểu khác", "role": "Traffic Manager, dùng DNS.", "icon": "search"},
+        {"name": "Khu vực, HTTP(S)", "role": "Application Gateway.", "icon": "route"},
+        {"name": "Khu vực, kiểu khác", "role": "Load Balancer, TCP và UDP.", "icon": "scale"}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai kiểu kết nối",
+      "items": [
+        "Xuyên suốt: máy khách nối thẳng tới máy chủ được chọn.",
+        "Kết thúc kết nối: máy khách nối tới bộ cân bằng tải, nó mở kết nối khác tới máy chủ.",
+        "Chỉ kiểu thứ hai nhìn được nội dung HTTP."
+      ]
+    }
+  ]
+}

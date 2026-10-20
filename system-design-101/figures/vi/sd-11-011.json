@@ -1,0 +1,17 @@
+{
+  "id": "sd-11-011",
+  "title": "Bốn câu hỏi về một hệ thống",
+  "subtitle": "Mở rộng, sẵn sàng, tin cậy, hiệu năng.",
+  "desc": "Hai khung. Khung một, bốn câu hỏi: chịu thêm tải được không, có luôn sẵn sàng phục vụ không, có cho kết quả đúng không, có đủ nhanh dưới tải đỉnh không. Khung hai, ví dụ tính được: hệ thống sẵn sàng 99,9 phần trăm thì có thể ngừng khoảng 8,76 giờ mỗi năm, và hai dịch vụ nối tiếp, mỗi dịch vụ 99,9 phần trăm, chỉ còn khoảng 99,8 phần trăm.",
+  "sections": [
+    {"kind": "notes", "heading": "Bốn câu hỏi", "items": [
+      "Mở rộng: tải tăng thì thêm tài nguyên có đủ không.",
+      "Sẵn sàng: lúc cần, hệ thống có đó không.",
+      "Tin cậy: kết quả có đúng không.",
+      "Hiệu năng: lúc đông nhất có đủ nhanh không."]},
+    {"kind": "notes", "heading": "Hai phép tính", "items": [
+      "99,9 phần trăm: ngừng khoảng 8,76 giờ mỗi năm.",
+      "Mỗi chữ số chín thêm: giờ ngừng giảm mười lần.",
+      "Hai dịch vụ nối tiếp 99,9: còn khoảng 99,8."]}
+  ]
+}

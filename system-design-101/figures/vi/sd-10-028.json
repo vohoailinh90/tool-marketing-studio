@@ -1,0 +1,85 @@
+{
+  "id": "sd-10-028",
+  "title": "Mười nguyên tắc viết mã tốt",
+  "subtitle": "Mười nguyên tắc, một hàm tính phí viết lại.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ, theo mười nguyên tắc đánh số. Đọc được và bền: một theo quy ước, tên gọi rõ và hằng số viết hoa; hai chú thích nói vì sao; ba báo lỗi thay vì nuốt lỗi; bốn mỗi hàm một việc, thêm loại thành viên bằng cách thêm dữ liệu. Dễ kiểm thử và dễ đổi: năm hàm gọn với ba ca kiểm thử; sáu một hàm che giấu bảng giảm giá; bảy hai loại thành viên chỉ cần một bảng, không cần lớp; tám bỏ biến toàn cục. Giữ lâu dài: chín viết kiểm thử rồi đổi từng bước nhỏ; mười kiểm đầu vào ở biên. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đọc được và bền",
+      "items": [
+        {
+          "name": "1 · Theo quy ước viết mã",
+          "role": "Tên rõ, hằng số viết hoa.",
+          "icon": "book-open"
+        },
+        {
+          "name": "2 · Tài liệu và chú thích",
+          "role": "Chú thích nói vì sao.",
+          "icon": "file-text"
+        },
+        {
+          "name": "3 · Vững vàng",
+          "role": "Báo lỗi, không nuốt lỗi.",
+          "icon": "shield-check"
+        },
+        {
+          "name": "4 · Nguyên tắc SOLID",
+          "role": "Một việc; thêm loại bằng dữ liệu.",
+          "icon": "puzzle"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Dễ kiểm thử và dễ đổi",
+      "items": [
+        {
+          "name": "5 · Dễ kiểm thử",
+          "role": "Hàm gọn, ba ca kiểm thử.",
+          "icon": "bug"
+        },
+        {
+          "name": "6 · Trừu tượng",
+          "role": "Một hàm che giấu bảng giảm giá.",
+          "icon": "layers"
+        },
+        {
+          "name": "7 · Mẫu thiết kế, đừng quá tay",
+          "role": "Hai loại chỉ cần một bảng.",
+          "icon": "boxes"
+        },
+        {
+          "name": "8 · Bớt phụ thuộc toàn cục",
+          "role": "Bỏ biến toàn cục fee.",
+          "icon": "lock-keyhole"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Giữ lâu dài",
+      "items": [
+        {
+          "name": "9 · Tái cấu trúc liên tục",
+          "role": "Kiểm thử trước, đổi từng bước nhỏ.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "10 · Bảo mật là ưu tiên",
+          "role": "Kiểm đầu vào ở biên.",
+          "icon": "lock"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mỗi nguyên tắc hiện ra ở một chỗ sửa cụ thể.",
+        "Ví dụ nhỏ: nhận định về SOLID và mẫu thiết kế là của bài.",
+        "Các nguyên tắc nâng đỡ nhau."
+      ]
+    }
+  ]
+}

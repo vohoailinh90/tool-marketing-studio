@@ -1,0 +1,35 @@
+{
+  "id": "sd-08-015",
+  "title": "Tám khái niệm DDD, đối chiếu và một bộ kiểm tra tầng",
+  "subtitle": "Bảy khái niệm có chỗ đối chiếu; khái niệm tầng thì kiểm bằng mã.",
+  "desc": "Ba khung. Khung một, tám khái niệm của nguồn: thiết kế hướng miền, thực thể nghiệp vụ, ranh giới mô hình, khối nhất quán, thực thể và đối tượng giá trị, mô hình thao tác, chia tầng và dựng mô hình miền; tài liệu Microsoft khớp với bảy khái niệm, và nhắc thêm ngôn ngữ chung riêng cho từng ngữ cảnh. Khung hai, một điểm cần phân biệt: nguồn khuyên chia tầng bên trong một khối, còn Microsoft khuyên đừng cắt dịch vụ theo tầng ngang như truy cập dữ liệu hay nhắn tin mà cắt theo năng lực nghiệp vụ. Khung ba, bộ kiểm tra tầng bằng cây cú pháp: dự án thử 12 tệp tìm ra 1 vi phạm trong 0,002 giây, dự án thử 10.000 tệp tìm ra 5 vi phạm trong 0,69 đến 0,78 giây.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám khái niệm, bảy chỗ đối chiếu",
+      "items": [
+        "Có chỗ đối chiếu: miền, ranh giới, khối nhất quán, thực thể, đối tượng giá trị, dịch vụ, dựng mô hình.",
+        "Chia tầng: kiểm được bằng mã, bài này viết bộ kiểm.",
+        "Thêm từ Microsoft: ngôn ngữ chung riêng cho từng ngữ cảnh."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai nghĩa của chia tầng",
+      "items": [
+        "Nguồn: chia tầng để gọn mã bên trong một khối.",
+        "Microsoft: đừng cắt dịch vụ theo tầng ngang.",
+        "Cắt dịch vụ theo năng lực nghiệp vụ, tầng nằm bên trong."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bộ kiểm tầng bằng mã",
+      "items": [
+        "12 tệp: 1 vi phạm trong 0,002 giây.",
+        "10.000 tệp: 5 vi phạm trong 0,69 đến 0,78 giây.",
+        "Việc đếm được thì giao cho máy, không giao cho người đọc."
+      ]
+    }
+  ]
+}

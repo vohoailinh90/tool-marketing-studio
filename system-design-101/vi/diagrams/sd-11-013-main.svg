@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="829" viewBox="0 0 320 829" role="img" aria-labelledby="title desc">
+<title id="title">Sáu bước mở rộng một trang web</title>
+<desc id="desc">Hai khung. Khung một, ba bước đầu: tách máy ứng dụng khỏi máy cơ sở dữ liệu, chạy nhiều máy ứng dụng, đặt bộ chia tải phía trước. Khung hai, ba bước sau: tách đọc và ghi bằng bản sao chỉ đọc, chia nhỏ hoặc đệm dữ liệu, rồi tách thành các dịch vụ riêng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="829" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu bước mở rộng một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trang web</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi bước gỡ một nút thắt.</text>
+<rect x="8" y="104" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba bước đầu</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tách máy</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ứng dụng và dữ liệu ở hai</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhiều máy</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy một cụm máy ứng</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chia tải</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ chia tải chia đều yêu</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cầu.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="478" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="506.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba bước sau</text>
+<rect x="20" y="523" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="549" r="14" fill="#0f766e"/>
+<text x="46" y="554.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="549.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tách đọc ghi</text>
+<text x="70" y="573.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc từ bản sao chỉ đọc.</text>
+<rect x="20" y="613" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="639" r="14" fill="#0f766e"/>
+<text x="46" y="644.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="639.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chia hoặc đệm</text>
+<text x="70" y="663.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm máy dữ liệu hoặc bộ</text>
+<text x="70" y="682.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm.</text>
+<polyline points="46,593 46,611" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="722" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="748" r="14" fill="#0f766e"/>
+<text x="46" y="753.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="748.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tách dịch vụ</text>
+<text x="70" y="772.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kho hàng và người dùng</text>
+<text x="70" y="791.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng.</text>
+<polyline points="46,702 46,720" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

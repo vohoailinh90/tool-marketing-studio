@@ -1,0 +1,11 @@
+{
+  "id": "sd-11-045",
+  "title": "Tính sẵn sàng cao",
+  "subtitle": "Hai nút chưa đủ: còn tốc độ chuyển.",
+  "desc": "Ba khung. Khung một, ba kiểu hai nút: primary-backup có nút dự phòng chờ và chuyển bằng tay; primary-secondary cho nút phụ nhận thêm lượt đọc nhưng đọc có thể cũ; primary-primary cho cả hai nhận ghi nhưng có thể xung đột. Khung hai, phép tính: mục tiêu 99,99 phần trăm chỉ cho phép khoảng 52,6 phút ngừng mỗi năm; hai nút độc lập mỗi nút 90 phần trăm cho 99 phần trăm. Khung ba, mô phỏng mười năm: một nút 90,0 phần trăm; hai nút cùng chạy 99,0; có một phần năm lần hỏng chung thì 98,2; chuyển bằng tay mất 5, 30, 120 phút thì 98,4, 95,2, 90,9 phần trăm.",
+  "sections": [
+    {"kind": "notes", "heading": "Ba kiểu hai nút", "items": ["Primary-Backup: nút dự phòng chờ.", "Primary-Secondary: nút phụ nhận thêm lượt đọc.", "Primary-Primary: cả hai nhận ghi, dễ xung đột."]},
+    {"kind": "notes", "heading": "Phép tính", "items": ["99,99%: ngừng tối đa 52,6 phút mỗi năm.", "Hai nút độc lập, mỗi nút 90%: được 99%."]},
+    {"kind": "notes", "heading": "Mô phỏng mười năm", "items": ["Một nút: 90,0%.", "Hai nút cùng chạy: 99,0%; có hỏng chung: 98,2%.", "Chuyển bằng tay 5, 30, 120 phút: 98,4, 95,2, 90,9%."]}
+  ]
+}

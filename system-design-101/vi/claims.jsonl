@@ -180,53 +180,53 @@
 
 {"id": "sd-03-008", "status": "written", "title": "How does ChatGPT work?"}
 
-{"id": "sd-04-001", "status": "todo", "title": "Read Replica Pattern"}
+{"id": "sd-04-001", "status": "written", "title": "Read Replica Pattern", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-002", "status": "todo", "title": "Pessimistic vs Optimistic Locking"}
+{"id": "sd-04-002", "status": "written", "title": "Pessimistic vs Optimistic Locking", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-003", "status": "todo", "title": "How to Upload a Large File to S3"}
+{"id": "sd-04-003", "status": "written", "title": "How to Upload a Large File to S3", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-004", "status": "todo", "title": "Types of Message Queues"}
+{"id": "sd-04-004", "status": "written", "title": "Types of Message Queues", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-005", "status": "todo", "title": "Smooth Data Migration with Avro"}
+{"id": "sd-04-005", "status": "written", "title": "Smooth Data Migration with Avro", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-006", "status": "todo", "title": "The Ultimate Kafka 101 You Cannot Miss"}
+{"id": "sd-04-006", "status": "written", "title": "The Ultimate Kafka 101 You Cannot Miss", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-007", "status": "todo", "title": "Database Isolation Levels"}
+{"id": "sd-04-007", "status": "written", "title": "Database Isolation Levels", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-008", "status": "todo", "title": "Top 6 Data Management Patterns"}
+{"id": "sd-04-008", "status": "written", "title": "Top 6 Data Management Patterns", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-009", "status": "todo", "title": "Why is Kafka Fast?"}
+{"id": "sd-04-009", "status": "written", "title": "Why is Kafka Fast?", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-010", "status": "todo", "title": "Explaining the 4 Most Commonly Used Types of Queues"}
+{"id": "sd-04-010", "status": "written", "title": "Explaining the 4 Most Commonly Used Types of Queues", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-011", "status": "todo", "title": "Time Series DB (TSDB) in 20 Lines"}
+{"id": "sd-04-011", "status": "written", "title": "Time Series DB (TSDB) in 20 Lines", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-012", "status": "todo", "title": "Differences in Event Sourcing System Design"}
+{"id": "sd-04-012", "status": "written", "title": "Differences in Event Sourcing System Design", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-013", "status": "todo", "title": "Erasure Coding"}
+{"id": "sd-04-013", "status": "doing", "title": "Erasure Coding", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-014", "status": "todo", "title": "Delivery Semantics"}
+{"id": "sd-04-014", "status": "doing", "title": "Delivery Semantics", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-015", "status": "todo", "title": "Change Data Capture: Key to Leverage Real-time Data"}
+{"id": "sd-04-015", "status": "doing", "title": "Change Data Capture: Key to Leverage Real-time Data", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-016", "status": "todo", "title": "Can Kafka Lose Messages?"}
+{"id": "sd-04-016", "status": "doing", "title": "Can Kafka Lose Messages?", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-017", "status": "todo", "title": "Storage Systems Overview"}
+{"id": "sd-04-017", "status": "doing", "title": "Storage Systems Overview", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-018", "status": "todo", "title": "Explain the Top 6 Use Cases of Object Stores"}
+{"id": "sd-04-018", "status": "doing", "title": "Explain the Top 6 Use Cases of Object Stores", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-019", "status": "todo", "title": "Top Eventual Consistency Patterns You Must Know"}
+{"id": "sd-04-019", "status": "doing", "title": "Top Eventual Consistency Patterns You Must Know", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-020", "status": "todo", "title": "B-Tree vs. LSM-Tree"}
+{"id": "sd-04-020", "status": "doing", "title": "B-Tree vs. LSM-Tree", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-021", "status": "todo", "title": "How to Decide Which Type of Database to Use"}
+{"id": "sd-04-021", "status": "doing", "title": "How to Decide Which Type of Database to Use", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-022", "status": "todo", "title": "Cloud Database Cheat Sheet"}
+{"id": "sd-04-022", "status": "doing", "title": "Cloud Database Cheat Sheet", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-023", "status": "todo", "title": "Types of Memory"}
+{"id": "sd-04-023", "status": "doing", "title": "Types of Memory", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-024", "status": "todo", "title": "Understanding Database Types"}
+{"id": "sd-04-024", "status": "doing", "title": "Understanding Database Types", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
 {"id": "sd-04-025", "status": "written", "title": "Top 4 Data Sharding Algorithms Explained", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T14:29:22Z", "pr": 143}
 
@@ -314,19 +314,19 @@
 
 {"id": "sd-06-015", "status": "written", "title": "How Can Cache Systems Go Wrong?", "owner": "claude/sd101-l5-sd06-b", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:46:40Z", "pr": 145}
 
-{"id": "sd-06-016", "status": "todo", "title": "Top 6 Elasticsearch Use Cases"}
+{"id": "sd-06-016", "status": "written", "title": "Top 6 Elasticsearch Use Cases", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
-{"id": "sd-06-017", "status": "todo", "title": "How Does CDN Work?"}
+{"id": "sd-06-017", "status": "written", "title": "How Does CDN Work?", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
-{"id": "sd-06-018", "status": "todo", "title": "How Redis Architecture Evolved"}
+{"id": "sd-06-018", "status": "written", "title": "How Redis Architecture Evolved", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
-{"id": "sd-06-019", "status": "todo", "title": "How Does Redis Persist Data?"}
+{"id": "sd-06-019", "status": "written", "title": "How Does Redis Persist Data?", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
-{"id": "sd-06-020", "status": "todo", "title": "How can Redis be used?"}
+{"id": "sd-06-020", "status": "written", "title": "How can Redis be used?", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
-{"id": "sd-06-021", "status": "todo", "title": "Why is Redis so Fast?"}
+{"id": "sd-06-021", "status": "written", "title": "Why is Redis so Fast?", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
-{"id": "sd-06-022", "status": "todo", "title": "How to Learn Elasticsearch"}
+{"id": "sd-06-022", "status": "written", "title": "How to Learn Elasticsearch", "owner": "claude/sd101-l6-sd06-a", "session": "cse_01MqCVmUSdTzUGgoxNezmvcm", "done_at": "2026-10-18T14:18:58Z", "pr": 142}
 
 {"id": "sd-06-023", "status": "todo", "title": "What is CDN (Content Delivery Network)?"}
 
@@ -382,15 +382,15 @@
 
 {"id": "sd-07-020", "status": "written", "title": "How does Visa make money?", "owner": "claude/sd101-lessons-w7-4", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:54:30Z", "pr": 184}
 
-{"id": "sd-08-001", "status": "todo", "title": "Inter-Process Communication on Linux"}
+{"id": "sd-08-001", "status": "written", "title": "Inter-Process Communication on Linux", "owner": "claude/sd101-lessons-w8-1", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T04:29:39Z", "pr": 187}
 
-{"id": "sd-08-002", "status": "todo", "title": "Orchestration vs. Choreography in Microservices"}
+{"id": "sd-08-002", "status": "written", "title": "Orchestration vs. Choreography in Microservices", "owner": "claude/sd101-lessons-w8-1", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T04:29:39Z", "pr": 187}
 
-{"id": "sd-08-003", "status": "todo", "title": "UML Class Diagrams Cheatsheet"}
+{"id": "sd-08-003", "status": "written", "title": "UML Class Diagrams Cheatsheet", "owner": "claude/sd101-lessons-w8-1", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T04:29:39Z", "pr": 187}
 
-{"id": "sd-08-004", "status": "todo", "title": "Amazon Prime Video Monitoring Service"}
+{"id": "sd-08-004", "status": "written", "title": "Amazon Prime Video Monitoring Service", "owner": "claude/sd101-lessons-w8-1", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T04:29:39Z", "pr": 187}
 
-{"id": "sd-08-005", "status": "todo", "title": "Is Microservice Architecture the Silver Bullet?"}
+{"id": "sd-08-005", "status": "written", "title": "Is Microservice Architecture the Silver Bullet?", "owner": "claude/sd101-lessons-w8-1", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T04:29:39Z", "pr": 187}
 
 {"id": "sd-08-006", "status": "written", "title": "Database Middleware", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
@@ -402,33 +402,33 @@
 
 {"id": "sd-08-010", "status": "written", "title": "8 Key OOP Concepts Every Developer Should Know", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
-{"id": "sd-08-011", "status": "todo", "title": "18 Key Design Patterns Every Developer Should Know"}
+{"id": "sd-08-011", "status": "written", "title": "18 Key Design Patterns Every Developer Should Know", "owner": "claude/sd101-lessons-w8-3", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:43:33Z", "pr": 191}
 
-{"id": "sd-08-012", "status": "todo", "title": "10 System Design Tradeoffs You Cannot Ignore"}
+{"id": "sd-08-012", "status": "written", "title": "10 System Design Tradeoffs You Cannot Ignore", "owner": "claude/sd101-lessons-w8-3", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:43:33Z", "pr": 191}
 
-{"id": "sd-08-013", "status": "todo", "title": "9 Essential Components of a Production Microservice Application"}
+{"id": "sd-08-013", "status": "written", "title": "9 Essential Components of a Production Microservice Application", "owner": "claude/sd101-lessons-w8-3", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:43:33Z", "pr": 191}
 
-{"id": "sd-08-014", "status": "todo", "title": "9 Best Practices for Building Microservices"}
+{"id": "sd-08-014", "status": "written", "title": "9 Best Practices for Building Microservices", "owner": "claude/sd101-lessons-w8-3", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:43:33Z", "pr": 191}
 
-{"id": "sd-08-015", "status": "todo", "title": "8 Key Concepts in Domain-Driven Design"}
+{"id": "sd-08-015", "status": "written", "title": "8 Key Concepts in Domain-Driven Design", "owner": "claude/sd101-lessons-w8-3", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:43:33Z", "pr": 191}
 
-{"id": "sd-08-016", "status": "todo", "title": "8 Common System Design Problems and Solutions"}
+{"id": "sd-08-016", "status": "written", "title": "8 Common System Design Problems and Solutions", "owner": "claude/sd101-lessons-w8-4", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T06:25:53Z", "pr": 193}
 
-{"id": "sd-08-017", "status": "todo", "title": "6 Software Architectural Patterns You Must Know"}
+{"id": "sd-08-017", "status": "written", "title": "6 Software Architectural Patterns You Must Know", "owner": "claude/sd101-lessons-w8-4", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T06:25:53Z", "pr": 193}
 
-{"id": "sd-08-018", "status": "todo", "title": "How To Release A Mobile App"}
+{"id": "sd-08-018", "status": "written", "title": "How To Release A Mobile App", "owner": "claude/sd101-lessons-w8-4", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T06:25:53Z", "pr": 193}
 
-{"id": "sd-08-019", "status": "todo", "title": "How Do Computer Programs Run?"}
+{"id": "sd-08-019", "status": "written", "title": "How Do Computer Programs Run?", "owner": "claude/sd101-lessons-w8-4", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T06:25:53Z", "pr": 193}
 
-{"id": "sd-08-020", "status": "todo", "title": "Linux Boot Process Explained"}
+{"id": "sd-08-020", "status": "written", "title": "Linux Boot Process Explained", "owner": "claude/sd101-lessons-w8-4", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T06:25:53Z", "pr": 193}
 
-{"id": "sd-08-021", "status": "todo", "title": "MVC, MVP, MVVM, VIPER Patterns"}
+{"id": "sd-08-021", "status": "written", "title": "MVC, MVP, MVVM, VIPER Patterns", "owner": "claude/sd101-lessons-w8-5", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T07:02:14Z", "pr": 199}
 
-{"id": "sd-08-022", "status": "todo", "title": "The Ultimate Software Architect Knowledge Map"}
+{"id": "sd-08-022", "status": "written", "title": "The Ultimate Software Architect Knowledge Map", "owner": "claude/sd101-lessons-w8-5", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T07:02:14Z", "pr": 199}
 
-{"id": "sd-08-023", "status": "todo", "title": "Typical Microservice Architecture"}
+{"id": "sd-08-023", "status": "written", "title": "Typical Microservice Architecture", "owner": "claude/sd101-lessons-w8-5", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T07:02:14Z", "pr": 199}
 
-{"id": "sd-08-024", "status": "todo", "title": "Top 5 Software Architectural Patterns"}
+{"id": "sd-08-024", "status": "written", "title": "Top 5 Software Architectural Patterns", "owner": "claude/sd101-lessons-w8-5", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T07:02:14Z", "pr": 199}
 
 {"id": "sd-09-001", "status": "written", "title": "Git Commands Cheat Sheet", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
@@ -470,195 +470,195 @@
 
 {"id": "sd-09-020", "status": "written", "title": "How do Companies Ship Code to Production?", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-10-001", "status": "todo", "title": "Top 6 Most Commonly Used Server Types"}
+{"id": "sd-10-001", "status": "written", "title": "Top 6 Most Commonly Used Server Types", "owner": "claude/sd101-sd10-lot23", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T14:25:10Z"}
 
-{"id": "sd-10-002", "status": "todo", "title": "How does Garbage Collection work?"}
+{"id": "sd-10-002", "status": "written", "title": "How does Garbage Collection work?", "owner": "claude/sd101-sd10-lot23", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T14:25:10Z"}
 
-{"id": "sd-10-003", "status": "todo", "title": "A Roadmap for Full-Stack Development"}
+{"id": "sd-10-003", "status": "written", "title": "A Roadmap for Full-Stack Development", "owner": "claude/sd101-sd10-lot23", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T14:25:10Z"}
 
-{"id": "sd-10-004", "status": "todo", "title": "What Are the Greenest Programming Languages?"}
+{"id": "sd-10-004", "status": "written", "title": "What Are the Greenest Programming Languages?", "owner": "claude/sd101-sd10-lot23", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T14:25:10Z"}
 
-{"id": "sd-10-005", "status": "todo", "title": "Java Collection Hierarchy"}
+{"id": "sd-10-005", "status": "written", "title": "Java Collection Hierarchy", "owner": "claude/sd101-sd10-lot23", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T14:25:10Z"}
 
-{"id": "sd-10-006", "status": "todo", "title": "Running C, C++, or Rust in a Web Browser"}
+{"id": "sd-10-006", "status": "written", "title": "Running C, C++, or Rust in a Web Browser", "owner": "claude/sd101-sd10-lot23", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T14:25:10Z"}
 
-{"id": "sd-10-007", "status": "todo", "title": "Top 8 C++ Use Cases"}
+{"id": "sd-10-007", "status": "written", "title": "Top 8 C++ Use Cases", "owner": "claude/sd101-sd10-lot24", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:00:44Z"}
 
-{"id": "sd-10-008", "status": "todo", "title": "Top 6 Multithreading Design Patterns You Must Know"}
+{"id": "sd-10-008", "status": "written", "title": "Top 6 Multithreading Design Patterns You Must Know", "owner": "claude/sd101-sd10-lot24", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:00:44Z"}
 
-{"id": "sd-10-009", "status": "todo", "title": "Data Transmission Between Applications"}
+{"id": "sd-10-009", "status": "written", "title": "Data Transmission Between Applications", "owner": "claude/sd101-sd10-lot24", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:00:44Z"}
 
-{"id": "sd-10-010", "status": "todo", "title": "Blocking vs Non-Blocking Queue"}
+{"id": "sd-10-010", "status": "written", "title": "Blocking vs Non-Blocking Queue", "owner": "claude/sd101-sd10-lot24", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:00:44Z"}
 
-{"id": "sd-10-011", "status": "todo", "title": "Big Endian vs Little Endian"}
+{"id": "sd-10-011", "status": "written", "title": "Big Endian vs Little Endian", "owner": "claude/sd101-sd10-lot24", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:00:44Z"}
 
-{"id": "sd-10-012", "status": "todo", "title": "How to Avoid Crawling Duplicate URLs at Google Scale?"}
+{"id": "sd-10-012", "status": "written", "title": "How to Avoid Crawling Duplicate URLs at Google Scale?", "owner": "claude/sd101-sd10-lot25", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:11:16Z"}
 
-{"id": "sd-10-013", "status": "todo", "title": "10 Books for Software Developers"}
+{"id": "sd-10-013", "status": "written", "title": "10 Books for Software Developers", "owner": "claude/sd101-sd10-lot25", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:11:16Z"}
 
-{"id": "sd-10-014", "status": "todo", "title": "Top 8 Standards Every Developer Should Know"}
+{"id": "sd-10-014", "status": "written", "title": "Top 8 Standards Every Developer Should Know", "owner": "claude/sd101-sd10-lot25", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:11:16Z"}
 
-{"id": "sd-10-015", "status": "todo", "title": "How Do C++, Java, Python Work?"}
+{"id": "sd-10-015", "status": "written", "title": "How Do C++, Java, Python Work?", "owner": "claude/sd101-sd10-lot25", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:11:16Z"}
 
-{"id": "sd-10-016", "status": "todo", "title": "10 Key Data Structures We Use Every Day"}
+{"id": "sd-10-016", "status": "written", "title": "10 Key Data Structures We Use Every Day", "owner": "claude/sd101-sd10-lot25", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:11:16Z"}
 
-{"id": "sd-10-017", "status": "todo", "title": "A Brief History of Programming Languages"}
+{"id": "sd-10-017", "status": "written", "title": "A Brief History of Programming Languages", "owner": "claude/sd101-sd10-lot26", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:18:13Z"}
 
-{"id": "sd-10-018", "status": "todo", "title": "Top 6 Load Balancing Algorithms"}
+{"id": "sd-10-018", "status": "written", "title": "Top 6 Load Balancing Algorithms", "owner": "claude/sd101-sd10-lot26", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:18:13Z"}
 
-{"id": "sd-10-019", "status": "todo", "title": "The Fundamental Pillars of Object-Oriented Programming"}
+{"id": "sd-10-019", "status": "written", "title": "The Fundamental Pillars of Object-Oriented Programming", "owner": "claude/sd101-sd10-lot26", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:18:13Z"}
 
-{"id": "sd-10-020", "status": "todo", "title": "Top 8 Programming Paradigms"}
+{"id": "sd-10-020", "status": "written", "title": "Top 8 Programming Paradigms", "owner": "claude/sd101-sd10-lot26", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:18:13Z"}
 
-{"id": "sd-10-021", "status": "todo", "title": "Algorithms for System Design Interviews"}
+{"id": "sd-10-021", "status": "written", "title": "Algorithms for System Design Interviews", "owner": "claude/sd101-sd10-lot26", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:18:13Z"}
 
-{"id": "sd-10-022", "status": "todo", "title": "Imperative vs Functional vs Object-oriented Programming"}
+{"id": "sd-10-022", "status": "written", "title": "Imperative vs Functional vs Object-oriented Programming", "owner": "claude/sd101-sd10-lot27", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:26:16Z", "pr": 203}
 
 {"id": "sd-10-023", "status": "written", "title": "Explaining 9 Types of API Testing", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T08:02:02Z"}
 
-{"id": "sd-10-024", "status": "todo", "title": "The 9 Algorithms That Dominate Our World"}
+{"id": "sd-10-024", "status": "written", "title": "The 9 Algorithms That Dominate Our World", "owner": "claude/sd101-sd10-lot27", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:26:16Z", "pr": 203}
 
-{"id": "sd-10-025", "status": "todo", "title": "Concurrency vs Parallelism"}
+{"id": "sd-10-025", "status": "written", "title": "Concurrency vs Parallelism", "owner": "claude/sd101-sd10-lot27", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:26:16Z", "pr": 203}
 
-{"id": "sd-10-026", "status": "todo", "title": "Linux Boot Process Explained"}
+{"id": "sd-10-026", "status": "written", "title": "Linux Boot Process Explained", "owner": "claude/sd101-sd10-lot27", "session": "cse_01JJCRKgpbfdpiPMwgBVozBY", "shared_source": true, "done_at": "2026-10-19T13:29:02Z", "pr": 203}
 
-{"id": "sd-10-027", "status": "todo", "title": "11 Steps to Go From Junior to Senior Developer"}
+{"id": "sd-10-027", "status": "written", "title": "11 Steps to Go From Junior to Senior Developer", "owner": "claude/sd101-sd10-lot27", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:26:16Z", "pr": 203}
 
-{"id": "sd-10-028", "status": "todo", "title": "10 Good Coding Principles to Improve Code Quality"}
+{"id": "sd-10-028", "status": "written", "title": "10 Good Coding Principles to Improve Code Quality", "owner": "claude/sd101-sd10-lot27", "session": "cse_01E4oCkXXqBf2c7oMUzFxEr2", "done_at": "2026-10-18T15:26:16Z", "pr": 203}
 
-{"id": "sd-11-001", "status": "todo", "title": "How AWS Lambda Works Behind the Scenes"}
+{"id": "sd-11-001", "status": "written", "title": "How AWS Lambda Works Behind the Scenes", "owner": "claude/sd101-lessons-w16-1", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T14:43:05Z", "pr": 206}
 
-{"id": "sd-11-002", "status": "todo", "title": "8 Must-Know Scalability Strategies"}
+{"id": "sd-11-002", "status": "written", "title": "8 Must-Know Scalability Strategies", "owner": "claude/sd101-lessons-w16-1", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T14:43:05Z", "pr": 206}
 
-{"id": "sd-11-003", "status": "todo", "title": "System Design Cheat Sheet"}
+{"id": "sd-11-003", "status": "written", "title": "System Design Cheat Sheet", "owner": "claude/sd101-lessons-w16-1", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T14:43:05Z", "pr": 206}
 
-{"id": "sd-11-004", "status": "todo", "title": "Cloud Disaster Recovery Strategies"}
+{"id": "sd-11-004", "status": "written", "title": "Cloud Disaster Recovery Strategies", "owner": "claude/sd101-lessons-w16-1", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T14:43:05Z", "pr": 206}
 
-{"id": "sd-11-005", "status": "todo", "title": "Vertical vs Horizontal Partitioning"}
+{"id": "sd-11-005", "status": "written", "title": "Vertical vs Horizontal Partitioning", "owner": "claude/sd101-lessons-w16-1", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T14:43:05Z", "pr": 206}
 
-{"id": "sd-11-006", "status": "todo", "title": "Top 9 Architectural Patterns for Data and Communication Flow"}
+{"id": "sd-11-006", "status": "written", "title": "Top 9 Architectural Patterns for Data and Communication Flow", "owner": "claude/sd101-lessons-w16-2", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:04:46Z", "pr": 211}
 
-{"id": "sd-11-007", "status": "todo", "title": "Top 6 Cases to Apply Idempotency"}
+{"id": "sd-11-007", "status": "written", "title": "Top 6 Cases to Apply Idempotency", "owner": "claude/sd101-lessons-w16-2", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:04:46Z", "pr": 211}
 
-{"id": "sd-11-008", "status": "todo", "title": "Top 5 Trade-offs in System Designs"}
+{"id": "sd-11-008", "status": "written", "title": "Top 5 Trade-offs in System Designs", "owner": "claude/sd101-lessons-w16-2", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:04:46Z", "pr": 211}
 
-{"id": "sd-11-009", "status": "todo", "title": "How to Detect Node Failures in Distributed Systems"}
+{"id": "sd-11-009", "status": "written", "title": "How to Detect Node Failures in Distributed Systems", "owner": "claude/sd101-lessons-w16-2", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:04:46Z", "pr": 211}
 
-{"id": "sd-11-010", "status": "todo", "title": "Why Meta, Google, and Amazon Stop Using Leap Seconds"}
+{"id": "sd-11-010", "status": "written", "title": "Why Meta, Google, and Amazon Stop Using Leap Seconds", "owner": "claude/sd101-lessons-w16-2", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:04:46Z", "pr": 211}
 
-{"id": "sd-11-011", "status": "todo", "title": "The Fantastic Four of System Design"}
+{"id": "sd-11-011", "status": "written", "title": "The Fantastic Four of System Design", "owner": "claude/sd101-lessons-w16-3", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:21:58Z", "pr": 214}
 
-{"id": "sd-11-012", "status": "todo", "title": "What makes AWS Lambda so fast?"}
+{"id": "sd-11-012", "status": "written", "title": "What makes AWS Lambda so fast?", "owner": "claude/sd101-lessons-w16-3", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:21:58Z", "pr": 214}
 
-{"id": "sd-11-013", "status": "todo", "title": "Scaling Websites for Millions of Users"}
+{"id": "sd-11-013", "status": "written", "title": "Scaling Websites for Millions of Users", "owner": "claude/sd101-lessons-w16-3", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:21:58Z", "pr": 214}
 
-{"id": "sd-11-014", "status": "todo", "title": "Resiliency Patterns"}
+{"id": "sd-11-014", "status": "written", "title": "Resiliency Patterns", "owner": "claude/sd101-lessons-w16-3", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:21:58Z", "pr": 214}
 
-{"id": "sd-11-015", "status": "todo", "title": "25 Papers That Completely Transformed the Computer World"}
+{"id": "sd-11-015", "status": "written", "title": "25 Papers That Completely Transformed the Computer World", "owner": "claude/sd101-lessons-w16-3", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:21:58Z", "pr": 214}
 
-{"id": "sd-11-016", "status": "todo", "title": "A Crash Course on Architectural Scalability"}
+{"id": "sd-11-016", "status": "written", "title": "A Crash Course on Architectural Scalability", "owner": "claude/sd101-lessons-w16-4", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:29:43Z", "pr": 217}
 
-{"id": "sd-11-017", "status": "todo", "title": "Must Know System Design Building Blocks"}
+{"id": "sd-11-017", "status": "written", "title": "Must Know System Design Building Blocks", "owner": "claude/sd101-lessons-w16-4", "session": "cse_0121Z35eF2EmPsW9asDgHWsZ", "done_at": "2026-10-19T15:29:43Z", "pr": 217}
 
-{"id": "sd-11-018", "status": "todo", "title": "Monorepo vs. Microrepo: Which is Best?"}
+{"id": "sd-11-018", "status": "written", "title": "Monorepo vs. Microrepo: Which is Best?", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-019", "status": "todo", "title": "How to Handle Web Request Errors"}
+{"id": "sd-11-019", "status": "written", "title": "How to Handle Web Request Errors", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-020", "status": "todo", "title": "A Cheat Sheet for Designing Fault-Tolerant Systems"}
+{"id": "sd-11-020", "status": "written", "title": "A Cheat Sheet for Designing Fault-Tolerant Systems", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-021", "status": "todo", "title": "Typical AWS Network Architecture"}
+{"id": "sd-11-021", "status": "written", "title": "Typical AWS Network Architecture", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-022", "status": "todo", "title": "Unique ID Generator"}
+{"id": "sd-11-022", "status": "written", "title": "Unique ID Generator", "owner": "claude/sd101-lessons-w17-1", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T14:43:09Z", "pr": 207}
 
-{"id": "sd-11-023", "status": "todo", "title": "Amazon's Build System: Brazil"}
+{"id": "sd-11-023", "status": "written", "title": "Amazon's Build System: Brazil", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
-{"id": "sd-11-024", "status": "todo", "title": "Infrastructure as Code Landscape Cheatsheet"}
+{"id": "sd-11-024", "status": "written", "title": "Infrastructure as Code Landscape Cheatsheet", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
-{"id": "sd-11-025", "status": "todo", "title": "How do we manage configurations in a system?"}
+{"id": "sd-11-025", "status": "written", "title": "How do we manage configurations in a system?", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
-{"id": "sd-11-026", "status": "todo", "title": "How do we incorporate Event Sourcing into systems?"}
+{"id": "sd-11-026", "status": "written", "title": "How do we incorporate Event Sourcing into systems?", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
-{"id": "sd-11-027", "status": "todo", "title": "The 12-Factor App"}
+{"id": "sd-11-027", "status": "written", "title": "The 12-Factor App", "owner": "claude/sd101-lessons-w17-2", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:01:37Z", "pr": 210}
 
-{"id": "sd-11-028", "status": "todo", "title": "Explaining 5 Unique ID Generators"}
+{"id": "sd-11-028", "status": "written", "title": "Explaining 5 Unique ID Generators", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-029", "status": "todo", "title": "Retry Strategies for System Failures"}
+{"id": "sd-11-029", "status": "written", "title": "Retry Strategies for System Failures", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-030", "status": "todo", "title": "Cloud Monitoring Cheat Sheet"}
+{"id": "sd-11-030", "status": "written", "title": "Cloud Monitoring Cheat Sheet", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-031", "status": "todo", "title": "Why Use a Distributed Lock?"}
+{"id": "sd-11-031", "status": "written", "title": "Why Use a Distributed Lock?", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-032", "status": "todo", "title": "Top 6 Cloud Messaging Patterns"}
+{"id": "sd-11-032", "status": "written", "title": "Top 6 Cloud Messaging Patterns", "owner": "claude/sd101-lessons-w17-3", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:22:51Z", "pr": 215}
 
-{"id": "sd-11-033", "status": "todo", "title": "Most Important AWS Services to Learn"}
+{"id": "sd-11-033", "status": "written", "title": "Most Important AWS Services to Learn", "owner": "claude/sd101-lessons-w17-4", "session": "cse_01FUEjJx1iJbs8YafmDVXup4", "done_at": "2026-10-19T15:29:14Z", "pr": 216}
 
-{"id": "sd-11-034", "status": "todo", "title": "How to Transform a System to be Cloud Native"}
+{"id": "sd-11-034", "status": "written", "title": "How to Transform a System to be Cloud Native", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-035", "status": "todo", "title": "Hidden Costs of the Cloud"}
+{"id": "sd-11-035", "status": "written", "title": "Hidden Costs of the Cloud", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-036", "status": "todo", "title": "2 Decades of Cloud Evolution"}
+{"id": "sd-11-036", "status": "written", "title": "2 Decades of Cloud Evolution", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-037", "status": "todo", "title": "Cloud Cost Reduction Techniques"}
+{"id": "sd-11-037", "status": "written", "title": "Cloud Cost Reduction Techniques", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-038", "status": "todo", "title": "Top 7 Most-Used Distributed System Patterns"}
+{"id": "sd-11-038", "status": "written", "title": "Top 7 Most-Used Distributed System Patterns", "owner": "claude/sd101-lessons-w18-1", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T14:49:55Z", "pr": 209}
 
-{"id": "sd-11-039", "status": "todo", "title": "Cloud Load Balancer Cheat Sheet"}
+{"id": "sd-11-039", "status": "written", "title": "Cloud Load Balancer Cheat Sheet", "owner": "claude/sd101-lessons-w18-2", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:17:32Z", "pr": 213}
 
-{"id": "sd-11-040", "status": "todo", "title": "AWS Services Evolution"}
+{"id": "sd-11-040", "status": "written", "title": "AWS Services Evolution", "owner": "claude/sd101-lessons-w18-2", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:17:32Z", "pr": 213}
 
-{"id": "sd-11-041", "status": "todo", "title": "Azure Services Cheat Sheet"}
+{"id": "sd-11-041", "status": "written", "title": "Azure Services Cheat Sheet", "owner": "claude/sd101-lessons-w18-2", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:17:32Z", "pr": 213}
 
-{"id": "sd-11-042", "status": "todo", "title": "A cheat sheet for system designs"}
+{"id": "sd-11-042", "status": "written", "title": "A cheat sheet for system designs", "owner": "claude/sd101-lessons-w18-2", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:17:32Z", "pr": 213}
 
-{"id": "sd-11-043", "status": "todo", "title": "CAP, BASE, SOLID, KISS, What do these acronyms mean?"}
+{"id": "sd-11-043", "status": "written", "title": "CAP, BASE, SOLID, KISS, What do these acronyms mean?", "owner": "claude/sd101-lessons-w18-2", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T20:15:53Z", "pr": 213}
 
-{"id": "sd-11-044", "status": "todo", "title": "System Design Blueprint: The Ultimate Guide"}
+{"id": "sd-11-044", "status": "written", "title": "System Design Blueprint: The Ultimate Guide", "owner": "claude/sd101-lessons-w18-3", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:51:20Z", "pr": 219}
 
-{"id": "sd-11-045", "status": "todo", "title": "How to Design for High Availability"}
+{"id": "sd-11-045", "status": "written", "title": "How to Design for High Availability", "owner": "claude/sd101-lessons-w18-3", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:51:20Z", "pr": 219}
 
-{"id": "sd-11-046", "status": "todo", "title": "What is Cloud Native?"}
+{"id": "sd-11-046", "status": "written", "title": "What is Cloud Native?", "owner": "claude/sd101-lessons-w18-3", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:51:20Z", "pr": 219}
 
-{"id": "sd-11-047", "status": "todo", "title": "Cloud Comparison Cheat Sheet"}
+{"id": "sd-11-047", "status": "written", "title": "Cloud Comparison Cheat Sheet", "owner": "claude/sd101-lessons-w18-3", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:51:20Z", "pr": 219}
 
-{"id": "sd-11-048", "status": "todo", "title": "Big Data Pipeline Cheatsheet for AWS, Azure, and Google Cloud"}
+{"id": "sd-11-048", "status": "written", "title": "Big Data Pipeline Cheatsheet for AWS, Azure, and Google Cloud", "owner": "claude/sd101-lessons-w18-3", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:51:20Z", "pr": 219}
 
-{"id": "sd-11-049", "status": "todo", "title": "AWS Services Cheat Sheet"}
+{"id": "sd-11-049", "status": "written", "title": "AWS Services Cheat Sheet", "owner": "claude/sd101-lessons-w18-4", "session": "cse_01MF1cUkoXgxEMeDan8VPPYR", "done_at": "2026-10-19T15:59:33Z", "pr": 220}
 
-{"id": "sd-12-001", "status": "todo", "title": "How do AirTags work?"}
+{"id": "sd-12-001", "status": "written", "title": "How do AirTags work?", "owner": "claude/sd101-lessons-w19-1", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T14:45:51Z", "pr": 208}
 
-{"id": "sd-12-002", "status": "todo", "title": "How is Email Delivered?"}
+{"id": "sd-12-002", "status": "written", "title": "How is Email Delivered?", "owner": "claude/sd101-lessons-w19-1", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T14:45:51Z", "pr": 208}
 
-{"id": "sd-12-003", "status": "todo", "title": "Design Gmail"}
+{"id": "sd-12-003", "status": "written", "title": "Design Gmail", "owner": "claude/sd101-lessons-w19-1", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T14:45:51Z", "pr": 208}
 
-{"id": "sd-12-004", "status": "todo", "title": "How Google/Apple Maps Blur License Plates and Faces"}
+{"id": "sd-12-004", "status": "written", "title": "How Google/Apple Maps Blur License Plates and Faces", "owner": "claude/sd101-lessons-w19-1", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T14:45:51Z", "pr": 208}
 
-{"id": "sd-12-005", "status": "todo", "title": "Quadtree"}
+{"id": "sd-12-005", "status": "written", "title": "Quadtree", "owner": "claude/sd101-lessons-w19-1", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T14:45:51Z", "pr": 208}
 
-{"id": "sd-12-006", "status": "todo", "title": "Build a Simple Chat Application with Redis"}
+{"id": "sd-12-006", "status": "written", "title": "Build a Simple Chat Application with Redis", "owner": "claude/sd101-lessons-w19-2", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:11:37Z", "pr": 212}
 
-{"id": "sd-12-007", "status": "todo", "title": "Live Streaming Explained"}
+{"id": "sd-12-007", "status": "written", "title": "Live Streaming Explained", "owner": "claude/sd101-lessons-w19-2", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T20:16:17Z", "pr": 212}
 
-{"id": "sd-12-008", "status": "todo", "title": "How to Design a System for Internationalization"}
+{"id": "sd-12-008", "status": "written", "title": "How to Design a System for Internationalization", "owner": "claude/sd101-lessons-w19-2", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:11:37Z", "pr": 212}
 
-{"id": "sd-12-009", "status": "todo", "title": "How to Design Google Docs"}
+{"id": "sd-12-009", "status": "written", "title": "How to Design Google Docs", "owner": "claude/sd101-lessons-w19-2", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T20:16:17Z", "pr": 212}
 
-{"id": "sd-12-010", "status": "todo", "title": "Payment System"}
+{"id": "sd-12-010", "status": "written", "title": "Payment System", "owner": "claude/sd101-lessons-w19-2", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "shared_source": true, "done_at": "2026-10-19T15:11:37Z", "pr": 212}
 
-{"id": "sd-12-011", "status": "todo", "title": "Experiment Platform Architecture"}
+{"id": "sd-12-011", "status": "written", "title": "Experiment Platform Architecture", "owner": "claude/sd101-lessons-w19-3", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:32:53Z", "pr": 218}
 
-{"id": "sd-12-012", "status": "todo", "title": "Design Google Maps"}
+{"id": "sd-12-012", "status": "written", "title": "Design Google Maps", "owner": "claude/sd101-lessons-w19-3", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:32:53Z", "pr": 218}
 
-{"id": "sd-12-013", "status": "todo", "title": "Designing a Chat Application"}
+{"id": "sd-12-013", "status": "written", "title": "Designing a Chat Application", "owner": "claude/sd101-lessons-w19-3", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:32:53Z", "pr": 218}
 
-{"id": "sd-12-014", "status": "todo", "title": "Design Stock Exchange"}
+{"id": "sd-12-014", "status": "written", "title": "Design Stock Exchange", "owner": "claude/sd101-lessons-w19-3", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:32:53Z", "pr": 218}
 
-{"id": "sd-12-015", "status": "todo", "title": "How are Notifications Pushed to Our Phones or PCs?"}
+{"id": "sd-12-015", "status": "written", "title": "How are Notifications Pushed to Our Phones or PCs?", "owner": "claude/sd101-lessons-w19-3", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T15:32:53Z", "pr": 218}
 
-{"id": "sd-12-016", "status": "todo", "title": "What Happens When You Upload a File to Amazon S3?"}
+{"id": "sd-12-016", "status": "written", "title": "What Happens When You Upload a File to Amazon S3?", "owner": "claude/sd101-lessons-w19-4", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T16:06:41Z", "pr": 221}
 
-{"id": "sd-12-017", "status": "todo", "title": "Proximity Service"}
+{"id": "sd-12-017", "status": "written", "title": "Proximity Service", "owner": "claude/sd101-lessons-w19-4", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T16:06:41Z", "pr": 221}
 
-{"id": "sd-12-018", "status": "todo", "title": "How Do Search Engines Work?"}
+{"id": "sd-12-018", "status": "written", "title": "How Do Search Engines Work?", "owner": "claude/sd101-lessons-w19-4", "session": "cse_01YWnTQqPDLSbUsxkfwNWsvG", "done_at": "2026-10-19T16:06:41Z", "pr": 221}
 
 {"id": "sd-13-001", "status": "written", "title": "Top 10 Kubernetes Design Patterns"}
 
@@ -754,15 +754,15 @@
 
 {"id": "sd-14-020", "status": "written", "title": "JWT 101: Key to Stateless Authentication", "owner": "claude/sd101-sd14-lo19", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T14:34:07Z"}
 
-{"id": "sd-14-021", "status": "todo", "title": "Is HTTPS Safe?"}
+{"id": "sd-14-021", "status": "written", "title": "Is HTTPS Safe?", "owner": "claude/sd101-sd14-lo20", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:04:27Z"}
 
-{"id": "sd-14-022", "status": "todo", "title": "Cybersecurity 101"}
+{"id": "sd-14-022", "status": "written", "title": "Cybersecurity 101", "owner": "claude/sd101-sd14-lo20", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:04:27Z"}
 
-{"id": "sd-14-023", "status": "todo", "title": "Cookies vs Sessions vs JWT vs PASETO"}
+{"id": "sd-14-023", "status": "written", "title": "Cookies vs Sessions vs JWT vs PASETO", "owner": "claude/sd101-sd14-lo20", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:04:27Z"}
 
-{"id": "sd-14-024", "status": "todo", "title": "How does SSH work?"}
+{"id": "sd-14-024", "status": "written", "title": "How does SSH work?", "owner": "claude/sd101-sd14-lo20", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:04:27Z"}
 
-{"id": "sd-14-025", "status": "todo", "title": "How Does a VPN Work?"}
+{"id": "sd-14-025", "status": "written", "title": "How Does a VPN Work?", "owner": "claude/sd101-sd14-lo20", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:04:27Z"}
 
 {"id": "sd-14-026", "status": "written", "title": "How Google Authenticator Works", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
@@ -774,15 +774,15 @@
 
 {"id": "sd-14-030", "status": "written", "title": "Top Network Security Cheatsheet", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
-{"id": "sd-14-031", "status": "todo", "title": "What is SSO (Single Sign-On)?"}
+{"id": "sd-14-031", "status": "written", "title": "What is SSO (Single Sign-On)?", "owner": "claude/sd101-sd14-lo22", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:50:20Z"}
 
-{"id": "sd-14-032", "status": "todo", "title": "How does HTTPS work?"}
+{"id": "sd-14-032", "status": "written", "title": "How does HTTPS work?", "owner": "claude/sd101-sd14-lo22", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:50:20Z"}
 
-{"id": "sd-14-033", "status": "todo", "title": "Session, Cookie, JWT, Token, SSO, and OAuth 2.0 Explained"}
+{"id": "sd-14-033", "status": "written", "title": "Session, Cookie, JWT, Token, SSO, and OAuth 2.0 Explained", "owner": "claude/sd101-sd14-lo22", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:50:20Z"}
 
-{"id": "sd-14-034", "status": "todo", "title": "Explaining JSON Web Token (JWT) to a 10 Year Old Kid"}
+{"id": "sd-14-034", "status": "written", "title": "Explaining JSON Web Token (JWT) to a 10 Year Old Kid", "owner": "claude/sd101-sd14-lo22", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:50:20Z"}
 
-{"id": "sd-14-035", "status": "todo", "title": "OAuth 2.0 Explained With Simple Terms"}
+{"id": "sd-14-035", "status": "written", "title": "OAuth 2.0 Explained With Simple Terms", "owner": "claude/sd101-sd14-lo22", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:50:20Z"}
 
 {"id": "sd-15-001", "status": "written", "title": "Paging vs Segmentation", "owner": "claude/sweet-darwin-qnva4b", "done_at": "2026-10-15T15:42:38Z"}
 

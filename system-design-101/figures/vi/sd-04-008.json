@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-008",
+  "lang": "vi",
+  "title": "Sáu mẫu quản lý dữ liệu: gốc hay dẫn xuất",
+  "subtitle": "Năm mẫu có thể tạo bản dẫn xuất; sharding chia chính bản gốc.",
+  "desc": "Ba khung. Khung một, ba mẫu đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và đọc, ở hai kho thì mô hình đọc theo sau; event sourcing lấy chuỗi sự kiện làm bản gốc, view dựng từ đó có thể cũ; sharding chia chính bản gốc theo khóa shard, lo ngại là shard nóng. Khung ba, với mọi bản dẫn xuất: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đọc nhanh nhờ một bản dữ liệu thứ hai",
+      "items": [
+        {
+          "name": "Cache-aside",
+          "role": "Đọc cache trước; trượt thì đọc kho rồi nạp vào cache. Cũ tới khi hết hạn hoặc bị xóa.",
+          "icon": "zap"
+        },
+        {
+          "name": "Materialized view",
+          "role": "Lưu sẵn kết quả truy vấn nặng. Cũ tới lần làm mới: thấy 70, bảng gốc đã 100.",
+          "icon": "layers"
+        },
+        {
+          "name": "Index table",
+          "role": "Bảng phụ sắp theo khóa khác để tra nhanh; phải cập nhật cùng bảng gốc.",
+          "icon": "search"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Đổi cách lưu dữ liệu",
+      "items": [
+        {
+          "name": "CQRS",
+          "role": "Tách mô hình ghi và đọc; ở hai kho thì mô hình đọc theo sau.",
+          "icon": "split"
+        },
+        {
+          "name": "Event sourcing",
+          "role": "Chuỗi sự kiện là bản gốc; view dựng từ sự kiện có thể cũ.",
+          "icon": "history"
+        },
+        {
+          "name": "Sharding",
+          "role": "Chia chính bản gốc theo khóa shard; lo ngại là shard nóng.",
+          "icon": "boxes"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Với mọi bản dẫn xuất, hỏi",
+      "items": [
+        "Bản dữ liệu thứ hai được làm mới khi nào?",
+        "Người dùng chịu được dữ liệu cũ bao lâu?",
+        "Bản sao lệch với bản gốc thì ai phát hiện, ai sửa?"
+      ]
+    }
+  ]
+}

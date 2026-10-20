@@ -1,0 +1,15 @@
+{
+  "id": "sd-11-015",
+  "title": "Hai mươi lăm bài báo, năm nhóm",
+  "subtitle": "Chọn nhóm theo vấn đề trước.",
+  "desc": "Hai khung. Khung một, dữ liệu và xử lý: chín bài về lưu trữ và cơ sở dữ liệu, năm bài về xử lý và điều phối. Khung hai, còn lại: bốn bài về bộ nhớ đệm, quan sát và phân quyền, năm bài về nền tảng lý thuyết và công cụ, hai bài về ứng dụng cụ thể.",
+  "sections": [
+    {"kind": "notes", "heading": "Dữ liệu và xử lý", "items": [
+      "Lưu trữ, cơ sở dữ liệu: 9 bài.",
+      "Xử lý, điều phối: 5 bài."]},
+    {"kind": "notes", "heading": "Còn lại", "items": [
+      "Đệm, quan sát, phân quyền: 4 bài.",
+      "Nền tảng, công cụ: 5 bài.",
+      "Ứng dụng cụ thể: 2 bài."]}
+  ]
+}

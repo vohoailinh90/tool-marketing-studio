@@ -1,0 +1,186 @@
+{
+  "id": "sd-14-032",
+  "title_vi": "HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-032",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-https-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-https-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "cd9cda613eebba9d6fc83cab1c39090bb11365d8",
+    "retrieved_body_sha256": "4054037716ee6b229a29840af46ba5b7af26e445ff70121f66cb71b20921823c",
+    "retrieved_body_bytes": 2041
+  },
+  "diagram": "../diagrams/sd-14-032-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "uses",
+      "reason_vi": "Máy chủ gửi chứng chỉ để chứng minh danh tính sau khi hai bên đã thương lượng."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "uses",
+      "reason_vi": "Máy chủ ký để chứng minh nó giữ khóa riêng; client liệt kê thuật toán chữ ký nó chấp nhận."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. MDN (commit a1aa79c), OWASP Transport Layer Security Cheat Sheet (commit 1c3144a), OpenSSL TLS introduction guide (master, commit 6d76833) and OpenSSL 3.0.13 manual pages (commit 85cf92f, the commit behind tag openssl-3.0.13) were read from raw.githubusercontent.com. Behaviour observed with the locally installed openssl 3.0.13 (s_server and s_client on 127.0.0.1, random ports above 20000, throw-away self-signed EC P-256 and RSA-2048 certificates, one run each on the authoring machine): version, cipher-suite, key-exchange-group and signature-algorithm negotiation and their failures, openssl ciphers -v, s_client -trace of ClientHello and ServerHello, and the same HTTP exchange over TLS 1.2 and 1.3. The TLS RFCs (IETF) were not reachable and were not read; everything about message formats rests on the s_client trace output and the documents above, and RSA key transport is described from general knowledge."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source says HTTPS is HTTP over TLS and lists four steps: a TCP connection; client hello with cipher suites and the latest TLS version it supports, server hello and the certificate; the client validates the certificate, generates a session key, encrypts it with the public key and the server decrypts it with the private key; both then use the same session key for symmetric encryption. It gives two reasons for the switch to symmetric encryption: 'security' (asymmetric encryption goes one way, so a reply could be decrypted by anyone with the public key) and 'server resources' (mathematical overhead).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-https-work.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "MDN: TLS secures a connection with encryption, integrity and authentication; the handshake sets the security parameters: client and server agree on the TLS version, on the cipher suite (key agreement, authentication, encryption and message authentication algorithms), optionally authenticate each other, and agree on a secret key that encrypts and decrypts the messages, including HTTP headers and bodies, after the handshake. TLS 1.3 is the current and most widely used version, TLS 1.2 is still used, TLS 1.1 and 1.0 should no longer be used.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "MDN: a cipher suite is a combination of a key exchange algorithm, an authentication method, a bulk encryption cipher and a message authentication code; ECDHE_RSA_WITH_AES_128_GCM_SHA256 / ECDHE-RSA-AES128-GCM-SHA256 means ECDHE for key exchange, RSA for authentication, AES-128 with GCM as the cipher and mode, and SHA-256 as the HMAC. The lesson reports this as MDN's reading and then corrects it for GCM suites (see the next claim).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cipher_suite/index.md",
+      "section": "Đọc hình (Đọc tên bộ mã)",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OpenSSL manual (SSL_CIPHER_get_name): SSL_CIPHER_get_digest_nid returns the digest of the MAC used for record encryption, and none for AEAD cipher suites (e.g. GCM, ChaCha20/Poly1305); SSL_CIPHER_get_handshake_digest returns the digest used during the handshake, which may differ from the digest used to calculate the MAC for encrypted records; the Mac field of openssl ciphers -v is the message digest, as in Mac=AEAD for ECDHE-RSA-AES256-GCM-SHA256. Observed with openssl 3.0.13: openssl ciphers -v printed Mac=AEAD for ECDHE-RSA-AES128-GCM-SHA256 and for the three TLS 1.3 suites, and Mac=SHA256 for ECDHE-RSA-AES128-SHA256 (not GCM). So in a GCM suite name the SHA-256 is not the record MAC; the lesson calls it the handshake digest, following the manual, and does not go further into its role.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man3/SSL_CIPHER_get_name.pod",
+      "section": "Đọc hình (Đọc tên bộ mã)",
+      "verified_by": "Manual page read at the pinned commit (raw.githubusercontent.com); output observed by running openssl ciphers -v locally (openssl 3.0.13)."
+    },
+    {
+      "claim_vi": "MDN: public-key encryption systems are typically much slower than symmetric algorithms and the size of the messages they can encrypt is proportional to the key size, so they do not scale to long messages; it is common to encrypt messages with a symmetric algorithm and encrypt the symmetric key with a public-key system. MDN defines encryption as public key encrypts, private key decrypts. The 'goes only one way' argument of the source does not appear on the MDN pages read.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/public-key_cryptography/index.md",
+      "section": "Xem sâu hơn (Lý do của nguồn)",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit. Speed was not measured in this lesson."
+    },
+    {
+      "claim_vi": "The OpenSSL TLS guide says TLS performs version negotiation so that the highest protocol version both sides share is used, that OpenSSL tries to negotiate the highest version it is configured to support, that the client starts with a ClientHello and the server answers with a ServerHello, and that the server proves it holds the private key of its certificate by digitally signing a message. Observed with openssl 3.0.13: a default s_client against a default s_server negotiated TLSv1.3 with TLS_AES_256_GCM_SHA384; with -tls1_2 it negotiated TLSv1.2 with ECDHE-ECDSA-AES256-GCM-SHA384.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Đọc hình (Máy chủ chọn)",
+      "verified_by": "Guide read at the pinned master commit (the guide page does not exist in 3.0.13); behaviour observed by running openssl 3.0.13 s_server and s_client locally, script run_exp.py, experiment 1."
+    },
+    {
+      "claim_vi": "Observed with openssl 3.0.13 (s_client -trace, default options, against a default s_server): the ClientHello cipher_suites list had 31 entries: 3 TLS 1.3 suites, 27 TLS 1.2 suites (6 of them TLS_RSA_WITH_*) and the special value TLS_EMPTY_RENEGOTIATION_INFO_SCSV; supported_groups listed 10 groups with ecdh_x25519 first; signature_algorithms listed 20 algorithms; supported_versions listed TLS 1.3 and TLS 1.2; client_version was 0x303 (TLS 1.2). The ServerHello carried server_version 0x303 (TLS 1.2), one cipher_suite (TLS_AES_256_GCM_SHA384), supported_versions TLS 1.3 and a key_share for x25519. A client limited to TLS 1.2 sent 28 cipher suite entries. These counts describe OpenSSL's defaults on this machine, not any browser; no browser was measured.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình (Khung 1); Xem sâu hơn (Phiên bản và server hello)",
+      "verified_by": "Observed by running openssl 3.0.13 s_client -trace locally (scripts trace_exp.py and trace2.py; output files trace_default.txt and trace_tls12_client.txt); the s_client manual page read at 3.0.13 documents -trace, -brief, -cipher, -ciphersuites, -sigalgs and -curves (the -groups option was taken from the installed binary's s_client -help, not from that manual page). Why the old version fields stay at TLS 1.2 is not stated in the documents read and the RFCs were not reachable."
+    },
+    {
+      "claim_vi": "OpenSSL manual: SSL_CIPHER_description prints fields Kx (key exchange), Au (authentication), Enc (symmetric encryption method with number of secret bits) and Mac; the OpenSSL docs say a key exchange or authentication of 'any' is reported when any appropriate algorithm can be used, as in the case of TLS 1.3 cipher suites. Observed: openssl ciphers -v printed Kx=any Au=any for TLS_AES_256_GCM_SHA384, TLS_CHACHA20_POLY1305_SHA256 and TLS_AES_128_GCM_SHA256, and Kx=ECDH Au=ECDSA for ECDHE-ECDSA-AES256-GCM-SHA384; the TLS 1.3 suites listed in openssl-ciphers.pod are AES-GCM, ChaCha20-Poly1305, AES-CCM and SM4 names, none with RSA key exchange.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man3/SSL_CIPHER_get_name.pod",
+      "section": "Đọc hình (Đọc tên bộ mã)",
+      "verified_by": "Manual pages SSL_CIPHER_get_name.pod and openssl-ciphers.pod.in read at the 3.0.13 commit; output observed by running openssl ciphers -v locally."
+    },
+    {
+      "claim_vi": "The s_server manual says that when the client sends a list of ciphers, the first client cipher also in the server list is used, so the client's order decides unless -serverpref is given, which uses the server's preferences. Observed: a TLS 1.3 server offering TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384 selected TLS_AES_256_GCM_SHA384 for a client listing AES-256 first and TLS_CHACHA20_POLY1305_SHA256 for a client listing ChaCha20 first; with -serverpref it selected TLS_AES_128_GCM_SHA256 for both. How other server software orders its choice was not checked.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man1/openssl-s_server.pod.in",
+      "section": "Đọc hình (Máy chủ chọn; Khung 3)",
+      "verified_by": "Manual read at the 3.0.13 commit; behaviour observed by running openssl 3.0.13 locally, script run_exp.py, experiment 5 (5a and 5b)."
+    },
+    {
+      "claim_vi": "Observed with openssl 3.0.13 when the two sides share nothing: (a) server limited to TLS 1.2 and client to TLS 1.3, and the reverse: the client printed 'tlsv1 alert protocol version' with SSL alert number 70 and the server logged 'unsupported protocol'; (b) server with one TLS 1.2 suite ECDHE-ECDSA-AES128-GCM-SHA256 and client offering only ECDHE-ECDSA-AES256-GCM-SHA384, and the same with one TLS 1.3 suite on each side: the client printed 'sslv3 alert handshake failure' with alert number 40 and the server logged 'no shared cipher'; (c) server with -groups P-256 and client with -groups X25519: alert 40 and server log 'no suitable key share'; (d) EC certificate and a client sending -sigalgs rsa_pss_rsae_sha256: alert 40 and server log 'no suitable signature algorithm'. The trace of a failed handshake showed the server's whole answer as one record 'Level=fatal(2), description=protocol version(70)' or 'handshake failure(40)' with Length = 2, and s_client reported 'SSL handshake has read 7 bytes'. The text 'sslv3' is part of OpenSSL's message although the client offered only TLS 1.3. Offering the server's suite as well made the connection succeed with that suite, in either order of the client's list (two orders tried).",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình (Khung 2); Nhìn hình trả lời",
+      "verified_by": "Observed by running openssl 3.0.13 locally, script run_exp.py, experiments 2, 3 and 6 and the failure traces from trace2.py (output files out_exp2.txt, out_exp3.txt, out_exp6.txt, trace_fail_version.txt, trace_fail_cipher.txt). Alert wording is whatever OpenSSL 3.0.13 prints; other implementations word it differently."
+    },
+    {
+      "claim_vi": "Observed: with the client offering X25519:P-256 and the server limited to P-256, the connection succeeded with a P-256 key exchange (Server Temp Key: ECDH, prime256v1, 256 bits); the trace showed two ClientHello messages: the first with a key share for x25519, then a server message that names only secp256r1 (P-256) in its key_share extension, then a second ClientHello with a key share for P-256. The name of that server message was not verified.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man1/openssl-s_client.pod.in",
+      "section": "Xem sâu hơn (Nhóm khóa lệch)",
+      "verified_by": "Observed by running openssl 3.0.13 s_client -trace locally (trace_hrr.txt)."
+    },
+    {
+      "claim_vi": "Observed with an RSA-2048 self-signed certificate and TLS 1.2: a default s_server accepted a client offering only AES128-GCM-SHA256 (listed by openssl ciphers -v as Kx=RSA Au=RSA), and s_client -brief printed neither a 'Server Temp Key' line nor a 'Signature type' line; a client offering only ECDHE-RSA-AES128-GCM-SHA256 printed 'Server Temp Key: X25519, 253 bits' and 'Signature type: RSA-PSS'. A server restricted to ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384 refused the first client with alert 40 and the log 'no shared cipher' and accepted the second. The OpenSSL manual for SSL_get_peer_signature_nid says the signature functions fail when the cipher suite has no signature, for example when it uses RSA key exchange; SSL_get_peer_tmp_key describes the temporary key used during key exchange, for example the peer's public ECDHE key.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man3/SSL_get_peer_signature_nid.pod",
+      "section": "Giới hạn cần nhớ; Xem sâu hơn (Bước 3 của nguồn)",
+      "verified_by": "Manual pages SSL_get_peer_signature_nid.pod and SSL_get_peer_tmp_key.pod read at the 3.0.13 commit; behaviour observed by running openssl 3.0.13 locally (experiment 7). That the absent lines mean no ephemeral key and no handshake signature is the author's reading of the manual and of the output, not stated by the s_client manual."
+    },
+    {
+      "claim_vi": "RSA key transport (the client generates the secret, encrypts it to the server's public key, and the server decrypts it with the private key) is what the TLS_RSA_* / Kx=RSA suites of TLS 1.2 do; this description of the mechanism is not in the documents read, which only say that OpenSSL has cipher strings for 'cipher suites using RSA key exchange'. The 6 TLS_RSA_WITH_* entries in the default ClientHello and the absence of any RSA-key-exchange suite among the TLS 1.3 suites of the manual were observed.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man1/openssl-ciphers.pod.in",
+      "section": "Xem sâu hơn (Bước 3 của nguồn)",
+      "verified_by": "Author's general knowledge; not checked against RFC 5246 or RFC 8446 (not reachable). The cipher-string description 'Cipher suites using RSA key exchange or authentication' was read in openssl-ciphers.pod.in."
+    },
+    {
+      "claim_vi": "OWASP: web applications must default to TLS 1.3 and may support TLS 1.2 for compatibility; TLS 1.0 and 1.1 are deprecated and must be disabled; for TLS 1.3 use AEAD suites (AES-GCM or ChaCha20-Poly1305); RSA key transport (TLS_RSA_*) and static Diffie-Hellman suites should be disabled because they do not provide forward secrecy. The meaning of forward secrecy used in the lesson (a later leak of the server's private key does not expose recorded past sessions) is the author's general knowledge.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit. The forward-secrecy definition: Author's general knowledge; not checked against the linked RFC 9325 (not reachable)."
+    },
+    {
+      "claim_vi": "Observed: a GET request for a small file sent through openssl s_client -quiet to openssl s_server -WWW over TLS 1.2 and over TLS 1.3 returned the same 67 bytes (identical SHA-256) both times, 'HTTP/1.0 200 ok', a Content-type line and the file text.",
+      "source": "https://github.com/openssl/openssl/blob/85cf92f55d9e2ac5aacf92bedd33fb890b9f8b4c/doc/man1/openssl-s_server.pod.in",
+      "section": "Đọc hình (Khung 3)",
+      "verified_by": "Observed by running openssl 3.0.13 locally, script http_same.py. One run, a toy server; says nothing about real HTTP servers."
+    },
+    {
+      "claim_vi": "Not examined: certificate validation, certificate chains, session resumption, 0-RTT early data, ALPN, downgrade protection, post-quantum key exchange groups, how browsers order their lists, and the timing or size cost of the different suites.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-https-work.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    },
+    {
+      "claim_vi": "Observed with openssl 3.0.13 (s_server -WWW and s_client -keylogfile on a random port above 20000, self-signed RSA certificate): the TLS 1.3 key log had five lines, CLIENT_HANDSHAKE_TRAFFIC_SECRET, SERVER_HANDSHAKE_TRAFFIC_SECRET, CLIENT_TRAFFIC_SECRET_0, SERVER_TRAFFIC_SECRET_0 and EXPORTER_SECRET, each a 48-byte value, all different from each other in the one connection (so the client and server traffic secrets differ); the TLS 1.2 key log had a single CLIENT_RANDOM line with one 48-byte secret, which does not show per-direction keys. That TLS 1.2 also derives separate keys for each direction from its master secret is the author's general knowledge, not run here.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Khung 2 (Hai kết cục)",
+      "verified_by": "Observed by running openssl 3.0.13 locally; the -keylogfile option is documented in the s_client manual page read at the pinned commit. The RFC text on key derivation was not reachable and was not read."
+    },
+    {
+      "claim_vi": "OpenSSL TLS introduction guide: strictly speaking there are situations where the client can start sending application data even earlier than the end of the handshake, using the TLSv1.3 \"early data\" capability (the guide skips it); openssl s_client manual (-early_data): the file is sent as early data to the server, which only works with resumed sessions that support early data and when the server accepts it. The lesson therefore scopes its statement that negotiation comes before the first encrypted HTTP byte to a full handshake and names early data on a resumed TLS 1.3 session as an exception it does not cover. That the early data is sent encrypted in the client's first flight is the author's general knowledge, not run.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Phần mở đầu",
+      "verified_by": "Read the guide page and the s_client manual source (openssl-s_client.pod.in) at the pinned commit from raw.githubusercontent.com; early data was not run, and the RFC text was not reachable."
+    }
+  ],
+  "design_notes_vi": "Ba khung xếp dọc: trình tự client đưa danh sách và máy chủ chọn, hai kết cục (có điểm chung hoặc cảnh báo), ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source describes step 3 (the client encrypts a session key with the server's public key and the server decrypts it with the private key) as how HTTPS works; the lesson presents it as one family of TLS 1.2 suites (RSA key exchange) that OWASP says to disable, notes that TLS 1.3 has no such suite, and shows that the suite is chosen by negotiation.",
+    "The source says the client sends 'the latest TLS version it can support'; the lesson shows that the ClientHello carries a list of versions and that its older version field still says TLS 1.2.",
+    "The source says the server hello lets the browser know whether it can support the algorithms and TLS version; the lesson says the ServerHello names the single choice made and that, when there is no common option, the server sends a fatal alert instead.",
+    "The source says a hijacker only gets 'binary code'; the lesson names the three properties MDN lists (encryption, integrity, authentication) instead.",
+    "The source's 'security' reason for switching to symmetric encryption (asymmetric encryption goes only one way) is not in the MDN or OWASP pages read and is not used; the lesson reports only the MDN reasons (speed and message size).",
+    "The source says nothing about what happens when client and server share no version, cipher suite, group or signature algorithm; the lesson shows the alert and the log lines for each case.",
+    "MDN's cipher suite glossary reads SHA-256 in ECDHE-RSA-AES128-GCM-SHA256 as the HMAC (message authentication code); for a GCM suite the record authentication is done by GCM itself (openssl ciphers -v prints Mac=AEAD), and the OpenSSL manual describes the digest in the name as the handshake digest, so the lesson says so instead of repeating MDN's reading."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

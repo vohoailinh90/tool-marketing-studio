@@ -1,0 +1,60 @@
+{
+  "id": "sd-14-035",
+  "lang": "vi",
+  "title": "Token OAuth: API kiểm gì, token không nói gì",
+  "subtitle": "Thử trên máy chủ ủy quyền thu nhỏ",
+  "desc": "Ba khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token khi header có typ, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, vì ID token của OpenID Connect cho biết người dùng là ai nhưng độ mới của lần đăng nhập còn cần max_age và auth_time; cho biết ai đang cầm, vì với token bearer ai có chuỗi cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Thí nghiệm: bốn phép thử trên token JWT",
+      "items": [
+        {
+          "title": "Chữ ký",
+          "text": "Do máy chủ ủy quyền ký, nội dung chưa bị sửa."
+        },
+        {
+          "title": "Hạn (exp)",
+          "text": "Quá hạn thì trả 401."
+        },
+        {
+          "title": "Audience",
+          "text": "Cấp cho API khác thì trả 401."
+        },
+        {
+          "title": "Scope",
+          "text": "Thiếu quyền cần cho việc này thì trả 403."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Chưa phải danh sách đầy đủ",
+      "items": [
+        "Token JWT còn phải kiểm bên phát hành, và loại token nếu header có typ.",
+        "Token chuỗi mờ không có chữ ký: API hỏi máy chủ ủy quyền."
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Token không làm được",
+      "items": [
+        {
+          "name": "Chứng minh đăng nhập",
+          "role": "Không. ID token cho biết ai; độ mới cần auth_time.",
+          "icon": "circle-x"
+        },
+        {
+          "name": "Biết ai đang cầm",
+          "role": "Không. Token bearer: ai có chuỗi cũng dùng được.",
+          "icon": "circle-x"
+        },
+        {
+          "name": "Tự nâng quyền",
+          "role": "Không. Sửa nội dung thì hỏng chữ ký.",
+          "icon": "circle-x"
+        }
+      ]
+    }
+  ]
+}

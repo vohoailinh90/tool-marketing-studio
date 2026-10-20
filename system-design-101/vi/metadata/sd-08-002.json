@@ -1,0 +1,99 @@
+{
+  "id": "sd-08-002",
+  "title_vi": "Điều phối hay tự phối hợp: các dịch vụ làm việc với nhau thế nào",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-08-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/orchestration-vs-choreography-microservices.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/orchestration-vs-choreography-microservices.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "7d7306ebc36c9a3ec450913cce2df90498362406",
+    "retrieved_body_sha256": "ef13a20220c2c2b8b4f12e5f313911ff238c6b916feca36e4756e8349e2ff85b",
+    "retrieved_body_bytes": 2245
+  },
+  "diagram": "../diagrams/sd-08-002-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Microsoft's Choreography pattern and Saga pattern pages and Netflix Conductor's introduction read from local clones; the counting model of a four-step saga run as a small Python program (counts only, no benchmark)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Orchestration: a central controller handles all the transactions, tells participants which operation to perform, stores and interprets the state of each task and handles failure recovery with compensating transactions. It suits complex workflows or workflows that add new services, avoids cyclic dependencies and separates responsibilities, but needs coordination logic and introduces a point of failure.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/saga-content.md",
+      "section": "Orchestration",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Choreography: services exchange events without a centralized controller; it suits simple workflows with few services, needs no extra coordinating service and has no single point of failure, but gets confusing when steps are added, risks cyclic dependency and makes integration testing hard.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/saga-content.md",
+      "section": "Choreography",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "An orchestrator can be a bottleneck and single point of failure; when it fails or is overloaded the failure can propagate to all dependent services. In choreography services publish events through a broker, failures are events that others compensate for, no component sees the whole transaction so distributed tracing and correlation identifiers are needed.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/choreography.md",
+      "section": "Context and problem; Solution; Issues and considerations",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Netflix Conductor orchestrates microservice process flows, stores workflow state and offers pause, resume, restart, retry and terminate.",
+      "source": "https://github.com/Netflix/conductor/blob/548f386c2c6c1e4d467b8551edbb6182881004ae/docs/docs/gettingstarted/intro.md",
+      "section": "Features",
+      "verified_by": "Read from a local clone of Netflix/conductor at commit 548f386c2c6c1e4d467b8551edbb6182881004ae."
+    },
+    {
+      "claim_vi": "Counting model of a four-step saga (pay, reserve, ship, mail): with failure at step 1/2/3/4 choreography sends 2/4/6/8 messages and orchestration 2/6/10/14 (orchestration counts a command and a reply per step and per undo; choreography one event per step plus a start event and one event announcing each undo, the last one included, no acknowledgements); no failure 5 and 8; both leave 0 steps done after a failure. Adding a fraud step after pay changes the subscriptions of 2 existing choreographed services (pay and reserve) and 0 existing services under orchestration.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/saga-content.md",
+      "section": "Experiment",
+      "verified_by": "Run by the author on 2026-10-19 with a small Python program that models the steps; a counting model, not a measurement of a real broker."
+    },
+    {
+      "claim_vi": "Two ways for microservices to collaborate, orchestration and choreography; orchestration has built-in transaction management and error handling and needs only the orchestrator changed when a service is added; its limits are latency, throughput bound by the orchestrator and a single point of failure.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/orchestration-vs-choreography-microservices.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Hai sơ đồ trình tự cho cùng một đơn hàng và một khung ghi chú kết quả đếm. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source says adding a service to choreography requires modifying all interacting services; in the lesson's straight four-step model only the two neighbours of the new step change.",
+    "Source says orchestration is more reliable because it has built-in transaction management; the lesson also states the orchestrator as a point of failure and notes Conductor's persisted workflow state, following Microsoft's guidance.",
+    "The lesson adds a message-counting model that the source does not contain."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

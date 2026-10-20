@@ -1,0 +1,18 @@
+{
+  "id": "sd-11-014",
+  "title": "Tám mẫu chống lỗi lan",
+  "subtitle": "Giới hạn thiệt hại, không ngăn lỗi.",
+  "desc": "Hai khung. Khung một, bốn mẫu bảo vệ bên gọi: giới hạn thời gian chờ, thử lại, ngắt mạch, giới hạn tốc độ. Khung hai, bốn mẫu bảo vệ bên nhận và cả hệ thống: bỏ bớt việc khi quá tải, ngăn khoang, áp lực ngược, để nó sập rồi dựng lại.",
+  "sections": [
+    {"kind": "notes", "heading": "Bên gọi tự bảo vệ", "items": [
+      "Timeout: chờ tối đa rồi bỏ.",
+      "Retry: thử lại lỗi thoáng qua.",
+      "Ngắt mạch: ngừng gọi bên đang lỗi.",
+      "Giới hạn tốc độ: tối đa số lượt mỗi khoảng."]},
+    {"kind": "notes", "heading": "Bên nhận và cả hệ thống", "items": [
+      "Bỏ bớt việc: từ chối khi quá tải.",
+      "Ngăn khoang: tài nguyên chia khoang riêng.",
+      "Áp lực ngược: báo bên gửi chậm lại.",
+      "Để nó sập: dựng lại từ trạng thái sạch."]}
+  ]
+}

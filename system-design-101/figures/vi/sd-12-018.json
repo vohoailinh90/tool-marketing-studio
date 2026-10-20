@@ -1,0 +1,26 @@
+{
+  "id": "sd-12-018",
+  "title": "Công cụ tìm kiếm hoạt động thế nào",
+  "subtitle": "Thu thập, lập chỉ mục, phục vụ kết quả.",
+  "desc": "Hai khung. Khung một, ba việc nối nhau: thu thập, trong đó chương trình bò web đi từ vài trang hạt giống theo liên kết để tải trang; lập chỉ mục, trong đó nội dung trang được phân tích và xếp thành chỉ mục tra từ ra trang; phục vụ kết quả, gồm phân tích truy vấn, truy xuất trang khớp từ chỉ mục, rồi xếp hạng. Khung hai, ba điều rút ra từ thử nghiệm: từ vài hạt giống theo liên kết tới được phần lớn nhưng không phải mọi trang, chỉ mục trả lời nhanh hơn nhiều so với quét từng trang, và xếp hạng cần thứ gì đó hơn việc khớp từ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba việc nối nhau",
+      "items": [
+        {"title": "Thu thập", "text": "Từ trang hạt giống, theo liên kết."},
+        {"title": "Lập chỉ mục", "text": "Từ nào nằm ở những trang nào."},
+        {"title": "Phục vụ", "text": "Phân tích câu hỏi, truy xuất, xếp hạng."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều rút ra",
+      "items": [
+        "Theo liên kết từ hạt giống không tới mọi trang.",
+        "Chỉ mục trả lời nhanh hơn quét từng trang.",
+        "Khớp từ chưa đủ: còn phải xếp hạng."
+      ]
+    }
+  ]
+}

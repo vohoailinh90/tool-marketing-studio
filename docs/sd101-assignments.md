@@ -18,9 +18,9 @@ authority on what is being worked on right now; this page only reserves what com
 - **Expiry.** A reservation lapses when nothing in its range has been claimed, touched or merged for 72 hours since the date of its
   row (the same lease the claim tools use). The tools keep skipping it until its row changes, so a session that takes a lapsed range
   claims it by id and, in the same pull request, rewrites the row with its own branch.
-- **Snapshot.** Counted on 2026-10-20 at 01:05 UTC from `main`, against source commit `b28380a` of
-  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons, 403 of them written and on `main`. 384 have a finished
-  deck; the 19 without one are sd-04-013..024 and sd-06-023..029. sd-02-030 is not written (its source is a picture alone).
+- **Snapshot.** Counted on 2026-10-20 at 02:10 UTC, against source commit `b28380a` of ByteByteGoHq/system-design-101 (which has
+  not moved): 404 lessons, 403 of them written and on `main`, and every written lesson has a finished deck with its badged PPTX
+  once #236 merges. sd-02-030 is not written (its source is a picture alone).
 
 ## Assigned (dispatched 2026-10-19)
 
@@ -48,8 +48,9 @@ authority on what is being worked on right now; this page only reserves what com
 | sd-04-013..024 | lessons | `claude/sd101-l3-sd04` (#228) | done |
 | sd-06-023..029 | lessons | `claude/sd101-l6-sd06-b` (#227) | done |
 | sd-06-001..003, sd-06-009..011, sd-13-009..011, sd-13-017..020 | decks | #194, #197 | done |
-| sd-04-013..024, sd-06-023..029 | deck and PPTX | the VPS team (a Claude session with Moda; owner request 2026-10-20) | assigned |
-| sd-02-030 | lesson | held for the owner's decision: its source is a picture with no text | held |
+| sd-04-022..024, sd-06-023..029 | deck and PPTX | `claude/sd101-slides-batch-10` (#235) | done |
+| sd-04-013..021 | deck and PPTX | `claude/sd101-decks-w23-sd04` (#236) | done |
+| sd-02-030 | lesson, figure, deck and PPTX | held for the owner's decision: its source is a picture with no text | held |
 
-403 of the 404 lessons are on `main`. The two rows above reserve what is left: the decks of the 19 lessons that have none, for
-the VPS team, and sd-02-030, until the owner decides whether it gets a lesson.
+All 403 written lessons have their deck and badged PPTX. The one row still open holds sd-02-030, its lesson and its deck,
+until the owner decides whether it gets a lesson.

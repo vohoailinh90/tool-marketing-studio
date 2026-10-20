@@ -1,0 +1,26 @@
+id: sd-06-024
+status: done
+owner: claude/sd101-slides-batch-10
+claimed_at: '2026-10-20T01:03:46Z'
+done_at: '2026-10-20T01:17:17Z'
+moda_canvas: cvs_1NWDTR8XAH8CC9Y0QCPY4509V9
+moda_url: https://moda.app/canvas/35e37584-7551-4318-9f02-ecb788502769
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - card-grid
+  - flow
+  - one-big-number
+  - two-column-comparison
+  - lookup-table
+  - numbered-rows
+  - 2x2-matrix
+  - lookup-table
+  - card-grid
+  first_concept: 3
+  cannot:
+    sequence-diagram: the lesson states no messages between parties, only sizes before
+      and after compression

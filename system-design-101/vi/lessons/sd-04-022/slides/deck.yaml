@@ -1,0 +1,25 @@
+id: sd-04-022
+status: done
+owner: claude/sd101-slides-batch-10
+claimed_at: '2026-10-20T01:03:46Z'
+done_at: '2026-10-20T01:06:41Z'
+moda_canvas: cvs_6AY4PFE6X99VVAJ80E9JW85GKB
+moda_url: https://moda.app/canvas/caf12cf7-1ba9-4ef6-a920-0e4cb882c26b
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - flow
+  - one-highlighted-sentence
+  - two-column-comparison
+  - lookup-table
+  - connection-diagram
+  - numbered-rows
+  - two-column-comparison
+  - layers
+  - card-grid
+  first_concept: 3
+  cannot:
+    one-big-number: the lesson states no number

@@ -1,0 +1,23 @@
+id: sd-06-026
+status: done
+owner: claude/sd101-slides-batch-10
+claimed_at: '2026-10-20T01:03:46Z'
+done_at: '2026-10-20T01:22:13Z'
+moda_canvas: cvs_14KRYHYXVN99TB8ANACWSBRC17
+moda_url: https://moda.app/canvas/249e3d1f-7775-4a74-b42a-aa6732bc3027
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - layers
+  - connection-diagram
+  - two-column-comparison
+  - sequence-diagram
+  - one-big-number
+  - timeline
+  - numbered-rows
+  - 2x2-matrix
+  - lookup-table
+  - card-grid
+  first_concept: 3

@@ -18,9 +18,9 @@ authority on what is being worked on right now; this page only reserves what com
 - **Expiry.** A reservation lapses when nothing in its range has been claimed, touched or merged for 72 hours since the date of its
   row (the same lease the claim tools use). The tools keep skipping it until its row changes, so a session that takes a lapsed range
   claims it by id and, in the same pull request, rewrites the row with its own branch.
-- **Snapshot.** Counted on 2026-10-19 at 20:30 UTC from `main` and every remote branch, against source commit `b28380a` of
-  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons. 384 are written (368 on `main`, 16 more in merge train 4).
-  The 20 not written yet: sd-02-030 (its source is a picture alone; it waits on the owner), sd-04-013..024 and sd-06-023..029.
+- **Snapshot.** Counted on 2026-10-20 at 01:05 UTC from `main`, against source commit `b28380a` of
+  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons, 403 of them written and on `main`. 384 have a finished
+  deck; the 19 without one are sd-04-013..024 and sd-06-023..029. sd-02-030 is not written (its source is a picture alone).
 
 ## Assigned (dispatched 2026-10-19)
 
@@ -39,14 +39,17 @@ authority on what is being worked on right now; this page only reserves what com
 | sd-14-016..035 | lesson, figure, deck and PPTX | `claude/sd101-sd14-lo` | done |
 | sd-11-001..049, sd-12-001..018 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w16-` .. `w19-` | done |
 | sd-14-001..015 | deck and PPTX | `claude/trusting-gauss-foyunq` | done |
-| sd-04-001..012, sd-06-016..022 | deck and PPTX | `claude/sd101-decks-w21-` | assigned |
+| sd-04-001..012, sd-06-016..022 | deck and PPTX | `claude/sd101-decks-w21-` | done |
 
-## Held by other sessions (already claimed or in an open pull request)
+## Still to do
 
-| Range | Work | Branch or pull request |
-|---|---|---|
-| sd-04-013..024 | lessons | `claude/sd101-l3-sd04` (claim lapses 2026-10-21 13:32 UTC) |
-| sd-06-023..029 | lessons | `claude/sd101-l6-sd06-b` (written, no pull request yet) |
-| sd-06-001..003, sd-06-009..011, sd-13-009..011, sd-13-017..020 | decks | the other account: #194 (`claude/sd101-slides-sd06`), #197 (`claude/sd13-slides-0219`) |
+| Range | Work | Branch or pull request | Status |
+|---|---|---|---|
+| sd-04-013..024 | lessons | `claude/sd101-l3-sd04` (#228) | done |
+| sd-06-023..029 | lessons | `claude/sd101-l6-sd06-b` (#227) | done |
+| sd-06-001..003, sd-06-009..011, sd-13-009..011, sd-13-017..020 | decks | #194, #197 | done |
+| sd-04-013..024, sd-06-023..029 | deck and PPTX | the VPS team (a Claude session with Moda; owner request 2026-10-20) | assigned |
+| sd-02-030 | lesson | held for the owner's decision: its source is a picture with no text | held |
 
-sd-02-030 is not reserved: its source is a picture with no text, and whether it gets a lesson is the owner's decision.
+403 of the 404 lessons are on `main`. The two rows above reserve what is left: the decks of the 19 lessons that have none, for
+the VPS team, and sd-02-030, until the owner decides whether it gets a lesson.

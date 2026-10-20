@@ -1,0 +1,114 @@
+{
+  "id": "sd-10-006",
+  "title_vi": "Chạy C, C++ và Rust trong trình duyệt bằng WebAssembly",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-10-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "eb2cb255577b9e1270efb7b0753ca327986ec831",
+    "retrieved_body_sha256": "16295ce9f0378e5e3ca7ef68f19d48cc9095a75efd80c28c850194175a313e2f",
+    "retrieved_body_bytes": 1158
+  },
+  "diagram": "../diagrams/sd-10-006-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Every explanation was written from two MDN pages (the WebAssembly overview and the WebAssembly concepts guide) read in raw copies at the pinned commit. The source article was used only for the topic and the language names; its statements about serverless, instant startup and interpretation were not repeated. Documentation only; nothing was run or measured."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "WebAssembly is a low-level bytecode format, originally designed for the web, that is not primarily intended to be written by hand but to be a compilation target for languages such as C, C++ and Rust; languages with garbage-collected memory models are supported as well.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "What is WebAssembly? and How does WebAssembly fit into the web platform?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it).",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/index.md"
+      ]
+    },
+    {
+      "claim_vi": "WebAssembly is an open standard whose goals are to be fast, efficient and portable; readable and debuggable through a human-readable text format; secure, run in a sandboxed environment that enforces the browser's same-origin and permissions policies; and not break the web.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "WebAssembly goals",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Historically the browser's virtual machine could load only JavaScript; the virtual machine now loads and runs both JavaScript and WebAssembly, and the two can call each other synchronously: the JavaScript API wraps exported WebAssembly code in JavaScript functions, and WebAssembly code can import and call JavaScript functions.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "How does WebAssembly fit into the web platform?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The key concepts reflected one-to-one in the JavaScript API are Module (a compiled WebAssembly binary that is stateless and can be shared between windows and workers, declaring imports and exports), Memory (a growable buffer of bytes), Table (a growable array of references that cannot be stored as raw bytes in Memory for safety and portability) and Instance (a Module paired with the state it uses at runtime).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "WebAssembly key concepts",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Usually code is written in a high-level, statically typed language and compiled to Wasm; Clang supports Wasm output with --target=wasm32, Rust code can be compiled to WebAssembly, and Emscripten is a full toolchain that emulates platform APIs for C/C++ code and generates JavaScript glue code and an HTML document in addition to the Wasm module.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "How do I use WebAssembly in my app?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "WebAssembly cannot currently access the DOM directly; it can only call JavaScript, which then makes the Web API call, which is why Emscripten generates JavaScript glue code.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "Porting from C/C++",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JavaScript runs into performance problems on intensive use cases such as 3D games, virtual and augmented reality, computer vision and image or video editing, and downloading, parsing and compiling very large JavaScript applications can be prohibitive, especially on resource-constrained platforms.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "How does WebAssembly fit into the web platform?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "WebAssembly is a different language from JavaScript and is not intended as a replacement: JavaScript is a high-level, dynamically typed language with no compile step and a large ecosystem, while WebAssembly is a low-level assembly-like language with a compact binary format that runs with near-native performance.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "How does WebAssembly fit into the web platform?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it).",
+      "sources": [
+        "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/index.md"
+      ]
+    },
+    {
+      "claim_vi": "WebAssembly was originally designed for the web but has many uses outside browsers and JavaScript environments.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "WebAssembly goals (note)",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    }
+  ],
+  "design_notes_vi": "Hình gồm bốn bước từ mã nguồn tới trang web, bốn khái niệm của giao diện JavaScript (Module, Memory, Table, Instance) và ba điều cần nhớ. Lời giải thích viết lại từ tài liệu MDN. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The lesson does not follow the source's sequence of sentences; its explanations (compile path, Module/Memory/Table/Instance, two-way calls, design goals, DOM limit) come from MDN, which the source does not contain.",
+    "Source explains the JavaScript performance gap by saying it is interpreted; the lesson does not repeat that and uses MDN's wording (intensive use cases, download and compile cost).",
+    "The serverless and edge computing statements of the source are not repeated because they were not checked against documentation; the lesson only notes, from MDN, that WebAssembly has uses outside browsers.",
+    "Source says the code is compiled to WASM; the lesson says it is usually compiled and may in principle be written in the text format, following MDN."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích lấy từ tài liệu MDN; câu hỏi cuối bài là ví dụ tự đặt. Chưa user testing hoặc phê duyệt phát hành."
+}

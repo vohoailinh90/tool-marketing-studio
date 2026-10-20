@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="624" viewBox="0 0 320 624" role="img" aria-labelledby="title desc">
+<title id="title">Sáu nhóm khối nền</title>
+<desc id="desc">Hai khung. Khung một, ba nhóm về tính toán và quy mô: tính toán phân tán, mở rộng và hiệu năng, quản lý dịch vụ. Khung hai, ba nhóm còn lại: mạng và giao tiếp, lưu trữ và quản lý dữ liệu, quan sát và chống chịu lỗi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="624" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu nhóm khối nền</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi nhóm trả lời một câu hỏi.</text>
+<rect x="8" y="80" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tính toán và quy mô</text>
+<rect x="20" y="125" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="148" r="11" fill="#16a34a"/>
+<polyline points="37.9,148.4 41.7,152.4 48.5,144" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính toán phân tán: hàng</text>
+<text x="64" y="170.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đợi, đệm, lập lịch.</text>
+<rect x="20" y="196" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="219" r="11" fill="#16a34a"/>
+<polyline points="37.9,219.4 41.7,223.4 48.5,215" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mở rộng và hiệu năng: co</text>
+<text x="64" y="241.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giãn, CDN, băm.</text>
+<rect x="20" y="267" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="290" r="11" fill="#16a34a"/>
+<polyline points="37.9,290.4 41.7,294.4 48.5,286" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="293.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quản lý dịch vụ: khám phá</text>
+<text x="64" y="312.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch vụ.</text>
+<rect x="8" y="354" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="382.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mạng, dữ liệu, quan sát</text>
+<rect x="20" y="399" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="422" r="11" fill="#16a34a"/>
+<polyline points="37.9,422.4 41.7,426.4 48.5,418" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="425.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng: DNS, chia tải, cổng</text>
+<text x="64" y="444.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">API.</text>
+<rect x="20" y="470" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="493" r="11" fill="#16a34a"/>
+<polyline points="37.9,493.4 41.7,497.4 48.5,489" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="496.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu: cơ sở dữ liệu, đối</text>
+<text x="64" y="515.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng, chia, sao chép.</text>
+<rect x="20" y="541" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="564" r="11" fill="#16a34a"/>
+<polyline points="37.9,564.4 41.7,568.4 48.5,560" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="567.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quan sát: số đo, nhật ký,</text>
+<text x="64" y="586.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">truy vết.</text>
+</g>
+</svg>

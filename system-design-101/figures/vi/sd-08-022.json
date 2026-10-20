@@ -1,0 +1,34 @@
+{
+  "id": "sd-08-022",
+  "title": "Bản đồ kiến trúc sư: tám vùng, năm mươi cái tên",
+  "subtitle": "Biết một cái tên là làm được một phép thử; thử hai cái tên.",
+  "desc": "Ba khung. Khung một, bản đồ của nguồn có tám vùng và khoảng năm mươi cái tên: ngôn ngữ 4, công cụ 5, nguyên tắc thiết kế 8, kiến trúc 6, nền tảng 8, dữ liệu 5, mạng và bảo mật 8, kỹ năng hỗ trợ 6; bản đồ chỉ gọi tên, không nói học cái nào trước. Khung hai, hai cái tên được thử: chuyển tiền hỏng giữa chừng làm tổng tiền từ 100 thành 250 nếu mỗi lệnh chạy riêng, và vẫn là 100 nếu nằm trong một giao dịch; thẻ JWT đọc được nội dung không cần khóa nhưng sửa nội dung thì chữ ký không còn khớp. Khung ba, mới thử hai trong năm mươi cái tên, số đếm là đếm tay.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám vùng, cỡ năm mươi tên",
+      "items": [
+        "Ngôn ngữ 4, công cụ 5, nguyên tắc thiết kế 8, kiến trúc 6.",
+        "Nền tảng 8, dữ liệu 5, mạng và bảo mật 8, kỹ năng hỗ trợ 6.",
+        "Bản đồ chỉ gọi tên; không nói học cái nào trước."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai tên, hai phép thử",
+      "items": [
+        "Chuyển tiền hỏng giữa chừng: từng lệnh riêng, tổng 100 thành 250; một giao dịch, vẫn 100.",
+        "JWT: ai cũng đọc được nội dung; sửa thì chữ ký không khớp.",
+        "Thẻ tự nhận không cần chữ ký bị từ chối khi bắt buộc thuật toán."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn",
+      "items": [
+        "Số đếm là đếm tay trên phần chữ của bài nguồn.",
+        "Mới thử hai trong năm mươi cái tên."
+      ]
+    }
+  ]
+}

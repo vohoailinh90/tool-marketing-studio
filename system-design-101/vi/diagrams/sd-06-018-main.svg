@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1027" viewBox="0 0 320 1027" role="img" aria-labelledby="title desc">
+<title id="title">Redis lớn dần: mỗi bước vá một giới hạn</title>
+<desc id="desc">Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy, và tự đổi chủ nên không dùng kèm Sentinel. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; chủ sập thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1027" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Redis lớn dần: mỗi bước</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">vá một giới hạn</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cluster tự đổi chủ, không dùng kèm</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Sentinel.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn bước, bốn giới hạn</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu xuống đĩa</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vì khởi động lại là mất hết:</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RDB, AOF.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhân bản</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vì một máy chết là ngừng:</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao chép bất đồng bộ.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sentinel</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vì đổi chủ bằng tay chậm:</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bỏ phiếu, nâng bản sao.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cluster</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vì dữ liệu vượt một máy:</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">16384 khe, nhiều chủ.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="413" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trên Redis 7.0.15</text>
+<rect x="20" y="651" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="674" r="11" fill="#16a34a"/>
+<polyline points="37.9,674.4 41.7,678.4 48.5,670" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="677.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tắt bản sao: chủ vẫn trả lời</text>
+<text x="64" y="696.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thành công, lệnh chờ báo 0</text>
+<text x="64" y="716.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao nhận.</text>
+<rect x="20" y="742" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="765" r="11" fill="#16a34a"/>
+<polyline points="37.9,765.4 41.7,769.4 48.5,761" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="768.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chủ sập: ba Sentinel nâng</text>
+<text x="64" y="787.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao lên làm chủ sau 3,3</text>
+<text x="64" y="807.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây.</text>
+<rect x="20" y="833" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="856" r="11" fill="#16a34a"/>
+<polyline points="37.9,856.4 41.7,860.4 48.5,852" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="859.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi khóa tới nhầm nút: lỗi</text>
+<text x="64" y="878.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trả về chỉ sang nút giữ khe</text>
+<text x="64" y="898.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đó.</text>
+<rect x="20" y="924" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="947" r="11" fill="#16a34a"/>
+<polyline points="37.9,947.4 41.7,951.4 48.5,943" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="950.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một lệnh ghi hai khóa ở hai</text>
+<text x="64" y="969.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khe: bị từ chối. Cùng thẻ</text>
+<text x="64" y="989.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">băm: được.</text>
+</g>
+</svg>

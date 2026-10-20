@@ -1,0 +1,67 @@
+{
+  "id": "sd-14-032",
+  "lang": "vi",
+  "title": "Thương lượng trước khi mã hóa (bắt tay đầy đủ)",
+  "subtitle": "Client đưa danh sách, máy chủ chọn",
+  "desc": "Ba khung dọc, vẽ một bắt tay đầy đủ; phiên nối lại với dữ liệu gửi sớm (early data) nằm ngoài hình. Khung một: client gửi danh sách phiên bản, bộ mã, nhóm khóa, chữ ký; máy chủ chọn mỗi loại một mục hoặc gửi cảnh báo rồi dừng. Khung hai: có điểm chung thì hai bên cùng tính ra khóa đối xứng, mỗi chiều một khóa, và HTTP đi qua bộ mã đã chọn; không có thì kết nối dừng. Khung ba: máy chủ chỉ chọn mục client đã đưa; thứ tự ưu tiên mặc định là của client; HTTP không đổi dù TLS 1.2 hay 1.3.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Một lượt thương lượng",
+      "actors": [
+        {
+          "name": "Client",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ",
+          "icon": "server"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Danh sách: phiên bản, bộ mã, nhóm khóa, chữ ký"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Chọn mỗi loại một mục",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Hoặc: cảnh báo rồi dừng",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hai kết cục",
+      "items": [
+        {
+          "name": "Có điểm chung",
+          "role": "Mỗi chiều một khóa đối xứng; HTTP đi qua bộ mã đã chọn.",
+          "icon": "circle-check"
+        },
+        {
+          "name": "Không có điểm chung",
+          "role": "Máy chủ gửi cảnh báo, kết nối dừng.",
+          "icon": "circle-x"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cần nhớ",
+      "items": [
+        "Máy chủ chỉ chọn mục client đã đưa ra.",
+        "Thứ tự ưu tiên mặc định là của client; máy chủ có thể đổi.",
+        "HTTP bên trên không đổi dù TLS 1.2 hay 1.3."
+      ]
+    }
+  ]
+}

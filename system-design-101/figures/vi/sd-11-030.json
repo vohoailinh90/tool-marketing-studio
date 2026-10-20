@@ -1,0 +1,53 @@
+{
+  "title": "Giám sát đám mây: chín khía cạnh",
+  "subtitle": "Từ dữ liệu thô tới hành động.",
+  "desc": "Hai khung. Khung một, chín khía cạnh của giám sát hệ thống đám mây, xếp theo đường đi của dữ liệu: thu thập, lưu trữ, phân tích, cảnh báo, hiển thị, báo cáo và tuân thủ, tự động hóa, tích hợp, vòng phản hồi. Khung hai, thử nghiệm: một chỉ số ồn có hai sự cố 20 và 15 phút; cảnh báo ngay mẫu đầu vượt ngưỡng báo 38 lần, 32 lần sai; yêu cầu ba mẫu liên tiếp báo 4 lần, không sai lần nào.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường đi của dữ liệu",
+      "items": [
+        {
+          "title": "Thu thập",
+          "text": "Số đo và nhật ký."
+        },
+        {
+          "title": "Lưu trữ",
+          "text": "Giữ để so sánh."
+        },
+        {
+          "title": "Phân tích",
+          "text": "Tìm xu hướng."
+        },
+        {
+          "title": "Cảnh báo",
+          "text": "Báo người trực."
+        },
+        {
+          "title": "Hiển thị",
+          "text": "Bảng nhìn nhanh."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bốn khía cạnh còn lại",
+      "items": [
+        "Báo cáo và tuân thủ: bằng chứng cho quy định.",
+        "Tự động hóa: phản ứng không cần người.",
+        "Tích hợp: nối công cụ với nhau.",
+        "Vòng phản hồi: sửa cách giám sát sau mỗi sự cố."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử ngưỡng cảnh báo",
+      "items": [
+        "Một mẫu vượt ngưỡng: 38 cảnh báo, 32 sai.",
+        "Ba mẫu liên tiếp: 4 cảnh báo, 0 sai, trễ 4 phút.",
+        "Năm mẫu liên tiếp: 3 cảnh báo, trễ 6 phút."
+      ]
+    }
+  ],
+  "id": "sd-11-030"
+}

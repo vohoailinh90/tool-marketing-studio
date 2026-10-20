@@ -1,0 +1,54 @@
+{
+  "id": "sd-04-005",
+  "lang": "vi",
+  "title": "Avro: ghi bằng lược đồ cũ, đọc bằng lược đồ mới",
+  "subtitle": "Thử với thư viện avro 1.12.2 cho Python.",
+  "desc": "Ba khung. Khung một là ba bước: ghi hai khách hàng vào một tệp container của Avro, phần đầu tệp chứa lược đồ v1 gồm id, name, phone; ứng dụng mới đọc bằng lược đồ v2 khai id kiểu long, bỏ phone và thêm email có giá trị mặc định; Avro so hai lược đồ, ghép trường theo tên, bỏ qua phone và điền email bằng giá trị mặc định. Khung hai, những thay đổi vẫn đọc được: thêm trường có giá trị mặc định, bỏ một trường, đổi int sang long, đổi thứ tự trường. Khung ba, những thay đổi báo lỗi: thêm trường không có giá trị mặc định, đổi int sang string.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một tệp, hai lược đồ",
+      "items": [
+        {
+          "title": "Ghi tệp bằng lược đồ v1",
+          "text": "Phần đầu tệp chứa lược đồ của người ghi: id, name, phone."
+        },
+        {
+          "title": "Đọc bằng lược đồ v2",
+          "text": "Ứng dụng mới khai id kiểu long, bỏ phone, thêm email có giá trị mặc định."
+        },
+        {
+          "title": "Avro so hai lược đồ",
+          "text": "Ghép trường theo tên; phone bị bỏ qua, email nhận giá trị mặc định."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Vẫn đọc được",
+      "items": [
+        "Thêm trường có giá trị mặc định.",
+        "Bỏ một trường: dữ liệu cũ của trường đó bị bỏ qua.",
+        "Đổi int sang long: kiểu được nâng.",
+        "Đổi thứ tự các trường."
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Báo lỗi khi đọc",
+      "items": [
+        {
+          "name": "Trường mới thiếu mặc định",
+          "role": "Lược đồ đọc có email mà không có giá trị mặc định, dữ liệu cũ không có email.",
+          "icon": "circle-x"
+        },
+        {
+          "name": "Đổi int sang string",
+          "role": "Hai kiểu không khớp và không nâng được từ kiểu này sang kiểu kia.",
+          "icon": "circle-x"
+        }
+      ],
+      "flow": []
+    }
+  ]
+}

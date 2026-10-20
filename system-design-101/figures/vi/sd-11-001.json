@@ -1,0 +1,28 @@
+{
+  "id": "sd-11-001",
+  "title": "Hai đường gọi một hàm Lambda",
+  "subtitle": "Chờ kết quả hay xếp hàng trước.",
+  "desc": "Hai khung. Khung một, đường gọi đồng bộ: yêu cầu tới, hệ thống tìm hoặc dựng môi trường chạy, khởi tạo môi trường, gọi hàm và trả kết quả. Khung hai, đường gọi bất đồng bộ: sự kiện được nhận, xếp vào hàng đợi, lấy ra để gọi hàm, thử lại khi lỗi.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Gọi đồng bộ",
+      "items": [
+        {"title": "Yêu cầu tới", "text": "Người gọi giữ kết nối và chờ."},
+        {"title": "Tìm hoặc dựng", "text": "Cần một môi trường chạy là máy ảo nhỏ."},
+        {"title": "Khởi tạo", "text": "Nạp mã hàm; gọi sau có thể bỏ bước này."},
+        {"title": "Gọi hàm", "text": "Hàm chạy và trả kết quả."}
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Gọi bất đồng bộ",
+      "items": [
+        {"title": "Nhận sự kiện", "text": "Người gọi chỉ nhận lời xác nhận."},
+        {"title": "Xếp hàng", "text": "Sự kiện chờ trong hàng đợi."},
+        {"title": "Gọi hàm", "text": "Lấy ra khi có môi trường rảnh."},
+        {"title": "Thử lại", "text": "Nếu hàm lỗi, có thể chạy lại."}
+      ]
+    }
+  ]
+}

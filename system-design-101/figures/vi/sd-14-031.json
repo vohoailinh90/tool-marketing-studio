@@ -1,0 +1,148 @@
+{
+  "id": "sd-14-031",
+  "lang": "vi",
+  "title": "SSO kiểu vé CAS: hai loại phiên, một vé",
+  "subtitle": "Phiên cục bộ và phiên toàn cục.",
+  "desc": "Ba khung. Một: lần đầu ở ứng dụng A, trình duyệt mở trang, A chuyển sang máy chủ định danh, người dùng nhập mật khẩu ở đó, máy chủ định danh đặt cookie phiên toàn cục và cấp vé, A kiểm vé qua kênh sau rồi đặt cookie phiên cục bộ. Hai: lần sau ở ứng dụng B, trình duyệt mang cookie phiên toàn cục nên vé được cấp ngay, không hỏi mật khẩu. Ba, đo trên một máy: vé dùng một lần; đăng xuất ở A thì mở lại A là vào luôn; đăng xuất ở máy chủ định danh không xóa phiên cục bộ.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Lần đầu, ở ứng dụng A",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "globe"
+        },
+        {
+          "name": "Ứng dụng A",
+          "icon": "server"
+        },
+        {
+          "name": "Định danh",
+          "icon": "key-round"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Mở trang"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Chuyển",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Mật khẩu"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "Cookie + vé",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Gửi vé"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Kiểm vé"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Hợp lệ",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Phiên cục bộ",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Lần sau, ở ứng dụng B",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "globe"
+        },
+        {
+          "name": "Ứng dụng B",
+          "icon": "server"
+        },
+        {
+          "name": "Định danh",
+          "icon": "key-round"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Mở trang"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Chuyển",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Cookie phiên"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "Cấp vé ngay",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Gửi vé"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Kiểm vé"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Hợp lệ",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Phiên cục bộ",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo được trên một máy",
+      "items": [
+        "Hai ứng dụng, một lần nhập mật khẩu; mật khẩu chỉ tới máy chủ định danh.",
+        "Vé dùng được một lần, đúng một ứng dụng, hết hạn nhanh.",
+        "Đăng xuất ở A: mở lại A là vào luôn, vì phiên toàn cục còn.",
+        "Đăng xuất ở máy chủ định danh: A và B vẫn giữ phiên cục bộ.",
+        "Muốn hết cả hai, máy chủ định danh phải báo từng ứng dụng."
+      ]
+    }
+  ]
+}

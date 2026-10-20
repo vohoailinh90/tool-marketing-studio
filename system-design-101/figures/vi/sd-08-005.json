@@ -1,0 +1,38 @@
+{
+  "id": "sd-08-005",
+  "title": "Dịch vụ nhỏ không phải đũa thần",
+  "subtitle": "Game thời gian thực và sàn giao dịch độ trễ thấp cho thấy lý do.",
+  "desc": "Ba khung. Khung một, ba đặc điểm khiến khối hợp hơn: rất nhạy độ trễ, giữ trạng thái trong bộ nhớ, cần định tuyến dính. Khung hai, thử đo một lời gọi: gọi hàm trong cùng tiến trình mất khoảng 0,05 đến 0,08 micro giây; socket Unix mất 26 đến 30 micro giây, TCP nội bộ 33 đến 37, HTTP 162 đến 169. Khung ba, trạng thái và định tuyến dính: cập nhật một số trong bộ nhớ mất khoảng 0,1 micro giây, trong cơ sở dữ liệu đặt trong bộ nhớ 27 đến 31 micro giây, trong cơ sở dữ liệu trên đĩa khoảng 790 đến 900 micro giây; nâng từ 4 lên 5 máy thì chia theo số dư làm 80 phần trăm người chơi phải đổi máy, còn vòng băm chỉ 20 phần trăm.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Ba đặc điểm khiến khối hợp hơn",
+      "items": [
+        "Rất nhạy độ trễ: mili giây hoặc micro giây.",
+        "Trạng thái nằm trong bộ nhớ, không trong cơ sở dữ liệu.",
+        "Một người chơi luôn về đúng một máy: định tuyến dính."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: một lời gọi tốn bao nhiêu",
+      "items": [
+        "Gọi hàm trong một tiến trình: 0,05 đến 0,08 µs.",
+        "Socket Unix, đi và về: 26 đến 30 µs.",
+        "TCP nội bộ, đi và về: 33 đến 37 µs.",
+        "HTTP nội bộ, đi và về: 162 đến 169 µs."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: trạng thái và định tuyến dính",
+      "items": [
+        "Cập nhật trong bộ nhớ: khoảng 0,1 µs.",
+        "Cơ sở dữ liệu trong bộ nhớ: 27 đến 31 µs.",
+        "Cơ sở dữ liệu trên đĩa: 790 đến 900 µs.",
+        "Từ 4 lên 5 máy, chia theo số dư: 80% người chơi đổi máy.",
+        "Cùng việc đó với vòng băm: 20% đổi máy."
+      ]
+    }
+  ]
+}

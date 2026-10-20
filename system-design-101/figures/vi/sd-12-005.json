@@ -1,0 +1,27 @@
+{
+  "id": "sd-12-005",
+  "title": "Quadtree tìm quán gần bạn",
+  "subtitle": "Chia ô đông thành bốn ô nhỏ.",
+  "desc": "Hai khung. Khung một, xây quadtree: cả bản đồ là gốc, ô nào có hơn 100 quán thì chia thành bốn ô con, lặp lại cho tới khi không ô nào hơn 100 quán. Khung hai, tìm quán gần bạn: đi từ gốc xuống ô lá chứa vị trí của bạn, nếu ô đủ 100 quán thì trả về, nếu thiếu thì lấy thêm quán từ các ô bên cạnh.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Xây cây",
+      "items": [
+        {"title": "Gốc là cả bản đồ", "text": "Đếm số quán trong ô."},
+        {"title": "Quá đông thì chia", "text": "Hơn 100 quán: chia thành bốn ô con."},
+        {"title": "Lặp lại", "text": "Kiểm tra từng ô con như vậy."},
+        {"title": "Dừng", "text": "Mọi ô lá có từ 100 quán trở xuống."}
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Tìm quán gần bạn",
+      "items": [
+        {"title": "Đi xuống", "text": "Từ gốc, chọn ô con chứa vị trí của bạn."},
+        {"title": "Tới ô lá", "text": "Lấy danh sách quán của ô đó."},
+        {"title": "Thiếu thì bù", "text": "Lấy thêm quán từ các ô lá bên cạnh."}
+      ]
+    }
+  ]
+}

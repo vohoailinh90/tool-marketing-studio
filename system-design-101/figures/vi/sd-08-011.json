@@ -1,0 +1,35 @@
+{
+  "id": "sd-08-011",
+  "title": "Mười bốn mẫu thiết kế, tìm trong Python",
+  "subtitle": "Chín mẫu có ví dụ rõ, hai gần đúng, ba chưa tìm được.",
+  "desc": "Ba khung. Khung một, tìm mười bốn mẫu trong thư viện chuẩn Python 3.13: chín mẫu có ví dụ rõ là bộ chuyển tiếp, thành phần, bộ trang trí, mặt tiền, mẫu dùng chung, đại diện, bộ lặp, bản lưu trạng thái và người thăm; hai mẫu gần đúng là lệnh và người quan sát; ba mẫu chưa tìm được là nhà máy trừu tượng, cầu nối và người trung gian. Khung hai, ba phép đo: bọc một hàm bằng bộ trang trí thêm khoảng 55 đến 60 nano giây mỗi lần gọi, đại diện yếu thêm khoảng 13 nano giây mỗi lần truy cập, dùng chung chuỗi giảm từ 53,3 triệu xuống 8,5 triệu byte. Khung ba, giới hạn của cách tìm.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Mười bốn mẫu, ba kết quả",
+      "items": [
+        "Rõ: chuyển tiếp, thành phần, trang trí, mặt tiền, dùng chung, đại diện, bộ lặp, lưu trạng thái, người thăm.",
+        "Gần đúng: lệnh, người quan sát.",
+        "Chưa tìm được: nhà máy trừu tượng, cầu nối, người trung gian."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba phép đo",
+      "items": [
+        "Bộ trang trí: thêm 55 đến 60 nano giây mỗi lần gọi.",
+        "Đại diện yếu: thêm 13 nano giây mỗi lần truy cập.",
+        "Dùng chung chuỗi: 53,3 xuống 8,5 triệu byte."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn",
+      "items": [
+        "Mỗi mẫu chỉ một ví dụ.",
+        "Không chứng minh tác giả chủ ý theo mẫu.",
+        "Ba mẫu chưa tìm được không có nghĩa là Python không có."
+      ]
+    }
+  ]
+}

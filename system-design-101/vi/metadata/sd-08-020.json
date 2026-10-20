@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-020",
+  "title_vi": "Khởi động Linux: tám bước của nguồn, điều tài liệu thêm vào, và một lần đọc tĩnh các tệp đơn vị systemd",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-020",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/linux-boot-process-explained.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-boot-process-explained.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "afd3a88fd8f9a085cbf052c550ea662b95af4b5f",
+    "retrieved_body_sha256": "3913b2b719360e5d37c84a5c0b650bdb02368eb5d21d8d7b0cfeba4241da47a4",
+    "retrieved_body_bytes": 1648
+  },
+  "diagram": "../diagrams/sd-08-020-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Eight steps from the source body; boot(7) read from a local clone of man-pages at ae6b221; bootup(7) and systemd.special(7) downloaded from systemd at cb070c8 on 2026-10-19; unit-file reading by a Python 3.13.16 program on a systemd 255 installation (this machine's PID 1 is not systemd, so no boot was run and no boot time was measured). The count is specific to this image, ignores unit conditions and template units, and counts explicit declarations only (not systemd's synthesized ordering). GRUB and UEFI official documents were not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: eight steps - firmware (BIOS/UEFI) loaded from non-volatile memory runs POST; BIOS/UEFI detects devices (CPU, RAM, storage); choose a boot device (disk, network server, CD ROM); BIOS/UEFI runs the boot loader (GRUB); kernel starts systemd as the first user-space process; systemd activates default.target; startup scripts run; login window.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-boot-process-explained.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "boot(7): after power-on control is given to a program in read-only memory (the BIOS) that performs a basic self-test and reads parameters from non-volatile memory, which name the boot device; the OS loader (often lilo or grub) locates and loads the kernel and passes parameters; the kernel initializes components, mounts a root filesystem and only then creates the first user-land process with PID 1, traditionally executing /sbin/init; the System V init and /etc/init.d scripts are described as System V Release 4 specific.",
+      "source": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man7/boot.7",
+      "section": "DESCRIPTION",
+      "verified_by": "Read from a local clone of man-pages at commit ae6b221882ce71ba82fcdbe02419a225111502f0."
+    },
+    {
+      "claim_vi": "bootup(7): firmware does minimal hardware initialization and hands control to a boot loader (systemd-boot or GRUB), which invokes the kernel; EFI firmware may also load the kernel directly; the kernel may mount an in-memory file system (initramfs) that finds the root file system; then the system manager (such as systemd) on the root file system probes the remaining hardware, mounts file systems and spawns services; systemd activates the units that are dependencies of default.target, usually an alias of graphical.target or multi-user.target; boot is highly parallelized so the order in which targets are reached is not deterministic.",
+      "source": "https://github.com/systemd/systemd/blob/cb070c87eb12f3cf1f85873db38ff756a111460e/man/bootup.xml",
+      "section": "Description; System Manager Bootup",
+      "verified_by": "File downloaded from systemd at commit cb070c87eb12f3cf1f85873db38ff756a111460e on 2026-10-19."
+    },
+    {
+      "claim_vi": "Static reading of unit files on a systemd 255 installation: default.target links to graphical.target; following Requires, Wants, BindsTo, Requisite and .wants/.requires directories gives 78 units (35 services, 18 targets, 8 timers, 7 sockets, 6 mounts, 2 paths, 1 automount, 1 slice), 11 names with no file; 94 explicit After/Before edges inside the set; longest chain of explicitly declared ordering 15 units; 41 of 78 units declare no wait on another unit of the set (systemd also adds synthesized ordering from DefaultDependencies=yes, from the Wants/Requires of target units and implicit dependencies of mounts, sockets and paths, which this reading does not model, so the figures are not the actual boot ordering); sysinit.target pulls 41 units; PID 1 of the machine is not systemd although /sbin/init links to systemd.",
+      "source": "https://github.com/systemd/systemd/blob/cb070c87eb12f3cf1f85873db38ff756a111460e/man/systemd.special.xml",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19; reads declarations only, ignores conditions and template units."
+    }
+  ],
+  "design_notes_vi": "Ba khung: tám bước, điều tài liệu thêm hoặc sửa, đọc tĩnh một máy thật.",
+  "source_deviations": [
+    "The source is a picture with eight short steps; the lesson keeps the eight steps in order, adds the initramfs step the source lacks, and adds a static reading of unit files.",
+    "No boot was run and no boot time was measured; GRUB and UEFI documents were not read."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

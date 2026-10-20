@@ -1,0 +1,87 @@
+{
+  "id": "sd-10-004",
+  "title_vi": "Ngôn ngữ lập trình nào \"xanh\" nhất?",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-004",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-are-the-greenest-programming-languages.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-greenest-programming-languages.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6b4a7655399d36153b50416c6a907a6e5e85e4ad",
+    "retrieved_body_sha256": "5070b6a7ba5cd8a7da44a029d617a7f10176f62dde48994e5a0e0a182e8bb97e",
+    "retrieved_body_bytes": 1183
+  },
+  "diagram": "../diagrams/sd-10-004-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source asks which programming languages are the greenest and quotes a study that measures runtime, memory use and energy consumption; it gives 28 languages in its opening sentence and twenty-seven in the quoted abstract. Only the question and the discrepancy are reused; the lesson describes the method from the study's code repository instead of the quoted abstract.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-greenest-programming-languages.md",
+      "section": "Introduction and quoted abstract",
+      "verified_by": "Source body read from the pinned commit; the statements are in the source text."
+    },
+    {
+      "claim_vi": "Energy-Languages README: the repository contains the source code of 10 distinct benchmarks implemented in 28 different languages, taken exactly from the Computer Language Benchmarks Game; the main folder holds 28 language sub-folders, each with one sub-folder per benchmark.",
+      "source": "https://github.com/greensoftwarelab/Energy-Languages/blob/1356528173d6bb07fb2512037c0ed8e2279ce440/README.md",
+      "section": "What is this? and The Structure",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Energy-Languages README: each benchmark's Makefile must contain four rules: compile (interpreted languages can leave it blank), run (to test that the benchmark runs without errors and gives the expected output), measure (uses the RAPL framework to measure the energy of the run) and mem (runs the same task with memory peak detection).",
+      "source": "https://github.com/greensoftwarelab/Energy-Languages/blob/1356528173d6bb07fb2512037c0ed8e2279ce440/README.md",
+      "section": "The Operations",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Energy-Languages README: results are stored in a per-language CSV file with benchmark name, PKG, CPU, GPU and DRAM energy in joules and time in milliseconds; the availability of GPU and DRAM measurements depends on the machine's architecture, as a requirement of RAPL itself.",
+      "source": "https://github.com/greensoftwarelab/Energy-Languages/blob/1356528173d6bb07fb2512037c0ed8e2279ce440/README.md",
+      "section": "Running an example",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Energy-Languages README: the results of an experimental setup, with the used machine and compiler specifications and the paper, are published on a separate site; the README itself holds no ranking.",
+      "source": "https://github.com/greensoftwarelab/Energy-Languages/blob/1356528173d6bb07fb2512037c0ed8e2279ce440/README.md",
+      "section": "Further Reading",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The ranking is in the source image only; the source body has no table. Results hold only for the measured benchmark problems and may not carry over to a given application; RAPL reads energy counters of the processor hardware (author's general knowledge).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-greenest-programming-languages.md",
+      "section": "Design",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm: bộ bài đo, bốn thao tác của mỗi bài và các lưu ý khi đọc. Bốn thao tác đánh số vì chúng là một chuỗi. Không dùng ảnh nguồn, không nêu ngôn ngữ nào xanh nhất.",
+  "source_deviations": [
+    "Source is a short introduction plus a quoted abstract and a ranking image; the lesson keeps only the question and the 28 versus twenty-seven discrepancy, and builds the explanation from the README of the study's code repository (benchmarks, four operations, RAPL, result format) instead of paraphrasing the quoted abstract.",
+    "Source relies on a ranking image that the lesson does not use, so the lesson answers its title question by reading the method, not by naming a language."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần cách đo dựa vào README của kho mã nghiên cứu; chưa đọc bài báo gốc. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "sd-11-041",
+  "title": "Azure theo mảng việc",
+  "subtitle": "Mười một mảng và một phép đếm.",
+  "desc": "Bốn khung. Khung một, mảng nền: tài khoản và đăng ký, điện toán, lưu trữ, cơ sở dữ liệu. Khung hai, thêm bốn mảng: mạng, phân tích, trí tuệ nhân tạo và học máy, nhắn tin. Khung ba, ba mảng còn lại: khu vực và vùng, quản lý tài nguyên, danh tính nhiều đám mây. Khung bốn, đếm trong kho đặc tả: 266 nhà cung cấp tài nguyên, 317 thư mục cấp một, nhiều tên là việc nền như tính tiền và quyền.",
+  "sections": [
+    {"kind": "notes", "heading": "Bốn mảng nền", "items": ["Tài khoản và đăng ký.", "Điện toán.", "Lưu trữ.", "Cơ sở dữ liệu."]},
+    {"kind": "notes", "heading": "Bốn mảng tiếp", "items": ["Mạng.", "Phân tích.", "Trí tuệ nhân tạo và học máy.", "Nhắn tin."]},
+    {"kind": "notes", "heading": "Ba mảng còn lại", "items": ["Khu vực và vùng.", "Quản lý tài nguyên.", "Danh tính nhiều đám mây."]},
+    {"kind": "notes", "heading": "Đếm kho đặc tả", "items": ["266 nhà cung cấp tài nguyên.", "317 thư mục cấp một.", "Nhiều tên là việc nền: tính tiền, quyền."]}
+  ]
+}

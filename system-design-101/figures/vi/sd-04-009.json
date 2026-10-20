@@ -1,0 +1,59 @@
+{
+  "id": "sd-04-009",
+  "lang": "vi",
+  "title": "Vì sao Kafka nhanh",
+  "subtitle": "Ba quyết định thiết kế, và điều đo được trên Kafka 4.4 chạy trên một máy.",
+  "desc": "Ba khung. Khung một, ba quyết định: ghi nối vào cuối tệp nhật ký để đĩa chỉ làm việc tuần tự; gom nhiều tin thành một lô cho mỗi yêu cầu, nén chung và giữ nguyên dạng trên đĩa; gửi thẳng từ page cache ra socket bằng sendfile, không qua bộ nhớ của tiến trình Kafka. Khung hai, đường thường khi gửi tệp ra mạng: đĩa vào page cache, sang bộ đệm của ứng dụng, vào bộ đệm socket, ra card mạng; sendfile chỉ giữ bước cuối. Khung ba, số đo một lần chạy: 50.000 tin 100 byte, mỗi yêu cầu một tin, mất 8,30 giây với 50.000 yêu cầu; gom lô thì 0,07 giây với 11 yêu cầu; một consumer đọc 100.000 tin thì broker gửi bằng 68 lời gọi sendfile; bật TLS thì Kafka không dùng sendfile.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba quyết định thiết kế",
+      "items": [
+        {
+          "title": "Ghi nối vào cuối tệp",
+          "text": "Đĩa chỉ đọc ghi tuần tự; hệ điều hành gom ghi và đọc trước giúp."
+        },
+        {
+          "title": "Gom tin thành lô",
+          "text": "Một yêu cầu mang nhiều tin; lô được nén chung, nằm nguyên dạng trên đĩa."
+        },
+        {
+          "title": "Gửi thẳng từ page cache",
+          "text": "Dùng sendfile: dữ liệu không đi qua bộ nhớ của tiến trình Kafka."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Đường thường: bốn lần chép",
+      "items": [
+        {
+          "title": "Đĩa vào page cache",
+          "text": "Hệ điều hành đọc tệp vào bộ nhớ đệm của nhân."
+        },
+        {
+          "title": "Sang bộ đệm ứng dụng",
+          "text": "Ứng dụng đọc dữ liệu ra bộ nhớ của mình."
+        },
+        {
+          "title": "Vào bộ đệm socket",
+          "text": "Ứng dụng ghi dữ liệu trở lại nhân."
+        },
+        {
+          "title": "Ra card mạng",
+          "text": "Đây là bước duy nhất còn lại khi dùng sendfile."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo được (một lần chạy)",
+      "items": [
+        "50.000 tin 100 byte, mỗi yêu cầu một tin: 8,30 giây, 50.000 yêu cầu.",
+        "Cùng số tin, chờ 5 mili giây để gom lô: 0,07 giây, 11 yêu cầu.",
+        "Consumer đọc 100.000 tin: broker gửi bằng 68 lời gọi sendfile.",
+        "Bật TLS thì Kafka không dùng sendfile."
+      ]
+    }
+  ]
+}

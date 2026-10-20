@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1209" viewBox="0 0 320 1209" role="img" aria-labelledby="title desc">
+<title id="title">Khi yêu cầu web gặp lỗi</title>
+<desc id="desc">Hai khung và một khung ghi chú. Khung một, phía trình duyệt, bốn bước: đọc mã lỗi, chờ rồi mới thử lại với thời gian chờ tăng dần, thêm ngẫu nhiên vào thời gian chờ, dừng sau vài lần. Khung hai, phía máy chủ, ba thành phần nối nhau: bộ giới hạn tốc độ, cầu dao, dịch vụ phía sau. Khung ba, thử mô phỏng 1000 máy khách thử lại: chờ cố định hoặc tăng dần không ngẫu nhiên thì 100 máy bỏ cuộc, có ngẫu nhiên thì không máy nào bỏ cuộc và số yêu cầu giảm gần một nửa.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1209" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khi yêu cầu web gặp lỗi</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Thử lại sao cho không làm tệ thêm.</text>
+<rect x="8" y="80" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía trình duyệt</text>
+<rect x="20" y="125" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="151" r="14" fill="#1d4ed8"/>
+<text x="46" y="156.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="151.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc mã lỗi</text>
+<text x="70" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">4xx: sửa yêu cầu trước. 5xx:</text>
+<text x="70" y="194.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có thể thử lại.</text>
+<rect x="20" y="234" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="260" r="14" fill="#1d4ed8"/>
+<text x="46" y="265.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="260.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chờ rồi thử</text>
+<text x="70" y="284.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thời gian chờ tăng dần sau</text>
+<text x="70" y="303.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi lần.</text>
+<polyline points="46,214 46,232" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="343" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="369" r="14" fill="#1d4ed8"/>
+<text x="46" y="374.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="369.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thêm ngẫu nhiên</text>
+<text x="70" y="393.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi máy chờ một khoảng</text>
+<text x="70" y="412.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác nhau.</text>
+<polyline points="46,323 46,341" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="452" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="478" r="14" fill="#1d4ed8"/>
+<text x="46" y="483.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="478.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dừng đúng lúc</text>
+<text x="70" y="502.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giới hạn số lần thử.</text>
+<polyline points="46,432 46,450" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="544" width="304" height="363" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="572.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía máy chủ</text>
+<rect x="20" y="589" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="632.5" r="18" fill="#0f766e"/><g transform="translate(39.2 621.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<text x="78" y="615.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ giới hạn tốc độ</text>
+<text x="78" y="639.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ chối bớt khi vượt mức</text>
+<text x="78" y="658.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho phép.</text>
+<rect x="20" y="708" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="751.5" r="18" fill="#0f766e"/><g transform="translate(39.2 740.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="734.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cầu dao</text>
+<text x="78" y="758.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngắt đường khi lỗi vượt</text>
+<text x="78" y="777.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngưỡng.</text>
+<rect x="20" y="827" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="861" r="18" fill="#0f766e"/><g transform="translate(39.2 850.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="853.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ phía sau</text>
+<text x="78" y="877.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ nhận phần đã được lọc.</text>
+<polyline points="160,678 160,706" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,797 160,825" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="919" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="947.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mô phỏng 1000 máy khách</text>
+<rect x="20" y="964" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="987" r="11" fill="#16a34a"/>
+<polyline points="37.9,987.4 41.7,991.4 48.5,983" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="990.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ cố định hoặc tăng dần</text>
+<text x="64" y="1009.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mà không ngẫu nhiên: 100</text>
+<text x="64" y="1029.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy bỏ cuộc.</text>
+<rect x="20" y="1055" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1078" r="11" fill="#16a34a"/>
+<polyline points="37.9,1078.4 41.7,1082.4 48.5,1074" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1081.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có ngẫu nhiên: không máy</text>
+<text x="64" y="1100.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nào bỏ cuộc.</text>
+<rect x="20" y="1126" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1149" r="11" fill="#16a34a"/>
+<polyline points="37.9,1149.4 41.7,1153.4 48.5,1145" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1152.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số yêu cầu tới máy chủ:</text>
+<text x="64" y="1171.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">5400 so với 2747.</text>
+</g>
+</svg>

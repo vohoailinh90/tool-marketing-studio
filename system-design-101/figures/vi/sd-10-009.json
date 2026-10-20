@@ -1,0 +1,20 @@
+{
+  "id": "sd-10-009",
+  "title": "Một tin nhắn đi qua hai máy",
+  "subtitle": "Nhân Linux ở mỗi đầu xếp hàng, bọc hoặc bóc từng lớp.",
+  "desc": "Hai nhóm bốn bước và một khung ghi nhớ. Máy gửi: ứng dụng gửi tin, tin vào bộ đệm gửi trong nhân, ngăn xếp mạng bọc tiêu đề TCP, IP, MAC rồi qdisc xếp hàng cho tin ra, card mạng lấy tin từ bộ đệm vòng và đưa lên Internet. Máy nhận: card mạng báo CPU bằng ngắt, phần việc nhận chạy ở ngắt mềm hoặc ksoftirqd, nhân bóc từng lớp, dữ liệu được chép sang ứng dụng.",
+  "sections": [
+    {"kind": "steps", "heading": "Máy gửi",
+     "items": [{"title": "Ứng dụng gửi tin", "text": "Tin chat xuất phát từ không gian người dùng."},
+               {"title": "Bộ đệm gửi", "text": "Tin sang không gian nhân và vào bộ đệm gửi."},
+               {"title": "Ngăn xếp mạng", "text": "Bọc tiêu đề TCP, IP, MAC; qdisc xếp hàng cho tin ra."},
+               {"title": "Card mạng (NIC)", "text": "Lấy tin từ bộ đệm vòng, rồi đưa lên Internet."}]},
+    {"kind": "steps", "heading": "Máy nhận",
+     "items": [{"title": "NIC nhận tin", "text": "Gói vào bộ đệm vòng; NIC báo CPU bằng ngắt."},
+               {"title": "Ngắt mềm", "text": "Phần việc nhận chạy ở ngắt mềm hoặc ksoftirqd."},
+               {"title": "Mở từng lớp", "text": "Lớp liên kết dữ liệu, lớp mạng, lớp giao vận."},
+               {"title": "Tới ứng dụng", "text": "Dữ liệu được chép sang không gian người dùng."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Mỗi chặng thêm hoặc bóc một lớp.", "Giữa hai máy là nhiều router và switch.", "Tên qdisc và ksoftirqd là của nhân Linux."]}
+  ]
+}

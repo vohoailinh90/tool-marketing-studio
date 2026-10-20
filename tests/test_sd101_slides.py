@@ -510,6 +510,31 @@ class ClaimTests(Sessions):
         self.assertEqual(2, self.run_in(a, "claim", "sd-01-001")[0])
         self.assertEqual(0, self.run_in(a, "--offline", "claim", "sd-01-001")[0])
 
+    def test_next_skips_the_decks_the_board_reserves_but_a_claim_by_id_takes_them(self) -> None:
+        b = self.session("b")
+        (self.seed / "docs").mkdir()
+        (self.seed / "docs" / "sd101-assignments.md").write_text(
+            "| Range | Work | Status |\n|---|---|---|\n| sd-01-001..002 | deck and PPTX | assigned |\n"
+            "| sd-01-003 | lessons | assigned |\n| sd-01-004 | deck and PPTX | done |\n", encoding="utf-8")
+        git(self.seed, "add", "-A")
+        git(self.seed, "commit", "--quiet", "-m", "board")
+        git(self.seed, "push", "--quiet", "origin", "main")
+        self.assertEqual((0, "sd-01-003 sd-01-004\n"), self.run_in(b, "next", "--count", "2")[:2])
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(0, code, err)
+
+    def test_next_stops_on_a_board_it_cannot_read_whole(self) -> None:
+        b = self.session("b")
+        (self.seed / "docs").mkdir()
+        (self.seed / "docs" / "sd101-assignments.md").write_text(
+            "| Range | Work | Status |\n|---|---|---|\n| sd-01-001...002 | deck and PPTX | assigned |\n", encoding="utf-8")
+        git(self.seed, "add", "-A")
+        git(self.seed, "commit", "--quiet", "-m", "board")
+        git(self.seed, "push", "--quiet", "origin", "main")
+        code, out, err = self.run_in(b, "next", "--count", "2")
+        self.assertEqual((2, ""), (code, out))
+        self.assertIn("sd-01-001...002", err)
+
     def test_next_skips_lessons_that_are_taken_or_done_and_stays_in_its_group(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")

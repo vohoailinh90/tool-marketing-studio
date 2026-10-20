@@ -1,0 +1,35 @@
+{
+  "id": "sd-11-040",
+  "title": "Đếm dịch vụ AWS trong mã SDK",
+  "subtitle": "437 thư mục mô hình, mỗi cái một API.",
+  "desc": "Ba khung. Khung một, số thư mục dịch vụ theo năm của phiên bản API đầu tiên, đợt đầu: đến 2010 có 11; từ 2011 đến 2013 có 18; từ 2014 đến 2016 có 63. Khung hai, đợt sau: từ 2017 đến 2019 có 161; từ 2020 đến 2022 có 111; từ 2023 đến 2026 có 73. Khung ba, ba điều cần nhớ: thư mục khác dịch vụ; năm của phiên bản API khác năm ra mắt; thư mục ec2 chỉ còn các phiên bản từ 2014.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Đợt đầu: đến 2016",
+      "items": [
+        "Đến 2010: 11 thư mục.",
+        "2011 đến 2013: 18 thư mục.",
+        "2014 đến 2016: 63 thư mục."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đợt sau: từ 2017",
+      "items": [
+        "2017 đến 2019: 161 thư mục.",
+        "2020 đến 2022: 111 thư mục.",
+        "2023 đến 2026: 73 thư mục."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều cần nhớ",
+      "items": [
+        "Thư mục khác dịch vụ.",
+        "Năm phiên bản API khác năm ra mắt.",
+        "Thư mục ec2 chỉ còn phiên bản từ 2014."
+      ]
+    }
+  ]
+}

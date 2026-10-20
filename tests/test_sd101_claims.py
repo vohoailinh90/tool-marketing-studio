@@ -63,6 +63,93 @@ def tarfile_without_extraction_filters():
         yield
 
 
+BOARD_TEXT = """# board
+
+| Range | Work | Session branch prefix | Status |
+|---|---|---|---|
+| sd-01-001..002 | lesson, figure, deck and PPTX | `claude/a` | assigned |
+| sd-01-005 | lesson | `claude/c` | done |
+| sd-02-001 | deck and PPTX | `claude/d` | assigned |
+"""
+
+
+class BoardTests(unittest.TestCase):
+    def test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done(self) -> None:
+        text = BOARD_TEXT + """
+| Range | Work | Branch or pull request |
+|---|---|---|
+| sd-04-001..003, sd-06-016 | lessons | #144 |
+| sd-14-009..sd-14-010 | decks | `claude/e` |
+"""
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-04-001", "sd-04-002", "sd-04-003", "sd-06-016"},
+                         claims.board_reservations(text, "lesson"))
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001", "sd-14-009", "sd-14-010"},
+                         claims.board_reservations(text, "deck"))
+
+    def test_a_reserving_row_whose_range_cell_does_not_parse_whole_fails_closed(self) -> None:
+        for cell in ("sd-01-001...005", "sd-01-001..05", "sd-1-001", "", "sd-01-001 to 005", "sd-01-005..001"):
+            with self.subTest(cell=cell), self.assertRaises(claims.ClaimsError):
+                claims.board_reservations(BOARD_TEXT + f"| {cell} | deck and PPTX | `claude/e` | assigned |\n", "deck")
+        done = BOARD_TEXT + "| sd-01-001...005 | deck and PPTX | `claude/e` | done |\n"
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001"}, claims.board_reservations(done, "deck"),
+                         "a done row reserves nothing, so its range is never read")
+        listed = BOARD_TEXT + "| sd-03-001, sd-03-004..005 and sd-03-007; sd-03-009 | deck | `claude/e` | assigned |\n"
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001", "sd-03-001", "sd-03-004", "sd-03-005", "sd-03-007",
+                          "sd-03-009"}, claims.board_reservations(listed, "deck"))
+
+    def test_a_table_with_a_range_column_but_no_work_column_fails_closed(self) -> None:
+        with self.assertRaises(claims.ClaimsError):
+            claims.board_reservations("| Range | Wrok | Status |\n|---|---|---|\n| sd-01-001 | deck | assigned |\n", "deck")
+
+    def test_text_outside_the_tables_reserves_nothing(self) -> None:
+        self.assertEqual(set(), claims.board_reservations("The decks of sd-11-001..049 are not reserved.\n", "deck"))
+
+    def test_the_real_board_still_parses_into_reservations_for_both_kinds_of_work(self) -> None:
+        text = (Path(__file__).resolve().parents[1] / claims.BOARD).read_text(encoding="utf-8")
+        self.assertTrue(claims.board_reservations(text, "lesson"), "a board edit broke its tables: --next would skip nothing")
+        self.assertTrue(claims.board_reservations(text, "deck"), "a board edit broke its tables: --next would skip nothing")
+
+    def test_the_board_is_read_from_the_branch_the_remote_calls_its_default_now(self) -> None:
+        asked: list[bool] = []
+
+        def default_branch(root, remote, ask=True):
+            asked.append(ask)
+            return "trunk" if ask else "main"
+
+        shown: list[str] = []
+
+        def fake_git(root, *args, check=True, data=None):
+            shown.append(args[-1])
+            return subprocess.CompletedProcess(args, 0, BOARD_TEXT.encode(), b"")
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(claims, "default_branch", default_branch), \
+                mock.patch.object(claims, "git", fake_git):
+            reserved = claims.reserved_on_board(Path(tmp), "origin", False, "lesson")
+        self.assertEqual([True], asked)
+        self.assertEqual(["refs/remotes/origin/trunk:docs/sd101-assignments.md"], shown)
+        self.assertEqual({"sd-01-001", "sd-01-002"}, reserved)
+
+    def test_a_board_that_is_not_valid_utf8_fails_closed(self) -> None:
+        broken = BOARD_TEXT.encode().replace(b"lesson", b"less\xffon", 1)
+        self.assertNotEqual(BOARD_TEXT.encode(), broken)
+
+        def fake_git(root, *args, check=True, data=None):
+            return subprocess.CompletedProcess(args, 0, broken, b"")
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(claims, "default_branch", lambda *a, **k: "main"), \
+                mock.patch.object(claims, "git", fake_git):
+            with self.assertRaisesRegex(claims.ClaimsError, "not valid UTF-8"):
+                claims.reserved_on_board(Path(tmp), "origin", False, "lesson")
+            (Path(tmp) / "docs").mkdir()
+            (Path(tmp) / claims.BOARD).write_bytes(broken)
+            with self.assertRaisesRegex(claims.ClaimsError, "not valid UTF-8"):
+                claims.reserved_on_board(Path(tmp), "origin", True, "lesson")
+
+    def test_a_board_that_is_not_there_reserves_nothing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(set(), claims.reserved_on_board(Path(tmp), "origin", True, "lesson"))
+
+
 class Sessions(unittest.TestCase):
     """A bare origin with main holding a fresh registry, and one clone per simulated session."""
 
@@ -1302,6 +1389,21 @@ class ClaimTests(Sessions):
         self.assertIn("your claim is not on origin/claude/b", err)
         self.assertEqual(0, self.run_in(b, "touch", "--publish")[0])
         self.assertEqual(0, self.run_in(b, "verify")[0])
+
+    def test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names(self) -> None:
+        a, b = self.session("a"), self.session("b")  # both cut before the board reached main: only the remote has it
+        seed = self.tmp / "seed"
+        (seed / "docs").mkdir()
+        (seed / claims.BOARD).write_text(BOARD_TEXT, encoding="utf-8")
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "board")
+        git(seed, "push", "--quiet", "origin", "main")
+        self.assertEqual((0, "sd-01-003\nsd-01-004\n"), self.run_in(b, "next", "-n", "2")[:2])
+        code, out, err = self.run_in(b, "claim", "--next", "1")
+        self.assertEqual(0, code, err)
+        self.assertIn("claimed sd-01-003 as claude/b", out)
+        code, out, err = self.run_in(a, "claim", "sd-01-001", "sd-01-002")
+        self.assertEqual(0, code, err)  # the session the range is reserved for claims it by id
 
     def test_next_skips_what_is_taken_or_written(self) -> None:
         a, b = self.session("a"), self.session("b")

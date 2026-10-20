@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="509" viewBox="0 0 320 509" role="img" aria-labelledby="title desc">
+<title id="title">Hai mươi lăm bài báo, năm nhóm</title>
+<desc id="desc">Hai khung. Khung một, dữ liệu và xử lý: chín bài về lưu trữ và cơ sở dữ liệu, năm bài về xử lý và điều phối. Khung hai, còn lại: bốn bài về bộ nhớ đệm, quan sát và phân quyền, năm bài về nền tảng lý thuyết và công cụ, hai bài về ứng dụng cụ thể.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="509" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Hai mươi lăm bài báo,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">năm nhóm</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chọn nhóm theo vấn đề trước.</text>
+<rect x="8" y="104" width="304" height="157" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu và xử lý</text>
+<rect x="20" y="149" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="172" r="11" fill="#16a34a"/>
+<polyline points="37.9,172.4 41.7,176.4 48.5,168" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu trữ, cơ sở dữ liệu: 9 bài.</text>
+<rect x="20" y="203" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="226" r="11" fill="#16a34a"/>
+<polyline points="37.9,226.4 41.7,230.4 48.5,222" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="229.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xử lý, điều phối: 5 bài.</text>
+<rect x="8" y="273" width="304" height="228" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="301.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Còn lại</text>
+<rect x="20" y="318" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="341" r="11" fill="#16a34a"/>
+<polyline points="37.9,341.4 41.7,345.4 48.5,337" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="344.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đệm, quan sát, phân quyền:</text>
+<text x="64" y="363.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">4 bài.</text>
+<rect x="20" y="389" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="412" r="11" fill="#16a34a"/>
+<polyline points="37.9,412.4 41.7,416.4 48.5,408" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="415.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nền tảng, công cụ: 5 bài.</text>
+<rect x="20" y="443" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="466" r="11" fill="#16a34a"/>
+<polyline points="37.9,466.4 41.7,470.4 48.5,462" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="469.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ứng dụng cụ thể: 2 bài.</text>
+</g>
+</svg>

@@ -1,0 +1,85 @@
+{
+  "id": "sd-10-027",
+  "title": "Mười một bước lên cấp cao",
+  "subtitle": "Dịch vụ mượn sách đi qua từng bước.",
+  "desc": "Bốn chuỗi bước, mười một bước, minh họa bằng dịch vụ mượn sách. Cách làm việc: một phiếu việc cho mỗi thay đổi; viết hàm tính phí trả muộn bằng một ngôn ngữ; đặt tên và giao diện cho thao tác mượn sách. Vận hành và dữ liệu: chạy dịch vụ trên máy chủ và đám mây; đăng nhập an toàn và kiểm thử; lưu phiếu mượn trong cơ sở dữ liệu. Tự động hóa và nền tảng: mỗi thay đổi tự chạy kiểm thử; tìm sách trong một triệu mã bằng 20 phép so sánh thay vì một triệu. Tầm nhìn: bộ nhớ đệm và cân bằng tải cho ngày đông người; truyền bảng giảm giá vào hàm thay vì cố định trong mã; xem gợi ý của công cụ AI như mã của người lạ. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Cách làm việc",
+      "items": [
+        {
+          "title": "1 · Công cụ cộng tác",
+          "text": "Mỗi thay đổi có một phiếu việc và một người nhận."
+        },
+        {
+          "title": "2 · Ngôn ngữ lập trình",
+          "text": "Viết hàm tính phí trả muộn bằng Python."
+        },
+        {
+          "title": "3 · Phát triển API",
+          "text": "Đặt tên và giao diện cho thao tác mượn sách."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Vận hành và dữ liệu",
+      "items": [
+        {
+          "title": "4 · Máy chủ web và lưu trữ",
+          "text": "Chạy dịch vụ trên máy chủ và đám mây."
+        },
+        {
+          "title": "5 · Xác thực và kiểm thử",
+          "text": "Đăng nhập an toàn; ba ca kiểm thử."
+        },
+        {
+          "title": "6 · Cơ sở dữ liệu",
+          "text": "Lưu phiếu mượn lâu hơn chương trình."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Tự động hóa và nền tảng",
+      "items": [
+        {
+          "title": "7 · CI/CD",
+          "text": "Mỗi thay đổi tự chạy kiểm thử."
+        },
+        {
+          "title": "8 · Cấu trúc dữ liệu và thuật toán",
+          "text": "Tìm trong một triệu mã: 20 phép so sánh thay vì một triệu."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Tầm nhìn",
+      "items": [
+        {
+          "title": "9 · Thiết kế hệ thống",
+          "text": "Bộ nhớ đệm và cân bằng tải cho ngày đông người."
+        },
+        {
+          "title": "10 · Mẫu thiết kế",
+          "text": "Truyền bảng giảm giá vào hàm."
+        },
+        {
+          "title": "11 · Công cụ AI",
+          "text": "Đọc gợi ý như mã của người lạ."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mỗi bước là một việc cụ thể với dịch vụ.",
+        "Tên công cụ chỉ là ví dụ.",
+        "Không phải lộ trình bắt buộc."
+      ]
+    }
+  ]
+}

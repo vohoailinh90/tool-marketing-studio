@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1221" viewBox="0 0 320 1221" role="img" aria-labelledby="title desc">
+<title id="title">Mười cách dùng Redis, năm nhóm kiểu dữ liệu</title>
+<desc id="desc">Ba phần. Phần một và hai, năm thẻ kiểu dữ liệu và các việc chúng làm: chuỗi cho bộ đệm, khóa phân tán, bộ đếm, giới hạn tần suất và sinh số tăng dần; bảng băm cho phiên đăng nhập và giỏ hàng; bitmap cho việc đếm người dùng quay lại; danh sách và stream cho hàng đợi; tập có thứ tự cho bảng xếp hạng. Phần ba, bốn điều thấy khi chạy thử: khóa cần mã riêng để không xóa nhầm khóa người khác; bộ đếm giới hạn tần suất cần thời gian hết hạn đặt cùng lúc; lấy việc khỏi danh sách rồi sập là mất việc; stream giữ tin chưa xác nhận để người khác nhận lại.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1221" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười cách dùng Redis,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">năm nhóm kiểu dữ liệu</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chọn kiểu dữ liệu trước, rồi mới chọn</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">lệnh.</text>
+<rect x="8" y="123" width="304" height="428" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một giá trị, nhiều trường,</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nhiều bit</text>
+<rect x="20" y="190" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="243.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 232.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chuỗi</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đệm, khóa phân tán, bộ</text>
+<text x="78" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đếm, giới hạn tần suất,</text>
+<text x="78" y="279.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sinh số tăng dần.</text>
+<rect x="20" y="311" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="364.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 353.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="337.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bảng băm</text>
+<text x="78" y="361.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phiên đăng nhập, giỏ</text>
+<text x="78" y="380.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng: nhiều trường trong</text>
+<text x="78" y="400.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một khóa.</text>
+<rect x="20" y="432" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="485.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 474.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g>
+<text x="78" y="458.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bitmap</text>
+<text x="78" y="482.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi người dùng một bit</text>
+<text x="78" y="501.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi ngày; giao hai ngày để</text>
+<text x="78" y="521.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đếm người quay lại.</text>
+<rect x="8" y="563" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="591.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi và xếp hạng</text>
+<rect x="20" y="608" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="651.5" r="18" fill="#0f766e"/><g transform="translate(39.2 640.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="634.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Danh sách, stream</text>
+<text x="78" y="658.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàng đợi việc; stream giữ</text>
+<text x="78" y="677.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin tới khi được xác nhận.</text>
+<rect x="20" y="709" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="762.5" r="18" fill="#0f766e"/><g transform="translate(39.2 751.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="735.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tập có thứ tự</text>
+<text x="78" y="759.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảng xếp hạng: mỗi phần</text>
+<text x="78" y="778.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tử một điểm, đọc theo thứ</text>
+<text x="78" y="798.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tự điểm.</text>
+<rect x="8" y="840" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="868.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chạy thử thấy gì</text>
+<rect x="20" y="885" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="908" r="11" fill="#16a34a"/>
+<polyline points="37.9,908.4 41.7,912.4 48.5,904" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="911.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa: gắn mã riêng, chỉ xóa</text>
+<text x="64" y="930.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khi mã còn đúng của mình.</text>
+<rect x="20" y="956" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="979" r="11" fill="#16a34a"/>
+<polyline points="37.9,979.4 41.7,983.4 48.5,975" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="982.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giới hạn tần suất: tăng đếm</text>
+<text x="64" y="1001.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và đặt hết hạn trong cùng</text>
+<text x="64" y="1021.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một bước.</text>
+<rect x="20" y="1047" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1070" r="11" fill="#16a34a"/>
+<polyline points="37.9,1070.4 41.7,1074.4 48.5,1066" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1073.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy việc khỏi danh sách rồi</text>
+<text x="64" y="1092.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sập: việc đó mất.</text>
+<rect x="20" y="1118" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1141" r="11" fill="#16a34a"/>
+<polyline points="37.9,1141.4 41.7,1145.4 48.5,1137" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1144.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Stream: tin chưa xác nhận</text>
+<text x="64" y="1163.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vẫn chờ, người khác nhận lại</text>
+<text x="64" y="1183.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+</g>
+</svg>

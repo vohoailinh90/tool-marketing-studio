@@ -1,0 +1,36 @@
+{
+  "id": "sd-11-038",
+  "title": "Bảy mẫu phân tán hay gặp",
+  "subtitle": "Mỗi mẫu trả lời một vấn đề.",
+  "desc": "Ba khung. Khung một, giữ dịch vụ khỏe: Ambassador là bên trung gian đặt cạnh ứng dụng để gọi ra ngoài; Circuit Breaker ngừng gọi khi lỗi vượt ngưỡng; Leader Election chọn một bản làm người điều phối. Khung hai, dữ liệu và thông điệp: CQRS tách mô hình đọc và ghi; Event Sourcing lưu chuỗi sự kiện thay vì trạng thái hiện tại; Publisher/Subscriber phát sự kiện cho nhiều bên nhận; Sharding chia kho dữ liệu thành nhiều phần. Khung ba, thử Circuit Breaker: không có thì chờ 80 giây, có thì chờ 16 giây.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Giữ dịch vụ khỏe",
+      "items": [
+        {"name": "Ambassador", "role": "Bên trung gian cạnh ứng dụng gọi ra ngoài.", "icon": "plug"},
+        {"name": "Circuit Breaker", "role": "Ngừng gọi khi lỗi vượt ngưỡng.", "icon": "triangle-alert"},
+        {"name": "Leader Election", "role": "Chọn một bản làm người điều phối.", "icon": "users"}
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Dữ liệu và thông điệp",
+      "items": [
+        {"name": "CQRS", "role": "Tách mô hình đọc và ghi.", "icon": "split"},
+        {"name": "Event Sourcing", "role": "Lưu chuỗi sự kiện, không chỉ trạng thái.", "icon": "history"},
+        {"name": "Publisher/Subscriber", "role": "Phát sự kiện cho nhiều bên nhận.", "icon": "radio"},
+        {"name": "Sharding", "role": "Chia kho dữ liệu thành nhiều phần.", "icon": "boxes"}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử Circuit Breaker",
+      "items": [
+        "Dịch vụ hỏng 40 giây, mỗi lần gọi chờ 2 giây.",
+        "Không có bộ ngắt: chờ tổng 80 giây.",
+        "Có bộ ngắt: 32 lần thất bại tức thì, chờ 16 giây."
+      ]
+    }
+  ]
+}

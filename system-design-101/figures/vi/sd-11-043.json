@@ -1,0 +1,12 @@
+{
+  "id": "sd-11-043",
+  "title": "CAP, BASE, SOLID, KISS",
+  "subtitle": "Dữ liệu và mã, hai thế giới.",
+  "desc": "Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa từ chối khi không chắc, và trả lời thành công bằng giá trị có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lần ghi nhưng mọi lượt đọc đều đúng, hệ thống ưu tiên trả lời nhận lượt ghi nhưng ba lượt đọc trả giá trị cũ rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.",
+  "sections": [
+    {"kind": "notes", "heading": "CAP: mạng đứt thì chọn", "items": ["Ưu tiên đúng: từ chối khi không chắc.", "Ưu tiên trả lời: có thể trả giá trị cũ."]},
+    {"kind": "notes", "heading": "Mô phỏng hai bản sao", "items": ["Ưu tiên đúng: từ chối 3 lần ghi, đọc đều đúng.", "Ưu tiên trả lời: nhận ghi, 3 lượt đọc trả giá trị cũ.", "Nối lại: cả hai cùng trả giá trị mới."]},
+    {"kind": "notes", "heading": "BASE", "items": ["Sẵn sàng cơ bản.", "Trạng thái mềm.", "Nhất quán cuối cùng."]},
+    {"kind": "notes", "heading": "Về mã", "items": ["SOLID: năm nguyên tắc thiết kế mã.", "KISS: giữ cho đơn giản."]}
+  ]
+}

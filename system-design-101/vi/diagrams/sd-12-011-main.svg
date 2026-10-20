@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="839" viewBox="0 0 320 839" role="img" aria-labelledby="title desc">
+<title id="title">Nền tảng thử nghiệm A/B</title>
+<desc id="desc">Hai khung. Khung một, bốn phần của nền tảng thử nghiệm: định nghĩa và quản lý thử nghiệm, triển khai và chia nhóm, ghi nhận sự kiện, phân tích kết quả. Khung hai, ba chỗ dễ sai: chia nhóm phải ổn định và không tương quan giữa các thử nghiệm, số người mỗi nhóm phải đúng tỷ lệ đã định, và không nhìn kết quả giữa chừng để dừng sớm.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="839" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Nền tảng thử nghiệm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">A/B</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn phần, và ba chỗ dễ làm sai kết</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">quả.</text>
+<rect x="8" y="123" width="304" height="414" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn phần của nền tảng</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Định nghĩa</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tạo và quản lý thử nghiệm</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trên giao diện.</text>
+<rect x="20" y="277" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Triển khai</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia người dùng vào nhóm.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi nhận</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu sự kiện của từng người.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="457" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="483" r="14" fill="#1d4ed8"/>
+<text x="46" y="488.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="483.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phân tích</text>
+<text x="70" y="507.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">So sánh hai nhóm.</text>
+<polyline points="46,437 46,455" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="549" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="577.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chỗ dễ sai</text>
+<rect x="20" y="594" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="617" r="11" fill="#16a34a"/>
+<polyline points="37.9,617.4 41.7,621.4 48.5,613" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="620.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia nhóm ổn định, và</text>
+<text x="64" y="639.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không tương quan giữa các</text>
+<text x="64" y="659.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử nghiệm.</text>
+<rect x="20" y="685" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="708" r="11" fill="#16a34a"/>
+<polyline points="37.9,708.4 41.7,712.4 48.5,704" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="711.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm tra số người mỗi nhóm</text>
+<text x="64" y="730.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có đúng tỷ lệ không.</text>
+<rect x="20" y="756" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="779" r="11" fill="#16a34a"/>
+<polyline points="37.9,779.4 41.7,783.4 48.5,775" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="782.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không dừng sớm chỉ vì thấy</text>
+<text x="64" y="801.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết quả đẹp.</text>
+</g>
+</svg>

@@ -1,0 +1,41 @@
+{
+  "id": "sd-14-022",
+  "lang": "vi",
+  "title": "Ba điều cần giữ và biện pháp giữ chúng",
+  "subtitle": "Bộ ba CIA: bí mật, toàn vẹn, sẵn sàng",
+  "desc": "Hai khung xếp dọc. Khung một: ba điều cần giữ của bộ ba CIA, mỗi điều kèm ví dụ khi hỏng. Bí mật: bảng lương lọt ra ngoài. Toàn vẹn: 100 USD thành 900 USD mà không ai hay. Sẵn sàng: trang thanh toán không mở được. Khung hai: biện pháp giữ từng điều. Bí mật: mã hóa, phân quyền đọc, lưu mật khẩu dạng băm. Toàn vẹn: mã xác thực, chữ ký số, phân quyền ghi. Sẵn sàng: giới hạn tốc độ, thời gian chờ, dự phòng. Thêm tường lửa bớt đường vào, và nhắc xếp nhiều lớp.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba điều cần giữ",
+      "items": [
+        {
+          "name": "Bí mật",
+          "role": "Chỉ người được phép đọc. Hỏng khi bảng lương lọt ra ngoài.",
+          "icon": "lock"
+        },
+        {
+          "name": "Toàn vẹn",
+          "role": "Sửa là bị phát hiện. Hỏng khi 100 USD thành 900 USD mà không ai hay.",
+          "icon": "hash"
+        },
+        {
+          "name": "Sẵn sàng",
+          "role": "Người được phép dùng được khi cần. Hỏng khi trang thanh toán không mở được.",
+          "icon": "server"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Biện pháp nào giữ điều nào",
+      "items": [
+        "Bí mật: mã hóa, phân quyền đọc, lưu mật khẩu dạng băm.",
+        "Toàn vẹn: mã xác thực, chữ ký số, phân quyền ghi.",
+        "Sẵn sàng: giới hạn tốc độ, thời gian chờ, dự phòng.",
+        "Tường lửa: chặn lưu lượng không cần, bớt đường vào.",
+        "Không biện pháp nào đủ một mình: xếp nhiều lớp."
+      ]
+    }
+  ]
+}

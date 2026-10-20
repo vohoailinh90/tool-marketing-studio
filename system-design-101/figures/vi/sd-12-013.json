@@ -1,0 +1,27 @@
+{
+  "id": "sd-12-013",
+  "title": "Chat một-một: đăng nhập và gửi tin",
+  "subtitle": "Mã thứ tự, kiểm tra trực tuyến, và hai đường tới người nhận.",
+  "desc": "Hai khung. Khung một, đăng nhập: người dùng mở kết nối WebSocket, dịch vụ hiện diện cập nhật trạng thái và báo cho bạn bè. Khung hai, gửi tin: tin đi qua dịch vụ chat, dịch vụ cấp mã thứ tự và lưu vào kho tin nhắn, rồi hàng đợi đồng bộ kiểm tra người nhận; nếu đang trực tuyến thì đẩy qua WebSocket, nếu ngoại tuyến thì gửi thông báo đẩy.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đăng nhập",
+      "items": [
+        {"title": "Mở kết nối", "text": "Alice mở kết nối WebSocket với máy chủ."},
+        {"title": "Cập nhật hiện diện", "text": "Dịch vụ hiện diện ghi Alice đang trực tuyến."},
+        {"title": "Báo bạn bè", "text": "Bạn bè của Alice nhận trạng thái mới."}
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Gửi một tin",
+      "items": [
+        {"title": "Đến dịch vụ chat", "text": "Tin của Alice vào dịch vụ chat A."},
+        {"title": "Cấp mã, lưu tin", "text": "Dịch vụ cấp mã thứ tự rồi lưu vào kho tin nhắn."},
+        {"title": "Đồng bộ", "text": "Tin vào hàng đợi đồng bộ; kiểm tra Bob có trực tuyến không."},
+        {"title": "Đến Bob", "text": "Trực tuyến thì đẩy qua WebSocket, ngoại tuyến thì gửi thông báo đẩy."}
+      ]
+    }
+  ]
+}

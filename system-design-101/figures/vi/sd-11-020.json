@@ -1,0 +1,79 @@
+{
+  "title": "Sáu nguyên tắc chịu lỗi",
+  "subtitle": "Có bản dự phòng, và biết khi nào chuyển sang.",
+  "desc": "Ba khung. Khung một, có bản sao để thay: sao chép dữ liệu, dư thừa thành phần, cân bằng tải. Khung hai, phản ứng khi hỏng: chuyển sang dự phòng, giảm chức năng thay vì sập hẳn, giám sát và cảnh báo. Khung ba, phép tính: hai bản 99% chạy song song cho 99,99%, ba phần 99,9% nối tiếp chỉ còn khoảng 99,7%.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Có sẵn bản thay thế",
+      "items": [
+        {
+          "name": "Sao chép",
+          "role": "Giữ nhiều bản dữ liệu ở nhiều nơi.",
+          "icon": "share-2"
+        },
+        {
+          "name": "Dư thừa",
+          "role": "Có thành phần dự phòng sẵn sàng thay.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Cân bằng tải",
+          "role": "Chia việc, không máy nào gánh một mình.",
+          "icon": "scale"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phản ứng khi có thứ hỏng",
+      "items": [
+        {
+          "name": "Chuyển dự phòng",
+          "role": "Tự chuyển sang bản dự phòng khi bản chính hỏng.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Giảm chức năng",
+          "role": "Chạy với ít tính năng hơn, không sập hẳn.",
+          "icon": "triangle-alert"
+        },
+        {
+          "name": "Giám sát, cảnh báo",
+          "role": "Thấy sớm và báo cho người xử lý.",
+          "icon": "activity"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Phép tính độ sẵn sàng",
+      "items": [
+        "Hai bản 99% chạy song song: 99,99%.",
+        "Ba phần 99,9% nối tiếp: khoảng 99,7%.",
+        "Chỉ đúng khi các bản hỏng độc lập nhau."
+      ]
+    }
+  ],
+  "id": "sd-11-020"
+}

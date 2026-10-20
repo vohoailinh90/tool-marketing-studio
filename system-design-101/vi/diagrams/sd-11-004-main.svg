@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="868" viewBox="0 0 320 868" role="img" aria-labelledby="title desc">
+<title id="title">Bốn mức khôi phục thảm họa</title>
+<desc id="desc">Hai khung. Khung một, bốn chiến lược xếp từ rẻ và chậm tới đắt và nhanh: sao lưu và khôi phục, đèn mồi, dự phòng ấm, hai vùng cùng chạy. Khung hai, hai mốc cần đặt trước khi chọn: RTO là thời gian chịu ngừng, RPO là lượng dữ liệu chịu mất.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="868" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mức khôi phục thảm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">họa</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Càng chạy sẵn, càng nhanh và càng</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">đắt.</text>
+<rect x="8" y="123" width="304" height="463" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ rẻ tới đắt</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sao lưu</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ bản sao; dựng lại khi</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cần.</text>
+<rect x="20" y="287" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="330.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 319.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="313.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đèn mồi</text>
+<text x="78" y="337.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy lõi dữ liệu, bật dần</text>
+<text x="78" y="356.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần còn lại.</text>
+<rect x="20" y="406" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="440" r="18" fill="#1d4ed8"/><g transform="translate(39.2 429.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="432.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dự phòng ấm</text>
+<text x="78" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy sẵn bản thu nhỏ.</text>
+<rect x="20" y="506" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="540" r="18" fill="#1d4ed8"/><g transform="translate(39.2 529.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="78" y="532.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hai vùng</text>
+<text x="78" y="556.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai vùng cùng phục vụ.</text>
+<polyline points="160,257 160,285" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,376 160,404" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,476 160,504" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="598" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="626.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đặt hai mốc trước</text>
+<rect x="20" y="643" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="666" r="11" fill="#16a34a"/>
+<polyline points="37.9,666.4 41.7,670.4 48.5,662" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="669.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RTO: chịu ngừng tối đa bao</text>
+<text x="64" y="688.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lâu.</text>
+<rect x="20" y="714" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="737" r="11" fill="#16a34a"/>
+<polyline points="37.9,737.4 41.7,741.4 48.5,733" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="740.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RPO: chịu mất dữ liệu mới</text>
+<text x="64" y="759.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của bao lâu.</text>
+<rect x="20" y="785" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="808" r="11" fill="#16a34a"/>
+<polyline points="37.9,808.4 41.7,812.4 48.5,804" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="811.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Việc kinh doanh đặt mốc, rồi</text>
+<text x="64" y="830.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới chọn mức.</text>
+</g>
+</svg>

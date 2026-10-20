@@ -1,0 +1,39 @@
+{
+  "id": "sd-08-017",
+  "title": "Sáu mẫu kiến trúc: một lợi, một hại, một phép đo",
+  "subtitle": "Mỗi mẫu đổi một thứ lấy một thứ; sáu cái giá đo thử trên một máy.",
+  "desc": "Ba khung. Khung một, sáu mẫu kiến trúc của nguồn, mỗi mẫu một lợi một hại: phân tầng nhanh dựng nhưng mã dễ lộn xộn; dịch vụ nhỏ chịu lỗi nhưng phức tạp; hướng sự kiện lỏng ghép nhưng khó thử; máy khách và máy chủ hợp thời gian thực nhưng máy chủ là điểm hỏng; phần mở rộng dễ mở rộng nhưng sửa lõi khó; lục giác bảo vệ lõi nhưng tốn thời gian dựng. Khung hai, sáu phép đo trên một máy: gọi qua HTTP tốn 220 đến 292 micro giây, trong tiến trình 0,08 đến 0,11; với 16 máy khách, máy chủ một luồng trả lời sau 33,5 mili giây, nhiều luồng 8,6; đổi chữ ký lõi làm hỏng 100 trên 100 phần mở rộng. Khung ba, số đo chỉ cho thấy hình dạng của chi phí.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Sáu mẫu, một lợi một hại",
+      "items": [
+        "Phân tầng: nhanh dựng; mã dễ lộn xộn nếu thiếu luật.",
+        "Dịch vụ nhỏ: chịu lỗi, co giãn riêng; phức tạp hơn.",
+        "Hướng sự kiện: lỏng ghép; khó thử từng phần.",
+        "Máy khách và máy chủ: hợp thời gian thực; máy chủ là điểm hỏng.",
+        "Phần mở rộng: mở rộng dần; sửa lõi khó. Lục giác: bảo vệ lõi; tốn thời gian dựng."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Sáu phép đo",
+      "items": [
+        "Phân tầng: mỗi tầng chuyển tiếp thêm 0,02 đến 0,05 µs.",
+        "Dịch vụ nhỏ: gọi qua HTTP 220 đến 292 µs.",
+        "Sự kiện: mỗi người nhận thêm cỡ 0,02 µs.",
+        "16 máy khách: máy chủ một luồng 33,5 ms, nhiều luồng 8,6.",
+        "Phần mở rộng: đổi chữ ký lõi hỏng 100 trên 100.",
+        "Lục giác: lõi chạy với sqlite 890 đến 960 µs."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn",
+      "items": [
+        "Số đo là hình dạng của chi phí trên một máy, không phải số của hệ thống thật.",
+        "Máy khách và máy chủ, kiến trúc lục giác: chưa đọc được tài liệu độc lập để đối chiếu."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "sd-04-003",
+  "lang": "vi",
+  "title": "Tải tệp lớn lên S3 theo nhiều phần",
+  "subtitle": "Mở một lượt tải, gửi từng phần (song song được), rồi báo hoàn tất.",
+  "desc": "Ba khung. Khung một là trình tự giữa máy khách và kho đối tượng: máy khách xin bắt đầu một lượt tải nhiều phần và nhận upload ID; gửi từng phần, có thể song song, kèm số phần và upload ID, mỗi phần nhận về một ETag; cuối cùng gửi lệnh hoàn tất kèm danh sách số phần và ETag, kho ghép các phần theo số phần. Khung hai là cách chọn cỡ phần: mỗi phần ít nhất 5 MiB trừ phần cuối và tối đa 10.000 phần; tệp 100 GiB với phần 5 MiB cần 20.480 phần nên phải dùng phần từ 10,24 MiB trở lên. Khung ba: lượt tải bỏ dở vẫn bị tính tiền lưu trữ cho tới khi hủy, và ETag của đối tượng tải nhiều phần không phải MD5 của cả tệp.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Một lượt tải nhiều phần",
+      "actors": [
+        {
+          "name": "Máy khách",
+          "icon": "monitor"
+        },
+        {
+          "name": "Kho đối tượng",
+          "icon": "cloud"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Bắt đầu tải nhiều phần"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "upload ID",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Từng phần: số phần, upload ID"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "ETag của phần đó",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Hoàn tất: các cặp số phần, ETag"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Ghép theo số phần",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Chọn cỡ phần",
+      "items": [
+        {
+          "title": "Hai giới hạn",
+          "text": "Mỗi phần ít nhất 5 MiB, trừ phần cuối; một lượt tải tối đa 10.000 phần."
+        },
+        {
+          "title": "Tính số phần",
+          "text": "Tệp 100 GiB cắt phần 5 MiB thành 20.480 phần: vượt giới hạn."
+        },
+        {
+          "title": "Tăng cỡ phần",
+          "text": "Cần phần từ 10,24 MiB trở lên; phần lớn hơn thì ít lệnh gọi hơn."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai điều hay quên",
+      "items": [
+        "Lượt tải bỏ dở vẫn bị tính tiền lưu các phần đã gửi cho tới khi hủy.",
+        "ETag của đối tượng tải nhiều phần không phải MD5 của cả tệp."
+      ]
+    }
+  ]
+}

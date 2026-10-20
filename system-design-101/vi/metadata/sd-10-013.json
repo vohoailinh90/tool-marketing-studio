@@ -1,0 +1,81 @@
+{
+  "id": "sd-10-013",
+  "title_vi": "Mười cuốn sách cho người phát triển phần mềm",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-books-for-software-developers.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "e2c3231c77020fa193eb39788a2cd807f420c02f",
+    "retrieved_body_sha256": "1a42ed094816453cb07a9d33eab5df981a3bc3b21dd4ed06e433d60f06696e51",
+    "retrieved_body_bytes": 1265
+  },
+  "diagram": "../diagrams/sd-10-013-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_names_and_groups_listed_with_the_pinned_source; the descriptions of the books, Alex Xu's authorship of System Design Interview, and the corrected name Erich Gamma with the three coauthors (Helm, Johnson, Vlissides) of Design Patterns are the author's general knowledge, not checked against the publisher's or author's pages"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists ten books in five groups of two: general advice, coding, software architecture, design patterns, data structures and algorithms; the lesson keeps the group names, book titles and author names.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The source calls System Design Interview its own book; the lesson names Alex Xu as its author and ByteByteGo as the source's team.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
+      "section": "Software Architecture",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text. The author's name is general knowledge."
+    },
+    {
+      "claim_vi": "The source writes the first author of Design Patterns as \"Eric Gamma\"; the lesson uses Erich Gamma and lists the other three authors (Helm, Johnson, Vlissides).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
+      "section": "Design Patterns",
+      "verified_by": "Author's general knowledge; not checked against the publisher's or author's page (not reachable from the authoring environment)."
+    },
+    {
+      "claim_vi": "What each book is about (practical craft advice; a construction handbook; readable code; small behavior-preserving restructurings; storage, replication, partitioning, transactions and stream/batch processing; sample system-design walkthroughs; a catalogue of object-oriented patterns; domain modeling; an algorithms textbook; interview questions with solutions).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against the publisher's or author's page (not reachable from the authoring environment)."
+    },
+    {
+      "claim_vi": "The source gives no reading order, level or reason for the selection; the list comes from a party with a stake in one of the titles.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-books-for-software-developers.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against the publisher's or author's page (not reachable from the authoring environment)."
+    }
+  ],
+  "design_notes_vi": "Năm nhóm giữ nguyên thứ tự và tên nhóm của nguồn, mỗi nhóm hai thẻ; mỗi thẻ có một dòng nói cuốn đó bàn về gì, do người biên soạn viết. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source writes the first author of Design Patterns as \"Eric Gamma\"; the lesson writes Erich Gamma and states that this is the editor's general knowledge.",
+    "Source describes only one book (Code Complete); the lesson describes all ten in its own words from general knowledge and does not reuse the source's sentence."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

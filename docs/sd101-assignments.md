@@ -18,9 +18,8 @@ authority on what is being worked on right now; this page only reserves what com
 - **Expiry.** A reservation lapses when nothing in its range has been claimed, touched or merged for 72 hours since the date of its
   row (the same lease the claim tools use). The tools keep skipping it until its row changes, so a session that takes a lapsed range
   claims it by id and, in the same pull request, rewrites the row with its own branch.
-- **Snapshot.** Counted on 2026-10-20 at 02:10 UTC, against source commit `b28380a` of ByteByteGoHq/system-design-101 (which has
-  not moved): 404 lessons, 403 of them written and on `main`, and every written lesson has a finished deck with its badged PPTX
-  once #236 merges. sd-02-030 is not written (its source is a picture alone).
+- **Snapshot.** Counted on 2026-10-20 at 08:00 UTC, against source commit `b28380a` of ByteByteGoHq/system-design-101 (which has
+  not moved): all 404 lessons are written, each with its deck and badged PPTX, once #237 (sd-02-030, the last one) merges.
 
 ## Assigned (dispatched 2026-10-19)
 
@@ -50,7 +49,8 @@ authority on what is being worked on right now; this page only reserves what com
 | sd-06-001..003, sd-06-009..011, sd-13-009..011, sd-13-017..020 | decks | #194, #197 | done |
 | sd-04-022..024, sd-06-023..029 | deck and PPTX | `claude/sd101-slides-batch-10` (#235) | done |
 | sd-04-013..021 | deck and PPTX | `claude/sd101-decks-w23-sd04` (#236) | done |
-| sd-02-030 | lesson, figure, deck and PPTX | held for the owner's decision: its source is a picture with no text | held |
+| sd-02-030 | lesson, figure, deck and PPTX | `claude/sd101-lessons-w24-sd02030` (#237; owner decision 2026-10-20) | written |
 
-All 403 written lessons have their deck and badged PPTX. The one row still open holds sd-02-030, its lesson and its deck,
-until the owner decides whether it gets a lesson.
+All 404 lessons are written, each with its deck and badged PPTX. The sd-02-030 row keeps the status `written` instead of
+`done` on purpose: `tests/test_sd101_claims.py` expects the real board to reserve at least one lesson and one deck, and a
+reservation of a lesson that is already written blocks nothing.

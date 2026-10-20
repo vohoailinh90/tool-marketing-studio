@@ -48,7 +48,8 @@ authority on what is being worked on right now; this page only reserves what com
 | sd-04-013..024 | lessons | `claude/sd101-l3-sd04` (#228) | done |
 | sd-06-023..029 | lessons | `claude/sd101-l6-sd06-b` (#227) | done |
 | sd-06-001..003, sd-06-009..011, sd-13-009..011, sd-13-017..020 | decks | #194, #197 | done |
+| sd-04-013..024, sd-06-023..029 | deck and PPTX | the VPS team (a Claude session with Moda; owner request 2026-10-20) | assigned |
+| sd-02-030 | lesson | held for the owner's decision: its source is a picture with no text | held |
 
-403 of the 404 lessons are on `main`. The decks of sd-04-013..024 and sd-06-023..029 are not built yet and nobody holds
-them: the next session with the Moda connector claims them by id (`python3 scripts/sd101_slides.py status` lists them as
-free). sd-02-030 is not reserved: its source is a picture with no text, and whether it gets a lesson is the owner's decision.
+403 of the 404 lessons are on `main`. The two rows above reserve what is left: the decks of the 19 lessons that have none, for
+the VPS team, and sd-02-030, until the owner decides whether it gets a lesson.

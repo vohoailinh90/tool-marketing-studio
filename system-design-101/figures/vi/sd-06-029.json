@@ -1,0 +1,71 @@
+{
+  "id": "sd-06-029",
+  "lang": "vi",
+  "title": "Học bộ đệm qua tám câu hỏi",
+  "subtitle": "Bản sao có thể cũ, có thể đầy, có thể mất.",
+  "desc": "Ba phần. Hiểu bộ đệm: là gì, bản sao tạm của dữ liệu hay đọc, đặt gần hơn nơi gốc; vì sao cần, vì nơi gốc chậm, xa hoặc bị nhiều yêu cầu tranh nhau; đặt ở đâu, ở trình duyệt, CDN, ứng dụng, Redis và trong cơ sở dữ liệu; riêng hay chung, bộ đệm trong tiến trình nhanh nhưng mỗi máy một bản, bộ đệm dùng chung khớp hơn nhưng chậm hơn. Giữ bộ đệm đúng: đầy thì bỏ gì; gốc đổi thì hết hạn hoặc xóa khi ghi; đọc ghi theo chiến lược nào; hỏng ra sao. Thử Redis giới hạn 4 MB: không loại bỏ thì từ chối ghi sau 2908 khóa; bỏ khóa lâu chưa dùng thì giữ đủ 500 khóa nóng; bỏ ngẫu nhiên thì còn 2 trên 500.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Hiểu bộ đệm",
+      "items": [
+        {
+          "name": "Là gì",
+          "role": "Bản sao tạm của dữ liệu hay đọc, đặt gần hơn nơi gốc.",
+          "icon": "layers"
+        },
+        {
+          "name": "Vì sao cần",
+          "role": "Nơi gốc chậm, xa, hoặc bị nhiều yêu cầu tranh nhau.",
+          "icon": "gauge"
+        },
+        {
+          "name": "Đặt ở đâu",
+          "role": "Trình duyệt, CDN, ứng dụng, Redis, cơ sở dữ liệu.",
+          "icon": "globe"
+        },
+        {
+          "name": "Riêng hay chung",
+          "role": "Trong tiến trình thì nhanh; dùng chung thì các máy thấy một bản.",
+          "icon": "share-2"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Giữ bộ đệm đúng",
+      "items": [
+        {
+          "name": "Đầy thì bỏ gì",
+          "role": "Chính sách loại bỏ quyết định khóa nào đi.",
+          "icon": "circle-x"
+        },
+        {
+          "name": "Gốc đổi thì sao",
+          "role": "Hết hạn sau một thời gian, hoặc xóa khi ghi.",
+          "icon": "timer"
+        },
+        {
+          "name": "Đọc ghi thế nào",
+          "role": "Chiến lược đọc ghi: ai nạp, ai ghi xuống gốc.",
+          "icon": "workflow"
+        },
+        {
+          "name": "Hỏng ra sao",
+          "role": "Bản cũ, mất dữ liệu, dồn tải về nơi gốc.",
+          "icon": "triangle-alert"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử Redis giới hạn 4 MB",
+      "items": [
+        "500 khóa nóng được đọc lại liên tục, rồi ghi thêm 20 000 khóa.",
+        "Không loại bỏ: từ chối ghi thêm sau 2908 khóa.",
+        "Bỏ khóa lâu chưa dùng: giữ đủ 500/500 khóa nóng.",
+        "Bỏ ngẫu nhiên: còn 2/500 khóa nóng, đọc trúng 28,3%."
+      ]
+    }
+  ]
+}

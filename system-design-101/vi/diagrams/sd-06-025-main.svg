@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1201" viewBox="0 0 320 1201" role="img" aria-labelledby="title desc">
+<title id="title">Thang độ trễ, đo trên một máy chủ đám mây</title>
+<desc id="desc">Ba phần. Phần một, bốn bậc đo trên máy thử: bộ nhớ đệm của CPU, vùng 16 KB 1,5 nano giây và vùng 256 KB 3,9 nano giây; RAM, đọc ngẫu nhiên vùng 512 MB khoảng 315 nano giây; gửi 1 KB qua giao diện mạng nội bộ và nhận lại khoảng 60 micro giây; đĩa, đọc ngẫu nhiên 4 KB khoảng 60 micro giây, ghi 4 KB kèm fsync khoảng 440 micro giây. Phần hai, hai bậc chậm hơn: SQLite ghi một dòng và commit khoảng 1,3 mili giây; đi xuyên lục địa, bài nguồn ước 100 mili giây một vòng California, Hà Lan, không đo ở đây. Phần ba, ba điều cần nhớ: học bậc nano, micro, mili giây và giây; bước chậm đặt trong vòng lặp thì nhân lên; số trên máy của bạn sẽ khác, hãy đo.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1201" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Thang độ trễ, đo trên</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">một máy chủ đám mây</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Nhớ bậc của con số, không nhớ con</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">số.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn bậc đo được</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ nhớ đệm của CPU</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng 16 KB: 1,5 ns. Vùng</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">256 KB: 3,9 ns.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">RAM</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc ngẫu nhiên vùng 512</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MB: khoảng 315 ns.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mạng nội bộ máy</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi 1 KB rồi nhận lại:</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 60 µs.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đĩa ảo</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc ngẫu nhiên 4 KB: 60 µs.</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi kèm fsync: 440 µs.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="273" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chậm hơn nữa</text>
+<rect x="20" y="651" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="677" r="14" fill="#0f766e"/>
+<text x="46" y="682.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi bền vào SQLite</text>
+<text x="70" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một dòng kèm commit:</text>
+<text x="70" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 1,3 ms.</text>
+<rect x="20" y="760" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="786" r="14" fill="#0f766e"/>
+<text x="46" y="791.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="786.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xuyên lục địa</text>
+<text x="70" y="810.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bài nguồn ước 100 ms một</text>
+<text x="70" y="829.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vòng California, Hà Lan;</text>
+<text x="70" y="849.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo ở đây.</text>
+<polyline points="46,740 46,758" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="891" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="919.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc số thế nào</text>
+<rect x="20" y="936" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="959" r="11" fill="#16a34a"/>
+<polyline points="37.9,959.4 41.7,963.4 48.5,955" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="962.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhớ bậc: ns, µs, ms, giây;</text>
+<text x="64" y="981.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi bậc gấp nghìn lần bậc</text>
+<text x="64" y="1001.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước.</text>
+<rect x="20" y="1027" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1050" r="11" fill="#16a34a"/>
+<polyline points="37.9,1050.4 41.7,1054.4 48.5,1046" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1053.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bước chậm nằm trong vòng</text>
+<text x="64" y="1072.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lặp thì nhân lên theo số</text>
+<text x="64" y="1092.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vòng.</text>
+<rect x="20" y="1118" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1141" r="11" fill="#16a34a"/>
+<polyline points="37.9,1141.4 41.7,1145.4 48.5,1137" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1144.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy của bạn sẽ ra số khác:</text>
+<text x="64" y="1163.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hãy đo.</text>
+</g>
+</svg>

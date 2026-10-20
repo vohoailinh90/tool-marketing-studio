@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1313" viewBox="0 0 320 1313" role="img" aria-labelledby="title desc">
+<title id="title">Khối, tệp và đối tượng</title>
+<desc id="desc">Ba khung. Khung một là ba thẻ: lưu trữ khối là một dãy khối đánh số, máy chủ đọc ghi khối 2066 mà không biết đó là tệp gì; lưu trữ tệp ghép tên và thư mục với các khối, tệp /docs/note.txt là inode 13 nằm ở khối 2066; lưu trữ đối tượng là không gian phẳng, khóa photos/2017/a.jpg chỉ là một cái tên, thư mục chỉ là tiền tố, đọc ghi qua API. Khung hai là bốn bước thử: tạo một đĩa ảo 64 MiB định dạng ext4 với khối 4 KiB; ghi tệp /docs/note.txt dài 28 byte; hệ tệp cho biết tệp là inode 13, dữ liệu ở khối 2066; đọc thẳng khối 2066 ra đúng nội dung mà không cần tên. Khung ba: Ceph cho cả ba giao diện trên cùng một cụm: thiết bị khối, hệ tệp và kho đối tượng tương thích S3.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1313" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khối, tệp và đối tượng</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ba cách cho chương trình dùng chỗ</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">lưu trữ, khác nhau ở thứ chương trình</text>
+<text x="16" y="99.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nhìn thấy.</text>
+<rect x="8" y="119" width="304" height="406" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="147.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chương trình nhìn thấy gì</text>
+<rect x="20" y="164" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="217.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 206.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="190.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu trữ khối</text>
+<text x="78" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dãy khối đánh số: đọc ghi</text>
+<text x="78" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khối 2066 mà không biết</text>
+<text x="78" y="253.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đó là tệp gì.</text>
+<rect x="20" y="285" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="338.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 327.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></g>
+<text x="78" y="311.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu trữ tệp</text>
+<text x="78" y="335.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên, thư mục ghép với</text>
+<text x="78" y="354.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khối: /docs/note.txt là</text>
+<text x="78" y="374.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">inode 13, ở khối 2066.</text>
+<rect x="20" y="406" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="459.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 448.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="78" y="432.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu trữ đối tượng</text>
+<text x="78" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không gian phẳng:</text>
+<text x="78" y="475.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">photos/2017/a.jpg chỉ là</text>
+<text x="78" y="495.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa, thư mục là tiền tố.</text>
+<rect x="8" y="537" width="304" height="474" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="565.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: một tệp nằm ở khối</text>
+<text x="20" y="587.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nào</text>
+<rect x="20" y="604" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="630" r="14" fill="#0f766e"/>
+<text x="46" y="635.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="630.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tạo đĩa ảo</text>
+<text x="70" y="654.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một tệp 64 MiB định dạng</text>
+<text x="70" y="673.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ext4, khối 4 KiB.</text>
+<rect x="20" y="713" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="739" r="14" fill="#0f766e"/>
+<text x="46" y="744.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="739.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi một tệp</text>
+<text x="70" y="763.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">/docs/note.txt, dài 28 byte.</text>
+<polyline points="46,693 46,711" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="803" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="829" r="14" fill="#0f766e"/>
+<text x="46" y="834.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="829.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hỏi hệ tệp</text>
+<text x="70" y="853.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tệp là inode 13, dữ liệu ở</text>
+<text x="70" y="872.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khối 2066.</text>
+<polyline points="46,783 46,801" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="912" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="938" r="14" fill="#0f766e"/>
+<text x="46" y="943.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="938.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc thẳng khối</text>
+<text x="70" y="962.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khối 2066 cho đúng nội</text>
+<text x="70" y="981.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung, không cần tên.</text>
+<polyline points="46,892 46,910" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1023" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1051.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một cụm Ceph, ba giao diện</text>
+<rect x="20" y="1068" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1091" r="11" fill="#16a34a"/>
+<polyline points="37.9,1091.4 41.7,1095.4 48.5,1087" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1094.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thiết bị khối: chia khối ra</text>
+<text x="64" y="1113.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khắp cụm, có ảnh chụp và</text>
+<text x="64" y="1133.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản nhân.</text>
+<rect x="20" y="1159" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1182" r="11" fill="#16a34a"/>
+<polyline points="37.9,1182.4 41.7,1186.4 48.5,1178" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1185.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hệ tệp: gắn vào máy bằng</text>
+<text x="64" y="1204.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lệnh mount.</text>
+<rect x="20" y="1230" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1253" r="11" fill="#16a34a"/>
+<polyline points="37.9,1253.4 41.7,1257.4 48.5,1249" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1256.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kho đối tượng: giao diện</text>
+<text x="64" y="1275.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tương thích S3.</text>
+</g>
+</svg>

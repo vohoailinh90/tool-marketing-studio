@@ -1,0 +1,117 @@
+{
+  "id": "sd-04-019",
+  "title_vi": "Bốn mẫu nhất quán cuối cùng: bản đọc đi sau bao lâu, và ai sửa khi một bước hỏng",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-019",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-eventual-consistency-patterns-you-must-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-eventual-consistency-patterns-you-must-know.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "805751270adf715149f4899eb7fdc437a1198a99",
+    "retrieved_body_sha256": "bfa45111c384c3808a943401e96db942731379763f4afd99229d6dbd56fad0a4",
+    "retrieved_body_bytes": 1634
+  },
+  "diagram": "../diagrams/sd-04-019-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-008",
+      "relation": "prerequisite",
+      "reason_vi": "Bản gốc và bản dẫn xuất, câu hỏi bản dẫn xuất cũ được bao lâu."
+    },
+    {
+      "lesson_id": "sd-04-012",
+      "relation": "related",
+      "reason_vi": "Sự kiện bù trừ trong event sourcing."
+    },
+    {
+      "lesson_id": "sd-04-015",
+      "relation": "related",
+      "reason_vi": "Đọc nhật ký thay đổi để không lỡ sự kiện."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Azure Architecture Center Saga, Compensating Transaction and CQRS pages and the PostgreSQL 16 NOTIFY and LISTEN reference pages were read from clones of MicrosoftDocs/architecture-center and postgres/postgres; the lag, staleness and saga results were measured by the author, who ran them on PostgreSQL 16.15 with psycopg 3.3.6 on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A saga is a sequence of local transactions, each within a single service; if a step fails, compensating transactions undo the changes of completed steps; transactions after the pivot are retryable and idempotent; compensating transactions might not always succeed; there is no built-in isolation across services (lost updates, dirty reads, fuzzy reads).",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/saga-content.md",
+      "section": "Solution; Problems and considerations; Potential data anomalies in sagas",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Restoring the original state can overwrite changes from other concurrent instances, so a compensating transaction must account for concurrent work; undo steps need not run in exact reverse order; business rules apply, e.g. cancelling a flight might not entitle the customer to a complete refund.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/compensating-transaction.md",
+      "section": "Solution",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "When the read and write stores are separated the read data might not show the most recent changes immediately; the read model is eventually consistent with the write model.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/cqrs.md",
+      "section": "Problems and considerations",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "NOTIFY events inside a transaction are not delivered until and unless the transaction commits; NOTIFY goes to each client that has executed LISTEN on the channel; LISTEN registrations are cleared when the session ends.",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ref/notify.sgml",
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ref/listen.sgml"
+      ],
+      "section": "NOTIFY: Description; LISTEN: Description",
+      "verified_by": "Read from a partial clone of postgres/postgres at commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "Measured: 200 updates to 20 orders 50 ms apart; a trigger with pg_notify and a LISTEN process applied each change to a read table in another database with median lag 2.3 ms and maximum 23.8 ms, and a read right after each write was stale 194/200 times; a sync job every 2 seconds gave median lag 640 ms and maximum 1.99 s, carried 117 of the 200 versions and was stale 200/200 times; a saga charged 300, failed to reserve stock on a check constraint, then wrote a refund row and set the order to CANCELLED.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ref/notify.sgml",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18 on one machine, both databases in one PostgreSQL 16.15 server."
+    },
+    {
+      "claim_vi": "The source states: Four eventual consistency patterns: event-based, background sync (slower because the job runs on a schedule), saga-based (a sequence of local transactions for long-lived transactions) and CQRS-based (separate read and write databases).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-eventual-consistency-patterns-you-must-know.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ mẫu, bốn bước thử đo khoảng lệch, một sơ đồ tuần tự saga có giao dịch bù, bốn câu hỏi trước khi chọn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source gives each pattern one or two sentences; the lesson measures the lag of event-based and background sync propagation and runs a saga with compensating transactions.",
+    "The lesson adds that a scheduled sync skips intermediate versions, measured, and that a compensating transaction adds an opposite action instead of restoring the old state."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1294" viewBox="0 0 320 1294" role="img" aria-labelledby="title desc">
+<title id="title">Mã xóa: chịu mất khối, ít tốn chỗ</title>
+<desc id="desc">Ba khung. Khung một là bốn bước của mã xóa 4+2: cắt đối tượng 4 MiB thành 4 khối dữ liệu 1 MiB; tính thêm 2 khối mã và đặt 6 khối ở 6 nơi khác nhau; mất 2 khối bất kỳ vẫn dựng lại đủ, đúng ở cả 15 cách mất 2 trong 6 khối; mất 3 khối thì chỉ còn 3, không đủ để dựng lại. Khung hai so ba cách giữ an toàn cho 4 MiB: nhân bản 3 bản lưu 12 MiB và chịu mất 2 bản; mã xóa 4+2 lưu 6 MiB và chịu mất 2 khối; một khối chẵn lẻ 4+1 lưu 5 MiB và chỉ chịu mất 1 khối. Khung ba là cái giá: phục hồi phải đọc các khối còn lại, dựng lại rồi ghi khối mới; Ceph khuyên không dùng một khối mã cho dữ liệu thật; các khối phải nằm ở những nơi hỏng độc lập với nhau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1294" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mã xóa: chịu mất khối, ít</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tốn chỗ</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Thử với thư viện zfec trên một đối</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">tượng 4 MiB.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mã xóa 4+2</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cắt</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">4 MiB thành 4 khối dữ liệu 1</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MiB.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tính và rải</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm 2 khối mã; 6 khối ở 6</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nơi khác nhau.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mất 2 khối</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Còn 4 khối bất kỳ là đủ:</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đúng cả 15 cách mất.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mất 3 khối</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Còn 3 khối: không đủ, mất</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giữ an toàn cho 4 MiB</text>
+<rect x="20" y="651" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="694.5" r="18" fill="#0f766e"/><g transform="translate(39.2 683.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhân bản 3 bản</text>
+<text x="78" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu 12 MiB, gấp 3; chịu</text>
+<text x="78" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất 2 bản.</text>
+<rect x="20" y="752" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="795.5" r="18" fill="#0f766e"/><g transform="translate(39.2 784.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="778.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mã xóa 4+2</text>
+<text x="78" y="802.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu 6 MiB, gấp 1,5; chịu</text>
+<text x="78" y="821.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất 2 khối bất kỳ.</text>
+<rect x="20" y="853" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="896.5" r="18" fill="#0f766e"/><g transform="translate(39.2 885.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></g>
+<text x="78" y="879.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một khối chẵn lẻ, 4+1</text>
+<text x="78" y="903.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu 5 MiB, gấp 1,25; chỉ</text>
+<text x="78" y="922.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chịu mất 1 khối.</text>
+<rect x="8" y="964" width="304" height="322" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="992.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cái giá</text>
+<rect x="20" y="1009" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1032" r="11" fill="#16a34a"/>
+<polyline points="37.9,1032.4 41.7,1036.4 48.5,1028" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1035.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phục hồi phải đọc các khối</text>
+<text x="64" y="1054.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn lại, dựng lại rồi ghi khối</text>
+<text x="64" y="1074.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới.</text>
+<rect x="20" y="1100" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1123" r="11" fill="#16a34a"/>
+<polyline points="37.9,1123.4 41.7,1127.4 48.5,1119" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1126.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ceph khuyên không dùng</text>
+<text x="64" y="1145.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một khối mã cho dữ liệu</text>
+<text x="64" y="1165.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thật.</text>
+<rect x="20" y="1191" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1214" r="11" fill="#16a34a"/>
+<polyline points="37.9,1214.4 41.7,1218.4 48.5,1210" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1217.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các khối phải nằm ở những</text>
+<text x="64" y="1236.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nơi hỏng độc lập: ổ, máy, giá</text>
+<text x="64" y="1256.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác nhau.</text>
+</g>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1108" viewBox="0 0 320 1108" role="img" aria-labelledby="title desc">
+<title id="title">Nhiều nhất, ít nhất hay đúng một lần</title>
+<desc id="desc">Ba khung. Khung một, thứ tự lưu vị trí đọc: lưu vị trí trước rồi xử lý thì bên nhận chết sau khi lưu làm khoản 6 bị bỏ qua, sổ còn 9 dòng, nhiều nhất một lần; xử lý trước rồi lưu vị trí thì chết trước khi lưu làm khoản 6 được giao lại, sổ 11 dòng, ít nhất một lần. Khung hai, hai cách cho kết quả như đúng một lần: xử lý rồi bỏ bản trùng theo mã thanh toán, sổ 10 dòng; lưu vị trí cùng giao dịch với kết quả, chết trước commit thì cả hai cùng mất và làm lại từ khoản 6, sổ 10 dòng. Khung ba: số đo giám sát chịu mất vài điểm thì nhiều nhất một lần; có khóa để bỏ trùng thì ít nhất một lần là đủ; với tiền, lưu vị trí cùng giao dịch với kết quả; đích là topic Kafka thì dùng giao dịch của Kafka.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1108" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Nhiều nhất, ít nhất hay</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đúng một lần</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">10 khoản thanh toán qua Kafka vào</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">một sổ trên PostgreSQL; bên nhận</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">chết ở khoản thứ 6.</text>
+<rect x="8" y="143" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu vị trí đọc trước hay sau</text>
+<rect x="20" y="188" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="241.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></g>
+<text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu vị trí, rồi xử lý</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chết sau khi lưu: khoản 6</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bị bỏ qua, sổ 9 dòng.</text>
+<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều nhất một lần.</text>
+<rect x="20" y="309" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="362.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 351.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></g>
+<text x="78" y="335.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xử lý, rồi lưu vị trí</text>
+<text x="78" y="359.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chết trước khi lưu: khoản 6</text>
+<text x="78" y="378.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao lại, sổ 11 dòng. Ít</text>
+<text x="78" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất một lần.</text>
+<rect x="8" y="440" width="304" height="327" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="468.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cách được kết quả đúng</text>
+<text x="20" y="490.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">một lần</text>
+<rect x="20" y="507" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="560.5" r="18" fill="#0f766e"/><g transform="translate(39.2 549.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></g>
+<text x="78" y="533.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xử lý rồi bỏ bản trùng</text>
+<text x="78" y="557.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lần ghi thứ hai của cùng</text>
+<text x="78" y="576.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã thanh toán bị bỏ: sổ 10</text>
+<text x="78" y="596.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng.</text>
+<rect x="20" y="628" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="691.5" r="18" fill="#0f766e"/><g transform="translate(39.2 680.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="654.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Vị trí và kết quả cùng</text>
+<text x="78" y="674.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">giao dịch</text>
+<text x="78" y="698.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chết trước commit thì cả</text>
+<text x="78" y="717.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hai cùng mất, làm lại từ</text>
+<text x="78" y="737.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoản 6: sổ 10 dòng.</text>
+<rect x="8" y="779" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="807.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn theo dữ liệu</text>
+<rect x="20" y="824" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="847" r="11" fill="#16a34a"/>
+<polyline points="37.9,847.4 41.7,851.4 48.5,843" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="850.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số đo giám sát, mất vài</text>
+<text x="64" y="869.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điểm không sao: nhiều nhất</text>
+<text x="64" y="889.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một lần.</text>
+<rect x="20" y="915" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="938" r="11" fill="#16a34a"/>
+<polyline points="37.9,938.4 41.7,942.4 48.5,934" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="941.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có khóa để bỏ trùng: ít nhất</text>
+<text x="64" y="960.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một lần là đủ.</text>
+<rect x="20" y="986" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1009" r="11" fill="#16a34a"/>
+<polyline points="37.9,1009.4 41.7,1013.4 48.5,1005" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1012.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tiền: lưu vị trí cùng giao dịch</text>
+<text x="64" y="1031.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">với kết quả; đích là topic</text>
+<text x="64" y="1051.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kafka thì dùng giao dịch của</text>
+<text x="64" y="1070.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kafka.</text>
+</g>
+</svg>

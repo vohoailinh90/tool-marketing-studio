@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1235" viewBox="0 0 320 1235" role="img" aria-labelledby="title desc">
+<title id="title">Các tầng bộ nhớ, đo trên một máy</title>
+<desc id="desc">Ba khung, số đo trên máy biên soạn. Khung một, trong bộ xử lý và bộ nhớ: một phép cộng trên thanh ghi 0,4 ns; đọc ngẫu nhiên trong 16 KiB, vừa bộ đệm L1, 1,5 ns; trong 256 KiB, vừa bộ đệm L2, 4,4 ns; từ 4 MiB trở lên khoảng 150 ns, gần bằng bộ nhớ chính; trong 1 GiB 326 ns. Khung hai, ra ngoài: đọc ngẫu nhiên 4 KiB từ ổ đĩa ảo trung bình 72 µs; một yêu cầu HTTPS tới GitHub khoảng 60 ms, chưa kể việc mở kết nối. Khung ba, đọc con số: một lần đọc đĩa bằng khoảng 200 lần đọc bộ nhớ chính; một yêu cầu qua mạng bằng hơn 100.000 lần; máy báo bộ đệm L3 33 MiB nhưng từ 4 MiB đã mất khoảng 150 ns; dùng trang lớn 2 MiB, đọc trong 1 GiB còn 225 ns.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1235" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Các tầng bộ nhớ, đo trên</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">một máy</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi tầng xuống dưới rộng hơn và</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">chậm hơn; khoảng cách giữa các</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">tầng mới là điều cần nhớ.</text>
+<rect x="8" y="143" width="304" height="414" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trong bộ xử lý và bộ nhớ</text>
+<rect x="20" y="188" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="214" r="14" fill="#1d4ed8"/>
+<text x="46" y="219.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thanh ghi</text>
+<text x="70" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một phép cộng: 0,4 ns.</text>
+<rect x="20" y="278" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="304" r="14" fill="#1d4ed8"/>
+<text x="46" y="309.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="304.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm L1, 32 KiB</text>
+<text x="70" y="328.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc trong 16 KiB: 1,5 ns.</text>
+<polyline points="46,258 46,276" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="368" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="394" r="14" fill="#1d4ed8"/>
+<text x="46" y="399.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="394.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm L2, 1 MiB</text>
+<text x="70" y="418.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc trong 256 KiB: 4,4 ns.</text>
+<polyline points="46,348 46,366" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="458" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="484" r="14" fill="#1d4ed8"/>
+<text x="46" y="489.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="484.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ nhớ chính</text>
+<text x="70" y="508.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ 4 MiB: ~150 ns; 1 GiB:</text>
+<text x="70" y="527.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">326 ns.</text>
+<polyline points="46,438 46,456" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="569" width="304" height="253" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="597.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ra ngoài: đĩa và mạng</text>
+<rect x="20" y="614" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="640" r="14" fill="#0f766e"/>
+<text x="46" y="645.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="640.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ổ đĩa ảo</text>
+<text x="70" y="664.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc ngẫu nhiên 4 KiB: trung</text>
+<text x="70" y="683.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bình 72 µs.</text>
+<rect x="20" y="723" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="749" r="14" fill="#0f766e"/>
+<text x="46" y="754.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="749.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Qua mạng</text>
+<text x="70" y="773.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một yêu cầu HTTPS tới</text>
+<text x="70" y="792.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GitHub: khoảng 60 ms.</text>
+<polyline points="46,703 46,721" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="834" width="304" height="393" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="862.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc con số</text>
+<rect x="20" y="879" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="902" r="11" fill="#16a34a"/>
+<polyline points="37.9,902.4 41.7,906.4 48.5,898" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="905.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một lần đọc đĩa bằng khoảng</text>
+<text x="64" y="924.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">200 lần đọc bộ nhớ chính.</text>
+<rect x="20" y="950" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="973" r="11" fill="#16a34a"/>
+<polyline points="37.9,973.4 41.7,977.4 48.5,969" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="976.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một yêu cầu qua mạng bằng</text>
+<text x="64" y="995.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hơn 100.000 lần đọc bộ nhớ</text>
+<text x="64" y="1015.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chính.</text>
+<rect x="20" y="1041" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1064" r="11" fill="#16a34a"/>
+<polyline points="37.9,1064.4 41.7,1068.4 48.5,1060" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1067.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy báo bộ đệm L3 33 MiB,</text>
+<text x="64" y="1086.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng từ 4 MiB đọc đã mất</text>
+<text x="64" y="1106.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 150 ns.</text>
+<rect x="20" y="1132" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1155" r="11" fill="#16a34a"/>
+<polyline points="37.9,1155.4 41.7,1159.4 48.5,1151" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1158.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang lớn 2 MiB: đọc trong 1</text>
+<text x="64" y="1177.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GiB còn 225 ns thay vì 326</text>
+<text x="64" y="1197.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ns.</text>
+</g>
+</svg>

@@ -1,0 +1,73 @@
+{
+  "id": "sd-04-024",
+  "lang": "vi",
+  "title": "Loại cơ sở dữ liệu khác nhau ở lời hứa",
+  "subtitle": "Thử hai lời hứa trên PostgreSQL và Redis: lỗi giữa chừng có gỡ được không, sai kiểu bị chặn ở đâu.",
+  "desc": "Bốn khung. Khung một, ba câu hỏi về lời hứa: phạm vi nguyên tử là nhiều dòng hay một khóa; lược đồ được kiểm khi ghi hay khi đọc; mở rộng bằng thêm máy hay phải tự chia shard. Khung hai, chuyển 100 từ a sang b, bước hai hỏng: PostgreSQL hủy cả giao dịch, a vẫn 500, b vẫn 0; Redis vẫn chạy bước một, a còn 400, b không đổi, 100 biến mất. Khung ba, số lượng ghi bằng chữ hai: cột kiểu số từ chối ngay khi ghi; cột tài liệu JSON nhận cả ba dòng, lỗi hiện ra khi đọc để cộng tổng; Redis nhận mà không hỏi. Khung bốn, đọc kết quả.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba câu hỏi về lời hứa",
+      "items": [
+        {
+          "name": "Phạm vi nguyên tử",
+          "role": "Nhiều dòng trong một giao dịch, hay chỉ một khóa, một tài liệu?",
+          "icon": "lock"
+        },
+        {
+          "name": "Lược đồ",
+          "role": "Kiểm kiểu khi ghi, hay để chương trình đọc tự lo?",
+          "icon": "list-checks"
+        },
+        {
+          "name": "Mở rộng",
+          "role": "Thêm máy là xong, hay phải tự chia shard?",
+          "icon": "network"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Thử: chuyển 100, bước hai hỏng",
+      "items": [
+        {
+          "title": "PostgreSQL",
+          "text": "Cả giao dịch bị hủy: a vẫn 500, b vẫn 0."
+        },
+        {
+          "title": "Redis, gói lệnh",
+          "text": "Bước một vẫn chạy: a còn 400, b không đổi."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Thử: số lượng ghi là chữ",
+      "items": [
+        {
+          "title": "Cột kiểu số",
+          "text": "Bị từ chối ngay khi ghi."
+        },
+        {
+          "title": "Cột tài liệu JSON",
+          "text": "Nhận hết; lỗi hiện ra khi đọc để cộng."
+        },
+        {
+          "title": "Redis",
+          "text": "Nhận mà không hỏi gì."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đọc kết quả",
+      "items": [
+        "Giao dịch của cơ sở dữ liệu quan hệ: tất cả hoặc không gì.",
+        "Redis chạy gói lệnh nhiều khóa liền một mạch nhưng không gỡ lại lệnh đã chạy, để giữ Redis đơn giản và nhanh.",
+        "Lược đồ khi ghi bắt lỗi sớm; lược đồ khi đọc đẩy lỗi sang chương trình đọc.",
+        "Đổi lại, quan hệ thường phải chia shard để mở rộng ngang."
+      ]
+    }
+  ]
+}

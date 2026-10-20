@@ -1,0 +1,57 @@
+{
+  "id": "sd-04-015",
+  "lang": "vi",
+  "title": "Thu thay đổi dữ liệu từ nhật ký",
+  "subtitle": "Thử trên PostgreSQL 16 với một replication slot.",
+  "desc": "Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MiB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường đi của một thay đổi",
+      "items": [
+        {
+          "title": "Ứng dụng sửa bảng",
+          "text": "Thêm, sửa, xóa như bình thường."
+        },
+        {
+          "title": "Thay đổi vào WAL",
+          "text": "PostgreSQL ghi nhật ký trước."
+        },
+        {
+          "title": "Đọc qua slot",
+          "text": "Công cụ CDC giải mã WAL thành sự kiện."
+        },
+        {
+          "title": "Đẩy sang nơi khác",
+          "text": "Vào Kafka, rồi tới kho phân tích, cache."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Thăm dò hay đọc nhật ký",
+      "items": [
+        {
+          "name": "Thăm dò cột updated_at",
+          "role": "Thấy dòng 1 bị sửa, dòng 3 mới; không thấy dòng 2 đã bị xóa.",
+          "icon": "search"
+        },
+        {
+          "name": "Đọc WAL qua slot",
+          "role": "Thấy đủ: sửa dòng 1, xóa dòng 2, thêm dòng 3, theo thứ tự commit.",
+          "icon": "history"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Cần nhớ",
+      "items": [
+        "Slot không ai đọc giữ lại WAL: 61 MiB sau một triệu dòng thêm.",
+        "Đọc xong và checkpoint: chỉ còn 6.712 byte.",
+        "Muốn có giá trị cũ khi sửa: đặt replica identity full cho bảng."
+      ]
+    }
+  ]
+}

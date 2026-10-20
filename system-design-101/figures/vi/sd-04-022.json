@@ -1,0 +1,80 @@
+{
+  "id": "sd-04-022",
+  "lang": "vi",
+  "title": "Bảng tra cơ sở dữ liệu trên đám mây",
+  "subtitle": "Mỗi dòng là điểm bắt đầu: cùng loại chưa chắc cùng tính năng.",
+  "desc": "Bốn khung, theo bảng so sánh của Azure Architecture Center. Khung một, cơ sở dữ liệu quan hệ: có quản lý là Amazon RDS, Azure SQL Database và Azure Database for MySQL, PostgreSQL, Google Cloud SQL; serverless là Aurora Serverless và Azure SQL Database serverless; mở rộng ngang là Cloud Spanner. Khung hai: khóa–giá trị và tài liệu là DynamoDB và Cosmos DB for NoSQL; tài liệu kiểu MongoDB là Amazon DocumentDB và Azure DocumentDB; cột rộng kiểu Cassandra là Amazon Keyspaces và Cosmos DB for Apache Cassandra. Khung ba: đồ thị là Neptune và Cosmos DB for Apache Gremlin; bộ nhớ đệm là ElastiCache, Memorystore và Azure Managed Redis. Khung bốn, bốn điều bảng tra không nói.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Quan hệ",
+      "items": [
+        {
+          "name": "Có quản lý",
+          "role": "Amazon RDS · Azure SQL Database, Database for MySQL, PostgreSQL · Google Cloud SQL",
+          "icon": "database"
+        },
+        {
+          "name": "Serverless",
+          "role": "Amazon Aurora Serverless · Azure SQL Database serverless",
+          "icon": "cloud"
+        },
+        {
+          "name": "Mở rộng ngang",
+          "role": "Google Cloud Spanner · Azure ghép với Cosmos DB for NoSQL",
+          "icon": "network"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Tài liệu, khóa–giá trị, cột rộng",
+      "items": [
+        {
+          "name": "Khóa–giá trị, tài liệu",
+          "role": "Amazon DynamoDB · Azure Cosmos DB for NoSQL",
+          "icon": "key-round"
+        },
+        {
+          "name": "Tài liệu kiểu MongoDB",
+          "role": "Amazon DocumentDB · Azure DocumentDB",
+          "icon": "file-text"
+        },
+        {
+          "name": "Cột rộng kiểu Cassandra",
+          "role": "Amazon Keyspaces · Azure Cosmos DB for Apache Cassandra",
+          "icon": "layers"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Đồ thị và bộ nhớ đệm",
+      "items": [
+        {
+          "name": "Đồ thị",
+          "role": "Amazon Neptune · Azure Cosmos DB for Apache Gremlin",
+          "icon": "share-2"
+        },
+        {
+          "name": "Bộ nhớ đệm",
+          "role": "Amazon ElastiCache · Google Memorystore · Azure Managed Redis",
+          "icon": "zap"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Bốn điều bảng tra không nói",
+      "items": [
+        "Giao diện tương thích không có nghĩa là tính năng và cách vận hành giống nhau.",
+        "Có dòng không có tương đương: Amazon MemoryDB là nơi lưu chính, Azure Managed Redis chỉ là bộ đệm.",
+        "Neptune chạy được cả RDF và property graph; Cosmos DB for Gremlin chỉ property graph.",
+        "Người xếp khác nhau có thể xếp khác: Spanner là quan hệ mà được ghép với một kho NoSQL."
+      ]
+    }
+  ]
+}

@@ -121,9 +121,18 @@ Số thứ tự dưới đây theo vị trí trong nguồn.
 10. [Bốn kiểu hàng đợi trong chương trình: FIFO, bộ đệm vòng, ưu tiên, deque](lessons/sd-04-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 11. [Cơ sở dữ liệu chuỗi thời gian: dữ liệu được gom theo series](lessons/sd-04-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 12. [Event sourcing khác thiết kế CRUD ở đâu: lưu trạng thái hay lưu chuyện đã xảy ra](lessons/sd-04-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-
-Các bài từ sd-04-013 đến sd-04-024 chưa có ở đây.
-
+13. [Mã xóa: chịu mất khối mà không phải nhân ba dữ liệu](lessons/sd-04-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+14. [Nhiều nhất một lần, ít nhất một lần, đúng một lần: quyết định nằm ở chỗ lưu vị trí](lessons/sd-04-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Thu thay đổi dữ liệu (CDC): đọc nhật ký thay vì hỏi bảng](lessons/sd-04-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Kafka có làm mất tin không? Có, ở ba chỗ, và đây là cách thấy tận mắt](lessons/sd-04-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [Lưu trữ khối, tệp và đối tượng: khác nhau ở thứ chương trình nhìn thấy](lessons/sd-04-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Sáu cách dùng kho đối tượng, và tính năng nào làm cho mỗi cách chạy được](lessons/sd-04-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [Bốn mẫu nhất quán cuối cùng: bản đọc đi sau bao lâu, và ai sửa khi một bước hỏng](lessons/sd-04-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [B-tree và LSM-tree: trả giá lúc ghi hay lúc gộp](lessons/sd-04-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+21. [Sáu loại cơ sở dữ liệu, sáu câu tóm tắt: câu nào giữ được, câu nào cần sửa](lessons/sd-04-021/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+22. [Bảng tra cơ sở dữ liệu trên đám mây: đọc một dòng thế nào cho đúng](lessons/sd-04-022/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+23. [Các tầng bộ nhớ, đo trên một máy: thanh ghi, bộ đệm, bộ nhớ chính, đĩa, mạng](lessons/sd-04-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+24. [Các loại cơ sở dữ liệu khác nhau ở lời hứa: giao dịch, lược đồ và cách mở rộng](lessons/sd-04-024/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 25. [Bốn cách chia dữ liệu vào shard: thêm một shard thì bao nhiêu khóa phải dời?](lessons/sd-04-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 26. [Sáu mô hình dữ liệu: một cửa hàng nhỏ, sáu cách xếp](lessons/sd-04-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 27. [Một câu SQL đi qua những chặng nào? Thử từng chặng trên PostgreSQL](lessons/sd-04-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -491,7 +500,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế (còn sd-02-030) → Cơ sở dữ liệu và lưu trữ (còn sd-04-013 đến sd-04-024).
+Tình huống thực tế (còn sd-02-030, nguồn chỉ có hình, chờ chủ repo quyết định).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

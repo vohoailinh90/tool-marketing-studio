@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-018",
+  "lang": "vi",
+  "title": "Sáu cách dùng kho đối tượng",
+  "subtitle": "Mỗi cách dựa vào một tính năng cụ thể, ví dụ lấy từ hướng dẫn Amazon S3.",
+  "desc": "Ba khung. Khung một, giữ lâu và an toàn: lưu trữ dài hạn nhờ quy tắc vòng đời chuyển đối tượng sang lớp rẻ hơn theo tuổi; sao lưu và phục hồi nhờ versioning giữ mọi phiên bản, xóa chỉ thêm dấu xóa nên lấy lại được; không cho sửa xóa nhờ Object Lock, ghi một lần đọc nhiều lần. Khung hai, kho chung cho nhiều chương trình: ảnh, video, tài liệu lớn tải theo nhiều phần và ghi cả đối tượng một lần; hồ dữ liệu dựa vào việc ghi xong là đọc và liệt kê thấy ngay; dữ liệu từ thiết bị dùng thông báo sự kiện báo có đối tượng mới, giao ít nhất một lần. Khung ba, cái giá: mỗi phiên bản là một đối tượng đầy đủ bị tính đủ tiền; chuyển lớp lưu trữ tốn phí; thông báo có thể đến hai lần.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Giữ lâu, giữ an toàn",
+      "items": [
+        {
+          "name": "Lưu trữ dài hạn",
+          "role": "Quy tắc vòng đời chuyển đối tượng sang lớp lưu trữ rẻ hơn theo tuổi.",
+          "icon": "clock"
+        },
+        {
+          "name": "Sao lưu và phục hồi",
+          "role": "Versioning giữ mọi phiên bản; xóa chỉ thêm dấu xóa, lấy lại được.",
+          "icon": "history"
+        },
+        {
+          "name": "Không cho sửa, xóa",
+          "role": "Object Lock: ghi một lần, đọc nhiều lần, trong thời hạn đặt trước.",
+          "icon": "lock"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Kho chung cho nhiều chương trình",
+      "items": [
+        {
+          "name": "Ảnh, video, tài liệu",
+          "role": "Tải tệp lớn theo nhiều phần; ghi cả đối tượng, không sửa giữa chừng.",
+          "icon": "image"
+        },
+        {
+          "name": "Hồ dữ liệu",
+          "role": "Ghi xong là đọc và liệt kê thấy ngay, nên nhiều bên đọc chung được.",
+          "icon": "database"
+        },
+        {
+          "name": "Dữ liệu từ thiết bị",
+          "role": "Thông báo sự kiện báo có đối tượng mới để xử lý; giao ít nhất một lần.",
+          "icon": "wifi"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Cái giá cần tính",
+      "items": [
+        "Mỗi phiên bản là một đối tượng đầy đủ, bị tính đủ tiền.",
+        "Chuyển lớp lưu trữ cũng tốn phí yêu cầu.",
+        "Thông báo có thể đến hai lần: bên xử lý phải chịu được trùng."
+      ]
+    }
+  ]
+}

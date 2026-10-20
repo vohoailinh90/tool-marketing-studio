@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1341" viewBox="0 0 320 1341" role="img" aria-labelledby="title desc">
+<title id="title">Kafka có làm mất tin không?</title>
+<desc id="desc">Ba khung. Khung một, bốn bước thử: đủ ba broker, gửi 100 tin chờ mọi bản đồng bộ, 100 tin được xác nhận; dừng broker 2 và 3, gửi 100 tin chờ mọi bản thì không tin nào được nhận vì broker báo thiếu bản sao; gửi 100 tin chỉ chờ leader thì được xác nhận nhưng bên đọc không thấy; giết leader, cho broker 2 và 3 trở lại, broker 3 làm leader và 100 tin chỉ chờ leader biến mất. Khung hai, ba chỗ có thể mất tin: bên gửi chỉ chờ leader hoặc không thử lại; broker cho bản sao không đồng bộ làm leader; bên nhận lưu vị trí trước khi xử lý xong. Khung ba, cấu hình giữ tin: chờ mọi bản đồng bộ và bật idempotence; ba bản sao, tối thiểu hai bản đồng bộ; tắt unclean leader election; lưu vị trí sau khi xử lý.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1341" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Kafka có làm mất tin</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">không?</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">3 bản sao; chỉ nhận ghi khi còn ít</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nhất 2 bản đồng bộ.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử nghiệm</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đủ ba broker</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ mọi bản đồng bộ: 100</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin được xác nhận.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dừng broker 2 và 3</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ mọi bản: 0 tin; broker</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">báo thiếu bản sao.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chỉ chờ leader</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 tin được xác nhận, bên</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc không thấy.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Leader chết, 2 và 3 về</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Broker 3 làm leader; 100 tin</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đó biến mất.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="382" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chỗ có thể mất tin</text>
+<rect x="20" y="651" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="694.5" r="18" fill="#0f766e"/><g transform="translate(39.2 683.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
+<text x="78" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bên gửi</text>
+<text x="78" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ chờ leader, hoặc không</text>
+<text x="78" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử lại khi gửi lỗi.</text>
+<rect x="20" y="770" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="813.5" r="18" fill="#0f766e"/><g transform="translate(39.2 802.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="796.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Broker</text>
+<text x="78" y="820.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cho bản sao không đồng</text>
+<text x="78" y="839.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ lên làm leader.</text>
+<rect x="20" y="889" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="932.5" r="18" fill="#0f766e"/><g transform="translate(39.2 921.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="915.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bên nhận</text>
+<text x="78" y="939.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu vị trí đọc trước khi xử</text>
+<text x="78" y="958.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lý xong.</text>
+<polyline points="160,740 160,768" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,859 160,887" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1000" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1028.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cấu hình giữ tin</text>
+<rect x="20" y="1045" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1068" r="11" fill="#16a34a"/>
+<polyline points="37.9,1068.4 41.7,1072.4 48.5,1064" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1071.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bên gửi chờ mọi bản đồng</text>
+<text x="64" y="1090.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ và bật idempotence.</text>
+<rect x="20" y="1116" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1139" r="11" fill="#16a34a"/>
+<polyline points="37.9,1139.4 41.7,1143.4 48.5,1135" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1142.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba bản sao, tối thiểu hai bản</text>
+<text x="64" y="1161.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đồng bộ.</text>
+<rect x="20" y="1187" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1210" r="11" fill="#16a34a"/>
+<polyline points="37.9,1210.4 41.7,1214.4 48.5,1206" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1213.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Để tắt unclean leader</text>
+<text x="64" y="1232.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">election (mặc định).</text>
+<rect x="20" y="1258" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1281" r="11" fill="#16a34a"/>
+<polyline points="37.9,1281.4 41.7,1285.4 48.5,1277" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1284.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bên nhận lưu vị trí sau khi</text>
+<text x="64" y="1303.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xử lý.</text>
+</g>
+</svg>

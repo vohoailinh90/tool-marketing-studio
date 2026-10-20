@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1604" viewBox="0 0 320 1604" role="img" aria-labelledby="title desc">
+<title id="title">Loại cơ sở dữ liệu khác nhau ở lời hứa</title>
+<desc id="desc">Bốn khung. Khung một, ba câu hỏi về lời hứa: phạm vi nguyên tử là nhiều dòng hay một khóa; lược đồ được kiểm khi ghi hay khi đọc; mở rộng bằng thêm máy hay phải tự chia shard. Khung hai, chuyển 100 từ a sang b, bước hai hỏng: PostgreSQL hủy cả giao dịch, a vẫn 500, b vẫn 0; Redis vẫn chạy bước một, a còn 400, b không đổi, 100 biến mất. Khung ba, số lượng ghi bằng chữ hai: cột kiểu số từ chối ngay khi ghi; cột tài liệu JSON nhận cả ba dòng, lỗi hiện ra khi đọc để cộng tổng; Redis nhận mà không hỏi. Khung bốn, đọc kết quả.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1604" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Loại cơ sở dữ liệu khác</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nhau ở lời hứa</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Thử hai lời hứa trên PostgreSQL và</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Redis: lỗi giữa chừng có gỡ được</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">không, sai kiểu bị chặn ở đâu.</text>
+<rect x="8" y="143" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba câu hỏi về lời hứa</text>
+<rect x="20" y="188" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="241.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phạm vi nguyên tử</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều dòng trong một giao</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch, hay chỉ một khóa,</text>
+<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một tài liệu?</text>
+<rect x="20" y="309" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="352.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 341.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></g>
+<text x="78" y="335.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lược đồ</text>
+<text x="78" y="359.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm kiểu khi ghi, hay để</text>
+<text x="78" y="378.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chương trình đọc tự lo?</text>
+<rect x="20" y="410" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="453.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 442.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="436.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mở rộng</text>
+<text x="78" y="460.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm máy là xong, hay</text>
+<text x="78" y="479.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải tự chia shard?</text>
+<rect x="8" y="521" width="304" height="275" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="549.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: chuyển 100, bước hai</text>
+<text x="20" y="571.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">hỏng</text>
+<rect x="20" y="588" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="614" r="14" fill="#0f766e"/>
+<text x="46" y="619.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="614.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">PostgreSQL</text>
+<text x="70" y="638.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cả giao dịch bị hủy: a vẫn</text>
+<text x="70" y="657.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">500, b vẫn 0.</text>
+<rect x="20" y="697" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="723" r="14" fill="#0f766e"/>
+<text x="46" y="728.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="723.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Redis, gói lệnh</text>
+<text x="70" y="747.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bước một vẫn chạy: a còn</text>
+<text x="70" y="766.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">400, b không đổi.</text>
+<polyline points="46,677 46,695" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="808" width="304" height="324" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="836.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: số lượng ghi là chữ</text>
+<rect x="20" y="853" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="879" r="14" fill="#b45309"/>
+<text x="46" y="884.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="879.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cột kiểu số</text>
+<text x="70" y="903.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bị từ chối ngay khi ghi.</text>
+<rect x="20" y="943" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="969" r="14" fill="#b45309"/>
+<text x="46" y="974.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="969.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cột tài liệu JSON</text>
+<text x="70" y="993.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận hết; lỗi hiện ra khi đọc</text>
+<text x="70" y="1012.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để cộng.</text>
+<polyline points="46,923 46,941" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1052" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1078" r="14" fill="#b45309"/>
+<text x="46" y="1083.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="1078.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Redis</text>
+<text x="70" y="1102.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận mà không hỏi gì.</text>
+<polyline points="46,1032 46,1050" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1144" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1172.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc kết quả</text>
+<rect x="20" y="1189" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1212" r="11" fill="#16a34a"/>
+<polyline points="37.9,1212.4 41.7,1216.4 48.5,1208" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1215.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giao dịch của cơ sở dữ liệu</text>
+<text x="64" y="1234.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quan hệ: tất cả hoặc không</text>
+<text x="64" y="1254.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gì.</text>
+<rect x="20" y="1280" width="280" height="122" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1303" r="11" fill="#16a34a"/>
+<polyline points="37.9,1303.4 41.7,1307.4 48.5,1299" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1306.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis chạy gói lệnh nhiều</text>
+<text x="64" y="1325.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa liền một mạch nhưng</text>
+<text x="64" y="1345.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không gỡ lại lệnh đã chạy,</text>
+<text x="64" y="1364.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để giữ Redis đơn giản và</text>
+<text x="64" y="1384.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhanh.</text>
+<rect x="20" y="1410" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1433" r="11" fill="#16a34a"/>
+<polyline points="37.9,1433.4 41.7,1437.4 48.5,1429" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lược đồ khi ghi bắt lỗi sớm;</text>
+<text x="64" y="1455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lược đồ khi đọc đẩy lỗi sang</text>
+<text x="64" y="1475.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chương trình đọc.</text>
+<rect x="20" y="1501" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1524" r="11" fill="#16a34a"/>
+<polyline points="37.9,1524.4 41.7,1528.4 48.5,1520" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1527.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi lại, quan hệ thường phải</text>
+<text x="64" y="1546.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chia shard để mở rộng</text>
+<text x="64" y="1566.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngang.</text>
+</g>
+</svg>

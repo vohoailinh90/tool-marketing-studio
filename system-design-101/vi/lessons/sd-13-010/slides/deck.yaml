@@ -1,0 +1,26 @@
+id: sd-13-010
+status: done
+owner: claude/sd13-slides-0219
+claimed_at: '2026-10-19T00:37:06Z'
+done_at: '2026-10-19T00:46:11Z'
+moda_canvas: cvs_6PYXP0JPXE9DWR5HTPFN1Y7R4T
+moda_url: https://moda.app/canvas/d6f76c09-5bae-4b79-82c7-567d43e3e09a
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - card-grid
+  - two-column-comparison
+  - one-highlighted-sentence
+  - connection-diagram
+  - card-grid
+  - layers
+  - numbered-rows
+  - one-highlighted-sentence
+  - lookup-table
+  - card-grid
+  first_concept: 3
+  cannot:
+    one-big-number: the lesson states no number for the core components (its only
+      number is deliberately not repeated)

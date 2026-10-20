@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="923" viewBox="0 0 320 923" role="img" aria-labelledby="title desc">
+<title id="title">CDN hứa bốn điều, mỗi điều có điều kiện</title>
+<desc id="desc">Hai phần. Phần một, bốn lợi ích của CDN và điều kiện của từng cái: giảm độ trễ vì máy biên ở gần, nhưng chỉ với nội dung đã có trong bộ đệm; giảm tải và băng thông máy gốc vì nhiều người dùng chung một bản đã giữ; chống tấn công từ chối dịch vụ vì mạng lớn hứng lưu lượng, nhưng địa chỉ máy gốc phải được giấu; tăng tính sẵn sàng vì máy gốc sập vẫn trả bản cũ, nhưng chỉ khi được cấu hình như vậy. Phần hai, kết quả thử với nginx: 100 lần tải ảnh 200 KB thẳng máy gốc thì máy gốc gửi 20 MB; 100 lần qua máy biên thì máy gốc gửi 200 KB một lần; máy gốc tắt và bản đã hết hạn thì máy biên thường trả lỗi 502; bật dùng bản cũ khi lỗi thì máy biên trả 200 với bản cũ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="923" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">CDN hứa bốn điều, mỗi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">điều có điều kiện</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Lợi ích chỉ đến khi máy biên giữ được</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nội dung.</text>
+<rect x="8" y="123" width="304" height="447" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn lợi ích, bốn điều kiện</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giảm độ trễ</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy biên ở gần; chỉ với nội</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung đã có sẵn.</text>
+<rect x="20" y="269" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="312.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 301.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giảm tải máy gốc</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều người dùng chung</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một bản đã giữ.</text>
+<rect x="20" y="370" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="413.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 402.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></g>
+<text x="78" y="396.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chống từ chối dịch vụ</text>
+<text x="78" y="420.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng lớn hứng lưu lượng;</text>
+<text x="78" y="439.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải giấu máy gốc.</text>
+<rect x="20" y="471" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="514.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 503.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="78" y="497.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tăng tính sẵn sàng</text>
+<text x="78" y="521.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy gốc sập vẫn trả bản</text>
+<text x="78" y="540.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũ, nếu bật sẵn.</text>
+<rect x="8" y="582" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="610.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử với nginx, ảnh 200 KB</text>
+<rect x="20" y="627" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="650" r="11" fill="#16a34a"/>
+<polyline points="37.9,650.4 41.7,654.4 48.5,646" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="653.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 lần tải thẳng máy gốc:</text>
+<text x="64" y="672.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy gốc gửi 20 MB.</text>
+<rect x="20" y="698" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="721" r="11" fill="#16a34a"/>
+<polyline points="37.9,721.4 41.7,725.4 48.5,717" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="724.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 lần qua máy biên: máy</text>
+<text x="64" y="743.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gốc gửi 200 KB, một lần.</text>
+<rect x="20" y="769" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="792" r="11" fill="#16a34a"/>
+<polyline points="37.9,792.4 41.7,796.4 48.5,788" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="795.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy gốc tắt, bản đã hết hạn:</text>
+<text x="64" y="814.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy biên trả lỗi 502.</text>
+<rect x="20" y="840" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="863" r="11" fill="#16a34a"/>
+<polyline points="37.9,863.4 41.7,867.4 48.5,859" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="866.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bật dùng bản cũ khi lỗi: máy</text>
+<text x="64" y="885.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">biên trả 200 với bản cũ.</text>
+</g>
+</svg>

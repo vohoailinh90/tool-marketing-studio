@@ -1,0 +1,27 @@
+{
+  "id": "sd-06-028",
+  "lang": "vi",
+  "title": "Năm cách làm API nhanh hơn, và cái giá của mỗi cách",
+  "subtitle": "Trả ít hơn, hoặc chờ ít hơn.",
+  "desc": "Ba phần. Trả ít hơn: phân trang, trả từng trang nhỏ và đi theo khóa khi trang sâu; nén phản hồi văn bản lớn bằng gzip hay brotli, tốn thêm thời gian xử lý. Chờ ít hơn: ghi log qua hàng đợi để luồng khác ghi xuống đĩa, sập thì mất phần chưa ghi; bộ đệm dữ liệu, đọc bản đã giữ thay vì hỏi cơ sở dữ liệu; tái dùng kết nối tới cơ sở dữ liệu thay vì mở mới mỗi lần. Đo với PostgreSQL 16 và Python: kết nối mới mỗi truy vấn 3,9 mili giây, tái dùng 0,1; trang sâu bằng cách bỏ qua 290 000 dòng 27,7 mili giây, theo khóa 0,23; cả 300 000 dòng là 25 MB JSON, một trang 50 dòng 4,2 KB, nén còn 580 byte; log qua hàng đợi 9 micro giây mỗi dòng thay vì 273, nhưng bị giết đột ngột thì mất 1998 trên 2000 dòng.",
+  "sections": [
+    {"kind": "parts", "heading": "Trả ít hơn",
+     "items": [
+       {"name": "Phân trang", "role": "Trả từng trang nhỏ; trang sâu thì đi theo khóa.", "icon": "list-ordered"},
+       {"name": "Nén phản hồi", "role": "gzip, brotli cho văn bản lớn; tốn thêm thời gian xử lý.", "icon": "package"}
+     ]},
+    {"kind": "parts", "heading": "Chờ ít hơn",
+     "items": [
+       {"name": "Ghi log qua hàng đợi", "role": "Luồng khác ghi xuống đĩa; sập thì mất phần chưa ghi.", "icon": "inbox"},
+       {"name": "Bộ đệm dữ liệu", "role": "Đọc bản đã giữ thay vì hỏi cơ sở dữ liệu.", "icon": "zap"},
+       {"name": "Tái dùng kết nối", "role": "Giữ sẵn kết nối thay vì mở mới mỗi lần.", "icon": "plug"}
+     ]},
+    {"kind": "notes", "heading": "Đo với PostgreSQL 16 và Python",
+     "items": [
+       "Kết nối mới mỗi truy vấn: 3,9 ms. Tái dùng: 0,1 ms.",
+       "Trang sâu, bỏ qua 290 000 dòng: 27,7 ms. Theo khóa: 0,23 ms.",
+       "Cả 300 000 dòng: 25 MB JSON. Một trang: 4,2 KB, nén còn 580 byte.",
+       "Log qua hàng đợi: 9 µs thay vì 273 µs; bị giết đột ngột thì mất 1998 trên 2000 dòng."
+     ]}
+  ]
+}

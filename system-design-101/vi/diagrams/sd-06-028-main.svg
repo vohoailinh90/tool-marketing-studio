@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1186" viewBox="0 0 320 1186" role="img" aria-labelledby="title desc">
+<title id="title">Năm cách làm API nhanh hơn, và cái giá của mỗi cách</title>
+<desc id="desc">Ba phần. Trả ít hơn: phân trang, trả từng trang nhỏ và đi theo khóa khi trang sâu; nén phản hồi văn bản lớn bằng gzip hay brotli, tốn thêm thời gian xử lý. Chờ ít hơn: ghi log qua hàng đợi để luồng khác ghi xuống đĩa, sập thì mất phần chưa ghi; bộ đệm dữ liệu, đọc bản đã giữ thay vì hỏi cơ sở dữ liệu; tái dùng kết nối tới cơ sở dữ liệu thay vì mở mới mỗi lần. Đo với PostgreSQL 16 và Python: kết nối mới mỗi truy vấn 3,9 mili giây, tái dùng 0,1; trang sâu bằng cách bỏ qua 290 000 dòng 27,7 mili giây, theo khóa 0,23; cả 300 000 dòng là 25 MB JSON, một trang 50 dòng 4,2 KB, nén còn 580 byte; log qua hàng đợi 9 micro giây mỗi dòng thay vì 273, nhưng bị giết đột ngột thì mất 1998 trên 2000 dòng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1186" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cách làm API nhanh</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">hơn, và cái giá của mỗi</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">cách</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Trả ít hơn, hoặc chờ ít hơn.</text>
+<rect x="8" y="128" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="156.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trả ít hơn</text>
+<rect x="20" y="173" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="216.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 205.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="199.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phân trang</text>
+<text x="78" y="223.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trả từng trang nhỏ; trang</text>
+<text x="78" y="242.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sâu thì đi theo khóa.</text>
+<rect x="20" y="274" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="327.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 316.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="300.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nén phản hồi</text>
+<text x="78" y="324.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gzip, brotli cho văn bản</text>
+<text x="78" y="343.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn; tốn thêm thời gian xử</text>
+<text x="78" y="363.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lý.</text>
+<rect x="8" y="405" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="433.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chờ ít hơn</text>
+<rect x="20" y="450" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="493.5" r="18" fill="#0f766e"/><g transform="translate(39.2 482.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="476.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi log qua hàng đợi</text>
+<text x="78" y="500.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng khác ghi xuống đĩa;</text>
+<text x="78" y="519.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sập thì mất phần chưa ghi.</text>
+<rect x="20" y="551" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="594.5" r="18" fill="#0f766e"/><g transform="translate(39.2 583.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="577.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm dữ liệu</text>
+<text x="78" y="601.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc bản đã giữ thay vì hỏi</text>
+<text x="78" y="620.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cơ sở dữ liệu.</text>
+<rect x="20" y="652" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="695.5" r="18" fill="#0f766e"/><g transform="translate(39.2 684.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M9 8V2"/></g>
+<text x="78" y="678.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tái dùng kết nối</text>
+<text x="78" y="702.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ sẵn kết nối thay vì mở</text>
+<text x="78" y="721.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới mỗi lần.</text>
+<rect x="8" y="763" width="304" height="415" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="791.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo với PostgreSQL 16 và</text>
+<text x="20" y="813.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Python</text>
+<rect x="20" y="830" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="853" r="11" fill="#16a34a"/>
+<polyline points="37.9,853.4 41.7,857.4 48.5,849" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="856.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kết nối mới mỗi truy vấn: 3,9</text>
+<text x="64" y="875.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ms. Tái dùng: 0,1 ms.</text>
+<rect x="20" y="901" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="924" r="11" fill="#16a34a"/>
+<polyline points="37.9,924.4 41.7,928.4 48.5,920" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="927.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang sâu, bỏ qua 290 000</text>
+<text x="64" y="946.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng: 27,7 ms. Theo khóa:</text>
+<text x="64" y="966.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">0,23 ms.</text>
+<rect x="20" y="992" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1015" r="11" fill="#16a34a"/>
+<polyline points="37.9,1015.4 41.7,1019.4 48.5,1011" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1018.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cả 300 000 dòng: 25 MB</text>
+<text x="64" y="1037.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JSON. Một trang: 4,2 KB, nén</text>
+<text x="64" y="1057.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn 580 byte.</text>
+<rect x="20" y="1083" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1106" r="11" fill="#16a34a"/>
+<polyline points="37.9,1106.4 41.7,1110.4 48.5,1102" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1109.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Log qua hàng đợi: 9 µs thay</text>
+<text x="64" y="1128.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vì 273 µs; bị giết đột ngột thì</text>
+<text x="64" y="1148.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất 1998 trên 2000 dòng.</text>
+</g>
+</svg>

@@ -1,5 +1,23 @@
 id: sd-06-027
-status: doing
+status: done
 owner: claude/sd101-slides-batch-10
 claimed_at: '2026-10-20T01:03:46Z'
-heartbeat_at: '2026-10-20T01:24:37Z'
+done_at: '2026-10-20T01:24:42Z'
+moda_canvas: cvs_37GE5RPKRS8A2ANT9VANAA2R6V
+moda_url: https://moda.app/canvas/67838b8b-4f19-4284-aae9-3b5554a160db
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - two-column-comparison
+  - 2x2-matrix
+  - numbered-rows
+  - lookup-table
+  - one-big-number
+  - card-grid
+  - flow
+  - lookup-table
+  - card-grid
+  first_concept: 3

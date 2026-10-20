@@ -1,0 +1,122 @@
+{
+  "id": "sd-10-020",
+  "title_vi": "Tám mô hình lập trình",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-020",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-8-programming-paradigms.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-programming-paradigms.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "85421a28089961014d0f73d7147245e4d7b1becb",
+    "retrieved_body_sha256": "6121acc0be571c3a725d9597e8237968cb5fb967148a6e1b749f466a88624f9d",
+    "retrieved_body_bytes": 2680
+  },
+  "diagram": "../diagrams/sd-10-020-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-019",
+      "relation": "see-also",
+      "reason_vi": "Bài kia đi sâu vào bốn trụ cột của lập trình hướng đối tượng, một trong tám mô hình."
+    },
+    {
+      "lesson_id": "sd-10-025",
+      "relation": "see-also",
+      "reason_vi": "Đồng thời và song song là hai khái niệm khác nhau."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the Python, MDN, Spring, AspectJ, JDK (List, Flow), Reactive Streams and Effective Go statements were read in raw copies at the pinned commits and are recorded in the claims below; the per-paradigm language lists are the source's word, and the reading of the Python term procedural as imperative, the general definition of reactive programming and the glosses are the author's general knowledge, not checked"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names eight programming paradigms (imperative, declarative, object-oriented, aspect-oriented, functional, reactive, generic, concurrent) with one or two sentences and example languages each; the lesson keeps the eight names and groups them in three sets of its own, without reusing the definitions or the language lists.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-programming-paradigms.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Python functional HOWTO: procedural programs are lists of instructions telling the computer what to do with its input (C, Pascal, Unix shells); declarative languages let you write a specification of the problem and the implementation decides how to compute it, SQL being the example; object-oriented programs manipulate objects with internal state and methods (Smalltalk, Java; C++ and Python support but don't force it); functional programming decomposes a problem into functions that ideally only take inputs and produce outputs, discourages side effects, and purely functional functions have none (ML family, Haskell); Lisp, C++ and Python are multi-paradigm.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/functional.rst",
+      "section": "Thinking about Programming / Functional programming",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: OOP is an approach in which data is encapsulated within objects and the object itself is operated on rather than its component parts.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/oop/index.md",
+      "section": "OOP",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Spring documentation: AOP complements OOP; the unit of modularity in OOP is the class and in AOP the aspect; aspects modularize concerns such as transaction management that cut across multiple types and objects.",
+      "source": "https://github.com/spring-projects/spring-framework/blob/a859427c11e1d6e69f09e7e17970f6b928cadd7e/framework-docs/modules/ROOT/pages/core/aop.adoc",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "AspectJ README: a seamless aspect-oriented extension to the Java language that modularizes crosscutting concerns such as error handling, synchronization, logging and monitoring.",
+      "source": "https://github.com/eclipse-aspectj/aspectj/blob/36e31738da5853953a657565db8fa79ba47aa2a1/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The Java List interface documents its type parameter E as the type of elements in the list.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java",
+      "section": "type parameter",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Reactive Streams README: the purpose is a standard for asynchronous stream processing with non-blocking backpressure; JDK Flow defines Publisher, Subscriber and Subscription interfaces for flow-controlled components and says they correspond to the reactive-streams specification.",
+      "source": "https://github.com/reactive-streams/reactive-streams-jvm/blob/a625d3aba756e9842ad1291a5b73f5db280b6168/README.md",
+      "section": "README, Flow",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK Flow: interrelated interfaces for flow-controlled components in which Publishers produce items consumed by Subscribers, each managed by a Subscription; the interfaces correspond to the reactive-streams specification.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/Flow.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Effective Go distinguishes concurrency (structuring a program as independently executing components) from parallelism (executing calculations in parallel on multiple CPUs) and says Go is a concurrent language, not a parallel one.",
+      "source": "https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/effective_go.html",
+      "section": "Parallelization",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Reading the Python term procedural as the source's imperative is the author's interpretation; the glosses of FP, OOP, AOP, ML, JDK, SQL and MDN in the abbreviations section are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-programming-paradigms.md",
+      "section": "Đọc hình, Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ (cách mô tả chương trình; cách tổ chức mã; nhiều việc và dữ liệu thay đổi) và một khung ghi nhớ; cách chia nhóm là của bài. Lời trong thẻ viết từ tài liệu gốc, trừ định nghĩa chung của mô hình phản ứng và việc đọc \"procedural\" của Python thành \"imperative\" của nguồn (chưa đối chiếu). Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is eight short paragraphs with a definition and example languages each; the lesson keeps the eight names, groups them into three sets and explains the paradigms (except the general definition of reactive programming, which is the author's unchecked knowledge, with Reactive Streams as one example) from the Python, MDN, Spring, AspectJ, Reactive Streams, JDK and Go documentation without reusing the source's sentences or its language lists.",
+    "The Python HOWTO says procedural where the source says imperative; the lesson notes it reads them as close, which is the author's interpretation."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích các mô hình đã được đối chiếu với tài liệu ở commit đã ghim, trừ định nghĩa chung của mô hình phản ứng, việc đọc \"procedural\" của Python thành \"imperative\" của nguồn và các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

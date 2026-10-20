@@ -1,0 +1,99 @@
+{
+  "id": "sd-10-021",
+  "title_vi": "Thuật toán nên biết cho phỏng vấn thiết kế hệ thống: ba mức sao",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-021",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "0ad544a9e2b8d8f18aff92b8025ab97b3cb8192f",
+    "retrieved_body_sha256": "5df56aaf886b98a7aa71de45f963b3e9415de58f8139594ac2d07e6140022176",
+    "retrieved_body_bytes": 1253
+  },
+  "diagram": "../diagrams/sd-10-021-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-018",
+      "relation": "see-also",
+      "reason_vi": "Bài kia kể sáu thuật toán cân bằng tải, một ví dụ về thuật toán gặp trong hệ thống thật."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the three added examples (Bloom filter and consistent hashing in Cassandra, Raft in etcd-io/raft) were checked against those projects' documentation at the pinned commits recorded in the claims below; the statements about the star scale are the source's word, and that the three examples share their names with algorithms in the source image is the author's general knowledge, not checked against the image"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The author put together a list of algorithms to know before system design interviews, explained why they matter, and says they are also good to understand for any software engineer.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
+      "section": "Introduction",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Understanding how the algorithms are used in real-world systems is generally more important than the implementation details in a system design interview.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
+      "section": "Advice",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Five-star: very important, understand how it works and why; three-star: important to some extent, implementation details may not be needed; one-star: advanced, good to know for senior candidates. It is very difficult to rank algorithms objectively and the author is open to suggestions.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
+      "section": "Stars",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Cassandra: on reads it merges data on disk with data in memory; to avoid checking every data file for the requested partition it uses a bloom filter, which says either that the data definitely does not exist in the file or that it probably does; accuracy improves with more memory and is tuned per table with bloom_filter_fp_chance.",
+      "source": "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/managing/operating/bloom_filters.adoc",
+      "section": "Bloom Filters",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Cassandra: naive hashing takes the key hash modulo the number of buckets and adding a node can invalidate almost all mappings; Cassandra maps each node to tokens on a continuous hash ring, hashes a key onto the ring and walks it in one direction; with consistent hashing only a small fraction of keys move when the number of nodes changes.",
+      "source": "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/architecture/dynamo.adoc",
+      "section": "Consistent Hashing using a Token Ring",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "etcd-io/raft: Raft is a protocol with which a cluster of nodes maintains a replicated state machine kept in sync by a replicated log; the library implements leader election and log replication among other features and implements only the Raft algorithm, leaving network and disk IO to the user.",
+      "source": "https://github.com/etcd-io/raft/blob/1d3216d845a72ef5a78c55772ea220a931e2c3ef/README.md",
+      "section": "README",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The list of algorithms and their star counts is only in the source image, which the lesson does not use or copy. The lesson's three examples (Bloom filter, consistent hashing, Raft) share their names with algorithms in that image, but the choice of examples, the explanations and the project documentation behind them are the lesson's own, and it assigns no stars to any of them.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
+      "section": "Limits",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba thẻ cho ba mức sao, ba thẻ cho ba ví dụ dùng thật và một khung ghi nhớ. Thang sao theo nguồn; ví dụ do bài viết từ tài liệu của hệ thống thật. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source body text only explains the star scale and gives advice; the list of algorithms is in the source image, which the lesson does not use.",
+    "The lesson adds three examples (Bloom filter and consistent hashing in Cassandra, Raft in etcd-io/raft) written from those projects' documentation to illustrate the source's advice; they are not in the source and carry no star rating."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Ba ví dụ thêm (Bloom filter và consistent hashing trong Cassandra, Raft trong etcd-io/raft) đã được đối chiếu với tài liệu của các dự án ở commit đã ghim; bài không có mục từ viết tắt cần giải nghĩa. Chưa user testing hoặc phê duyệt phát hành."
+}

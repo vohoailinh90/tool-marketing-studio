@@ -1,0 +1,36 @@
+{
+  "id": "sd-08-019",
+  "title": "Chương trình chạy thế nào: tám bước và số đo trên Linux",
+  "subtitle": "Nạp, cấp bộ nhớ lười, khởi tạo, chạy, thoát: mỗi bước xem được bằng strace.",
+  "desc": "Ba khung. Khung một, tám bước của nguồn từ lúc nhấp đúp tới lúc thoát: nhấp đúp, nạp tệp chạy, nạp thư viện chung, cấp bộ nhớ, khởi tạo môi trường chạy, vào hàm main, CPU chạy lệnh nằm trong bộ nhớ, dọn dẹp khi thoát. Khung hai, đo trên Linux: một chương trình C nhỏ gọi hệ thống 35 lần với thư viện động và 17 lần khi nối tĩnh; khởi động mất 1,0 đến 1,4 mili giây, còn Python 16,7 đến 21,4 và Java 41 đến 45; ánh xạ 1 GiB bộ nhớ chỉ thêm 380 KiB bộ nhớ thật cho đến khi đọc tới; mã của một hàm đọc được như dữ liệu; thoát không đóng tệp thì nhân đóng hộ. Khung ba, chưa đo: Windows, DLL và môi trường chạy của Microsoft.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám bước của nguồn",
+      "items": [
+        "Nhấp đúp, nạp tệp chạy, nạp thư viện chung, cấp bộ nhớ.",
+        "Khởi tạo môi trường chạy, vào hàm main.",
+        "CPU chạy lệnh nằm trong bộ nhớ; dọn dẹp khi thoát."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo trên Linux",
+      "items": [
+        "Gọi hệ thống: 35 lần với thư viện động, 17 khi nối tĩnh; lỗi trang nhẹ 61 và 31.",
+        "Khởi động: C 1,0 đến 1,4 ms; Python 16,7 đến 21,4; Node 25 đến 27,5; Java 41 đến 45.",
+        "Cấp bộ nhớ lười: ánh xạ 1 GiB thêm 380 KiB bộ nhớ thật; đọc nửa số trang: 526.084 KiB.",
+        "Mã là dữ liệu: đọc 8 byte đầu của một hàm từ vùng r-xp.",
+        "Thoát không đóng 500 tệp: nhân đóng hộ, số tệp mở của hệ thống không đổi."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Chưa đo",
+      "items": [
+        "Windows, DLL, môi trường chạy của Microsoft và giao diện đồ hoạ: không đo.",
+        "Dọn tài nguyên mạng khi thoát: không đo."
+      ]
+    }
+  ]
+}

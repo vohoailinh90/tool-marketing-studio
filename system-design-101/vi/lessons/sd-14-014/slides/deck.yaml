@@ -1,0 +1,23 @@
+id: sd-14-014
+status: done
+owner: claude/trusting-gauss-foyunq
+claimed_at: '2026-10-19T17:41:11Z'
+done_at: '2026-10-19T18:04:50Z'
+moda_canvas: cvs_5QDP1ZJKP28JJRBSYY45VRC3CK
+moda_url: https://moda.app/canvas/b76d83f9-4ec2-44a5-85e7-de2177860d93?source=agent
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - lookup-table
+  - two-column-comparison
+  - card-grid
+  - numbered-rows
+  - timeline
+  - 2x2-matrix
+  - flow
+  - layers
+  - card-grid
+  first_concept: 3

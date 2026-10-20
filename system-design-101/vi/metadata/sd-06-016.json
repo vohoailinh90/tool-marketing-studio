@@ -1,0 +1,130 @@
+{
+  "id": "sd-06-016",
+  "title_vi": "6 cách dùng Elasticsearch phổ biến",
+  "language": "vi",
+  "kind": "catalog",
+  "content_status": "draft",
+  "source_ref": "sd-06-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-6-elasticsearch-use-cases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-elasticsearch-use-cases.md",
+    "blob_sha": "76a7c1d4348c18e206167335b388cec9d9ff3cb1",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "bf887121a486571f44409a3f68c5d7e07d3b1689ee86a25e93af857f72b7ef80",
+    "retrieved_body_bytes": 1835
+  },
+  "diagram": "../diagrams/sd-06-016-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-022",
+      "relation": "deep-dive",
+      "reason_vi": "Elasticsearch bên trong: bộ phân tích, chỉ mục ngược, segment, shard."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Statements were checked against elastic/docs-content at commit 55f05da44f1e68caf6b83d60715f6a41bcdaa2d3 and the reference docs of elastic/elasticsearch at tag v9.5.5 (commit 48acba663b09e70b115dd879329141506c377890), read from partial clones, and against an experiment run on 2026-10-18 with the official elasticsearch:9.5.5 Docker image (single node, basic license, security disabled), whose build hash is that commit."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Documents become searchable in near real time after a refresh; by default indices refresh every second, but only those that received a search in the last 30 seconds.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/near-real-time-search.md",
+      "section": "Near real-time search",
+      "verified_by": "Read; the experiment counted 0 documents right after indexing, before the first automatic refresh had run, and 5 after POST _refresh. The 0 depends on timing: refresh_interval was left at its default."
+    },
+    {
+      "claim_vi": "text fields are analyzed into terms for full-text search and are not used for sorting and seldom for aggregations; fielddata is off by default; keyword suits structured content; a field can be both via multi-fields.",
+      "source": "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/elasticsearch/mapping-reference/text.md",
+      "section": "text type; Use a field as both text and keyword; fielddata",
+      "verified_by": "Read; the experiment's terms aggregation on a text field failed with 'Fielddata is disabled on [name]' and on the keyword field returned ao 3, giay 2."
+    },
+    {
+      "claim_vi": "Doc values are an on-disk columnar structure for sorting and aggregations, supported on most field types except text.",
+      "source": "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/elasticsearch/mapping-reference/doc-values.md",
+      "section": "doc_values",
+      "verified_by": "Read from the v9.5.5 tag."
+    },
+    {
+      "claim_vi": "The asciifolding filter drops diacritical marks; the standard analyzer keeps them.",
+      "source": "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/text-analysis/analysis-asciifolding-tokenfilter.md",
+      "section": "ASCII folding token filter",
+      "verified_by": "Read; the experiment analyzed 'Áo Khoác Gió' as áo, khoác, gió with standard and as ao, khoac, gio with lowercase plus asciifolding; a match query for 'ao khoac' returned 0 hits on the standard-analyzed field."
+    },
+    {
+      "claim_vi": "Elasticsearch supports geo_point and geo_shape fields and geo queries that combine with full-text queries.",
+      "sources": [
+        "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/explore-analyze/geospatial-analysis.md",
+        "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/query-languages/query-dsl/query-dsl-geo-distance-query.md"
+      ],
+      "section": "Geospatial analysis; Geo-distance query",
+      "verified_by": "Read; a 5 km geo_distance query in the experiment returned the three products of the two stores near the centre point."
+    },
+    {
+      "claim_vi": "A data stream is a named abstraction over backing indices for append-only time series such as logs, events and metrics; an alias with a write index fits better when documents with the same _id are rewritten.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/data-streams.md",
+      "section": "Data streams; Backing indices",
+      "verified_by": "Read; the experiment's first write to logs-checkout-default created backing index .ds-logs-checkout-default-2026.10.18-000001, and a PUT with an id was refused: only write ops with an op_type of create are allowed in data streams."
+    },
+    {
+      "claim_vi": "Machine learning setup needs an appropriate subscription level or the free trial; the experiment tested only an anomaly detection job.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/explore-analyze/machine-learning/setting-up-machine-learning.md",
+      "section": "Requirements",
+      "verified_by": "Read; creating an anomaly detection job on the basic license returned 'current license is non-compliant for [ml]'."
+    },
+    {
+      "claim_vi": "Elastic Security unifies SIEM, XDR, endpoint and cloud security and uses Elasticsearch for search and analytics and Kibana for visualization.",
+      "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/get-started/_snippets/security-overview.md",
+      "section": "Security overview",
+      "verified_by": "Read; not tested."
+    },
+    {
+      "claim_vi": "The number of primary shards is fixed when an index is created; the field type of an existing field cannot be changed, a new index and a reindex are needed.",
+      "sources": [
+        "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/deploy-manage/distributed-architecture/clusters-nodes-shards.md",
+        "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/mapping/explicit-mapping.md"
+      ],
+      "section": "Clusters, nodes, and shards; Update the mapping of a field",
+      "verified_by": "Read; not tested."
+    }
+  ],
+  "design_notes_vi": "Sáu thẻ cách dùng chia hai phần, mỗi thẻ ghi tính năng gánh việc đó; bốn ghi chú kết quả thử. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source lists six uses with their benefits; the lesson names the feature behind each (analyzer and inverted index, aggregations on keyword fields and refresh, geo_point, data streams) and tests it.",
+    "Source places machine learning in X-Pack; the current docs require an appropriate subscription or trial, and the experiment shows the basic license refusing an anomaly detection job.",
+    "Source calls analytics real time; the lesson uses near real time, as the Elastic docs do, and shows a document not visible before a refresh.",
+    "Lesson adds a point specific to Vietnamese: the standard analyzer keeps diacritics, so a query without them misses unless an ASCII folding filter is configured."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-016.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

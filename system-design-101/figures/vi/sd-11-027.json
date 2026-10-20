@@ -1,0 +1,38 @@
+{
+  "title": "Ứng dụng mười hai yếu tố",
+  "subtitle": "Mười hai quy tắc, ba nhóm.",
+  "desc": "Ba khung, mỗi khung bốn quy tắc của ứng dụng mười hai yếu tố. Khung một: một mã nguồn, khai báo phụ thuộc, cấu hình trong môi trường, dịch vụ phụ trợ gắn vào. Khung hai: tách dựng, phát hành, chạy; tiến trình không giữ trạng thái; mở cổng mạng; mở rộng bằng thêm tiến trình. Khung ba: tiến trình dễ bỏ, môi trường phát triển giống chạy thật, nhật ký là dòng sự kiện, việc quản trị chạy một lần.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Mã, phụ thuộc, cấu hình (1 đến 4)",
+      "items": [
+        "Codebase: một mã nguồn, nhiều bản triển khai.",
+        "Dependencies: khai báo rõ, không dựa vào máy.",
+        "Config: để trong biến môi trường.",
+        "Backing services: coi như tài nguyên gắn vào."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Dựng và chạy (5 đến 8)",
+      "items": [
+        "Build, release, run: ba giai đoạn tách bạch.",
+        "Processes: tiến trình không giữ trạng thái.",
+        "Port binding: tự mở cổng mạng.",
+        "Concurrency: mở rộng bằng thêm tiến trình."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Vận hành (9 đến 12)",
+      "items": [
+        "Disposability: khởi động nhanh, tắt êm.",
+        "Dev/prod parity: phát triển giống chạy thật.",
+        "Logs: dòng sự kiện ra đầu ra chuẩn.",
+        "Admin processes: việc quản trị chạy một lần."
+      ]
+    }
+  ],
+  "id": "sd-11-027"
+}

@@ -1,0 +1,75 @@
+{
+  "id": "sd-12-016",
+  "title_vi": "Tải một tệp lên kho đối tượng kiểu S3: dữ liệu và siêu dữ liệu ở hai nơi",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-12-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from raw.githubusercontent.com at the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "5fabaa3d863a896f2fe7934a714940ac290d134d",
+    "retrieved_body_sha256": "ef983988bfce772ca9c39d7571a803e403caa8a5de4efc307031b88d08caad9a",
+    "retrieved_body_bytes": 2495
+  },
+  "diagram": "../diagrams/sd-12-016-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source defines a bucket (globally unique name, only metadata) and an object (mutable metadata with ID, bucket name, object name; immutable object data) and describes seven upload steps: PUT creates the bucket via the API service, IAM authorizes WRITE, the metadata store creates the bucket entry; PUT creates the object, the API service checks identity and WRITE permission, sends the payload to the data store which persists it and returns the object UUID, then the metadata store creates an entry with object_id, bucket_id, object_name.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+      "section": "Whole body",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Own experiment, 2026-10-19, Python 3 with in-memory SQLite and a dictionary: 1,000 uploads with a 5 percent chance of a fault between the two writes (same seed, 45 faults); data first then metadata left 0 dangling metadata rows and 45 orphan data blocks; metadata first then data left 45 dangling rows and 0 orphans; a sweep deleting data not referenced by metadata removed the 45 orphans leaving 955 objects; overwriting one name three times left three data blocks and one referenced.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+      "section": "Thử nghiệm: thứ tự ghi hai kho",
+      "verified_by": "Script run in the session; results copied from output."
+    },
+    {
+      "claim_vi": "The conclusion that data-first is the safer order, and the deletion order in the check question, are the author's reasoning from the experiment; the source says nothing about faults or deletion.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+      "section": "Explanation",
+      "verified_by": "Author's general knowledge, not checked against the primary document in this session (the egress proxy allows GitHub only)."
+    },
+    {
+      "claim_vi": "The source presents a simplified design modelled on S3; the lesson does not claim it is how Amazon operates.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's reading of the source; Amazon documentation not consulted."
+    }
+  ],
+  "design_notes_vi": "Khung một là sơ đồ trình tự ba bên sau yêu cầu PUT; khung hai là ba ghi chú. Bảng thử nghiệm nằm trong bài.",
+  "source_deviations": [
+    "The source's seven steps (including bucket creation) are condensed to the object upload in three stages.",
+    "The lesson adds an experiment on write order, orphan sweeping and overwriting that the source does not contain."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W19), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

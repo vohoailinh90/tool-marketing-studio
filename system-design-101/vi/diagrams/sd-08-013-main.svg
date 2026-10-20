@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1055" viewBox="0 0 320 1055" role="img" aria-labelledby="title desc">
+<title id="title">Chín thành phần của dịch vụ nhỏ chạy thật</title>
+<desc id="desc">Ba khung. Khung một, chín thành phần của nguồn: cổng vào, sổ đăng ký dịch vụ, tầng dịch vụ, máy chủ cấp quyền, kho dữ liệu, bộ nhớ đệm phân tán, liên lạc bất đồng bộ, đo lường và gom nhật ký. Khung hai, năm cái giá đo trên một máy: tra sổ đăng ký mỗi lần gọi làm một lời gọi tốn 507 đến 559 micro giây thay vì 179 đến 206; kiểm chữ ký tại chỗ mất 1,8 micro giây còn hỏi máy chủ cấp quyền mất 192 đến 223; một lần đọc Redis mất 39 đến 40 micro giây còn đọc cơ sở dữ liệu trong cùng tiến trình mất 1 đến 5; đẩy việc vào hàng đợi trả lời sau 36 đến 40 micro giây thay vì 5,1 mili giây; một dòng nhật ký ra tệp mất 12 đến 13 micro giây. Khung ba, ba thành phần chưa đo.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1055" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chín thành phần của</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">dịch vụ nhỏ chạy thật</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi thành phần thêm một cái giá, đo</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thử năm cái.</text>
+<rect x="8" y="123" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chín thành phần</text>
+<rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cổng vào, sổ đăng ký, tầng</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch vụ, máy chủ cấp quyền.</text>
+<rect x="20" y="239" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="262" r="11" fill="#16a34a"/>
+<polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kho dữ liệu, bộ đệm phân</text>
+<text x="64" y="284.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tán, liên lạc bất đồng bộ.</text>
+<rect x="20" y="310" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="333" r="11" fill="#16a34a"/>
+<polyline points="37.9,333.4 41.7,337.4 48.5,329" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="336.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đo lường và gom nhật ký.</text>
+<rect x="8" y="380" width="304" height="444" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="408.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cái giá đo được</text>
+<rect x="20" y="425" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="448" r="11" fill="#16a34a"/>
+<polyline points="37.9,448.4 41.7,452.4 48.5,444" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="451.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tra sổ đăng ký mỗi lần: 507</text>
+<text x="64" y="470.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 559 µs thay vì 179 đến</text>
+<text x="64" y="490.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">206.</text>
+<rect x="20" y="516" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="539" r="11" fill="#16a34a"/>
+<polyline points="37.9,539.4 41.7,543.4 48.5,535" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="542.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏi máy chủ cấp quyền: 192</text>
+<text x="64" y="561.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 223 µs; kiểm tại chỗ:</text>
+<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1,8 (chỉ so thời gian).</text>
+<rect x="20" y="607" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="630" r="11" fill="#16a34a"/>
+<polyline points="37.9,630.4 41.7,634.4 48.5,626" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="633.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc Redis: 39 đến 40 µs;</text>
+<text x="64" y="652.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc trong tiến trình: 1 đến 5.</text>
+<rect x="20" y="678" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="701" r="11" fill="#16a34a"/>
+<polyline points="37.9,701.4 41.7,705.4 48.5,697" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="704.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đẩy vào hàng đợi: 36 đến 40</text>
+<text x="64" y="723.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">µs thay vì 5,1 ms.</text>
+<rect x="20" y="749" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="772" r="11" fill="#16a34a"/>
+<polyline points="37.9,772.4 41.7,776.4 48.5,768" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="775.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một dòng nhật ký ra tệp: 12</text>
+<text x="64" y="794.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 13 µs.</text>
+<rect x="8" y="836" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="864.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chưa đo</text>
+<rect x="20" y="881" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="904" r="11" fill="#16a34a"/>
+<polyline points="37.9,904.4 41.7,908.4 48.5,900" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cổng vào, tầng dịch vụ, kho</text>
+<text x="64" y="926.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu.</text>
+<rect x="20" y="952" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="975" r="11" fill="#16a34a"/>
+<polyline points="37.9,975.4 41.7,979.4 48.5,971" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="978.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đo lường chỉ đo chi phí tăng</text>
+<text x="64" y="997.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ đếm, không đo hệ thống</text>
+<text x="64" y="1017.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vẽ biểu đồ.</text>
+</g>
+</svg>

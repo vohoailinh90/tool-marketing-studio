@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1302" viewBox="0 0 320 1302" role="img" aria-labelledby="title desc">
+<title id="title">Mạng trên AWS</title>
+<desc id="desc">Ba khung. Khung một, bốn lớp từ ngoài vào trong: Region, vùng sẵn sàng AZ, VPC, subnet. Khung hai, bốn cách nối VPC ra ngoài: Internet gateway ra internet, Client VPN cho người làm từ xa, Virtual private gateway cho trung tâm dữ liệu công ty, NAT gateway cho máy trong mạng riêng đi ra. Khung ba, bốn cách nối giữa các VPC và dịch vụ: VPC peering, Transit gateway, endpoint dạng gateway, endpoint dạng interface hay PrivateLink.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1302" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mạng trên AWS</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">VPC và các cách nối.</text>
+<rect x="8" y="80" width="304" height="482" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ ngoài vào trong</text>
+<rect x="20" y="125" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="159" r="18" fill="#1d4ed8"/><g transform="translate(39.2 148.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="151.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Region</text>
+<text x="78" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng địa lý chứa nhiều AZ.</text>
+<rect x="20" y="225" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="268.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 257.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="251.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">AZ</text>
+<text x="78" y="275.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một hay vài trung tâm dữ</text>
+<text x="78" y="294.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu riêng biệt.</text>
+<rect x="20" y="344" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="387.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 376.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="78" y="370.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">VPC</text>
+<text x="78" y="394.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng ảo riêng của bạn,</text>
+<text x="78" y="413.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trải nhiều AZ.</text>
+<rect x="20" y="463" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="506.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 495.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="489.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Subnet</text>
+<text x="78" y="513.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dải địa chỉ nằm trong một</text>
+<text x="78" y="532.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">AZ.</text>
+<polyline points="160,195 160,223" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,314 160,342" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,433 160,461" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="574" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="602.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nối VPC ra ngoài</text>
+<rect x="20" y="619" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="642" r="11" fill="#16a34a"/>
+<polyline points="37.9,642.4 41.7,646.4 48.5,638" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="645.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Internet gateway: đường ra</text>
+<text x="64" y="664.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và vào internet.</text>
+<rect x="20" y="690" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="713" r="11" fill="#16a34a"/>
+<polyline points="37.9,713.4 41.7,717.4 48.5,709" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="716.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Client VPN: người làm từ xa</text>
+<text x="64" y="735.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào mạng.</text>
+<rect x="20" y="761" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="784" r="11" fill="#16a34a"/>
+<polyline points="37.9,784.4 41.7,788.4 48.5,780" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="787.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Virtual private gateway: nối</text>
+<text x="64" y="806.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trung tâm dữ liệu công ty.</text>
+<rect x="20" y="832" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="855" r="11" fill="#16a34a"/>
+<polyline points="37.9,855.4 41.7,859.4 48.5,851" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="858.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">NAT gateway: máy mạng</text>
+<text x="64" y="877.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng đi ra, không cho vào.</text>
+<rect x="8" y="919" width="304" height="375" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="947.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nối VPC với nhau và với dịch</text>
+<text x="20" y="969.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">vụ</text>
+<rect x="20" y="986" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1009" r="11" fill="#16a34a"/>
+<polyline points="37.9,1009.4 41.7,1013.4 48.5,1005" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1012.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Peering: nối hai VPC, không</text>
+<text x="64" y="1031.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bắc cầu.</text>
+<rect x="20" y="1057" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1080" r="11" fill="#16a34a"/>
+<polyline points="37.9,1080.4 41.7,1084.4 48.5,1076" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1083.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Transit gateway: một trạm</text>
+<text x="64" y="1102.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trung chuyển cho nhiều VPC.</text>
+<rect x="20" y="1128" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1151" r="11" fill="#16a34a"/>
+<polyline points="37.9,1151.4 41.7,1155.4 48.5,1147" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1154.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gateway endpoint: tới S3</text>
+<text x="64" y="1173.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hay DynamoDB không qua</text>
+<text x="64" y="1193.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">internet.</text>
+<rect x="20" y="1219" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1242" r="11" fill="#16a34a"/>
+<polyline points="37.9,1242.4 41.7,1246.4 48.5,1238" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1245.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Interface endpoint: lối vào</text>
+<text x="64" y="1264.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng tới dịch vụ khác.</text>
+</g>
+</svg>

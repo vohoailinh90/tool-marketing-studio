@@ -1,0 +1,57 @@
+{
+  "id": "sd-14-034",
+  "lang": "vi",
+  "title": "JWT đã ký: hộp trong suốt có dấu niêm phong",
+  "desc": "Ba khung dọc. Khung một, JWT đã ký gồm ba phần nối bằng dấu chấm: nhãn ghi cách niêm phong, nội dung viết bằng JSON, và dấu niêm phong tính từ nhãn, nội dung và một bí mật; nhãn và nội dung ai cũng đọc được. Khung hai, người nhận tách ba phần, tự tính lại dấu từ bí mật mình giữ rồi so hai dấu: khớp thì chưa bị sửa, lệch thì bỏ hộp. Khung ba, ba điều cần nhớ: nhãn và nội dung ai cũng đọc được; dấu chỉ cho biết hộp có bị sửa hay không; ai giữ bí mật dùng chung cũng niêm phong được hộp mới.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba phần nối bằng dấu chấm",
+      "items": [
+        {
+          "name": "Nhãn (header)",
+          "role": "Ghi cách niêm phong, ví dụ thuật toán. Ai cũng đọc được.",
+          "icon": "file-text"
+        },
+        {
+          "name": "Nội dung (payload)",
+          "role": "Thông tin cần gửi, viết bằng JSON. Ai cũng đọc được.",
+          "icon": "eye"
+        },
+        {
+          "name": "Dấu niêm phong",
+          "role": "Tính từ nhãn, nội dung và một bí mật. Không giấu gì cả.",
+          "icon": "shield-check"
+        }
+      ],
+      "flow": [[0, 1], [1, 2]]
+    },
+    {
+      "kind": "steps",
+      "heading": "Người nhận kiểm hộp",
+      "items": [
+        {
+          "title": "Tách ba phần",
+          "text": "Cắt chuỗi ở hai dấu chấm: nhãn, nội dung, dấu."
+        },
+        {
+          "title": "Tự tính lại dấu",
+          "text": "Dùng nhãn và nội dung vừa nhận cùng bí mật mình giữ."
+        },
+        {
+          "title": "So hai dấu",
+          "text": "Khớp: chưa bị sửa. Lệch dù một ký tự: bỏ hộp."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều cần nhớ",
+      "items": [
+        "Ai nhặt được hộp cũng đọc được nhãn và nội dung.",
+        "Dấu chỉ cho biết hộp có bị sửa sau khi niêm phong hay không.",
+        "Bí mật dùng chung: ai giữ bí mật ấy cũng niêm phong được hộp mới."
+      ]
+    }
+  ]
+}

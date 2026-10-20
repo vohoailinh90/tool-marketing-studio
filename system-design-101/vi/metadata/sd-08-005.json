@@ -1,0 +1,98 @@
+{
+  "id": "sd-08-005",
+  "title_vi": "Dịch vụ nhỏ không phải đũa thần: khi nào một khối hợp hơn",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-08-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/is-microservice-architecture-the-silver-bullet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-microservice-architecture-the-silver-bullet.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "2ba5d2a1f8d10ef79f19aaf309a97ba94de4e5b9",
+    "retrieved_body_sha256": "c4b578c47fed7519d948ea46347d002efebba1b21c1202b21546ec6c8310ed5c",
+    "retrieved_body_bytes": 1691
+  },
+  "diagram": "../diagrams/sd-08-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-08-004",
+      "relation": "see_also",
+      "reason_vi": "Câu chuyện Prime Video cũng cho thấy ranh giới giữa các thành phần có giá."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Microsoft's microservices architecture style page read from a local clone; latency, state and sticky-routing measurements run in Python on a KVM guest. The numbers about game and trading latency budgets and the three-second example come from the source guide and are not checked independently."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Microservices challenges: complexity, development and testing, lack of governance, network congestion and latency (long chains of calls add latency; avoid chatty APIs), data integrity (eventual consistency across services).",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/microservices.md",
+      "section": "Challenges",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Round trip of one byte, three runs, one KVM guest with Python 3.13: function call 0.05-0.08 us; Unix socket pair to another process 26-30 us; loopback TCP 33-37 us; HTTP/1.1 keep-alive against a Python standard-library server 162-169 us.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/microservices.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-19; time.perf_counter over 200,000 (call), 20,000 (sockets) and 5,000 (HTTP) iterations."
+    },
+    {
+      "claim_vi": "Updating one value: dict 0.07-0.12 us; sqlite3 autocommit with the file in /dev/shm 27-31 us (20,000 updates) and on disk in /tmp 790-900 us (200 updates).",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/microservices.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-19 with Python's sqlite3 module (isolation_level None); three runs."
+    },
+    {
+      "claim_vi": "For 100,000 player names hashed with MD5 and assigned by modulo, growing from 4 to 5 instances moves 80.1 % of players; a hash ring with 200 points per instance moves 20.3 %.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/microservices.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-19; deterministic, identical in three runs."
+    },
+    {
+      "claim_vi": "Real-time gaming and low-latency trading are latency sensitive (milliseconds and microseconds), keep state in memory instead of a database, and need WebSocket and sticky routing; microservices are designed for certain domains and one should ask why.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-microservice-architecture-the-silver-bullet.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit; the latency budgets and the three-second example are not checked independently."
+    }
+  ],
+  "design_notes_vi": "Ba khung ghi chú: ba đặc điểm, đo một lời gọi, đo trạng thái và định tuyến dính.",
+  "source_deviations": [
+    "The lesson adds measurements for each of the source's three features and the hash ring comparison, which the source does not contain.",
+    "The lesson adds Microsoft's list of microservices challenges and benefits so the source's one-sided view is balanced."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

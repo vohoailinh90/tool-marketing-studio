@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1419" viewBox="0 0 320 1419" role="img" aria-labelledby="title desc">
+<title id="title">Bộ lọc Bloom</title>
+<desc id="desc">Bốn nhóm xếp dọc. Ba cách kiểm tra một địa chỉ trang đã cào chưa: tập hợp giữ nguyên mọi địa chỉ nên tốn bộ nhớ, cơ sở dữ liệu mỗi lần hỏi là một truy vấn ra ngoài, bộ lọc Bloom là dãy bit nhỏ trả lời có thể có hoặc chắc chắn chưa. Thêm một địa chỉ, ba bước: băm để tính vài vị trí trong dãy bit; đặt 1 tại mỗi vị trí đó; địa chỉ khác nhau có thể trùng một vị trí. Kiểm tra một địa chỉ, ba bước: băm lại để tính đúng các vị trí đó; mọi bit là 1 thì có thể đã có; có bit là 0 thì chắc chắn chưa có. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1419" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ lọc Bloom</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chắc chắn chưa có, hoặc có thể đã</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">có.</text>
+<rect x="8" y="99" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách kiểm tra trùng</text>
+<rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="187.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 176.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></g>
+<text x="78" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tập hợp (Set)</text>
+<text x="78" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ nguyên mọi địa chỉ</text>
+<text x="78" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nên tốn bộ nhớ.</text>
+<rect x="20" y="245" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="288.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 277.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="271.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu</text>
+<text x="78" y="295.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lần hỏi là một truy vấn</text>
+<text x="78" y="314.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ra ngoài.</text>
+<rect x="20" y="346" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="389.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 378.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="372.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ lọc Bloom</text>
+<text x="78" y="396.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dãy bit nhỏ, trả lời có thể</text>
+<text x="78" y="415.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có hoặc chắc chắn chưa.</text>
+<rect x="8" y="457" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="485.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thêm một địa chỉ</text>
+<rect x="20" y="502" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="528" r="14" fill="#0f766e"/>
+<text x="46" y="533.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="528.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Băm</text>
+<text x="70" y="552.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ địa chỉ tính ra vài vị trí</text>
+<text x="70" y="571.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong dãy bit.</text>
+<rect x="20" y="611" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="637" r="14" fill="#0f766e"/>
+<text x="46" y="642.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="637.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đặt bit</text>
+<text x="70" y="661.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đặt 1 tại mỗi vị trí đó.</text>
+<polyline points="46,591 46,609" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="701" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="727" r="14" fill="#0f766e"/>
+<text x="46" y="732.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="727.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng chung bit</text>
+<text x="70" y="751.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Địa chỉ khác nhau có thể</text>
+<text x="70" y="770.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trùng một vị trí.</text>
+<polyline points="46,681 46,699" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="812" width="304" height="305" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="840.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kiểm tra một địa chỉ</text>
+<rect x="20" y="857" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="883" r="14" fill="#b45309"/>
+<text x="46" y="888.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="883.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Băm lại</text>
+<text x="70" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính lại đúng các vị trí đó.</text>
+<rect x="20" y="947" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="973" r="14" fill="#b45309"/>
+<text x="46" y="978.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="973.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mọi bit là 1</text>
+<text x="70" y="997.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có thể đã có.</text>
+<polyline points="46,927 46,945" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1037" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1063" r="14" fill="#b45309"/>
+<text x="46" y="1068.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="1063.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Có bit là 0</text>
+<text x="70" y="1087.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chắc chắn chưa có.</text>
+<polyline points="46,1017 46,1035" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1129" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1157.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1174" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1197" r="11" fill="#16a34a"/>
+<polyline points="37.9,1197.4 41.7,1201.4 48.5,1193" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1200.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo nhầm là đã có thì được;</text>
+<text x="64" y="1219.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">báo nhầm là chưa có thì</text>
+<text x="64" y="1239.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không.</text>
+<rect x="20" y="1265" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1288" r="11" fill="#16a34a"/>
+<polyline points="37.9,1288.4 41.7,1292.4 48.5,1284" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1291.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vị trí do hàm băm nhanh,</text>
+<text x="64" y="1310.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phân bố đều tính ra.</text>
+<rect x="20" y="1336" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1359" r="11" fill="#16a34a"/>
+<polyline points="37.9,1359.4 41.7,1363.4 48.5,1355" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1362.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây không phải danh sách</text>
+<text x="64" y="1381.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">địa chỉ.</text>
+</g>
+</svg>

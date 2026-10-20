@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1008" viewBox="0 0 320 1008" role="img" aria-labelledby="title desc">
+<title id="title">Học Elasticsearch theo đường đi của một tài liệu</title>
+<desc id="desc">Hai phần. Phần một, bốn bước: bộ phân tích tách và chuẩn hóa chữ, ví dụ Áo Khoác thành áo và khoác; chỉ mục ngược cho mỗi từ trỏ tới tài liệu và vị trí chứa nó; mỗi lần làm mới ghi một segment mới và không sửa segment cũ, sau đó các segment được gộp dần; một shard là một chỉ mục Lucene, bản sao phải nằm trên nút khác. Phần hai, kết quả thử trên Elasticsearch 9.5.5: ba lần làm mới tạo ba segment; sửa một tài liệu thì bản cũ bị đánh dấu xóa và bản mới vào segment mới; gộp về một segment thì thấy tệp từ điển thuật ngữ và tệp chỉ mục của từ điển; một nút với một bản sao thì cụm báo vàng vì bản sao chưa có chỗ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1008" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Học Elasticsearch theo</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đường đi của một tài liệu</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn lớp, từ chữ tới cụm máy.</text>
+<rect x="8" y="104" width="304" height="491" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn lớp cần hiểu</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ phân tích</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tách và chuẩn hóa: Áo</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khoác thành áo, khoác.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chỉ mục ngược</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi từ trỏ tới tài liệu và vị</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trí chứa nó.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Segment</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Làm mới là ghi segment</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới, không sửa cũ; rồi gộp</text>
+<text x="70" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dần.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="496" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="522" r="14" fill="#1d4ed8"/>
+<text x="46" y="527.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="522.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Shard, bản sao</text>
+<text x="70" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một shard là một chỉ mục</text>
+<text x="70" y="565.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lucene; bản sao ở nút khác.</text>
+<polyline points="46,476 46,494" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="607" width="304" height="393" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="635.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trên Elasticsearch 9.5.5</text>
+<rect x="20" y="652" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="675" r="11" fill="#16a34a"/>
+<polyline points="37.9,675.4 41.7,679.4 48.5,671" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="678.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba lần làm mới: ba segment,</text>
+<text x="64" y="697.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi cái một tài liệu.</text>
+<rect x="20" y="723" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="746" r="11" fill="#16a34a"/>
+<polyline points="37.9,746.4 41.7,750.4 48.5,742" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="749.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sửa một tài liệu: bản cũ bị</text>
+<text x="64" y="768.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đánh dấu xóa, bản mới vào</text>
+<text x="64" y="788.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">segment mới.</text>
+<rect x="20" y="814" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="837" r="11" fill="#16a34a"/>
+<polyline points="37.9,837.4 41.7,841.4 48.5,833" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="840.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gộp về một segment: thấy</text>
+<text x="64" y="859.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tệp từ điển thuật ngữ và tệp</text>
+<text x="64" y="879.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ mục của nó.</text>
+<rect x="20" y="905" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="928" r="11" fill="#16a34a"/>
+<polyline points="37.9,928.4 41.7,932.4 48.5,924" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="931.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một nút, một bản sao: cụm</text>
+<text x="64" y="950.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">báo vàng, bản sao chưa có</text>
+<text x="64" y="970.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỗ.</text>
+</g>
+</svg>

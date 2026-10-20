@@ -1,0 +1,80 @@
+{
+  "id": "sd-08-013",
+  "title_vi": "Chín thành phần của một ứng dụng dịch vụ nhỏ chạy thật, và cái giá của từng thành phần",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/9-essential-components-of-a-production-microservice-application.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-essential-components-of-a-production-microservice-application.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "30f8d6c637db66ff0e23c61c76877f30e53ea4e8",
+    "retrieved_body_sha256": "62443d8a8f5a2ed9d4604de1ec44f498ebdcd5f8437e7003b33f54d72a21162a",
+    "retrieved_body_bytes": 1904
+  },
+  "diagram": "../diagrams/sd-08-013-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Nine components and their roles from the source body; the API gateway role read from a local clone of Microsoft's architecture-center; five costs measured by a Python 3.13.16 program on a 4-vCPU virtual machine with Redis 7.0.15 and standard-library HTTP servers, three runs, 2026-10-19. The 'cost when added' column is the author's inference, not the source's. Gateway, service layer, data storage and the visualisation/search halves of metrics and logs were not measured."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: nine components - API gateway (routing, filtering, load balancing), service registry, service layer, authorization server, data storage, distributed caching, async communication, metrics visualization, log aggregation and visualization - with example product names.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-essential-components-of-a-production-microservice-application.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Microsoft: an API gateway is a centralized entry point acting as a reverse proxy, routing requests to services and performing cross-cutting tasks such as authentication, SSL termination and rate limiting; gateway aggregation combines several client requests into one to reduce chattiness.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/design/gateway-content.md",
+      "section": "What is an API gateway?; How to use an API gateway",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Measured costs on one machine (three runs): calling a service with a cached address 179-206 us versus 507-559 us when the registry is queried before every call; verifying a token signature locally 1.8 us versus 192-223 us asking an authorization server over HTTP; Redis GET 39-40 us versus an in-process sqlite3 read 1-2 us (memory) and 5 us (file); a request doing 5 ms of work inline 5,116-5,127 us versus 36-40 us pushing the job to a Redis list (5,500 jobs left in the queue in each run); a locked counter increment 0.23-0.24 us; one INFO log line to a file 11.7-13.1 us and a dropped debug call 0.17-0.18 us.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/design/gateway-content.md",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19; loopback network, so each network hop is cheaper than between machines."
+    }
+  ],
+  "design_notes_vi": "Ba khung: chín thành phần, năm cái giá đo được, bốn thành phần chưa đo.",
+  "source_deviations": [
+    "The source is a diagram with one short paragraph and product names per component; the lesson keeps the nine components, drops the product names, adds a cost column (inference) and five measurements.",
+    "Three components (gateway, service layer, data store) are labelled as not measured; six components are covered by the five measurements (metrics and logs share one)."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

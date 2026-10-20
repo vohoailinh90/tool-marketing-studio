@@ -1,0 +1,112 @@
+{
+  "id": "sd-14-033",
+  "lang": "vi",
+  "title": "Sáu cách nhận ra người dùng",
+  "subtitle": "Ai giữ trạng thái? Được chứng minh điều gì?",
+  "desc": "Bốn khung dọc. Khung một, nhớ người đã đăng nhập: session, token ngẫu nhiên và JWT, khác nhau ở chỗ ai giữ dữ liệu. Khung hai, nhờ bên khác làm chứng: SSO và mã QR chứng minh bạn là ai, còn OAuth2 chỉ chứng minh ứng dụng được làm gì. Khung ba, trình tự đăng nhập bằng mã QR giữa trình duyệt, máy chủ và điện thoại. Khung bốn, hai điều cần nhớ về mã QR.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Nhớ người đã đăng nhập",
+      "items": [
+        {
+          "name": "Session",
+          "role": "Máy chủ giữ dữ liệu, trình duyệt giữ mã. Chứng minh: bạn là ai.",
+          "icon": "database"
+        },
+        {
+          "name": "Token ngẫu nhiên",
+          "role": "Như session, máy chủ tra mã. Chứng minh: bạn là ai hoặc được làm gì.",
+          "icon": "key-round"
+        },
+        {
+          "name": "JWT",
+          "role": "Dữ liệu và chữ ký nằm trong token. Chứng minh: bạn là ai hoặc được làm gì.",
+          "icon": "file-text"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Nhờ bên khác làm chứng",
+      "items": [
+        {
+          "name": "SSO",
+          "role": "Dịch vụ đăng nhập trung tâm giữ phiên. Chứng minh: bạn là ai.",
+          "icon": "fingerprint-pattern"
+        },
+        {
+          "name": "OAuth2",
+          "role": "Máy chủ ủy quyền cấp access token. Chứng minh: ứng dụng được làm gì, không phải bạn là ai.",
+          "icon": "plug"
+        },
+        {
+          "name": "Mã QR",
+          "role": "Điện thoại đã đăng nhập xác nhận một mã đang chờ. Chứng minh: bạn là ai.",
+          "icon": "smartphone"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Đăng nhập bằng mã QR",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ",
+          "icon": "server"
+        },
+        {
+          "name": "Điện thoại",
+          "icon": "smartphone"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Xin mã"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Mã dùng một lần",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Hiện QR, hỏi định kỳ"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Mã và phiên điện thoại"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Đã xác nhận",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Lần sau: phiên mới",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai điều cần nhớ về mã QR",
+      "items": [
+        "Mã một mình không đăng nhập ai: bằng chứng là phiên của điện thoại.",
+        "Máy chủ không biết chủ điện thoại có định đăng nhập trình duyệt này không."
+      ]
+    }
+  ]
+}

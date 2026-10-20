@@ -21,6 +21,10 @@ command that decides something fetches all branches of the remote first and read
   any other branch B     only the entries whose owner is B (a copy inherited from main is not B's claim)
   this working tree      the entries it owns, and every written lesson
 
+`next`, `claim --next` and the next-free line of `status` also skip what the assignment board
+(`docs/sd101-assignments.md`, read here and on the remote's default branch) reserves for a session that claims
+its range five lessons at a time; that session takes its own range by id. `sd101_slides.py` does the same for decks.
+
 When the remote cannot be read, `claim` and `verify` stop (exit 2) instead of guessing; `--offline` says
 you accept that. A `doing` claim whose heartbeat is older than the header's `lease_hours` is stale: it no
 longer blocks anyone, but it is taken over only on purpose (`claim --take-stale`), and the taker's entry
@@ -842,9 +846,81 @@ def repartnered_upstream(context: Context) -> set[str]:
     return {lesson_id for lesson_id in both if set(then.partners.get(lesson_id, ())) != set(current.partners.get(lesson_id, ()))}
 
 
+BOARD = "docs/sd101-assignments.md"
+BOARD_RANGE = re.compile(r"\bsd-(\d\d)-(\d{3})(?:\.\.(?:sd-\1-)?(\d{3}))?")
+BOARD_WORK = {"lesson": ("lesson",), "deck": ("deck", "pptx")}
+BOARD_SEPARATORS = re.compile(r"(?:[\s,;]|\band\b)*")
+
+
+def board_reservations(text: str, work: str) -> set[str]:
+    """The lesson ids the assignment board reserves for `work` (`lesson` or `deck`): every row of its tables whose Work
+    cell names that work and whose Status cell, in a table that has one, is not `done`. A range is `sd-NN-AAA..BBB`. A board it cannot read whole fails
+    closed: a table with a Range column but no Work column, or a reserving row whose Range cell holds anything but ranges
+    (a typo such as `sd-01-001...005` would otherwise reserve less than it says), raises ClaimsError."""
+    reserved: set[str] = set()
+    header: list[str] | None = None
+    for line in text.splitlines():
+        if not line.lstrip().startswith("|"):
+            header = None
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if header is None:
+            header = [cell.lower() for cell in cells]
+            if "range" in header and "work" not in header:
+                raise ClaimsError(f"{BOARD}: the table headed {line.strip()!r} has a Range column but no Work column")
+            continue
+        if all(set(cell) <= set("-: ") for cell in cells):  # the |---|---| line under the header
+            continue
+        row = dict(zip(header, cells))
+        if row.get("status", "").lower() == "done":
+            continue
+        if not any(word in row.get("work", "").lower() for word in BOARD_WORK[work]):
+            continue
+        cell = row.get("range", "")
+        matches = list(BOARD_RANGE.finditer(cell))
+        if not matches or not BOARD_SEPARATORS.fullmatch(BOARD_RANGE.sub(" ", cell)):
+            raise ClaimsError(f"{BOARD}: the Range cell {cell!r} of the row {line.strip()!r} is not a list of "
+                              "sd-NN-AAA or sd-NN-AAA..BBB ranges")
+        for match in matches:
+            group, first, last = match.group(1), int(match.group(2)), int(match.group(3) or match.group(2))
+            if last < first:
+                raise ClaimsError(f"{BOARD}: the range {match.group(0)!r} of the row {line.strip()!r} ends before it starts")
+            reserved.update(f"sd-{group}-{number:03d}" for number in range(first, last + 1))
+    return reserved
+
+
+def reserved_on_board(root: pathlib.Path, remote: str, offline: bool, work: str) -> set[str]:
+    """What the assignment board reserves, in this checkout and on the remote's default branch together: `--next` leaves
+    those ids to the sessions the board names, which claim them by id. A board that is missing reserves nothing; one that
+    is there but malformed, or not valid UTF-8, raises ClaimsError (board_reservations)."""
+    boards = []
+    local = root / BOARD
+    if local.is_file():
+        boards.append(("this checkout", local.read_bytes()))
+    if not offline:
+        try:
+            try:  # the branch the remote calls its default now: a cached origin/HEAD goes stale when it is renamed
+                branch = default_branch(root, remote)
+            except ClaimsError:
+                branch = default_branch(root, remote, ask=False)
+            shown = git(root, "show", f"refs/remotes/{remote}/{branch}:{BOARD}", check=False)
+            if shown.returncode == 0:
+                boards.append((f"{remote}/{branch}", shown.stdout))
+        except ClaimsError:
+            pass
+    texts = []
+    for where, data in boards:
+        try:  # a replaced byte could turn a reserving row into one that reserves nothing
+            texts.append(data.decode("utf-8"))
+        except UnicodeDecodeError as error:
+            raise ClaimsError(f"{BOARD} on {where} is not valid UTF-8 ({error}); fix it before claiming") from None
+    return set().union(*(board_reservations(text, work) for text in texts))
+
+
 def free_lessons(context: Context, found: dict[str, list[Holding]], lease: int, group: str | None, count: int,
                  take_stale: bool = False, allow_same_source: bool = False, exclude: tuple[str, ...] = ()) -> list[str]:
-    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))
+    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context),
+               *reserved_on_board(context.root, context.remote, context.offline, "lesson"))
     chosen: list[str] = []
     for lesson_id, _ in context.source.lessons:
         if len(chosen) >= count:

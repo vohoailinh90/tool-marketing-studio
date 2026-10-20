@@ -1,0 +1,48 @@
+{
+  "title": "Năm cách sinh mã định danh",
+  "subtitle": "Mỗi cách trả giá một kiểu.",
+  "desc": "Hai khung. Khung một, năm cách sinh mã định danh duy nhất, mỗi cách một thẻ: UUID sinh ngẫu nhiên ở từng máy, Snowflake ghép thời gian, máy và số thứ tự, cột tự tăng của cơ sở dữ liệu, đoạn mã lấy theo lô từ cơ sở dữ liệu, bộ đếm trong Redis. Khung hai, thử nghiệm: chèn 20000 mã vào một chỉ mục có thứ tự; mã UUID ngẫu nhiên rơi trung bình trước khoảng 5000 mã đã có, mã tự tăng luôn rơi cuối, mã ghép thời gian gần cuối.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Năm cách",
+      "items": [
+        {
+          "name": "UUID",
+          "role": "128 bit ngẫu nhiên, tự sinh.",
+          "icon": "fingerprint-pattern"
+        },
+        {
+          "name": "Snowflake",
+          "role": "Thời gian, máy, số thứ tự.",
+          "icon": "clock"
+        },
+        {
+          "name": "Cột tự tăng",
+          "role": "Cơ sở dữ liệu đếm 1, 2, 3.",
+          "icon": "database"
+        },
+        {
+          "name": "Đoạn mã",
+          "role": "Lấy một lô, phát dần.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Redis",
+          "role": "Bộ đếm trong bộ nhớ.",
+          "icon": "zap"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử chèn 20000 mã vào chỉ mục",
+      "items": [
+        "UUID ngẫu nhiên: mã mới rơi trước trung bình 5005 mã đã có.",
+        "Cột tự tăng: luôn rơi cuối, 0 mã đứng sau.",
+        "Ghép thời gian, hai máy: trung bình 0,25 mã đứng sau."
+      ]
+    }
+  ],
+  "id": "sd-11-028"
+}

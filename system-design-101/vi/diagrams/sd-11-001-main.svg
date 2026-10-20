@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1028" viewBox="0 0 320 1028" role="img" aria-labelledby="title desc">
+<title id="title">Hai đường gọi một hàm Lambda</title>
+<desc id="desc">Hai khung. Khung một, đường gọi đồng bộ: yêu cầu tới, hệ thống tìm hoặc dựng môi trường chạy, khởi tạo môi trường, gọi hàm và trả kết quả. Khung hai, đường gọi bất đồng bộ: sự kiện được nhận, xếp vào hàng đợi, lấy ra để gọi hàm, thử lại khi lỗi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1028" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Hai đường gọi một hàm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Lambda</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chờ kết quả hay xếp hàng trước.</text>
+<rect x="8" y="104" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi đồng bộ</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Yêu cầu tới</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người gọi giữ kết nối và</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chờ.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tìm hoặc dựng</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cần một môi trường chạy là</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy ảo nhỏ.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khởi tạo</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nạp mã hàm; gọi sau có thể</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bỏ bước này.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="476" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="502" r="14" fill="#1d4ed8"/>
+<text x="46" y="507.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="502.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi hàm</text>
+<text x="70" y="526.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàm chạy và trả kết quả.</text>
+<polyline points="46,456 46,474" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="568" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="596.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi bất đồng bộ</text>
+<rect x="20" y="613" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="639" r="14" fill="#0f766e"/>
+<text x="46" y="644.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="639.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhận sự kiện</text>
+<text x="70" y="663.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người gọi chỉ nhận lời xác</text>
+<text x="70" y="682.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận.</text>
+<rect x="20" y="722" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="748" r="14" fill="#0f766e"/>
+<text x="46" y="753.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="748.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xếp hàng</text>
+<text x="70" y="772.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sự kiện chờ trong hàng đợi.</text>
+<polyline points="46,702 46,720" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="812" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="838" r="14" fill="#0f766e"/>
+<text x="46" y="843.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="838.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi hàm</text>
+<text x="70" y="862.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy ra khi có môi trường</text>
+<text x="70" y="881.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">rảnh.</text>
+<polyline points="46,792 46,810" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="921" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="947" r="14" fill="#0f766e"/>
+<text x="46" y="952.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="947.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thử lại</text>
+<text x="70" y="971.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nếu hàm lỗi, có thể chạy</text>
+<text x="70" y="990.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lại.</text>
+<polyline points="46,901 46,919" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

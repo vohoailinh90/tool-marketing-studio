@@ -1,0 +1,117 @@
+{
+  "id": "sd-10-018",
+  "title_vi": "Sáu thuật toán cân bằng tải",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-10-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-6-load-balancing-algorithms.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-load-balancing-algorithms.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "2c5e4637940e90273c28fe3c49336e13d2b3e218",
+    "retrieved_body_sha256": "8794441220f528c7f5a68008bc837832535e55291eeb0cd6abbc91897eac3bba",
+    "retrieved_body_bytes": 1386
+  },
+  "diagram": "../diagrams/sd-10-018-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the nginx and HAProxy statements were read in raw copies of their documentation at the pinned commits and are recorded in the claims below, but the \"usually stateless\" remark is the source's word and the glosses of IP, URL, IPv4, IPv6, HA and HTTP are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names six load balancing algorithms in two groups, static (round robin, sticky round-robin, weighted round-robin, hash) and dynamic (least connections, least response time), without defining static or dynamic; it says round robin usually requires stateless services. The lesson keeps the names and labels and does not check the stateless remark.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-load-balancing-algorithms.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "HAProxy: roundrobin uses each server in turn according to weights, is the smoothest and fairest when processing time is evenly distributed, and is dynamic (weights can change on the fly).",
+      "source": "https://github.com/haproxy/haproxy/blob/612b87e75f399b928903141d9bf8ecf59d4f4f6b/doc/configuration.txt",
+      "section": "balance roundrobin",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "nginx: requests are distributed by weighted round-robin by default; a server's weight defaults to 1; with weights 5, 1, 1 each 7 requests send 5 to the first server and 1 to each other.",
+      "source": "https://github.com/nginx/nginx.org/blob/0ebe7b53ff30e8c4fbf348881b4c8bcec3cf27cb/xml/en/docs/http/ngx_http_upstream_module.xml",
+      "section": "upstream, server weight",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "nginx sticky enables session affinity so requests from the same client go to the same server; three methods: cookie, route, learn; available only in the commercial subscription before 1.27.3 (a note on the directive).",
+      "source": "https://github.com/nginx/nginx.org/blob/0ebe7b53ff30e8c4fbf348881b4c8bcec3cf27cb/xml/en/docs/http/ngx_http_upstream_module.xml",
+      "section": "sticky",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "nginx ip_hash uses the first three octets of an IPv4 address or the whole IPv6 address as the key so a client reaches the same server unless it is unavailable; hash uses an arbitrary key and warns adding or removing a server may remap most keys; the consistent parameter uses ketama consistent hashing so only a few keys are remapped.",
+      "source": "https://github.com/nginx/nginx.org/blob/0ebe7b53ff30e8c4fbf348881b4c8bcec3cf27cb/xml/en/docs/http/ngx_http_upstream_module.xml",
+      "section": "ip_hash, hash",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "HAProxy: source hashes the client IP so the same client reaches the same server as long as no server goes up or down, otherwise many clients are redirected; uri hashes the URI to maximize cache hit rate on proxy caches; both are static by default.",
+      "source": "https://github.com/haproxy/haproxy/blob/612b87e75f399b928903141d9bf8ecf59d4f4f6b/doc/configuration.txt",
+      "section": "balance source, uri, hash",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "nginx least_conn sends a request to the server with the least number of active connections taking weights into account; ties are tried by weighted round-robin.",
+      "source": "https://github.com/nginx/nginx.org/blob/0ebe7b53ff30e8c4fbf348881b4c8bcec3cf27cb/xml/en/docs/http/ngx_http_upstream_module.xml",
+      "section": "least_conn, leastconn",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "HAProxy leastconn: the server with the lowest number of connections receives the connection; recommended where very long sessions are expected and not very well suited to protocols with short sessions such as HTTP.",
+      "source": "https://github.com/haproxy/haproxy/blob/612b87e75f399b928903141d9bf8ecf59d4f4f6b/doc/configuration.txt",
+      "section": "balance leastconn",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "nginx least_time passes a request to the server with the least average response time and least active connections, measured to the response header or the full response; it is part of the commercial subscription.",
+      "source": "https://github.com/nginx/nginx.org/blob/0ebe7b53ff30e8c4fbf348881b4c8bcec3cf27cb/xml/en/docs/http/ngx_http_upstream_module.xml",
+      "section": "least_time",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "HAProxy: a dynamic algorithm lets server weights be adjusted on the fly, a static one does not; roundrobin and leastconn are dynamic, hash, source and uri are static by default. This differs from the source's use of static and dynamic.",
+      "source": "https://github.com/haproxy/haproxy/blob/612b87e75f399b928903141d9bf8ecf59d4f4f6b/doc/configuration.txt",
+      "section": "balance, static and dynamic",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The source gives no guidance on when to pick which algorithm and no measurements; the glosses of IP, IPv4, IPv6, HA, URL and HTTP in the abbreviations section are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-load-balancing-algorithms.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm thẻ và một khung ghi nhớ; hình nhóm sáu cách theo cái chúng dựa vào (lượt và trọng số; khóa băm hoặc tải). Lời trong thẻ viết từ tài liệu nginx và HAProxy. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is a nested list with one or two sentences per algorithm; the lesson keeps the six names and the static and dynamic labels, explains each algorithm from the nginx and HAProxy documentation and does not reproduce the source's sentences or its Alice example.",
+    "The source does not define static or dynamic; HAProxy defines them differently (whether weights can change on the fly), which the lesson reports; the figure groups the algorithms by what they depend on (turns and weights, hash key, load) instead of the source's two groups."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích về nginx và HAProxy đã được đối chiếu với tài liệu ở commit đã ghim; chưa đối chiếu là nhận xét của nguồn rằng round robin thường đòi hỏi dịch vụ phi trạng thái, và các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

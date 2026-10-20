@@ -1,0 +1,38 @@
+{
+  "id": "sd-08-024",
+  "title": "Năm lựa chọn sau mỗi kiểu kiến trúc",
+  "subtitle": "Nguồn không nêu tên năm mẫu; đo năm lựa chọn mà mọi kiểu đều đẩy cho bạn.",
+  "desc": "Ba khung. Khung một, phần chữ của nguồn không nêu tên năm mẫu nào, nên bài đặt năm lựa chọn mà việc chọn kiểu kiến trúc đẩy cho bạn: chờ ở đâu, co giãn ra sao, gọi nhau thế nào, lưu dữ liệu thế nào, hỏng thì sao. Khung hai, năm phép đo trên một máy: 50 lần chờ 20 mili giây mất 1,01 giây khi tuần tự và 0,022 giây khi đồng thời; bốn tiến trình nhanh gấp 2 đến 2,5 lần chứ không gấp 4; một truy vấn 0,23 mili giây thay vì ba lời gọi 0,7; đổi tên khách tốn 3 micro giây khi chuẩn hóa và 100 đến 140 khi dữ liệu phẳng; thử lại tối đa 3 lần nâng tỷ lệ thành công từ 71% lên 97%. Khung ba, một máy, đồ chơi; số chỉ cho thấy hình dạng.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Năm lựa chọn",
+      "items": [
+        "Chờ ở đâu: tuần tự hay bất đồng bộ.",
+        "Co giãn ra sao: thêm tiến trình, có phần không chia được.",
+        "Gọi nhau thế nào: nhiều lời gọi hay một truy vấn.",
+        "Lưu dữ liệu thế nào: chuẩn hóa hay phẳng.",
+        "Hỏng thì sao: thời hạn, thử lại, ngắt mạch."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Năm phép đo",
+      "items": [
+        "50 lần chờ 20 ms: tuần tự 1,01 s, đồng thời 0,022 s.",
+        "Bốn tiến trình: nhanh gấp 2 đến 2,5 lần, không gấp 4.",
+        "Một truy vấn 0,23 ms thay vì ba lời gọi 0,7 ms.",
+        "Đổi tên khách: 3 µs chuẩn hóa, 100 đến 140 µs phẳng.",
+        "Thử lại tối đa 3 lần: thành công từ 71% lên 97%."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Giới hạn",
+      "items": [
+        "Phần chữ của nguồn không nêu tên năm mẫu; bài không đoán.",
+        "Một máy, đồ chơi; số chỉ cho thấy hình dạng."
+      ]
+    }
+  ]
+}

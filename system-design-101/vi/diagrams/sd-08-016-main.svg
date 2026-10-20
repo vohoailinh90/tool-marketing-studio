@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1263" viewBox="0 0 320 1263" role="img" aria-labelledby="title desc">
+<title id="title">Tám vấn đề hệ thống lớn và cái giá của cách giải</title>
+<desc id="desc">Ba khung. Khung một, tám vấn đề và cách giải của nguồn: đọc nhiều dùng bộ đệm; ghi nhiều dùng hàng đợi ghi và cây LSM; một điểm hỏng dùng dự phòng; sẵn sàng cao dùng cân tải và nhân bản; trễ cao dùng CDN; tệp lớn dùng lưu trữ khối và đối tượng; giám sát dùng nhật ký tập trung; truy vấn chậm dùng chỉ mục và phân mảnh. Khung hai, năm cái giá đo trên một máy: bộ đệm 1% dữ liệu trúng 66% nhưng có thể trả giá cũ; ghi bền từng bản ghi chỉ 5.000 đến 7.500 lần mỗi giây dù cấu trúc nào; chỉ mục làm nạp dữ liệu chậm hơn 24 đến 142%; phân mảnh làm truy vấn theo cột khác chậm gấp khoảng 2; cân tải không kiểm tra làm lọt 33,3% yêu cầu. Khung ba, CDN, tệp lớn và nhật ký tập trung chưa đo.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1263" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám vấn đề hệ thống lớn</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">và cái giá của cách giải</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi cách giải lấy đi một thứ; năm</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">cách đo thử trên một máy.</text>
+<rect x="8" y="123" width="304" height="393" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tám cặp của nguồn</text>
+<rect x="20" y="168" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc nhiều: bộ đệm. Ghi</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều: hàng đợi ghi, cây</text>
+<text x="64" y="233.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LSM.</text>
+<rect x="20" y="259" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="282" r="11" fill="#16a34a"/>
+<polyline points="37.9,282.4 41.7,286.4 48.5,278" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="285.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một điểm hỏng: dự phòng.</text>
+<text x="64" y="304.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sẵn sàng cao: cân tải, nhân</text>
+<text x="64" y="324.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản.</text>
+<rect x="20" y="350" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="373" r="11" fill="#16a34a"/>
+<polyline points="37.9,373.4 41.7,377.4 48.5,369" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="376.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trễ cao: CDN. Tệp lớn: lưu</text>
+<text x="64" y="395.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trữ khối và đối tượng.</text>
+<rect x="20" y="421" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="444" r="11" fill="#16a34a"/>
+<polyline points="37.9,444.4 41.7,448.4 48.5,440" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="447.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giám sát: nhật ký tập trung.</text>
+<text x="64" y="466.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Truy vấn chậm: chỉ mục,</text>
+<text x="64" y="486.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phân mảnh.</text>
+<rect x="8" y="528" width="304" height="504" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="556.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cái giá đo được</text>
+<rect x="20" y="573" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="596" r="11" fill="#16a34a"/>
+<polyline points="37.9,596.4 41.7,600.4 48.5,592" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="599.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đệm 1%: trúng 66%, đọc</text>
+<text x="64" y="618.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2,0 đến 3,3 µs thay vì 4,9</text>
+<text x="64" y="638.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 5,8; có thể trả giá cũ.</text>
+<rect x="20" y="664" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="687" r="11" fill="#16a34a"/>
+<polyline points="37.9,687.4 41.7,691.4 48.5,683" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="690.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi bền từng bản ghi: cây B</text>
+<text x="64" y="709.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và nhật ký đều 5.000 đến</text>
+<text x="64" y="729.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">7.500 lần mỗi giây.</text>
+<rect x="20" y="755" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="778" r="11" fill="#16a34a"/>
+<polyline points="37.9,778.4 41.7,782.4 48.5,774" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="781.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ mục: 13 đến 15 ms</text>
+<text x="64" y="800.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xuống 7 đến 8 µs; nạp dữ</text>
+<text x="64" y="820.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu chậm hơn 24 đến 142%.</text>
+<rect x="20" y="846" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="869" r="11" fill="#16a34a"/>
+<polyline points="37.9,869.4 41.7,873.4 48.5,865" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="872.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">8 mảnh: theo cột khác phải</text>
+<text x="64" y="891.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏi cả 8, gấp khoảng 2 một</text>
+<text x="64" y="911.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cơ sở dữ liệu.</text>
+<rect x="20" y="937" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="960" r="11" fill="#16a34a"/>
+<polyline points="37.9,960.4 41.7,964.4 48.5,956" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="963.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cân tải, một trong ba máy</text>
+<text x="64" y="982.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chết: 66,7% thành công; có</text>
+<text x="64" y="1002.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểm tra 99,0%.</text>
+<rect x="8" y="1044" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1072.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chưa đo</text>
+<rect x="20" y="1089" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1112" r="11" fill="#16a34a"/>
+<polyline points="37.9,1112.4 41.7,1116.4 48.5,1108" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1115.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CDN: chỉ đối chiếu tài liệu</text>
+<text x="64" y="1134.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Microsoft, không đo.</text>
+<rect x="20" y="1160" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1183" r="11" fill="#16a34a"/>
+<polyline points="37.9,1183.4 41.7,1187.4 48.5,1179" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1186.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu trữ tệp lớn và nhật ký</text>
+<text x="64" y="1205.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tập trung: chưa đối chiếu,</text>
+<text x="64" y="1225.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo.</text>
+</g>
+</svg>

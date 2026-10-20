@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="835" viewBox="0 0 320 835" role="img" aria-labelledby="title desc">
+<title id="title">Chọn bộ cân bằng tải: bốn ô</title>
+<desc id="desc">Hai khung. Khung một, bốn ô chọn: toàn cầu và HTTP(S) là Front Door; toàn cầu và không phải HTTP(S) là Traffic Manager, dùng DNS; khu vực và HTTP(S) là Application Gateway; khu vực và không phải HTTP(S) là Load Balancer. Khung hai, hai kiểu kết nối: xuyên suốt thì máy khách nối thẳng tới máy chủ được chọn; kết thúc kết nối thì máy khách nối tới bộ cân bằng tải, rồi nó mở một kết nối khác tới máy chủ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="835" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn bộ cân bằng tải:</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bốn ô</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hai câu hỏi, rồi một câu về kết nối.</text>
+<rect x="8" y="104" width="304" height="409" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn ô chọn</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="183" r="18" fill="#1d4ed8"/><g transform="translate(39.2 172.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Toàn cầu, HTTP(S)</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Front Door.</text>
+<rect x="20" y="231" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="274.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 263.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="257.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Toàn cầu, kiểu khác</text>
+<text x="78" y="281.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Traffic Manager, dùng</text>
+<text x="78" y="300.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DNS.</text>
+<rect x="20" y="332" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="366" r="18" fill="#1d4ed8"/><g transform="translate(39.2 355.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="78" y="358.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khu vực, HTTP(S)</text>
+<text x="78" y="382.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Application Gateway.</text>
+<rect x="20" y="414" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="457.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 446.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></g>
+<text x="78" y="440.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khu vực, kiểu khác</text>
+<text x="78" y="464.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Load Balancer, TCP và</text>
+<text x="78" y="483.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">UDP.</text>
+<rect x="8" y="525" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="553.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai kiểu kết nối</text>
+<rect x="20" y="570" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="593" r="11" fill="#16a34a"/>
+<polyline points="37.9,593.4 41.7,597.4 48.5,589" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="596.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xuyên suốt: máy khách nối</text>
+<text x="64" y="615.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thẳng tới máy chủ được</text>
+<text x="64" y="635.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chọn.</text>
+<rect x="20" y="661" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="684" r="11" fill="#16a34a"/>
+<polyline points="37.9,684.4 41.7,688.4 48.5,680" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="687.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kết thúc kết nối: máy khách</text>
+<text x="64" y="706.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nối tới bộ cân bằng tải, nó</text>
+<text x="64" y="726.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mở kết nối khác tới máy chủ.</text>
+<rect x="20" y="752" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="775" r="11" fill="#16a34a"/>
+<polyline points="37.9,775.4 41.7,779.4 48.5,771" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="778.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ kiểu thứ hai nhìn được</text>
+<text x="64" y="797.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nội dung HTTP.</text>
+</g>
+</svg>

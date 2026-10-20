@@ -1,0 +1,29 @@
+{
+  "id": "sd-11-036",
+  "title": "Hai thập kỷ đám mây",
+  "subtitle": "Mỗi mốc đổi đường ranh tự lo.",
+  "desc": "Hai khung. Khung một, bốn cột mốc đầu nối nhau: năm 2001 VMware đưa ảo hóa bằng hypervisor; năm 2006 AWS cho thuê hạ tầng như một dịch vụ; năm 2009 Heroku đưa nền tảng như một dịch vụ; năm 2010 OpenStack là hạ tầng mã nguồn mở. Khung hai, ba cột mốc sau: năm 2011 Cloud Foundry là nền tảng mã nguồn mở; năm 2013 Docker đưa container; năm 2015 CNCF lập ra để giữ cloud native.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "2001 đến 2010",
+      "items": [
+        {"name": "2001 VMware", "role": "Máy ảo trên một máy vật lý.", "icon": "layers"},
+        {"name": "2006 AWS", "role": "Thuê hạ tầng qua mạng.", "icon": "cloud"},
+        {"name": "2009 Heroku", "role": "Đưa mã lên, nền tảng lo.", "icon": "rocket"},
+        {"name": "2010 OpenStack", "role": "Hạ tầng mã nguồn mở.", "icon": "server"}
+      ],
+      "flow": [[0, 1], [1, 2], [2, 3]]
+    },
+    {
+      "kind": "parts",
+      "heading": "2011 đến 2015",
+      "items": [
+        {"name": "2011 Cloud Foundry", "role": "Nền tảng mã nguồn mở.", "icon": "puzzle"},
+        {"name": "2013 Docker", "role": "Đóng gói bằng container.", "icon": "container"},
+        {"name": "2015 CNCF", "role": "Tổ chức giữ cloud native.", "icon": "users"}
+      ],
+      "flow": [[0, 1], [1, 2]]
+    }
+  ]
+}

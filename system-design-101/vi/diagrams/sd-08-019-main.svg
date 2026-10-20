@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1175" viewBox="0 0 320 1175" role="img" aria-labelledby="title desc">
+<title id="title">Chương trình chạy thế nào: tám bước và số đo trên Linux</title>
+<desc id="desc">Ba khung. Khung một, tám bước của nguồn từ lúc nhấp đúp tới lúc thoát: nhấp đúp, nạp tệp chạy, nạp thư viện chung, cấp bộ nhớ, khởi tạo môi trường chạy, vào hàm main, CPU chạy lệnh nằm trong bộ nhớ, dọn dẹp khi thoát. Khung hai, đo trên Linux: một chương trình C nhỏ gọi hệ thống 35 lần với thư viện động và 17 lần khi nối tĩnh; khởi động mất 1,0 đến 1,4 mili giây, còn Python 16,7 đến 21,4 và Java 41 đến 45; ánh xạ 1 GiB bộ nhớ chỉ thêm 380 KiB bộ nhớ thật cho đến khi đọc tới; mã của một hàm đọc được như dữ liệu; thoát không đóng tệp thì nhân đóng hộ. Khung ba, chưa đo: Windows, DLL và môi trường chạy của Microsoft.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1175" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chương trình chạy thế</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nào: tám bước và số đo</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trên Linux</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Nạp, cấp bộ nhớ lười, khởi tạo, chạy,</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thoát: mỗi bước xem được bằng</text>
+<text x="16" y="147.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">strace.</text>
+<rect x="8" y="167" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="195.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tám bước của nguồn</text>
+<rect x="20" y="212" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="235" r="11" fill="#16a34a"/>
+<polyline points="37.9,235.4 41.7,239.4 48.5,231" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhấp đúp, nạp tệp chạy, nạp</text>
+<text x="64" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thư viện chung, cấp bộ nhớ.</text>
+<rect x="20" y="283" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="306" r="11" fill="#16a34a"/>
+<polyline points="37.9,306.4 41.7,310.4 48.5,302" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="309.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khởi tạo môi trường chạy,</text>
+<text x="64" y="328.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào hàm main.</text>
+<rect x="20" y="354" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="377" r="11" fill="#16a34a"/>
+<polyline points="37.9,377.4 41.7,381.4 48.5,373" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="380.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CPU chạy lệnh nằm trong bộ</text>
+<text x="64" y="399.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhớ; dọn dẹp khi thoát.</text>
+<rect x="8" y="441" width="304" height="503" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="469.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo trên Linux</text>
+<rect x="20" y="486" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="509" r="11" fill="#16a34a"/>
+<polyline points="37.9,509.4 41.7,513.4 48.5,505" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="512.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi hệ thống: 35 lần với thư</text>
+<text x="64" y="531.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viện động, 17 khi nối tĩnh; lỗi</text>
+<text x="64" y="551.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang nhẹ 61 và 31.</text>
+<rect x="20" y="577" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="600" r="11" fill="#16a34a"/>
+<polyline points="37.9,600.4 41.7,604.4 48.5,596" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="603.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khởi động: C 1,0 đến 1,4 ms;</text>
+<text x="64" y="622.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Python 16,7 đến 21,4; Node</text>
+<text x="64" y="642.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">25 đến 27,5; Java 41 đến 45.</text>
+<rect x="20" y="668" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="691" r="11" fill="#16a34a"/>
+<polyline points="37.9,691.4 41.7,695.4 48.5,687" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="694.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cấp bộ nhớ lười: ánh xạ 1</text>
+<text x="64" y="713.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GiB thêm 380 KiB bộ nhớ</text>
+<text x="64" y="733.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thật; đọc nửa số trang:</text>
+<text x="64" y="752.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">526.084 KiB.</text>
+<rect x="20" y="778" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="801" r="11" fill="#16a34a"/>
+<polyline points="37.9,801.4 41.7,805.4 48.5,797" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="804.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã là dữ liệu: đọc 8 byte đầu</text>
+<text x="64" y="823.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của một hàm từ vùng r-xp.</text>
+<rect x="20" y="849" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="872" r="11" fill="#16a34a"/>
+<polyline points="37.9,872.4 41.7,876.4 48.5,868" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="875.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thoát không đóng 500 tệp:</text>
+<text x="64" y="894.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhân đóng hộ, số tệp mở</text>
+<text x="64" y="914.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của hệ thống không đổi.</text>
+<rect x="8" y="956" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="984.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chưa đo</text>
+<rect x="20" y="1001" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1024" r="11" fill="#16a34a"/>
+<polyline points="37.9,1024.4 41.7,1028.4 48.5,1020" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1027.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Windows, DLL, môi trường</text>
+<text x="64" y="1046.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy của Microsoft và giao</text>
+<text x="64" y="1066.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">diện đồ hoạ: không đo.</text>
+<rect x="20" y="1092" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1115" r="11" fill="#16a34a"/>
+<polyline points="37.9,1115.4 41.7,1119.4 48.5,1111" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1118.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dọn tài nguyên mạng khi</text>
+<text x="64" y="1137.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thoát: không đo.</text>
+</g>
+</svg>

@@ -1,0 +1,44 @@
+{
+  "id": "sd-11-013",
+  "title": "Sáu bước mở rộng một trang web",
+  "subtitle": "Mỗi bước gỡ một nút thắt.",
+  "desc": "Hai khung. Khung một, ba bước đầu: tách máy ứng dụng khỏi máy cơ sở dữ liệu, chạy nhiều máy ứng dụng, đặt bộ chia tải phía trước. Khung hai, ba bước sau: tách đọc và ghi bằng bản sao chỉ đọc, chia nhỏ hoặc đệm dữ liệu, rồi tách thành các dịch vụ riêng.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba bước đầu",
+      "items": [
+        {
+          "title": "Tách máy",
+          "text": "Ứng dụng và dữ liệu ở hai máy."
+        },
+        {
+          "title": "Nhiều máy",
+          "text": "Chạy một cụm máy ứng dụng."
+        },
+        {
+          "title": "Chia tải",
+          "text": "Bộ chia tải chia đều yêu cầu."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Ba bước sau",
+      "items": [
+        {
+          "title": "Tách đọc ghi",
+          "text": "Đọc từ bản sao chỉ đọc."
+        },
+        {
+          "title": "Chia hoặc đệm",
+          "text": "Thêm máy dữ liệu hoặc bộ đệm."
+        },
+        {
+          "title": "Tách dịch vụ",
+          "text": "Kho hàng và người dùng riêng."
+        }
+      ]
+    }
+  ]
+}

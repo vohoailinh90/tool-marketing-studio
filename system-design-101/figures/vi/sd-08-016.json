@@ -1,0 +1,37 @@
+{
+  "id": "sd-08-016",
+  "title": "Tám vấn đề hệ thống lớn và cái giá của cách giải",
+  "subtitle": "Mỗi cách giải lấy đi một thứ; năm cách đo thử trên một máy.",
+  "desc": "Ba khung. Khung một, tám vấn đề và cách giải của nguồn: đọc nhiều dùng bộ đệm; ghi nhiều dùng hàng đợi ghi và cây LSM; một điểm hỏng dùng dự phòng; sẵn sàng cao dùng cân tải và nhân bản; trễ cao dùng CDN; tệp lớn dùng lưu trữ khối và đối tượng; giám sát dùng nhật ký tập trung; truy vấn chậm dùng chỉ mục và phân mảnh. Khung hai, năm cái giá đo trên một máy: bộ đệm 1% dữ liệu trúng 66% nhưng có thể trả giá cũ; ghi bền từng bản ghi chỉ 5.000 đến 7.500 lần mỗi giây dù cấu trúc nào; chỉ mục làm nạp dữ liệu chậm hơn 24 đến 142%; phân mảnh làm truy vấn theo cột khác chậm gấp khoảng 2; cân tải không kiểm tra làm lọt 33,3% yêu cầu. Khung ba, CDN, tệp lớn và nhật ký tập trung chưa đo.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám cặp của nguồn",
+      "items": [
+        "Đọc nhiều: bộ đệm. Ghi nhiều: hàng đợi ghi, cây LSM.",
+        "Một điểm hỏng: dự phòng. Sẵn sàng cao: cân tải, nhân bản.",
+        "Trễ cao: CDN. Tệp lớn: lưu trữ khối và đối tượng.",
+        "Giám sát: nhật ký tập trung. Truy vấn chậm: chỉ mục, phân mảnh."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Năm cái giá đo được",
+      "items": [
+        "Bộ đệm 1%: trúng 66%, đọc 2,0 đến 3,3 µs thay vì 4,9 đến 5,8; có thể trả giá cũ.",
+        "Ghi bền từng bản ghi: cây B và nhật ký đều 5.000 đến 7.500 lần mỗi giây.",
+        "Chỉ mục: 13 đến 15 ms xuống 7 đến 8 µs; nạp dữ liệu chậm hơn 24 đến 142%.",
+        "8 mảnh: theo cột khác phải hỏi cả 8, gấp khoảng 2 một cơ sở dữ liệu.",
+        "Cân tải, một trong ba máy chết: 66,7% thành công; có kiểm tra 99,0%."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Chưa đo",
+      "items": [
+        "CDN: chỉ đối chiếu tài liệu Microsoft, không đo.",
+        "Lưu trữ tệp lớn và nhật ký tập trung: chưa đối chiếu, không đo."
+      ]
+    }
+  ]
+}

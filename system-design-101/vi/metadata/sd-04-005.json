@@ -1,0 +1,107 @@
+{
+  "id": "sd-04-005",
+  "title_vi": "Avro: đổi lược đồ mà dữ liệu cũ vẫn đọc được",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/smooth-data-migration-with-avro.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/smooth-data-migration-with-avro.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "6c3a746b7118f0bf3a4ffb12abe562e6110ca7cd",
+    "retrieved_body_sha256": "6bc08a9c07afffa87d25b54600b2bd161a4e9edc7ac60e7e9829eac2a6760aa1",
+    "retrieved_body_bytes": 1328
+  },
+  "diagram": "../diagrams/sd-04-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-015",
+      "relation": "related",
+      "reason_vi": "Đường ống thu thay đổi dữ liệu thường phải chịu lược đồ đổi theo thời gian."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Apache Avro specification (current ++version++ page, plus the 1.11.1 and 1.12.0 pages kept in the same repository) was read from a partial clone of apache/avro; the four reader schemas were run by the author with the avro 1.12.2 Python library on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Binary-encoded Avro data carries no field names or types, so a schema is always needed; files that store Avro data should include the writer's schema, and the object container file header holds it as JSON under avro.schema after the magic bytes Obj and 1.",
+      "source": "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/++version++/Specification/_index.md",
+      "section": "Data Serialization and Deserialization; Object Container Files",
+      "verified_by": "Read from a partial clone of apache/avro at commit 3a207fa6e87c535b95eafca4cf5a6ef524d77df2."
+    },
+    {
+      "claim_vi": "Schema resolution: record fields are matched by name; a writer field missing from the reader is ignored; a reader field missing from the writer takes the reader's default, or an error is signalled if there is none; int promotes to long, float or double.",
+      "source": "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/++version++/Specification/_index.md",
+      "section": "Schema Resolution",
+      "verified_by": "Read from a partial clone of apache/avro at commit 3a207fa6e87c535b95eafca4cf5a6ef524d77df2."
+    },
+    {
+      "claim_vi": "Aliases let a reader map a renamed field or type from the writer's schema.",
+      "source": "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/++version++/Specification/_index.md",
+      "section": "Aliases",
+      "verified_by": "Read from a partial clone of apache/avro at commit 3a207fa6e87c535b95eafca4cf5a6ef524d77df2."
+    },
+    {
+      "claim_vi": "The 1.11.1 specification says a union field's default must match the first element of the union, so null is usually listed first; the 1.12.0 specification says the first schema that matches.",
+      "sources": [
+        "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/1.11.1/Specification/_index.md",
+        "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/1.12.0/Specification/_index.md"
+      ],
+      "section": "Records: default; Unions",
+      "verified_by": "Read both version pages from the same clone at commit 3a207fa6e87c535b95eafca4cf5a6ef524d77df2."
+    },
+    {
+      "claim_vi": "Measured with avro 1.12.2 for Python: a two-record file written with schema v1 (244 bytes, starts with Obj and 1) reads without a reader schema; reader v2 (reordered, id long, phone dropped, email with default) reads with email empty; v3 (email without default) fails with 'No default value for field email'; v4 (id as string) fails with 'Schemas do not match'.",
+      "source": "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/++version++/Specification/_index.md",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18."
+    },
+    {
+      "claim_vi": "The source states: Avro stores the schema with the data blocks in object container files, so exported files can be read and migrated to another store; the source says Avro dynamically generates schemas based on the columns and compares it with gRPC and Thrift. The lesson does not adopt the schema-generation wording (see source_deviations).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/smooth-data-migration-with-avro.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Ba bước cho một tệp hai lược đồ, một khung những thay đổi đọc được và một khung những thay đổi báo lỗi, đúng bốn lược đồ của thử nghiệm. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says Avro dynamically generates schemas from columns; the lesson follows the specification, where the schema travels with the file and building a schema from a table is the export tool's job.",
+    "The lesson leaves out the source's comparison with gRPC and Thrift and its history, and adds the resolution rules with an experiment."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

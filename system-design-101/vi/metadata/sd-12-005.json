@@ -1,0 +1,82 @@
+{
+  "id": "sd-12-005",
+  "title_vi": "Quadtree: chia bản đồ thành bốn ô để tìm quán gần bạn",
+  "language": "vi",
+  "kind": "howto",
+  "content_status": "draft",
+  "source_ref": "sd-12-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/quadtree.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from raw.githubusercontent.com at the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "765b5d5e904ed0df504815158d2ce842fee4f025",
+    "retrieved_body_sha256": "aa772d50ed235fa65574383690a13a018b52e0374da73f02bdfa645ac7a60147",
+    "retrieved_body_bytes": 1904
+  },
+  "diagram": "../diagrams/sd-12-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-12-017",
+      "relation": "see_also",
+      "reason_vi": "Bài dịch vụ lân cận dùng quadtree làm một trong các cách chỉ mục vị trí."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A quadtree partitions 2D space by recursively subdividing it into four quadrants until a criterion is met; it is an in-memory structure built at LBS server start-up, not a database.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
+      "section": "Opening paragraphs",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "The source splits until no node has more than 100 businesses; a search descends to the leaf containing the origin and adds neighbours' businesses if the leaf has fewer than 100.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
+      "section": "Building and search sections",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "The source says building the tree for 200 million businesses may take a few minutes, during which the server cannot serve traffic, hence incremental rollout.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
+      "section": "Update LBS server",
+      "verified_by": "Source body read at the pinned commit; the figure was not reproduced by the lesson."
+    },
+    {
+      "claim_vi": "Own experiment, 2026-10-19: Python 3, bucket capacity 100, seed 7; uniform points: 100k -> 2,221 leaves, depth 6, mean 45.0 points per leaf; 1M -> 16,384 leaves, depth 7, mean 61.0. Clustered (20 Gaussian clusters): 100k -> 2,668 leaves, depth 11, mean 37.5; 1M -> 21,583 leaves, depth 13, mean 46.3. Share of 2,000 queries (at data points) landing in a leaf with fewer than 100 points: 95.8%, 100%, 99.2%, 99.3%. Build time for 1M points 3.5 s (uniform) and 4.8 s (clustered).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
+      "section": "Thử nghiệm",
+      "verified_by": "Script embedded verbatim in the lesson (details block); run in the session and results copied from its output."
+    }
+  ],
+  "design_notes_vi": "Hai khung đều là các bước đánh số: xây cây và tìm quán. Kết quả thử nghiệm nằm trong bảng của bài, không vẽ.",
+  "source_deviations": [
+    "The source's two figures are not reproduced; the lesson draws its own steps.",
+    "The lesson adds an experiment on leaf occupancy and depth, and a question about whether neighbour leaves guarantee the nearest 100 (author's reasoning).",
+    "The source's 'few minutes for 200M businesses' is reported but not verified."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W19), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

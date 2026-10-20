@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="644" viewBox="0 0 320 644" role="img" aria-labelledby="title desc">
+<title id="title">Sáu chỗ cần idempotent</title>
+<desc id="desc">Hai khung. Khung một, ba chỗ người dùng hoặc client gửi lại: yêu cầu REST, thanh toán, đặt đơn hàng. Khung hai, ba chỗ lặp lại bên trong hệ thống: thao tác cơ sở dữ liệu, tạo tài khoản, thông điệp giữa các dịch vụ. Mỗi ghi chú nói cách chặn việc làm hai lần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="644" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu chỗ cần idempotent</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Gửi lại không được làm hai lần.</text>
+<rect x="8" y="80" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Client gửi lại</text>
+<rect x="20" y="125" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="148" r="11" fill="#16a34a"/>
+<polyline points="37.9,148.4 41.7,152.4 48.5,144" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">REST: kèm khóa duy nhất</text>
+<text x="64" y="170.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho mỗi ý định.</text>
+<rect x="20" y="196" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="219" r="11" fill="#16a34a"/>
+<polyline points="37.9,219.4 41.7,223.4 48.5,215" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thanh toán: lần sau trả lại</text>
+<text x="64" y="241.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết quả cũ.</text>
+<rect x="20" y="267" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="290" r="11" fill="#16a34a"/>
+<polyline points="37.9,290.4 41.7,294.4 48.5,286" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="293.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đơn hàng: mã đơn do phía</text>
+<text x="64" y="312.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gửi sinh ra.</text>
+<rect x="8" y="354" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="382.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lặp lại bên trong</text>
+<rect x="20" y="399" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="422" r="11" fill="#16a34a"/>
+<polyline points="37.9,422.4 41.7,426.4 48.5,418" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="425.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu: đặt giá trị,</text>
+<text x="64" y="444.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không cộng dồn.</text>
+<rect x="20" y="470" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="493" r="11" fill="#16a34a"/>
+<polyline points="37.9,493.4 41.7,497.4 48.5,489" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="496.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài khoản: ràng buộc duy</text>
+<text x="64" y="515.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất trên email.</text>
+<rect x="20" y="541" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="564" r="11" fill="#16a34a"/>
+<polyline points="37.9,564.4 41.7,568.4 48.5,560" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="567.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông điệp: nhớ mã, bỏ bản</text>
+<text x="64" y="586.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trùng; mã và việc cùng giao</text>
+<text x="64" y="606.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch.</text>
+</g>
+</svg>

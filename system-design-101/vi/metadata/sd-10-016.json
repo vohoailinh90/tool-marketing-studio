@@ -1,0 +1,123 @@
+{
+  "id": "sd-10-016",
+  "title_vi": "Mười một cấu trúc dữ liệu dùng hằng ngày",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-key-data-structures-we-use-every-day.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4407c102e2c74dab5cb995fe656cc7319da10fd9",
+    "retrieved_body_sha256": "e5672cbbb067655d1434a18dbc362af0bf7c9a4dd7f5fea00cd80bff8b77f151",
+    "retrieved_body_bytes": 1042
+  },
+  "diagram": "../diagrams/sd-10-016-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-010",
+      "relation": "see-also",
+      "reason_vi": "Hàng đợi là một trong các cấu trúc ở đây; bài kia so sánh hàng đợi chặn và không chặn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the Java statements were read in raw copies of the OpenJDK source and the MDN statements in raw copies of the MDN pages, all at the pinned commits and recorded in the claims below; the suffix tree, graph and R-tree examples are only the source's words and were not checked, and the glosses of the abbreviations are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists eleven structures (List, Stack, Queue, Hash Table, Array, Heap, Tree, Suffix Tree, Graph, R-Tree, Vertex Buffer) each with one example use, under a title that says ten; the lesson keeps the names and examples and counts eleven.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "JDK List: an ordered collection with precise control over where each element is inserted, access by integer index; unlike sets, lists typically allow duplicates.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: an array is an ordered collection of data storing multiple values under one name, each item having a numeric index (zero-based in JavaScript).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/array/index.md",
+      "section": "Array",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK Deque: deques can be used as LIFO stacks, in preference to the legacy Stack class.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Deque.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK Queue: a collection for holding elements prior to processing; queues typically, but not necessarily, order elements FIFO; priority queues and LIFO queues (stacks) are exceptions.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK HashSet: backed by a hash table; constant-time basic operations assuming the hash function disperses elements properly.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/HashSet.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK PriorityQueue: a priority queue based on a priority heap; the head is the least element with respect to the ordering.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/PriorityQueue.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: the DOM represents an HTML or XML document as a tree of nodes, the DOM tree.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/dom/index.md",
+      "section": "DOM",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: a WebGLBuffer is an opaque buffer object storing data such as vertices or colors; the GPU specializes in drawing 2D and 3D graphics.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/api/webglbuffer/index.md",
+      "section": "WebGLBuffer and GPU",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Suffix tree, graph and R-tree: only the source's example use is given; no primary documentation was read for them.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "The glosses in the abbreviations section.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ (danh sách và thứ tự; tra cứu và sắp việc; quan hệ, không gian và đồ họa) và một khung ghi nhớ; cách chia nhóm là của bài. Mỗi thẻ nói cấu trúc là gì từ tài liệu gốc kèm ví dụ của nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source title says ten data structures but the list has eleven; the lesson follows the list and says so.",
+    "The lesson keeps the source's names and example uses and explains what each structure is from the JDK sources and MDN pages, instead of following the source's sentences."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

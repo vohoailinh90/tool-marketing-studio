@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1415" viewBox="0 0 320 1415" role="img" aria-labelledby="title desc">
+<title id="title">CDN đưa bạn tới một máy biên ở gần thế nào</title>
+<desc id="desc">Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trỏ sang CDN, thường bằng bí danh CNAME; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng chỉ có khi bật bộ đệm nhiều tầng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1415" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">CDN đưa bạn tới một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">máy biên ở gần thế nào</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Tìm địa chỉ, rồi tìm nội dung.</text>
+<rect x="8" y="104" width="304" height="491" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chặng 1: tìm địa chỉ</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hỏi tên miền</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đệm DNS của máy, rồi</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy phân giải.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tên miền trỏ sang CDN</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DNS của trang trỏ sang</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CDN, thường bằng CNAME.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn máy biên</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DNS của CDN trả máy biên</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gần máy phân giải, hoặc địa</text>
+<text x="70" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ anycast.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="496" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="522" r="14" fill="#1d4ed8"/>
+<text x="46" y="527.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="522.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tải từ máy biên</text>
+<text x="70" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trình duyệt kết nối tới địa</text>
+<text x="70" y="565.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ vừa nhận.</text>
+<polyline points="46,476 46,494" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="607" width="304" height="444" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="635.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chặng 2: hụt thì hỏi tầng</text>
+<text x="20" y="657.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">trên, nếu có</text>
+<rect x="20" y="674" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="717.5" r="18" fill="#0f766e"/><g transform="translate(39.2 706.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="700.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy biên</text>
+<text x="78" y="724.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gần người dùng; có sẵn thì</text>
+<text x="78" y="743.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trả ngay, thiếu thì hỏi lên.</text>
+<rect x="20" y="793" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="846.5" r="18" fill="#0f766e"/><g transform="translate(39.2 835.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="819.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy tầng vùng</text>
+<text x="78" y="843.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ có khi bật bộ đệm</text>
+<text x="78" y="862.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều tầng; nhiều máy</text>
+<text x="78" y="882.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">biên hỏi chung.</text>
+<rect x="20" y="932" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="985.5" r="18" fill="#0f766e"/><g transform="translate(39.2 974.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="958.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy gốc</text>
+<text x="78" y="982.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nơi nội dung thật nằm; có</text>
+<text x="78" y="1001.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều tầng thì chỉ tầng</text>
+<text x="78" y="1021.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trên hỏi tới.</text>
+<polyline points="160,763 160,791" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,902 160,930" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1063" width="304" height="344" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1091.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử với nginx: hai máy biên,</text>
+<text x="20" y="1113.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">một tầng vùng</text>
+<rect x="20" y="1130" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1153" r="11" fill="#16a34a"/>
+<polyline points="37.9,1153.4 41.7,1157.4 48.5,1149" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1156.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lần đầu qua máy biên A: hai</text>
+<text x="64" y="1175.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tầng hụt, máy gốc nhận 1</text>
+<text x="64" y="1195.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">yêu cầu.</text>
+<rect x="20" y="1221" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1244" r="11" fill="#16a34a"/>
+<polyline points="37.9,1244.4 41.7,1248.4 48.5,1240" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1247.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lần đầu qua máy biên B:</text>
+<text x="64" y="1266.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tầng vùng trúng, máy gốc</text>
+<text x="64" y="1286.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không nhận thêm.</text>
+<rect x="20" y="1312" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1335" r="11" fill="#16a34a"/>
+<polyline points="37.9,1335.4 41.7,1339.4 48.5,1331" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1338.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giỏ hàng gắn private,</text>
+<text x="64" y="1357.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">no-store: máy gốc nhận cả</text>
+<text x="64" y="1377.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hai lần.</text>
+</g>
+</svg>

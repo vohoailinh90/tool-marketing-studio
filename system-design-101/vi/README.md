@@ -91,6 +91,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 27. [Ngăn xếp công nghệ của Uber, từ ứng dụng tới DevOps](lessons/sd-02-027/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 28. [API của Netflix qua bốn giai đoạn](lessons/sd-02-028/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 29. [Discord lưu hàng nghìn tỷ tin nhắn thế nào](lessons/sd-02-029/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+30. [Kiến trúc Twitter 2022 so với 2012: đọc từ mã nguồn mở của chính Twitter](lessons/sd-02-030/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 31. [Lớp API của Uber qua ba thế hệ](lessons/sd-02-031/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 32. [Ngăn xếp công nghệ của Netflix](lessons/sd-02-032/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
@@ -500,7 +501,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế (còn sd-02-030, nguồn chỉ có hình, chờ chủ repo quyết định).
+Không còn nhóm nào chưa viết: cả 404 vị trí đã có bài.
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

@@ -1,16 +1,15 @@
 # Kiến trúc Twitter 2022 so với 2012: đọc từ mã nguồn mở của chính Twitter
 
 **Bài nguồn chỉ có một hình, nên bài này không kể lại hình đó; nó đọc những gì Twitter tự công bố trong mã nguồn mở: các công cụ thời đầu, rồi đường đi của dòng tin Home ở bản mã mở sau này.**
-Bạn sẽ thấy hai thứ đổi: cách chia dữ liệu và gọi dịch vụ, và cách chọn tweet cho từng người.
+Bài đặt cạnh nhau hai nhóm tài liệu: công cụ thời đầu, và bản mã mở ghim ngày 2025-09-03; nguồn không nói cái nào thay cái nào.
 
 ![Ba khung. Khung một, công cụ thời đầu theo README của Twitter: Gizzard, khung dựng kho dữ liệu phân tán; FlockDB, kho đồ thị quan hệ, tháng 4 năm 2010 có hơn 13 tỷ cạnh; Snowflake, bản đầu phát hành năm 2010; Finagle, hệ gọi dịch vụ từ xa cho JVM. Khung hai, năm chặng dựng dòng tin For You: lấy ứng viên, gắn khoảng 6000 đặc trưng, chấm điểm bằng mô hình, lọc, trộn nội dung khác. Khung ba: ba điều nguồn không nói.](../../diagrams/sd-02-030-main.svg)
 
 ## Từ viết tắt
 
 - **RPC** (Remote Procedure Call) — gọi thủ tục từ xa: một dịch vụ gọi hàm của dịch vụ khác qua mạng như gọi hàm trong cùng chương trình; Finagle là hệ làm việc này.
-- **JVM** (Java Virtual Machine) — máy ảo Java: môi trường chạy chương trình Java và Scala, hai ngôn ngữ mà các công cụ trong bài viết bằng.
+- **JVM** (Java Virtual Machine) — máy ảo Java: môi trường chạy chương trình Java và Scala; Finagle là hệ RPC cho JVM theo README.
 - **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức; có trong tên FlockDB.
-- **ID** (IDentifier) — mã định danh: số hoặc chuỗi phân biệt một tweet hay một người dùng với mọi cái khác.
 - **ML** (Machine Learning) — học máy: dùng mô hình học từ dữ liệu để chấm điểm; ở đây là mô hình chấm điểm tweet cho dòng tin.
 
 ## Đọc hình
@@ -51,7 +50,7 @@ README của Home Mixer mô tả For You là tweet hay nhất từ người bạ
 <summary>Xem sâu hơn: vì sao FlockDB lưu mỗi cạnh hai lần</summary>
 
 - Một cạnh "A theo dõi B" được ghi một hàng xuôi (A tới B) và một hàng ngược (B từ A), theo README.
-- Nhờ vậy hỏi "ai theo dõi B" cũng đọc thẳng được một dãy liền nhau, thay vì quét hết mọi cạnh. Đây là cách giải thích của người biên soạn, README chỉ nói cả hai hướng đều được lưu và truy vấn được.
+- Nhờ vậy hỏi "ai theo dõi B" cũng đọc theo đích thay vì quét mọi cạnh. Đây là cách giải thích của người biên soạn, README chỉ nói cả hai hướng đều được lưu và truy vấn được.
 - Cái giá là ghi gấp đôi dữ liệu; đây cũng là suy luận của người biên soạn, không phải câu của README.
 
 </details>
@@ -63,7 +62,7 @@ README của Home Mixer mô tả For You là tweet hay nhất từ người bạ
 - [Twitter — thuật toán gợi ý, README gốc](https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/README.md): thành phần của For You, Earlybird là nguồn khoảng một nửa số tweet.
 - [Twitter — Earlybird](https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/src/java/com/twitter/search/README.md): ba cụm chỉ mục, chia phần và bản sao.
 - [Twitter — Navi](https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/navi/README.md): phục vụ mô hình bằng Rust.
-- [Twitter — FlockDB](https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.md): đồ thị quan hệ, số liệu tháng 4 năm 2010.
+- [Twitter — FlockDB](https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.markdown): đồ thị quan hệ, số liệu tháng 4 năm 2010.
 - [Twitter — Gizzard](https://github.com/twitter/gizzard/blob/9b84325490185f1fa29cb4c9116b39eea374f345/README.markdown): khung dựng kho dữ liệu phân tán.
 - [Twitter — Snowflake](https://github.com/twitter/snowflake/blob/ec40836e3f47af92cf0c83cbb4187c529d7e7fa5/README.md): bản đầu năm 2010, có trước Finagle.
 - [Twitter — Finagle](https://github.com/twitter/finagle/blob/ca472deb355c7d3b8d7eb077223991e8c8f4ad8b/README.md): hệ RPC cho JVM.

@@ -66,7 +66,7 @@
     },
     {
       "claim_vi": "FlockDB: distributed graph database of adjacency lists, stores social graphs; as of April 2010, 13+ billion edges, peak 20k writes/s and 100k reads/s; edges stored in both directions; no multi-hop queries.",
-      "source": "https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.md",
+      "source": "https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.markdown",
       "section": "Đọc hình",
       "verified_by": "README of the pinned commit read; the statement is in the text."
     },
@@ -107,8 +107,8 @@
       "verified_by": "README of the pinned commit read; the statement is in the text."
     },
     {
-      "claim_vi": "Why FlockDB stores each edge twice; Snowflake's purpose as ID generator.",
-      "source": "https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.md",
+      "claim_vi": "Why FlockDB stores each edge twice (looking up by destination instead of scanning every edge).",
+      "source": "https://github.com/twitter/flockdb/blob/d0e72e889ec669e3eb79d2e66219514182a6dd5b/README.markdown",
       "section": "Xem sâu hơn",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }

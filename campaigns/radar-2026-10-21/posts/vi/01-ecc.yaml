@@ -1,0 +1,75 @@
+id: 01-ecc
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-21
+link: 01-ecc
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: Tối ưu hóa trợ lý AI với ECC cho Claude Code và các harness
+  subtitle: Hệ thống tối ưu hóa hiệu năng trợ lý AI (agent harness) cung cấp kỹ năng, trí nhớ, bảo mật
+    và công cụ phát triển cho Claude Code, Codex, Kimi Code và nhiều…
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '285.034'
+  label: sao trên GitHub
+  caption: MIT · JavaScript
+- layout: quote
+  text: Lập trình viên sử dụng trợ lý AI thường gặp tình trạng thiếu kỹ năng chuyên sâu, thiếu bộ nhớ
+    ngữ cảnh và khó quản lý cấu hình đồng bộ giữa nhiều công cụ code khác nhau. Việc cài đặt thủ công
+    dễ gây xung đột hoặc trùng lặp lệnh.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Universal Setup Wizard: Kiểm tra marketplace chính thức và các phạm vi cài đặt Claude để cài
+      đặt hoặc cập nhật plugin `ecc@ecc` an toàn.'
+  - text: 'Multi-Harness Support: Hỗ trợ cấu hình nhiều coding agent khác nhau như Claude Code, Codex,
+      Kimi Code trong một luồng.'
+  - text: 'Native Integration: Tích hợp trực tiếp vào hệ thống sinh thái sẵn có của agent mà không làm
+      gián đoạn luồng làm việc.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: ECC Universal Package
+    text: Gói cài đặt tự động toàn năng cho các agent harness
+  - emoji: ⚙️
+    title: Claude Plugin
+    text: Tích hợp các kỹ năng, câu lệnh và hook quản lý trực tiếp vào Claude Code
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Không chồng chéo nhiều phương pháp cài đặt khác nhau trên cùng một harness
+  - Sử dụng công cụ universal setup giúp preflight và tránh xung đột cấu hình
+  - Tuân thủ việc chọn đúng một phương pháp cài đặt cho mỗi loại trợ lý AI
+  - Kiểm tra kỹ lưỡng các điều kiện phần mềm trước khi chạy trình cài đặt tự động
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Yêu cầu Node.js 18+ và Claude Code 2.1+
+  - emoji: ⚠️
+    text: Cần chọn đúng một phương pháp cài đặt cho mỗi harness để tránh trùng lặp
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tối ưu hóa trợ lý AI của bạn với ECC cho Claude Code và Codex! Hướng dẫn từng bước cho người
+      mới.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - ECC
+    - ClaudeCode
+    - AI
+    - DeveloperTools

@@ -1,0 +1,72 @@
+id: 02-kestra
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-24
+link: 02-kestra
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: Orchestrate everything everywhere with Kestra
+  subtitle: Nền tảng mã nguồn mở điều phối luồng công việc (workflows) cho dữ liệu, AI và hạ tầng qua
+    giao diện YAML khai báo.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '29.966'
+  label: sao trên GitHub
+  caption: Apache-2.0 · Java
+- layout: quote
+  text: Các nhóm làm việc thường gặp khó khăn khi phải kết hợp nhiều công cụ rời rạc, thiếu sự đồng bộ
+    và khó theo dõi trạng thái thực thi. Việc quản lý các quy trình thủ công tốn thời gian và dễ xảy ra
+    lỗi khi vận hành.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Khai báo YAML: Mô tả các công việc cần làm dưới dạng cấu hình YAML rõ ràng.'
+  - text: 'Thực thi tác vụ: Kestra tự động điều phối các tác vụ chạy theo lịch trình hoặc sự kiện kích
+      hoạt.'
+  - text: 'Tự động tải plugin: Các plugin cần thiết được tự động tải từ Maven Central theo nhu cầu của
+      flow.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Kestra Server
+    text: Thành phần cốt lõi điều phối toàn bộ các luồng công việc.
+  - emoji: ⚙️
+    title: UI
+    text: Giao diện trực quan để theo dõi và chỉnh sửa các luồng.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Sử dụng cấu hình YAML để quản lý luồng công việc
+  - Vận hành nền tảng điều phối bằng Docker
+  - Xây dựng hệ thống tự động hóa hướng sự kiện
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Yêu cầu Docker hoạt động trên hệ thống
+  - emoji: ⚠️
+    text: Cần có kết nối internet để tự động tải các plugin từ Maven Central khi cần
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Điều phối mọi quy trình tự động với Kestra mã nguồn mở!
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - Kestra
+    - Automation
+    - DevOps
+    - OpenSource

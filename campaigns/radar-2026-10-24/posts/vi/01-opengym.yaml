@@ -1,0 +1,78 @@
+id: 01-opengym
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-24
+link: 01-opengym
+slides:
+- layout: cover
+  emoji: 🧰
+  eyebrow: Radar GitHub · Phần mềm
+  title: 'Tự host openGym: Trình theo dõi tập gym mã nguồn mở'
+  subtitle: Ứng dụng mã nguồn mở theo dõi tập gym và thể hình, hỗ trợ lập lịch, ghi lại buổi tập, xem
+    nhóm cơ hoạt động và tự host bằng Docker.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '15.286'
+  label: sao trên GitHub
+  caption: AGPL-3.0 · JavaScript
+- layout: quote
+  text: Nhiều ứng dụng tập luyện lưu trữ dữ liệu của bạn trên server của họ, thúc đẩy bạn mua gói trả
+    phí hoặc biến mất khi công ty đóng cửa.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Giao diện React: frontend/ sử dụng React 19 và Vite, được biên dịch thành file tĩnh bên trong
+      container Docker.'
+  - text: 'API Node.js: api/ dùng node:http thuần túy với các thư viện xác thực passkey và thông báo.'
+  - text: 'Phục vụ qua Nginx: web/ đóng gói giao diện và phục vụ qua nginx, đồng thời proxy /api để chạy
+      chung một gốc.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: frontend
+    text: Giao diện người dùng viết bằng React 19 và Vite
+  - emoji: ⚙️
+    title: api
+    text: Xử lý logic backend bằng Node.js
+  - emoji: 🔌
+    title: web
+    text: Build giao diện và phục vụ qua nginx
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách dùng Docker Compose để triển khai ứng dụng fullstack self-hosted
+  - Kiến trúc kết hợp React frontend và Node.js backend đơn giản không cần framework phức tạp
+  - Cơ chế đồng bộ dữ liệu bằng JSON document và revision
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Cần biết cơ bản về lệnh terminal và Docker
+  - emoji: ⚠️
+    text: Cấu hình HTTPS là bắt buộc nếu muốn dùng passkeys thực tế trên điện thoại
+  - emoji: ⚠️
+    text: Giấy phép sử dụng thuộc AGPL-3.0
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tự host app tập gym của riêng bạn với openGym! Không quảng cáo, không phí thuê bao, dữ liệu
+      nằm trọn trong tay bạn.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - openGym
+    - SelfHosted
+    - Docker
+    - FitnessTracker
+    - OpenSource

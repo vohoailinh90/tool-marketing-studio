@@ -1,0 +1,75 @@
+id: 01-hermes-agent
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-31
+link: 01-hermes-agent
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: Cài Đặt và Sử Dụng Hermes Agent trên Máy Tính
+  subtitle: Hermes Agent là trợ lý AI tự cải thiện có vòng lặp học tập tích hợp, hỗ trợ đa nền tảng và
+    chạy được trên mọi hạ tầng.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '258.944'
+  label: sao trên GitHub
+  caption: MIT · Python
+- layout: quote
+  text: Dân văn phòng và lập trình viên mới thường gặp khó khăn khi phải cấu hình nhiều công cụ AI rời
+    rạc, không nhớ ngữ cảnh cũ và thiếu kết nối với các ứng dụng nhắn tin hàng ngày như Telegram.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Khởi tạo môi trường: Trình cài đặt tự động thiết lập Python, Node.js và các phụ thuộc cần thiết.'
+  - text: 'Giao diện TUI: Cung cấp giao diện dòng lệnh đầy đủ tính năng chỉnh sửa đa dòng và lịch sử hội
+      thoại.'
+  - text: 'Cổng thông điệp: Kết nối tập trung từ Telegram, Discord, Slack và các nền tảng khác vào một
+      tiến trình.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Terminal Interface
+    text: Giao diện TUI tương tác trực tiếp với người dùng trên dòng lệnh.
+  - emoji: ⚙️
+    title: Messaging Gateway
+    text: Cổng kết nối các nền tảng nhắn tin như Telegram, Discord, Slack.
+  - emoji: 🔌
+    title: Learning Loop
+    text: Vòng lặp học tập tự động tạo và cải thiện kỹ năng từ kinh nghiệm thực tế.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách cài đặt một công cụ AI dòng lệnh tiên tiến bằng một dòng lệnh duy nhất
+  - Cách quản lý cấu hình mô hình và nhà cung cấp AI linh hoạt
+  - Cách sử dụng giao diện tương tác dòng lệnh (TUI) để trò chuyện và tra cứu lịch sử
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Trình cài đặt yêu cầu quyền thực thi lệnh hệ thống trên máy tính
+  - emoji: ⚠️
+    text: Một số trình diệt virus có thể nhận diện nhầm gói quản lý phụ thuộc (uv.exe) trên Windows
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tự tạo trợ lý AI tự học trên máy tính với Hermes Agent! 🤖
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - HermesAgent
+    - AI
+    - Developer
+    - VanPhong
+    - OpenSource

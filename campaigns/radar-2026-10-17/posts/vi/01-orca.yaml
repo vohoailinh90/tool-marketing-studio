@@ -1,0 +1,86 @@
+id: 01-orca
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17
+link: 01-orca
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: 'Orca: Môi trường ADE điều phối song song nhiều AI coding agent'
+  subtitle: ADE mã nguồn mở cho phép chạy song song nhiều AI coding agent bằng gói thuê bao cá nhân trên
+    máy tính để bàn, điện thoại và máy chủ từ xa.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '94.489'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Lập trình viên muốn thử nghiệm nhiều agent AI cùng lúc trên cùng một dự án nhưng gặp khó khăn
+    khi quản lý xung đột mã nguồn, tài nguyên dòng lệnh và phải liên tục chuyển đổi ngữ cảnh làm việc.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Tách nhánh Parallel Worktrees: Orca chia một câu prompt thành nhiều nhánh git worktree biệt
+      lập, cho phép nhiều agent cùng giải một bài toán mà không đè mã của nhau.'
+  - text: 'Hiển thị terminal WebGL: Tích hợp công nghệ terminal Ghostty với khả năng chia cửa sổ vô hạn,
+      render WebGL và lưu trữ lịch sử scrollback ngay cả khi khởi động lại.'
+  - text: 'Đồng bộ đa nền tảng: Hệ thống relay hỗ trợ ghép nối ứng dụng di động với máy tính cá nhân hoặc
+      kết nối SSH tới máy chủ từ xa có cấu hình mạnh.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Orca Desktop
+    text: Môi trường phát triển tích hợp (ADE) chứa trình biên tập, git worktree và terminal splits.
+  - emoji: ⚙️
+    title: CLI Coding Agents
+    text: Các trợ lý dòng lệnh như Claude Code, Codex, Pi chạy trực tiếp trong terminal.
+  - emoji: 🔌
+    title: Git Worktrees
+    text: Không gian làm việc mã nguồn biệt lập cho từng agent xử lý song song.
+  - emoji: 📦
+    title: Mobile Companion
+    text: Ứng dụng trên iOS và Android để giám sát tiến độ và gửi lệnh theo dõi từ xa.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Sử dụng Git Worktree để cô lập môi trường làm việc khi cho nhiều AI cùng chỉnh sửa một dự án.
+  - Tối ưu giao diện terminal bằng WebGL để duy trì hiệu năng cao khi mở nhiều tab chia nhỏ.
+  - Kết nối thiết bị di động với môi trường runtime máy tính để quản trị tác vụ nền linh hoạt.
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Dự án được khởi tạo từ năm 2026 và có lượng lớn open issues phản ánh tốc độ cập nhật liên tục.
+  - emoji: ⚠️
+    text: Người dùng phải tự chuẩn bị tài khoản và gói thuê bao cá nhân cho từng CLI agent sử dụng.
+  - emoji: ⚠️
+    text: Tương tác qua điện thoại cần cài thêm ứng dụng di động và thiết lập kết nối relay.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Orca: ADE điều phối song song hàng loạt AI coding agent
+
+      - Chạy Claude Code, Codex, Pi cùng lúc trên từng worktree
+
+      - Terminal chia nhỏ không giới hạn render WebGL
+
+      - Giám sát và điều khiển agent trực tiếp từ điện thoại
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - Orca
+    - AIAgents
+    - DevTools
+    - OpenSource

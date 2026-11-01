@@ -1,0 +1,19 @@
+Giao việc cho một nhóm agent AI xong, bạn có hay tự hỏi: agent nào đang làm gì, và ai đang chạy bằng model nào? 👀
+
+Mình dựng một trang "văn phòng agent" để nhìn một lượt là biết. Video 2 phút này quay một lượt chạy mẫu ở tốc độ thật (yêu cầu mức T3, mức khó nhất):
+
+🔹 Phiên chính ngồi trên cùng, các agent ngồi bên dưới, mỗi agent một bàn.
+🔹 Agent phân tích yêu cầu vào trước, làm rõ chỗ còn mơ hồ.
+🔹 Agent phản biện kiến trúc đọc bản thiết kế, tìm ràng buộc ẩn và lỗ hổng.
+🔹 Agent rà soát mã đọc phần thay đổi và tự chạy kiểm chứng độc lập.
+🔹 Khi rà soát báo cần thiết kế riêng phần kiểm thử, hệ thống cấp thêm một suất dự phòng cho agent kiểm thử.
+
+Tổng cộng 4 agent, cả 4 đều chạy Sonnet. Ngân sách dùng 2 trên 3 suất cơ sở, cộng 1 suất dự phòng phân tích và 1 suất dự phòng kiểm chứng. Có nhật ký bàn giao kèm giờ, và thanh thời gian để xem lại.
+
+Trang nói thật chỗ nó không biết: tiến độ từng agent chỉ là ước lượng, và trang đọc model từ tệp của từng agent chứ không ghi model của phiên chính.
+
+⚠️ Hình là lượt chạy mẫu đã ghi sẵn, không phải yêu cầu thật. Giọng đọc trong video là giọng AI. Repo đang private nên đây là chia sẻ cách mình làm, không phát hành.
+
+Nếu có một trang như vậy cho nhóm agent của bạn, bạn muốn thấy gì đầu tiên?
+
+#Claude #AI #tudonghoa #laptrinh #agent

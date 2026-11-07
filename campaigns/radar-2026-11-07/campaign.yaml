@@ -1,0 +1,14 @@
+tool: github-radar
+langs:
+- vi
+platforms:
+- facebook
+goal: 'Share what 2 popular free GitHub projects teach, scanned on 2026-11-07: one clear explanation per
+  project, so readers learn the idea and save the post.'
+links:
+  01-replica-skill: https://github.com/Jakeschincariol/replica-skill
+  02-firecrawl: https://github.com/firecrawl/firecrawl
+utm:
+  medium: social
+  campaign: radar-2026-11-07
+schedule: []

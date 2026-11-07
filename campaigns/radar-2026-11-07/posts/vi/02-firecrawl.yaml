@@ -1,0 +1,78 @@
+id: 02-firecrawl
+status: draft
+format: portrait
+series: Radar GitHub · 2026-11-07
+link: 02-firecrawl
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: 'Firecrawl: API TÌm Kiếm, Trích Xuất và Tương Tác Web Cho AI'
+  subtitle: Firecrawl là API thu thập dữ liệu web nguồn mở giúp agent AI tìm kiếm, cào, phân tích và tương
+    tác với bất kỳ trang web nào một cách dễ dàng.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '199.333'
+  label: sao trên GitHub
+  caption: AGPL-3.0 · TypeScript
+- layout: quote
+  text: Các lập trình viên và nhà nghiên cứu AI thường gặp khó khăn khi lấy dữ liệu sạch từ các trang
+    web phức tạp do bị chặn hoặc cấu trúc lộn xộn.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Tìm kiếm và Thu thập: Hệ thống nhận URL hoặc từ khóa, vượt qua các lớp bảo vệ JavaScript và
+      proxy để lấy dữ liệu thô.'
+  - text: 'Chuyển đổi định dạng: Lọc nội dung chính và chuyển hóa dữ liệu thành Markdown sạch hoặc JSON
+      cấu trúc tối ưu cho LLM.'
+  - text: 'Tương tác thông minh: Hỗ trợ agent AI thực hiện các hành vi phức tạp như bấm nút, điền form
+      hoặc tìm kiếm tiếp theo.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Search Endpoint
+    text: Tìm kiếm web và trả về nội dung toàn trang từ kết quả.
+  - emoji: ⚙️
+    title: Scrape Endpoint
+    text: Chuyển đổi URL thành Markdown, HTML hoặc JSON.
+  - emoji: 🔌
+    title: Interact Endpoint
+    text: Tương tác với trang web thông qua câu lệnh prompt hoặc mã lệnh.
+  - emoji: 📦
+    title: Agent Endpoint
+    text: Tự động hóa hoàn toàn việc thu thập dữ liệu chỉ bằng mô tả mục tiêu.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách kết nối ứng dụng với API thu thập dữ liệu web tiên tiến
+  - Tận dụng định dạng Markdown tối ưu hóa cho token của LLM
+  - Cách xây dựng agent tự động tương tác trực tiếp với giao diện trang web
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Dịch vụ yêu cầu khóa API và có thể phát sinh chi phí theo hạn mức sử dụng
+  - emoji: ⚠️
+    text: Phụ thuộc vào dịch vụ máy chủ trực tuyến của Firecrawl
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Biến mọi trang web thành dữ liệu sạch cho AI với Firecrawl! 🚀
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AI
+    - WebScraping
+    - Python
+    - OpenSource

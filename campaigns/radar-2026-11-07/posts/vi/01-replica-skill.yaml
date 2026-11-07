@@ -1,0 +1,96 @@
+id: 01-replica-skill
+status: draft
+format: portrait
+series: Radar GitHub · 2026-11-07
+link: 01-replica-skill
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Radar GitHub · Khởi nghiệp
+  title: Sao chép mọi ứng dụng với Claude Skills
+  subtitle: 'Eleven free Claude skills that clone any app: reverse-engineer it, rebuild it, test it for
+    bugs, then fix what its users hate.'
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '8.015'
+  label: sao trên GitHub
+  caption: MIT · Python
+- layout: quote
+  text: Lập trình viên muốn xây dựng lại các ứng dụng phổ biến nhưng thường mất rất nhiều thời gian để
+    lập kế hoạch, thiết kế và kiểm thử.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Khảo sát và đảo ngược: Đọc dữ liệu màn hình, luồng đi và mô hình dữ liệu từ các trang công
+      cộng và tài khoản của bạn.'
+  - text: 'Thiết kế và kiến trúc: Lên kế hoạch stack công nghệ, cơ sở dữ liệu, API và hệ thống thiết kế
+      dạng token.'
+  - text: 'Xây dựng và cải tiến: Xây dựng ứng dụng từng màn hình, tích hợp backend, kiểm thử lỗi và cải
+      tiến dựa trên phản hồi người dùng.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: replica-recon
+    text: Reverse-engineers screens, flows, and data models from public pages and screenshots.
+  - emoji: ⚙️
+    title: replica-architect
+    text: Plans the technology stack, database schema, and API structure.
+  - emoji: 🔌
+    title: replica-design
+    text: Rebuilds the design system into tokens and handles contrast checks.
+  - emoji: 📦
+    title: replica-build
+    text: Builds the application screen by screen based on the recon map.
+  - emoji: 🧠
+    title: replica-backend
+    text: Handles authentication, databases, payments, and integrations.
+  - emoji: 📡
+    title: replica-test
+    text: Clicks through flows and tests for bugs to generate bug reports.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách cấu trúc quy trình reverse-engineer một ứng dụng sạch-phòng (clean-room).
+  - Phương pháp chuyển đổi dữ liệu giao diện thành hệ thống token thiết kế.
+  - Kỹ thuật viết script Python tiêu chuẩn để kiểm tra mã nguồn và giao diện.
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Không sao chép mã nguồn, tài sản độc quyền hoặc API riêng tư của ứng dụng gốc.
+  - emoji: ⚠️
+    text: Kết quả phụ thuộc vào độ phức tạp của ứng dụng mục tiêu.
+  - emoji: ⚠️
+    text: Cần kiểm tra kỹ vấn đề thương hiệu và pháp lý trước khi thương mại hóa.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Clone bất kỳ ứng dụng nào với 11 Claude skill miễn phí!
+
+
+      - Khảo sát và đảo ngược ứng dụng
+
+      - Lên kế hoạch stack và cơ sở dữ liệu
+
+      - Kiểm tra lỗi và cải thiện sản phẩm
+
+      - Hoàn toàn miễn phí, giấy phép MIT
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - claude
+    - indiehacker
+    - python
+    - saas
+    - opensource

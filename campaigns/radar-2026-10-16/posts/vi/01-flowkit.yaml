@@ -1,0 +1,73 @@
+id: 01-flowkit
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-16
+link: 01-flowkit
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: Tự động hóa video AI với FlowKit và Google Flow
+  subtitle: Hệ thống độc lập tự động tạo video AI qua Google Flow, sử dụng tiện ích mở rộng Chrome làm
+    cầu nối trình duyệt để xử lý các yêu cầu RPC.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '980'
+  label: sao trên GitHub
+  caption: MIT · Python
+- layout: quote
+  text: Người làm nội dung tốn nhiều thời gian thao tác thủ công trên Google Flow để tạo hình ảnh, video
+    clip, lồng tiếng và ghép nối. Việc thiếu tự động hóa khiến quá trình sản xuất video dài trở nên chậm
+    và lặp lại.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Khởi động tab: Mở một tab trình duyệt đã đăng nhập sẵn để duy trì phiên làm việc.'
+  - text: 'Gửi yêu cầu qua WebSocket: Python Agent giao tiếp với Chrome Extension qua kết nối WebSocket
+      để truyền các gói tin yêu cầu.'
+  - text: 'Thực thi RPC trong trang: Tiện ích mở rộng chạy các lệnh batchexecute RPC và xác thực reCAPTCHA
+      ngay bên trong tab trình duyệt.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Python Agent
+    text: Hệ thống trung tâm dùng FastAPI và SQLite để quản lý hàng đợi, xử lý hậu kỳ và giao tiếp.
+  - emoji: ⚙️
+    title: Chrome Extension
+    text: Đóng vai trò cầu nối trình duyệt, xử lý mã thông báo reCAPTCHA và chạy RPC trực tiếp trong tab.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách kết hợp Python Agent với tiện ích mở rộng Chrome qua WebSocket
+  - Kỹ thuật xử lý yêu cầu trang web yêu cầu phiên đăng nhập thực tế
+  - Tổ chức hệ thống tạo nội dung đa phương tiện tự động
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Cần mở sẵn tab trình duyệt đã đăng nhập, không chạy ngầm hoàn toàn headless được
+  - emoji: ⚠️
+    text: Một số tính năng Veo có thể không được hỗ trợ trên API hàng loạt mới
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tự động hóa toàn bộ quy trình tạo video AI trên Google Flow với Python và Chrome Extension!
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - FlowKit
+    - AI
+    - Video
+    - Python
+    - Automation

@@ -1,0 +1,90 @@
+id: 01-flowkit
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-16-2
+link: 01-flowkit
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: 'FlowKit: Cầu nối tự động hoá tạo video AI từ Google Flow'
+  subtitle: Hệ thống tự động hoá sản xuất video bằng cách điều khiển Google Flow thông qua Chrome extension
+    chạy trực tiếp trong phiên đăng nhập web.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '981'
+  label: sao trên GitHub
+  caption: MIT · Python
+- layout: quote
+  text: Google Flow sử dụng cơ chế bảo mật nghiêm ngặt với cookie phiên, mã bảo mật trang và reCAPTCHA,
+    khiến các lệnh gọi API thông thường không thể chạy độc lập.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Tiếp nhận tác vụ: Python agent tiếp nhận kịch bản, xử lý logic hàng đợi và gửi dữ liệu yêu
+      cầu sang Chrome extension thông qua kết nối WebSocket nội bộ.'
+  - text: 'Xác thực và ký RPC: Chrome extension hoạt động ngay trong tab dịch vụ, tự lấy token reCAPTCHA,
+      gắn cookie phiên và gửi batchexecute RPC hợp lệ tới máy chủ.'
+  - text: 'Sinh hình ảnh và clip: Google Flow tiếp nhận lệnh và tạo ảnh thực thể tham chiếu, ảnh cảnh
+      quay cùng các đoạn video ngắn 8 giây thông qua mô hình Omni Flash.'
+  - text: 'Hậu kỳ và đóng gói: Agent tải các clip hoàn thành, ghép nối theo mốc thời gian giọng đọc narration,
+      tạo ảnh thumbnail và chuẩn bị dữ liệu xuất bản video hoàn chỉnh.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Python Agent
+    text: Dịch vụ FastAPI và SQLite quản lý hàng đợi, xử lý hậu kỳ và điều phối dữ liệu qua WebSocket.
+  - emoji: ⚙️
+    title: Chrome Extension
+    text: Service worker đóng vai trò cầu nối, lấy token reCAPTCHA và thực thi RPC trực tiếp trong ngữ
+      cảnh trang.
+  - emoji: 🔌
+    title: Trình duyệt mở sẵn
+    text: Tab trình duyệt giữ phiên đăng nhập hợp lệ với cookie và token bảo mật cần thiết để ký RPC.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - 'Kỹ thuật Browser Bridge: dùng extension để tương tác với web app bảo mật thay vì cố chạy headless'
+  - 'Đồng nhất nhân vật đa cảnh: tạo ảnh tham chiếu một lần để áp dụng xuyên suốt chuỗi khung hình'
+  - 'Thiết kế pipeline phân tầng: tách biệt rõ ràng giữa điều phối tác vụ, giao tiếp mạng và hậu kỳ media'
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Không thể chạy headless độc lập vì bắt buộc duy trì một tab trình duyệt đã đăng nhập
+  - emoji: ⚠️
+    text: Cần tạo dự án thủ công trên giao diện web và sao chép mã FLOW_PROJECT_ID vào biến môi trường
+  - emoji: ⚠️
+    text: Một số tính năng mô hình Veo như video upscale hay start-and-end frame chưa hỗ trợ trên cơ chế
+      batch
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tự động hoá tạo video từ Google Flow bằng Browser Bridge.
+
+      Không có REST API? FlowKit giải quyết bằng Chrome Extension đóng vai trò cầu nối.
+
+      Extension tự xin reCAPTCHA và gửi batchexecute ngay trong tab đã đăng nhập.
+
+      Quy trình tự động từ kịch bản, giữ nhất quán nhân vật tới xuất video 8 giây.
+
+      Một giải pháp kiến trúc đáng học hỏi khi cần tự động hoá ứng dụng web đóng.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - FlowKit
+    - AIVideo
+    - Automation
+    - BrowserBridge
+    - SoftwareDesign

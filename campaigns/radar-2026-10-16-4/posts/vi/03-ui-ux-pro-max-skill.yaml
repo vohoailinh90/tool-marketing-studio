@@ -1,0 +1,107 @@
+id: 03-ui-ux-pro-max-skill
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-16-4
+link: 03-ui-ux-pro-max-skill
+slides:
+- layout: cover
+  emoji: 🧰
+  eyebrow: Radar GitHub · Phần mềm
+  title: 'UI UX Pro Max: kho tri thức thiết kế cho AI viết giao diện'
+  subtitle: Skill cho AI coding agent gồm kho dữ liệu (79 phong cách UI có thể tìm, 50 đang dùng; 192
+    bảng màu; 74 cặp phông) và script Python tìm kiếm để sinh hệ thống…
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '136.600'
+  label: sao trên GitHub
+  caption: MIT
+- layout: quote
+  text: UI UX Pro Max là skill đem design intelligence cho AI dựng UI/UX trên nhiều nền tảng.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Bạn nêu yêu cầu: Bạn yêu cầu việc UI/UX (build, design, create, review, fix...); trong công
+      cụ hỗ trợ, skill tự kích hoạt.'
+  - text: 'Tìm kiếm đa miền: Bước tìm kiếm đa miền chạy 5 tìm kiếm song song: loại sản phẩm, phong cách,
+      bảng màu, mẫu landing page và cặp phông.'
+  - text: 'Suy luận theo ngành: Reasoning engine khớp sản phẩm với quy tắc ngành, xếp hạng phong cách
+      bằng BM25, lọc kiểu cần tránh cho ngành đó và xử lý quy tắc điều kiện dạng…'
+  - text: 'Ra hệ thống thiết kế: Đầu ra gồm mẫu trang, phong cách, màu, chữ, hiệu ứng, điều cần tránh
+      và danh sách kiểm tra trước khi giao.'
+  - text: 'Viết mã và tự soát: AI viết giao diện theo hệ đó cho stack bạn chọn (mặc định HTML kèm Tailwind)
+      rồi đối chiếu với lỗi UI/UX phổ biến.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: CLI uipro
+    text: Cài skill đúng thư mục của từng công cụ AI từ mẫu có sẵn; còn có update, uninstall, versions.
+  - emoji: ⚙️
+    title: Skill trong công cụ AI
+    text: Phần hướng dẫn để AI tự kích hoạt khi bạn yêu cầu UI/UX và biết gọi script tìm kiếm.
+  - emoji: 🔌
+    title: Kho dữ liệu CSV
+    text: Phong cách, bảng màu, cặp phông, biểu đồ, hướng dẫn UX và quy tắc theo ngành, nằm dưới src/ui-ux-pro-max.
+  - emoji: 📦
+    title: Script tìm kiếm và suy luận
+    text: 'Python chỉ dùng thư viện chuẩn: xếp hạng BM25 và khớp loại sản phẩm với 192 quy tắc ngành để
+      chọn mẫu trang, phong…'
+  - emoji: 🧠
+    title: Hệ thiết kế đã lưu
+    text: File master lưu hệ thiết kế, kèm file ghi đè riêng từng trang, để các phiên sau đọc lại.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - 'Tách dữ liệu khỏi mã: README đặt cơ sở dữ liệu trong các file CSV và bộ tìm kiếm trong script riêng,
+    nên mở rộng kho tri thức chủ yếu là sửa dữ liệu.'
+  - 'Mẫu Master kèm Overrides: quy tắc chung nằm một file, từng trang chỉ ghi phần khác biệt, giống cách
+    kế thừa cấu hình.'
+  - Đầu ra luôn kèm điều cần tránh và danh sách kiểm tra, nên AI có sẵn tiêu chí để tự soát trước khi
+    giao.
+  - Script chỉ dùng thư viện chuẩn, không gọi mạng, và AI được dặn hỏi người dùng thay vì tự cài phần
+    mềm, theo đúng README.
+  - 'Tách phạm vi ngay trong README: bản mã nguồn mở này lo UI/UX, còn thương hiệu và logo thuộc bản Premium,
+    nên người đọc biết trước nên kỳ vọng gì.'
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Cần Python 3 để chạy script tìm kiếm. README dặn AI không tự cài phần mềm giúp bạn mà sẽ hỏi;
+      bạn tự cài Python nếu máy chưa có.
+  - emoji: ⚠️
+    text: Ví dụ trước và sau trong README chỉ là minh họa do cộng đồng đóng góp, không phải demo chính
+      thức hay phép đo hiệu quả; đầu ra mẫu còn…
+  - emoji: ⚠️
+    text: 'Lỗi cài hay gặp theo README: tải cả ZIP repo lên trang tải skill của Claude bị từ chối vì quá
+      200 file, Marketplace trước v2.5.1 lỗi…'
+  - emoji: ⚠️
+    text: Bản miễn phí chỉ lo UI/UX. Thương hiệu, logo, slide, sinh ảnh và kiến trúc design token cho
+      đội lớn thuộc bản Premium, bản nâng cấp mà…
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Cho AI một cuốn sổ tay thiết kế để nó dựng giao diện có chủ đích
+
+
+      UI UX Pro Max có 79 phong cách UI có thể tìm (50 đang dùng), 192 bảng màu, 74 cặp phông và 192 quy
+      tắc theo ngành, tra bằng script Python.
+
+      Bài hướng dẫn từng bước đi kèm chỉ cách cài, sinh hệ thống thiết kế và lưu để dùng lại.
+
+      Lưu ý: ví dụ trước và sau trong README chỉ để minh họa.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AI
+    - UIUX
+    - OpenSource

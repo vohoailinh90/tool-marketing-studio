@@ -1,0 +1,110 @@
+id: 02-impeccable
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-16-4
+link: 02-impeccable
+slides:
+- layout: cover
+  emoji: 🧰
+  eyebrow: Radar GitHub · Phần mềm
+  title: 'Impeccable: bộ lệnh thiết kế giao diện cho AI coding agent'
+  subtitle: 'Skill thiết kế cho AI coding agent: một lệnh /impeccable với 24 lệnh con, chế độ sửa trực
+    tiếp trên trình duyệt và 59 quy tắc dò lỗi thiết kế chạy không cần…'
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '82.000'
+  label: sao trên GitHub
+  caption: Apache-2.0
+- layout: quote
+  text: 'Mô hình AI đều học từ cùng các mẫu SaaS; thiếu chỉ dẫn thì dự án nào cũng lặp vài dấu hiệu: phông
+    Inter, gradient tím sang xanh, thẻ lồng trong thẻ, chữ xám trên nền màu (README liệt kê).'
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Cài skill vào công cụ AI: npx impeccable install đặt skill, và hook cho Claude Code, Copilot,
+      Codex, Cursor, Grok Build, vào thư mục của từng công cụ.'
+  - text: 'Một lệnh, nhiều việc: Mọi việc đi qua /impeccable <command> <target>. init ghi PRODUCT; các
+      lệnh khác dùng từ vựng chung như shape, critique, audit, polish.'
+  - text: 'Chọn hướng thị giác: Khi bắt đầu một thiết kế mới, skill hỏi roll API chia ra một bàn các thế
+      giới thị giác từ danh mục; hướng được chọn ghi vào bản tóm tắt của màn…'
+  - text: 'Chọn đường dựng: Comp-first tạo bản thiết kế đầy đủ rồi dựng theo; code-first dựng thẳng bằng
+      mã.'
+  - text: 'Dò lỗi bằng luật cố định: 59 quy tắc xác định chạy qua npx impeccable detect hoặc hook khi
+      agent sửa file giao diện: Claude Code, Copilot, Codex báo sau khi sửa, Grok…'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Skill impeccable
+    text: Một skill cho mọi công cụ AI; 24 lệnh con đi qua /impeccable.
+  - emoji: ⚙️
+    title: PRODUCT và DESIGN
+    text: PRODUCT giữ sự thật bền của sản phẩm; DESIGN ghi riêng hệ thống thị giác.
+  - emoji: 🔌
+    title: Engine và launcher
+    text: Binary tự chứa chạy cạnh launcher, hoặc được tải một lần vào ~/.impeccable/bin/.
+  - emoji: 📦
+    title: Bộ dò (detector)
+    text: 59 quy tắc xác định, chạy bằng CLI hoặc tiện ích trình duyệt, không cần LLM hay khóa API.
+  - emoji: 🧠
+    title: Hook thiết kế
+    text: Chạy detector khi agent sửa file giao diện và đưa phát hiện về luồng của agent.
+  - emoji: 📡
+    title: Chế độ live
+    text: Lặp biến thể của một phần tử ngay trên trình duyệt, trên checkout cục bộ.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - 'Đặt tên cho từng việc: 24 lệnh như polish, quieter, distill tạo từ vựng chung giữa người và AI, nên
+    yêu cầu ngắn mà vẫn rõ.'
+  - Tách sự thật của sản phẩm (PRODUCT) khỏi hướng thị giác (DESIGN và bản tóm tắt từng màn hình), để
+    lệnh sau không nhầm hai thứ.
+  - 'Phần dò lỗi dùng luật xác định, không cần LLM: 59 quy tắc lặp lại được, có mã thoát cho CI, không
+    cần khóa API.'
+  - 'Nói rõ giới hạn của công cụ kiểm tra: README viết rằng lần quét sạch chỉ là bằng chứng, không thay
+    việc xem giao diện thật.'
+  - 'Một trình cài, nhiều công cụ AI: cùng nội dung được đóng gói theo từng nhà cung cấp, nên chuyển công
+    cụ không phải học lại.'
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: 'Có telemetry ẩn danh khi bắt đầu thiết kế mới: yêu cầu roll luôn xảy ra, còn bản ghi gửi đi
+      tắt được bằng `npx impeccable telemetry off`…'
+  - emoji: ⚠️
+    text: Hook trên Claude Code chạy độc lập với việc duyệt công cụ, nên lần sửa file đầu có thể tải engine
+      về.
+  - emoji: ⚠️
+    text: Chế độ live chỉ sửa checkout cục bộ. Áp dụng chỉnh sửa chữ có thể chạy `impeccable:manual-edit-validate`
+      trong package.json dưới quyền của…
+  - emoji: ⚠️
+    text: Lần quét sạch của detector chỉ là bằng chứng, không chứng minh chất lượng thị giác hay khả năng
+      truy cập; vẫn phải xem giao diện thật ở…
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'AI vẽ giao diện dễ lặp vài kiểu quen thuộc? Impeccable dạy nó thiết kế có chủ đích
+
+
+      Một skill, 24 lệnh: lập kế hoạch, đánh giá, chỉnh lần cuối, kèm 59 quy tắc dò lỗi thiết kế chạy
+      không cần LLM.
+
+      Bài hướng dẫn từng bước đi kèm chỉ cách cài, khởi tạo và rà soát giao diện.
+
+      Lưu ý: có telemetry ẩn danh và có thể tắt.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AI
+    - Design
+    - OpenSource

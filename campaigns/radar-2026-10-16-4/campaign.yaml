@@ -1,0 +1,15 @@
+tool: github-radar
+langs:
+- vi
+platforms:
+- facebook
+goal: 'Share what 3 popular free GitHub projects teach, scanned on 2026-10-16-4: one clear explanation
+  per project, so readers learn the idea and save the post.'
+links:
+  01-playwright-mcp: https://github.com/microsoft/playwright-mcp
+  02-impeccable: https://github.com/pbakaus/impeccable
+  03-ui-ux-pro-max-skill: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+utm:
+  medium: social
+  campaign: radar-2026-10-16-4
+schedule: []

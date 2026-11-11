@@ -1,0 +1,12 @@
+slug: github-radar
+name: GitHub Radar
+status: launched
+brand:
+  emoji: 📡
+  accent: '#0ea5e9'
+what_it_is: A twice-weekly series that picks well-rated free GitHub projects and explains how each one
+  works, with diagrams. Summaries are AI-written from the project's README and file layout and checked
+  by script; the projects belong to their authors.
+limitations:
+- Not an endorsement or a security review of any project
+- Star counts are as of the scan date

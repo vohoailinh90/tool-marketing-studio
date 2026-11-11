@@ -1,0 +1,96 @@
+id: 03-rea
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-5
+link: 03-rea
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: 'REA: Dịch ngược ứng dụng và binary cùng AI Agent qua MCP'
+  subtitle: REA là máy chủ MCP kết nối AI Agent với các công cụ dịch ngược để phân tích binary gốc, ứng
+    dụng JavaScript, Electron và website ngay trên máy cục bộ.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '293.881'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Khi muốn học hỏi hoặc tái hiện một tính năng phần mềm nhưng không có mã nguồn, việc tự phân tích
+    nhị phân đòi hỏi kỹ năng dịch ngược chuyên sâu và mất nhiều thời gian.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Agent gọi REA qua MCP: Agent gửi yêu cầu thông qua giao thức MCP để kiểm tra mục tiêu và lần
+      theo các đoạn mã liên quan.'
+  - text: 'Phân tích và thu thập bằng chứng: REA thực hiện kiểm tra cục bộ và trả về phát hiện kèm theo
+      bằng chứng cụ thể và giới hạn của kết luận.'
+  - text: 'Agent diễn giải và xây dựng: Agent tận dụng kết quả để giải thích cơ chế hoạt động, trả lời
+      câu hỏi đào sâu hoặc viết mã nguồn thay thế.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: AI Agent
+    text: Giao diện trò chuyện (Claude Code, Cursor, Codex) đặt câu hỏi điều tra và tổng hợp kết quả.
+  - emoji: ⚙️
+    title: REA MCP Server
+    text: Máy chủ MCP cục bộ tiếp nhận yêu cầu từ agent và điều phối các công cụ phân tích.
+  - emoji: 🔌
+    title: Static Analysis Engine
+    text: Mô-đun kiểm tra tĩnh mã JavaScript, Electron và .NET mà không cần engine dịch ngược nhị phân.
+  - emoji: 📦
+    title: Native Providers
+    text: Các bộ phân tích nhị phân chuyên sâu như Hopper, Ghidra hoặc IDA cung cấp mã giả và hợp ngữ.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Giao thức Model Context Protocol (MCP) giúp mở rộng năng lực của AI Agent xuống tầng hệ thống cục
+    bộ.
+  - Mọi kết luận dịch ngược của agent đều cần gắn liền với bằng chứng (evidence) và giới hạn cụ thể để
+    tránh suy đoán sai.
+  - Phân tích tĩnh JavaScript và Electron có thể chạy độc lập mà không nhất thiết phải có môi trường decompiler
+    nhị phân.
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Phân tích sâu mã nhị phân native yêu cầu cài đặt hoặc cấu hình thêm công cụ bên ngoài như Hopper,
+      Ghidra hoặc IDA.
+  - emoji: ⚠️
+    text: Mặc dù REA phân tích hoàn toàn cục bộ trên máy, dữ liệu phản hồi trả về cho agent vẫn tuân theo
+      chính sách dữ liệu của nhà cung cấp mô…
+  - emoji: ⚠️
+    text: Trên Linux, các công cụ phân tích tiến trình yêu cầu lệnh ps tương thích procps sẵn có trong
+      PATH.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'REA: Dịch ngược bất kỳ ứng dụng nào cùng AI Agent
+
+
+      - Khám phá tính năng app mà không cần mã nguồn gốc
+
+      - Kết nối công cụ dịch ngược với Claude Code, Cursor, Codex qua MCP
+
+      - Tự động bóc tách ứng dụng JavaScript, Electron đến binary native
+
+      - Phân tích hoàn toàn trên máy cục bộ và cung cấp bằng chứng minh bạch
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - ReverseEngineering
+    - AIAgents
+    - MCP
+    - DeveloperTools
+    - OpenSource

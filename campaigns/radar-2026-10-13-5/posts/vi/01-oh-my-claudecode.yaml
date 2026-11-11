@@ -1,0 +1,88 @@
+id: 01-oh-my-claudecode
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-13-5
+link: 01-oh-my-claudecode
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: Điều phối Multi-agent cho Claude Code với OMC
+  subtitle: oh-my-claudecode (OMC) là hệ sinh thái điều phối đa tác tử (multi-agent orchestration) cho
+    Claude Code, hỗ trợ tự động hóa quy trình lập trình qua các luồng…
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '39.876'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Khi giao toàn bộ công việc lập trình phức tạp cho một phiên AI đơn lẻ, hệ thống dễ bị quá tải
+    ngữ cảnh và làm việc thiếu nhất quán.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Cài đặt và thiết lập: Người dùng cài đặt gói CLI hoặc bổ sung plugin, sau đó thực hiện lệnh
+      thiết lập để đồng bộ hóa các kỹ năng và tác tử vào môi trường làm việc.'
+  - text: 'Phân chia giai đoạn qua Autopilot: Lệnh autopilot phân tách nhiệm vụ thành các giai đoạn tuần
+      tự đã định hình trước như ralplan (lập kế hoạch), execution (thực thi) và…'
+  - text: 'Đồng bộ hóa trạng thái an toàn: Hệ thống kiểm soát các bước ghi nhận tiến trình bằng cơ chế
+      khóa advisory trên nhân hệ điều hành, đảm bảo trạng thái không bị ghi đè hay…'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Terminal CLI
+    text: Giao diện dòng lệnh chạy từ terminal ngoài để cài đặt môi trường, cấu hình và gửi yêu cầu hỏi
+      các nhà cung cấp.
+  - emoji: ⚙️
+    title: In-session Skills
+    text: Tập hợp các kỹ năng được kích hoạt bằng lệnh gạch chéo trực tiếp bên trong phiên làm việc của
+      Claude Code.
+  - emoji: 🔌
+    title: Autopilot Engine
+    text: Bộ máy điều phối chuỗi thực thi tác vụ theo các hồ sơ giai đoạn cấu hình sẵn.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Tách biệt trách nhiệm bằng cách chia nhỏ quy trình AI thành các khâu riêng biệt thay vì dùng một câu
+    lệnh duy nhất
+  - Hỗ trợ song song cả giao diện dòng lệnh bên ngoài lẫn kỹ năng bên trong môi trường phiên làm việc
+  - Sử dụng khóa hệ thống cấp kernel để bảo vệ tính toàn vẹn trạng thái khi thực thi quy trình phức tạp
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Tính năng named autopilot profiles hiện yêu cầu môi trường Linux có tiện ích flock
+  - emoji: ⚠️
+    text: Quá trình cài đặt qua npm có thể xuất hiện cảnh báo phiên bản cũ từ thư viện phụ thuộc better-sqlite3
+  - emoji: ⚠️
+    text: Dự án được phân phối dưới giấy phép nguồn mở MIT
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Điều phối nhiều AI agent cùng viết code với oh-my-claudecode.
+
+      Thay vì để một AI gánh hết mọi khâu, hệ thống phân tách rõ ràng giữa lập kế hoạch, viết code và
+      kiểm thử.
+
+      Cung cấp cả CLI terminal và skill chạy ngay trong phiên làm việc.
+
+      Giúp quy trình lập trình tự động trở nên ngăn nắp và hạn chế lỗi sót việc.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - claudecode
+    - aiagents
+    - multiagent
+    - automation
+    - typescript

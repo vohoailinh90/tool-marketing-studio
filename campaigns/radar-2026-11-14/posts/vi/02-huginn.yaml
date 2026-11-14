@@ -1,0 +1,75 @@
+id: 02-huginn
+status: draft
+format: portrait
+series: Radar GitHub · 2026-11-14
+link: 02-huginn
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: Tạo các tác vụ tự động hóa với Huginn
+  subtitle: Huginn là hệ thống giúp tạo các agent thực hiện tác vụ tự động, đọc web, theo dõi sự kiện
+    giống như IFTTT hoặc Zapier nhưng chạy trên server của bạn.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '50.534'
+  label: sao trên GitHub
+  caption: MIT · Ruby
+- layout: quote
+  text: Bạn muốn tự động hóa các công việc lặp đi lặp lại trên mạng như cào dữ liệu web, theo dõi RSS,
+    nhận thông báo thay đổi nhưng lo lắng về quyền riêng tư dữ liệu trên các dịch vụ bên thứ ba.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Tạo sự kiện: Các Agent của Huginn liên tục đọc web, theo dõi RSS, IMAP hoặc webhook để tạo
+      ra các sự kiện mới.'
+  - text: 'Truyền sự kiện: Sự kiện được lan truyền dọc theo một đồ thị có hướng giữa các Agent trong hệ
+      thống.'
+  - text: 'Thực hiện hành động: Dựa trên sự kiện nhận được, các Agent thực hiện hành động như gửi email,
+      đăng bài lên mạng xã hội hoặc gọi webhook.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Agent
+    text: Thực hiện các tác vụ theo dõi, đọc dữ liệu và phản ứng với sự kiện.
+  - emoji: ⚙️
+    title: Event Graph
+    text: Đồ thị có hướng truyền tải sự kiện giữa các Agent.
+  - emoji: 🔌
+    title: Web UI
+    text: Giao diện web để quản lý, cấu hình các Agent và xem kết quả.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách tự động hóa các tác vụ lặp đi lặp lại trên nền tảng self-hosted.
+  - Mô hình lập trình dựa trên sự kiện và đồ thị Agent.
+  - Cách vận hành ứng dụng Ruby trên môi trường Docker hoặc local.
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Yêu cầu kiến thức cơ bản về dòng lệnh và quản trị server khi chạy thực tế.
+  - emoji: ⚠️
+    text: Không giữ worker chạy miễn phí trên các nền tảng đám mây quản lý.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tự động hóa mọi việc với Huginn - mã nguồn mở thay thế IFTTT chạy ngay trên server của bạn!
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - huginn
+    - automation
+    - opensource
+    - selfhosted

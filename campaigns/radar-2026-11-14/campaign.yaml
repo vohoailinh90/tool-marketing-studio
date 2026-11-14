@@ -1,0 +1,14 @@
+tool: github-radar
+langs:
+- vi
+platforms:
+- facebook
+goal: 'Share what 2 popular free GitHub projects teach, scanned on 2026-11-14: one clear explanation per
+  project, so readers learn the idea and save the post.'
+links:
+  01-esp32-iphone-agent: https://github.com/onehumanbeing/esp32-iphone-agent
+  02-huginn: https://github.com/huginn/huginn
+utm:
+  medium: social
+  campaign: radar-2026-11-14
+schedule: []

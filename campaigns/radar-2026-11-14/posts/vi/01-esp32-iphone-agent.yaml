@@ -1,0 +1,77 @@
+id: 01-esp32-iphone-agent
+status: draft
+format: portrait
+series: Radar GitHub · 2026-11-14
+link: 01-esp32-iphone-agent
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: 'ESP32 iPhone Agent: Điều khiển iPhone bằng AI qua bo mạch $7'
+  subtitle: Giúp mô hình AI tương tác với iPhone thật bằng cách kết hợp truyền màn hình AirPlay và chuột
+    bàn phím USB HID.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '4.923'
+  label: sao trên GitHub
+  caption: MIT · Swift
+- layout: quote
+  text: Nhiều người dùng muốn AI tự thao tác trên iPhone nhưng ngại việc cài đặt phức tạp, dùng máy Mac
+    hay jailbreak thiết bị. Dự án này giải quyết bài toán đó bằng một bo mạch phần cứng giá rẻ cắm trực
+    tiếp vào điện thoại.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Truyền hình ảnh màn hình: Bo mạch mở điểm phát Wi-Fi, nhận luồng AirPlay từ iPhone và chuyển
+      tiếp đến ứng dụng.'
+  - text: 'Điều khiển phần cứng: Bo mạch hoạt động như chuột và bàn phím USB HID để thực hiện các thao
+      tác bấm, vuốt.'
+  - text: 'Xử lý trí tuệ nhân tạo: Ứng dụng phân tích ảnh chụp màn hình qua mô hình thị giác và quyết
+      định hành động tiếp theo.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: ESP32-S3 Board
+    text: Nhận luồng AirPlay, phát Wi-Fi hotspot và giả lập thiết bị USB HID.
+  - emoji: ⚙️
+    title: ESP32 Agent App
+    text: Giải mã màn hình, gửi ảnh tới AI và điều phối các thao tác.
+  - emoji: 🔌
+    title: AI Vision Model
+    text: Đọc nội dung màn hình và đưa ra bước đi tiếp theo.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách tích hợp phần cứng giá rẻ ESP32 với ứng dụng di động
+  - Cách xây dựng agent AI điều khiển giao diện người dùng qua màn hình và chuột ảo
+  - Cách sử dụng giao thức AirPlay để truyền tải hình ảnh không dây
+  - Cách quản lý vòng lặp hành động của mô hình thị giác trên thiết bị di động
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Cần mua bo mạch phần cứng giá khoảng $7
+  - emoji: ⚠️
+    text: Điện thoại sẽ sử dụng dữ liệu di động khi kết nối Wi-Fi với bo mạch
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Điều khiển iPhone bằng AI với bo mạch ESP32 giá 7 USD không cần jailbreak!
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AI
+    - ESP32
+    - iPhone
+    - Automation

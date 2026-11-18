@@ -1,0 +1,94 @@
+id: 01-skill-recorder
+status: draft
+format: portrait
+series: Radar GitHub · 2026-11-18
+link: 01-skill-recorder
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: Biến thao tác màn hình thành kỹ năng AI với Skill Recorder
+  subtitle: Ứng dụng máy tính ghi lại thao tác màn hình và dùng GitHub Copilot CLI để tái cấu trúc thành
+    kỹ năng Skill hoặc quy trình tự động hóa cho AI agent.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '5.846'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Người dùng văn phòng và lập trình viên phải lặp đi lặp lại các tác vụ thủ công nhiều bước trên
+    máy tính. Việc tự viết prompt hoặc mã lệnh chi tiết cho AI agent mô phỏng lại các bước này rất tốn
+    thời gian và dễ sai sót.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Ghi hình và dữ liệu thao tác: Ghi nhận nhấp chuột, chuyển đổi cửa sổ ứng dụng, trang web truy
+      cập, lệnh terminal và âm thanh mic ngay trên máy.'
+  - text: 'Tái cấu trúc bằng Copilot CLI: Sử dụng Copilot CLI và mô hình AI để chuyển hành động thô thành
+      ý định tổng quát và các bước làm việc logic theo thứ tự.'
+  - text: 'Tổng quát hóa và xuất định dạng: Ưu tiên gọi công cụ có sẵn của agent thay vì lặp lại thao
+      tác chuột UI, chuyển đổi thành tệp hướng dẫn Skill hoặc tác vụ Automation.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Screen & Activity Recorder
+    text: Ghi lại màn hình, sự kiện click chuột, ứng dụng hoạt động, âm thanh và terminal cục bộ.
+  - emoji: ⚙️
+    title: GitHub Copilot CLI
+    text: Thành phần CLI nhúng sẵn phụ trách xác thực GitHub OAuth và kết nối bộ SDK.
+  - emoji: 🔌
+    title: AI Model Engine
+    text: Mô hình ngôn ngữ và thị giác phân tích hình ảnh cùng lịch sử thao tác thành chuỗi hành động.
+  - emoji: 📦
+    title: Skill and Automation Builder
+    text: Trình tạo tệp đặc tả quy trình kỹ năng hoặc lịch kích hoạt tự động hóa cho AI agent.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách tổng quát hóa từ một lần làm mẫu sang công cụ native thay vì bấm lại giao diện máy tính
+  - Mô hình tích hợp Copilot CLI vào ứng dụng desktop Electron để xử lý xác thực Web OAuth
+  - Cơ chế bảo vệ API key cục bộ bằng hệ thống lưu trữ khóa bảo mật của hệ điều hành
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: 'Không bảo vệ bí mật tự động: dữ liệu màn hình sẽ gửi tới AI khi bấm Analyze nên phải tự tránh
+      nhập mật khẩu hoặc token'
+  - emoji: ⚠️
+    text: Tính năng BYOM vẫn gửi yêu cầu tới endpoint từ xa và tính phí nhà cung cấp, không phải xử lý
+      ngoại tuyến
+  - emoji: ⚠️
+    text: Phát triển từ mã nguồn đòi hỏi Node.js 24
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Biến thao tác màn hình thành kỹ năng cho AI chỉ bằng một lần làm mẫu với Microsoft Skill
+      Recorder.
+
+
+      Không cần ngồi viết prompt mô tả từng click chuột.
+
+      Ứng dụng ghi lại hành động của bạn rồi nhờ Copilot CLI dịch thành kỹ năng chuẩn chỉnh.
+
+      Ưu tiên chuyển thành lệnh terminal hoặc công cụ native thay vì bấm lại giao diện.
+
+      Hỗ trợ cả Windows 11, macOS và Ubuntu.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AIAgent
+    - SkillRecorder
+    - GitHubCopilot
+    - Automation
+    - OpenSource
